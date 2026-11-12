@@ -73,10 +73,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-0f7719ecfb764d9b8ebcd528363db9a6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-ab88f94875df08cd53119fedb3162b42.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-fe956f79aca35e1e3fb62e3c2bbe567d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -105,15 +105,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <script type="module">
   import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
-  mermaid.initialize({ startOnLoad: true, securityLevel: "loose" });
+  mermaid.initialize({
+    startOnLoad: true,
+    securityLevel: "loose",
+    theme: "neutral",
+    fontFamily: '"Pretendard Variable", Pretendard, "Malgun Gothic", sans-serif'
+  });
 </script>
 
 
 </head>
 
-<body class="nav-sidebar docked nav-fixed quarto-light">
+<body class="nav-sidebar floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -162,7 +169,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -314,7 +321,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">이 페이지</h2>
+    <h2 id="toc-title">이 장의 차례</h2>
    
   <ul>
   <li><a href="#학습-목표" id="toc-학습-목표" class="nav-link active" data-scroll-target="#학습-목표">학습 목표</a></li>
@@ -426,6 +433,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<header class="chapter-head">
+<p class="chapter-part">LLM AI 개발</p>
+<p class="chapter-no"><span class="num">3</span><span class="unit">주차</span></p>
+<p class="chapter-title">TDD와 첫 배포</p>
+</header>
 <div class="kit-link">
 <p><strong>실습 자료</strong> <a href="../../../docs/subjects/llm-ai/LLM_03주차_실습자료.html">이 주차 키트 파일 보기 · 내려받기</a></p>
 </div>
@@ -471,12 +483,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>터미널 2개 배치.</strong> 터미널 1 = Claude Code(지시), 터미널 2 = 서버 명령(실행 · 검증). Remote-SSH 창이면 New Terminal → 분할 아이콘으로 만듭니다. 두 터미널의 현재 폴더는 각각 따로 바뀝니다. 한쪽에서 <code>cd</code>를 해도 다른 쪽은 움직이지 않습니다.</li>
 <li><strong>환경을 점검합니다.</strong> claude 버전 → API 키 → 모델 순서로 칩니다.</li>
 </ol>
-<p><strong>[서버 터미널]</strong></p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>   <span class="ex">claude</span> <span class="at">--version</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>   <span class="bu">test</span> <span class="at">-n</span> <span class="st">"</span><span class="va">$ANTHROPIC_API_KEY</span><span class="st">"</span> <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> KEY_SET</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>   2.x.x  (버전 숫자는 달라도 됩니다)
    KEY_SET</code></pre>
-<p><strong>[Claude Code 안]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 안</span>
+</div>
 <pre class="text"><code>   &gt; /status
      Model: haiku</code></pre>
 <p><strong>주의.</strong> 지금 이 창이 내 PC인지 서버인지는 프롬프트가 알려줍니다. <code>PS C:\Users\이름&gt;</code> = 내 PC, 대괄호에 <code>@실습서버</code>가 보이면 서버(날짜 · 시각 · 폴더가 함께 나올 수 있습니다).</p>
@@ -484,16 +500,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="첫-접속-처음이거나-절차를-잊었다면" class="level4">
 <h4 class="anchored" data-anchor-id="첫-접속-처음이거나-절차를-잊었다면">첫 접속 (처음이거나 절차를 잊었다면)</h4>
 <p>아이디는 이름 영문 약자+성입니다(예: 홍길동 → gdhong). PowerShell을 엽니다(시작 검색 “Windows PowerShell” 또는 <code>Win+X</code> → 터미널). <code>continue connecting?</code> 질문은 첫 접속에만 나오고 <code>yes</code>를 칩니다. 비밀번호는 쳐도 화면에 안 보이는 것이 정상이고, 끊기면 다시 <code>ssh</code>부터입니다. 초기 비밀번호는 전원 공통이니 반드시 바꿉니다.</p>
-<p><strong>[내 PC · PowerShell]</strong></p>
+<div class="code-label where-pc">
+<span>내 PC · PowerShell</span>
+</div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>   ssh 아이디@서버주소</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>   ... continue connecting? (yes/no)? yes  # 첫 접속에만
    아이디@서버주소's password:  # 입력해도 안 보임
    [아이디@실습서버 ~]$  # 접속 성공!</code></pre>
-<p><strong>[서버 터미널]</strong></p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>   <span class="fu">passwd</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>   # 현재 비밀번호 → 새 비밀번호 2번 → updated successfully</code></pre>
 <ul>
-<li><strong>[확인 1]</strong> 프롬프트에 <code>@실습서버</code>가 보이고, 초기 비밀번호였다면 <code>passwd</code>로 변경까지 마쳤다.</li>
+<li><span class="check-badge">확인 1</span> 프롬프트에 <code>@실습서버</code>가 보이고, 초기 비밀번호였다면 <code>passwd</code>로 변경까지 마쳤다.</li>
 </ul>
 </section>
 <section id="vs-code-remote-ssh-설치와-연결" class="level4">
@@ -516,7 +536,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
      터미널 1 claude용  ·  터미널 2 명령용</code></pre>
 <p>붙여넣기는 VS Code 터미널 <code>Ctrl+V</code>, PowerShell 창은 마우스 오른쪽 클릭입니다. <strong>연결이 안 되면</strong> PowerShell 창 2개로 각각 <code>ssh 아이디@서버주소</code> 접속하면 터미널 1 · 2를 대신합니다. 파일은 <code>cat 파일이름</code>으로 확인합니다.</p>
 <ul>
-<li><strong>[확인 2]</strong> 왼쪽 아래에 <code>SSH: 서버주소</code>가 보이고, 탐색기에 <code>/home/아이디</code>의 파일이 보이며, 터미널 2개가 모두 서버에서 열려 있다.</li>
+<li><span class="check-badge">확인 2</span> 왼쪽 아래에 <code>SSH: 서버주소</code>가 보이고, 탐색기에 <code>/home/아이디</code>의 파일이 보이며, 터미널 2개가 모두 서버에서 열려 있다.</li>
 </ul>
 </section>
 <section id="설치와-모델-설정-아직-안-했거나-잊었다면" class="level4">
@@ -546,7 +566,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="자료-받기-week03-폴더를-내-폴더로-복사" class="level3">
 <h3 class="anchored" data-anchor-id="자료-받기-week03-폴더를-내-폴더로-복사">0-2. 자료 받기: <code>week03</code> 폴더를 내 폴더로 복사</h3>
 <p>서버에는 성격이 다른 폴더가 둘 있습니다. <strong>내 폴더</strong> <code>/home/아이디</code>(읽기 + 쓰기, 이 과목 작업 공간이자 제출함. 산출물은 <code>week01</code> · <code>week02</code> · <code>week03</code>처럼 주차별 폴더로 정리하고 <code>week03</code>입니다. 다른 학생은 내 폴더를 볼 수 없습니다)와 <strong>공용 배포 폴더</strong> <code>/home/공용계정</code>(읽기 전용, 수업 자료가 <code>week01</code> · <code>week02</code> … 처럼 주차 폴더로 배포됩니다). 해당 폴더를 내 폴더로 복사해 온 뒤, 내 폴더에서 작업합니다. <strong>파일 수정 작업은 반드시 배포 폴더 파일 복사 → 「내 폴더」에서 합니다.</strong></p>
-<p><strong>[서버 터미널]</strong></p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
 <div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ls</span> ~</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>   <span class="bu">cd</span> ~</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">cp</span> <span class="at">-rn</span> /home/공용계정/week03 ~/</span>
@@ -567,7 +589,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    강의안_03주차.md    100%</code></pre>
 <p><code>start</code> 명령을 치면 PDF가 바로 열립니다. 자기 화면에 띄워 놓고 따라옵니다. 강의안 <code>.md</code>는 VS Code에서 열고 <code>Ctrl+Shift+V</code>(미리보기) 또는 <code>Ctrl+K V</code>(나란히 보기)를 누릅니다. 별도 설치 없이 되는 내장 기능이며, 터미널이 아니라 편집기에서 누르는 단축키입니다.</p>
 <ul>
-<li><strong>[확인 3]</strong> 내 PC에 슬라이드 PDF와 강의안 <code>.md</code>가 받아졌고, PDF가 화면에 열렸다.</li>
+<li><span class="check-badge">확인 3</span> 내 PC에 슬라이드 PDF와 강의안 <code>.md</code>가 받아졌고, PDF가 화면에 열렸다.</li>
 </ul>
 </section>
 <section id="sdd-되짚기" class="level3">
@@ -591,7 +613,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         이름 · 지원 직무 · 프로젝트 · 연락처, 내화면.pen 적용
    ✓  내소재.md에 「가장 가까운 예제」를 골라 두었다
         A 수영 강좌(운동) · B 채용 · D 포트폴리오 중 하나</code></pre>
-<p><strong>[서버 터미널]</strong></p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
 <div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ls</span> ~/week02</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ls</span> ~/week02/운동/spec</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>   week02/
@@ -897,7 +921,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    https://www.naver.com</code></pre>
 <p><strong>주의.</strong> 이 장은 서버가 아니라 <strong>내 PC에서</strong> 합니다. 뒤의 실습 1은 다시 서버에서 합니다.</p>
 <ul>
-<li><strong>[확인 4]</strong> <code>file://</code>은 내 디스크에서 직접 읽고, <code>https://</code>는 서버에 요청해 받아 오며 그 통신이 암호화된다는 차이를 말할 수 있다.</li>
+<li><span class="check-badge">확인 4</span> <code>file://</code>은 내 디스크에서 직접 읽고, <code>https://</code>는 서버에 요청해 받아 오며 그 통신이 암호화된다는 차이를 말할 수 있다.</li>
 </ul>
 </section>
 <section id="클라이언트-서버-그리고-배포" class="level3">
@@ -1019,11 +1043,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>만들 것을 요청합니다.</strong> 자기가 보고 싶은 것을 요청해도 됩니다. 예: “클릭할 때마다 불꽃이 터지는 애니메이션 페이지”.</li>
 <li><strong>기다리는 동안 화면을 관찰.</strong> 실무에서는 생성 시간을 고려해 여러 작업을 번갈아 진행합니다.</li>
 </ol>
-<p><strong>[서버 터미널]</strong></p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
 <div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mkdir</span> <span class="at">-p</span> week03/web</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>   <span class="bu">cd</span> week03/web</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>   <span class="ex">claude</span>    <span class="co"># Shift+Tab 한 번 → accept edits</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>[Claude Code 안]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 안</span>
+</div>
 <pre class="text"><code>   &gt; 테트리스 게임을 단일 HTML 파일 index.html로 만들어라. 키보드 화살표로 조작하고, 점수를 표시한다.</code></pre>
 <pre class="text"><code>   [응답 예시 · 요약]
      ✻ 생각 중… → Write(index.html)
@@ -1032,7 +1060,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre class="text"><code>   &gt; 클릭할 때마다 불꽃이 터지는 애니메이션 페이지를 단일 HTML 파일 index.html로 만들어라.</code></pre>
 <p><strong>결과 비교.</strong> 같은 요청에도 만들어지는 것의 모양 · 색 · 규칙이 저마다 다릅니다.</p>
 <ul>
-<li><strong>[확인 5]</strong> <code>week03/web</code>에 <code>index.html</code>이 생성되었다.</li>
+<li><span class="check-badge">확인 5</span> <code>week03/web</code>에 <code>index.html</code>이 생성되었다.</li>
 </ul>
 </section>
 <section id="내-컴퓨터로-가져와-열기" class="level3">
@@ -1053,7 +1081,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    &gt; 블록이 쌓이는 속도를 조금 늦추고, 배경을 어두운 색으로 바꿔라.</code></pre>
 <p><strong>결과 비교.</strong> 옆 사람이 만든 것을 조작해 보며 비교합니다. 같은 프롬프트라도 동작이 다릅니다.</p>
 <ul>
-<li><strong>[확인 6]</strong> 브라우저에서 내가 만든 것이 동작한다.</li>
+<li><span class="check-badge">확인 6</span> 브라우저에서 내가 만든 것이 동작한다.</li>
 </ul>
 </section>
 <section id="file-주소를-폰으로-보내-확인하기" class="level3">
@@ -1071,7 +1099,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    링크로 눌리지 않음 / 열리지 않음</code></pre>
 <p><strong>생각할 점.</strong> 같은 파일을 친구 폰에서 열게 하려면 둘 중 무엇이 필요한가: ① 파일을 카카오톡으로 보낸다 ② 파일을 서버에 올려 https 주소를 받는다.</p>
 <ul>
-<li><strong>[확인 7]</strong> 보낸 <code>file://</code> 주소가 폰에서 열리지 않는 것을 확인했다.</li>
+<li><span class="check-badge">확인 7</span> 보낸 <code>file://</code> 주소가 폰에서 열리지 않는 것을 확인했다.</li>
 </ul>
 </section>
 <section id="실습-1-복기" class="level3">
@@ -1350,7 +1378,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>가상환경을 만들고 pytest를 설치한다.</strong> 설치는 <code>week03</code> 폴더에서 한 번만 합니다. <code>requirements.txt</code>가 버전을 고정해 두었으므로 전원 같은 숫자가 나옵니다.</li>
 <li><strong>교수 화면과 비교할 시연 복사본을 만든다.</strong> <code>prepare_demo.py</code>가 <code>week03/시연</code>을 <code>week03/demo</code>로 복사합니다. 원본 <code>시연/</code>은 건드리지 않고 <code>demo/</code>에서만 실행합니다. <code>demo</code>가 이미 있으면 오류로 멈추므로 그때는 있는 것을 그대로 씁니다.</li>
 </ol>
-<p><strong>[서버 터미널]</strong></p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
 <div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>   <span class="bu">cd</span> ~/week03</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>   <span class="ex">python3</span> <span class="at">-m</span> venv .venv</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>   <span class="ex">.venv/bin/python</span> <span class="at">-m</span> pip install <span class="at">-r</span> requirements.txt</span>
@@ -1362,7 +1392,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>pip 안내 문구는 무시합니다.</strong> 설치 끝에 <code>[notice] A new release of pip is available: 23.2.1 -&gt; 26.2.1</code> 같은 줄이 뜹니다. 실습과 무관하니 <strong>「무시하세요」 한마디로 넘어갑니다.</strong> 따라 하려다 시간을 쓰는 학생이 나옵니다. 여기는 실습 전체에서 시간이 가장 빠듯한 자리입니다.</p>
 <p><strong>막히면.</strong> pip 설치가 막히면 손을 듭니다. 설치가 안 된 상태로 「사고 1 · 교수 화면」에 가면 <code>5 failed</code> 대신 <code>No module named pytest</code>가 나옵니다. 버전이 9.1.1이 아니면 설치가 잘못된 것입니다.</p>
 <ul>
-<li><strong>[확인 8]</strong> <code>pytest --version</code>이 버전을 출력하고 <code>week03/demo</code> 폴더가 있다.</li>
+<li><span class="check-badge">확인 8</span> <code>pytest --version</code>이 버전을 출력하고 <code>week03/demo</code> 폴더가 있다.</li>
 </ul>
 </section>
 <section id="안-하면-생기는-일-재료-검증-자료는-ai의-작업-폴더-밖에-둔다" class="level3">
@@ -1390,7 +1420,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
      # 사고 없음. 검증 자료를 읽었기 때문</code></pre>
 <p><strong>기억할 것:</strong> <strong>폴더에 둔 것이 곧 AI에게 준 정보입니다.</strong> 어느 폴더에 무엇을 두느냐가 다음 주제 「프롬프트와 컨텍스트」의 주제입니다.</p>
 <ul>
-<li><strong>[확인 9]</strong> 두 폴더 중 어느 것이 AI에게 보이는지, 왜 검증 자료를 다른 폴더에 두는지 말할 수 있다.</li>
+<li><span class="check-badge">확인 9</span> 두 폴더 중 어느 것이 AI에게 보이는지, 왜 검증 자료를 다른 폴더에 두는지 말할 수 있다.</li>
 </ul>
 </section>
 <section id="안-하면-생기는-일-13-사고-1-완료했습니다를-믿으면" class="level3">
@@ -1407,7 +1437,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre class="text"><code>   (비어 있음)</code></pre>
 <p><strong>[Claude Code 터미널] · 새 터미널 하나 더 열고</strong></p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>   <span class="bu">cd</span> ~/week03/demo/사고1 <span class="kw">&amp;&amp;</span> <span class="ex">claude</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>[Claude Code 안]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 안</span>
+</div>
 <pre class="text"><code>   &gt; 배송비.py에 배송비(금액) 함수를 만들어라.
      5만 원 이상 무료, 아니면 3,000원.
    AI: 배송비.py를 작성했습니다. 완료했습니다.</code></pre>
@@ -1416,7 +1448,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre class="text"><code>   no tests ran   # 검사할 것이 없습니다</code></pre>
 <p><strong>기억할 것:</strong> AI의 “완료”는 만들었다는 뜻입니다. 맞는지는 테스트가 있을 때만 말할 수 있습니다. <strong>믿기 전에 터미널에서 pytest를 칩니다.</strong></p>
 <ul>
-<li><strong>[확인 10]</strong> AI가 “완료”라고 한 순간 무엇을 쳐서 확인해야 하는지 말할 수 있다. 막히면 교수 화면과 비교하고 넘어갑니다.</li>
+<li><span class="check-badge">확인 10</span> AI가 “완료”라고 한 순간 무엇을 쳐서 확인해야 하는지 말할 수 있다. 막히면 교수 화면과 비교하고 넘어갑니다.</li>
 </ul>
 </section>
 <section id="안-하면-생기는-일-23-사고-1-테스트를-넣자-빠진-요구가-드러난다" class="level3">
@@ -1444,7 +1476,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    5 passed</code></pre>
 <p><strong>기억할 것:</strong> 맞았는지 틀렸는지를 지금 알게 된 것은 테스트를 넣었기 때문입니다. <strong>실패한 이름을 읽으면 어느 요구가 빠졌는지 나옵니다.</strong></p>
 <ul>
-<li><strong>[확인 11]</strong> 어느 테스트가 왜 실패했는지, 경계 테스트가 없었으면 무엇을 놓쳤을지 말할 수 있다.</li>
+<li><span class="check-badge">확인 11</span> 어느 테스트가 왜 실패했는지, 경계 테스트가 없었으면 무엇을 놓쳤을지 말할 수 있다.</li>
 </ul>
 </section>
 <section id="안-하면-생기는-일-33-사고-2-무리하게-시키면-ai가-테스트를-고친다" class="level3">
@@ -1464,13 +1496,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    1 failed, 5 passed</code></pre>
 <p><strong>[Claude Code 터미널] · 새 터미널 하나 더 열고</strong></p>
 <div class="sourceCode" id="cb47"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>   <span class="bu">cd</span> ~/week03/demo/tdd <span class="kw">&amp;&amp;</span> <span class="ex">claude</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>[Claude Code 안]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 안</span>
+</div>
 <pre class="text"><code>   &gt; 무슨 수를 쓰든 통과시켜라.
    # 실제 테스트 변경 또는 불가능 보고를 확인</code></pre>
 <p><strong>두 사고의 공통점.</strong> 보고 내용만 보면 둘 다 모릅니다. 명세를 테스트로 먼저 쓰고, <strong>통과 뒤 테스트 파일을 다시 읽어야 합니다.</strong></p>
 <p><strong>참고.</strong> 수업 전 교수 리허설에서는 AI가 두 테스트 파일을 읽고 모순을 스스로 찾아 냈고, 호출 스택을 검사해 다른 값을 돌려주는 편법을 언급한 뒤 하지 않겠다고 했습니다. <strong>결과는 실행마다 다르므로 사람이 읽는 절차를 생략하면 안 됩니다.</strong></p>
 <ul>
-<li><strong>[확인 12]</strong> 실습 2의 프롬프트에 붙일 방지 지시 두 문장을 말할 수 있다.</li>
+<li><span class="check-badge">확인 12</span> 실습 2의 프롬프트에 붙일 방지 지시 두 문장을 말할 수 있다.</li>
 </ul>
 <p><strong>사례 · 누르면 입장을 바꾸는 성질은 코드 밖에서도 같습니다.</strong> 조선일보 2026-09-16 「AI에 ‘네가 틀렸어’ 25번 우기자, 97%가 “당신 말이 맞아요”」. 미국 텍사스A&amp;M대와 신시내티대 연구진이 사용자가 잘못된 답변을 유도할 때 AI가 어떻게 반응하는지 조사해 9월 8일 공개한 결과입니다. 명백하게 틀린 주장을 최대 25차례 반복하자 일부 최신 모델은 100개 문제 중 97개에서 한 번 이상 사용자의 잘못된 주장에 동조했고, 감정적 호소로 입장을 바꾼 비율은 44.3%였습니다. 기사는 이것을 시코펀시(sycophancy · 아첨과 영합)라 부릅니다. 사고 2에서 “무슨 수를 쓰든”에 테스트를 고치는 것과 같은 성질입니다. AI는 사람의 압박에 맞춰 답을 바꾸므로, 맞는지의 판정은 사람의 말이 아니라 사람이 미리 써 둔 테스트가 합니다. 출처: https://www.chosun.com/economy/tech_it/2026/09/16/7L2DLV3MZNBXRJI3KKCRKL5IU4/</p>
 </section>
@@ -1501,7 +1535,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
    # 내가 지원할 직무에서 먼저 보일 것을 고르고, 내 말로 고쳐 씁니다</code></pre>
 <ul>
-<li><strong>[확인 13]</strong> 내 <code>index.html</code>과 <code>요구사항명세서.md</code>를 열어 둔다.</li>
+<li><span class="check-badge">확인 13</span> 내 <code>index.html</code>과 <code>요구사항명세서.md</code>를 열어 둔다.</li>
 </ul>
 </section>
 <section id="준비-1-새-요구-정하기-내-포트폴리오에-부족한-것-하나" class="level3">
@@ -1512,7 +1546,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>내 포트폴리오에 반드시 필요한 것은?</strong> ① 면접관이 내 페이지를 열었을 때 부족해 보이는 것은 무엇인가 ② 프로젝트가 하나도 없을 때 면접관은 무엇을 보게 되는가 ③ 내가 지원하는 회사에 공개하기로 정한 범위는 어디까지인가.</li>
 <li><strong>EARS 형식으로 쓴다.</strong> <code>[상시]</code> · <code>[사건]</code> · <code>[상태]</code> 중 하나를 붙여 <code>내소재.md</code> 3주차 1)에 적습니다.</li>
 </ol>
-<p><strong>[서버 터미널]</strong></p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
 <div class="sourceCode" id="cb52"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>   <span class="bu">cd</span> ~/week03</span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">cp</span> <span class="at">-n</span> 내소재_양식.md 내소재.md   <span class="co"># 없을 때만 만들어집니다</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong><code>내소재.md</code> · 3주차 칸</strong></p>
@@ -1531,7 +1567,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
      후보로 적어라. 고르는 것은 내가 한다.</code></pre>
 <p><strong>생각할 것.</strong> 새 요구를 정하는 일이 가장 중요하고 오래 걸립니다. <strong>내 포트폴리오의 목적과 용도부터 정하면 새 요구가 보입니다.</strong></p>
 <ul>
-<li><strong>[확인 14]</strong> <code>내소재.md</code> 3주차 1)에 새 요구 한 줄을 적었고, 명세서에 없는 것임을 확인했다.</li>
+<li><span class="check-badge">확인 14</span> <code>내소재.md</code> 3주차 1)에 새 요구 한 줄을 적었고, 명세서에 없는 것임을 확인했다.</li>
 </ul>
 </section>
 <section id="준비-1-고른-새-요구를-판정할-수-있는-문장으로-바꾼다" class="level3">
@@ -1553,7 +1589,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    #   메뉴 이동 · 복사 버튼 · 휴대폰 화면</code></pre>
 <p><strong>생각할 것.</strong> 모든 문장이 통과하면 내 요구가 지켜진 것인가. 아니라면 검사할 것이 더 남은 것입니다.</p>
 <ul>
-<li><strong>[확인 15]</strong> 테스트 문장 세 줄을 <code>내소재.md</code> 2)에 적었고, 그중 하나가 새 요구를 검사한다.</li>
+<li><span class="check-badge">확인 15</span> 테스트 문장 세 줄을 <code>내소재.md</code> 2)에 적었고, 그중 하나가 새 요구를 검사한다.</li>
 </ul>
 </section>
 <section id="준비-1-점검-판정할-수-없는-문장은-ai가-기준을-대신-정한다" class="level3">
@@ -1584,7 +1620,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    o 연락처 · 프로젝트 · 비었을 때를 각각 검사</code></pre>
 <p><strong>기억할 것:</strong> AI가 만든 것은 무엇이든 사람이 읽고 확인합니다. <strong>기준까지 AI가 정하면 확인할 잣대가 없어집니다.</strong></p>
 <ul>
-<li><strong>[확인 16]</strong> 모든 문장이 판정할 수 있고, 서로 다른 것을 검사한다.</li>
+<li><span class="check-badge">확인 16</span> 모든 문장이 판정할 수 있고, 서로 다른 것을 검사한다.</li>
 </ul>
 </section>
 <section id="준비-1-옮겨-적기-정한-문장을-내소재.md에-넣는다" class="level3">
@@ -1600,7 +1636,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ls</span> 내소재.md</span>
 <span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">cp</span> 내소재_양식.md 내소재.md   <span class="co"># 없으면 실행</span></span>
 <span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">cat</span> 내소재.md                 <span class="co"># 다 적은 뒤 확인</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>[Claude Code 터미널]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 터미널</span>
+</div>
 <div class="sourceCode" id="cb58"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>   <span class="bu">cd</span> ~/week03</span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>   <span class="ex">claude</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>[Claude Code 안]</strong> · 밑줄 친 내용은 내 목적대로 바꿉니다</p>
@@ -1613,7 +1651,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
        경계: 링크를 모두 지운 사본에서도 "준비 중"이 보인다
      다른 칸과 다른 줄은 바꾸지 마라.</code></pre>
 <ul>
-<li><strong>[확인 17]</strong> <code>week03/내소재.md</code>의 1)과 2)에 내가 정한 문장이 그대로 들어갔다.</li>
+<li><span class="check-badge">확인 17</span> <code>week03/내소재.md</code>의 1)과 2)에 내가 정한 문장이 그대로 들어갔다.</li>
 </ul>
 </section>
 <section id="준비-2-실습-2에서-쓸-지시문-두-개를-만든다-필수" class="level3">
@@ -1625,7 +1663,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>2)를 읽는다 · 구현하는 지시.</strong> 테스트 파일을 수정하지 말라는 문장과, 통과 못 하면 그렇게 보고하라는 문장이 있는지 봅니다.</li>
 <li><strong>빠진 문장은 고쳐 저장하게 한다.</strong> “빠진 문장은 넣어서 다시 저장하라”고 시키고, 파일을 열어 확인합니다. <strong>양식과 많이 다르면 <code>내프롬프트_양식.md</code>를 복사해 씁니다.</strong></li>
 </ol>
-<p><strong>[Claude Code 터미널]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 터미널</span>
+</div>
 <div class="sourceCode" id="cb60"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>   <span class="bu">cd</span> ~/week03</span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>   <span class="ex">claude</span></span>
 <span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>   <span class="co"># 내소재.md에 요구와 테스트 문장 세 줄을 먼저 씁니다(준비 1)</span></span>
@@ -1645,7 +1685,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>양식과 많이 다르면.</strong> 키트의 <code>week03/내프롬프트_양식.md</code>를 그대로 복사해 써도 됩니다.</p>
 <div class="sourceCode" id="cb63"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>   <span class="fu">cp</span> <span class="at">-n</span> ~/week03/내프롬프트_양식.md ~/week03/내프롬프트.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li><strong>[확인 18]</strong> <code>week03/내프롬프트.md</code>에 프롬프트 2개가 있다.</li>
+<li><span class="check-badge">확인 18</span> <code>week03/내프롬프트.md</code>에 프롬프트 2개가 있다.</li>
 </ul>
 </section>
 <section id="실습-2-개요-두-단계입니다-공통-재료-내-포트폴리오" class="level3">
@@ -1699,7 +1739,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>실패를 확인한다 (Red).</strong> 아래 결과 카드와 숫자 · 메시지가 같은지 대조합니다.</li>
 <li><strong>테스트를 동결한다.</strong> 동결(freeze)은 지금의 <code>tests/</code> 내용을 <code>.test-baseline.json</code>에 기록하는 일입니다. pytest는 <strong>실행하는 순간 <code>tests/</code>에 있는 테스트만</strong> 보고하고 전에 무엇이 있었는지는 모르므로, 다음 절에서 <code>5 passed</code>가 나와도 지금 동결한 다섯 개와 같은 내용이라는 뜻은 아닙니다(조건을 느슨하게 고쳐도 통과). 구현을 시키기 전에 동결하고, 다음 절에서 <code>check</code>로 비교합니다.</li>
 </ol>
-<p><strong>[서버 터미널]</strong></p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
 <div class="sourceCode" id="cb65"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>   <span class="bu">cd</span> ~/week03</span>
 <span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>   <span class="bu">test</span> <span class="at">-d</span> tdd <span class="kw">||</span> <span class="fu">cp</span> <span class="at">-r</span> 골격 tdd</span>
 <span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>   <span class="bu">cd</span> ~/week03/tdd</span>
@@ -1715,7 +1757,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    # No module named judge → tdd 폴더에서 실행했는지 확인</code></pre>
 <p><strong>참고.</strong> 미구현 함수로 실패하는 것이 정상 Red입니다. 동결 기록은 <strong>명령을 실행한 폴더</strong>에 생기므로 <code>tdd</code>와 <code>mine</code>은 따로 동결합니다.</p>
 <ul>
-<li><strong>[확인 19]</strong> <code>5 failed</code>와 <code>NotImplementedError</code>를 확인하고 동결했다.</li>
+<li><span class="check-badge">확인 19</span> <code>5 failed</code>와 <code>NotImplementedError</code>를 확인하고 동결했다.</li>
 </ul>
 </section>
 <section id="실습-2-26-green-ai에게-통과만-지시하기" class="level3">
@@ -1742,7 +1784,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    TEST_UNCHANGED (.test-baseline.json 기준 · 1개 파일)</code></pre>
 <p><strong>결과 비교.</strong> <code>judge.py</code>의 구현 모양은 사람마다 다릅니다. <code>5 passed</code>와 <code>TEST_UNCHANGED</code>라는 기준만 같습니다.</p>
 <ul>
-<li><strong>[확인 20]</strong> 테스트 5개가 모두 통과한다(Green).</li>
+<li><span class="check-badge">확인 20</span> 테스트 5개가 모두 통과한다(Green).</li>
 </ul>
 </section>
 <section id="실습-2-36-교수-시연-후-각자-실행-내-복사본-만들기" class="level3">
@@ -1768,7 +1810,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>도구가 함께 넣는 것.</strong> <code>mine</code>에는 <code>index.html</code> · <code>요구사항명세서.md</code> · <code>내소재.md</code> 말고도 <strong>빈 <code>tests/</code> 폴더와 <code>pytest.ini</code> · <code>conftest.py</code></strong>가 함께 들어갑니다. 4/6에서 pytest를 돌릴 자리를 미리 만들어 두는 것입니다. 이 셋은 건드리지 않고, 배포에도 올라가지 않습니다.</p>
 <p><strong>답을 쓰는 파일은 <code>week03/내소재.md</code> 하나입니다.</strong> <code>mine</code> 안에 같은 이름의 사본이 생기지만 그것은 <strong>AI가 읽는 용도</strong>입니다. 3) 결과 칸도 <code>week03/내소재.md</code>에 적습니다.</p>
 <ul>
-<li><strong>[확인 21]</strong> <code>mine</code>에 <code>index.html</code> · <code>요구사항명세서.md</code> · <code>내소재.md</code>가 있다. <strong><code>내소재.md</code> 3주차 칸 1)과 2)가 채워져 있다.</strong></li>
+<li><span class="check-badge">확인 21</span> <code>mine</code>에 <code>index.html</code> · <code>요구사항명세서.md</code> · <code>내소재.md</code>가 있다. <strong><code>내소재.md</code> 3주차 칸 1)과 2)가 채워져 있다.</strong></li>
 </ul>
 </section>
 <section id="실습-2-46-교수-시연-후-각자-실행-red-테스트-문장-세-줄을-테스트-파일로-옮기고-실패를-확인한다" class="level3">
@@ -1794,7 +1836,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre class="text"><code>   # 숫자는 사람마다 다릅니다. 화면을 그대로 둡니다</code></pre>
 <p><strong>참고 · 구현을 함께 시키지 않는 이유.</strong> 통과부터 시키면 테스트가 무엇을 지키는지 볼 기회가 없어집니다.</p>
 <ul>
-<li><strong>[확인 22]</strong> <code>tests/test_mine.py</code>에 테스트 문장 세 줄이 있고, 테스트가 실패했다. <strong>여기서는 실패가 정상 결과다.</strong></li>
+<li><span class="check-badge">확인 22</span> <code>tests/test_mine.py</code>에 테스트 문장 세 줄이 있고, 테스트가 실패했다. <strong>여기서는 실패가 정상 결과다.</strong></li>
 </ul>
 </section>
 <section id="실습-2-56-교수-화면과-함께-판정-내-실패가-정상-red인지-확인한다" class="level3">
@@ -1823,7 +1865,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
      ③④는 에러 메시지의 이름이 내 것인지 외부 것인지로 가릅니다</code></pre>
 <p><strong>참고 · 갈래를 먼저 정하는 이유.</strong> Red는 「실패했다」가 아니라 <strong>「내가 정한 조건을 아직 만족하지 못했다」</strong>는 뜻입니다. ③과 ④는 조건을 확인하지도 못한 상태입니다. Red로 착각하면 뒤가 전부 어긋납니다.</p>
 <ul>
-<li><strong>[확인 23]</strong> 내 화면이 다섯 갈래 중 몇 번인지 말할 수 있다.</li>
+<li><span class="check-badge">확인 23</span> 내 화면이 다섯 갈래 중 몇 번인지 말할 수 있다.</li>
 </ul>
 </section>
 <section id="실습-2-66-교수-시연-후-각자-실행-green-동결하고-테스트를-건드리지-않고-통과시킨다" class="level3">
@@ -1859,7 +1901,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    TEST_UNCHANGED (.test-baseline.json 기준 · 1개 파일)</code></pre>
 <p><strong>참고 · 동결을 먼저 하는 이유.</strong> 통과 화면만으로는 AI가 테스트를 고쳐 맞췄는지 알 수 없습니다. <code>TEST_CHANGED</code>가 나오면 바뀐 파일을 열어 원래대로 돌립니다.</p>
 <ul>
-<li><strong>[확인 24]</strong> <code>내소재.md</code> 3) 결과 칸에 전체 통과 · <code>TEST_UNCHANGED</code> · 브라우저 확인을 적었다.</li>
+<li><span class="check-badge">확인 24</span> <code>내소재.md</code> 3) 결과 칸에 전체 통과 · <code>TEST_UNCHANGED</code> · 브라우저 확인을 적었다.</li>
 </ul>
 </section>
 <section id="실습-2-복기-사람이-조건을-정하고-ai가-맞췄다" class="level3">
@@ -1958,7 +2000,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    # tests · 내소재.md · 요구사항명세서.md는 없어야 합니다</code></pre>
 <p><strong>참고.</strong> <code>deploy</code>가 이미 있으면 오류로 멈춥니다. 이전 것을 다른 이름으로 바꾼 뒤 다시 실행합니다.</p>
 <ul>
-<li><strong>[확인 25]</strong> <code>deploy</code>에 <code>index.html</code>이 있고, 테스트 · 답안 · 명세 파일이 없다.</li>
+<li><span class="check-badge">확인 25</span> <code>deploy</code>에 <code>index.html</code>이 있고, 테스트 · 답안 · 명세 파일이 없다.</li>
 </ul>
 </section>
 <section id="실습-3-24-서버-내-pc-내-파일을-zip으로-내려받기" class="level3">
@@ -1984,7 +2026,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    # 폴더 한 겹으로 더 싸지 않습니다</code></pre>
 <p><strong>막히면.</strong> <code>deploy.zip</code>이 이미 있으면 이전 파일을 다른 이름으로 바꾼 뒤 다시 압축합니다. VS Code를 쓰지 않으면 내 PC PowerShell에서 <code>scp 아이디@서버주소:~/week03/deploy.zip .</code>로 받습니다.</p>
 <ul>
-<li><strong>[확인 26]</strong> 내 PC에 ZIP을 받았고, 압축을 푼 페이지가 정상 동작한다.</li>
+<li><span class="check-badge">확인 26</span> 내 PC에 ZIP을 받았고, 압축을 푼 페이지가 정상 동작한다.</li>
 </ul>
 </section>
 <section id="실습-3-34-내-pc-브라우저-workers에-upload-and-deploy" class="level3">
@@ -2022,7 +2064,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><strong>관찰한 결과를 답안에 남긴다.</strong> 공개 폴더 · Worker 이름 · 실제 URL · PC 검사 · 폰 검사를 <code>내소재.md</code> 「배포」 칸에 씁니다.</p>
 <p><strong>참고.</strong> PC Chrome에서 기능을 먼저 확인합니다. <strong>브라우저 창을 좁혀 보는 것은 실물 폰 검증과 다르므로 반드시 자기 폰에서도 확인합니다.</strong></p>
 <ul>
-<li><strong>[확인 27]</strong> 내 URL이 폰에서 열리고, 새 요구가 화면에 보인다.</li>
+<li><span class="check-badge">확인 27</span> 내 URL이 폰에서 열리고, 새 요구가 화면에 보인다.</li>
 </ul></li>
 </ol>
 </section>
@@ -2063,7 +2105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><code>도구/package_site.py</code>는 <code>deploy/</code> 안의 파일을 ZIP 루트에 담고, 담긴 뒤 <code>index.html</code>이 맨 위에 있는지 스스로 확인합니다. 직접 압축하지 않고 이 도구를 쓰면 이 증상은 생기지 않습니다.</p>
 <p><strong>참고.</strong> 증상이 둘 이상이면 위에서부터 하나씩 확인합니다. <strong>두 곳을 동시에 바꾸면 무엇이 고쳤는지 알 수 없습니다.</strong></p>
 <ul>
-<li><strong>[확인 28]</strong> 내 증상이 어느 칸인지 찾아 그 자리를 확인했다.</li>
+<li><span class="check-badge">확인 28</span> 내 증상이 어느 칸인지 찾아 그 자리를 확인했다.</li>
 </ul>
 </section>
 <section id="실습-3-복기-내-디스크가-아니라-인터넷-주소가-됐다" class="level3">
@@ -2097,7 +2139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    # 골격 · 시연 · 예제 · demo · tdd는 지우지 않고 그대로 둡니다</code></pre>
 <p><strong>참고.</strong> 실습 1의 <code>week03/web/index.html</code>도 그대로 둡니다.</p>
 <ul>
-<li><strong>[확인 29]</strong> 세 가지가 폴더에 있다. 제출 완료.</li>
+<li><span class="check-badge">확인 29</span> 세 가지가 폴더에 있다. 제출 완료.</li>
 </ul>
 </section>
 <section id="정리" class="level2">
@@ -2121,7 +2163,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    # 아래 두 칸은 생각해 본 만큼만, 빈칸이어도 됩니다</code></pre>
 <p><strong>기억할 것:</strong> 주소를 받은 것으로 끝이 아닙니다. 그 주소에서 <strong>무엇이 자동으로 지켜지는지</strong> 말할 수 있어야 측정으로 이어집니다.</p>
 <ul>
-<li><strong>[확인 30]</strong> 포트폴리오 명세에 주소 줄이 들어갔다.</li>
+<li><span class="check-badge">확인 30</span> 포트폴리오 명세에 주소 줄이 들어갔다.</li>
 </ul>
 </section>
 <section id="정리-22-왜-중요한가-테스트가-있으면-무엇이-달라지는가" class="level3">
@@ -2745,6 +2787,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>AI소프트웨어학과 강의 교재 · 2026년 2학기판</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

@@ -73,10 +73,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-0f7719ecfb764d9b8ebcd528363db9a6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-ab88f94875df08cd53119fedb3162b42.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-fe956f79aca35e1e3fb62e3c2bbe567d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -105,15 +105,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <script type="module">
   import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
-  mermaid.initialize({ startOnLoad: true, securityLevel: "loose" });
+  mermaid.initialize({
+    startOnLoad: true,
+    securityLevel: "loose",
+    theme: "neutral",
+    fontFamily: '"Pretendard Variable", Pretendard, "Malgun Gothic", sans-serif'
+  });
 </script>
 
 
 </head>
 
-<body class="nav-sidebar docked nav-fixed quarto-light">
+<body class="nav-sidebar floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -162,7 +169,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -314,7 +321,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">이 페이지</h2>
+    <h2 id="toc-title">이 장의 차례</h2>
    
   <ul>
   <li><a href="#시작하기-환경-접속-자료-받기-프롬프트-컨텍스트-되짚기" id="toc-시작하기-환경-접속-자료-받기-프롬프트-컨텍스트-되짚기" class="nav-link active" data-scroll-target="#시작하기-환경-접속-자료-받기-프롬프트-컨텍스트-되짚기">0. 시작하기: 환경 접속, 자료 받기, 프롬프트 · 컨텍스트 되짚기</a>
@@ -418,6 +425,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<header class="chapter-head">
+<p class="chapter-part">LLM AI 개발</p>
+<p class="chapter-no"><span class="num">5</span><span class="unit">주차</span></p>
+<p class="chapter-title">CLAUDE.md와 LLM 동작 원리</p>
+</header>
 <div class="kit-link">
 <p><strong>실습 자료</strong> <a href="../../../docs/subjects/llm-ai/LLM_05주차_실습자료.html">이 주차 키트 파일 보기 · 내려받기</a></p>
 </div>
@@ -435,30 +447,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><strong>서버 접속.</strong> PowerShell에서 <code>ssh 아이디@서버주소</code>(비밀번호는 쳐도 안 보임). 프롬프트가 <code>[아이디@실습서버 ~]$</code>로 바뀌면 성공. VS Code Remote-SSH를 쓰면 같은 프롬프트가 VS Code 터미널에 뜹니다. 이 창이 내 PC인지 서버인지는 프롬프트가 알려줍니다. <code>PS C:\Users\이름&gt;</code> = 내 PC, 대괄호에 <code>@실습서버</code>가 보이면 서버(날짜 · 시각 · 폴더가 함께 나올 수 있습니다).</p>
 <p><strong>처음 접속하거나 절차를 잊은 사람.</strong> 계정은 1주차에 나눠 준 아이디(이름 영문 약자+성, 예: 홍길동 → gdhong)이고 목록은 덱의 「접속 · 첫 접속」 장에 있습니다. 설치가 안 되어 있으면 「접속 · 설치」 장을 따릅니다. PowerShell을 열고(시작 검색 “Windows PowerShell” 또는 Win+X → 터미널) 아래를 칩니다. 첫 접속에만 <code>continue connecting? (yes/no)?</code> 질문이 나오고 <code>yes</code>를 칩니다. 비밀번호는 쳐도 화면에 안 보이는 것이 정상이고, 끊기면 다시 <code>ssh</code>부터입니다. 초기 비밀번호는 전원 공통이니 접속 뒤 <code>passwd</code>로 반드시 바꿉니다(현재 비밀번호 → 새 비밀번호 2번 → <code>updated successfully</code>). 아이디나 비밀번호를 모르면 손을 듭니다.</p></li>
 </ol>
-<p><strong>[내 PC · PowerShell]</strong></p>
+<div class="code-label where-pc">
+<span>내 PC · PowerShell</span>
+</div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>   ssh 아이디@서버주소</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>   ... continue connecting? (yes/no)? yes  # 첫 접속에만
    아이디@서버주소's password:  # 입력해도 안 보임
    [아이디@실습서버 ~]$  # 접속 성공!</code></pre>
-<p><strong>[서버 터미널]</strong></p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>   <span class="fu">passwd</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li><strong>[확인 1]</strong> 프롬프트에 <code>@실습서버</code>가 보이고, 초기 비밀번호였다면 <code>passwd</code>로 바꿨다.</li>
+<li><span class="check-badge">확인 1</span> 프롬프트에 <code>@실습서버</code>가 보이고, 초기 비밀번호였다면 <code>passwd</code>로 바꿨다.</li>
 </ul>
 <p><strong>VS Code Remote-SSH(권장).</strong> VS Code 설치(최초 1회) → 왼쪽 확장(Extensions) 아이콘 → “Remote - SSH” 검색 → Install(최초 1회) → <code>F1</code> → <code>Remote-SSH: Connect to Host...</code> → <code>아이디@서버주소</code> 입력(<code>ssh</code>는 붙이지 않습니다) → 처음이면 Linux 선택 → 비밀번호 → 왼쪽 아래에 <code>SSH: 서버주소</code>가 보이면 연결 완료 → File &gt; Open Folder → <code>/home/아이디</code>. 탐색기에 서버 파일이 보이고, <code>Ctrl+S</code> 저장이 곧 서버에 쓰기입니다. 연결이 안 되면 PowerShell 창 2개로 각각 <code>ssh</code> 접속하면 그 두 창이 터미널 1 · 2를 대신합니다(파일은 <code>cat</code>으로 확인). 붙여넣기는 VS Code 터미널 <code>Ctrl+V</code>, PowerShell은 우클릭.</p>
 <ul>
-<li><strong>[확인 2]</strong> 왼쪽 아래에 <code>SSH: 서버주소</code>가 보인다. 탐색기에 서버 파일이 보이고, 터미널 2개가 모두 서버에서 열려 있다.</li>
+<li><span class="check-badge">확인 2</span> 왼쪽 아래에 <code>SSH: 서버주소</code>가 보인다. 탐색기에 서버 파일이 보이고, 터미널 2개가 모두 서버에서 열려 있다.</li>
 </ul>
 <ol start="2" type="1">
 <li><p><strong>터미널 2개 배치.</strong> 터미널 1 = Claude Code(지시하는 창), 터미널 2 = 서버 명령(직접 실행해 확인하는 창). 나란히 엽니다. VS Code에서는 Terminal &gt; New Terminal, 분할 아이콘으로 하나 더. 이 터미널은 서버에서 열리므로 <code>ssh</code>를 다시 치지 않습니다. 강의안의 배지 <code>[Claude Code 터미널]</code> / <code>[서버 터미널]</code>가 이 구분이고, <code>claude</code>가 떠 있는 동안의 입력은 <code>[Claude Code 안]</code>입니다. 두 터미널의 현재 폴더는 각각 따로 바뀝니다. 한쪽에서 <code>cd</code>를 해도 다른 쪽은 움직이지 않습니다. Remote-SSH가 안 되면 PowerShell 창 2개로 진행합니다.</p></li>
 <li><p><strong>환경 점검.</strong> claude 버전 → API 키 → 모델 순서로 칩니다.</p></li>
 </ol>
-<p><strong>[서버 터미널]</strong></p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>   <span class="ex">claude</span> <span class="at">--version</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>   <span class="bu">echo</span> <span class="va">${ANTHROPIC_API_KEY</span><span class="op">:</span><span class="dv">0</span><span class="op">:</span><span class="dv">8</span><span class="va">}</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>   2.x.x  (버전 숫자는 달라도 됩니다)
    sk-ant-a  (빈 줄이면 키 없음 → 「접속 · 설치」 장)</code></pre>
-<p><strong>[Claude Code 안]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 안</span>
+</div>
 <pre class="text"><code>   &gt; /status
      Model: haiku
    /exit</code></pre>
@@ -474,7 +494,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="자료-받기-week05-폴더를-내-폴더로-복사" class="level3">
 <h3 class="anchored" data-anchor-id="자료-받기-week05-폴더를-내-폴더로-복사">0-2. 자료 받기: <code>week05</code> 폴더를 내 폴더로 복사</h3>
 <p>서버에는 성격이 다른 폴더가 둘 있습니다. 내 폴더 <code>/home/아이디</code>(읽기 + 쓰기, 이 과목 작업 공간이자 제출함. 산출물은 <code>week01</code> · <code>week02</code> · <code>week03</code> · <code>week04</code> · <code>week05</code>처럼 주차별 폴더로 정리하고 지금 쓰는 폴더는 <code>week05</code>입니다. 다른 학생은 내 폴더를 볼 수 없습니다)와 공용 배포 폴더 <code>/home/공용계정</code>(읽기 전용, 수업 자료가 같은 이름의 주차 폴더로 배포됩니다). 파일 수정 작업은 반드시 배포 폴더 파일을 복사해 「내 폴더」에서 합니다.</p>
-<p><strong>[서버 터미널]</strong></p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
 <div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>   <span class="bu">cd</span> ~</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">cp</span> <span class="at">-rn</span> /home/공용계정/week05 ~/</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ls</span> week05</span>
@@ -483,7 +505,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><code>cp -rn</code>은 폴더를 통째로 복사하되 이미 있는 파일은 덮어쓰지 않는다는 뜻입니다. 재접속해서 다시 쳐도 기존 작업이 지워지지 않습니다. <code>골격</code>과 <code>포트폴리오</code>가 실습 1~2의 두 프로젝트, <code>requirements.txt</code>가 두 프로젝트의 테스트 도구(pytest, 2-1에서 설치), <code>스크립트/token_count.py</code>가 실습 3의 재료(토큰 측정), <code>내소재_양식.md</code>가 실습 답안지, <code>내프롬프트_양식.md</code>가 지시문 양식(2-2 준비 2에서 AI가 만든 프롬프트가 엉뚱할 때의 안전판)입니다. 양식을 <code>내소재.md</code>로 복사해 둡니다. 실습 1의 준비부터 이 파일에 씁니다. 실습 1~2의 작업도 <code>week05/골격</code>과 <code>week05/포트폴리오</code>에서 하므로, 이 수업의 산출물과 제출물은 모두 <code>week05</code> 안에 모입니다. 결과물은 업로드가 없습니다. VS Code가 서버에 연결되어 있어 저장(<code>Ctrl+S</code>)이 곧 서버에 쓰기입니다.</p>
 <p><code>ls</code>는 “지금 폴더”, <code>ls ~</code>는 “내 홈”입니다. 내 홈에는 <code>README.md</code>와 등록한 API 키 파일(<code>내키이름.txt</code>)이 있습니다.</p>
 <p>슬라이드 PDF와 강의안을 내 PC에서도 보려면 내 PC의 새 PowerShell 창에서 받습니다. 서버 접속 창은 그대로 두고 창을 하나 더 엽니다. <code>cp</code>는 서버 안 복사, <code>scp</code>는 내 PC로 전송이고, 서버에 복사해 둔 <code>week05</code>에서 가져옵니다. 명령 끝의 마침표(<code>.</code>)는 “지금 이 폴더로”라는 뜻이며, 프롬프트(<code>PS C:\Users\이름&gt;</code>) 뒤의 명령만 입력합니다. 서버 창(<code>[아이디@실습서버 ~]$</code>)에서 치면 내 PC가 아니라 서버 안에 내려받아집니다.</p>
-<p><strong>[내 PC · PowerShell]</strong></p>
+<div class="code-label where-pc">
+<span>내 PC · PowerShell</span>
+</div>
 <div class="sourceCode" id="cb10"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>   scp 아이디@서버주소<span class="op">:~/</span>week05<span class="op">/*.</span><span class="fu">pdf</span> <span class="op">.</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>   scp 아이디@서버주소<span class="op">:~/</span>week05<span class="op">/</span>강의안_05주차<span class="op">.</span><span class="fu">md</span> <span class="op">.</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">start</span> 슬라이드_05주차<span class="op">.</span><span class="fu">pdf</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -493,7 +517,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>한글 파일명 입력이 어려우면 파일명 대신 <code>*.pdf</code>로 써도 됩니다. <code>start</code> 명령을 치면 PDF가 바로 열립니다. 자기 화면에 띄워 놓고 따라옵니다. PDF가 아직 없으면 <code>.md</code>만 받고 강의안을 먼저 봅니다. 강의안 <code>.md</code>는 VS Code에서 열고 <code>Ctrl+Shift+V</code>(미리보기) 또는 <code>Ctrl+K V</code>(나란히 보기)를 누릅니다. 별도 설치 없이 되는 내장 기능이며, 터미널이 아니라 편집기에서 누르는 단축키입니다.</p>
 <p>서버에서는 <code>ls week05</code>에 강의안 · 답안 양식 · 지시문 양식 · <code>골격</code> · <code>포트폴리오</code> · <code>스크립트</code>가 보입니다.</p>
 <ul>
-<li><strong>[확인 3]</strong> 내 PC에 슬라이드 PDF와 강의안 <code>.md</code>가 받아졌고, PDF가 화면에 열렸다.</li>
+<li><span class="check-badge">확인 3</span> 내 PC에 슬라이드 PDF와 강의안 <code>.md</code>가 받아졌고, PDF가 화면에 열렸다.</li>
 </ul>
 </section>
 <section id="프롬프트-컨텍스트-되짚기" class="level3">
@@ -1089,12 +1113,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><strong>CLAUDE.md가 다른 폴더에 생겼다.</strong> 골격 폴더가 아닌 곳에서 <code>claude</code>를 실행한 경우입니다. <code>!pwd</code>로 위치를 보고, <code>/exit</code> 후 골격 폴더로 이동해 <code>claude</code>를 다시 실행합니다.</li>
 </ul>
-<p><strong>[Claude Code 터미널]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 터미널</span>
+</div>
 <div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>   <span class="bu">cd</span> ~/week05/골격</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong>포트폴리오 CLAUDE.md에 <code>app/</code> · <code>orders.py</code>가 나온다.</strong> 골격 폴더의 세션에서 프롬프트를 보낸 경우입니다. <code>/exit</code> 후 포트폴리오 폴더로 이동해 <code>claude</code>를 다시 실행하고 <code>/init</code>부터 합니다.</li>
 </ul>
-<p><strong>[Claude Code 터미널]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 터미널</span>
+</div>
 <div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>   <span class="bu">cd</span> ~/week05/포트폴리오</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong>Memory files가 0이거나 그대로다.</strong> 새 세션이 아닙니다. <code>/exit</code> 후 골격 폴더(<code>~/week05/골격</code>)에서 <code>claude</code>를 다시 실행합니다.</li>
@@ -1130,7 +1158,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li><strong><code>.venv</code> 설치와 테스트 실행.</strong> 두 폴더의 테스트를 돌릴 가상환경을 <code>week05</code>에 한 번만 만들고, 두 폴더에서 테스트를 한 번씩 돌립니다. 프롬프트 수업에서 채점기 환경을 만든 것과 같은 방식입니다.</li>
 </ol>
-<p><strong>[서버 터미널]</strong></p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
 <div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>   <span class="bu">cd</span> ~/week05 <span class="kw">&amp;&amp;</span> <span class="ex">python3</span> <span class="at">-m</span> venv .venv</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>   <span class="ex">.venv/bin/python</span> <span class="at">-m</span> pip install <span class="at">-r</span> requirements.txt</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>   <span class="bu">cd</span> ~/week05/골격 <span class="kw">&amp;&amp;</span> <span class="dt">\</span></span>
@@ -1146,14 +1176,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="2" type="1">
 <li><strong>파일 내용 확인.</strong> CLAUDE.md의 재료가 될 파일을 엽니다.</li>
 </ol>
-<p><strong>[서버 터미널]</strong></p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
 <div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ls</span> ~/week05/골격/app ~/week05/골격/tests</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">head</span> <span class="at">-20</span> ~/week05/골격/app/orders.py</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">cat</span> ~/week05/포트폴리오/요구사항명세서.md</span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">cat</span> ~/week05/포트폴리오/tests/test_page.py</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>orders.py</code>의 코드 구조는 CLAUDE.md의 구조 설명 재료, <code>요구사항명세서.md</code>의 페이지 조건은 작업 규칙의 재료, <code>test_page.py</code>가 검사하는 항목은 금지 사항의 재료입니다.</p>
 <ul>
-<li><strong>[확인 4]</strong> 두 폴더 모두 pytest 결과가 3 passed이고, orders.py · 요구사항명세서.md · test_page.py를 열어 내용을 확인했다.</li>
+<li><span class="check-badge">확인 4</span> 두 폴더 모두 pytest 결과가 3 passed이고, orders.py · 요구사항명세서.md · test_page.py를 열어 내용을 확인했다.</li>
 </ul>
 <ol start="3" type="1">
 <li><strong>포트폴리오 폴더의 파일과 역할.</strong> CLAUDE.md는 아직 없습니다. 규칙의 재료는 네 파일에 흩어져 있습니다.</li>
@@ -1189,7 +1221,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <p>요구사항과 테스트의 짝을 확인합니다.</p>
-<p><strong>[서버 터미널]</strong></p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
 <div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>   <span class="bu">cd</span> ~/week05/포트폴리오</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">grep</span> REQ- 요구사항명세서.md</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">grep</span> <span class="st">'def test'</span> tests/test_page.py</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1204,7 +1238,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>위는 요점만 줄인 형태이고, 실제 <code>grep</code> 출력은 명세서의 문장 전체가 나옵니다. REQ-02(카드를 누르면 펼치기)는 화면 동작이라 테스트가 없고, 브라우저에서 사람이 확인합니다.</p>
 <p>왜 CLAUDE.md로 옮기나. ① 세션을 시작할 때 Claude가 자동으로 읽는 프로젝트 파일은 CLAUDE.md입니다. 명세서와 테스트는 열어 보기 전까지 모릅니다. ② 모르면 테스트를 고쳐 통과시키거나 전화번호를 넣고, 테스트가 실패한 뒤에야 알게 됩니다. ③ 흩어진 조건과 파일에 없는 실행 방법(<code>.venv</code> 경로, 브라우저 확인)을 한곳에 모아 매 세션 전달합니다.</p>
 <ul>
-<li><strong>[확인 5]</strong> 네 파일의 역할을 말할 수 있고, REQ-02만 테스트가 없는 이유를 안다.</li>
+<li><span class="check-badge">확인 5</span> 네 파일의 역할을 말할 수 있고, REQ-02만 테스트가 없는 이유를 안다.</li>
 </ul>
 <ol start="4" type="1">
 <li><strong>교수 예시: 요구사항을 규칙 문장으로.</strong> 앞의 파일에서 교수가 규칙을 뽑은 예입니다. 아래 CLAUDE.md는 실습 1 마지막 단계에서 만들 완성 예이고, 지금 폴더에는 없습니다.</li>
@@ -1249,7 +1283,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    - 프로필.md에 없는 개인정보(전화번호 · 주소)는 넣지 않는다</code></pre>
 <p>예의 규칙은 REQ 번호나 파일로 출처를 댈 수 있습니다. 「테스트 먼저」는 골격에서 가져온 공통 규칙입니다.</p>
 <ul>
-<li><strong>[확인 6]</strong> 완성 예의 규칙마다 출처(REQ 번호 또는 파일)를 짚을 수 있다.</li>
+<li><span class="check-badge">확인 6</span> 완성 예의 규칙마다 출처(REQ 번호 또는 파일)를 짚을 수 있다.</li>
 </ul>
 <ol start="5" type="1">
 <li><strong>같은 틀, 다른 재료.</strong> 두 CLAUDE.md는 같은 네 절로 구성하고, 각 절의 내용은 해당 폴더의 코드 · 명세서 · 테스트 파일에서 가져옵니다.</li>
@@ -1304,7 +1338,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 <p>실습 방법: 포트폴리오 폴더에서 <code>/init</code>으로 초안을 만든 뒤, 지시문으로 네 절을 표의 포트폴리오 칸 내용으로 고치게 합니다. 골격의 CLAUDE.md는 복사하지 않습니다. 골격의 「app/ 아래에 둔다」를 그대로 두면 포트폴리오에는 <code>app/</code>이 없어 규칙이 헛돕니다.</p>
 <ul>
-<li><strong>[확인 7]</strong> cat으로 orders.py · test_orders.py · 요구사항명세서.md · test_page.py를 열어, 표의 각 칸이 실제로 그 파일에 있는지 확인했다.</li>
+<li><span class="check-badge">확인 7</span> cat으로 orders.py · test_orders.py · 요구사항명세서.md · test_page.py를 열어, 표의 각 칸이 실제로 그 파일에 있는지 확인했다.</li>
 </ul>
 </section>
 <section id="준비-2-내-소재로-프롬프트는-ai에게-만들게-한다-선택" class="level3">
@@ -1315,10 +1349,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>받은 3개를 <code>week05/내프롬프트.md</code>에 저장합니다. “위 3개를 내프롬프트.md로 저장해”라고 시키고 <code>/exit</code>로 나옵니다.</li>
 <li>이번 실습은 직접 지시로 진행합니다. <code>/init</code>을 직접 치고, 초안을 읽은 뒤 필요한 내용을 지시해 고칩니다. 만든 프롬프트는 내 프로젝트에서 같은 작업을 할 때 씁니다.</li>
 </ol>
-<p><strong>[Claude Code 터미널]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 터미널</span>
+</div>
 <div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>   <span class="bu">cd</span> ~/week05</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>   <span class="ex">claude</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>[Claude Code 안]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 안</span>
+</div>
 <pre class="text"><code>   &gt; 프로젝트는 "포트폴리오"(~/week05/포트폴리오)이고
      실행 명령은 "~/week05/.venv/bin/python -m pytest -q ·
      index.html을 브라우저로 열기", 작업 규칙 후보는
@@ -1334,7 +1372,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    &gt; /exit</code></pre>
 <p>결과를 붙이기 전에 읽습니다. 1)에 “200줄 이내”가, 2)에 <code>index.html</code>이 있는지 보고, 없으면 내 말로 고쳐 저장합니다. 양식과 많이 다르면 <code>내프롬프트_양식.md</code>를 <code>내프롬프트.md</code>로 복사해 씁니다(<code>cp -n ~/week05/내프롬프트_양식.md ~/week05/내프롬프트.md</code>).</p>
 <ul>
-<li><strong>[확인 8]</strong> week05/내프롬프트.md에 프롬프트 3개가 있다.</li>
+<li><span class="check-badge">확인 8</span> week05/내프롬프트.md에 프롬프트 3개가 있다.</li>
 </ul>
 <p><strong>유형별 예시: 내 과제라면 CLAUDE.md에 무엇을 쓰나.</strong> 같은 네 절을 과제 유형에 적용하면 다음과 같습니다.</p>
 <table class="caption-top table">
@@ -1388,13 +1426,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>골격으로 이동해 <code>claude</code>를 실행합니다. 작업은 골격 폴더(<code>~/week05/골격</code>)에서 합니다.</li>
 </ol>
-<p><strong>[Claude Code 터미널]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 터미널</span>
+</div>
 <div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>   <span class="bu">cd</span> ~/week05/골격</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>   <span class="ex">claude</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="2" type="1">
 <li><code>/context</code>를 입력합니다. CLAUDE.md가 없는 지금 상태를 재 둡니다. 규칙을 넣은 뒤 새 세션에서 이 값과 비교합니다.</li>
 </ol>
-<p><strong>[Claude Code 안]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 안</span>
+</div>
 <pre class="text"><code>   &gt; /context</code></pre>
 <pre class="text"><code>   [화면 예시 · 입력 아님 · 숫자는 각자 다릅니다]
    Haiku 4.5 · 20.7k/200k tokens (10%)
@@ -1408,14 +1450,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>결과를 읽습니다. 맨 위 줄은 모델과 전체 사용량(20.7k/200k)입니다. 아래 항목은 그 토큰을 무엇이 차지하는지 나눠 보여 줍니다. System prompt · System tools는 Claude Code가 기본으로 싣는 내용이고, Messages는 지금까지의 대화입니다. 대화 전인데 이미 약 20k가 찼습니다. 매 세션 기본으로 드는 비용입니다. 모델과 설치된 스킬 수에 따라 숫자는 사람마다 다릅니다.</p></li>
 <li><p>Memory files 줄을 찾아 적어 둡니다. CLAUDE.md가 없으면 이 줄이 보이지 않고, 기준값은 0입니다. 줄이 있으면(예: <code>~/.claude/CLAUDE.md</code>) 그 숫자를 <code>내소재.md</code> 5)에 적습니다.</p>
 <ul>
-<li><strong>[확인 9]</strong> /context에서 Memory files 줄을 찾고, 기준값(없으면 0)을 적어 두었다.</li>
+<li><span class="check-badge">확인 9</span> /context에서 Memory files 줄을 찾고, 기준값(없으면 0)을 적어 두었다.</li>
 </ul></li>
 </ol>
 <p><strong>2/9 · <code>/init</code> 실행과 허락 창.</strong> 앞 장의 세션에서 이어 합니다.</p>
 <ol type="1">
 <li><code>/init</code>을 입력합니다. 폴더를 검토해 CLAUDE.md 초안을 만듭니다. 끝날 때까지 기다립니다.</li>
 </ol>
-<p><strong>[Claude Code 안]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 안</span>
+</div>
 <pre class="text"><code>   &gt; /init</code></pre>
 <pre class="text"><code>   [화면 예시]
    ● I'll analyze this codebase and create a CLAUDE.md…
@@ -1437,13 +1481,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
      1. Project Overview  2. Architecture &amp; Key Rules
    # Write · Wrote N lines = 파일이 만들어졌다는 신호</code></pre>
 <ul>
-<li><strong>[확인 10]</strong> Write(CLAUDE.md)와 Wrote N lines로 파일이 만들어진 것을 확인했다.</li>
+<li><span class="check-badge">확인 10</span> Write(CLAUDE.md)와 Wrote N lines로 파일이 만들어진 것을 확인했다.</li>
 </ul>
 <p><strong>3/9 · 초안에서 빠진 규칙 찾기.</strong></p>
 <ol type="1">
 <li>영어 초안이면 한국어로 바꿉니다. <code>/init</code>은 영어로 쓰는 경우가 많습니다. 내용과 절 순서는 두고 말만 바꾸게 합니다. 처음부터 한국어로 받으려면 <code>/init</code> 뒤에 지시를 붙입니다.</li>
 </ol>
-<p><strong>[Claude Code 안]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 안</span>
+</div>
 <pre class="text"><code>   &gt; CLAUDE.md를 한국어로 바꿔 써줘.
      내용과 절 순서는 그대로 둬.
    # 처음부터 한국어로:
@@ -1451,7 +1497,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="2" type="1">
 <li><code>!cat</code>으로 파일을 엽니다. 느낌표(<code>!</code>)는 Claude Code 안에서 터미널 명령을 바로 실행합니다. 출력 뒤의 「완벽합니다! …」는 Claude의 요약이고 파일 내용이 아닙니다.</li>
 </ol>
-<p><strong>[Claude Code 안]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 안</span>
+</div>
 <pre class="text"><code>   &gt; !cat CLAUDE.md</code></pre>
 <pre class="text"><code>   [화면 예시 · 절 제목만 추림 · 이름과 순서는 사람마다 다름]
    ## 프로젝트 개요 · ## 아키텍처 및 핵심 규칙
@@ -1463,19 +1511,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>초안에 있는 것과 없는 것을 봅니다. 절 이름이 아니라 내용으로 찾습니다. 교수 화면 기준 예시는 다음과 같습니다. <strong>있음</strong>: 프로젝트 개요 · 개발 명령어(pytest) · 검증 규칙(수량 · 재고 ValueError). <strong>약함</strong>: 설계 제약에 「변경사항은 테스트와 함께」만 있고 「먼저」는 없음. <strong>없음</strong>: 금지 사항 절 · 「_STOCK은 함수를 거쳐서만 바꾼다」. 빠진 규칙은 5/9의 지시문으로 더합니다.</p>
 <p><code>/init</code>은 폴더의 코드와 설정을 보고 초안을 씁니다. 코드에 드러나지 않은 약속(금지 사항 등)은 초안에 빠지기 쉽습니다. 초안은 출발점일 뿐이며 그대로 쓰지 않습니다. AI가 준 것을 그대로 쓰지 않는 원칙은 <code>/init</code> 초안에도 적용됩니다.</p>
 <ul>
-<li><strong>[확인 11]</strong> 초안에서 있는 것 · 약한 것 · 없는 것을 하나씩 짚었다.</li>
+<li><span class="check-badge">확인 11</span> 초안에서 있는 것 · 약한 것 · 없는 것을 하나씩 짚었다.</li>
 </ul></li>
 </ol>
 <p><strong>4/9 · 규칙 후보 10개 뽑기.</strong> 목적은 AI가 명세서만 보고 뽑는 후보와, 사람이 알고 있는 약속이 어떻게 다른지 보는 것입니다.</p>
 <ol type="1">
 <li>후보 제안을 지시합니다(전문 입력). 각 후보에 필요한 이유와 “항상 적용/특정 파일” 표시가 붙어 <code>규칙후보.md</code>로 저장됩니다.</li>
 </ol>
-<p><strong>[Claude Code 안]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 안</span>
+</div>
 <pre class="text"><code>   &gt; 명세서.md를 읽어라. 이 프로젝트에서 AI에게 작업을 시킬 때 적용할 작업 규칙 후보 10개를 제안하라. 각 후보에 필요한 이유를 한 줄씩 붙이고, "항상 적용"인지 "특정 파일을 만질 때만 적용"인지 표시하라. 결과를 규칙후보.md 파일로 저장하라.</code></pre>
 <ol start="2" type="1">
 <li>저장된 파일을 열어 봅니다. 후보 수 · 문장 · 분류는 사람마다 다릅니다. 분류는 실습 2에서 다시 씁니다.</li>
 </ol>
-<p><strong>[Claude Code 안]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 안</span>
+</div>
 <pre class="text"><code>   &gt; !cat 규칙후보.md</code></pre>
 <pre class="text"><code>   [결과 예시 · 사람마다 다릅니다]
    ## 규칙 1: app/ 디렉토리의 외부 의존성 금지
@@ -1486,7 +1538,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="3" type="1">
 <li><p>교수 예시와 비교해 빠진 규칙을 적어 둡니다. AI는 명세서에 적힌 것만 뽑습니다. 명세서의 「테스트와 함께」는 「먼저」가 아니고, <code>_STOCK</code> 규칙은 명세서에 없습니다. 교수 예시로 기대하는 후보는 구현 전에 테스트 먼저 · _STOCK은 함수를 거쳐서만 바꾼다 · pytest 전체 통과 확인 · tests/의 기존 검사 유지입니다. 후보에 없는 것은 5/9 지시문에 직접 적습니다.</p>
 <ul>
-<li><strong>[확인 12]</strong> 규칙후보.md를 저장하고, 교수 예시에 있는데 후보에 없는 규칙을 적어 두었다.</li>
+<li><span class="check-badge">확인 12</span> 규칙후보.md를 저장하고, 교수 예시에 있는데 후보에 없는 규칙을 적어 두었다.</li>
 </ul></li>
 </ol>
 <p><strong>참고 · 규칙마다 막는 사고가 있다.</strong> 회사나 프로젝트의 규칙을 받으면 어느 역할인지, 없으면 어떤 사고가 나는지부터 봅니다. 규칙 문장은 달라도 역할은 같습니다.</p>
@@ -1531,7 +1583,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>넣을 규칙을 적어 지시합니다(전문 입력). <code>규칙후보.md</code>에서 쓸 것을 고르고, 4/9에서 적어 둔 빠진 규칙을 더합니다. 문장은 자기 말로 고쳐도 됩니다. 아래는 교수 예시입니다.</li>
 </ol>
-<p><strong>[Claude Code 안]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 안</span>
+</div>
 <pre class="text"><code>   &gt; CLAUDE.md의 기존 절은 그대로 두고 맨 끝에 두 절을 추가하라.
      ## 작업 규칙
      1) 구현 전에 tests/에 테스트를 먼저 쓴다
@@ -1543,11 +1597,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>되물으면 이 지시문으로 답합니다. “항상 적용이 2개뿐”처럼 옵션을 내밀면 고르지 말고, 넣을 규칙을 적은 지시문을 다시 보냅니다.</li>
 <li>완성본을 확인합니다. 기존 절 뒤에 작업 규칙 · 금지 사항 절이 붙었고 200줄 이내면 됩니다. <code>/init</code> 초안에 없던 테스트 먼저 · <code>_STOCK</code> 규칙 · 금지 사항이 이 지시문으로 들어갑니다. <code>!cat</code>으로 3/9의 초안과 비교합니다.</li>
 </ol>
-<p><strong>[Claude Code 안]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 안</span>
+</div>
 <pre class="text"><code>   &gt; !cat CLAUDE.md
    # 끝에 작업 규칙 · 금지 사항 절 · 200줄 이내</code></pre>
 <ul>
-<li><strong>[확인 13]</strong> 작업 규칙 · 금지 사항 절에 /init 초안에 없던 규칙이 들어갔다.</li>
+<li><span class="check-badge">확인 13</span> 작업 규칙 · 금지 사항 절에 /init 초안에 없던 규칙이 들어갔다.</li>
 </ul>
 <p><strong>6/9 · 새 세션에서 <code>/context</code> 읽기.</strong> 시작과 끝은 <code>week05/골격</code>의 새 Claude Code 세션입니다.</p>
 <ol type="1">
@@ -1556,14 +1612,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p><strong>[Claude Code 안]</strong> 방법 1 · 같은 창에서</p>
 <pre class="text"><code>   &gt; /exit</code></pre>
-<p><strong>[Claude Code 터미널]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 터미널</span>
+</div>
 <div class="sourceCode" id="cb41"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>   <span class="ex">claude</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>[서버 터미널]</strong> 방법 2 · 새 터미널에서 (앞 세션은 그대로)</p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>   <span class="bu">cd</span> ~/week05/골격 <span class="kw">&amp;&amp;</span> <span class="ex">claude</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="3" type="1">
 <li><code>/context</code>에서 두 곳을 읽습니다. <strong>Memory files 줄</strong>은 CLAUDE.md가 차지하는 토큰입니다. 0이 아니면 읽힌 것입니다. <strong>└ 1 file</strong>은 읽힌 파일 수입니다.</li>
 </ol>
-<p><strong>[Claude Code 안]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 안</span>
+</div>
 <pre class="text"><code>   &gt; /context</code></pre>
 <pre class="text"><code>   [화면 예시 · 입력 아님 · 숫자는 각자 다릅니다]
    Haiku 4.5 · 21.7k/200k tokens (11%)  # 앞: 20.7k
@@ -1575,7 +1635,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="4" type="1">
 <li><p>앞과 비교해 해석합니다. 전체가 20.7k → 21.7k로 약 1k 늘었고, 그만큼이 Memory files입니다. 이 값은 매 요청에 붙습니다. 방금 만든 파일이 매 세션 내는 비용입니다. 0이거나 줄이 없으면 <code>!pwd</code>로 골격 폴더인지, 규칙을 넣은 뒤 새로 연 세션인지 봅니다.</p>
 <ul>
-<li><strong>[확인 14]</strong> 새 세션의 /context에서 Memory files 줄과 파일 수를 읽었다.</li>
+<li><span class="check-badge">확인 14</span> 새 세션의 /context에서 Memory files 줄과 파일 수를 읽었다.</li>
 </ul></li>
 </ol>
 <p><strong>참고 · 컨텍스트 관리: <code>/context</code>와 함께 쓰는 명령.</strong> 컨텍스트 창은 요청마다 통째로 보내집니다. 차지하는 양이 늘면 비용이 늘고, 가득 차면 앞 내용이 요약되어 흐려집니다.</p>
@@ -1630,7 +1690,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>검증 지시를 입력합니다.</li>
 </ol>
-<p><strong>[Claude Code 안]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 안</span>
+</div>
 <pre class="text"><code>   &gt; app/orders.py에 주문의 배송 상태를 변경하는 함수를 추가하라.</code></pre>
 <pre class="text"><code>   [응답 예시 · 사람마다 다릅니다]
    CLAUDE.md 지침에 따라 구현 전에 테스트를 먼저 작성합니다.
@@ -1643,7 +1705,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>응답에서 규칙 적용 결과를 읽습니다. 1) 테스트 먼저: <code>tests/</code> 수정이 <code>app/</code> 수정보다 앞. 2) 함수 경유: <code>_ORDERS</code>를 새 함수 안에서 바꿈. 3) 전체 통과: 마지막 실행 뒤 전체 통과 보고. 금지 사항: 지운 1줄은 import 교체이고 검사가 아닙니다. 규칙과 어긋난 산출물이 나오면 어느 규칙인지 확인하고, 규칙 문장을 지시문 설계 원칙(명확한 지시, 예시)으로 고쳐 한 번 더 시험합니다.</li>
 <li><code>/context</code> → <code>/compact</code> → <code>/context</code>로 비교합니다.</li>
 </ol>
-<p><strong>[Claude Code 안]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 안</span>
+</div>
 <pre class="text"><code>   &gt; /context   # 요약 전 · 36.7k
    Messages: 15k · Memory files: 992
    &gt; /compact
@@ -1653,7 +1717,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Messages는 15k → 9.6k로 대화가 요약되어 줄었습니다. Memory files는 992 → 992로, CLAUDE.md는 다시 읽혀 그대로입니다. Read …는 최근 작업한 파일이 요약 뒤 다시 읽힌 것입니다. 대화로만 한 규칙과 다른 점입니다(프롬프트 · 컨텍스트 수업의 「계속 지킬 규칙은 대화가 아니라 파일에」).</p>
 <p>CLAUDE.md는 매번 읽는 약속이지 자물쇠가 아닙니다. 대부분 지키지만 어길 수도 있습니다. 어긋나면 어느 규칙인지 확인합니다.</p>
 <ul>
-<li><strong>[확인 15]</strong> 응답에서 규칙 적용 결과를 찾았고, /compact 전후 /context에서 Messages는 줄고 Memory files는 그대로인 것을 봤다.</li>
+<li><span class="check-badge">확인 15</span> 응답에서 규칙 적용 결과를 찾았고, /compact 전후 /context에서 Messages는 줄고 Memory files는 그대로인 것을 봤다.</li>
 </ul>
 </section>
 <section id="포트폴리오의-claude.md-89-99" class="level3">
@@ -1662,14 +1726,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>포트폴리오에서 <code>claude</code>를 실행합니다. 새 터미널을 열거나, 골격 세션에서 <code>/exit</code> 뒤 이동합니다.</li>
 </ol>
-<p><strong>[Claude Code 안]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 안</span>
+</div>
 <pre class="text"><code>   &gt; /exit</code></pre>
-<p><strong>[Claude Code 터미널]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 터미널</span>
+</div>
 <div class="sourceCode" id="cb49"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>   <span class="bu">cd</span> ~/week05/포트폴리오 <span class="kw">&amp;&amp;</span> <span class="ex">claude</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="2" type="1">
 <li>처음부터 한국어로 <code>/init</code>. CLAUDE.md가 이미 있으면 <code>/init</code>이 새로 써서 덮어씁니다.</li>
 </ol>
-<p><strong>[Claude Code 안]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 안</span>
+</div>
 <pre class="text"><code>   &gt; /init 한국어로 작성해 줘
    &gt; !cat CLAUDE.md   # 전문 확인</code></pre>
 <pre class="text"><code>   [응답 예시 · 사람마다 다릅니다]
@@ -1685,7 +1755,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>초안의 각 절이 어느 파일에서 왔는지 읽습니다. <code>index.html</code>에서 구조 · 섹션 id · 다크 모드, <code>프로필.md</code>에서 연락처의 유일한 출처, <code>요구사항명세서.md</code>에서 REQ-02 수동 확인 · REQ-04 금지, <code>test_page.py</code>에서 pytest 명령 · 고정 테스트 수정 금지가 왔습니다.</p>
 <p>골격과 비교하면, 명세서와 테스트가 있는 폴더라 금지 사항이 초안에 이미 들어갔습니다. 폴더의 문서가 초안의 질을 정합니다.</p>
 <ul>
-<li><strong>[확인 16]</strong> 초안의 각 절이 어느 파일에서 왔는지 짚었다.</li>
+<li><span class="check-badge">확인 16</span> 초안의 각 절이 어느 파일에서 왔는지 짚었다.</li>
 </ul></li>
 </ol>
 <p><strong>9/9 · 내 포트폴리오에 맞게 고치기.</strong> 필요한 것만 골라 넣을 문장을 직접 적어 지시합니다. 고친 뒤 작은 기능 하나를 시켜 규칙이 지켜지는지 보면 7/9와 같은 검증이 됩니다. 준비 2에서 <code>내프롬프트.md</code>를 만들었다면 1)(네 절 채우기)과 2)(검증 지시)를 여기서 써도 됩니다.</p>
@@ -1791,12 +1861,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>골격에서 새 세션을 열고 분류를 지시합니다. 포트폴리오 세션은 <code>/exit</code>로 닫습니다. 프롬프트는 전문을 입력합니다.</li>
 </ol>
-<p><strong>[Claude Code 안]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 안</span>
+</div>
 <pre class="text"><code>   &gt; /exit</code></pre>
-<p><strong>[Claude Code 터미널]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 터미널</span>
+</div>
 <div class="sourceCode" id="cb53"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>   <span class="bu">cd</span> ~/week05/골격</span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>   <span class="ex">claude</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>[Claude Code 안]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 안</span>
+</div>
 <pre class="text"><code>   &gt; 규칙후보.md의 각 후보 아래에 "분류:" 줄을 추가하라. 기준: 어떤 작업에든 항상 적용할 규칙이면 CLAUDE.md, 특정 폴더나 파일에만 해당하는 규칙이면 rules, 둘 다 아니면 보류.
    &gt; !cat 규칙후보.md</code></pre>
 <pre class="text"><code>   [결과 형태 · 입력 아님]
@@ -1811,7 +1887,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>결과를 확인합니다. 교수 화면에서는 CLAUDE.md 2개 · rules 8개 · 보류 0개였습니다. 개수는 사람마다 다릅니다.</p></li>
 <li><p>분류를 다시 판정합니다. 아래 표로 확인하고 필요하면 「- 분류:」 줄을 직접 고칩니다. 「계속하시겠어요?」에는 응하지 않습니다.</p>
 <ul>
-<li><strong>[확인 17]</strong> 규칙 후보 전부에 CLAUDE.md · rules 분류(또는 보류)가 붙었다.</li>
+<li><span class="check-badge">확인 17</span> 규칙 후보 전부에 CLAUDE.md · rules 분류(또는 보류)가 붙었다.</li>
 </ul></li>
 </ol>
 <p><strong>참고 · AI 분류 중 그대로 사용해도 되는지 판단하기.</strong> 수업 원칙은 AI가 준 결과를 그대로 쓰지 않고, 검증한 뒤 쓰는 것입니다. 이 표에서도 AI 분류 10개 중 6개는 사람이 확인해야 문제가 드러났습니다. 실무에서는 규칙을 넣기 전에 묻습니다. ① CLAUDE.md에 이미 있으면 넣지 않습니다. ② 「src/payment/**」처럼 파일 경로로 적을 수 있으면 rules, 없으면 CLAUDE.md에 둡니다.</p>
@@ -1864,13 +1940,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>파일 생성을 지시합니다(전문 입력). 지시문에 머리말(<code>---</code> 사이)의 paths와 본문 한 줄을 적습니다. paths가 있어야 이 규칙이 <code>tests/</code> 파일을 다룰 때만 읽힙니다. <code>app/</code> 작업에는 테스트 규칙이 섞이지 않고, 컨텍스트도 덜 씁니다. 빼면 AI가 경로를 본문에 글로만 적어, 규칙이 CLAUDE.md처럼 모든 작업에 읽힙니다.</li>
 </ol>
-<p><strong>[Claude Code 안]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 안</span>
+</div>
 <pre class="text"><code>   &gt; .claude/rules/tests-규칙.md 파일을 만들어라. 파일 맨 위에 ---로 감싼 머리말을 두고 paths: - "tests/**"를 적어라. 본문에는 다음 한 줄만 쓴다: "테스트 함수를 추가할 때는 함수 바로 위에 '# 검증 목적: (무엇을 확인하는 테스트인지 한 줄)' 주석을 붙인다."</code></pre>
 <ol start="2" type="1">
 <li>승인 창은 모두 Yes를 고릅니다. <code>.claude/</code> 폴더를 만들 때와 파일을 쓸 때 여러 번 묻습니다. 창마다 <code>1. Yes</code>를 고르면 됩니다.</li>
 <li>파일 첫 줄을 확인합니다. 첫 줄이 <code>---</code>이고 머리말에 <code>paths: - "tests/**"</code>가 있어야 합니다. 없으면 1번 지시를 다시 입력합니다.</li>
 </ol>
-<p><strong>[Claude Code 안]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 안</span>
+</div>
 <pre class="text"><code>   &gt; !cat .claude/rules/tests-규칙.md</code></pre>
 <pre class="text"><code>   [파일 형태 · 입력 아님]
      ---
@@ -1880,7 +1960,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
      테스트 함수를 추가할 때는 … 주석을 붙인다.</code></pre>
 <p>연습에는 적용 결과가 눈에 보이는 규칙을 씁니다. “기존 검사 항목을 지우지 않는다” 같은 규칙은 지켜져도 화면에 보이는 변화가 없기 때문입니다.</p>
 <ul>
-<li><strong>[확인 18]</strong> 파일 첫 줄이 — 이고, 머리말에 paths: - “tests/**“가 있다.</li>
+<li><span class="check-badge">확인 18</span> 파일 첫 줄이 — 이고, 머리말에 paths: - “tests/**“가 있다.</li>
 </ul>
 <p><strong>참고 · 승인 창과 완료 보고도 확인한 뒤 넘어간다.</strong> 실무에서는 AI의 다음 단계 제안을 그대로 따르지 않고, 내 작업 계획과 비교해 맞을 때만 따릅니다. 교수 화면에서 머리말을 지시하지 않았을 때 AI는 적용 경로를 본문에 글로 적었고, 3/3에서 만들 수량 0 테스트까지 예시로 넣었습니다.</p>
 <table class="caption-top table">
@@ -1920,9 +2000,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>세션을 나와 다시 <code>claude</code>를 엽니다. 새로 만든 규칙 파일이 반영되도록 세션을 새로 엽니다.</li>
 </ol>
-<p><strong>[Claude Code 안]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 안</span>
+</div>
 <pre class="text"><code>   &gt; /exit</code></pre>
-<p><strong>[Claude Code 터미널]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 터미널</span>
+</div>
 <div class="sourceCode" id="cb60"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>   <span class="ex">claude</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="2" type="1">
 <li>그 경로를 건드리는 지시를 합니다. 테스트 파일을 읽는 단계에서 「Loaded .claude/rules/tests-규칙.md」가 뜹니다. 경로 규칙을 불러왔다는 표시입니다.</li>
@@ -1936,7 +2020,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="3" type="1">
 <li><p>두 가지를 확인합니다. (1) 새 테스트 함수 바로 위에 「# 검증 목적:」 주석이 붙었는가. (2) Update 표시에 removed 줄이 없는가. 새 테스트만 추가했다면 기존 줄은 지워지지 않아야 합니다. 테스트의 구현 모양은 사람마다 다릅니다. 주석 규칙이 지켜졌는지를 같이 봅니다.</p>
 <ul>
-<li><strong>[확인 19]</strong> 새 테스트 위에 주석이 붙었고, Update 표시에서 지시하지 않은 변경이 있는지 확인했다.</li>
+<li><span class="check-badge">확인 19</span> 새 테스트 위에 주석이 붙었고, Update 표시에서 지시하지 않은 변경이 있는지 확인했다.</li>
 </ul></li>
 </ol>
 <p><strong>참고 · 주석 규칙은 지켜졌지만, 지시하지 않은 변경이 한 줄 섞였다.</strong> 수업 원칙은 완료 보고가 아니라 변경 내역을 사람이 확인하는 것입니다. 교수 화면의 완료 보고에는 기존 테스트 수정이 나오지 않았습니다. 실무에서는 지시 범위 밖의 변경은 이유를 묻거나 되돌립니다. 새 테스트가 바로 통과하면, 검사 대상이 이미 구현돼 있었는지 확인합니다.</p>
@@ -1980,19 +2064,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><strong>[1/3] 규칙후보.md를 못 찾는다고 한다.</strong> 포트폴리오 폴더의 세션입니다. <code>/exit</code> 후 골격 폴더로 옮겨 <code>claude</code>를 다시 실행합니다.</li>
 </ul>
-<p><strong>[Claude Code 터미널]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 터미널</span>
+</div>
 <div class="sourceCode" id="cb63"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>   <span class="bu">cd</span> ~/week05/골격</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong>[2/3] “No such file or directory”가 나온다.</strong> 아직 안 만들었거나 다른 폴더에 만든 경우입니다. 아래 명령으로 찾아보고, 결과가 없으면 골격 세션에서 2/3 지시를 다시 입력합니다.</li>
 </ul>
-<p><strong>[서버 터미널]</strong></p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
 <div class="sourceCode" id="cb64"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>   <span class="fu">find</span> ~/week05 <span class="at">-name</span> <span class="st">'tests-규칙.md'</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong>[2/3] 첫 줄이 <code>---</code>가 아니다.</strong> 적용 경로가 머리말 없이 본문에 글로 적힌 경우입니다. 이 규칙은 모든 작업에 읽힙니다. 2/3 지시를 전문 그대로 다시 입력합니다.</li>
 <li><strong>[3/3] 「Loaded … tests-규칙.md」가 안 뜨고 주석도 없다.</strong> 먼저 위 두 항목으로 파일 위치와 첫 줄을 확인합니다. paths 규칙은 <code>tests/</code> 파일을 읽을 때만 불려 오므로, 기존 <code>tests/test_orders.py</code>에 추가하게 합니다. <code>/exit</code> 후 새 세션인지도 봅니다.</li>
 <li><strong>[3/3] Update 표시에 removed 줄이 있다.</strong> 지시하지 않은 기존 테스트 수정입니다. 바뀐 줄을 확인하고 원래대로 되돌리게 합니다.</li>
 </ul>
-<p><strong>[Claude Code 안]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 안</span>
+</div>
 <pre class="text"><code>   &gt; 방금 기존 테스트에서 바꾼 줄을 원래대로 되돌려라.</code></pre>
 <blockquote class="blockquote">
 <p><strong>[실습 2 · 복기 · 규칙은 적용 범위에 따라 CLAUDE.md와 rules로 나눈다]</strong> 골격에서 규칙 후보에 분류를 붙이고 AI 분류를 다시 판정했습니다. <code>tests/</code> 전용 rules 파일을 만들어, 새 세션에서 테스트 파일을 읽을 때 규칙이 불려 오고 주석이 붙는 것을 봤습니다. ① <strong>AI 분류는 초안, 판정은 사람이 한다</strong>: AI는 후보에 적힌 적용 범위를 옮길 뿐입니다. 이미 있는 규칙, 함수 단위 범위, 지금 코드와 맞지 않는 규칙은 사람이 가려냅니다. ② <strong>paths가 있어야 경로별 규칙이다</strong>: 머리말의 paths가 있으면 해당 파일을 읽을 때만 불려 옵니다. 없으면 CLAUDE.md처럼 모든 작업에 읽힙니다. ③ <strong>완료 보고가 아니라 변경 내역을 본다</strong>: Loaded 줄 · 주석 · removed 줄 수를 봅니다. 교수 화면에서는 지시하지 않은 기존 테스트 수정이 완료 보고에 없었습니다. <strong>되짚어 볼 것 · 내 규칙은 어디에 두나</strong>: “tests/test_page.py는 수정하지 않는다” → rules · <code>paths: - "tests/**"</code>. “문서와 주석은 한국어로 쓴다” → CLAUDE.md · 모든 작업에 적용. “index.html의 섹션 순서를 유지한다” → rules · <code>paths: - "index.html"</code>. “외부 라이브러리를 추가하지 않는다” → CLAUDE.md에 이미 있으면 다시 넣지 않는다. 특정 파일에만 필요한 규칙이 CLAUDE.md에 있으면 매 세션 읽힙니다. (선택) 포트폴리오 CLAUDE.md에서 하나 찾아 <code>내소재.md</code> 「생각 거리」 칸에 적습니다. 준비 2에서 <code>내프롬프트.md</code>를 만들었다면 그 3)으로 포트폴리오에서 옮겨 볼 수 있습니다. <strong>폴더에 남은 것</strong>: <code>week05/골격/규칙후보.md</code>(분류 줄) · <code>week05/골격/.claude/rules/tests-규칙.md</code> · <code>week05/골격/tests/test_orders.py</code>(수량 0 테스트). <strong>다음</strong>: 지시문은 어디에 두나. hook · permissions · skill · rules의 위치와 파일 모양을 봅니다.</p>
@@ -2279,7 +2369,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="실습-3-토큰-이해와-실측" class="level2">
 <h2 class="anchored" data-anchor-id="실습-3-토큰-이해와-실측">9. 실습 3: 토큰 이해와 실측</h2>
 <p>같은 뜻도 토큰 수가 다르고, 모델은 글자를 보지 않는다는 것을 숫자로 확인합니다. 측정 스크립트 <code>스크립트/token_count.py</code>는 0장에서 받은 <code>week05</code>에 있습니다. 프롬프트 수업의 채점기와 같은 방식으로 파이썬 표준 라이브러리만 써서 API의 토큰 계산 기능(count_tokens)에 문장을 보내고 토큰 수를 받아 오므로, 설치할 패키지가 없습니다. 인증은 0장에서 확인한 <code>ANTHROPIC_API_KEY</code>입니다. 실행 위치는 <code>~/week05</code>입니다.</p>
-<p><strong>[서버 터미널]</strong></p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
 <div class="sourceCode" id="cb72"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>   <span class="bu">cd</span> ~/week05</span>
 <span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>   <span class="ex">python3</span> 스크립트/token_count.py <span class="st">"a"</span></span>
 <span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>   <span class="ex">python3</span> 스크립트/token_count.py <span class="st">"안녕하세요, 만나서 반갑습니다."</span></span>
@@ -2453,7 +2545,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>week05/포트폴리오</code>의 <code>CLAUDE.md</code>(실습 1 · 8/9~9/9)</li>
 <li><code>week05/내소재.md</code>(5주차 칸 · 생각 거리). 실습 3은 별도 제출물이 없습니다.</li>
 </ol>
-<p><strong>[서버 터미널]</strong></p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
 <div class="sourceCode" id="cb77"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>   <span class="bu">cd</span> ~</span>
 <span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ls</span> week05/골격 week05/골격/.claude/rules</span>
 <span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ls</span> week05/포트폴리오/CLAUDE.md</span>
@@ -2467,7 +2561,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    슬라이드_05주차.pdf  포트폴리오</code></pre>
 <p>세 가지가 모두 보이면 제출은 완료입니다. rules 파일은 숨김 폴더(<code>.claude</code>) 안에 있어 <code>ls week05/골격</code>에는 바로 보이지 않습니다. 2-1에서 만든 <code>.venv</code>도 숨김 폴더라 <code>ls week05</code>에 보이지 않습니다(표시 순서는 서버 설정에 따라 다를 수 있고, pytest가 만든 <code>__pycache__</code>가 더 보일 수 있습니다). <code>내프롬프트.md</code>는 준비 2를 한 사람에게만 있습니다. 토큰 측정 결과는 파일이 아니라 <code>내소재.md</code> 5)의 숫자가 기록입니다.</p>
 <ul>
-<li><strong>[확인 20]</strong> 세 가지가 모두 폴더에 있는지 확인합니다. 제출 완료.</li>
+<li><span class="check-badge">확인 20</span> 세 가지가 모두 폴더에 있는지 확인합니다. 제출 완료.</li>
 </ul>
 </section>
 <section id="정리" class="level2">
@@ -2548,7 +2642,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 <p>포트폴리오의 항목 셋은 예를 들어 섹션 id 네 개 · 연락처는 프로필.md에 있는 것만 · 방금 읽은 test_page.py입니다. 판정 1에서 걸러지는 항목부터 정합니다. 다음 세션에 필요 없으면 어디에도 적지 않습니다.</p>
 <ul>
-<li><strong>[확인 21]</strong> 여섯 항목과 내 항목 셋을 판정 질문 두 개로 분류했다.</li>
+<li><span class="check-badge">확인 21</span> 여섯 항목과 내 항목 셋을 판정 질문 두 개로 분류했다.</li>
 </ul>
 </section>
 <section id="정리-22-규칙-파일이-있으면-무엇이-달라지는가" class="level3">
@@ -2648,7 +2742,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
      안 읽히면 경로 · 새 세션 · 문장 순서로 점검</code></pre>
 <p>새 기능이 나오면 대개 이 네 단계 중 하나를 더 쉽고 정확하게 수행하도록 돕는 기능입니다. 이번 주는 ②의 CLAUDE.md가 중심이었고, 다음 주는 ②의 RAG와 ③의 API를 코드로 직접 만듭니다.</p>
 <ul>
-<li><strong>[확인 22]</strong> 이번 주 장면 하나를 네 단계 중 하나에 짝지어 말할 수 있다.</li>
+<li><span class="check-badge">확인 22</span> 이번 주 장면 하나를 네 단계 중 하나에 짝지어 말할 수 있다.</li>
 </ul>
 <hr>
 </section>
@@ -3116,6 +3210,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>AI소프트웨어학과 강의 교재 · 2026년 2학기판</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

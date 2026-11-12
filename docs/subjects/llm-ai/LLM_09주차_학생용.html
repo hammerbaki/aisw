@@ -73,10 +73,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-0f7719ecfb764d9b8ebcd528363db9a6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-ab88f94875df08cd53119fedb3162b42.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-fe956f79aca35e1e3fb62e3c2bbe567d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -105,15 +105,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <script type="module">
   import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
-  mermaid.initialize({ startOnLoad: true, securityLevel: "loose" });
+  mermaid.initialize({
+    startOnLoad: true,
+    securityLevel: "loose",
+    theme: "neutral",
+    fontFamily: '"Pretendard Variable", Pretendard, "Malgun Gothic", sans-serif'
+  });
 </script>
 
 
 </head>
 
-<body class="nav-sidebar docked nav-fixed quarto-light">
+<body class="nav-sidebar floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -162,7 +169,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -314,7 +321,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">이 페이지</h2>
+    <h2 id="toc-title">이 장의 차례</h2>
    
   <ul>
   <li><a href="#학습-목표" id="toc-학습-목표" class="nav-link active" data-scroll-target="#학습-목표">학습 목표</a></li>
@@ -361,6 +368,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<header class="chapter-head">
+<p class="chapter-part">LLM AI 개발</p>
+<p class="chapter-no"><span class="num">11</span><span class="unit">주차</span></p>
+<p class="chapter-title">검증·평가와 업무 자동화</p>
+</header>
 <div class="kit-link">
 <p><strong>실습 자료</strong> <a href="../../../docs/subjects/llm-ai/LLM_09주차_실습자료.html">이 주차 키트 파일 보기 · 내려받기</a></p>
 </div>
@@ -473,7 +485,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>위반이 없다는 보고가 오는지 확인합니다(있다고 보고하면 오탐입니다. 점검 항목의 문장을 다듬습니다).</p></li>
 </ol>
 <ul>
-<li><strong>[확인 1]</strong> deploy-checker가 <code>/agents</code>에 나타나고, 정상 파일 점검에서 통과 보고가 확인되었다.</li>
+<li><span class="check-badge">확인 1</span> deploy-checker가 <code>/agents</code>에 나타나고, 정상 파일 점검에서 통과 보고가 확인되었다.</li>
 </ul>
 </section>
 <section id="검토자-성능-검증" class="level2">
@@ -493,8 +505,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>자기 변형 단계: site/의 정상 파일 하나에 새 위반 1건을 직접 심고(예: 주석에 키 문자열 추가), 검토자가 잡는지 확인한 뒤 원상 복구합니다.</p></li>
 </ol>
 <ul>
-<li><p><strong>[확인 2]</strong> 위반 3건 중 몇 건을 찾았고 오탐은 없었는지, 개선 전후가 기록되었다.</p></li>
-<li><p><strong>[확인 3]</strong> 검토자가 위반을 하나 놓쳤다면, 프롬프트를 고치는 것 말고 시스템 차원의 보완책은 무엇입니까? (힌트: 규칙으로 잡을 수 있는 위반이 무엇인지 봅니다.)</p></li>
+<li><p><span class="check-badge">확인 2</span> 위반 3건 중 몇 건을 찾았고 오탐은 없었는지, 개선 전후가 기록되었다.</p></li>
+<li><p><span class="check-badge">확인 3</span> 검토자가 위반을 하나 놓쳤다면, 프롬프트를 고치는 것 말고 시스템 차원의 보완책은 무엇입니까? (힌트: 규칙으로 잡을 수 있는 위반이 무엇인지 봅니다.)</p></li>
 </ul>
 </section>
 <section id="번들-스킬-code-review와-비교" class="level2">
@@ -536,8 +548,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>자기 변형 단계: 검사 명령을 자기 프로젝트에 맞는 것(예: <code>pytest -q</code>)으로 바꿔 동작을 확인합니다.</li>
 </ol>
 <ul>
-<li><p><strong>[확인 4]</strong> 훅의 실패 보고와, 그것을 읽은 Claude의 대처가 관찰 기록되었다.</p></li>
-<li><p><strong>[확인 5]</strong> 같은 검사를 CLAUDE.md에 “저장 후 문법 검사를 하라”라고 쓰는 것과 훅으로 거는 것의 차이는 무엇입니까?</p></li>
+<li><p><span class="check-badge">확인 4</span> 훅의 실패 보고와, 그것을 읽은 Claude의 대처가 관찰 기록되었다.</p></li>
+<li><p><span class="check-badge">확인 5</span> 같은 검사를 CLAUDE.md에 “저장 후 문법 검사를 하라”라고 쓰는 것과 훅으로 거는 것의 차이는 무엇입니까?</p></li>
 </ul>
 </section>
 <section id="배포-파이프라인" class="level2">
@@ -557,8 +569,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>자기 변형 단계: 자기 프로젝트에 필요한 검사 1개(예: 시험용 파일 포함 여부, 문서 존재 여부)를 파이프라인에 추가하고 동작을 확인합니다.</p></li>
 </ol>
 <ul>
-<li><p><strong>[확인 6]</strong> 위반 폴더에서 중단, 자기 폴더에서 통과·배포(또는 대체 경로)가 기록되었다.</p></li>
-<li><p><strong>[확인 7]</strong> 배포 명령을 파이프라인의 마지막에 두는 이유를 종료 코드로 설명할 수 있습니까? (힌트: 각 검사가 실패했을 때 무엇이 실행되지 않아야 하는지 봅니다.)</p></li>
+<li><p><span class="check-badge">확인 6</span> 위반 폴더에서 중단, 자기 폴더에서 통과·배포(또는 대체 경로)가 기록되었다.</p></li>
+<li><p><span class="check-badge">확인 7</span> 배포 명령을 파이프라인의 마지막에 두는 이유를 종료 코드로 설명할 수 있습니까? (힌트: 각 검사가 실패했을 때 무엇이 실행되지 않아야 하는지 봅니다.)</p></li>
 </ul>
 </section>
 <section id="재시도-상한-안전장치-관찰" class="level2">
@@ -1037,6 +1049,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>AI소프트웨어학과 강의 교재 · 2026년 2학기판</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

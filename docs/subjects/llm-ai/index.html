@@ -31,18 +31,16 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
 <link href="../../../docs/subjects/llm-ai/LLM_01주차_학생용.html" rel="next">
-<script src="../../../site_libs/quarto-listing/list.min.js"></script>
-<script src="../../../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-0f7719ecfb764d9b8ebcd528363db9a6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-ab88f94875df08cd53119fedb3162b42.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-fe956f79aca35e1e3fb62e3c2bbe567d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -70,98 +68,14 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "검색"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-textbook .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-textbook'] = new List('listing-textbook', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-kits .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-kits'] = new List('listing-kits', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
-<body class="nav-sidebar docked nav-fixed fullcontent quarto-light">
+<body class="nav-sidebar floating nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -210,7 +124,7 @@ window.Quarto = {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -384,182 +298,47 @@ window.Quarto = {
 
 
 <p>번호는 실제 수업 주차가 아니라 교재 순번입니다. 이번 학기에 어느 회차에 어느 교재를 쓰는지는 <a href="../../../docs/semesters/2026-2/index.html">학기별 편성</a>을 보세요.</p>
-<section id="교재" class="level2">
-<h2 class="anchored" data-anchor-id="교재">교재</h2>
-<div id="listing-textbook" class="quarto-listing quarto-listing-container-table">
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-
-<th>
-교재
-</th>
-
-</tr>
-</thead>
-<tbody class="list">
-
-<tr data-index="0" data-listing-file-modified-sort="1794490650780" data-listing-reading-time-sort="36" data-listing-word-count-sort="7061" data-listing-title-sort="[1주차] 오리엔테이션" data-listing-filename-sort="LLM_01주차_학생용.md">
-<td>
-<a href="../../../docs/subjects/llm-ai/LLM_01주차_학생용.html" class="title listing-title">[1주차] 오리엔테이션</a>
-</td>
-
-</tr>
-
-<tr data-index="1" data-listing-file-modified-sort="1794490650784" data-listing-reading-time-sort="72" data-listing-word-count-sort="14238" data-listing-title-sort="[2주차] 리버스 엔지니어링과 SDD" data-listing-filename-sort="LLM_02주차_학생용.md">
-<td>
-<a href="../../../docs/subjects/llm-ai/LLM_02주차_학생용.html" class="title listing-title">[2주차] 리버스 엔지니어링과 SDD</a>
-</td>
-
-</tr>
-
-<tr data-index="2" data-listing-file-modified-sort="1794490650787" data-listing-reading-time-sort="76" data-listing-word-count-sort="15151" data-listing-title-sort="[3주차] TDD와 첫 배포" data-listing-filename-sort="LLM_03주차_학생용.md">
-<td>
-<a href="../../../docs/subjects/llm-ai/LLM_03주차_학생용.html" class="title listing-title">[3주차] TDD와 첫 배포</a>
-</td>
-
-</tr>
-
-<tr data-index="3" data-listing-file-modified-sort="1794490650791" data-listing-reading-time-sort="91" data-listing-word-count-sort="18049" data-listing-title-sort="[4주차] 프롬프트와 컨텍스트 엔지니어링" data-listing-filename-sort="LLM_04주차_학생용.md">
-<td>
-<a href="../../../docs/subjects/llm-ai/LLM_04주차_학생용.html" class="title listing-title">[4주차] 프롬프트와 컨텍스트 엔지니어링</a>
-</td>
-
-</tr>
-
-<tr data-index="4" data-listing-file-modified-sort="1794490650794" data-listing-reading-time-sort="74" data-listing-word-count-sort="14620" data-listing-title-sort="[5주차] CLAUDE.md와 LLM 동작 원리" data-listing-filename-sort="LLM_05주차_학생용.md">
-<td>
-<a href="../../../docs/subjects/llm-ai/LLM_05주차_학생용.html" class="title listing-title">[5주차] CLAUDE.md와 LLM 동작 원리</a>
-</td>
-
-</tr>
-
-<tr data-index="5" data-listing-file-modified-sort="1794490650799" data-listing-reading-time-sort="82" data-listing-word-count-sort="16325" data-listing-title-sort="[6주차] API 연동과 RAG 챗봇" data-listing-filename-sort="LLM_06주차_학생용.md">
-<td>
-<a href="../../../docs/subjects/llm-ai/LLM_06주차_학생용.html" class="title listing-title">[6주차] API 연동과 RAG 챗봇</a>
-</td>
-
-</tr>
-
-<tr data-index="6" data-listing-file-modified-sort="1794490650803" data-listing-reading-time-sort="93" data-listing-word-count-sort="18479" data-listing-title-sort="[7주차] 하네스와 루프 엔지니어링" data-listing-filename-sort="LLM_07주차_학생용.md">
-<td>
-<a href="../../../docs/subjects/llm-ai/LLM_07주차_학생용.html" class="title listing-title">[7주차] 하네스와 루프 엔지니어링</a>
-</td>
-
-</tr>
-
-<tr data-index="7" data-listing-file-modified-sort="1794490650804" data-listing-reading-time-sort="11" data-listing-word-count-sort="2102" data-listing-title-sort="[10주차] 에이전트 구현과 SDD 실전" data-listing-filename-sort="LLM_08주차_학생용.md">
-<td>
-<a href="../../../docs/subjects/llm-ai/LLM_08주차_학생용.html" class="title listing-title">[10주차] 에이전트 구현과 SDD 실전</a>
-</td>
-
-</tr>
-
-<tr data-index="8" data-listing-file-modified-sort="1794490650805" data-listing-reading-time-sort="15" data-listing-word-count-sort="2978" data-listing-title-sort="[11주차] 검증·평가와 업무 자동화" data-listing-filename-sort="LLM_09주차_학생용.md">
-<td>
-<a href="../../../docs/subjects/llm-ai/LLM_09주차_학생용.html" class="title listing-title">[11주차] 검증·평가와 업무 자동화</a>
-</td>
-
-</tr>
-
-<tr data-index="9" data-listing-file-modified-sort="1794490650805" data-listing-reading-time-sort="6" data-listing-word-count-sort="1042" data-listing-title-sort="[15회차] 발표와 마스터 검증" data-listing-filename-sort="LLM_10주차_학생용.md">
-<td>
-<a href="../../../docs/subjects/llm-ai/LLM_10주차_학생용.html" class="title listing-title">[15회차] 발표와 마스터 검증</a>
-</td>
-
-</tr>
-
-<tr data-index="10" data-listing-file-modified-sort="1794490650805" data-listing-reading-time-sort="3" data-listing-word-count-sort="497" data-listing-title-sort="면접 질문 30선" data-listing-filename-sort="LLM_공통_면접 질문 30선_학생용.md">
-<td>
-<a href="../../../docs/subjects/llm-ai/LLM_공통_면접 질문 30선_학생용.html" class="title listing-title">면접 질문 30선</a>
-</td>
-
-</tr>
-
-</tbody>
-</table>
-<div class="listing-no-matching d-none">일치 없음</div>
+<p><span class="toc-heading">차례</span></p>
+<div class="book-toc">
+<div class="toc-row">
+<p><span class="toc-no">01</span> <a href="../../../docs/subjects/llm-ai/LLM_01주차_학생용.html" class="toc-title">오리엔테이션</a> <span class="toc-label">1주차</span></p>
 </div>
-</section>
-<section id="실습-자료" class="level2">
-<h2 class="anchored" data-anchor-id="실습-자료">실습 자료</h2>
-<div id="listing-kits" class="quarto-listing quarto-listing-container-table">
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-
-<th>
-실습 자료
-</th>
-
-</tr>
-</thead>
-<tbody class="list">
-
-<tr data-index="0" data-listing-file-modified-sort="1794490650808" data-listing-reading-time-sort="19" data-listing-word-count-sort="3696" data-listing-title-sort="[2주차] 실습 자료: 리버스 엔지니어링과 SDD" data-listing-filename-sort="LLM_02주차_실습자료.md">
-<td>
-<a href="../../../docs/subjects/llm-ai/LLM_02주차_실습자료.html" class="title listing-title">[2주차] 실습 자료: 리버스 엔지니어링과 SDD</a>
-</td>
-
-</tr>
-
-<tr data-index="1" data-listing-file-modified-sort="1794490650812" data-listing-reading-time-sort="25" data-listing-word-count-sort="4865" data-listing-title-sort="[3주차] 실습 자료: TDD와 첫 배포" data-listing-filename-sort="LLM_03주차_실습자료.md">
-<td>
-<a href="../../../docs/subjects/llm-ai/LLM_03주차_실습자료.html" class="title listing-title">[3주차] 실습 자료: TDD와 첫 배포</a>
-</td>
-
-</tr>
-
-<tr data-index="2" data-listing-file-modified-sort="1794490650814" data-listing-reading-time-sort="9" data-listing-word-count-sort="1742" data-listing-title-sort="[4주차] 실습 자료: 프롬프트와 컨텍스트 엔지니어링" data-listing-filename-sort="LLM_04주차_실습자료.md">
-<td>
-<a href="../../../docs/subjects/llm-ai/LLM_04주차_실습자료.html" class="title listing-title">[4주차] 실습 자료: 프롬프트와 컨텍스트 엔지니어링</a>
-</td>
-
-</tr>
-
-<tr data-index="3" data-listing-file-modified-sort="1794490650816" data-listing-reading-time-sort="16" data-listing-word-count-sort="3138" data-listing-title-sort="[5주차] 실습 자료: CLAUDE.md와 LLM 동작 원리" data-listing-filename-sort="LLM_05주차_실습자료.md">
-<td>
-<a href="../../../docs/subjects/llm-ai/LLM_05주차_실습자료.html" class="title listing-title">[5주차] 실습 자료: CLAUDE.md와 LLM 동작 원리</a>
-</td>
-
-</tr>
-
-<tr data-index="4" data-listing-file-modified-sort="1794490650820" data-listing-reading-time-sort="42" data-listing-word-count-sort="8276" data-listing-title-sort="[6주차] 실습 자료: API 연동과 RAG 챗봇" data-listing-filename-sort="LLM_06주차_실습자료.md">
-<td>
-<a href="../../../docs/subjects/llm-ai/LLM_06주차_실습자료.html" class="title listing-title">[6주차] 실습 자료: API 연동과 RAG 챗봇</a>
-</td>
-
-</tr>
-
-<tr data-index="5" data-listing-file-modified-sort="1794490650825" data-listing-reading-time-sort="57" data-listing-word-count-sort="11264" data-listing-title-sort="[7주차] 실습 자료: 하네스와 루프 엔지니어링" data-listing-filename-sort="LLM_07주차_실습자료.md">
-<td>
-<a href="../../../docs/subjects/llm-ai/LLM_07주차_실습자료.html" class="title listing-title">[7주차] 실습 자료: 하네스와 루프 엔지니어링</a>
-</td>
-
-</tr>
-
-<tr data-index="6" data-listing-file-modified-sort="1794490650827" data-listing-reading-time-sort="30" data-listing-word-count-sort="5974" data-listing-title-sort="[10주차] 실습 자료: 에이전트 구현과 SDD 실전" data-listing-filename-sort="LLM_08주차_실습자료.md">
-<td>
-<a href="../../../docs/subjects/llm-ai/LLM_08주차_실습자료.html" class="title listing-title">[10주차] 실습 자료: 에이전트 구현과 SDD 실전</a>
-</td>
-
-</tr>
-
-<tr data-index="7" data-listing-file-modified-sort="1794490650830" data-listing-reading-time-sort="13" data-listing-word-count-sort="2588" data-listing-title-sort="[11주차] 실습 자료: 검증·평가와 업무 자동화" data-listing-filename-sort="LLM_09주차_실습자료.md">
-<td>
-<a href="../../../docs/subjects/llm-ai/LLM_09주차_실습자료.html" class="title listing-title">[11주차] 실습 자료: 검증·평가와 업무 자동화</a>
-</td>
-
-</tr>
-
-</tbody>
-</table>
-<div class="listing-no-matching d-none">일치 없음</div>
+<div class="toc-row">
+<p><span class="toc-no">02</span> <a href="../../../docs/subjects/llm-ai/LLM_02주차_학생용.html" class="toc-title">리버스 엔지니어링과 SDD</a> <span class="toc-label">2주차</span> <a href="../../../docs/subjects/llm-ai/LLM_02주차_실습자료.html" class="toc-kit">실습 자료</a></p>
+</div>
+<div class="toc-row">
+<p><span class="toc-no">03</span> <a href="../../../docs/subjects/llm-ai/LLM_03주차_학생용.html" class="toc-title">TDD와 첫 배포</a> <span class="toc-label">3주차</span> <a href="../../../docs/subjects/llm-ai/LLM_03주차_실습자료.html" class="toc-kit">실습 자료</a></p>
+</div>
+<div class="toc-row">
+<p><span class="toc-no">04</span> <a href="../../../docs/subjects/llm-ai/LLM_04주차_학생용.html" class="toc-title">프롬프트와 컨텍스트 엔지니어링</a> <span class="toc-label">4주차</span> <a href="../../../docs/subjects/llm-ai/LLM_04주차_실습자료.html" class="toc-kit">실습 자료</a></p>
+</div>
+<div class="toc-row">
+<p><span class="toc-no">05</span> <a href="../../../docs/subjects/llm-ai/LLM_05주차_학생용.html" class="toc-title">CLAUDE.md와 LLM 동작 원리</a> <span class="toc-label">5주차</span> <a href="../../../docs/subjects/llm-ai/LLM_05주차_실습자료.html" class="toc-kit">실습 자료</a></p>
+</div>
+<div class="toc-row">
+<p><span class="toc-no">06</span> <a href="../../../docs/subjects/llm-ai/LLM_06주차_학생용.html" class="toc-title">API 연동과 RAG 챗봇</a> <span class="toc-label">6주차</span> <a href="../../../docs/subjects/llm-ai/LLM_06주차_실습자료.html" class="toc-kit">실습 자료</a></p>
+</div>
+<div class="toc-row">
+<p><span class="toc-no">07</span> <a href="../../../docs/subjects/llm-ai/LLM_07주차_학생용.html" class="toc-title">하네스와 루프 엔지니어링</a> <span class="toc-label">7주차</span> <a href="../../../docs/subjects/llm-ai/LLM_07주차_실습자료.html" class="toc-kit">실습 자료</a></p>
+</div>
+<div class="toc-row">
+<p><span class="toc-no">08</span> <a href="../../../docs/subjects/llm-ai/LLM_08주차_학생용.html" class="toc-title">에이전트 구현과 SDD 실전</a> <span class="toc-label">10주차</span> <a href="../../../docs/subjects/llm-ai/LLM_08주차_실습자료.html" class="toc-kit">실습 자료</a></p>
+</div>
+<div class="toc-row">
+<p><span class="toc-no">09</span> <a href="../../../docs/subjects/llm-ai/LLM_09주차_학생용.html" class="toc-title">검증·평가와 업무 자동화</a> <span class="toc-label">11주차</span> <a href="../../../docs/subjects/llm-ai/LLM_09주차_실습자료.html" class="toc-kit">실습 자료</a></p>
+</div>
+<div class="toc-row">
+<p><span class="toc-no">10</span> <a href="../../../docs/subjects/llm-ai/LLM_10주차_학생용.html" class="toc-title">발표와 마스터 검증</a> <span class="toc-label">15회차</span></p>
+</div>
+</div>
+<p><span class="toc-heading">부록</span></p>
+<div class="book-toc">
+<div class="toc-row">
+<p><span class="toc-no">·</span> <a href="../../../docs/subjects/llm-ai/LLM_공통_면접 질문 30선_학생용.html" class="toc-title">면접 질문 30선</a></p>
+</div>
 </div>
 
 
-
-</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> 맨 위로</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -976,6 +755,19 @@ window.Quarto = {
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>AI소프트웨어학과 강의 교재 · 2026년 2학기판</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

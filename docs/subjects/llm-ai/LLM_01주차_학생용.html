@@ -73,10 +73,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-0f7719ecfb764d9b8ebcd528363db9a6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-ab88f94875df08cd53119fedb3162b42.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-fe956f79aca35e1e3fb62e3c2bbe567d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -105,11 +105,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 
 
 </head>
 
-<body class="nav-sidebar docked nav-fixed quarto-light">
+<body class="nav-sidebar floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -158,7 +160,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -310,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">이 페이지</h2>
+    <h2 id="toc-title">이 장의 차례</h2>
    
   <ul>
   <li><a href="#학습-목표" id="toc-학습-목표" class="nav-link active" data-scroll-target="#학습-목표">학습 목표</a></li>
@@ -361,6 +363,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<header class="chapter-head">
+<p class="chapter-part">LLM AI 개발</p>
+<p class="chapter-no"><span class="num">1</span><span class="unit">주차</span></p>
+<p class="chapter-title">오리엔테이션</p>
+</header>
 <p>이 과목은 <strong>AI로 인해 직업을 잃을지(못 구할지) 불안해하는 개발자와, AI로 인해 제품의 품질이 망가질지 고민하는 개발자를 위한 강의</strong>입니다. 이번 주차는 “바이브 코딩”에 대한 문제 인식에서 시작합니다. 말로 지시하면 금방 웹페이지가 만들어지는 것을 보고, 그렇게 만들어진 소프트웨어가 실제 서비스에서 어떤 사고를 냈는지 확인합니다. 금방 만들지만 운영은 안전해야 하는, 두 가지 니즈를 충족하기 위해 이 과목을 구성했습니다(속도와 품질!). 한학기동안 AI를 개발방법론으로 회사 환경에서 통제하는 방법을 배우며, 오늘은 그 출발점으로 본인의 실습 환경(실습 서버, Visual Studio Code, Claude Code, API 키)을 확인합니다.</p>
 <p>이 과목의 기본 구조는 프롬프트, 컨텍스트, 하네스, 루프로 이어지는 네 단계의 AI 활용법 진화 로드맵입니다(3장에서 개관하고, 각 단계의 본격 소개는 해당 주차에서 합니다).</p>
 <p>오늘은 세 부분으로 진행합니다. ① 직접 해 보기: 말로 웹페이지를 만들고, 그 코드가 서비스에서 낸 사고와 그런 착각을 파는 강의 시장을 확인합니다(1~2장). ② 방향과 규칙: 이 과목이 가르치는 방식과 수업 운영 규칙을 정합니다(3장, 7장). ③ 첫 프로그램: 지난 시간에 갖춘 환경에서 Claude Code로 프로그램을 만들고, 같은 것을 요구사항과 테스트를 붙여 다시 만들어 봅니다(8~9장).</p>
@@ -407,7 +414,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <p>파일을 고치는 작업은 배포 폴더의 파일을 복사해 온 뒤 <strong>내 폴더에서</strong> 합니다. 배포 폴더는 읽기만 됩니다. 두 폴더를 눈으로 확인해 둡니다(실제 복사는 9장의 첫 단계에서 합니다).</p>
-<p><strong>[서버 · 터미널]</strong></p>
+<div class="code-label where-server">
+<span>서버 · 터미널</span>
+</div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ls</span> ~</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>   <span class="bu">cd</span> /home/공용계정</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ls</span></span>
@@ -419,14 +428,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>새 PowerShell 창을 하나 더 엽니다(내 로컬 PC). 서버에 접속되어 있는 창은 그대로 둡니다. 여는 방법은 4장 1번과 같습니다(시작 검색 “Windows PowerShell” 또는 <code>Win + X</code>). 위의 <code>cp</code>는 서버 안에서 복사하는 명령이고, 아래 <code>scp</code>는 서버에서 내 PC로 전송하는 명령입니다.</p></li>
 <li><p><code>scp</code> 명령으로 자료 두 개를 내 PC로 복사합니다. 아이디와 비밀번호로 접속합니다. 명령 끝의 마침표(<code>.</code>)는 “지금 이 폴더로”라는 뜻입니다. 프롬프트(<code>PS C:\Users\이름&gt;</code>)는 창이 이미 띄워 주는 부분이므로 그 뒤의 명령만 입력합니다.</p></li>
 </ol>
-<p><strong>[내 PC · 새 PowerShell 창]</strong></p>
+<div class="code-label where-pc">
+<span>내 PC · 새 PowerShell 창</span>
+</div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>   scp 아이디@서버주소<span class="op">:/</span>home<span class="op">/</span>공용계정<span class="op">/</span>week01<span class="op">/*.</span><span class="fu">pdf</span> <span class="op">.</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>   scp 아이디@서버주소<span class="op">:/</span>home<span class="op">/</span>공용계정<span class="op">/</span>week01<span class="op">/*.</span><span class="fu">md</span> <span class="op">.</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>한글 파일명을 입력하기 어려우면 파일명 대신 <code>*.pdf</code>, <code>*.md</code>로 써도 됩니다. <strong>서버 창(<code>[아이디@실습서버 ~]$</code>)에서 치면</strong> 내 PC가 아니라 서버 안에 내려받아져서 열기 어렵습니다.</p>
 <ol start="3" type="1">
 <li>슬라이드 PDF를 열어 놓고 시작합니다. <code>start</code> 명령을 치면 바로 열립니다.</li>
 </ol>
-<p><strong>[내 PC · 새 PowerShell 창]</strong></p>
+<div class="code-label where-pc">
+<span>내 PC · 새 PowerShell 창</span>
+</div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>   <span class="fu">start</span> 슬라이드_01주차<span class="op">.</span><span class="fu">pdf</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>강의안 <code>.md</code>는 메모장으로는 읽기 어렵습니다. VS Code에서 파일을 열고 <code>Ctrl+Shift+V</code>(미리보기)를 누릅니다. 별도 설치 없이 되는 내장 기능이며, 터미널이 아니라 편집기에서 누르는 단축키입니다. 9장에서 서버로 받은 강의안도 같은 방법으로 봅니다.</p>
 <p>확인: 내 PC에 슬라이드 PDF와 강의안 <code>.md</code>가 받아졌고, PDF가 화면에 열렸습니다.</p>
@@ -673,12 +686,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <blockquote class="blockquote">
 <p><strong>4~6장은 실습환경 접속 가이드(지난 시간)에서 이미 한 내용입니다.</strong> 오늘은 아래 점검 3연타로 환경이 살아 있는지만 확인하고 8장으로 갑니다. 지난 시간에 못 했거나 결석했으면 4~6장을 순서대로 따라옵니다. 설치·키 등록·모델 설정은 모두 최초 1회이고 재접속해도 유지됩니다. 서버 터미널은 환경을 만들고 결과를 직접 실행해 보는 창, Claude Code 터미널은 Claude에게 지시해 만드는 창입니다. 터미널이 하나뿐이면 Terminal &gt; New Terminal을 한 번 더 실행해 두 개로 만듭니다.</p>
 </blockquote>
-<p><strong>[서버 터미널]</strong></p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
 <div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>   <span class="ex">claude</span> <span class="at">--version</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>   <span class="bu">echo</span> <span class="va">${ANTHROPIC_API_KEY</span><span class="op">:</span><span class="dv">0</span><span class="op">:</span><span class="dv">8</span><span class="va">}</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>   2.x.x (Claude Code)
    sk-ant-a</code></pre>
-<p><strong>[Claude Code 안]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 안</span>
+</div>
 <pre class="text"><code>   &gt; /status
    &gt; /exit</code></pre>
 <p><code>/status</code>에 <code>Model: haiku</code>가 보이면 준비 완료입니다. 비밀번호를 잊었으면 손을 들어 알립니다. Remote-SSH가 안 되면 PowerShell 창 2개로 진행합니다(5장 끝). Model이 haiku가 아니면 <code>/model</code>에서 다시 선택합니다. 지금 이 창이 내 PC인지 서버인지는 프롬프트가 알려줍니다. <code>PS C:\Users\이름&gt;</code>은 내 PC, <code>[아이디@실습서버 ~]$</code>는 서버입니다.</p>
@@ -840,30 +857,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>여기서 용어를 하나 구분합니다. <strong>터미널은 창이고, 셸은 그 창 안에서 명령을 받아 주는 프로그램입니다.</strong> PowerShell은 셸입니다. 실습실 PC에 Windows Terminal이 설치되어 있으면 그 창이 뜨는데, 그 안에서 도는 것도 PowerShell이므로 그대로 진행하면 됩니다. 창의 이름이 무엇이든 <code>PS C:\...&gt;</code> 줄이 보이면 같은 자리입니다.</p>
 <p>열린 터미널에서 다음 명령으로 실습 서버에 접속합니다. 계정 아이디는 학번이 아니라 각자 이름의 영문 약자로 만들어져 있고, 아이디와 초기 비밀번호는 첫 시간에 화면으로 안내합니다(비밀번호는 강의안에 싣지 않습니다). 계정은 2027년 2월 말까지 유지되므로 방학에도 쓸 수 있습니다.</p></li>
 </ol>
-<p><strong>[내 PC · PowerShell]</strong></p>
+<div class="code-label where-pc">
+<span>내 PC · PowerShell</span>
+</div>
 <div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ssh</span> 아이디@서버주소</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>처음 접속하면 이 서버에 계속 연결할 것인지 묻는 영어 질문(continue connecting?)이 나올 수 있습니다. <code>yes</code>를 입력합니다. 이어서 비밀번호를 입력합니다. 입력해도 화면에 아무것도 표시되지 않는 것이 정상이므로 그대로 치고 Enter를 누릅니다.</p>
 <p>초기 비밀번호는 수강생 공통이고 시스템이 변경을 강제하지 않습니다. 그래서 로그인 직후 반드시 <code>passwd</code> 명령으로 본인만 아는 비밀번호로 바꿉니다. 바꾸지 않으면 다른 학생이 내 계정으로 접속할 수 있습니다. 화면의 형태는 다음과 같습니다.</p>
-<p><strong>[서버 · 터미널]</strong></p>
+<div class="code-label where-server">
+<span>서버 · 터미널</span>
+</div>
 <pre class="text"><code>   $ passwd
    Changing password for user 아이디.
    Current password:        ← 초기 비밀번호 입력
    New password:            ← 새 비밀번호 입력
    Retype new password:     ← 한 번 더 입력</code></pre>
-<p><em>(화면 캡처 삽입 예정: 실습 서버 접속과 로그인 직후 화면)</em> - <strong>[확인 1]</strong> 본인 계정으로 로그인하고, <code>passwd</code>로 비밀번호를 변경하였다. 2. 접속한 자리(개인 폴더)에 <code>README.md</code>를 만들고 이름과 학기 목표 한 줄을 기록합니다. 아직 편집기가 없으므로 터미널 명령만으로 만듭니다. 다음 세 줄을 차례로 입력합니다. 이름과 목표는 자기 것으로 바꿉니다.</p>
-<p><strong>[서버 · 터미널]</strong></p>
+<p><em>(화면 캡처 삽입 예정: 실습 서버 접속과 로그인 직후 화면)</em> - <span class="check-badge">확인 1</span> 본인 계정으로 로그인하고, <code>passwd</code>로 비밀번호를 변경하였다. 2. 접속한 자리(개인 폴더)에 <code>README.md</code>를 만들고 이름과 학기 목표 한 줄을 기록합니다. 아직 편집기가 없으므로 터미널 명령만으로 만듭니다. 다음 세 줄을 차례로 입력합니다. 이름과 목표는 자기 것으로 바꿉니다.</p>
+<div class="code-label where-server">
+<span>서버 · 터미널</span>
+</div>
 <div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>   <span class="bu">echo</span> <span class="st">"이름: 홍길동"</span> <span class="op">&gt;</span> README.md</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>   <span class="bu">echo</span> <span class="st">"학기 목표: AI에게 일을 시키고 결과를 검증할 줄 아는 사람이 된다"</span> <span class="op">&gt;&gt;</span> README.md</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">cat</span> README.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>여기서 기호 두 개를 기억해 둡니다. <code>&gt;</code>는 <strong>새로 만들어 덮어쓰기</strong>이고, <code>&gt;&gt;</code>는 <strong>뒤에 덧붙이기</strong>입니다. <code>&gt;</code>를 두 번 쓰면 앞 줄이 지워집니다. 이 기호는 실습 3에서 한 번 더 씁니다. <code>cat</code>은 파일 내용을 화면에 보여 주는 명령입니다. 결과는 다음과 같이 나옵니다.</p>
 <pre class="text"><code>   이름: 홍길동
    학기 목표: AI에게 일을 시키고 결과를 검증할 줄 아는 사람이 된다</code></pre>
-<p>이 파일이 1주차의 제출물이고(8장에서 오늘 다시 만듭니다), 이후 학기 내내 모든 산출물이 이 폴더에 쌓입니다. - <strong>[확인 2]</strong> 개인 폴더에 <code>README.md</code>를 생성하고 <code>cat</code>으로 두 줄을 확인하였다. 3. 같은 터미널에서 다음 두 명령으로 개발 도구를 확인합니다. 위 사양 표의 버전이 그대로 나오는지 봅니다. 이 과목의 실습은 노트북(Jupyter) 셀이 아니라 터미널과 프로젝트 폴더에서 이루어집니다.</p>
-<p><strong>[서버 · 터미널]</strong></p>
+<p>이 파일이 1주차의 제출물이고(8장에서 오늘 다시 만듭니다), 이후 학기 내내 모든 산출물이 이 폴더에 쌓입니다. - <span class="check-badge">확인 2</span> 개인 폴더에 <code>README.md</code>를 생성하고 <code>cat</code>으로 두 줄을 확인하였다. 3. 같은 터미널에서 다음 두 명령으로 개발 도구를 확인합니다. 위 사양 표의 버전이 그대로 나오는지 봅니다. 이 과목의 실습은 노트북(Jupyter) 셀이 아니라 터미널과 프로젝트 폴더에서 이루어집니다.</p>
+<div class="code-label where-server">
+<span>서버 · 터미널</span>
+</div>
 <div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>   <span class="ex">python3</span> <span class="at">--version</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">git</span> <span class="at">--version</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li><strong>[확인 3]</strong> 두 명령의 버전 출력을 확인하였다.</li>
+<li><span class="check-badge">확인 3</span> 두 명령의 버전 출력을 확인하였다.</li>
 </ul>
 <p><strong>문제 해결.</strong> 세 가지가 자주 나옵니다.</p>
 <table class="caption-top table">
@@ -902,13 +927,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>웹 브라우저에서 <a href="https://code.visualstudio.com/">code.visualstudio.com</a>에 들어가 Windows용 설치 파일을 내려받고 실행합니다. 설치 중 선택 항목은 기본값 그대로 두고 계속 누릅니다. 실습실 PC에 이미 설치되어 있으면 실행만 확인하고 넘어갑니다.</li>
 <li>VS Code 왼쪽 세로 막대에서 확장(Extensions) 아이콘(네모 블록 네 개 모양)을 누르고, 검색창에 <code>Remote - SSH</code>를 입력해 Microsoft가 만든 것을 설치(Install)합니다. 원격 서버의 폴더를 내 PC의 폴더처럼 열어 주는 확장입니다.
 <ul>
-<li><strong>[확인 4]</strong> Remote - SSH 확장을 설치하였다.</li>
+<li><span class="check-badge">확인 4</span> Remote - SSH 확장을 설치하였다.</li>
 </ul></li>
 <li><code>F1</code> 키(또는 왼쪽 아래 모서리의 원격 접속 버튼)를 눌러 <code>Remote-SSH: Connect to Host</code>를 선택하고, 실습 1과 같은 접속 정보 <code>아이디@서버주소</code>을 입력합니다. 이어서 실습 1에서 <strong>바꾼</strong> 비밀번호를 넣습니다. 새 창이 열리고 왼쪽 아래에 <code>SSH: 서버주소</code> 표시가 보이면 연결된 것입니다. 이제부터는 이 새 창에서 작업합니다.</li>
 <li>메뉴의 File &gt; Open Folder를 누르면 경로를 묻는 입력 줄이 나옵니다. <code>/home/아이디</code>를 입력하고 OK를 누릅니다(아이디 자리에 자기 아이디). 비밀번호를 한 번 더 물을 수 있습니다. 실습 1에서 만든 <code>README.md</code>가 왼쪽 탐색기에 보이면 성공입니다. 파일을 클릭해 열고 “VS Code 연결 완료” 한 줄을 추가한 뒤 <code>Ctrl + S</code>로 저장합니다. 방금 서버에 있는 파일을 내 PC의 편집기로 고친 것입니다.</li>
 <li>메뉴의 Terminal &gt; New Terminal로 통합 터미널을 엽니다. Remote-SSH로 연결된 창이므로 이 터미널은 내 PC가 아니라 <strong>서버에서 열립니다</strong>. 따로 <code>ssh</code>를 입력하지 않습니다. 입력 줄이 <code>[아이디@실습서버 ...]$</code> 형태인지 확인하고, 다음 명령으로 실습 1과 같은 결과가 나오는지 봅니다.</li>
 </ol>
-<p><strong>[서버 · 터미널]</strong></p>
+<div class="code-label where-server">
+<span>서버 · 터미널</span>
+</div>
 <div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>   <span class="ex">python3</span> <span class="at">--version</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="6" type="1">
 <li>터미널 오른쪽 위의 분할 아이콘(또는 메뉴의 Terminal &gt; Split Terminal)으로 터미널을 하나 더 엽니다. 이 두 터미널 배치가 학기 내내 쓰는 기본 작업 화면이고, 앞으로 강의안은 두 자리를 이름으로 구분해 부릅니다.</li>
@@ -940,7 +967,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <p>AI에게 일을 시키면서 그 결과를 바로 옆에서 확인하는 배치이고, 여기에 왼쪽의 파일 탐색기와 편집기까지 한 화면에서 씁니다. <strong>AI가 만들고 사람이 검증한다는 이 과목의 문장을 화면으로 옮긴 것이 이 배치입니다.</strong></p>
-<p>붙여넣기 방법이 자리마다 다릅니다. VS Code 통합 터미널에서는 <code>Ctrl + V</code>가 되고, 내 PC의 PowerShell 창에서는 마우스 오른쪽 클릭이 붙여넣기입니다. 실습 3에서 긴 문자열을 붙여 넣을 때 쓰게 됩니다. - <strong>[확인 5]</strong> VS Code 탐색기에 서버 개인 폴더의 파일이 보이고, 분할된 통합 터미널 2개가 모두 서버에서 열리는 것을 확인하였다.</p>
+<p>붙여넣기 방법이 자리마다 다릅니다. VS Code 통합 터미널에서는 <code>Ctrl + V</code>가 되고, 내 PC의 PowerShell 창에서는 마우스 오른쪽 클릭이 붙여넣기입니다. 실습 3에서 긴 문자열을 붙여 넣을 때 쓰게 됩니다. - <span class="check-badge">확인 5</span> VS Code 탐색기에 서버 개인 폴더의 파일이 보이고, 분할된 통합 터미널 2개가 모두 서버에서 열리는 것을 확인하였다.</p>
 <p><strong>연결이 안 될 때.</strong> Remote-SSH 연결은 PC의 보안 설정이나 네트워크 사정으로 막히는 경우가 있습니다. 여러 번 시도해도 안 되면 오늘은 아래 방법으로 수업을 그대로 따라오고, 연결 문제는 수업 후에 개별로 확인합니다.</p>
 <ol type="1">
 <li><p>PowerShell 창을 두 개 엽니다(실습 1의 여는 방법을 두 번 반복).</p></li>
@@ -956,33 +983,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>Claude Code를 각자 설치합니다. 서버에 미리 설치되어 있지 않고, 본인 계정 안에 자기 몫을 설치하는 방식입니다(관리자 권한 없이 본인 홈에 설치됩니다). 다음 한 줄을 실행합니다.</li>
 </ol>
-<p><strong>[서버 터미널]</strong></p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
 <div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>   <span class="ex">curl</span> <span class="at">-fsSL</span> https://claude.ai/install.sh <span class="kw">|</span> <span class="fu">bash</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>설치가 끝나면 터미널을 새로 열어야 설치된 명령이 인식됩니다. VS Code에서는 터미널 오른쪽 위의 휴지통 아이콘으로 터미널을 닫고 Terminal &gt; New Terminal로 다시 엽니다(분할이 풀렸으면 5번 분할 아이콘으로 다시 두 개로 만듭니다). PowerShell 창으로 진행 중이면 창을 닫고 다시 접속합니다. 새 터미널에서 버전을 확인합니다.</p>
-<p><strong>[서버 터미널]</strong></p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
 <div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>   <span class="ex">claude</span> <span class="at">--version</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>버전 번호가 나오면 설치된 것입니다. 만약 진행이 막히면 <a href="https://code.claude.com/docs/en/setup">공식 설치 문서</a>의 안내를 따릅니다. - <strong>[확인 6]</strong> <code>claude --version</code>의 버전 출력을 확인하였다. 2. 이 과목에서 Claude Code는 개인 계정 로그인이 아니라 학과가 학생별로 발급한 API 키로 인증합니다. 각자의 키는 텍스트 파일(.txt)로 각자 홈 폴더에 미리 들어 있습니다. 파일 이름은 학생마다 다르지만, 홈 폴더에 있는 txt 파일은 이것 하나뿐입니다. 그래서 다음 명령으로 열 수 있습니다. <code>*.txt</code>는 이름이 무엇이든 txt로 끝나는 파일 전부를 가리키는 표기입니다.</p>
-<p><strong>[서버 터미널]</strong></p>
+<p>버전 번호가 나오면 설치된 것입니다. 만약 진행이 막히면 <a href="https://code.claude.com/docs/en/setup">공식 설치 문서</a>의 안내를 따릅니다. - <span class="check-badge">확인 6</span> <code>claude --version</code>의 버전 출력을 확인하였다. 2. 이 과목에서 Claude Code는 개인 계정 로그인이 아니라 학과가 학생별로 발급한 API 키로 인증합니다. 각자의 키는 텍스트 파일(.txt)로 각자 홈 폴더에 미리 들어 있습니다. 파일 이름은 학생마다 다르지만, 홈 폴더에 있는 txt 파일은 이것 하나뿐입니다. 그래서 다음 명령으로 열 수 있습니다. <code>*.txt</code>는 이름이 무엇이든 txt로 끝나는 파일 전부를 가리키는 표기입니다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
 <div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ls</span> ~</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">cat</span> ~/<span class="pp">*</span>.txt</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>결과는 다음과 같은 형태입니다. txt 파일의 이름은 사람마다 다릅니다.</p>
 <pre class="text"><code>   README.md   내키이름.txt
    sk-ant-**********************</code></pre>
 <p>화면에 나온 긴 문자열이 내 API 키입니다. 마우스로 드래그해 복사합니다. 다음 두 줄로 키를 등록합니다. <code>발급키</code> 자리에 복사한 키를 붙여 넣는데, 붙여넣기는 VS Code 통합 터미널에서는 <code>Ctrl + V</code>, PowerShell 창에서는 마우스 오른쪽 클릭입니다. 한 줄씩 입력합니다.</p>
-<p><strong>[서버 터미널]</strong></p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
 <div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>   <span class="bu">echo</span> <span class="st">'export ANTHROPIC_API_KEY=발급키'</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>   <span class="bu">source</span> ~/.bashrc</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>이 명령은 키를 <strong>환경변수</strong>(프로그램들이 공통으로 읽는 이름-값 저장소)에 등록합니다. 실습 1에서 쓴 <code>&gt;&gt;</code>가 여기 다시 나옵니다. <code>.bashrc</code>는 터미널을 열 때마다 자동으로 읽히는 설정 파일이고, 거기에 한 줄을 덧붙이는 것입니다. <code>source</code>는 그 파일을 지금 바로 한 번 읽으라는 명령입니다. 등록은 최초 1회면 됩니다. 제대로 들어갔는지는 앞 여덟 글자만 확인합니다. 키 전체를 화면에 띄우지 않기 위해서입니다.</p>
-<p><strong>[서버 터미널]</strong></p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
 <div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>   <span class="bu">echo</span> <span class="va">${ANTHROPIC_API_KEY</span><span class="op">:</span><span class="dv">0</span><span class="op">:</span><span class="dv">8</span><span class="va">}</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>   sk-ant-a</code></pre>
 <p>API 키는 비밀번호와 같아서 타인과 공유하거나 코드·저장소에 적지 않습니다. (2장의 사례 3이 이걸 지키지 않아 생긴 일입니다.) 3. <strong>Claude Code 터미널</strong>으로 옮겨서 <code>claude</code>를 입력해 Claude Code에 접속합니다. 여기서부터는 리눅스 명령이 아니라 Claude Code 문법을 씁니다. 환경을 보는 명령 두 개만 쳐 봅니다. <code>/status</code>는 지금 세션의 상태(인증 방식, 작업 폴더, 모델)를 보여 주고, <code>/model</code>은 현재 모델을 보여 줍니다. 모델이 Haiku로 표시되는지 봅니다. 수업은 비용 정책에 따라 Haiku(Claude의 소형·저비용 등급)를 씁니다. 접속 가이드에서 <code>/model</code>로 Haiku를 기본값으로 저장해 두었으므로 재접속해도 유지되며, Haiku가 아니면 <code>/model</code>에서 다시 선택합니다. 확인했으면 <code>/exit</code>로 나옵니다. 그러면 다시 리눅스 터미널로 돌아옵니다. <em>(화면 캡처 삽입 예정: Claude Code 초기 화면과 /status 출력)</em></p>
-<p><strong>[Claude Code 안]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 안</span>
+</div>
 <pre class="text"><code>   &gt; /status
    &gt; /model
    &gt; /exit</code></pre>
 <ul>
-<li><strong>[확인 7]</strong> Claude Code에 진입해 <code>/status</code>와 <code>/model</code>로 환경을 확인하였다.</li>
+<li><span class="check-badge">확인 7</span> Claude Code에 진입해 <code>/status</code>와 <code>/model</code>로 환경을 확인하였다.</li>
 </ul>
 <p><strong>문제 해결.</strong> 키를 등록했는데 인증이 안 되면 서버 터미널에서 <code>echo ${ANTHROPIC_API_KEY:0:8}</code>로 키가 들어갔는지 봅니다. 앞 여덟 글자만 확인하는 이유는 키 전체가 화면이나 기록에 남지 않게 하기 위해서입니다. 아무것도 나오지 않으면 등록이 안 된 것이므로 2단계를 다시 합니다. <code>claude</code>를 실행했을 때 로그인 방법을 고르는 화면이 나오면 키 등록이 빠진 것입니다. Go back으로 나가 2단계부터 다시 합니다. 첫 실행에서는 승인 화면이 이어집니다(Yes → Security notes에서 Enter → 폴더 신뢰 Yes). 기본 모델은 가장 비싼 Opus이므로 그대로 Enter 치지 말고 <code>/model</code>에서 Haiku를 고른 뒤 <code>/status</code>로 확인합니다. Claude Code의 동작이 이상하면 Claude Code 안에서 <code>/doctor</code>를 실행해 진단합니다.</p>
 </section>
@@ -998,7 +1037,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="당일-제출물" class="level2">
 <h2 class="anchored" data-anchor-id="당일-제출물">8. 당일 제출물</h2>
 <p>수업 종료 시까지 서버의 개인 폴더에 <code>README.md</code> 하나가 있으면 제출 완료입니다. 별도 업로드는 없습니다. 지난 시간에 만든 <code>README.md</code>가 있어도 오늘 아래 두 줄로 다시 만듭니다. 편집기 없이 명령만으로 만들며, <code>[아이디@실습서버 ~]$</code> 뒤부터 입력합니다. 이름과 목표는 자기 것으로 바꿉니다.</p>
-<p><strong>[서버 터미널]</strong></p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
 <div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>   <span class="bu">echo</span> <span class="st">"이름: 홍길동"</span> <span class="op">&gt;</span> README.md</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>   <span class="bu">echo</span> <span class="st">"학기 목표: 한 줄"</span> <span class="op">&gt;&gt;</span> README.md</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">cat</span> README.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1006,7 +1047,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    학기 목표: 한 줄</code></pre>
 <p><code>&gt;</code>는 새로 만들어 덮어쓰기, <code>&gt;&gt;</code>는 뒤에 덧붙이기입니다. <code>&gt;</code>를 다시 쓰면 기존 내용이 전부 지워집니다. <code>cat</code>은 파일 내용을 화면에 보여 주는 명령입니다. VS Code에서는 더 간단합니다. Remote-SSH로 연결돼 있으면 왼쪽 탐색기에서 개인 폴더를 열고, ‘새 파일’ 아이콘을 누르고, 이름을 <code>README.md</code>로 입력하고, 내용을 쓴 뒤 <code>Ctrl+S</code>로 저장하면 끝입니다. 둘 중 편한 방법 하나면 되고, 어느 쪽이든 결과는 같은 <code>README.md</code> 파일입니다.</p>
 <p>최종 확인입니다. 개인 폴더에 파일이 있으면 제출로 인정됩니다.</p>
-<p><strong>[서버 터미널]</strong></p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
 <div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>   <span class="bu">cd</span> ~</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ls</span></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">cat</span> README.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1022,13 +1065,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>이번 주 폴더를 받아 와 그 안으로 들어갑니다. Claude Code는 실행한 폴더를 작업 폴더로 삼기 때문에 순서가 중요합니다.</li>
 </ol>
-<p><strong>[서버 터미널]</strong></p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
 <div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>   <span class="bu">cd</span> ~</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">cp</span> <span class="at">-r</span> /home/공용계정/week01 ~/</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ls</span> week01</span>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>   <span class="bu">cd</span> week01</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>cd</code>는 폴더 이동, <code>cd ~</code>는 개인 폴더로 가기, <code>cp -r</code>는 폴더를 통째로 복사하라는 뜻입니다. 두 번째 줄은 공용 배포 폴더의 이번 주 폴더를 강의안까지 통째로 받아 오는 것으로, 매주 첫 실습에서 같은 방식으로 받습니다. 받아 둔 강의안은 VS Code 탐색기에서 클릭해 열고 <code>Ctrl+Shift+V</code>를 누르면 제목·표·코드 블록이 정리된 미리보기 탭이 열립니다. 별도 설치 없이 VS Code에 들어 있는 기능이며, 터미널이 아니라 편집기에서 누르는 단축키입니다. 2. Claude Code 터미널에서도 같은 폴더로 옮긴 뒤 <code>claude</code>를 실행합니다.</p>
-<p><strong>[Claude Code 터미널]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 터미널</span>
+</div>
 <div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>   <span class="bu">cd</span> ~/week01</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>   <span class="ex">claude</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="3" type="1">
@@ -1040,7 +1087,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>만들어진 파일을 열어 한 번 읽어 봅니다. VS Code를 쓰고 있으면 왼쪽 탐색기에서 <code>week01</code> 폴더를 펼쳐 파일을 클릭하면 됩니다. 터미널만 쓰고 있으면 서버 터미널에서 <code>ls</code>로 파일 이름을 확인하고 <code>cat 파일이름</code>으로 내용을 봅니다.</li>
 <li>실행해 봅니다. 서버 터미널에서 <code>python3 파일이름</code>을 입력하거나, Claude Code에게 “실행해 줘”라고 시켜도 됩니다. 고치고 싶은 것이 있으면 말로 고쳐 봅니다. 화면은 대략 다음과 같습니다(AI가 만든 프로그램마다 파일 이름과 문구는 다릅니다).</li>
 </ol>
-<p><strong>[서버 터미널]</strong></p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
 <pre class="text"><code>   $ ls
    guess_number.py  강의안_01주차.md  슬라이드_01주차.pdf
    $ python3 guess_number.py            # 실제 파일 이름을 넣으세요
@@ -1052,12 +1101,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>지금은 프로그램이 작아서 대충 시켜도 잘 돌아갑니다. 파일 수십 개, 요구 수백 개짜리 회사 프로젝트에서는 이 방식이 막힙니다. 그래서 정리 활동 3이 있습니다.</p>
 <ul>
-<li><strong>[확인 8]</strong> <code>week01</code> 폴더에 AI가 만든 파일이 있고, 한 번 실행해 보았다.</li>
+<li><span class="check-badge">확인 8</span> <code>week01</code> 폴더에 AI가 만든 파일이 있고, 한 번 실행해 보았다.</li>
 </ul>
 <section id="정리-활동-3-같은-소재-두-방식으로" class="level3">
 <h3 class="anchored" data-anchor-id="정리-활동-3-같은-소재-두-방식으로">정리 활동 3: 같은 소재, 두 방식으로</h3>
 <p>앞의 활동은 지시만 던졌습니다(바이브 코딩). 같은 숫자 게임을, 이번에는 문서가 남는 방식으로 다시 시킵니다. 3장에서 말한 에이전틱 방식, 요구사항 → 테스트 → 통과입니다. 세 프롬프트를 한 번에 하나씩 순서대로 보냅니다. 끝나면 다음 프롬프트입니다.</p>
-<p><strong>[Claude Code 안]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 안</span>
+</div>
 <pre class="text"><code>   요구사항을 먼저 REQUIREMENTS.md에 적어줘.
    (1) 1~100 중 정답을 무작위로 고른다
    (2) 입력이 정답보다 작으면 "더 큰 수입니다"를 출력한다
@@ -1067,7 +1118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>끝나면 앞의 ①②③을 이 방식으로 다시 확인합니다. ① 내가 말하지 않은 것 찾기: <code>REQUIREMENTS.md</code>를 열어 AI가 스스로 정한 항목에 표시합니다. ② 맞는지 확인하기: 테스트 결과가 내 눈 대신 답합니다. 몇 개 통과했나요? ③ 요구 하나 더 붙이기: <code>REQUIREMENTS.md</code>에 새 요구를 한 줄 적습니다. 예: “(4) 시도 횟수를 세어 마지막에 알려준다”. 그리고 2, 3번 프롬프트를 다시 보냅니다.</p>
 <p><code>ls</code>로 두 방식의 결과를 비교합니다. 바이브 쪽에는 결과물 파일 하나가, 에이전틱 쪽에는 요구사항·테스트·코드가 함께 남습니다. 7장에서 말한 3종 세트입니다. 바이브는 “돌아간다”까지 가고, 에이전틱은 “무엇이 맞는지 정해 놓고 그것을 확인한다”까지 갑니다. 다음 주 EARS는 이 요구사항을 쓰는 형식입니다.</p>
 <ul>
-<li><strong>[확인 9]</strong> 요구사항·테스트·코드 세 파일이 생겼고, 테스트가 통과했다.</li>
+<li><span class="check-badge">확인 9</span> 요구사항·테스트·코드 세 파일이 생겼고, 테스트가 통과했다.</li>
 </ul>
 </section>
 <section id="정리-활동-3-1-선택-내-소재로-프롬프트는-ai에게" class="level3">
@@ -1077,7 +1128,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>내 소재를 한 문장으로 씁니다. 아까 말로 시켰던 그것입니다. 없으면 예시에서 골라도 됩니다. 전기기능사 기출문제 랜덤 퀴즈, 알바 급여·주휴수당 계산기, 채용 공고 마감일 D-day 알리미. 이것은 Claude에 보내는 문장이 아니라 아이디어입니다.</li>
 <li>다음 프롬프트를 첫 줄만 내 소재로 바꿔서 보냅니다. AI가 내 소재용 3종 프롬프트를 만들어 줍니다.</li>
 </ol>
-<p><strong>[Claude Code 안]</strong></p>
+<div class="code-label where-claude">
+<span>Claude Code 안</span>
+</div>
 <pre class="text"><code>   "알바 급여·주휴수당 계산기"를 만들려고 해. 바로 만들지 말고, 내가 순서대로 쓸 프롬프트 3개를 먼저 만들어줘.
    1) 요구사항을 REQUIREMENTS.md에 적게 하는 프롬프트
    2) 요구사항을 검사하는 pytest 테스트를 만들게 하는 프롬프트
@@ -1616,6 +1669,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>AI소프트웨어학과 강의 교재 · 2026년 2학기판</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 
