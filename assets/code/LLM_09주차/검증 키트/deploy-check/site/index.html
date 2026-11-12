@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head><meta charset="utf-8"><title>학과 FAQ 챗봇</title><link rel="stylesheet" href="style.css"></head>
+<body>
+  <h1>학과 FAQ 챗봇</h1>
+  <div id="chat"></div>
+  <input id="q" placeholder="질문을 입력하세요"><button onclick="send()">보내기</button>
+  <script src="config.js"></script>
+  <script>
+    async function send() {
+      const q = document.getElementById("q").value;
+      const answer = await fakeAnswer(q);
+      // 모델 출력을 그대로 화면에 넣는다
+      document.getElementById("chat").innerHTML += "<p><b>나:</b> " + q + "</p>";
+      document.getElementById("chat").innerHTML += "<p><b>봇:</b> " + answer + "</p>";
+    }
+    async function fakeAnswer(q) { return "(데모 응답) " + q + " 에 대한 답변입니다."; }
+  </script>
+</body>
+</html>

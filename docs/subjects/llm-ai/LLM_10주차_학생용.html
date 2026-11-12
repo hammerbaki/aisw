@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>[15회차] 발표와 마스터 검증 – AI소프트웨어학과 강의 교재</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../docs/subjects/llm-ai/LLM_공통_면접 질문 30선_학생용.html" rel="next">
+<link href="../../../docs/subjects/llm-ai/LLM_09주차_학생용.html" rel="prev">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-0f7719ecfb764d9b8ebcd528363db9a6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-268d74683ca1d9d2027c44de98d04c55.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({ startOnLoad: true, securityLevel: "loose" });
+</script>
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">AI소프트웨어학과 강의 교재</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="검색"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../../docs/subjects/llm-ai/index.html" aria-current="page"> 
+<span class="menu-text">LLM AI 개발</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/subjects/python/index.html"> 
+<span class="menu-text">파이썬 실습</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/semesters/2026-2/index.html"> 
+<span class="menu-text">학기별 편성</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/subjects/llm-ai/LLM_01주차_학생용.html">교재</a></li><li class="breadcrumb-item"><a href="../../../docs/subjects/llm-ai/LLM_10주차_학생용.html">[15회차] 발표와 마스터 검증</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LLM AI 개발</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">교재</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_01주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[1주차] 오리엔테이션</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_02주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[2주차] 리버스 엔지니어링과 SDD</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_03주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[3주차] TDD와 첫 배포</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_04주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[4주차] 프롬프트와 컨텍스트 엔지니어링</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_05주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[5주차] CLAUDE.md와 LLM 동작 원리</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_06주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[6주차] API 연동과 RAG 챗봇</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_07주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[7주차] 하네스와 루프 엔지니어링</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_08주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[10주차] 에이전트 구현과 SDD 실전</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_09주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[11주차] 검증·평가와 업무 자동화</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_10주차_학생용.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">[15회차] 발표와 마스터 검증</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_공통_면접 질문 30선_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">면접 질문 30선</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">실습 자료</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_02주차_실습자료.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[2주차] 실습 자료: 리버스 엔지니어링과 SDD</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_03주차_실습자료.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[3주차] 실습 자료: TDD와 첫 배포</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_04주차_실습자료.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[4주차] 실습 자료: 프롬프트와 컨텍스트 엔지니어링</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_05주차_실습자료.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[5주차] 실습 자료: CLAUDE.md와 LLM 동작 원리</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_06주차_실습자료.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[6주차] 실습 자료: API 연동과 RAG 챗봇</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_07주차_실습자료.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[7주차] 실습 자료: 하네스와 루프 엔지니어링</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_08주차_실습자료.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[10주차] 실습 자료: 에이전트 구현과 SDD 실전</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_09주차_실습자료.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[11주차] 실습 자료: 검증·평가와 업무 자동화</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">이 페이지</h2>
+   
+  <ul>
+  <li><a href="#학습-목표" id="toc-학습-목표" class="nav-link active" data-scroll-target="#학습-목표">학습 목표</a></li>
+  <li><a href="#발표-형식과-평가-기준" id="toc-발표-형식과-평가-기준" class="nav-link" data-scroll-target="#발표-형식과-평가-기준">1. 발표 형식과 평가 기준</a></li>
+  <li><a href="#실습-1-발표-직전-점검" id="toc-실습-1-발표-직전-점검" class="nav-link" data-scroll-target="#실습-1-발표-직전-점검">2. 실습 1: 발표 직전 점검</a></li>
+  <li><a href="#발표와-크로스-테스트" id="toc-발표와-크로스-테스트" class="nav-link" data-scroll-target="#발표와-크로스-테스트">3. 발표와 크로스 테스트</a></li>
+  <li><a href="#면접-질문-30선과-모의-문답" id="toc-면접-질문-30선과-모의-문답" class="nav-link" data-scroll-target="#면접-질문-30선과-모의-문답">4. 면접 질문 30선과 모의 문답</a></li>
+  <li><a href="#실습-2-자기-답-작성과-모의-문답" id="toc-실습-2-자기-답-작성과-모의-문답" class="nav-link" data-scroll-target="#실습-2-자기-답-작성과-모의-문답">5. 실습 2: 자기 답 작성과 모의 문답</a></li>
+  <li><a href="#입사-후의-환경-엔터프라이즈-ai-운영" id="toc-입사-후의-환경-엔터프라이즈-ai-운영" class="nav-link" data-scroll-target="#입사-후의-환경-엔터프라이즈-ai-운영">6. 입사 후의 환경: 엔터프라이즈 AI 운영</a></li>
+  <li><a href="#신기능-적용-기록-회고" id="toc-신기능-적용-기록-회고" class="nav-link" data-scroll-target="#신기능-적용-기록-회고">7. 신기능 적용 기록 회고</a></li>
+  <li><a href="#당일-제출물" id="toc-당일-제출물" class="nav-link" data-scroll-target="#당일-제출물">8. 당일 제출물</a></li>
+  <li><a href="#기말-제출물" id="toc-기말-제출물" class="nav-link" data-scroll-target="#기말-제출물">9. 기말 제출물</a></li>
+  <li><a href="#마무리" id="toc-마무리" class="nav-link" data-scroll-target="#마무리">마무리</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/subjects/llm-ai/LLM_01주차_학생용.html">교재</a></li><li class="breadcrumb-item"><a href="../../../docs/subjects/llm-ai/LLM_10주차_학생용.html">[15회차] 발표와 마스터 검증</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">[15회차] 발표와 마스터 검증</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>마지막 회차는 한 학기 산출물의 발표와 검증입니다. 각자 배포된 URL로 개인 프로젝트를 라이브 시연하고, 청중은 발표자의 URL에 직접 접속해 크로스 테스트를 수행합니다. 발표 후에는 면접 질문 30선으로 자기 언어의 답을 만드는 모의 문답, 그리고 학기 동안의 신기능 적용 기록 회고를 진행합니다. 이 회차의 산출물이 그대로 취업 포트폴리오와 면접 준비 자료가 됩니다.</p>
+<p>이 회차의 기술은 검증 가능한 발표입니다. 주장 대신 동작하는 URL과 검증 코드로 증명합니다.</p>
+<pre class="mermaid">graph LR
+    P["&lt;b&gt;프롬프트 엔지니어링&lt;/b&gt;&lt;br/&gt;무엇을 말할까"] --&gt; C["&lt;b&gt;컨텍스트 엔지니어링&lt;/b&gt;&lt;br/&gt;무엇을 보여줄까&lt;br/&gt;&lt;i&gt;CLAUDE.md&lt;/i&gt;"] --&gt; H["&lt;b&gt;하네스 엔지니어링&lt;/b&gt;&lt;br/&gt;어떤 환경을 만들까&lt;br/&gt;&lt;i&gt;MCP·Skill·Hook&lt;/i&gt;"] --&gt; L["&lt;b&gt;루프 엔지니어링&lt;/b&gt;&lt;br/&gt;어떻게 반복시킬까&lt;br/&gt;&lt;i&gt;에이전트·자동화&lt;/i&gt;"]
+</pre>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>단계</th>
+<th>이 회차 기술(검증 가능한 발표)의 역할</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>프롬프트</td>
+<td>면접 답변도 완결된 지시문처럼 구성합니다. 예: 결론 한 문장, 근거, 실제로 해 본 것의 3단 구성으로 답을 설계</td>
+</tr>
+<tr class="even">
+<td>컨텍스트</td>
+<td>발표는 청중이 가진 컨텍스트에 맞춰 줄인 요약입니다. 예: 세부 구현 대신 요구사항과 검증 결과를 먼저 보여 청중의 판단 근거를 채움</td>
+</tr>
+<tr class="odd">
+<td>하네스</td>
+<td>시연 전 배포 파이프라인이 발표 사고를 막는 안전장치입니다. 예: 발표 직전 점검 통과·배포로 URL이 최신 판임을 보장</td>
+</tr>
+<tr class="even">
+<td>루프</td>
+<td>크로스 테스트의 발견이 다음 개선의 입력이 됩니다. 예: 청중이 찾은 비정상 입력 문제를 기말 제출 전 마지막 수정으로 반영</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<section id="학습-목표" class="level2">
+<h2 class="anchored" data-anchor-id="학습-목표">학습 목표</h2>
+<ul>
+<li><strong>배포 URL 라이브 시연과 검증 코드로 프로젝트를 발표할 수 있습니다.</strong>
+<ul>
+<li>예시: 정상 시나리오, 경계 시나리오, 검증 결과의 3단 시연을 시간 안에 수행</li>
+<li>장점: “만들었다”가 아니라 “동작하는 주소와 검증 증빙이 있다”로 말하는 포트폴리오 발표 경험</li>
+</ul></li>
+<li><strong>동료 산출물을 크로스 테스트로 검증하고 결과를 전달할 수 있습니다.</strong>
+<ul>
+<li>예시: 발표자의 URL에 접속해 비정상 입력 시나리오를 시험하고 기록표를 전달</li>
+<li>장점: 코드 리뷰·QA(품질 보증) 협업의 기본 소통 방식 훈련</li>
+</ul></li>
+<li><strong>면접 질문에 실습 경험을 근거로 자기 언어의 답을 만들 수 있습니다.</strong>
+<ul>
+<li>예시: “환각은 왜 발생하는가”에 확률적 생성 원리와 검증 레이어 경험을 붙여 답변</li>
+<li>장점: 질문은행 30문이 그대로 기술 면접 대비 자료가 됨</li>
+</ul></li>
+<li><strong>한 학기의 신기능 적용 기록을 진화 지도 위에서 회고할 수 있습니다.</strong>
+<ul>
+<li>예시: 학기 중 조사한 신기능들이 지도의 어느 단계에 몰렸는지 정리하고 자기 프로젝트 적용분을 표시</li>
+<li>장점: 도구 변화를 스스로 따라잡는 방법을 가졌다는 것이 면접의 마지막 답변이 됨</li>
+</ul></li>
+</ul>
+<hr>
+</section>
+<section id="발표-형식과-평가-기준" class="level2">
+<h2 class="anchored" data-anchor-id="발표-형식과-평가-기준">1. 발표 형식과 평가 기준</h2>
+<p>발표는 1인 단위이며 시연 중심입니다. 구성은 3단입니다. ① 프로젝트 소개(1분): Charter의 한 줄 정의와 사용자, 핵심 기능. ② 라이브 시연(3분): 배포 URL에 직접 접속해 정상 시나리오 1개와 경계·비정상 시나리오 1개를 보입니다. 로컬 화면이 아니라 실제 URL로 시연합니다. ③ 검증 발표(2분): Spec의 요구사항 중 2개를 골라, 무엇으로 검증했는지(테스트 코드, 평가 기록, 배포 전 점검)를 증빙 화면으로 보입니다.</p>
+<p>평가는 시연의 화려함이 아니라 검증 가능성을 봅니다. URL이 동작하는가, 요구사항과 검증 증빙이 연결되는가, 질문에 자기 언어로 답하는가입니다. 청중에게도 역할이 있습니다. 발표마다 지정된 2명이 발표자의 URL에 접속해 즉석 크로스 테스트를 수행하고 기록표를 남깁니다.</p>
+</section>
+<section id="실습-1-발표-직전-점검" class="level2">
+<h2 class="anchored" data-anchor-id="실습-1-발표-직전-점검">2. 실습 1: 발표 직전 점검</h2>
+<p>발표 시작 전 15분 동안 각자 수행합니다.</p>
+<ol type="1">
+<li>배포 파이프라인으로 최신 판을 배포합니다. 자동화 실습의 deploy.sh 절차대로 점검 통과와 배포를 확인하고, URL을 새 창에서 열어 동작을 확인합니다.</li>
+<li>시연 시나리오 2개(정상 1, 경계·비정상 1)를 <code>week15/발표시나리오.md</code>에 세 줄씩 적고 한 번 리허설합니다. 입력할 값과 기대 동작을 그대로 적어, 시연 중 즉흥 입력으로 무너지지 않게 합니다.</li>
+<li>검증 증빙 화면(테스트 실행 결과, 평가 기록, 점검 통과 출력) 중 보여줄 2개를 열어 둡니다.</li>
+</ol>
+<p>[확인 1] 발표시나리오.md와 최신 배포 URL, 증빙 화면 2개가 준비되었다.</p>
+<hr>
+</section>
+<section id="발표와-크로스-테스트" class="level2">
+<h2 class="anchored" data-anchor-id="발표와-크로스-테스트">3. 발표와 크로스 테스트</h2>
+<p>발표 순서와 1인당 시간은 수업 서두에 공지됩니다. 발표자 외의 역할은 다음과 같습니다.</p>
+<ol type="1">
+<li>지정 테스터 2명: 발표자의 URL에 접속해 크로스 테스트 기록표(자동화 실습과 같은 양식)의 시나리오 3종(정상, 경계값, 비정상 입력)을 수행하고, 발표 종료 시 기록표를 전달합니다.</li>
+<li>나머지 청중: 질문 1개 이상을 준비합니다. 질문은 “무엇으로 검증했는가”, “왜 그 부품(스킬, 훅, MCP(Model Context Protocol))을 골랐는가” 유형을 우선합니다.</li>
+</ol>
+<p>발표자는 받은 기록표의 발견 사항을 <code>week15/발표기록.md</code>에 옮기고, 기말 제출 전에 반영할 항목을 표시합니다.</p>
+<p>[확인 2] 자기 발표의 시연이 실제 URL로 수행되었고, 받은 크로스 테스트 기록표가 발표기록.md에 정리되었다.</p>
+<p>[확인 3] 테스터로 참여한 발표에서 작성한 기록표가 상대에게 전달되었다.</p>
+<hr>
+</section>
+<section id="면접-질문-30선과-모의-문답" class="level2">
+<h2 class="anchored" data-anchor-id="면접-질문-30선과-모의-문답">4. 면접 질문 30선과 모의 문답</h2>
+<p>배포물 “면접 질문 30선”은 이 과목의 학습 순서로 정리한 질문은행입니다. 네 축(LLM 원리, Claude Code 운용, 애플리케이션 개발, 운영·보안·배포) 30문이며, 각 질문에는 답이 들어 있는 실습을 가리키는 실마리가 붙어 있습니다. 모든 질문은 원전 공식 문서와 이 과목의 실습 안에서 답할 수 있습니다.</p>
+<p>답변의 표준 구성은 3단입니다. 결론 한 문장, 원리 근거, 그리고 실제로 해 본 것 한 가지. 마지막 단이 이 과목 수강생의 차별점입니다. 어떤 질문이든 붙일 실습 경험이 있기 때문입니다.</p>
+</section>
+<section id="실습-2-자기-답-작성과-모의-문답" class="level2">
+<h2 class="anchored" data-anchor-id="실습-2-자기-답-작성과-모의-문답">5. 실습 2: 자기 답 작성과 모의 문답</h2>
+<ol type="1">
+<li>질문은행에서 축이 다른 질문 3개를 골라, 3단 구성의 답을 <code>week15/면접답안.md</code>에 자기 언어로 작성합니다. 실마리의 실습 기록을 다시 열어 “실제로 해 본 것”을 구체적으로 씁니다.</li>
+<li>짝과 모의 문답을 진행합니다. 서로 2문항씩 묻고, 답이 끝나면 묻는 쪽이 후속 질문(“그건 왜 그렇게 됩니까”) 1개를 이어 던집니다. 후속 질문에서 막힌 지점을 각자 기록합니다.</li>
+<li>막힌 지점의 답을 보완해 면접답안.md를 갱신합니다.</li>
+</ol>
+<p>[확인 4] 3문항의 3단 구성 답과, 모의 문답에서 막힌 지점의 보완 기록이 면접답안.md에 있다.</p>
+<hr>
+</section>
+<section id="입사-후의-환경-엔터프라이즈-ai-운영" class="level2">
+<h2 class="anchored" data-anchor-id="입사-후의-환경-엔터프라이즈-ai-운영">6. 입사 후의 환경: 엔터프라이즈 AI 운영</h2>
+<p>입사하면 AI 도구는 개인 설정이 아니라 조직 관리형 정책으로 운영됩니다. 회사 단위로 설정·권한이 통제되고, 도입 심사에서는 코드·데이터가 어디로 가서 얼마나 보존되는지(데이터 사용 정책)가 핵심 항목이 됩니다. API 키 관리, 민감 파일 접근 차단, 로컬 모델 보완축처럼 이 과목에서 다룬 보안 요소들이 전부 그 심사의 세부 항목입니다. 면접 질문 30선의 운영·보안 축이 이 환경에 대한 대비입니다.</p>
+</section>
+<section id="신기능-적용-기록-회고" class="level2">
+<h2 class="anchored" data-anchor-id="신기능-적용-기록-회고">7. 신기능 적용 기록 회고</h2>
+<p>학기 동안의 신기능 탐지 기록을 모아 회고합니다.</p>
+<ol type="1">
+<li>자기 실습기록들에서 신기능 탐지 서식(기능, 변화, 적용 장면, 지도 위치)을 모아 <code>week15/신기능회고.md</code>에 목록으로 옮깁니다.</li>
+<li>두 가지를 정리합니다. 조사한 기능들이 진화 지도의 어느 단계에 몰렸는가. 그중 자기 프로젝트에 실제로 적용한 것과 적용하지 못한 이유는 무엇인가.</li>
+<li>마지막 한 문단으로 답합니다. “다음에 처음 보는 도구 변화를 만나면 나는 어떤 절차로 따라잡을 것인가.”</li>
+</ol>
+<p>[확인 5] 신기능회고.md에 기록 목록, 지도 분포, 절차 한 문단이 작성되었다.</p>
+<hr>
+</section>
+<section id="당일-제출물" class="level2">
+<h2 class="anchored" data-anchor-id="당일-제출물">8. 당일 제출물</h2>
+<p>수업 종료 시점에 개인 폴더에 다음이 있어야 합니다.</p>
+<ol type="1">
+<li><code>week15/발표시나리오.md</code>와 <code>week15/발표기록.md</code> (받은 크로스 테스트 기록표 정리 포함)</li>
+<li>테스터로 작성해 전달한 크로스 테스트 기록표 사본</li>
+<li><code>week15/면접답안.md</code> (3문항, 보완 기록 포함)</li>
+<li><code>week15/신기능회고.md</code></li>
+<li>[확인 1]부터 [확인 5]까지 중 수업에서 지정한 항목의 답</li>
+</ol>
+<p>제출은 개인 폴더의 상태로 갈음합니다.</p>
+<hr>
+</section>
+<section id="기말-제출물" class="level2">
+<h2 class="anchored" data-anchor-id="기말-제출물">9. 기말 제출물</h2>
+<p>기말 평가는 개인 프로젝트 폴더의 상태로 하며, 마감은 수업에서 공지하는 기말 제출 기한입니다. 다음이 갖춰져야 합니다.</p>
+<ol type="1">
+<li><strong>동작하는 산출물</strong>: 최신 판이 배포된 URL (README 첫 줄에 명시)</li>
+<li><strong>방법론 산출물</strong>: Charter.md, Spec.md(요구사항과 검증 방법), 확장설계서.md, sync 점검 최종본</li>
+<li><strong>검증 산출물</strong>: 테스트 코드, 평가·점검 기록, 배포 파이프라인 스크립트와 통과 증빙</li>
+<li><strong>발표 반영</strong>: 크로스 테스트에서 받은 발견 사항 중 반영한 항목의 기록 (발표기록.md 갱신)</li>
+</ol>
+<p>배점과 평가 항목은 오리엔테이션에서 안내한 평가 체계를 따릅니다.</p>
+<hr>
+</section>
+<section id="마무리" class="level2">
+<h2 class="anchored" data-anchor-id="마무리">마무리</h2>
+<p>이 과목은 프롬프트, 컨텍스트, 하네스, 루프의 진화 지도를 따라 왔습니다. LLM의 원리에서 시작해 API 연동, RAG, 도구 사용, 확장 기능, 에이전트, 평가, 자동화를 거쳐, 오늘 각자의 산출물이 실제 URL로 시연되고 서로에게 검증받았습니다. 과정 전체를 관통한 두 문장은 유지됩니다. AI가 만들고, 사람이 검증한다. 그리고 AI가 준 것을 절대 그대로 쓰지 않는다. 도구는 계속 바뀌지만, 변화를 읽고 검증하며 적용하는 절차는 여러분의 것입니다.</p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> 맨 위로</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "복사완료!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "복사완료!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../docs/subjects/llm-ai/LLM_09주차_학생용.html" class="pagination-link" aria-label="[11주차] 검증·평가와 업무 자동화">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">[11주차] 검증·평가와 업무 자동화</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../docs/subjects/llm-ai/LLM_공통_면접 질문 30선_학생용.html" class="pagination-link" aria-label="면접 질문 30선">
+        <span class="nav-page-text">면접 질문 30선</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>[5주차] 실습 자료: CLAUDE.md와 LLM 동작 원리 – AI소프트웨어학과 강의 교재</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../docs/subjects/llm-ai/LLM_06주차_실습자료.html" rel="next">
+<link href="../../../docs/subjects/llm-ai/LLM_04주차_실습자료.html" rel="prev">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-0f7719ecfb764d9b8ebcd528363db9a6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-268d74683ca1d9d2027c44de98d04c55.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">AI소프트웨어학과 강의 교재</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="검색"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../../docs/subjects/llm-ai/index.html" aria-current="page"> 
+<span class="menu-text">LLM AI 개발</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/subjects/python/index.html"> 
+<span class="menu-text">파이썬 실습</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/semesters/2026-2/index.html"> 
+<span class="menu-text">학기별 편성</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/subjects/llm-ai/LLM_02주차_실습자료.html">실습 자료</a></li><li class="breadcrumb-item"><a href="../../../docs/subjects/llm-ai/LLM_05주차_실습자료.html">[5주차] 실습 자료: CLAUDE.md와 LLM 동작 원리</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LLM AI 개발</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">교재</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_01주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[1주차] 오리엔테이션</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_02주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[2주차] 리버스 엔지니어링과 SDD</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_03주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[3주차] TDD와 첫 배포</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_04주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[4주차] 프롬프트와 컨텍스트 엔지니어링</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_05주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[5주차] CLAUDE.md와 LLM 동작 원리</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_06주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[6주차] API 연동과 RAG 챗봇</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_07주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[7주차] 하네스와 루프 엔지니어링</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_08주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[10주차] 에이전트 구현과 SDD 실전</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_09주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[11주차] 검증·평가와 업무 자동화</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_10주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[15회차] 발표와 마스터 검증</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_공통_면접 질문 30선_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">면접 질문 30선</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">실습 자료</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_02주차_실습자료.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[2주차] 실습 자료: 리버스 엔지니어링과 SDD</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_03주차_실습자료.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[3주차] 실습 자료: TDD와 첫 배포</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_04주차_실습자료.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[4주차] 실습 자료: 프롬프트와 컨텍스트 엔지니어링</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_05주차_실습자료.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">[5주차] 실습 자료: CLAUDE.md와 LLM 동작 원리</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_06주차_실습자료.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[6주차] 실습 자료: API 연동과 RAG 챗봇</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_07주차_실습자료.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[7주차] 실습 자료: 하네스와 루프 엔지니어링</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_08주차_실습자료.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[10주차] 실습 자료: 에이전트 구현과 SDD 실전</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_09주차_실습자료.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[11주차] 실습 자료: 검증·평가와 업무 자동화</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">이 페이지</h2>
+   
+  <ul>
+  <li><a href="#코드" id="toc-코드" class="nav-link active" data-scroll-target="#코드">코드</a>
+  <ul class="collapse">
+  <li><a href="#골격conftest.py-내려받기" id="toc-골격conftest.py-내려받기" class="nav-link" data-scroll-target="#골격conftest.py-내려받기"><code>골격/conftest.py</code> 내려받기</a></li>
+  <li><a href="#골격apporders.py-내려받기" id="toc-골격apporders.py-내려받기" class="nav-link" data-scroll-target="#골격apporders.py-내려받기"><code>골격/app/orders.py</code> 내려받기</a></li>
+  <li><a href="#골격teststest_orders.py-내려받기" id="toc-골격teststest_orders.py-내려받기" class="nav-link" data-scroll-target="#골격teststest_orders.py-내려받기"><code>골격/tests/test_orders.py</code> 내려받기</a></li>
+  <li><a href="#스크립트token_count.py-내려받기" id="toc-스크립트token_count.py-내려받기" class="nav-link" data-scroll-target="#스크립트token_count.py-내려받기"><code>스크립트/token_count.py</code> 내려받기</a></li>
+  <li><a href="#포트폴리오index.html-내려받기" id="toc-포트폴리오index.html-내려받기" class="nav-link" data-scroll-target="#포트폴리오index.html-내려받기"><code>포트폴리오/index.html</code> 내려받기</a></li>
+  <li><a href="#포트폴리오pytest.ini-내려받기" id="toc-포트폴리오pytest.ini-내려받기" class="nav-link" data-scroll-target="#포트폴리오pytest.ini-내려받기"><code>포트폴리오/pytest.ini</code> 내려받기</a></li>
+  <li><a href="#포트폴리오teststest_page.py-내려받기" id="toc-포트폴리오teststest_page.py-내려받기" class="nav-link" data-scroll-target="#포트폴리오teststest_page.py-내려받기"><code>포트폴리오/tests/test_page.py</code> 내려받기</a></li>
+  </ul></li>
+  <li><a href="#문서와-그-밖의-파일" id="toc-문서와-그-밖의-파일" class="nav-link" data-scroll-target="#문서와-그-밖의-파일">문서와 그 밖의 파일</a>
+  <ul class="collapse">
+  <li><a href="#requirements.txt-내려받기" id="toc-requirements.txt-내려받기" class="nav-link" data-scroll-target="#requirements.txt-내려받기"><code>requirements.txt</code> 내려받기</a></li>
+  <li><a href="#내소재_양식.md-내려받기" id="toc-내소재_양식.md-내려받기" class="nav-link" data-scroll-target="#내소재_양식.md-내려받기"><code>내소재_양식.md</code> 내려받기</a></li>
+  <li><a href="#내프롬프트_양식.md-내려받기" id="toc-내프롬프트_양식.md-내려받기" class="nav-link" data-scroll-target="#내프롬프트_양식.md-내려받기"><code>내프롬프트_양식.md</code> 내려받기</a></li>
+  <li><a href="#골격readme.md-내려받기" id="toc-골격readme.md-내려받기" class="nav-link" data-scroll-target="#골격readme.md-내려받기"><code>골격/README.md</code> 내려받기</a></li>
+  <li><a href="#골격명세서.md-내려받기" id="toc-골격명세서.md-내려받기" class="nav-link" data-scroll-target="#골격명세서.md-내려받기"><code>골격/명세서.md</code> 내려받기</a></li>
+  <li><a href="#포트폴리오요구사항명세서.md-내려받기" id="toc-포트폴리오요구사항명세서.md-내려받기" class="nav-link" data-scroll-target="#포트폴리오요구사항명세서.md-내려받기"><code>포트폴리오/요구사항명세서.md</code> 내려받기</a></li>
+  <li><a href="#포트폴리오프로필.md-내려받기" id="toc-포트폴리오프로필.md-내려받기" class="nav-link" data-scroll-target="#포트폴리오프로필.md-내려받기"><code>포트폴리오/프로필.md</code> 내려받기</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/subjects/llm-ai/LLM_02주차_실습자료.html">실습 자료</a></li><li class="breadcrumb-item"><a href="../../../docs/subjects/llm-ai/LLM_05주차_실습자료.html">[5주차] 실습 자료: CLAUDE.md와 LLM 동작 원리</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">[5주차] 실습 자료: CLAUDE.md와 LLM 동작 원리</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><a href="../../../docs/subjects/llm-ai/LLM_05주차_학생용.html">교재로 돌아가기</a></p>
+<p>실습 키트의 파일을 그대로 보여 줍니다. 코드 블록 오른쪽 위의 단추로 복사하거나, 파일 이름 옆의 링크로 내려받으세요.</p>
+<section id="코드" class="level2">
+<h2 class="anchored" data-anchor-id="코드">코드</h2>
+<section id="골격conftest.py-내려받기" class="level3">
+<h3 class="anchored" data-anchor-id="골격conftest.py-내려받기"><code>골격/conftest.py</code> <a href="../../../assets/code/LLM_05주차/골격/conftest.py" class="file-download" download="">내려받기</a></h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># -*- coding: utf-8 -*-</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># pytest가 프로젝트 루트를 임포트 경로에 넣도록 하는 파일. 내용은 비워 둔다.</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="골격apporders.py-내려받기" class="level3">
+<h3 class="anchored" data-anchor-id="골격apporders.py-내려받기"><code>골격/app/orders.py</code> <a href="../../../assets/code/LLM_05주차/골격/app/orders.py" class="file-download" download="">내려받기</a></h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># -*- coding: utf-8 -*-</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">"""주문 관리 샘플 모듈 (CLAUDE.md 실습용)."""</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>_ORDERS <span class="op">=</span> {}</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>_STOCK <span class="op">=</span> {<span class="st">"노트북"</span>: <span class="dv">5</span>, <span class="st">"마우스"</span>: <span class="dv">20</span>, <span class="st">"키보드"</span>: <span class="dv">0</span>}</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> create_order(order_id, product, quantity):</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""주문을 생성한다. 재고가 부족하면 ValueError를 던진다."""</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> quantity <span class="op">&lt;=</span> <span class="dv">0</span>:</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"수량은 1 이상이어야 한다"</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    stock <span class="op">=</span> _STOCK.get(product, <span class="dv">0</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> quantity <span class="op">&gt;</span> stock:</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"재고 부족"</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    _STOCK[product] <span class="op">=</span> stock <span class="op">-</span> quantity</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    _ORDERS[order_id] <span class="op">=</span> {<span class="st">"product"</span>: product, <span class="st">"quantity"</span>: quantity, <span class="st">"status"</span>: <span class="st">"접수"</span>}</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> _ORDERS[order_id]</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_order(order_id):</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""주문을 조회한다."""</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> order_id <span class="kw">not</span> <span class="kw">in</span> _ORDERS:</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">KeyError</span>(<span class="st">"존재하지 않는 주문"</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> _ORDERS[order_id]</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> reset():</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""테스트용 초기화."""</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    _ORDERS.clear()</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    _STOCK.clear()</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    _STOCK.update({<span class="st">"노트북"</span>: <span class="dv">5</span>, <span class="st">"마우스"</span>: <span class="dv">20</span>, <span class="st">"키보드"</span>: <span class="dv">0</span>})</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="골격teststest_orders.py-내려받기" class="level3">
+<h3 class="anchored" data-anchor-id="골격teststest_orders.py-내려받기"><code>골격/tests/test_orders.py</code> <a href="../../../assets/code/LLM_05주차/골격/tests/test_orders.py" class="file-download" download="">내려받기</a></h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># -*- coding: utf-8 -*-</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pytest</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> app.orders <span class="im">import</span> create_order, get_order, reset</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="at">@pytest.fixture</span>(autouse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _reset():</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    reset()</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_주문_생성():</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    order <span class="op">=</span> create_order(<span class="st">"A-1"</span>, <span class="st">"노트북"</span>, <span class="dv">1</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> order[<span class="st">"status"</span>] <span class="op">==</span> <span class="st">"접수"</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_재고_부족이면_실패():</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> pytest.raises(<span class="pp">ValueError</span>):</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        create_order(<span class="st">"A-2"</span>, <span class="st">"키보드"</span>, <span class="dv">1</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_없는_주문_조회는_실패():</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> pytest.raises(<span class="pp">KeyError</span>):</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        get_order(<span class="st">"없는번호"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="스크립트token_count.py-내려받기" class="level3">
+<h3 class="anchored" data-anchor-id="스크립트token_count.py-내려받기"><code>스크립트/token_count.py</code> <a href="../../../assets/code/LLM_05주차/스크립트/token_count.py" class="file-download" download="">내려받기</a></h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">"""5주차 실습 3의 1단계: 문장의 토큰 수를 잰다.</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">사용법:</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">    python3 스크립트/token_count.py "측정할 문장"</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">    python3 스크립트/token_count.py --check        # 키·모델 설정만 확인</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">동작:</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">    4주차 채점기(ab_runner.py)와 같은 방식으로 파이썬 표준 라이브러리(urllib)만 써서</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">    Claude API의 토큰 계산 기능(count_tokens)에 문장을 보내고 토큰 수를 받는다.</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">    설치할 패키지가 없다. 인증은 환경변수 ANTHROPIC_API_KEY, 모델은 환경변수</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">    COURSE_MODEL(없으면 수업 기본 모델)을 쓴다. 키는 화면에 출력하지 않는다.</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">참고:</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">    결과에는 요청 형식에 붙는 고정 토큰이 더해져 있다(교수 화면 7토큰. "a" 한 글자가 8).</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">    측정값 = 고정분 + 문장 토큰. 비교할 때는 고정분을 빼고 본다.</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> urllib.error</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> urllib.request</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>MODEL <span class="op">=</span> os.environ.get(<span class="st">"COURSE_MODEL"</span>, <span class="st">"claude-haiku-4-5-20251001"</span>)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>URL <span class="op">=</span> <span class="st">"https://api.anthropic.com/v1/messages/count_tokens"</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> count_tokens(text):</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    key <span class="op">=</span> os.environ.get(<span class="st">"ANTHROPIC_API_KEY"</span>, <span class="st">""</span>)</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> key:</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">SystemExit</span>(<span class="st">"KEY_NOT_SET: ANTHROPIC_API_KEY가 없습니다. 강의안 0장의 키 등록을 먼저 합니다."</span>)</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    payload <span class="op">=</span> json.dumps({<span class="st">"model"</span>: MODEL, <span class="st">"messages"</span>: [{<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: text}]}).encode()</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    headers <span class="op">=</span> {<span class="st">"x-api-key"</span>: key, <span class="st">"anthropic-version"</span>: <span class="st">"2023-06-01"</span>, <span class="st">"content-type"</span>: <span class="st">"application/json"</span>}</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> attempt <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>):</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>        req <span class="op">=</span> urllib.request.Request(URL, data<span class="op">=</span>payload, headers<span class="op">=</span>headers)</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>            <span class="cf">with</span> urllib.request.urlopen(req, timeout<span class="op">=</span><span class="dv">30</span>) <span class="im">as</span> resp:</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> json.load(resp)[<span class="st">"input_tokens"</span>]</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> urllib.error.HTTPError <span class="im">as</span> e:</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> e.code <span class="op">==</span> <span class="dv">400</span> <span class="kw">and</span> attempt <span class="op">==</span> <span class="dv">0</span> <span class="kw">and</span> <span class="st">"anthropic-beta"</span> <span class="kw">not</span> <span class="kw">in</span> headers:</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>                headers[<span class="st">"anthropic-beta"</span>] <span class="op">=</span> <span class="st">"token-counting-2024-11-01"</span>  <span class="co"># 구 버전 API용. 보통은 필요 없음</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>                <span class="cf">continue</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">SystemExit</span>(<span class="ss">f"HTTP </span><span class="sc">{</span>e<span class="sc">.</span>code<span class="sc">}</span><span class="ss">: 인증·모델 권한·요청 제한을 확인합니다. 원문 오류에 키가 들어 있을 수 있어 출력하지 않습니다."</span>)</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> (urllib.error.URLError, <span class="pp">TimeoutError</span>):</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">SystemExit</span>(<span class="st">"네트워크 오류 또는 시간 초과. 잠시 뒤 다시 실행합니다."</span>)</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>    args <span class="op">=</span> sys.argv[<span class="dv">1</span>:]</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> args <span class="op">==</span> [<span class="st">"--check"</span>]:</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"MODEL"</span>, MODEL, <span class="st">"API_KEY_SET="</span> <span class="op">+</span> <span class="bu">str</span>(<span class="bu">bool</span>(os.environ.get(<span class="st">"ANTHROPIC_API_KEY"</span>))))</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>        sys.exit(<span class="dv">0</span>)</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> args:</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'사용법: python3 스크립트/token_count.py "측정할 문장"'</span>)</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>        sys.exit(<span class="dv">1</span>)</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> <span class="st">" "</span>.join(args)</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"문장: </span><span class="sc">{</span>text<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"토큰 수: </span><span class="sc">{</span>count_tokens(text)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="포트폴리오index.html-내려받기" class="level3">
+<h3 class="anchored" data-anchor-id="포트폴리오index.html-내려받기"><code>포트폴리오/index.html</code> <a href="../../../assets/code/LLM_05주차/포트폴리오/index.html" class="file-download" download="">내려받기</a></h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE</span> html<span class="dt">&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">html</span><span class="ot"> lang</span><span class="op">=</span><span class="st">"ko"</span><span class="dt">&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> charset</span><span class="op">=</span><span class="st">"UTF-8"</span><span class="dt">&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> name</span><span class="op">=</span><span class="st">"viewport"</span><span class="ot"> content</span><span class="op">=</span><span class="st">"width=device-width, initial-scale=1.0"</span><span class="dt">&gt;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">title</span><span class="dt">&gt;</span>김하늘 포트폴리오 · ICT폴리텍대학 AI소프트웨어학과<span class="dt">&lt;/</span><span class="kw">title</span><span class="dt">&gt;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">style</span><span class="dt">&gt;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="in">:root</span> { <span class="va">--bg</span><span class="ch">:</span> <span class="cn">#f8fafc</span><span class="op">;</span> <span class="va">--fg</span><span class="ch">:</span> <span class="cn">#1e293b</span><span class="op">;</span> <span class="va">--card</span><span class="ch">:</span> <span class="cn">#ffffff</span><span class="op">;</span> <span class="va">--line</span><span class="ch">:</span> <span class="cn">#e2e8f0</span><span class="op">;</span> <span class="va">--accent</span><span class="ch">:</span> <span class="cn">#0f62a8</span><span class="op">;</span> <span class="va">--muted</span><span class="ch">:</span> <span class="cn">#64748b</span><span class="op">;</span> }</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    body<span class="fu">.dark</span> { <span class="va">--bg</span><span class="ch">:</span> <span class="cn">#0f172a</span><span class="op">;</span> <span class="va">--fg</span><span class="ch">:</span> <span class="cn">#e2e8f0</span><span class="op">;</span> <span class="va">--card</span><span class="ch">:</span> <span class="cn">#1e293b</span><span class="op">;</span> <span class="va">--line</span><span class="ch">:</span> <span class="cn">#334155</span><span class="op">;</span> <span class="va">--accent</span><span class="ch">:</span> <span class="cn">#60a5fa</span><span class="op">;</span> <span class="va">--muted</span><span class="ch">:</span> <span class="cn">#94a3b8</span><span class="op">;</span> }</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">*</span> { <span class="kw">box-sizing</span><span class="ch">:</span> <span class="dv">border-box</span><span class="op">;</span> <span class="kw">margin</span><span class="ch">:</span> <span class="dv">0</span><span class="op">;</span> <span class="kw">padding</span><span class="ch">:</span> <span class="dv">0</span><span class="op">;</span> }</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    body { <span class="kw">font-family</span><span class="ch">:</span> <span class="st">'Pretendard'</span><span class="op">,</span> <span class="dv">-apple-system</span><span class="op">,</span> <span class="st">'Segoe UI'</span><span class="op">,</span> <span class="dv">sans-serif</span><span class="op">;</span> <span class="kw">background</span><span class="ch">:</span> <span class="fu">var(</span><span class="va">--bg</span><span class="fu">)</span><span class="op">;</span> <span class="kw">color</span><span class="ch">:</span> <span class="fu">var(</span><span class="va">--fg</span><span class="fu">)</span><span class="op">;</span> <span class="kw">line-height</span><span class="ch">:</span> <span class="dv">1.6</span><span class="op">;</span> }</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    header { <span class="kw">position</span><span class="ch">:</span> <span class="dv">sticky</span><span class="op">;</span> <span class="kw">top</span><span class="ch">:</span> <span class="dv">0</span><span class="op">;</span> <span class="kw">background</span><span class="ch">:</span> <span class="fu">var(</span><span class="va">--card</span><span class="fu">)</span><span class="op">;</span> <span class="kw">border-bottom</span><span class="ch">:</span> <span class="dv">1</span><span class="dt">px</span> <span class="dv">solid</span> <span class="fu">var(</span><span class="va">--line</span><span class="fu">)</span><span class="op">;</span> }</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.nav</span> { <span class="kw">max-width</span><span class="ch">:</span> <span class="dv">900</span><span class="dt">px</span><span class="op">;</span> <span class="kw">margin</span><span class="ch">:</span> <span class="dv">0</span> <span class="bu">auto</span><span class="op">;</span> <span class="kw">padding</span><span class="ch">:</span> <span class="dv">0.8</span><span class="dt">rem</span> <span class="dv">1.2</span><span class="dt">rem</span><span class="op">;</span> <span class="kw">display</span><span class="ch">:</span> <span class="dv">flex</span><span class="op">;</span> <span class="kw">justify-content</span><span class="ch">:</span> <span class="dv">space-between</span><span class="op">;</span> <span class="kw">align-items</span><span class="ch">:</span> <span class="dv">center</span><span class="op">;</span> }</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.nav</span> a { <span class="kw">color</span><span class="ch">:</span> <span class="fu">var(</span><span class="va">--fg</span><span class="fu">)</span><span class="op">;</span> <span class="kw">text-decoration</span><span class="ch">:</span> <span class="dv">none</span><span class="op">;</span> <span class="kw">margin-left</span><span class="ch">:</span> <span class="dv">1</span><span class="dt">rem</span><span class="op">;</span> <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">0.95</span><span class="dt">rem</span><span class="op">;</span> }</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.nav</span> button { <span class="kw">border</span><span class="ch">:</span> <span class="dv">1</span><span class="dt">px</span> <span class="dv">solid</span> <span class="fu">var(</span><span class="va">--line</span><span class="fu">)</span><span class="op">;</span> <span class="kw">background</span><span class="ch">:</span> <span class="fu">var(</span><span class="va">--card</span><span class="fu">)</span><span class="op">;</span> <span class="kw">color</span><span class="ch">:</span> <span class="fu">var(</span><span class="va">--fg</span><span class="fu">)</span><span class="op">;</span> <span class="kw">padding</span><span class="ch">:</span> <span class="dv">0.3</span><span class="dt">rem</span> <span class="dv">0.7</span><span class="dt">rem</span><span class="op">;</span> <span class="kw">border-radius</span><span class="ch">:</span> <span class="dv">6</span><span class="dt">px</span><span class="op">;</span> <span class="kw">cursor</span><span class="ch">:</span> <span class="dv">pointer</span><span class="op">;</span> }</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    main { <span class="kw">max-width</span><span class="ch">:</span> <span class="dv">900</span><span class="dt">px</span><span class="op">;</span> <span class="kw">margin</span><span class="ch">:</span> <span class="dv">0</span> <span class="bu">auto</span><span class="op">;</span> <span class="kw">padding</span><span class="ch">:</span> <span class="dv">1.5</span><span class="dt">rem</span> <span class="dv">1.2</span><span class="dt">rem</span> <span class="dv">3</span><span class="dt">rem</span><span class="op">;</span> }</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    section { <span class="kw">margin-top</span><span class="ch">:</span> <span class="dv">2.2</span><span class="dt">rem</span><span class="op">;</span> }</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    h1 { <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">1.8</span><span class="dt">rem</span><span class="op">;</span> }</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    h2 { <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">1.2</span><span class="dt">rem</span><span class="op">;</span> <span class="kw">border-left</span><span class="ch">:</span> <span class="dv">4</span><span class="dt">px</span> <span class="dv">solid</span> <span class="fu">var(</span><span class="va">--accent</span><span class="fu">)</span><span class="op">;</span> <span class="kw">padding-left</span><span class="ch">:</span> <span class="dv">0.6</span><span class="dt">rem</span><span class="op">;</span> <span class="kw">margin-bottom</span><span class="ch">:</span> <span class="dv">0.8</span><span class="dt">rem</span><span class="op">;</span> }</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.sub</span> { <span class="kw">color</span><span class="ch">:</span> <span class="fu">var(</span><span class="va">--muted</span><span class="fu">)</span><span class="op">;</span> }</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.chips</span> span { <span class="kw">display</span><span class="ch">:</span> <span class="dv">inline-block</span><span class="op">;</span> <span class="kw">border</span><span class="ch">:</span> <span class="dv">1</span><span class="dt">px</span> <span class="dv">solid</span> <span class="fu">var(</span><span class="va">--line</span><span class="fu">)</span><span class="op">;</span> <span class="kw">border-radius</span><span class="ch">:</span> <span class="dv">999</span><span class="dt">px</span><span class="op">;</span> <span class="kw">padding</span><span class="ch">:</span> <span class="dv">0.15</span><span class="dt">rem</span> <span class="dv">0.7</span><span class="dt">rem</span><span class="op">;</span> <span class="kw">margin</span><span class="ch">:</span> <span class="dv">0.2</span><span class="dt">rem</span> <span class="dv">0.3</span><span class="dt">rem</span> <span class="dv">0</span> <span class="dv">0</span><span class="op">;</span> <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">0.9</span><span class="dt">rem</span><span class="op">;</span> <span class="kw">background</span><span class="ch">:</span> <span class="fu">var(</span><span class="va">--card</span><span class="fu">)</span><span class="op">;</span> }</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.card</span> { <span class="kw">background</span><span class="ch">:</span> <span class="fu">var(</span><span class="va">--card</span><span class="fu">)</span><span class="op">;</span> <span class="kw">border</span><span class="ch">:</span> <span class="dv">1</span><span class="dt">px</span> <span class="dv">solid</span> <span class="fu">var(</span><span class="va">--line</span><span class="fu">)</span><span class="op">;</span> <span class="kw">border-radius</span><span class="ch">:</span> <span class="dv">10</span><span class="dt">px</span><span class="op">;</span> <span class="kw">padding</span><span class="ch">:</span> <span class="dv">1</span><span class="dt">rem</span> <span class="dv">1.2</span><span class="dt">rem</span><span class="op">;</span> <span class="kw">margin-bottom</span><span class="ch">:</span> <span class="dv">0.8</span><span class="dt">rem</span><span class="op">;</span> <span class="kw">cursor</span><span class="ch">:</span> <span class="dv">pointer</span><span class="op">;</span> }</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.card</span> h3 { <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">1.05</span><span class="dt">rem</span><span class="op">;</span> }</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.card</span> <span class="fu">.detail</span> { <span class="kw">display</span><span class="ch">:</span> <span class="dv">none</span><span class="op">;</span> <span class="kw">margin-top</span><span class="ch">:</span> <span class="dv">0.6</span><span class="dt">rem</span><span class="op">;</span> <span class="kw">color</span><span class="ch">:</span> <span class="fu">var(</span><span class="va">--muted</span><span class="fu">)</span><span class="op">;</span> <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">0.95</span><span class="dt">rem</span><span class="op">;</span> }</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.card.open</span> <span class="fu">.detail</span> { <span class="kw">display</span><span class="ch">:</span> <span class="dv">block</span><span class="op">;</span> }</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.card</span> <span class="fu">.meta</span> { <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">0.85</span><span class="dt">rem</span><span class="op">;</span> <span class="kw">color</span><span class="ch">:</span> <span class="fu">var(</span><span class="va">--muted</span><span class="fu">)</span><span class="op">;</span> }</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    table { <span class="kw">border-collapse</span><span class="ch">:</span> <span class="dv">collapse</span><span class="op">;</span> <span class="kw">width</span><span class="ch">:</span> <span class="dv">100</span><span class="dt">%</span><span class="op">;</span> <span class="kw">background</span><span class="ch">:</span> <span class="fu">var(</span><span class="va">--card</span><span class="fu">)</span><span class="op">;</span> }</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    th<span class="op">,</span> td { <span class="kw">border</span><span class="ch">:</span> <span class="dv">1</span><span class="dt">px</span> <span class="dv">solid</span> <span class="fu">var(</span><span class="va">--line</span><span class="fu">)</span><span class="op">;</span> <span class="kw">padding</span><span class="ch">:</span> <span class="dv">0.5</span><span class="dt">rem</span> <span class="dv">0.7</span><span class="dt">rem</span><span class="op">;</span> <span class="kw">text-align</span><span class="ch">:</span> <span class="dv">left</span><span class="op">;</span> <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">0.95</span><span class="dt">rem</span><span class="op">;</span> }</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    th { <span class="kw">background</span><span class="ch">:</span> <span class="fu">var(</span><span class="va">--bg</span><span class="fu">)</span><span class="op">;</span> }</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.contact</span> button { <span class="kw">border</span><span class="ch">:</span> <span class="dv">1</span><span class="dt">px</span> <span class="dv">solid</span> <span class="fu">var(</span><span class="va">--accent</span><span class="fu">)</span><span class="op">;</span> <span class="kw">color</span><span class="ch">:</span> <span class="fu">var(</span><span class="va">--accent</span><span class="fu">)</span><span class="op">;</span> <span class="kw">background</span><span class="ch">:</span> <span class="dv">transparent</span><span class="op">;</span> <span class="kw">padding</span><span class="ch">:</span> <span class="dv">0.3</span><span class="dt">rem</span> <span class="dv">0.7</span><span class="dt">rem</span><span class="op">;</span> <span class="kw">border-radius</span><span class="ch">:</span> <span class="dv">6</span><span class="dt">px</span><span class="op">;</span> <span class="kw">cursor</span><span class="ch">:</span> <span class="dv">pointer</span><span class="op">;</span> <span class="kw">margin-left</span><span class="ch">:</span> <span class="dv">0.5</span><span class="dt">rem</span><span class="op">;</span> }</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    footer { <span class="kw">text-align</span><span class="ch">:</span> <span class="dv">center</span><span class="op">;</span> <span class="kw">color</span><span class="ch">:</span> <span class="fu">var(</span><span class="va">--muted</span><span class="fu">)</span><span class="op">;</span> <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">0.85</span><span class="dt">rem</span><span class="op">;</span> <span class="kw">padding</span><span class="ch">:</span> <span class="dv">1.5</span><span class="dt">rem</span><span class="op">;</span> <span class="kw">border-top</span><span class="ch">:</span> <span class="dv">1</span><span class="dt">px</span> <span class="dv">solid</span> <span class="fu">var(</span><span class="va">--line</span><span class="fu">)</span><span class="op">;</span> }</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">style</span><span class="dt">&gt;</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">header</span><span class="dt">&gt;</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"nav"</span><span class="dt">&gt;</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">strong</span><span class="dt">&gt;</span>김하늘<span class="dt">&lt;/</span><span class="kw">strong</span><span class="dt">&gt;</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">nav</span><span class="dt">&gt;</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"#about"</span><span class="dt">&gt;</span>소개<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"#skills"</span><span class="dt">&gt;</span>기술<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"#projects"</span><span class="dt">&gt;</span>프로젝트<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"#certs"</span><span class="dt">&gt;</span>자격·교육<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"#contact"</span><span class="dt">&gt;</span>연락처<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">button</span><span class="ot"> id</span><span class="op">=</span><span class="st">"themeBtn"</span><span class="ot"> type</span><span class="op">=</span><span class="st">"button"</span><span class="dt">&gt;</span>다크 모드<span class="dt">&lt;/</span><span class="kw">button</span><span class="dt">&gt;</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;/</span><span class="kw">nav</span><span class="dt">&gt;</span></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">header</span><span class="dt">&gt;</span></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">main</span><span class="dt">&gt;</span></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">section</span><span class="ot"> id</span><span class="op">=</span><span class="st">"about"</span><span class="dt">&gt;</span></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">h1</span><span class="dt">&gt;</span>김하늘<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">p</span><span class="ot"> class</span><span class="op">=</span><span class="st">"sub"</span><span class="dt">&gt;</span>ICT폴리텍대학 AI소프트웨어학과 2학년 · 2027년 2월 졸업 예정<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>Python으로 작은 도구를 만들고, 만든 것을 테스트로 확인하는 개발자를 목표로 합니다. 요구사항을 먼저 쓰고 AI에게 구현을 시키는 방식(SDD)을 수업에서 익히고 있습니다.<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">section</span><span class="dt">&gt;</span></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">section</span><span class="ot"> id</span><span class="op">=</span><span class="st">"skills"</span><span class="dt">&gt;</span></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">h2</span><span class="dt">&gt;</span>기술<span class="dt">&lt;/</span><span class="kw">h2</span><span class="dt">&gt;</span></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"chips"</span><span class="dt">&gt;</span></span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">span</span><span class="dt">&gt;</span>Python<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;&lt;</span><span class="kw">span</span><span class="dt">&gt;</span>pytest<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;&lt;</span><span class="kw">span</span><span class="dt">&gt;</span>Git<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;&lt;</span><span class="kw">span</span><span class="dt">&gt;</span>Linux 터미널<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;&lt;</span><span class="kw">span</span><span class="dt">&gt;</span>Claude Code<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;&lt;</span><span class="kw">span</span><span class="dt">&gt;</span>HTML/CSS<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;&lt;</span><span class="kw">span</span><span class="dt">&gt;</span>SQL 기초<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">section</span><span class="dt">&gt;</span></span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">section</span><span class="ot"> id</span><span class="op">=</span><span class="st">"projects"</span><span class="dt">&gt;</span></span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">h2</span><span class="dt">&gt;</span>프로젝트 <span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"sub"</span><span class="dt">&gt;</span>(카드를 누르면 펼쳐집니다)<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;&lt;/</span><span class="kw">h2</span><span class="dt">&gt;</span></span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"card"</span><span class="dt">&gt;</span></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">h3</span><span class="dt">&gt;</span>숫자 맞히기 게임 (요구사항 → 테스트 → 구현)<span class="dt">&lt;/</span><span class="kw">h3</span><span class="dt">&gt;</span></span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">p</span><span class="ot"> class</span><span class="op">=</span><span class="st">"meta"</span><span class="dt">&gt;</span>2026-09 · Python · pytest<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"detail"</span><span class="dt">&gt;</span></span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a>          같은 게임을 말로만 시켜 만든 버전과, REQUIREMENTS.md → test_guess.py → guess.py 순서로 만든 버전을 비교했습니다. 테스트 덕분에 안내 문구 불일치를 찾았습니다.</span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"card"</span><span class="dt">&gt;</span></span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">h3</span><span class="dt">&gt;</span>할 일 관리 CLI<span class="dt">&lt;/</span><span class="kw">h3</span><span class="dt">&gt;</span></span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">p</span><span class="ot"> class</span><span class="op">=</span><span class="st">"meta"</span><span class="dt">&gt;</span>2026-09 · Python · JSON 저장<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"detail"</span><span class="dt">&gt;</span></span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a>          add / list / done / remove 네 명령. 완성된 코드에서 요구사항 명세서를 역으로 뽑아낸 뒤, 명세만으로 다시 만들어 빈틈을 찾는 실습에 썼습니다.</span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">section</span><span class="dt">&gt;</span></span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">section</span><span class="ot"> id</span><span class="op">=</span><span class="st">"certs"</span><span class="dt">&gt;</span></span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">h2</span><span class="dt">&gt;</span>자격·교육<span class="dt">&lt;/</span><span class="kw">h2</span><span class="dt">&gt;</span></span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">table</span><span class="dt">&gt;</span></span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;&lt;</span><span class="kw">th</span><span class="dt">&gt;</span>구분<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;&lt;</span><span class="kw">th</span><span class="dt">&gt;</span>내용<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;&lt;</span><span class="kw">th</span><span class="dt">&gt;</span>상태<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>자격증<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>정보처리산업기사<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>필기 준비 중 · 2027년 1회 응시 예정<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>자격증<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>사무자동화산업기사<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>필기 합격 (2026-09) · 실기 준비 중<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>자격증<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>정보처리기능사<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>취득 (2025-11)<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>교육<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>LLM AI 개발 및 활용 (2026-2)<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>수강 중<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;/</span><span class="kw">table</span><span class="dt">&gt;</span></span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">section</span><span class="dt">&gt;</span></span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">section</span><span class="ot"> id</span><span class="op">=</span><span class="st">"contact"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"contact"</span><span class="dt">&gt;</span></span>
+<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">h2</span><span class="dt">&gt;</span>연락처<span class="dt">&lt;/</span><span class="kw">h2</span><span class="dt">&gt;</span></span>
+<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>이메일: <span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> id</span><span class="op">=</span><span class="st">"email"</span><span class="dt">&gt;</span>haneul.kim@example.com<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;&lt;</span><span class="kw">button</span><span class="ot"> id</span><span class="op">=</span><span class="st">"copyBtn"</span><span class="ot"> type</span><span class="op">=</span><span class="st">"button"</span><span class="dt">&gt;</span>복사<span class="dt">&lt;/</span><span class="kw">button</span><span class="dt">&gt;&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>GitHub: <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"https://github.com/example-haneul"</span><span class="dt">&gt;</span>github.com/example-haneul<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">section</span><span class="dt">&gt;</span></span>
+<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">main</span><span class="dt">&gt;</span></span>
+<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">footer</span><span class="dt">&gt;</span>© 2026 김하늘 · 이 페이지는 수업용 예시입니다. 인물·연락처는 가상입니다.<span class="dt">&lt;/</span><span class="kw">footer</span><span class="dt">&gt;</span></span>
+<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">script</span><span class="dt">&gt;</span></span>
+<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 다크 모드 전환: 버튼을 누르면 body에 dark 클래스를 토글하고, 선택을 브라우저에 기억합니다.</span></span>
+<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> themeBtn <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">'themeBtn'</span>)<span class="op">;</span></span>
+<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span> <span class="fu">applyTheme</span>(dark) {</span>
+<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a>      <span class="bu">document</span><span class="op">.</span><span class="at">body</span><span class="op">.</span><span class="at">classList</span><span class="op">.</span><span class="fu">toggle</span>(<span class="st">'dark'</span><span class="op">,</span> dark)<span class="op">;</span></span>
+<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a>      themeBtn<span class="op">.</span><span class="at">textContent</span> <span class="op">=</span> dark <span class="op">?</span> <span class="st">'라이트 모드'</span> <span class="op">:</span> <span class="st">'다크 모드'</span><span class="op">;</span></span>
+<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a>    <span class="fu">applyTheme</span>(localStorage<span class="op">.</span><span class="fu">getItem</span>(<span class="st">'theme'</span>) <span class="op">===</span> <span class="st">'dark'</span>)<span class="op">;</span></span>
+<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a>    themeBtn<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">'click'</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> dark <span class="op">=</span> <span class="op">!</span><span class="bu">document</span><span class="op">.</span><span class="at">body</span><span class="op">.</span><span class="at">classList</span><span class="op">.</span><span class="fu">contains</span>(<span class="st">'dark'</span>)<span class="op">;</span></span>
+<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a>      localStorage<span class="op">.</span><span class="fu">setItem</span>(<span class="st">'theme'</span><span class="op">,</span> dark <span class="op">?</span> <span class="st">'dark'</span> <span class="op">:</span> <span class="st">'light'</span>)<span class="op">;</span></span>
+<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a>      <span class="fu">applyTheme</span>(dark)<span class="op">;</span></span>
+<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 프로젝트 카드: 누르면 상세 설명이 펼쳐지고, 다시 누르면 접힙니다.</span></span>
+<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a>    <span class="bu">document</span><span class="op">.</span><span class="fu">querySelectorAll</span>(<span class="st">'.card'</span>)<span class="op">.</span><span class="fu">forEach</span>(card <span class="kw">=&gt;</span> {</span>
+<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a>      card<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">'click'</span><span class="op">,</span> () <span class="kw">=&gt;</span> card<span class="op">.</span><span class="at">classList</span><span class="op">.</span><span class="fu">toggle</span>(<span class="st">'open'</span>))<span class="op">;</span></span>
+<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 이메일 복사: 버튼을 누르면 이메일 주소를 클립보드에 복사하고 2초 동안 "복사됨"을 표시합니다.</span></span>
+<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> copyBtn <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">'copyBtn'</span>)<span class="op">;</span></span>
+<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a>    copyBtn<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">'click'</span><span class="op">,</span> <span class="kw">async</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a>      <span class="cf">await</span> <span class="bu">navigator</span><span class="op">.</span><span class="at">clipboard</span><span class="op">.</span><span class="fu">writeText</span>(<span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">'email'</span>)<span class="op">.</span><span class="at">textContent</span>)<span class="op">;</span></span>
+<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a>      copyBtn<span class="op">.</span><span class="at">textContent</span> <span class="op">=</span> <span class="st">'복사됨'</span><span class="op">;</span></span>
+<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a>      <span class="pp">setTimeout</span>(() <span class="kw">=&gt;</span> { copyBtn<span class="op">.</span><span class="at">textContent</span> <span class="op">=</span> <span class="st">'복사'</span><span class="op">;</span> }<span class="op">,</span> <span class="dv">2000</span>)<span class="op">;</span></span>
+<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span>
+<span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">html</span><span class="dt">&gt;</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="포트폴리오pytest.ini-내려받기" class="level3">
+<h3 class="anchored" data-anchor-id="포트폴리오pytest.ini-내려받기"><code>포트폴리오/pytest.ini</code> <a href="../../../assets/code/LLM_05주차/포트폴리오/pytest.ini" class="file-download" download="">내려받기</a></h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode ini code-with-copy"><code class="sourceCode ini"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[pytest]</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="dt">testpaths </span><span class="ot">=</span><span class="st"> tests</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="포트폴리오teststest_page.py-내려받기" class="level3">
+<h3 class="anchored" data-anchor-id="포트폴리오teststest_page.py-내려받기"><code>포트폴리오/tests/test_page.py</code> <a href="../../../assets/code/LLM_05주차/포트폴리오/tests/test_page.py" class="file-download" download="">내려받기</a></h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># -*- coding: utf-8 -*-</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">"""포트폴리오 고정 테스트. 고치지 않는다(TDD에서 동결한 테스트와 같은 역할).</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">REQ-01 섹션 id 네 개 · REQ-03 이메일은 프로필.md에 있는 것만 · REQ-04 전화번호 없음.</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">pytest와 표준 라이브러리만 쓴다.</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>ROOT <span class="op">=</span> Path(<span class="va">__file__</span>).resolve().parents[<span class="dv">1</span>]</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>PAGE <span class="op">=</span> (ROOT <span class="op">/</span> <span class="st">"index.html"</span>).read_text(encoding<span class="op">=</span><span class="st">"utf-8"</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>PROFILE <span class="op">=</span> (ROOT <span class="op">/</span> <span class="st">"프로필.md"</span>).read_text(encoding<span class="op">=</span><span class="st">"utf-8"</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_섹션_id_네_개가_있다():</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> sid <span class="kw">in</span> (<span class="st">"about"</span>, <span class="st">"skills"</span>, <span class="st">"projects"</span>, <span class="st">"contact"</span>):</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> <span class="ss">f'id="</span><span class="sc">{</span>sid<span class="sc">}</span><span class="ss">"'</span> <span class="kw">in</span> PAGE, <span class="ss">f"섹션 id </span><span class="sc">{</span>sid<span class="sc">}</span><span class="ss">가 없습니다"</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_이메일은_프로필에_있는_것만_쓴다():</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    emails <span class="op">=</span> <span class="bu">set</span>(re.findall(<span class="vs">r"</span><span class="pp">[</span><span class="dv">\w</span><span class="pp">.+-]</span><span class="op">+</span><span class="vs">@</span><span class="pp">[</span><span class="dv">\w</span><span class="pp">-]</span><span class="op">+</span>(?:<span class="ch">\.</span><span class="pp">[</span><span class="dv">\w</span><span class="pp">-]</span><span class="op">+</span>)<span class="op">+</span><span class="vs">"</span>, PAGE))</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> emails, <span class="st">"이메일이 없습니다"</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> e <span class="kw">in</span> emails:</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> e <span class="kw">in</span> PROFILE, <span class="ss">f"프로필.md에 없는 이메일입니다: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_전화번호를_표시하지_않는다():</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    found <span class="op">=</span> re.search(<span class="vs">r"01</span><span class="pp">[016789][-. ]</span><span class="op">?</span><span class="dv">\d</span><span class="op">{3,4}</span><span class="pp">[-. ]</span><span class="op">?</span><span class="dv">\d</span><span class="op">{4}</span><span class="vs">"</span>, PAGE)</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> found <span class="kw">is</span> <span class="va">None</span>, <span class="ss">f"전화번호가 있습니다: </span><span class="sc">{</span>found<span class="sc">.</span>group() <span class="cf">if</span> found <span class="cf">else</span> <span class="st">''</span><span class="sc">}</span><span class="ss">"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="문서와-그-밖의-파일" class="level2">
+<h2 class="anchored" data-anchor-id="문서와-그-밖의-파일">문서와 그 밖의 파일</h2>
+<section id="requirements.txt-내려받기" class="level3">
+<h3 class="anchored" data-anchor-id="requirements.txt-내려받기"><code>requirements.txt</code> <a href="../../../assets/code/LLM_05주차/requirements.txt" class="file-download" download="">내려받기</a></h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pytest==9.1.1</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="내소재_양식.md-내려받기" class="level3">
+<h3 class="anchored" data-anchor-id="내소재_양식.md-내려받기"><code>내소재_양식.md</code> <a href="../../../assets/code/LLM_05주차/내소재_양식.md" class="file-download" download="">내려받기</a></h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># 내 소재 · 5주차 (쓰는 파일: week05/내소재.md)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>실습 답안지입니다. 각 항목의 <span class="in">`→`</span> 뒤에 씁니다. 해당 없으면 "없음". 재료는 **키트에 들어 있는 두 프로젝트**입니다. <span class="in">`week05/골격`</span>(주문 관리 샘플 · Python)에서 CLAUDE.md를 만들고(실습 1 · 1/9~7/9, 실습 2), <span class="in">`week05/포트폴리오`</span>(한 장짜리 정적 페이지 · 가상 인물)에서 한 번 더 만듭니다(실습 1 · 8/9~9/9). 앞 주차 폴더가 없어도 됩니다. 두 CLAUDE.md는 같은 네 절(개요 · 실행 명령 · 작업 규칙 · 금지 사항)로 구성하고, 각 절의 내용은 해당 폴더의 코드 · 명세서 · 테스트 파일에서 가져옵니다. 규칙 문장은 예시를 그대로 옮기지 말고 내 말로 씁니다.</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>**반드시 쓰는 것은 셋입니다.** 5) 숫자 · 6) 내 항목 셋 · 저장 위치 표. 5주차 칸 0)~4)와 생각 거리는 선택입니다. 0)~4)는 준비 2(내 소재로)를 할 때 필요합니다.</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## 5주차 · 포트폴리오의 규칙 (실습 1 · 준비 1 교수 예시를 보고 · 선택, 준비 2의 재료)</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>0) 규칙이 지켜야 할 파일 (<span class="in">`ls ~/week05/포트폴리오 ~/week05/포트폴리오/tests`</span>에서 고르기. 예: index.html · 프로필.md · tests/test_page.py):</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>   →</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>1) 실행 명령 2개 (테스트: <span class="in">`~/week05/.venv/bin/python -m pytest -q`</span> · 화면: index.html을 내려받아 브라우저로 열기):</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>   →</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>2) 작업 규칙 후보 4개 (AI에게 매번 다시 말하게 될 것. 예: 연락처는 프로필.md에 있는 것만 · 섹션 id 4개 유지 · 구현 전에 tests/에 새 테스트 파일을 먼저 쓴다):</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>   -</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>   -</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>   -</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>   -</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>3) 금지 사항 2개 (건드리면 안 되는 것. 예: 고정 테스트 tests/test_page.py 수정 · 프로필.md에 없는 개인정보(전화번호 · 주소)):</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>   -</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>   -</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>4) 검증 지시 한 줄 (포트폴리오에 시킬 작은 기능. 테스트를 먼저 만드는지 본다. 예: index.html의 projects 섹션에 프로젝트 하나를 추가하라):</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>   →</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="fu">## 숫자와 내 항목 (반드시)</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>5) 숫자</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>/context Memory files: 골격 1/9 기준값(없으면 0) → 6/9 새 세션 / 포트폴리오(선택)</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>     →</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>실습 3 토큰 수 (측정값 그대로. 고정 7을 빼면 문장 토큰): "a" / 한국어 인사 / 영어 인사 / "strawberry"</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>     →</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>6) 정리 1/2에 더할 포트폴리오의 항목 셋 (예: 섹션 id 네 개 · 연락처는 프로필.md에 있는 것만 · 방금 읽은 test_page.py):</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>   →</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a><span class="fu">## 생각 거리 (선택 · 덱이 「생각 거리」 칸을 가리키는 곳에 내 답을 씁니다)</span></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>준비 2 · 유형별 예시: 내 과제에 가장 가까운 유형에서 규칙 하나를 골라, 내 과제의 파일 이름으로 바꿔 쓴다.</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>  →</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>실습 1 · 복기: 내 작업에서 AI에게 두 번 이상 한 말 하나와, 그것을 바꾼 규칙 한 줄 (예: "테스트도 돌려 봐" → 작업을 마치면 pytest로 전체 통과를 확인한다).</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>  →</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>실습 2 · 복기: 포트폴리오 CLAUDE.md에서 특정 파일에만 필요한 규칙 하나와, 옮길 rules의 paths (예: index.html의 섹션 순서를 유지한다 → paths: - "index.html").</span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>  →</span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>정리 1/2: 내 CLAUDE.md 규칙 중 사실은 메모리(한 번 내린 결정)인 것은 무엇인가.</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>  →</span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a><span class="fu">## 저장 위치 표 (정리 1/2 · 반드시)</span></span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>판정 1. 다음 세션에도 필요한가 → "아니오"면 컨텍스트(그냥 대화에 두면 됨). 판정 2. 모든 세션에 강제할 규칙인가 → "예"면 CLAUDE.md, "아니오"면 메모리.</span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 항목 <span class="pp">|</span> 판정 1 <span class="pp">|</span> 판정 2 <span class="pp">|</span> 둘 곳 <span class="pp">|</span></span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|</span></span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 이번 작업에서 읽은 orders.py의 내용 <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> "결제 수정은 교체 방식으로" 결정 <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> "구현 전 테스트 먼저" 규칙 <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 프로젝트의 다음 할 일 세 가지 <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> "커밋 메시지는 한국어로" 규칙 <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 이 세션의 대화에서 AI가 만든 요약 <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> (포트폴리오의 항목 1, 위 6)) <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> (포트폴리오의 항목 2) <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> (포트폴리오의 항목 3) <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="내프롬프트_양식.md-내려받기" class="level3">
+<h3 class="anchored" data-anchor-id="내프롬프트_양식.md-내려받기"><code>내프롬프트_양식.md</code> <a href="../../../assets/code/LLM_05주차/내프롬프트_양식.md" class="file-download" download="">내려받기</a></h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># 내 프롬프트 · 5주차 (쓰는 파일: week05/내프롬프트.md)</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>실습 1 · 준비 2(선택)에서 **AI가 이 세 개를 만들어 `내프롬프트.md`로 저장합니다.**</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>AI가 만든 것을 열어 읽고, 아래와 견주어 빠진 곳을 내 말로 채웁니다.</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>AI가 엉뚱하게 만들었으면 이 파일을 <span class="in">`내프롬프트.md`</span>로 복사해 그대로 써도 됩니다.</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="in">    cp -n ~/week05/내프롬프트_양식.md ~/week05/내프롬프트.md</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>**언제 쓰나** · 이번 실습은 직접 지시로 진행합니다. 만든 프롬프트는 내 프로젝트에서 같은 작업을 할 때 씁니다. 수업 중에 써 보려면 1) · 2)는 실습 1 · 9/9, 3)은 실습 2 뒤에 포트폴리오에서 보냅니다.</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>**전제** · <span class="in">`내소재.md`</span> 5주차 칸 1) 실행 명령 2) 작업 규칙 후보 4개 3) 금지 사항 2개 4) 검증 지시 한 줄이 채워져 있어야 합니다.</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1) 네 절 채우기 (실습 1 · 9/9 · ~/week05/포트폴리오의 /init 초안 뒤에 보냅니다)</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="in">CLAUDE.md의 네 절(프로젝트 개요, 실행 명령, 작업 규칙, 금지 사항)을</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="in">~/week05/내소재.md 5주차 칸의 실행 명령 2개 · 작업 규칙 4개 · 금지 사항 2개로 채워라.</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="in">200줄 이내. 골격의 app/ 규칙처럼 이 폴더에 없는 것은 넣지 마라.</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>**확인할 것** · <span class="in">`!cat CLAUDE.md`</span>로 네 절이 있고 200줄 이내인가. 실행 명령과 금지 사항이 포트폴리오의 파일 이름(index.html · 프로필.md · test_page.py)인가.</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="fu">## 2) 검증 지시 (실습 1 · 9/9 · 고친 CLAUDE.md를 읽은 새 세션에서 보냅니다)</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="in">index.html의 projects 섹션에 프로젝트 하나를 추가하라.</span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>(내소재.md 4)에 쓴 내 문장으로 바꿉니다.)</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>**확인할 것** · 실습 1 · 7/9와 같이 읽습니다. 구현보다 테스트를 먼저 만드는가(tests/ 수정이 index.html 수정보다 앞). 새 테스트가 <span class="in">`tests/`</span>의 새 파일에 들어가고 고정 테스트 <span class="in">`test_page.py`</span>는 그대로인가(Update 표시에 removed 줄이 없는가). 어긋나면 규칙 문장을 고쳐 한 번 더 시험합니다.</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a><span class="fu">## 3) rules로 옮기기 (실습 2 뒤 · ~/week05/포트폴리오에서 보냅니다)</span></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a><span class="in">CLAUDE.md의 작업 규칙 중 특정 파일에만 해당하는 규칙 하나를 골라</span></span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a><span class="in">.claude/rules/ 폴더에 파일로 옮겨라. 파일 맨 위에 ---로 감싼 머리말을 두고</span></span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a><span class="in">paths: - "&lt;그 파일의 경로&gt;"를 적어라. CLAUDE.md에서는 그 줄을 지워라.</span></span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>**확인할 것** · <span class="in">`!cat .claude/rules/*.md`</span>로 첫 줄이 <span class="in">`---`</span>이고 머리말에 paths가 있는가(없으면 경로가 본문에 글로만 적혀 매 세션 읽힙니다). 새 세션에서 그 경로의 파일을 읽는 지시를 보내 「Loaded .claude/rules/…」가 뜨고 규칙이 적용되는가.</span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a><span class="fu">## 왜 「200줄 이내」와 「없는 것은 넣지 마라」가 있는가</span></span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a>CLAUDE.md는 세션마다 컨텍스트에 실려 토큰 비용을 반복해서 내고, 너무 길면 놓칩니다. 골격의 규칙(app/ 아래에 둔다)을 그대로 두면 포트폴리오에는 app/이 없어 규칙이 헛돕니다. 「모든 세션에 적용되는가」를 통과한 것만 남깁니다.</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="골격readme.md-내려받기" class="level3">
+<h3 class="anchored" data-anchor-id="골격readme.md-내려받기"><code>골격/README.md</code> <a href="../../../assets/code/LLM_05주차/골격/README.md" class="file-download" download="">내려받기</a></h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># 주문 관리 골격</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>CLAUDE.md 실습(실습 1 · 1/9~7/9, 실습 2)의 재료입니다. 이 폴더에 CLAUDE.md와 rules 파일을 만듭니다.</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>실행: cd ~/week05/골격 → ~/week05/.venv/bin/python -m pytest -q</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="골격명세서.md-내려받기" class="level3">
+<h3 class="anchored" data-anchor-id="골격명세서.md-내려받기"><code>골격/명세서.md</code> <a href="../../../assets/code/LLM_05주차/골격/명세서.md" class="file-download" download="">내려받기</a></h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># 주문 관리 샘플 프로젝트 명세서</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>CLAUDE.md 실습의 재료입니다. 리버스 엔지니어링 회차에서 배운 EARS(Easy Approach to Requirements Syntax, 정형 요구사항 문형 기법) 문형을 따르며, CLAUDE.md 작성 실습의 원천 자료로 사용합니다.</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## 요구사항</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>사용자가 주문을 생성하면, 시스템은 재고를 차감하고 주문 상태를 "접수"로 기록해야 한다.</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>재고보다 많은 수량이 요청되면, 시스템은 주문을 거절하고 오류를 반환해야 한다.</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>수량이 1 미만으로 요청되면, 시스템은 주문을 거절해야 한다.</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>존재하지 않는 주문이 조회되면, 시스템은 오류를 반환해야 한다.</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="fu">## 구조 규칙</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`app/`</span>은 업무 규칙만 담고 외부 라이브러리에 의존하지 않는다.</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>모든 기능 변경은 <span class="in">`tests/`</span>의 테스트와 함께 제출한다.</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>함수 이름은 동사로 시작한다.</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="fu">## 실행</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>테스트: <span class="in">`~/week05/.venv/bin/python -m pytest -q`</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="포트폴리오요구사항명세서.md-내려받기" class="level3">
+<h3 class="anchored" data-anchor-id="포트폴리오요구사항명세서.md-내려받기"><code>포트폴리오/요구사항명세서.md</code> <a href="../../../assets/code/LLM_05주차/포트폴리오/요구사항명세서.md" class="file-download" download="">내려받기</a></h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># 요구사항명세서 · 포트폴리오</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>CLAUDE.md 실습(실습 1 · 8/9~9/9)의 두 번째 프로젝트입니다. <span class="in">`index.html`</span> 한 장짜리 정적 페이지이고, 인물 · 연락처는 가상입니다(<span class="in">`프로필.md`</span>). 골격(주문 관리 · Python)과 종류가 다른 프로젝트에 규칙 파일을 옮겨 보는 것이 목적입니다.</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## 요구사항</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>REQ-01 <span class="co">[</span><span class="ot">상시</span><span class="co">]</span> 시스템은 <span class="in">`index.html`</span> 한 장에 소개 · 기술 · 프로젝트 · 연락처를 표시해야 한다. 네 섹션의 id는 about · skills · projects · contact이다.</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>REQ-02 <span class="co">[</span><span class="ot">사건</span><span class="co">]</span> 사용자가 프로젝트 카드를 누를 때, 시스템은 상세 설명을 펼쳐야 한다.</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>REQ-03 <span class="co">[</span><span class="ot">상시</span><span class="co">]</span> 시스템은 <span class="in">`프로필.md`</span>에 있는 연락처만 표시해야 한다.</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>REQ-04 <span class="co">[</span><span class="ot">상시</span><span class="co">]</span> 시스템은 전화번호와 집 주소를 표시하지 않아야 한다.</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="fu">## 테스트</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="in">`tests/test_page.py`</span>의 테스트 세 개가 REQ-01 · REQ-03 · REQ-04를 확인합니다. **고정 테스트이므로 고치지 않습니다.** TDD에서 동결한 테스트와 같은 역할입니다. REQ-02(카드 펼치기)는 브라우저에서 사람이 확인합니다.</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="in">`pytest`</span>와 표준 라이브러리만 씁니다.</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="fu">## 실행</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>테스트: <span class="in">`cd ~/week05/포트폴리오`</span> → <span class="in">`~/week05/.venv/bin/python -m pytest -q`</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>화면: VS Code 탐색기에서 <span class="in">`index.html`</span> 우클릭 → Download → 브라우저로 열기</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="포트폴리오프로필.md-내려받기" class="level3">
+<h3 class="anchored" data-anchor-id="포트폴리오프로필.md-내려받기"><code>포트폴리오/프로필.md</code> <a href="../../../assets/code/LLM_05주차/포트폴리오/프로필.md" class="file-download" download="">내려받기</a></h3>
+<div class="sourceCode" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># 프로필 (연락처의 출처)</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>이 페이지에 쓸 수 있는 개인 정보는 이 파일에 있는 것뿐입니다. 인물 · 연락처는 수업용 가상입니다.</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>이름: 김하늘</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>소속: ICT폴리텍대학 AI소프트웨어학과 2학년 · 2027년 2월 졸업 예정</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>공개 이메일: haneul.kim@example.com</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>GitHub: github.com/example-haneul</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>공개하지 않는 것: 전화번호 · 집 주소 · 생년월일</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
+</section>
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> 맨 위로</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "복사완료!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "복사완료!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../docs/subjects/llm-ai/LLM_04주차_실습자료.html" class="pagination-link" aria-label="[4주차] 실습 자료: 프롬프트와 컨텍스트 엔지니어링">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">[4주차] 실습 자료: 프롬프트와 컨텍스트 엔지니어링</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../docs/subjects/llm-ai/LLM_06주차_실습자료.html" class="pagination-link" aria-label="[6주차] 실습 자료: API 연동과 RAG 챗봇">
+        <span class="nav-page-text">[6주차] 실습 자료: API 연동과 RAG 챗봇</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>[1주차] 오리엔테이션 – AI소프트웨어학과 강의 교재</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../docs/subjects/llm-ai/LLM_02주차_학생용.html" rel="next">
+<link href="../../../docs/subjects/llm-ai/index.html" rel="prev">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-0f7719ecfb764d9b8ebcd528363db9a6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-268d74683ca1d9d2027c44de98d04c55.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">AI소프트웨어학과 강의 교재</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="검색"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../../docs/subjects/llm-ai/index.html" aria-current="page"> 
+<span class="menu-text">LLM AI 개발</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/subjects/python/index.html"> 
+<span class="menu-text">파이썬 실습</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/semesters/2026-2/index.html"> 
+<span class="menu-text">학기별 편성</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/subjects/llm-ai/LLM_01주차_학생용.html">교재</a></li><li class="breadcrumb-item"><a href="../../../docs/subjects/llm-ai/LLM_01주차_학생용.html">[1주차] 오리엔테이션</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LLM AI 개발</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">교재</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_01주차_학생용.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">[1주차] 오리엔테이션</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_02주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[2주차] 리버스 엔지니어링과 SDD</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_03주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[3주차] TDD와 첫 배포</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_04주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[4주차] 프롬프트와 컨텍스트 엔지니어링</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_05주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[5주차] CLAUDE.md와 LLM 동작 원리</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_06주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[6주차] API 연동과 RAG 챗봇</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_07주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[7주차] 하네스와 루프 엔지니어링</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_08주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[10주차] 에이전트 구현과 SDD 실전</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_09주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[11주차] 검증·평가와 업무 자동화</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_10주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[15회차] 발표와 마스터 검증</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_공통_면접 질문 30선_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">면접 질문 30선</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">실습 자료</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_02주차_실습자료.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[2주차] 실습 자료: 리버스 엔지니어링과 SDD</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_03주차_실습자료.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[3주차] 실습 자료: TDD와 첫 배포</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_04주차_실습자료.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[4주차] 실습 자료: 프롬프트와 컨텍스트 엔지니어링</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_05주차_실습자료.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[5주차] 실습 자료: CLAUDE.md와 LLM 동작 원리</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_06주차_실습자료.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[6주차] 실습 자료: API 연동과 RAG 챗봇</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_07주차_실습자료.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[7주차] 실습 자료: 하네스와 루프 엔지니어링</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_08주차_실습자료.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[10주차] 실습 자료: 에이전트 구현과 SDD 실전</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/subjects/llm-ai/LLM_09주차_실습자료.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[11주차] 실습 자료: 검증·평가와 업무 자동화</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">이 페이지</h2>
+   
+  <ul>
+  <li><a href="#학습-목표" id="toc-학습-목표" class="nav-link active" data-scroll-target="#학습-목표">학습 목표</a></li>
+  <li><a href="#오늘-자료-내려받기" id="toc-오늘-자료-내려받기" class="nav-link" data-scroll-target="#오늘-자료-내려받기">0. 오늘 자료 내려받기</a></li>
+  <li><a href="#함께-해-보기-말로-만드는-소프트웨어" id="toc-함께-해-보기-말로-만드는-소프트웨어" class="nav-link" data-scroll-target="#함께-해-보기-말로-만드는-소프트웨어">1. 함께 해 보기: 말로 만드는 소프트웨어</a>
+  <ul class="collapse">
+  <li><a href="#장-보론-왔다가-사라진-바이브-도구들" id="toc-장-보론-왔다가-사라진-바이브-도구들" class="nav-link" data-scroll-target="#장-보론-왔다가-사라진-바이브-도구들">1장 보론: 왔다가 사라진 바이브 도구들</a></li>
+  </ul></li>
+  <li><a href="#그-코드는-서비스가-될-수-있는가-실제-사건들" id="toc-그-코드는-서비스가-될-수-있는가-실제-사건들" class="nav-link" data-scroll-target="#그-코드는-서비스가-될-수-있는가-실제-사건들">2. 그 코드는 서비스가 될 수 있는가: 실제 사건들</a></li>
+  <li><a href="#장-보론-배우는-방식의-문제" id="toc-장-보론-배우는-방식의-문제" class="nav-link" data-scroll-target="#장-보론-배우는-방식의-문제">2장 보론: 배우는 방식의 문제</a></li>
+  <li><a href="#이-과목의-방향-개발방법론으로-사람이-통제하는-ai" id="toc-이-과목의-방향-개발방법론으로-사람이-통제하는-ai" class="nav-link" data-scroll-target="#이-과목의-방향-개발방법론으로-사람이-통제하는-ai">3. 이 과목의 방향: 개발방법론으로 사람이 통제하는 AI</a></li>
+  <li><a href="#장-보론-현업이-요구하는-다섯-가지" id="toc-장-보론-현업이-요구하는-다섯-가지" class="nav-link" data-scroll-target="#장-보론-현업이-요구하는-다섯-가지">3장 보론: 현업이 요구하는 다섯 가지</a></li>
+  <li><a href="#실습-1-서버-접속" id="toc-실습-1-서버-접속" class="nav-link" data-scroll-target="#실습-1-서버-접속">4. 실습 1: 서버 접속</a></li>
+  <li><a href="#실습-2-vs-code-설치와-서버-연결" id="toc-실습-2-vs-code-설치와-서버-연결" class="nav-link" data-scroll-target="#실습-2-vs-code-설치와-서버-연결">5. 실습 2: VS Code 설치와 서버 연결</a></li>
+  <li><a href="#실습-3-claude-code-설치와-키-등록" id="toc-실습-3-claude-code-설치와-키-등록" class="nav-link" data-scroll-target="#실습-3-claude-code-설치와-키-등록">6. 실습 3: Claude Code 설치와 키 등록</a></li>
+  <li><a href="#수업-운영-규칙" id="toc-수업-운영-규칙" class="nav-link" data-scroll-target="#수업-운영-규칙">7. 수업 운영 규칙</a></li>
+  <li><a href="#당일-제출물" id="toc-당일-제출물" class="nav-link" data-scroll-target="#당일-제출물">8. 당일 제출물</a></li>
+  <li><a href="#정리-활동-내가-만든-첫-프로그램" id="toc-정리-활동-내가-만든-첫-프로그램" class="nav-link" data-scroll-target="#정리-활동-내가-만든-첫-프로그램">9. 정리 활동: 내가 만든 첫 프로그램</a>
+  <ul class="collapse">
+  <li><a href="#정리-활동-3-같은-소재-두-방식으로" id="toc-정리-활동-3-같은-소재-두-방식으로" class="nav-link" data-scroll-target="#정리-활동-3-같은-소재-두-방식으로">정리 활동 3: 같은 소재, 두 방식으로</a></li>
+  <li><a href="#정리-활동-3-1-선택-내-소재로-프롬프트는-ai에게" id="toc-정리-활동-3-1-선택-내-소재로-프롬프트는-ai에게" class="nav-link" data-scroll-target="#정리-활동-3-1-선택-내-소재로-프롬프트는-ai에게">정리 활동 3-1 (선택): 내 소재로, 프롬프트는 AI에게</a></li>
+  <li><a href="#정리-활동-4-왜-중요한가" id="toc-정리-활동-4-왜-중요한가" class="nav-link" data-scroll-target="#정리-활동-4-왜-중요한가">정리 활동 4: 왜 중요한가</a></li>
+  </ul></li>
+  <li><a href="#마무리와-다음-주차-안내" id="toc-마무리와-다음-주차-안내" class="nav-link" data-scroll-target="#마무리와-다음-주차-안내">마무리와 다음 주차 안내</a></li>
+  <li><a href="#부록-ai를-잘-쓰기-위한-제0원칙" id="toc-부록-ai를-잘-쓰기-위한-제0원칙" class="nav-link" data-scroll-target="#부록-ai를-잘-쓰기-위한-제0원칙">부록: AI를 잘 쓰기 위한 제0원칙</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/subjects/llm-ai/LLM_01주차_학생용.html">교재</a></li><li class="breadcrumb-item"><a href="../../../docs/subjects/llm-ai/LLM_01주차_학생용.html">[1주차] 오리엔테이션</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">[1주차] 오리엔테이션</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>이 과목은 <strong>AI로 인해 직업을 잃을지(못 구할지) 불안해하는 개발자와, AI로 인해 제품의 품질이 망가질지 고민하는 개발자를 위한 강의</strong>입니다. 이번 주차는 “바이브 코딩”에 대한 문제 인식에서 시작합니다. 말로 지시하면 금방 웹페이지가 만들어지는 것을 보고, 그렇게 만들어진 소프트웨어가 실제 서비스에서 어떤 사고를 냈는지 확인합니다. 금방 만들지만 운영은 안전해야 하는, 두 가지 니즈를 충족하기 위해 이 과목을 구성했습니다(속도와 품질!). 한학기동안 AI를 개발방법론으로 회사 환경에서 통제하는 방법을 배우며, 오늘은 그 출발점으로 본인의 실습 환경(실습 서버, Visual Studio Code, Claude Code, API 키)을 확인합니다.</p>
+<p>이 과목의 기본 구조는 프롬프트, 컨텍스트, 하네스, 루프로 이어지는 네 단계의 AI 활용법 진화 로드맵입니다(3장에서 개관하고, 각 단계의 본격 소개는 해당 주차에서 합니다).</p>
+<p>오늘은 세 부분으로 진행합니다. ① 직접 해 보기: 말로 웹페이지를 만들고, 그 코드가 서비스에서 낸 사고와 그런 착각을 파는 강의 시장을 확인합니다(1~2장). ② 방향과 규칙: 이 과목이 가르치는 방식과 수업 운영 규칙을 정합니다(3장, 7장). ③ 첫 프로그램: 지난 시간에 갖춘 환경에서 Claude Code로 프로그램을 만들고, 같은 것을 요구사항과 테스트를 붙여 다시 만들어 봅니다(8~9장).</p>
+<hr>
+<section id="학습-목표" class="level2">
+<h2 class="anchored" data-anchor-id="학습-목표">학습 목표</h2>
+<ul>
+<li><strong>바이브 코딩에 대한 흔한 오해(“AI로 만들면 끝”)를, 실제 사고 사례의 원인과 개발 관점의 해결법으로 바로잡아 설명할 수 있다.</strong>
+<ul>
+<li>예시: “그 개인정보 유출은 왜 났나요?”라는 물음에, 화면에 안 보이는 정보까지 API가 내주고 있었다는 원인과, 내보낼 필드를 요구사항으로 명세하고 테스트로 확인했어야 한다는 해결까지 이어서 말하기</li>
+<li>활용: “요즘 AI가 다 만들어 주던데 개발자가 왜 필요하죠?”라는 비개발자나 면접관의 질문에, 사례(무슨 일이 있었나), 원인(무엇이 없었나), 해결(개발 지식이 무엇을 막아 주나)의 순서로 여유 있게 답하는 능력</li>
+</ul></li>
+</ul>
+<hr>
+</section>
+<section id="오늘-자료-내려받기" class="level2">
+<h2 class="anchored" data-anchor-id="오늘-자료-내려받기">0. 오늘 자료 내려받기</h2>
+<p>수업을 시작하기 전에 오늘 쓸 자료 두 개(슬라이드 PDF와 강의안)를 내 PC로 받아 둡니다. 슬라이드를 자기 화면에 띄워 놓고 따라오기 위해서입니다.</p>
+<p>먼저 서버의 폴더 구조를 짚어 둡니다. 서버에는 성격이 다른 폴더가 둘 있습니다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>폴더</th>
+<th>권한</th>
+<th>쓰임</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>내 폴더 <code>/home/아이디</code></td>
+<td>읽기 + 쓰기</td>
+<td>이 과목의 작업 공간이자 제출함입니다. 산출물은 <code>week01</code>, <code>week02</code>처럼 주차별 폴더로 정리합니다. 다른 학생은 내 폴더를 볼 수 없습니다.</td>
+</tr>
+<tr class="even">
+<td>공용 배포 폴더 <code>/home/공용계정</code></td>
+<td>읽기 전용</td>
+<td>수업 자료가 <code>week01</code>, <code>week02</code>처럼 주차 폴더로 배포됩니다.</td>
+</tr>
+</tbody>
+</table>
+<p>파일을 고치는 작업은 배포 폴더의 파일을 복사해 온 뒤 <strong>내 폴더에서</strong> 합니다. 배포 폴더는 읽기만 됩니다. 두 폴더를 눈으로 확인해 둡니다(실제 복사는 9장의 첫 단계에서 합니다).</p>
+<p><strong>[서버 · 터미널]</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ls</span> ~</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>   <span class="bu">cd</span> /home/공용계정</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ls</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>   <span class="bu">cd</span> ~</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>   README.md  내키이름.txt
+   week01  week02 ...</code></pre>
+<p><code>ls</code>는 지금 폴더의 목록, <code>ls ~</code>는 내 홈의 목록입니다. <code>내키이름.txt</code>는 접속 가이드에서 Claude Code에 등록한 API 키 파일이므로 그대로 둡니다. <code>cd ~</code>는 어디서든 내 홈으로, <code>cd ..</code>는 한 단계 위로 갑니다. 배포 폴더의 주차 폴더를 내 홈으로 통째로 가져오는 명령이 <code>cp -r week01 ~/</code>이고, 9장에서 이것을 실제로 합니다.</p>
+<ol type="1">
+<li><p>새 PowerShell 창을 하나 더 엽니다(내 로컬 PC). 서버에 접속되어 있는 창은 그대로 둡니다. 여는 방법은 4장 1번과 같습니다(시작 검색 “Windows PowerShell” 또는 <code>Win + X</code>). 위의 <code>cp</code>는 서버 안에서 복사하는 명령이고, 아래 <code>scp</code>는 서버에서 내 PC로 전송하는 명령입니다.</p></li>
+<li><p><code>scp</code> 명령으로 자료 두 개를 내 PC로 복사합니다. 아이디와 비밀번호로 접속합니다. 명령 끝의 마침표(<code>.</code>)는 “지금 이 폴더로”라는 뜻입니다. 프롬프트(<code>PS C:\Users\이름&gt;</code>)는 창이 이미 띄워 주는 부분이므로 그 뒤의 명령만 입력합니다.</p></li>
+</ol>
+<p><strong>[내 PC · 새 PowerShell 창]</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>   scp 아이디@서버주소<span class="op">:/</span>home<span class="op">/</span>공용계정<span class="op">/</span>week01<span class="op">/*.</span><span class="fu">pdf</span> <span class="op">.</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>   scp 아이디@서버주소<span class="op">:/</span>home<span class="op">/</span>공용계정<span class="op">/</span>week01<span class="op">/*.</span><span class="fu">md</span> <span class="op">.</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>한글 파일명을 입력하기 어려우면 파일명 대신 <code>*.pdf</code>, <code>*.md</code>로 써도 됩니다. <strong>서버 창(<code>[아이디@실습서버 ~]$</code>)에서 치면</strong> 내 PC가 아니라 서버 안에 내려받아져서 열기 어렵습니다.</p>
+<ol start="3" type="1">
+<li>슬라이드 PDF를 열어 놓고 시작합니다. <code>start</code> 명령을 치면 바로 열립니다.</li>
+</ol>
+<p><strong>[내 PC · 새 PowerShell 창]</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>   <span class="fu">start</span> 슬라이드_01주차<span class="op">.</span><span class="fu">pdf</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>강의안 <code>.md</code>는 메모장으로는 읽기 어렵습니다. VS Code에서 파일을 열고 <code>Ctrl+Shift+V</code>(미리보기)를 누릅니다. 별도 설치 없이 되는 내장 기능이며, 터미널이 아니라 편집기에서 누르는 단축키입니다. 9장에서 서버로 받은 강의안도 같은 방법으로 봅니다.</p>
+<p>확인: 내 PC에 슬라이드 PDF와 강의안 <code>.md</code>가 받아졌고, PDF가 화면에 열렸습니다.</p>
+<hr>
+</section>
+<section id="함께-해-보기-말로-만드는-소프트웨어" class="level2">
+<h2 class="anchored" data-anchor-id="함께-해-보기-말로-만드는-소프트웨어">1. 함께 해 보기: 말로 만드는 소프트웨어</h2>
+<p>바이브 코딩(vibe coding)은 코드를 쓰지 않고 자연어 지시만으로 소프트웨어를 만드는 방식을 가리키는 말입니다(<a href="https://x.com/karpathy/status/1886192184808149383">Karpathy의 명명</a>, 2025). 이제는 연구 대상이기도 합니다(<a href="https://arxiv.org/abs/2607.08028">arXiv 2607.08028</a>, <a href="https://scholar.google.com/scholar?hl=ko&amp;as_sdt=0%2C5&amp;q=vibe+coding&amp;btnG=">Google Scholar 검색</a>). 먼저 이것이 실제로 어느 수준인지 직접 해 봅니다. 도구는 네 가지 중 아무거나 좋습니다. Cursor, Manus, Lovable, Replit 등 다른 도구도 사용 방법은 거의 같고, 모두 무료 계정으로 체험할 수 있습니다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>도구</th>
+<th>잘 만드는 것</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong><a href="https://claude.ai/artifacts">Claude Artifacts</a></strong></td>
+<td>대화 옆에 동작하는 결과물이 바로 열립니다. 체크박스도 실제로 눌리고 화면이 즉시 바뀝니다. 수정도 “그룹을 가로로 나눠줘”처럼 말로 시킵니다.</td>
+</tr>
+<tr class="even">
+<td><strong><a href="https://claude.ai/design">Claude Design</a></strong></td>
+<td>디자인 완성도가 높은 페이지를 만듭니다. 색과 여백, 글자 크기가 정돈되어 나오기 때문에 첫인상이 중요한 소개 페이지나 포트폴리오에 강합니다. 같은 프롬프트를 Artifacts에도 넣어 보면, 같은 회사의 도구인데 결과물의 성격이 다릅니다.</td>
+</tr>
+<tr class="odd">
+<td><strong><a href="https://gemini.google.com/app">Google Gemini</a></strong></td>
+<td>대화로 만들고 Canvas 화면에서 결과를 바로 고칩니다. 만든 페이지를 옆에 띄워 두고 “이 버튼을 위로 올려줘”처럼 부분만 바꿀 수 있습니다. html 문서로 주면 메모장에 붙여 <code>.html</code> 확장자로 저장한 뒤 브라우저로 엽니다.</td>
+</tr>
+<tr class="even">
+<td><strong><a href="https://stitch.withgoogle.com/">Google Stitch</a></strong></td>
+<td>앱·웹 화면(UI) 설계에 특화되어 있습니다. 상품 카드나 목록처럼 화면 구성을 잡는 데 강하고, 화면 여러 장을 한 번에 뽑아 줍니다.</td>
+</tr>
+</tbody>
+</table>
+<p>참고로, Google은 학생 인증을 하면 제미나이의 유료 학생 플랜을 1년 무료로 쓸 수 있는 혜택을 운영하고 있습니다(<a href="https://one.google.com/ai-student">신청 페이지</a>, 2026년 12월 31일까지 신청, 학생 인증과 개인 Google 계정 필요). 만약 신청한다면 한 가지를 기억하세요. 무료 기간이 끝나기 전에 취소하지 않으면 다음 달부터 자동 결제됩니다.</p>
+<p>해 볼 것은 세 단계입니다. (1) 아래 예시 프롬프트 중 하나를 골라 붙여 넣습니다. 각자 원하는 산출물을 만드는 프롬프트로 바꾸는 것을 추천하고, 어렵다면 “~~을 만드는 프롬프트를 작성해”라고 먼저 시킵니다. (2) 몇 분 기다립니다. 의외로 오래 걸립니다. 유튜브 영상처럼 3초 만에 나오지 않습니다. (3) 화면을 확인하고 옆 사람이나 교수와 비교합니다.</p>
+<pre class="text"><code>운동화를 파는 쇼핑몰의 첫 화면을 만들어. 상품 카드 6개, 장바구니 버튼, 오늘의 할인 배너를 넣어줘.</code></pre>
+<pre class="text"><code>우리 학과를 소개하는 한 페이지 웹사이트를 만들어. 학과명은 AI소프트웨어학과이고, 진로 소개와 문의 버튼을 넣어줘.</code></pre>
+<pre class="text"><code>개발자 취업용 자기소개 페이지를 만들어. 이름, 사진 자리, 기술 스택 뱃지, 프로젝트 카드 3개, 연락처 버튼을 넣어줘.</code></pre>
+<pre class="text"><code>동아리 신입 모집 신청 페이지를 만들어. 관심 분야 체크박스 10개를 3개 그룹으로 나누고, 고른 것을 아래에 태그로 보여줘.</code></pre>
+<p>받은 결과 화면은 캡처하거나 주소를 남겨 둡니다. <strong>4주차에 같은 소재를 설계된 지시문으로 다시 만들어 오늘 결과와 나란히 비교합니다.</strong></p>
+<p>서로의 화면을 비교해 봅니다. 내가 원하던 딱 그것은 아닐 것이고(원하는 것이 구체적일수록 실망합니다), 같은 프롬프트라도 모두의 결과물이 다르며, 내부 구조는 알 수 없습니다. 확인할 것은 두 가지입니다. 첫째, 빠릅니다. 며칠 걸려야 했던 결과물이 몇 분 만에 나옵니다. 둘째, 그동안 아무도 코드를 한 줄도 읽지 않았습니다. 이 놀라움은 진짜이고, 이 도구들은 이미 실무에서 쓰이고 있습니다.</p>
+<p>그런데, 코드를 읽지 않았다는 것에서 문제가 시작됩니다. 방금 만든 것이 어떻게 만들어졌는지, 왜 돌아가는지 우리는 모릅니다. 그리고 왜 돌아가는지 모른다는 것은, 언제 안 돌아갈지도 모른다는 뜻입니다. …그러면 어떻게 될까요?</p>
+<p><a href="https://shung2.tistory.com/469">되는데 이유를 모르겠어</a> · <a href="https://bbs.ruliweb.com/community/board/300744/read/39880604">왜 돌아가는지 모르겠어</a></p>
+<section id="장-보론-왔다가-사라진-바이브-도구들" class="level3">
+<h3 class="anchored" data-anchor-id="장-보론-왔다가-사라진-바이브-도구들">1장 보론: 왔다가 사라진 바이브 도구들</h3>
+<p>Manus, Lovable, Replit처럼 한때 화제였던 바이브 도구들이 있습니다. 시연용 원페이지 데모에서는 훌륭했지만, 실제 제품에 쓰이면서 같은 종류의 문제가 반복됐습니다. 고치지 말아야 할 것을 고치고, 공개하지 말아야 할 것을 공개하고, 권한이 없는 사람이 접근하지 못해야 할 것을 열어 둡니다. “딸깍” 한 번으로 만드는 데모 수준에서는 생길 수 없는 문제이지만, 엔터프라이즈 수준으로 프로덕트가 복잡해지면 생각하지도 못한 것이 터집니다. 다음 장의 사건들이 그것입니다.</p>
+</section>
+</section>
+<section id="그-코드는-서비스가-될-수-있는가-실제-사건들" class="level2">
+<h2 class="anchored" data-anchor-id="그-코드는-서비스가-될-수-있는가-실제-사건들">2. 그 코드는 서비스가 될 수 있는가: 실제 사건들</h2>
+<p>최근 1년 사이에 실제로 일어난 일들입니다.</p>
+<p><strong>사례 1. 정부 창업 플랫폼 “모두의 창업” 개인정보 유출 (한국, 2026-06)</strong> <a href="https://www.khan.co.kr/article/202607311446001">보도 1</a> · <a href="https://biz.heraldcorp.com/article/10826950">보도 2</a></p>
+<ul>
+<li>요약: 웹 크롤링으로 1차 합격자 5,000명의 이메일·심사평·창업 아이디어가 노출. 암호화는 했지만 암호키가 API에 함께 있어 복호화 가능한 상태. 정부 플랫폼이라 파장이 컸고, 2기 모집이 중단된 채 보안 체계 전면 개편. 개발에 AI 솔루션 업체가 참여한 것으로 알려져 조사 진행.</li>
+<li>원인: 화면에 보이지 않는 비공개 정보까지 API 응답에 담겨 있었고, 크롤링으로 수집됨. 화면에 안 보여도 서버가 내주면 유출.</li>
+<li>개발 지식이 있었다면: API가 내보낼 필드를 요구사항으로 명세(필요한 것만 내보낸다), 비공개 정보가 응답에 섞이는지 테스트로 확인, 암호키는 데이터와 분리 보관.</li>
+</ul>
+<p><strong>사례 2. AI가 운영 데이터베이스를 지운 날 (미국, 2025-07)</strong> <a href="https://www.theregister.com/2025/07/21/replit_saastr_vibe_coding_incident/">보도</a></p>
+<ul>
+<li>요약: 유명 투자자가 Replit으로 바이브 코딩 중, AI 에이전트가 “변경 금지” 지시를 어기고 운영 데이터베이스(임원 1,206명·기업 1,196곳 기록) 삭제. 가짜 사용자 4,000명을 만들어 은폐 시도, “복구 불가”라 답했다가 번복. “AI에게 운영 권한을 줘도 되는가” 논쟁을 업계 전체에 촉발.</li>
+<li>원인: 운영 환경과 개발 환경이 분리되어 있지 않았고, AI가 운영 데이터에 닿을 권한을 그대로 보유. 금지가 말(자연어)로만 존재.</li>
+<li>개발 지식이 있었다면: 환경 분리, 권한 최소화, 백업 확인. “하지 말라”는 부탁 대신 금지 행동을 권한과 자동 차단 장치로 강제.</li>
+</ul>
+<p><strong>사례 3. “여러분, 저 지금 공격받고 있어요” (SNS, 2025-03)</strong> <a href="https://x.com/leojrr/status/1901560276488511759">원문</a> (조회 229만)</p>
+<ul>
+<li>요약: 비개발자 창업자가 AI만으로 만든 SaaS를 자랑한 지 이틀 만에 공격으로 서비스 중단. API 키 사용량 한도 소진, 구독 결제 우회, 데이터베이스 오염. “나는 기술자가 아니라서 해결에 시간이 걸린다”는 글로 화제.</li>
+<li>원인: API 키가 브라우저로 내려가는 코드에 그대로 들어 있어 누구나 꺼내 쓸 수 있었고(사용량 한도 소진), 결제 확인이 화면 쪽에 있어 우회됐으며(구독 우회), 데이터베이스 쓰기에 인증과 검증이 없었습니다(오염). 만든 사람은 “기술자가 아니라서” 자기 코드를 설명하지 못했습니다. 본인이 이틀 뒤에 올린 조치가 그대로 답입니다: “모든 API 키를 교체해 환경변수로 옮겼고, API 엔드포인트에 인증을 붙였다.”</li>
+<li>개발 지식이 있었다면: 키는 코드가 아니라 서버의 환경변수로 분리(접속 가이드 실습 3에서 <code>.bashrc</code>에 등록한 그 방식이 첫 습관입니다), 결제·권한 판정은 서버에서 검증, 데이터베이스 쓰기에는 인증과 입력 검증. 배포 전에 “누가 무엇을 볼 수 있나”를 요구사항으로 적고 테스트로 확인.</li>
+</ul>
+<p><strong>사례 4. 검증 없는 도구의 공통된 결과 (2025~2026)</strong> <a href="https://www.semafor.com/article/05/29/2025/the-hottest-new-vibe-coding-startup-lovable-is-a-sitting-duck-for-hackers">Semafor, Reed Albergotti, 2025-05-29</a> · <a href="https://theregister.com/2026/02/27/lovable_app_vulnerabilities">The Register, 2026-02-27</a> · <a href="https://thehackernews.com/2025/04/lovable-ai-found-most-vulnerable-to.html">The Hacker News, 2025-04</a></p>
+<ul>
+<li>요약: 바이브 코딩 플랫폼 Lovable로 만들어 공개된 앱 1,645개를 조사하자 170개에서 이름·이메일·결제 정보·API 키가 그대로 열렸습니다(CVE-2025-48757). 다른 개발자는 47분 만에 집 주소와 채무 내역까지 확인했고, 이듬해 조사에서는 한 앱에서만 18,000명 정보가 노출됐습니다.</li>
+<li>원인: 개인의 부주의가 아니라 구조. 데이터베이스(Supabase)의 행 단위 접근 제어(RLS)가 꺼졌거나 잘못 설정된 채 배포됐고, 만든 사람은 물어볼 질문조차 몰랐습니다. Semafor의 표현으로 “코드를 만드는 모델은 아직 큰 그림을 보지 못하고, 초보 사용자는 무엇을 물어야 할지도 모른다”. 검증 없이 빨리 만드는 방식 자체가 같은 구멍을 반복 생산합니다.</li>
+<li>회사의 대응: 제보(3월 20일)에는 “문제없다”고 답했고, 공식 취약점 신고의 45일 공개 유예가 지난 뒤 CVE로 공개됐습니다. 뒤늦게 붙인 “배포 전 보안 스캔”도 접근 제어가 켜져 있는지만 확인할 뿐 제대로 설정됐는지는 보지 않으며, 민감 데이터의 점검은 “사람의 보안 검토”라는 이름으로 사용자 몫으로 남겼습니다.</li>
+<li>개발 지식이 있었다면: 누가 어떤 행을 읽고 쓸 수 있는지를 요구사항으로 명시하고, 배포 전에 “다른 사용자로 로그인하면 남의 데이터가 보이는가”를 테스트. 도구의 스캔은 켜짐만 보므로 설정이 맞는지는 사람이 검증합니다. 이 점검을 자동화된 게이트로 만드는 것이 학기 후반의 내용.</li>
+</ul>
+<p>이 사건들의 공통점입니다. (1) <strong>요구사항</strong>이 없어서 무엇을 만들었는지 만든 사람도 모릅니다. (2) <strong>검증</strong>이 없어서 무엇이 깨졌는지 아무도 모릅니다. (3) <strong>보안·운영 설계</strong>가 없어서 키, 권한, 데이터의 경계를 아무도 긋지 않았습니다. 업계는 이렇게 쌓이는 비용을 <strong>기술부채</strong>(technical debt, 빨리 만든 대가로 나중에 갚는 빚)라고 부릅니다. 바이브 코딩은 프로토타입에는 강력합니다. 사고는 프로토타입을 “프로덕트”라고 착각하고, 그대로 서비스로 올릴 때 일어납니다(완벽한 프로토타입은 하자투성이 프로덕트입니다). 그런데 이 착각은 어디서 배우게 됐을까요. 사고는 코드에서만 나지 않습니다. 배우는 방식에서도 납니다. 이 착각을 유도하는 시장을 조심해야 합니다.</p>
+</section>
+<section id="장-보론-배우는-방식의-문제" class="level2">
+<h2 class="anchored" data-anchor-id="장-보론-배우는-방식의-문제">2장 보론: 배우는 방식의 문제</h2>
+<p>지금(~2026) 시장에 나와 있는 AI 강의의 문제를 두 가지로 봅니다.</p>
+<p><strong>문제 1. 자동화 수익화의 환상.</strong> 강사와 유튜버는 이렇게 말합니다. “클릭 3번으로 블로그 포스팅 100개”(무한 복제, 1일 1포스팅 자동화), “AI로 10분 만에 전자책 출판”(누구나 작가가 되어 인세 수익), “자는 동안 들어오는 월 1,000만 원”(경제적 자유, 파이프라인 구축). 수강생은 이렇게 됩니다. 검색엔진이 저품질 블로그로 인식해 계정이 영구 정지되고, 읽는 사람은 없고 쓰는 사람만 있는 시장에 AI가 쓴 영혼 없는 텍스트만 쌓이며, 경제적 자유를 얻는 것은 강사의 통장뿐입니다(결제 금액은 강사의 수익 인증 캡처용). 자기가 활동하는 시장을 죽이는 강의이고, 지속 불가능한 수익 모델이며, 사실상 폰지 사기입니다. 결국 그 시장에는 아무도 남지 않게 됩니다. “유튜브 수익화 시나리오 3개 작성해 줘”, “예쁜 썸네일 100개 만들어줘”, “잘 팔리는 제품 상세페이지 만들어 줘” 같은 딸깍 유형이 전부 이 계열이고, 강의 중에 “정말 잘 나오고 있습니다!”라고 감탄하면서 제대로 보지도 않습니다. 댓글에 강의 링크가 있으니까요. “AI로 10분 만에 전자책 출판”으로 만든 책이 어떻게 되었는지는 출판업의 실제 사례(복두출판사 건, 루리웹 게시물)가 보여 줍니다.</p>
+<p><strong>문제 2. “현업”의 눈높이(퀄리티, 규칙) 부재.</strong> 유튜브와 강의실의 AI는 “와! 3초 만에 뚝딱”이고, 회의실의 AI는 “양식이 하나도 안 맞잖아”입니다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>영역</th>
+<th>강의실에서 보여 주는 것</th>
+<th>회의실이 요구하는 것</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>이미지</td>
+<td>예쁘지만 쓸모없는 그림. 신기한데 브랜드와 무관한 랜덤 생성</td>
+<td>우리 모델이 쓰고 우리 로고가 박힌 ‘제품’. 톤앤매너와 캐릭터 일관성 필수</td>
+</tr>
+<tr class="even">
+<td>문서</td>
+<td>“회의록 넣으면 공문서 완성!” 읽어 보면 맥락 없는 그럴싸한 텍스트 나열</td>
+<td>우리 회사 양식·포맷·광고 규정과 전혀 다름. 수정하는 데 시간이 더 걸리는 비효율</td>
+</tr>
+<tr class="odd">
+<td>개발</td>
+<td>“코딩 몰라도 서비스 뚝딱!” 비개발자에게 “개발할 수 있다”고 파는 사기</td>
+<td>개발자는 이런 강의에 안 속음. 뭐가 빠졌는지 알기 때문. 피해는 비개발자 몫</td>
+</tr>
+</tbody>
+</table>
+<p>현업이 원하는 결과는 “책임질 수 없는 산출물”이 아니라 회사 규칙을 지킨, 의사결정 가능한 산출물입니다.</p>
+<p><strong>공포 마케팅.</strong> 소신발언을 하나 하면, 강의 팔이는 개발을 하지 못합니다. 사람을 성장시키는 것이 목적이 아니라 어떻게 하면 팔아먹을까만 생각하기 때문에 어그로를 끌어 관심을 받거나, 실무를 하지 않아서 전문성도 없고, 그저 불안만 퍼뜨립니다. 유튜브에서 “바이브 코딩”을 검색해 보면 이 구조가 한눈에 보입니다. 반대편에서는 도메인 실무 전문가가 AI로 자기 도구를 직접 구축해 버리는 시대가 열리고 있습니다. 이 과목이 서 있는 자리는 그쪽입니다.</p>
+</section>
+<section id="이-과목의-방향-개발방법론으로-사람이-통제하는-ai" class="level2">
+<h2 class="anchored" data-anchor-id="이-과목의-방향-개발방법론으로-사람이-통제하는-ai">3. 이 과목의 방향: 개발방법론으로 사람이 통제하는 AI</h2>
+<p>속도를 체험했고, 사고 사례들을 봤고, 그 사고를 키우는 강의 시장까지 봤습니다. 이 과목은 기업 환경에 맞게, 같은 도구를 올바르게 씁니다. 원하는 스펙을 빠른 속도로 만들면서 사고를 막는 방법을 배웁니다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>바이브 코딩</th>
+<th>에이전틱 코딩 (이 과목)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>하는 일</td>
+<td>맥락 없이 채팅으로 자연어 지시만 던지고, 화면만 본다</td>
+<td>팀 요구사항 문서를 폴더에 물리고, 결과는 코드로 검증한다</td>
+</tr>
+<tr class="even">
+<td>없는 것 · 있는 것</td>
+<td>요구사항이 없고, 일관성이 없고, 코드를 읽지 않고, 검증이 없다</td>
+<td>AI가 계획을 세우고, 파일을 고치고, 테스트를 실행하게 한다</td>
+</tr>
+<tr class="odd">
+<td>강한 곳</td>
+<td>강의실, 미팅, 유튜브용 프로토타입</td>
+<td>5분짜리 프로토타입을 24시간 돌아가는 프로덕트로</td>
+</tr>
+<tr class="even">
+<td>서비스에 올리면</td>
+<td>사고가 일어난다</td>
+<td>검증을 통과해 그대로 올릴 수 있다</td>
+</tr>
+</tbody>
+</table>
+<p>AI가 계획을 세우고, 파일을 고치고, 테스트를 실행하게 하는 개발 방식을 에이전틱 코딩(agentic coding)이라 합니다. 도구가 다른 것이 아니라 쓰는 방식이 다릅니다. 같은 도구라도 요구사항 없이 자연어 지시만 던지면 바이브 코딩, 요구사항을 쓰고 검증을 붙이면 (이 과목이 가르치는) “에이전틱 코딩”입니다.</p>
+<p>돌다리 비유로 말하면 이렇습니다. ① 예전의 개발은 돌다리도 두드려 보고 건넜습니다. 안전하지만 시간이 걸렸습니다. ② 요즘의 바이브는 두드리는 과정을 아예 생략합니다. 빠르지만 사고로 돌아옵니다. ③ 이 과목의 방식은 두드리는 검증을 AI에게 맡깁니다. 개발의 기준은 지키고, 회사의 속도로 갑니다. 돌다리 두드리기는 AI에게, 이제 개발은 회사의 속도와 비즈니스 마인드로 움직입니다.</p>
+<p>수업에서는 Claude Code를 씁니다. 비슷한 도구는 많지만 동작 원리가 같아서, 하나를 익히면 다른 도구는 금방 갈아탑니다. 그리고 Claude Code 개발사 Anthropic은 처음부터 소비자용 챗봇보다 기업·개발자용 API에 집중하며 OpenAI와 다른 길을 걸었고, 기업용 LLM API 시장 점유율 1위입니다(2025년 조사, <a href="https://menlovc.com/2025-mid-year-llm-market-update/">Menlo Ventures</a>). 개발자 친화적인 도구와 문서를 가장 잘 갖춘 회사이고, 기업이 실제로 쓰는 도구를 배우는 것이 면접, 취업, 실무에 유리합니다. 도구는 많지만 동작 원리가 같으므로, 바이블 하나를 제대로 익힙니다.</p>
+<p>한 학기 구성입니다. 전반은 방법론 정리로, 완성된 코드에서 요구사항을 뽑아내는 리버스 엔지니어링과 TDD로 개발방법론을 정리합니다(재료는 자기가 만들었던 프로젝트든 배포 예제든 어느 쪽이든 됩니다). 중반은 원리와 제어로, Claude Code 안에서 무슨 일이 일어나는지(LLM 동작 원리), 어떻게 정확하게 제어하는지(프롬프트와 컨텍스트)를 다룹니다. 후반은 기업 실무로, 어떻게 지식과 도구를 붙이는지(RAG와 도구 사용, 확장 기능), 어떻게 일을 맡기고 결과를 믿을 수 있게 만드는지(에이전트, 검증·평가)까지 갑니다.</p>
+<p>이 구성의 기반이 <strong>AI 활용법 진화 로드맵</strong>입니다. 각 단계는 앞 단계를 포함하며 누적되고, 검증을 제대로 시키는 사람이 AI 시대의 필수 인재입니다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>단계</th>
+<th>이름</th>
+<th>무엇인가</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1단계</td>
+<td>프롬프트 엔지니어링</td>
+<td>AI에게 무엇을 할지 매번 정확하게 지시하는 법. 모든 활용의 출발점입니다.</td>
+</tr>
+<tr class="even">
+<td>2단계</td>
+<td>컨텍스트 엔지니어링</td>
+<td>AI에게 무엇을 보여 주고 일을 시킬 것인가. 올바른 판단을 하도록 전체 정보를 갖춰 줍니다. 대표 도구는 <code>CLAUDE.md</code>.</td>
+</tr>
+<tr class="odd">
+<td>3단계</td>
+<td>하네스 엔지니어링</td>
+<td>강제 검증 장치를 붙여 결과를 믿을 수 있게 만드는 틀. MCP · Skill · Hook으로 답변의 안정성을 보장합니다.</td>
+</tr>
+<tr class="even">
+<td>4단계</td>
+<td>루프 엔지니어링</td>
+<td>일을 맡기면 계획·실행·검증을 스스로 도는 단계. 완성될 때까지 피드백과 개선을 반복합니다(에이전트 · 자동화).</td>
+</tr>
+</tbody>
+</table>
+<p>AI가 만들고, 사람이 검증합니다. 각 단계는 해당 주차에서 다룹니다.</p>
+<p>배운 것은 각자의 개인 프로젝트에 계속 적용합니다. 학기 마무리는 프로젝트 발표를 우선 검토하고 있으며, 진행 상황에 따라 일반 시험으로 대체될 수 있습니다. 주차별 배정은 커리큘럼을 기준으로 하되 진도에 따라 조정될 수 있고, 중간고사는 학사 일정에 따라 시행하며, 평가 방식의 세부는 수업에서 공지합니다.</p>
+<p>요약하면, <strong>“AI가 만들고, 사람이 검증합니다”</strong>. 사고는 모두 “검증”이 빠질때 일어납니다. 시연장면, 강의, 유튜브에서는 검증이 없기 때문에 놀라움만 주고 책임을 지지 않습니다. <strong>회사에서</strong> 검증 없이 쓰면 <del>회사가 망</del>품질이 망가지기 때문에, 검증할 줄 아는 사람은 AI 시대에 더 필요해집니다.</p>
+</section>
+<section id="장-보론-현업이-요구하는-다섯-가지" class="level2">
+<h2 class="anchored" data-anchor-id="장-보론-현업이-요구하는-다섯-가지">3장 보론: 현업이 요구하는 다섯 가지</h2>
+<p>에이전트가 코드를 전부 써 주면 소프트웨어 지식이 필요 없어질까요. 앤드류 응(Andrew Ng)의 글은 오히려 더 필요해진다고 말합니다(원문 정리: 이재윤, <a href="https://linkedin.com/in/jaeyunhenrylee">LinkedIn</a>, 2026). 에이전트는 시키는 대로 만들지만, 무엇을 시킬지는 사람이 정해야 하고, 어떤 선택지가 존재하는지조차 모르는 사람은 에이전트를 조종할 수 없기 때문입니다. <strong>코드를 직접 안 짜는 시대일수록, 코드를 아는 사람이 이깁니다.</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>역량</th>
+<th>요지</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1. 풀스택 구축</td>
+<td>다 할 줄 아는 사람이 아니라, 다 볼 줄 아는 사람. UI, 캐싱, API 설계, 인증, 상태 관리, 비동기, 저장, 테스트, 보안, 접근성이 어떻게 맞물리는지 알아야 에이전트가 만든 결과가 맞는지 판단합니다.</td>
+</tr>
+<tr class="even">
+<td>2. 데이터 관리</td>
+<td>코드는 틀리면 고치면 되지만 데이터는 틀리면 고치기 어렵습니다. 무엇을 저장하고 얼마나 보관할지, 관계형인지 문서형인지를 처음부터 결정해야 하고, 데이터 구조가 엉망이면 AI는 자기가 뭘 모르는지조차 모릅니다. 앱은 갈아엎을 수 있어도 데이터는 못 갈아엎습니다.</td>
+</tr>
+<tr class="odd">
+<td>3. 아키텍처 설계</td>
+<td>아키텍처에는 정답이 없고 시점만 있습니다. 프로토타입, 첫 프로덕션, 확장 단계에 맞는 구조가 전부 다릅니다. 에이전트는 지금 당장 돌아가는 구조를 만들고, 다음 단계에서도 버틸 구조를 요구하는 것은 사람의 일입니다.</td>
+</tr>
+<tr class="even">
+<td>4. 안전과 신뢰성</td>
+<td>신뢰성과 보안은 나중에 붙이는 것이 아니라 처음부터 심는 것입니다. 만드는 도중에 잠그는 것을 “왼쪽으로 이동”이라 부릅니다. AI가 취약점을 스캔해 주지만, 결과를 읽을 줄 모르면 스캔은 의미가 없습니다.</td>
+</tr>
+<tr class="odd">
+<td>5. 확장과 운영</td>
+<td>만드는 것과 굴리는 것은 완전히 다른 일입니다. 배포, 릴리스, CI/CD, 관측, 알림, 부하 분산, 버전 관리, 기술 부채를 계속 다뤄야 시스템이 죽지 않고 진화합니다. 시스템을 살아 있게 유지하는 것은 여전히 사람입니다.</td>
+</tr>
+</tbody>
+</table>
+<p>결국 사라지는 것은 문법이고 남는 것은 판단입니다. 같은 에이전트를 쥐어 줘도 한 사람은 트레이드오프를 지시하고 다른 사람은 기본값을 받아들이기 때문에, 격차는 좁아지는 것이 아니라 벌어집니다. 에이전트 시대의 개발자는 코더가 아니라 감독입니다. 7장의 규칙 “AI가 내 팀원”은 이 다섯 역량을 갖춘 AI 팀을 만들어 보라는 뜻입니다.</p>
+</section>
+<section id="실습-1-서버-접속" class="level2">
+<h2 class="anchored" data-anchor-id="실습-1-서버-접속">4. 실습 1: 서버 접속</h2>
+<blockquote class="blockquote">
+<p><strong>4~6장은 실습환경 접속 가이드(지난 시간)에서 이미 한 내용입니다.</strong> 오늘은 아래 점검 3연타로 환경이 살아 있는지만 확인하고 8장으로 갑니다. 지난 시간에 못 했거나 결석했으면 4~6장을 순서대로 따라옵니다. 설치·키 등록·모델 설정은 모두 최초 1회이고 재접속해도 유지됩니다. 서버 터미널은 환경을 만들고 결과를 직접 실행해 보는 창, Claude Code 터미널은 Claude에게 지시해 만드는 창입니다. 터미널이 하나뿐이면 Terminal &gt; New Terminal을 한 번 더 실행해 두 개로 만듭니다.</p>
+</blockquote>
+<p><strong>[서버 터미널]</strong></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>   <span class="ex">claude</span> <span class="at">--version</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>   <span class="bu">echo</span> <span class="va">${ANTHROPIC_API_KEY</span><span class="op">:</span><span class="dv">0</span><span class="op">:</span><span class="dv">8</span><span class="va">}</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>   2.x.x (Claude Code)
+   sk-ant-a</code></pre>
+<p><strong>[Claude Code 안]</strong></p>
+<pre class="text"><code>   &gt; /status
+   &gt; /exit</code></pre>
+<p><code>/status</code>에 <code>Model: haiku</code>가 보이면 준비 완료입니다. 비밀번호를 잊었으면 손을 들어 알립니다. Remote-SSH가 안 되면 PowerShell 창 2개로 진행합니다(5장 끝). Model이 haiku가 아니면 <code>/model</code>에서 다시 선택합니다. 지금 이 창이 내 PC인지 서버인지는 프롬프트가 알려줍니다. <code>PS C:\Users\이름&gt;</code>은 내 PC, <code>[아이디@실습서버 ~]$</code>는 서버입니다.</p>
+<p>이 학기의 모든 실습은 과목 실습 서버에서 진행합니다. 수업은 학교 실습실 PC로 하고, 개인 노트북을 가져와서 써도 됩니다. 여러분이 접속할 서버는 이렇습니다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>항목</th>
+<th>사양</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>운영체제</td>
+<td>Rocky Linux 9 (리눅스 서버)</td>
+</tr>
+<tr class="even">
+<td>CPU · 메모리</td>
+<td>48코어 · 376GB</td>
+</tr>
+<tr class="odd">
+<td>GPU</td>
+<td>NVIDIA RTX A5000 × 4장 (AI 모델을 서버에서 직접 돌릴 때 쓰는 장비입니다. 수업에서는 시연으로 봅니다)</td>
+</tr>
+<tr class="even">
+<td>설치된 도구</td>
+<td>Python 3.12, git, Node 20 (Claude Code는 실습 3에서 각자 설치했습니다)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>이 주차에서 쓰는 도구.</strong> 접속 가이드의 세 실습으로 갖춘 도구는 다섯 가지입니다. 설치가 필요한 것은 두 가지뿐이고 나머지는 이미 있습니다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>도구</th>
+<th>어디에 있나</th>
+<th>설치</th>
+<th>여는 방법 · 쓰는 법</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Windows PowerShell</td>
+<td>내 PC</td>
+<td>불필요(기본 탑재)</td>
+<td>시작 메뉴에서 <code>PowerShell</code> 검색, 또는 <code>Win + X</code></td>
+</tr>
+<tr class="even">
+<td>ssh</td>
+<td>내 PC의 PowerShell 안</td>
+<td>불필요(기본 기능)</td>
+<td><code>ssh 아이디@서버주소</code>로 서버에 접속</td>
+</tr>
+<tr class="odd">
+<td>VS Code + Remote - SSH</td>
+<td>내 PC</td>
+<td><strong>필요</strong>(실습 2)</td>
+<td>내려받아 설치한 뒤 확장 하나를 더함</td>
+</tr>
+<tr class="even">
+<td>Claude Code</td>
+<td>서버의 내 계정</td>
+<td><strong>필요</strong>(실습 3)</td>
+<td>터미널에서 <code>claude</code>로 들어가고 <code>/exit</code>로 나옴</td>
+</tr>
+<tr class="odd">
+<td>Python 3.12 · git</td>
+<td>서버</td>
+<td>불필요(기설치)</td>
+<td>터미널 명령으로 실행</td>
+</tr>
+</tbody>
+</table>
+<p>입력하는 환경과 명령어는 두 종류입니다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>입력하는 곳</th>
+<th>무엇을 입력하나</th>
+<th>예시</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>터미널 (PC와 서버)</td>
+<td>터미널 명령어</td>
+<td>PC에서 <code>ssh 아이디@서버주소</code>(서버 접속), 서버에서 <code>python3 --version</code>, <code>git init</code></td>
+</tr>
+<tr class="even">
+<td>Claude Code 안</td>
+<td>Claude Code 문법과 프롬프트</td>
+<td><code>/help</code>(명령 목록), <code>@파일명</code>(파일 지정), 그리고 “인사말 스크립트를 만들어줘” 같은 자연어 지시</td>
+</tr>
+</tbody>
+</table>
+<p>터미널에서 <code>claude</code>를 입력하면 Claude Code 안으로 들어가고, <code>/exit</code>를 입력하면(또는 Ctrl+D) 다시 터미널로 나옵니다.</p>
+<p><strong>실행 위치 표기.</strong> 이 과목에서 명령을 입력하는 자리는 다섯 곳이고, 같은 명령이라도 어디서 치느냐에 따라 결과가 달라집니다. 그래서 이 강의안의 모든 명령 앞에는 다음 표기를 붙입니다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>표기</th>
+<th>어디인가</th>
+<th>언제 쓰나</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>[내 PC · PowerShell]</code></td>
+<td>내 컴퓨터의 터미널</td>
+<td>서버에 접속하기 전. 실습 1의 시작</td>
+</tr>
+<tr class="even">
+<td><code>[서버 · 터미널]</code></td>
+<td>접속이 끝난 뒤의 서버</td>
+<td>실습 1의 접속 이후 전부</td>
+</tr>
+<tr class="odd">
+<td><code>[서버 터미널]</code></td>
+<td>VS Code 안에서 연 서버 터미널 중 오른쪽</td>
+<td>실습 2 이후의 리눅스 명령</td>
+</tr>
+<tr class="even">
+<td><code>[Claude Code 터미널]</code></td>
+<td>VS Code 안에서 연 서버 터미널 중 왼쪽</td>
+<td><code>claude</code> 실행</td>
+</tr>
+<tr class="odd">
+<td><code>[Claude Code 안]</code></td>
+<td><code>claude</code>로 들어간 뒤</td>
+<td><code>/status</code> 같은 Claude Code 문법</td>
+</tr>
+</tbody>
+</table>
+<p>표기가 <code>내 PC</code>인데 서버에서 치면 명령을 찾을 수 없다고 나오고, 반대로 <code>서버</code>인데 내 PC에서 치면 엉뚱한 곳에 파일이 생깁니다. 막혔을 때 가장 먼저 확인할 것이 지금 이 터미널이 내 PC인지 서버인지입니다. 구별하는 방법은 입력 줄의 생김새입니다. 내 PC는 <code>PS C:\Users\...&gt;</code>로 시작하고, 서버는 <code>[아이디@실습서버 ...]$</code>로 시작합니다.</p>
+<p><strong>폴더 사용.</strong> 서버에는 폴더가 두 종류 있습니다. (1) 개인 폴더(<code>/home/아이디</code>): 학기 내내 작업 공간이자 제출함입니다. 산출물은 <code>week01</code>, <code>week02</code>처럼 주차별 폴더로 정리하고 임의로 지우지 않습니다. (2) 공용 배포 폴더(<code>/home/공용계정</code>): 매주 강의안과 실습 자료가 <code>week01</code>, <code>week02</code> 같은 주차 폴더로 배포되는 곳입니다. 여기는 읽기만 가능하므로, 필요한 파일을 자기 개인 폴더로 복사해 온 뒤 자기 폴더에서 작업합니다(복사 명령은 각 주차 강의안의 첫 실습에 나옵니다). 실수로 지우거나 AI가 잘못 고치는 경우에 대비해, 중요한 시점마다 저장 지점을 남깁니다. git 문법을 몰라도 프로젝트 폴더에서 Claude Code에게 “이 폴더를 git 저장소로 만들어 줘”(처음 한 번), 그다음부터는 “여기까지 커밋해 줘”라고 시키면 됩니다(커밋 = 언제든 되돌아갈 수 있는 저장 지점).</p>
+<p>각 단계 끝의 <strong>[확인 N]</strong> 은 그 단계에서 할 일을 마쳤는지 스스로 점검하는 항목입니다. 다 되었으면 다음 단계로 넘어갑니다.</p>
+<ol type="1">
+<li><p>자기 PC에서 터미널을 엽니다. 이 과목은 Windows에 기본으로 들어 있는 <strong>Windows PowerShell</strong>을 씁니다. 여는 방법은 두 가지이고 어느 쪽이든 같습니다. (1) 시작 메뉴를 누르고 <code>PowerShell</code>을 검색해 실행합니다. (2) 키보드에서 <code>Win + X</code>를 누르고 목록에서 터미널 또는 Windows PowerShell을 고릅니다. 파란색 또는 검은색 창이 뜨고 <code>PS C:\Users\...&gt;</code>로 시작하는 입력 줄이 보이면 준비가 끝난 것입니다.</p>
+<p>여기서 용어를 하나 구분합니다. <strong>터미널은 창이고, 셸은 그 창 안에서 명령을 받아 주는 프로그램입니다.</strong> PowerShell은 셸입니다. 실습실 PC에 Windows Terminal이 설치되어 있으면 그 창이 뜨는데, 그 안에서 도는 것도 PowerShell이므로 그대로 진행하면 됩니다. 창의 이름이 무엇이든 <code>PS C:\...&gt;</code> 줄이 보이면 같은 자리입니다.</p>
+<p>열린 터미널에서 다음 명령으로 실습 서버에 접속합니다. 계정 아이디는 학번이 아니라 각자 이름의 영문 약자로 만들어져 있고, 아이디와 초기 비밀번호는 첫 시간에 화면으로 안내합니다(비밀번호는 강의안에 싣지 않습니다). 계정은 2027년 2월 말까지 유지되므로 방학에도 쓸 수 있습니다.</p></li>
+</ol>
+<p><strong>[내 PC · PowerShell]</strong></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ssh</span> 아이디@서버주소</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>처음 접속하면 이 서버에 계속 연결할 것인지 묻는 영어 질문(continue connecting?)이 나올 수 있습니다. <code>yes</code>를 입력합니다. 이어서 비밀번호를 입력합니다. 입력해도 화면에 아무것도 표시되지 않는 것이 정상이므로 그대로 치고 Enter를 누릅니다.</p>
+<p>초기 비밀번호는 수강생 공통이고 시스템이 변경을 강제하지 않습니다. 그래서 로그인 직후 반드시 <code>passwd</code> 명령으로 본인만 아는 비밀번호로 바꿉니다. 바꾸지 않으면 다른 학생이 내 계정으로 접속할 수 있습니다. 화면의 형태는 다음과 같습니다.</p>
+<p><strong>[서버 · 터미널]</strong></p>
+<pre class="text"><code>   $ passwd
+   Changing password for user 아이디.
+   Current password:        ← 초기 비밀번호 입력
+   New password:            ← 새 비밀번호 입력
+   Retype new password:     ← 한 번 더 입력</code></pre>
+<p><em>(화면 캡처 삽입 예정: 실습 서버 접속과 로그인 직후 화면)</em> - <strong>[확인 1]</strong> 본인 계정으로 로그인하고, <code>passwd</code>로 비밀번호를 변경하였다. 2. 접속한 자리(개인 폴더)에 <code>README.md</code>를 만들고 이름과 학기 목표 한 줄을 기록합니다. 아직 편집기가 없으므로 터미널 명령만으로 만듭니다. 다음 세 줄을 차례로 입력합니다. 이름과 목표는 자기 것으로 바꿉니다.</p>
+<p><strong>[서버 · 터미널]</strong></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>   <span class="bu">echo</span> <span class="st">"이름: 홍길동"</span> <span class="op">&gt;</span> README.md</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>   <span class="bu">echo</span> <span class="st">"학기 목표: AI에게 일을 시키고 결과를 검증할 줄 아는 사람이 된다"</span> <span class="op">&gt;&gt;</span> README.md</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">cat</span> README.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>여기서 기호 두 개를 기억해 둡니다. <code>&gt;</code>는 <strong>새로 만들어 덮어쓰기</strong>이고, <code>&gt;&gt;</code>는 <strong>뒤에 덧붙이기</strong>입니다. <code>&gt;</code>를 두 번 쓰면 앞 줄이 지워집니다. 이 기호는 실습 3에서 한 번 더 씁니다. <code>cat</code>은 파일 내용을 화면에 보여 주는 명령입니다. 결과는 다음과 같이 나옵니다.</p>
+<pre class="text"><code>   이름: 홍길동
+   학기 목표: AI에게 일을 시키고 결과를 검증할 줄 아는 사람이 된다</code></pre>
+<p>이 파일이 1주차의 제출물이고(8장에서 오늘 다시 만듭니다), 이후 학기 내내 모든 산출물이 이 폴더에 쌓입니다. - <strong>[확인 2]</strong> 개인 폴더에 <code>README.md</code>를 생성하고 <code>cat</code>으로 두 줄을 확인하였다. 3. 같은 터미널에서 다음 두 명령으로 개발 도구를 확인합니다. 위 사양 표의 버전이 그대로 나오는지 봅니다. 이 과목의 실습은 노트북(Jupyter) 셀이 아니라 터미널과 프로젝트 폴더에서 이루어집니다.</p>
+<p><strong>[서버 · 터미널]</strong></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>   <span class="ex">python3</span> <span class="at">--version</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">git</span> <span class="at">--version</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><strong>[확인 3]</strong> 두 명령의 버전 출력을 확인하였다.</li>
+</ul>
+<p><strong>문제 해결.</strong> 세 가지가 자주 나옵니다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>증상</th>
+<th>원인과 조치</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ssh</code> 명령을 찾을 수 없다고 나온다</td>
+<td>내 PC의 ssh 기능이 꺼져 있는 경우입니다. 시작 메뉴에서 “선택적 기능”을 검색해 열고, 기능 추가에서 <code>OpenSSH 클라이언트</code>를 설치한 뒤 PowerShell을 새로 엽니다.</td>
+</tr>
+<tr class="even">
+<td>로그인이 계속 거부된다</td>
+<td>비밀번호를 여러 번 틀려 1시간 동안 자동 차단된 상태일 수 있으므로 잠시 후 다시 시도합니다. 비밀번호를 잊었으면 서버 담당 교수님께 재발급을 요청합니다(문의처는 첫 시간에 안내).</td>
+</tr>
+<tr class="odd">
+<td>접속이 도중에 끊긴다</td>
+<td>터미널을 새로 열어 다시 접속합니다. 서버에 만들어 둔 파일은 그대로 남아 있습니다.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="실습-2-vs-code-설치와-서버-연결" class="level2">
+<h2 class="anchored" data-anchor-id="실습-2-vs-code-설치와-서버-연결">5. 실습 2: VS Code 설치와 서버 연결</h2>
+<p>실습 1은 명령만으로 진행했습니다. 그것만으로 부족한 이유는 앞으로 할 일 때문입니다. 이 과목에서는 AI가 만든 파일을 <strong>열어서 읽고</strong>, 빈칸이 있는 파일을 받아 <strong>직접 채워 완성하는</strong> 실습을 반복합니다. 파이썬은 줄 앞의 빈칸 개수가 문법이라, 터미널 편집기로 여러 파일을 오가며 고치면 눈에 보이지 않는 공백 때문에 오류가 납니다.</p>
+<p>그래서 도구를 역할로 나눠 씁니다. <strong>결과를 확인하는 일은 터미널 명령으로 하고, 파일을 보고 고치는 일은 편집기로 합니다.</strong> 편집기는 업계 표준인 <a href="https://code.visualstudio.com/">Visual Studio Code</a>(무료, 이하 VS Code)를 씁니다. 확장(extension) 하나를 더하면 서버의 폴더를 내 PC의 폴더처럼 열어 볼 수 있어서, 파일을 내려받았다 올리는 과정 없이 서버 파일을 그 자리에서 고칠 수 있습니다.</p>
+<p>이 실습의 1~3단계는 내 PC에서 하는 작업이고, 4단계부터는 그 화면 안에서 서버를 다룹니다.</p>
+<ol type="1">
+<li>웹 브라우저에서 <a href="https://code.visualstudio.com/">code.visualstudio.com</a>에 들어가 Windows용 설치 파일을 내려받고 실행합니다. 설치 중 선택 항목은 기본값 그대로 두고 계속 누릅니다. 실습실 PC에 이미 설치되어 있으면 실행만 확인하고 넘어갑니다.</li>
+<li>VS Code 왼쪽 세로 막대에서 확장(Extensions) 아이콘(네모 블록 네 개 모양)을 누르고, 검색창에 <code>Remote - SSH</code>를 입력해 Microsoft가 만든 것을 설치(Install)합니다. 원격 서버의 폴더를 내 PC의 폴더처럼 열어 주는 확장입니다.
+<ul>
+<li><strong>[확인 4]</strong> Remote - SSH 확장을 설치하였다.</li>
+</ul></li>
+<li><code>F1</code> 키(또는 왼쪽 아래 모서리의 원격 접속 버튼)를 눌러 <code>Remote-SSH: Connect to Host</code>를 선택하고, 실습 1과 같은 접속 정보 <code>아이디@서버주소</code>을 입력합니다. 이어서 실습 1에서 <strong>바꾼</strong> 비밀번호를 넣습니다. 새 창이 열리고 왼쪽 아래에 <code>SSH: 서버주소</code> 표시가 보이면 연결된 것입니다. 이제부터는 이 새 창에서 작업합니다.</li>
+<li>메뉴의 File &gt; Open Folder를 누르면 경로를 묻는 입력 줄이 나옵니다. <code>/home/아이디</code>를 입력하고 OK를 누릅니다(아이디 자리에 자기 아이디). 비밀번호를 한 번 더 물을 수 있습니다. 실습 1에서 만든 <code>README.md</code>가 왼쪽 탐색기에 보이면 성공입니다. 파일을 클릭해 열고 “VS Code 연결 완료” 한 줄을 추가한 뒤 <code>Ctrl + S</code>로 저장합니다. 방금 서버에 있는 파일을 내 PC의 편집기로 고친 것입니다.</li>
+<li>메뉴의 Terminal &gt; New Terminal로 통합 터미널을 엽니다. Remote-SSH로 연결된 창이므로 이 터미널은 내 PC가 아니라 <strong>서버에서 열립니다</strong>. 따로 <code>ssh</code>를 입력하지 않습니다. 입력 줄이 <code>[아이디@실습서버 ...]$</code> 형태인지 확인하고, 다음 명령으로 실습 1과 같은 결과가 나오는지 봅니다.</li>
+</ol>
+<p><strong>[서버 · 터미널]</strong></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>   <span class="ex">python3</span> <span class="at">--version</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="6" type="1">
+<li>터미널 오른쪽 위의 분할 아이콘(또는 메뉴의 Terminal &gt; Split Terminal)으로 터미널을 하나 더 엽니다. 이 두 터미널 배치가 학기 내내 쓰는 기본 작업 화면이고, 앞으로 강의안은 두 자리를 이름으로 구분해 부릅니다.</li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>자리</th>
+<th>이름</th>
+<th>하는 일</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>왼쪽 터미널</td>
+<td>Claude Code 터미널</td>
+<td><code>claude</code>를 실행해 AI에게 일을 시킵니다</td>
+</tr>
+<tr class="even">
+<td>오른쪽 터미널</td>
+<td>서버 터미널</td>
+<td>리눅스 명령으로 파일을 확인하고 프로그램을 실행합니다</td>
+</tr>
+</tbody>
+</table>
+<p>AI에게 일을 시키면서 그 결과를 바로 옆에서 확인하는 배치이고, 여기에 왼쪽의 파일 탐색기와 편집기까지 한 화면에서 씁니다. <strong>AI가 만들고 사람이 검증한다는 이 과목의 문장을 화면으로 옮긴 것이 이 배치입니다.</strong></p>
+<p>붙여넣기 방법이 자리마다 다릅니다. VS Code 통합 터미널에서는 <code>Ctrl + V</code>가 되고, 내 PC의 PowerShell 창에서는 마우스 오른쪽 클릭이 붙여넣기입니다. 실습 3에서 긴 문자열을 붙여 넣을 때 쓰게 됩니다. - <strong>[확인 5]</strong> VS Code 탐색기에 서버 개인 폴더의 파일이 보이고, 분할된 통합 터미널 2개가 모두 서버에서 열리는 것을 확인하였다.</p>
+<p><strong>연결이 안 될 때.</strong> Remote-SSH 연결은 PC의 보안 설정이나 네트워크 사정으로 막히는 경우가 있습니다. 여러 번 시도해도 안 되면 오늘은 아래 방법으로 수업을 그대로 따라오고, 연결 문제는 수업 후에 개별로 확인합니다.</p>
+<ol type="1">
+<li><p>PowerShell 창을 두 개 엽니다(실습 1의 여는 방법을 두 번 반복).</p></li>
+<li><p>두 창 모두에서 <code>ssh 아이디@서버주소</code>로 서버에 접속합니다. 이 두 창이 위 표의 Claude Code 터미널과 서버 터미널을 대신합니다.</p></li>
+<li><p>실습 3은 이 상태로 전부 진행할 수 있습니다. 파일을 열어 볼 일이 있으면 <code>cat 파일이름</code>을 씁니다.</p>
+<p>이 경우 [확인 5]는 다음 주에 다시 확인합니다. VS Code 없이 진행한 학생은 파일을 고치는 실습이 시작되기 전까지 연결을 해결하면 됩니다.</p></li>
+</ol>
+</section>
+<section id="실습-3-claude-code-설치와-키-등록" class="level2">
+<h2 class="anchored" data-anchor-id="실습-3-claude-code-설치와-키-등록">6. 실습 3: Claude Code 설치와 키 등록</h2>
+<p>Claude Code는 터미널에서 실행되는 AI 개발 도구이며, 3장에서 말한 에이전틱 코딩의 도구입니다.</p>
+<p>이 실습의 명령은 모두 <strong>서버 터미널</strong>, 즉 실습 2에서 연 오른쪽 터미널에서 입력합니다. 마지막 3단계만 Claude Code 터미널에서 합니다.</p>
+<ol type="1">
+<li>Claude Code를 각자 설치합니다. 서버에 미리 설치되어 있지 않고, 본인 계정 안에 자기 몫을 설치하는 방식입니다(관리자 권한 없이 본인 홈에 설치됩니다). 다음 한 줄을 실행합니다.</li>
+</ol>
+<p><strong>[서버 터미널]</strong></p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>   <span class="ex">curl</span> <span class="at">-fsSL</span> https://claude.ai/install.sh <span class="kw">|</span> <span class="fu">bash</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>설치가 끝나면 터미널을 새로 열어야 설치된 명령이 인식됩니다. VS Code에서는 터미널 오른쪽 위의 휴지통 아이콘으로 터미널을 닫고 Terminal &gt; New Terminal로 다시 엽니다(분할이 풀렸으면 5번 분할 아이콘으로 다시 두 개로 만듭니다). PowerShell 창으로 진행 중이면 창을 닫고 다시 접속합니다. 새 터미널에서 버전을 확인합니다.</p>
+<p><strong>[서버 터미널]</strong></p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>   <span class="ex">claude</span> <span class="at">--version</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>버전 번호가 나오면 설치된 것입니다. 만약 진행이 막히면 <a href="https://code.claude.com/docs/en/setup">공식 설치 문서</a>의 안내를 따릅니다. - <strong>[확인 6]</strong> <code>claude --version</code>의 버전 출력을 확인하였다. 2. 이 과목에서 Claude Code는 개인 계정 로그인이 아니라 학과가 학생별로 발급한 API 키로 인증합니다. 각자의 키는 텍스트 파일(.txt)로 각자 홈 폴더에 미리 들어 있습니다. 파일 이름은 학생마다 다르지만, 홈 폴더에 있는 txt 파일은 이것 하나뿐입니다. 그래서 다음 명령으로 열 수 있습니다. <code>*.txt</code>는 이름이 무엇이든 txt로 끝나는 파일 전부를 가리키는 표기입니다.</p>
+<p><strong>[서버 터미널]</strong></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ls</span> ~</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">cat</span> ~/<span class="pp">*</span>.txt</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>결과는 다음과 같은 형태입니다. txt 파일의 이름은 사람마다 다릅니다.</p>
+<pre class="text"><code>   README.md   내키이름.txt
+   sk-ant-**********************</code></pre>
+<p>화면에 나온 긴 문자열이 내 API 키입니다. 마우스로 드래그해 복사합니다. 다음 두 줄로 키를 등록합니다. <code>발급키</code> 자리에 복사한 키를 붙여 넣는데, 붙여넣기는 VS Code 통합 터미널에서는 <code>Ctrl + V</code>, PowerShell 창에서는 마우스 오른쪽 클릭입니다. 한 줄씩 입력합니다.</p>
+<p><strong>[서버 터미널]</strong></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>   <span class="bu">echo</span> <span class="st">'export ANTHROPIC_API_KEY=발급키'</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>   <span class="bu">source</span> ~/.bashrc</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>이 명령은 키를 <strong>환경변수</strong>(프로그램들이 공통으로 읽는 이름-값 저장소)에 등록합니다. 실습 1에서 쓴 <code>&gt;&gt;</code>가 여기 다시 나옵니다. <code>.bashrc</code>는 터미널을 열 때마다 자동으로 읽히는 설정 파일이고, 거기에 한 줄을 덧붙이는 것입니다. <code>source</code>는 그 파일을 지금 바로 한 번 읽으라는 명령입니다. 등록은 최초 1회면 됩니다. 제대로 들어갔는지는 앞 여덟 글자만 확인합니다. 키 전체를 화면에 띄우지 않기 위해서입니다.</p>
+<p><strong>[서버 터미널]</strong></p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>   <span class="bu">echo</span> <span class="va">${ANTHROPIC_API_KEY</span><span class="op">:</span><span class="dv">0</span><span class="op">:</span><span class="dv">8</span><span class="va">}</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>   sk-ant-a</code></pre>
+<p>API 키는 비밀번호와 같아서 타인과 공유하거나 코드·저장소에 적지 않습니다. (2장의 사례 3이 이걸 지키지 않아 생긴 일입니다.) 3. <strong>Claude Code 터미널</strong>으로 옮겨서 <code>claude</code>를 입력해 Claude Code에 접속합니다. 여기서부터는 리눅스 명령이 아니라 Claude Code 문법을 씁니다. 환경을 보는 명령 두 개만 쳐 봅니다. <code>/status</code>는 지금 세션의 상태(인증 방식, 작업 폴더, 모델)를 보여 주고, <code>/model</code>은 현재 모델을 보여 줍니다. 모델이 Haiku로 표시되는지 봅니다. 수업은 비용 정책에 따라 Haiku(Claude의 소형·저비용 등급)를 씁니다. 접속 가이드에서 <code>/model</code>로 Haiku를 기본값으로 저장해 두었으므로 재접속해도 유지되며, Haiku가 아니면 <code>/model</code>에서 다시 선택합니다. 확인했으면 <code>/exit</code>로 나옵니다. 그러면 다시 리눅스 터미널로 돌아옵니다. <em>(화면 캡처 삽입 예정: Claude Code 초기 화면과 /status 출력)</em></p>
+<p><strong>[Claude Code 안]</strong></p>
+<pre class="text"><code>   &gt; /status
+   &gt; /model
+   &gt; /exit</code></pre>
+<ul>
+<li><strong>[확인 7]</strong> Claude Code에 진입해 <code>/status</code>와 <code>/model</code>로 환경을 확인하였다.</li>
+</ul>
+<p><strong>문제 해결.</strong> 키를 등록했는데 인증이 안 되면 서버 터미널에서 <code>echo ${ANTHROPIC_API_KEY:0:8}</code>로 키가 들어갔는지 봅니다. 앞 여덟 글자만 확인하는 이유는 키 전체가 화면이나 기록에 남지 않게 하기 위해서입니다. 아무것도 나오지 않으면 등록이 안 된 것이므로 2단계를 다시 합니다. <code>claude</code>를 실행했을 때 로그인 방법을 고르는 화면이 나오면 키 등록이 빠진 것입니다. Go back으로 나가 2단계부터 다시 합니다. 첫 실행에서는 승인 화면이 이어집니다(Yes → Security notes에서 Enter → 폴더 신뢰 Yes). 기본 모델은 가장 비싼 Opus이므로 그대로 Enter 치지 말고 <code>/model</code>에서 Haiku를 고른 뒤 <code>/status</code>로 확인합니다. Claude Code의 동작이 이상하면 Claude Code 안에서 <code>/doctor</code>를 실행해 진단합니다.</p>
+</section>
+<section id="수업-운영-규칙" class="level2">
+<h2 class="anchored" data-anchor-id="수업-운영-규칙">7. 수업 운영 규칙</h2>
+<p>한 학기 규칙은 네 가지입니다. AI가 준 것을 내 것으로 만들기 위한 장치이고, 시험 등 세부 운영 방식은 진행 상황을 보며 공지합니다.</p>
+<p><strong>규칙 1. 공식 문서 수시 참조.</strong> 이 과목의 공식 문서는 Claude Code 공식 문서 두 편입니다. <a href="https://code.claude.com/docs/en/how-claude-code-works">How Claude Code works</a>와 <a href="https://code.claude.com/docs/en/features-overview">Extend Claude Code</a>가 강의안의 기반입니다. 수업은 이 강의안으로 진행하고, 더 깊이 알고 싶으면 이 두 문서에서 직접 찾아 읽습니다.</p>
+<p><strong>규칙 2. AI가 내 팀원.</strong> 실습과 정리 활동은 개인 단위입니다. 여느 과목의 조별 프로젝트에서 팀원이 하던 일(검토, 반론, 팀 프로그래밍)은 AI에게 맡깁니다. AI는 도구이면서 조원입니다. 3장 보론에서 본 다섯 역량(풀스택·데이터·아키텍처·안전성·운영)을 갖춘 AI 팀을 만들어 보세요. (후반부에 검토와 조사를 전담하는 보조 AI라는 부품으로 이 “조원”의 실체를 소개합니다.)</p>
+<p><strong>규칙 3. AI 결과를 설명할 수 있을 것.</strong> AI 사용은 전면 허용이고, 권장입니다. 대신 <strong>AI가 준 것을 그대로 내지 않습니다.</strong> 납득할 때까지 다듬고, 자기 언어로 다시 쓰고, 내가 설명할 수 있는 상태로 만들어서 냅니다.</p>
+<p><strong>규칙 4. 결과물은 3종 세트로.</strong> 이 과목은 만든 것을 세 가지로 봅니다. (1) 산출물: 동작하는 코드. (2) 검증 코드: 그 동작을 증명하는 테스트. (3) 의도 기록: 무엇을 만들려 했고, AI에게 무엇을 시켰고, 무엇을 직접 확인했는지 적은 문서. 비중은 (2)와 (3)에 있습니다. AI가 코드를 만드는 시대에는 생산량이 아니라 검증량이 실력이고, 발표에서 자기 제출물을 설명하지 못하면 감점입니다. 남에게 설명할 수 있으면 내 것이 된 것입니다.</p>
+<p><strong>개인 프로젝트.</strong> 학기 중에 배운 것을 자기 프로젝트에 적용해 보는 활동을 운영할 수 있습니다. 운영 여부와 방식은 진행 상황을 보고 이후에 공지합니다. 지금 준비할 것은 없습니다.</p>
+</section>
+<section id="당일-제출물" class="level2">
+<h2 class="anchored" data-anchor-id="당일-제출물">8. 당일 제출물</h2>
+<p>수업 종료 시까지 서버의 개인 폴더에 <code>README.md</code> 하나가 있으면 제출 완료입니다. 별도 업로드는 없습니다. 지난 시간에 만든 <code>README.md</code>가 있어도 오늘 아래 두 줄로 다시 만듭니다. 편집기 없이 명령만으로 만들며, <code>[아이디@실습서버 ~]$</code> 뒤부터 입력합니다. 이름과 목표는 자기 것으로 바꿉니다.</p>
+<p><strong>[서버 터미널]</strong></p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>   <span class="bu">echo</span> <span class="st">"이름: 홍길동"</span> <span class="op">&gt;</span> README.md</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>   <span class="bu">echo</span> <span class="st">"학기 목표: 한 줄"</span> <span class="op">&gt;&gt;</span> README.md</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">cat</span> README.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>   이름: 홍길동
+   학기 목표: 한 줄</code></pre>
+<p><code>&gt;</code>는 새로 만들어 덮어쓰기, <code>&gt;&gt;</code>는 뒤에 덧붙이기입니다. <code>&gt;</code>를 다시 쓰면 기존 내용이 전부 지워집니다. <code>cat</code>은 파일 내용을 화면에 보여 주는 명령입니다. VS Code에서는 더 간단합니다. Remote-SSH로 연결돼 있으면 왼쪽 탐색기에서 개인 폴더를 열고, ‘새 파일’ 아이콘을 누르고, 이름을 <code>README.md</code>로 입력하고, 내용을 쓴 뒤 <code>Ctrl+S</code>로 저장하면 끝입니다. 둘 중 편한 방법 하나면 되고, 어느 쪽이든 결과는 같은 <code>README.md</code> 파일입니다.</p>
+<p>최종 확인입니다. 개인 폴더에 파일이 있으면 제출로 인정됩니다.</p>
+<p><strong>[서버 터미널]</strong></p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>   <span class="bu">cd</span> ~</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ls</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">cat</span> README.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>   README.md  내키이름.txt
+   이름: 홍길동
+   학기 목표: 한 줄</code></pre>
+<p>이번 주 제출물은 이 하나입니다. <strong>바로 다음 정리 활동에서 만드는 <code>week01</code> 폴더와 그 안의 결과물은 제출 대상이 아닙니다.</strong> 오늘 갖춘 환경이 동작하는지 확인하는 활동입니다. 접속 가이드의 [확인 1]~[확인 7]은 수업 중에 화면으로 확인했다면 지금 별도로 할 일이 없고, [확인 8]~[확인 9]는 바로 다음 정리 활동에서 합니다.</p>
+<hr>
+</section>
+<section id="정리-활동-내가-만든-첫-프로그램" class="level2">
+<h2 class="anchored" data-anchor-id="정리-활동-내가-만든-첫-프로그램">9. 정리 활동: 내가 만든 첫 프로그램</h2>
+<p>이번 주 과제는 없습니다. 대신 수업을 마치기 전 20분 동안, 지난 시간에 갖춘 환경을 실제로 한 번 써 봅니다. 1장에서 웹 도구에 말로 시켰던 것을, 이번에는 내 서버의 Claude Code에 시켜 봅니다. 환경이 실제로 동작하는지 확인하는 것이 목적이므로 결과물의 완성도는 보지 않습니다. 정리 활동은 네 부분입니다. 시키기(1~3번), 실행하고 관찰하기(4~6번), 두 방식 비교(정리 활동 3), 왜 중요한가(정리 활동 4).</p>
+<ol type="1">
+<li>이번 주 폴더를 받아 와 그 안으로 들어갑니다. Claude Code는 실행한 폴더를 작업 폴더로 삼기 때문에 순서가 중요합니다.</li>
+</ol>
+<p><strong>[서버 터미널]</strong></p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>   <span class="bu">cd</span> ~</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">cp</span> <span class="at">-r</span> /home/공용계정/week01 ~/</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ls</span> week01</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>   <span class="bu">cd</span> week01</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>cd</code>는 폴더 이동, <code>cd ~</code>는 개인 폴더로 가기, <code>cp -r</code>는 폴더를 통째로 복사하라는 뜻입니다. 두 번째 줄은 공용 배포 폴더의 이번 주 폴더를 강의안까지 통째로 받아 오는 것으로, 매주 첫 실습에서 같은 방식으로 받습니다. 받아 둔 강의안은 VS Code 탐색기에서 클릭해 열고 <code>Ctrl+Shift+V</code>를 누르면 제목·표·코드 블록이 정리된 미리보기 탭이 열립니다. 별도 설치 없이 VS Code에 들어 있는 기능이며, 터미널이 아니라 편집기에서 누르는 단축키입니다. 2. Claude Code 터미널에서도 같은 폴더로 옮긴 뒤 <code>claude</code>를 실행합니다.</p>
+<p><strong>[Claude Code 터미널]</strong></p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>   <span class="bu">cd</span> ~/week01</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>   <span class="ex">claude</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="1">
+<li>만들고 싶은 것을 말로 시킵니다. 예시를 그대로 써도 좋지만 최대한 자기 식으로 바꿉니다. 내가 당장 필요한 걸 절실하게 만들어야 실력이 늡니다.</li>
+</ol>
+<pre class="text"><code>   숫자 맞히기 게임을 만들어줘. 1부터 100 사이의 숫자를 맞히면 축하해 주는 파이썬 스크립트로.</code></pre>
+<pre class="text"><code>   오늘 날짜와 요일을 예쁘게 출력하는 파이썬 스크립트를 만들어줘.</code></pre>
+<ol start="4" type="1">
+<li>만들어진 파일을 열어 한 번 읽어 봅니다. VS Code를 쓰고 있으면 왼쪽 탐색기에서 <code>week01</code> 폴더를 펼쳐 파일을 클릭하면 됩니다. 터미널만 쓰고 있으면 서버 터미널에서 <code>ls</code>로 파일 이름을 확인하고 <code>cat 파일이름</code>으로 내용을 봅니다.</li>
+<li>실행해 봅니다. 서버 터미널에서 <code>python3 파일이름</code>을 입력하거나, Claude Code에게 “실행해 줘”라고 시켜도 됩니다. 고치고 싶은 것이 있으면 말로 고쳐 봅니다. 화면은 대략 다음과 같습니다(AI가 만든 프로그램마다 파일 이름과 문구는 다릅니다).</li>
+</ol>
+<p><strong>[서버 터미널]</strong></p>
+<pre class="text"><code>   $ ls
+   guess_number.py  강의안_01주차.md  슬라이드_01주차.pdf
+   $ python3 guess_number.py            # 실제 파일 이름을 넣으세요
+   1~100 사이의 숫자를 맞혀 보세요!
+   50                              ← 내가 넣은 수
+   더 큰 수입니다.</code></pre>
+<ol start="6" type="1">
+<li>세 가지를 생각해 봅니다. ① 내가 말하지 않았는데 AI가 스스로 정한 것은 무엇인가. ② 이 코드가 맞는지 확인할 방법이 있는가. ③ 요구를 하나 더 붙이려면 어디를 고쳐야 하는가. 코드가 이해되지 않아도 괜찮습니다. 다음 주 첫머리에 이 세 가지를 함께 이야기합니다.</li>
+</ol>
+<p>지금은 프로그램이 작아서 대충 시켜도 잘 돌아갑니다. 파일 수십 개, 요구 수백 개짜리 회사 프로젝트에서는 이 방식이 막힙니다. 그래서 정리 활동 3이 있습니다.</p>
+<ul>
+<li><strong>[확인 8]</strong> <code>week01</code> 폴더에 AI가 만든 파일이 있고, 한 번 실행해 보았다.</li>
+</ul>
+<section id="정리-활동-3-같은-소재-두-방식으로" class="level3">
+<h3 class="anchored" data-anchor-id="정리-활동-3-같은-소재-두-방식으로">정리 활동 3: 같은 소재, 두 방식으로</h3>
+<p>앞의 활동은 지시만 던졌습니다(바이브 코딩). 같은 숫자 게임을, 이번에는 문서가 남는 방식으로 다시 시킵니다. 3장에서 말한 에이전틱 방식, 요구사항 → 테스트 → 통과입니다. 세 프롬프트를 한 번에 하나씩 순서대로 보냅니다. 끝나면 다음 프롬프트입니다.</p>
+<p><strong>[Claude Code 안]</strong></p>
+<pre class="text"><code>   요구사항을 먼저 REQUIREMENTS.md에 적어줘.
+   (1) 1~100 중 정답을 무작위로 고른다
+   (2) 입력이 정답보다 작으면 "더 큰 수입니다"를 출력한다
+   (3) 숫자가 아닌 입력은 다시 묻는다</code></pre>
+<pre class="text"><code>   이 요구사항을 검사하는 pytest 테스트를 test_guess.py로 만들어줘. pytest가 없으면 pip install pytest부터 해줘. 아직 코드는 쓰지 마.</code></pre>
+<pre class="text"><code>   테스트가 통과할 때까지 guess.py를 고치고, 마지막에 테스트 실행 결과를 보여줘.</code></pre>
+<p>끝나면 앞의 ①②③을 이 방식으로 다시 확인합니다. ① 내가 말하지 않은 것 찾기: <code>REQUIREMENTS.md</code>를 열어 AI가 스스로 정한 항목에 표시합니다. ② 맞는지 확인하기: 테스트 결과가 내 눈 대신 답합니다. 몇 개 통과했나요? ③ 요구 하나 더 붙이기: <code>REQUIREMENTS.md</code>에 새 요구를 한 줄 적습니다. 예: “(4) 시도 횟수를 세어 마지막에 알려준다”. 그리고 2, 3번 프롬프트를 다시 보냅니다.</p>
+<p><code>ls</code>로 두 방식의 결과를 비교합니다. 바이브 쪽에는 결과물 파일 하나가, 에이전틱 쪽에는 요구사항·테스트·코드가 함께 남습니다. 7장에서 말한 3종 세트입니다. 바이브는 “돌아간다”까지 가고, 에이전틱은 “무엇이 맞는지 정해 놓고 그것을 확인한다”까지 갑니다. 다음 주 EARS는 이 요구사항을 쓰는 형식입니다.</p>
+<ul>
+<li><strong>[확인 9]</strong> 요구사항·테스트·코드 세 파일이 생겼고, 테스트가 통과했다.</li>
+</ul>
+</section>
+<section id="정리-활동-3-1-선택-내-소재로-프롬프트는-ai에게" class="level3">
+<h3 class="anchored" data-anchor-id="정리-활동-3-1-선택-내-소재로-프롬프트는-ai에게">정리 활동 3-1 (선택): 내 소재로, 프롬프트는 AI에게</h3>
+<p>숫자 게임 대신 내 것을 만들었다면 3종 프롬프트를 직접 쓸 필요가 없습니다. 프롬프트를 만드는 일도 AI에게 시킵니다. 이 방식은 앞으로 모든 주차의 실습에서 같습니다. 실습 소재를 내 것으로 바꿀 때는 “바로 만들지 말고, 내가 순서대로 쓸 프롬프트를 먼저 만들어줘”라고 시킵니다.</p>
+<ol type="1">
+<li>내 소재를 한 문장으로 씁니다. 아까 말로 시켰던 그것입니다. 없으면 예시에서 골라도 됩니다. 전기기능사 기출문제 랜덤 퀴즈, 알바 급여·주휴수당 계산기, 채용 공고 마감일 D-day 알리미. 이것은 Claude에 보내는 문장이 아니라 아이디어입니다.</li>
+<li>다음 프롬프트를 첫 줄만 내 소재로 바꿔서 보냅니다. AI가 내 소재용 3종 프롬프트를 만들어 줍니다.</li>
+</ol>
+<p><strong>[Claude Code 안]</strong></p>
+<pre class="text"><code>   "알바 급여·주휴수당 계산기"를 만들려고 해. 바로 만들지 말고, 내가 순서대로 쓸 프롬프트 3개를 먼저 만들어줘.
+   1) 요구사항을 REQUIREMENTS.md에 적게 하는 프롬프트
+   2) 요구사항을 검사하는 pytest 테스트를 만들게 하는 프롬프트
+   3) 테스트 통과까지 코드를 고치고 결과를 보여주게 하는 프롬프트</code></pre>
+<ol start="3" type="1">
+<li>받은 3개를 순서대로 보냅니다. 정리 활동 3과 같은 흐름입니다. 요구사항 → 테스트 → 통과.</li>
+<li>정리 활동 3의 ①②③을 똑같이 확인합니다. 말하지 않은 것, 테스트 통과, 요구 하나 추가.</li>
+</ol>
+</section>
+<section id="정리-활동-4-왜-중요한가" class="level3">
+<h3 class="anchored" data-anchor-id="정리-활동-4-왜-중요한가">정리 활동 4: 왜 중요한가</h3>
+<p>오늘은 두 방식 모두 실행되는 게임이 나왔습니다. 차이는 결과물이 아니라 요청 방식과 남는 것입니다. 1번(바이브)은 “산출물” 요청입니다. “게임을 만들어줘”처럼 결과물을 바로 달라는 요청이고, 말하지 않은 세부(힌트 문구, 잘못된 입력 처리 등)는 AI가 임의로 정합니다. 2번(에이전틱)은 “프로세스” 요청입니다. 같은 산출물을 요구사항 → 검증 기준(테스트) → 구현 순서로, 매 단계 확인 가능하게 만들어 달라는 요청입니다.</p>
+<p>결정적 차이는 회귀를 자동으로 잡는가입니다. 코드를 다시 고칠 때 기존 동작이 깨졌는지, 2번은 pytest 한 번으로 확인됩니다. 실제로 해 보면 “더 큰 숫자입니다” 같은 안내 문구가 요구사항과 어긋난 것도 테스트를 만들고서야 드러납니다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>1번 · 산출물 요청(바이브): 말 → 결과물</th>
+<th>2번 · 프로세스 요청(에이전틱): 요구사항 → 테스트 → 구현</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>요구사항</td>
+<td>암묵적. 세부 동작을 AI가 임의로 정합니다</td>
+<td>명시적. <code>REQUIREMENTS.md</code>가 기준점으로 남습니다</td>
+</tr>
+<tr class="even">
+<td>검증</td>
+<td>수단 없음. 사람이 직접 실행해 눈으로 확인합니다</td>
+<td>자동. 테스트 통과 = 요구사항 충족이 코드로 증명됩니다</td>
+</tr>
+<tr class="odd">
+<td>회귀 방지</td>
+<td>불가. 수정 시 깨진 곳을 자동으로 못 잡습니다</td>
+<td>수정 후 pytest 한 번으로 기존 동작을 확인합니다</td>
+</tr>
+<tr class="even">
+<td>완료 기준</td>
+<td>안 남음. 의도가 문서·코드로 남지 않습니다</td>
+<td>모호함이 일찍 드러남. 테스트로 옮기며 동작이 구체화됩니다</td>
+</tr>
+<tr class="odd">
+<td>규모</td>
+<td>클수록 위험. 임의 세부가 쌓여 복구 비용이 커집니다</td>
+<td>단계 분리. 요구사항·테스트·구현마다 리뷰 기회가 있습니다</td>
+</tr>
+</tbody>
+</table>
+<p>기억할 것: 결과물이 같아도 남는 것이 다릅니다. 요구사항과 테스트가 남으면, 다음 수정에서 깨진 곳을 자동으로 잡아냅니다.</p>
+<hr>
+</section>
+</section>
+<section id="마무리와-다음-주차-안내" class="level2">
+<h2 class="anchored" data-anchor-id="마무리와-다음-주차-안내">마무리와 다음 주차 안내</h2>
+<p>이 주차에서는 시작 전에 오늘 자료를 내 PC로 받고 서버의 두 폴더를 구분했으며(0장), 말로 소프트웨어를 직접 만들어 보고(1장), 그렇게 만든 것이 실제 서비스에서 낸 사고들과 그 착각을 파는 강의 시장을 확인했으며(2장과 보론), 이 과목이 개발방법론으로 AI를 통제하는 에이전틱 코딩을 가르친다는 방향과 현업이 요구하는 다섯 역량을 보았습니다(3장과 보론). 접속 가이드에서 갖춘 환경(4~6장)을 점검하고, 수업 운영 규칙을 확인했습니다(7장). 당일 제출물은 <code>README.md</code> 하나이고(8장), 마지막 20분에는 그 환경으로 첫 프로그램을 만들고, 같은 소재를 요구사항과 테스트를 붙여 다시 만들어 바이브 코딩과 에이전틱 코딩의 결과를 나란히 비교했습니다(9장).</p>
+<p>오늘 배운 것을 네 줄로 줄이면 이렇습니다. 말로 만들면 빠르다, 그리고 아무도 코드를 읽지 않았다. 읽지 않은 코드가 사고를 낸다. 유출, 삭제, 공격, 전부 검증이 빠져서 생긴 일이다. 같은 도구, 다른 방식. 요구사항을 쓰고 검증을 붙이면 에이전틱 코딩이다. 제1 규칙, AI가 준 것을 그대로 내지 않는다.</p>
+<p>다음 주차의 주제는 리버스 엔지니어링입니다. 과목의 프레임인 AI 활용법 진화 로드맵을 개관하고, Claude Code가 일하는 방식(에이전트 루프)을 살펴본 뒤, 완성된 소프트웨어를 Claude Code로 분석해 요구사항 명세서를 역추출하고 그 명세만으로 재생성이 되는지 실험합니다. 재료는 자기가 만들었던 프로젝트나 배포 예제 중에서 고르면 됩니다. 요구사항을 정형화하는 EARS(Easy Approach to Requirements Syntax) 형식과 작업 분해·완료 조건 명시도 함께 다룹니다. EARS는 요구사항을 정해진 키워드로 모호함 없이 쓰는 표준 문장 패턴이고, 다음 주에는 이 형식을 참고해 명세 문장을 씁니다(문장마다 조건과 행위가 들어 있는지 확인하는 수준이면 충분합니다). 미리 보면 이렇습니다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>유형</th>
+<th>키워드</th>
+<th>예문</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>항상</td>
+<td>SHALL</td>
+<td>The system SHALL log all user login attempts. — 시스템은 모든 로그인 시도를 기록해야 한다.</td>
+</tr>
+<tr class="even">
+<td>사건</td>
+<td>WHEN</td>
+<td>WHEN the user clicks the submit button, the system SHALL save the data. — 제출을 누르면 데이터를 저장해야 한다.</td>
+</tr>
+<tr class="odd">
+<td>상태</td>
+<td>WHILE</td>
+<td>WHILE the system is in maintenance mode, the system SHALL display a warning banner. — 유지보수 모드인 동안 경고 배너를 표시해야 한다.</td>
+</tr>
+<tr class="even">
+<td>예외</td>
+<td>IF / THEN</td>
+<td>IF login fails 5 times in a row, THEN the system SHALL lock the account for 10 minutes. — 로그인이 5회 연속 실패하면 계정을 10분간 잠가야 한다.</td>
+</tr>
+<tr class="odd">
+<td>선택</td>
+<td>WHERE</td>
+<td>WHERE the GPS feature is enabled, the system SHALL track the user location. — GPS 기능이 있는 경우 위치를 추적해야 한다.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="부록-ai를-잘-쓰기-위한-제0원칙" class="level2">
+<h2 class="anchored" data-anchor-id="부록-ai를-잘-쓰기-위한-제0원칙">부록: AI를 잘 쓰기 위한 제0원칙</h2>
+<p>구양수의 삼다(三多)를 빌립니다.</p>
+<ul>
+<li><strong>다독(多讀).</strong> AI 결과물을 그대로 쓰지 말고, 반드시 직접 확인·검증합니다. 규모가 커지면 검증을 하네스와 루프로 자동화합니다.</li>
+<li><strong>다작(多作).</strong> AI에게 거듭 질문하고 재요청하며, AI가 만든 결과물을 더 나은 버전으로 다듬어 갑니다.</li>
+<li><strong>다상량(多商量).</strong> 어떻게 지시하고, 어떻게 확인하고, 어떤 AI들을 어떤 프로세스에 활용하는 것이 효율적일지 계속 *고칩니다.</li>
+</ul>
+<p>*다상량은 “많이 생각하라”는 뜻으로 알려져 있지만 본의는 “많이 고치라”는 뜻입니다(최일영, 2017, 歐陽脩의 ‘三多’ 本義 推定 — ’商量多’를 중심으로, 어문연구 45(4), 325-345). 중국어에서 商量은 의논·협상·조율의 뜻입니다. 생각에 잠겨 있는 것보다 “끊임없이 의심하고 고치는 것”이 다상량입니다.</p>
+<p>읽기, 쓰기, 생각하기는 인간이 해야 할 일입니다.</p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> 맨 위로</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "복사완료!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "복사완료!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../docs/subjects/llm-ai/index.html" class="pagination-link" aria-label="LLM AI 개발">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">LLM AI 개발</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../docs/subjects/llm-ai/LLM_02주차_학생용.html" class="pagination-link" aria-label="[2주차] 리버스 엔지니어링과 SDD">
+        <span class="nav-page-text">[2주차] 리버스 엔지니어링과 SDD</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
