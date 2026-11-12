@@ -75,7 +75,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-503787d7c3bf2380b4987019955d55ec.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-6780c10d4891196cfcf65c8b51969de7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -431,7 +431,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="검증-키트evalseval_runner.py-내려받기" class="level3">
 <h3 class="anchored" data-anchor-id="검증-키트evalseval_runner.py-내려받기"><code>검증 키트/evals/eval_runner.py</code> <a href="../../../assets/code/LLM_09주차/검증 키트/evals/eval_runner.py" class="file-download" download="">내려받기</a></h3>
 <div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># -*- coding: utf-8 -*-</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">"""평가 러너 (week11 실습용, 완성되어 있음. 실행하며 출력을 읽는 용도).</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">"""평가 러너 (week09 실습용, 완성되어 있음. 실행하며 출력을 읽는 용도).</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">같은 챗봇 응답 묶음을 두 방식으로 채점하여 비교합니다.</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">    ① 규칙 채점: 정답셋의 키워드가 응답에 들어 있는가 (빠르고 싸지만 융통성 없음)</span></span>
@@ -510,7 +510,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="자동화-키트deploydeploy.sh-내려받기" class="level3">
 <h3 class="anchored" data-anchor-id="자동화-키트deploydeploy.sh-내려받기"><code>자동화 키트/deploy/deploy.sh</code> <a href="../../../assets/code/LLM_09주차/자동화 키트/deploy/deploy.sh" class="file-download" download="">내려받기</a></h3>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 배포 파이프라인 (week11 실습용): 점검 통과일 때만 배포한다.</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 배포 파이프라인 (week09 실습용): 점검 통과일 때만 배포한다.</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 사용법: bash deploy.sh 배포폴더</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 예:     bash deploy.sh site</span></span>
@@ -539,7 +539,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="자동화-키트pipelinepipeline.sh-내려받기" class="level3">
 <h3 class="anchored" data-anchor-id="자동화-키트pipelinepipeline.sh-내려받기"><code>자동화 키트/pipeline/pipeline.sh</code> <a href="../../../assets/code/LLM_09주차/자동화 키트/pipeline/pipeline.sh" class="file-download" download="">내려받기</a></h3>
 <div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 수집·요약·통지 파이프라인 (week11 실습용 골격)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 수집·요약·통지 파이프라인 (week09 실습용 골격)</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 구성: 로그 파일(수집) → claude -p(요약) → 요약.md(통지 대용 기록)</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 사용법: bash pipeline.sh</span></span>
@@ -558,7 +558,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="자동화-키트retryretry_loop.py-내려받기" class="level3">
 <h3 class="anchored" data-anchor-id="자동화-키트retryretry_loop.py-내려받기"><code>자동화 키트/retry/retry_loop.py</code> <a href="../../../assets/code/LLM_09주차/자동화 키트/retry/retry_loop.py" class="file-download" download="">내려받기</a></h3>
 <div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># -*- coding: utf-8 -*-</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">"""재시도 상한(MAX_RETRIES) 안전장치 (week11 실습용, 완성되어 있음).</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">"""재시도 상한(MAX_RETRIES) 안전장치 (week09 실습용, 완성되어 있음).</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">자동 반복 작업의 기본 안전장치입니다. 생성과 검증을 반복하되,</span></span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">상한을 넘으면 무한 반복 대신 실패를 보고하고 사람에게 넘깁니다.</span></span>
@@ -662,9 +662,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="문서와-그-밖의-파일">문서와 그 밖의 파일</h2>
 <section id="검증-키트readme.md-내려받기" class="level3">
 <h3 class="anchored" data-anchor-id="검증-키트readme.md-내려받기"><code>검증 키트/README.md</code> <a href="../../../assets/code/LLM_09주차/검증 키트/README.md" class="file-download" download="">내려받기</a></h3>
-<div class="sourceCode" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># 11주차 검증 키트</span></span>
+<div class="sourceCode" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># 9주차 검증 키트</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>검증과 평가(Evals), 검토자 서브에이전트 실습용 키트입니다. 개인 폴더의 <span class="in">`week11/`</span> 아래에 복사하여 사용합니다. <span class="in">`reviewer/`</span>와 <span class="in">`deploy-check/`</span>의 구도는 참고 서적 《하네스 엔지니어링 with 클로드 코드》 공식 예제 저장소(https://github.com/revfactory/harness-engineering-with-cc, Apache 2.0)의 ex-04-01(읽기 전용 검토자), ex-11-06(의도 버그 검증)을 수업용으로 각색한 것입니다.</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>검증과 평가(Evals), 검토자 서브에이전트 실습용 키트입니다. 개인 폴더의 <span class="in">`week09/`</span> 아래에 복사하여 사용합니다. <span class="in">`reviewer/`</span>와 <span class="in">`deploy-check/`</span>의 구도는 참고 서적 《하네스 엔지니어링 with 클로드 코드》 공식 예제 저장소(https://github.com/revfactory/harness-engineering-with-cc, Apache 2.0)의 ex-04-01(읽기 전용 검토자), ex-11-06(의도 버그 검증)을 수업용으로 각색한 것입니다.</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## 구성</span></span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
@@ -683,7 +683,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> evals/eval_runner.py               <span class="co"># 규칙 + Judge 비교</span></span>
 <span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>검토자 정의 파일은 골격을 참고해 <span class="in">`week11/.claude/agents/deploy-checker.md`</span>에 직접 작성합니다. 절차는 강의안을 따릅니다.</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>검토자 정의 파일은 골격을 참고해 <span class="in">`week09/.claude/agents/deploy-checker.md`</span>에 직접 작성합니다. 절차는 강의안을 따릅니다.</span>
 <span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="fu">## 주의</span></span>
 <span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a></span>
@@ -730,9 +730,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="자동화-키트readme.md-내려받기" class="level3">
 <h3 class="anchored" data-anchor-id="자동화-키트readme.md-내려받기"><code>자동화 키트/README.md</code> <a href="../../../assets/code/LLM_09주차/자동화 키트/README.md" class="file-download" download="">내려받기</a></h3>
-<div class="sourceCode" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># 11주차 자동화 키트</span></span>
+<div class="sourceCode" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># 9주차 자동화 키트</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>업무 자동화와 배포 파이프라인 실습용 키트입니다. 개인 폴더의 <span class="in">`week11/`</span> 아래에 복사하여 사용합니다. <span class="in">`retry/retry_loop.py`</span>는 참고 서적 《하네스 엔지니어링 with 클로드 코드》 공식 예제 저장소(https://github.com/revfactory/harness-engineering-with-cc, Apache 2.0)의 ex-08-15를 수업용으로 각색한 것입니다.</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>업무 자동화와 배포 파이프라인 실습용 키트입니다. 개인 폴더의 <span class="in">`week09/`</span> 아래에 복사하여 사용합니다. <span class="in">`retry/retry_loop.py`</span>는 참고 서적 《하네스 엔지니어링 with 클로드 코드》 공식 예제 저장소(https://github.com/revfactory/harness-engineering-with-cc, Apache 2.0)의 ex-08-15를 수업용으로 각색한 것입니다.</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## 구성</span></span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>

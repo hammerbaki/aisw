@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""ReAct 루프 골격 (week10 실습용).
+"""ReAct 루프 골격 (week08 실습용).
 
 생각(Thought) → 행동(Action) → 관찰(Observation)을 반복하는 에이전트 루프를
 클린 아키텍처 골격(LLMServiceInterface + 어댑터 주입) 위에 직접 구현합니다.

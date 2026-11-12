@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-503787d7c3bf2380b4987019955d55ec.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-6780c10d4891196cfcf65c8b51969de7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -374,7 +374,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="reactreact_agent.py-내려받기" class="level3">
 <h3 class="anchored" data-anchor-id="reactreact_agent.py-내려받기"><code>react/react_agent.py</code> <a href="../../../assets/code/LLM_08주차/react/react_agent.py" class="file-download" download="">내려받기</a></h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># -*- coding: utf-8 -*-</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">"""ReAct 루프 골격 (week10 실습용).</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">"""ReAct 루프 골격 (week08 실습용).</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">생각(Thought) → 행동(Action) → 관찰(Observation)을 반복하는 에이전트 루프를</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">클린 아키텍처 골격(LLMServiceInterface + 어댑터 주입) 위에 직접 구현합니다.</span></span>
@@ -524,7 +524,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="sdksdk_agent.py-내려받기" class="level3">
 <h3 class="anchored" data-anchor-id="sdksdk_agent.py-내려받기"><code>sdk/sdk_agent.py</code> <a href="../../../assets/code/LLM_08주차/sdk/sdk_agent.py" class="file-download" download="">내려받기</a></h3>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># -*- coding: utf-8 -*-</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">"""같은 에이전트의 Claude Agent SDK 재구현판 (week10 실습용, 완성되어 있음).</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">"""같은 에이전트의 Claude Agent SDK 재구현판 (week08 실습용, 완성되어 있음).</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">react_agent.py에서 직접 만들던 것(서식 프롬프트, 파싱, 루프, 재주입, 단계 상한)을</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">SDK가 대신합니다. 우리가 쓰는 코드는 도구 정의와 질문뿐입니다.</span></span>
@@ -601,9 +601,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="문서와-그-밖의-파일">문서와 그 밖의 파일</h2>
 <section id="readme.md-내려받기" class="level3">
 <h3 class="anchored" data-anchor-id="readme.md-내려받기"><code>README.md</code> <a href="../../../assets/code/LLM_08주차/README.md" class="file-download" download="">내려받기</a></h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># 10주차 에이전트 키트</span></span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># 8주차 에이전트 키트</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>에이전트 구현 실습용 키트입니다. 개인 폴더의 <span class="in">`week10/`</span> 아래에 복사하여 사용합니다.</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>에이전트 구현 실습용 키트입니다. 개인 폴더의 <span class="in">`week08/`</span> 아래에 복사하여 사용합니다.</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## 구성</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>

@@ -1,6 +1,6 @@
-# 11주차 자동화 키트
+# 9주차 자동화 키트
 
-업무 자동화와 배포 파이프라인 실습용 키트입니다. 개인 폴더의 `week11/` 아래에 복사하여 사용합니다. `retry/retry_loop.py`는 참고 서적 《하네스 엔지니어링 with 클로드 코드》 공식 예제 저장소(https://github.com/revfactory/harness-engineering-with-cc, Apache 2.0)의 ex-08-15를 수업용으로 각색한 것입니다.
+업무 자동화와 배포 파이프라인 실습용 키트입니다. 개인 폴더의 `week09/` 아래에 복사하여 사용합니다. `retry/retry_loop.py`는 참고 서적 《하네스 엔지니어링 with 클로드 코드》 공식 예제 저장소(https://github.com/revfactory/harness-engineering-with-cc, Apache 2.0)의 ex-08-15를 수업용으로 각색한 것입니다.
 
 ## 구성
 

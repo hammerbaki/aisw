@@ -1,6 +1,6 @@
-# 11주차 검증 키트
+# 9주차 검증 키트
 
-검증과 평가(Evals), 검토자 서브에이전트 실습용 키트입니다. 개인 폴더의 `week11/` 아래에 복사하여 사용합니다. `reviewer/`와 `deploy-check/`의 구도는 참고 서적 《하네스 엔지니어링 with 클로드 코드》 공식 예제 저장소(https://github.com/revfactory/harness-engineering-with-cc, Apache 2.0)의 ex-04-01(읽기 전용 검토자), ex-11-06(의도 버그 검증)을 수업용으로 각색한 것입니다.
+검증과 평가(Evals), 검토자 서브에이전트 실습용 키트입니다. 개인 폴더의 `week09/` 아래에 복사하여 사용합니다. `reviewer/`와 `deploy-check/`의 구도는 참고 서적 《하네스 엔지니어링 with 클로드 코드》 공식 예제 저장소(https://github.com/revfactory/harness-engineering-with-cc, Apache 2.0)의 ex-04-01(읽기 전용 검토자), ex-11-06(의도 버그 검증)을 수업용으로 각색한 것입니다.
 
 ## 구성
 
@@ -19,7 +19,7 @@ python evals/eval_runner.py --rule-only   # 규칙 채점만 (API 불필요)
 python evals/eval_runner.py               # 규칙 + Judge 비교
 ```
 
-검토자 정의 파일은 골격을 참고해 `week11/.claude/agents/deploy-checker.md`에 직접 작성합니다. 절차는 강의안을 따릅니다.
+검토자 정의 파일은 골격을 참고해 `week09/.claude/agents/deploy-checker.md`에 직접 작성합니다. 절차는 강의안을 따릅니다.
 
 ## 주의
 

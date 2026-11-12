@@ -1,5 +1,5 @@
 #!/bin/bash
-# 배포 파이프라인 (week11 실습용): 점검 통과일 때만 배포한다.
+# 배포 파이프라인 (week09 실습용): 점검 통과일 때만 배포한다.
 #
 # 사용법: bash deploy.sh 배포폴더
 # 예:     bash deploy.sh site

@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-503787d7c3bf2380b4987019955d55ec.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-6780c10d4891196cfcf65c8b51969de7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -455,7 +455,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="실습-1-mock으로-루프-완성" class="level2">
 <h2 class="anchored" data-anchor-id="실습-1-mock으로-루프-완성">2. 실습 1: Mock으로 루프 완성</h2>
-<p>배포된 10주차 에이전트 키트를 개인 폴더의 <code>week10/</code>에 복사하고 <code>실습기록.md</code>를 준비합니다. <code>react/react_agent.py</code>에는 도구 2종(부가세, 할인)과 루프의 골격이 있고, 완성할 곳은 TODO 2곳입니다.</p>
+<p>배포된 8주차 에이전트 키트를 개인 폴더의 <code>week08/</code>에 복사하고 <code>실습기록.md</code>를 준비합니다. <code>react/react_agent.py</code>에는 도구 2종(부가세, 할인)과 루프의 골격이 있고, 완성할 곳은 TODO 2곳입니다.</p>
 <ol type="1">
 <li><p>파일을 읽고 네 부품(서식 프롬프트, 파싱, 도구 실행부, 루프)이 코드의 어디에 있는지 확인합니다. 완성 전에 실행하면 어떻게 되는지 먼저 봅니다.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> react/react_agent.py mock</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
@@ -584,7 +584,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="실습-4-charter-작성" class="level2">
 <h2 class="anchored" data-anchor-id="실습-4-charter-작성">7. 실습 4: Charter 작성</h2>
-<p>키트의 <code>charter/Charter_양식.md</code>를 <code>week10/Charter.md</code>로 복사하여 작성합니다.</p>
+<p>키트의 <code>charter/Charter_양식.md</code>를 <code>week08/Charter.md</code>로 복사하여 작성합니다.</p>
 <ol type="1">
 <li>1~6절을 작성합니다. 배포 형태 절에는 실제 URL로 배포할 화면·접점과 배포하지 않을 부분을 나눠 씁니다.</li>
 <li>7절(하지 않을 것)에 범위 밖 선언 2가지를 씁니다. 예: “회원 가입과 로그인은 만들지 않는다”, “모바일 앱은 만들지 않는다”.</li>
@@ -600,11 +600,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="실습-5-ears-요구사항-착수" class="level2">
 <h2 class="anchored" data-anchor-id="실습-5-ears-요구사항-착수">9. 실습 5: EARS 요구사항 착수</h2>
-<p><code>charter/Spec_양식.md</code>를 <code>week10/Spec.md</code>로 복사하여 착수합니다.</p>
+<p><code>charter/Spec_양식.md</code>를 <code>week08/Spec.md</code>로 복사하여 착수합니다.</p>
 <ol type="1">
 <li><p>자기 프로젝트의 기능 요구사항 R1~R3을 EARS 문형으로 쓰고, 각각 검증 방법을 한 줄씩 붙입니다. 사건 구동(Event-driven) 유형과 원치 않는 동작(Unwanted behaviour) 유형을 각 1개 이상 포함합니다. (사건 구동 예: “사용자가 저장을 요청하면, 시스템은 파일 이름을 검증해야 한다” / 원치 않는 동작 예: “입력이 비어 있으면, 시스템은 저장을 거부하고 사유를 표시해야 한다”)</p></li>
 <li><p>쓴 문장을 Claude Code에 검토시킵니다.</p>
-<pre class="text"><code>@week10/Spec.md 의 R1~R3이 EARS 문형(조건과 행위의 분리)에 맞는지 검토하고, 모호한 단어가 있으면 지적하라. 고쳐 쓰지는 말라.</code></pre>
+<pre class="text"><code>@week08/Spec.md 의 R1~R3이 EARS 문형(조건과 행위의 분리)에 맞는지 검토하고, 모호한 단어가 있으면 지적하라. 고쳐 쓰지는 말라.</code></pre>
 <p>지적을 읽고 최종 문장은 자기 손으로 고칩니다.</p></li>
 <li><p>완결된 명세 실물을 참고하려면 키트의 <code>charter/참고예제_luckydraw/</code>를 엽니다. 단일 HTML 앱 하나에 붙은 명세 4종(PRD 제품 요구사항 문서, TRD 기술 요구사항 문서, REQUIREMENTS, ANALYSIS)으로, 이 과목의 Charter·Spec 2종 체계를 문서 유형별로 더 잘게 나눈 확장형입니다. REQUIREMENTS의 문장 몇 개를 EARS 문형과 대조해 보는 것이 좋은 연습이 됩니다.</p></li>
 </ol>
@@ -617,10 +617,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="당일-제출물">10. 당일 제출물</h2>
 <p>수업 종료 시점에 개인 폴더에 다음이 있어야 합니다.</p>
 <ol type="1">
-<li><code>week10/react/react_agent.py</code>: TODO 2곳 완성본 (mock 실행 통과)</li>
-<li><code>week10/실습기록.md</code>: mock 검증 기록(실습 1), 실제 실행 단계 기록과 서식 이탈 관찰(실습 2), SDK 대조 기록(실습 3)</li>
-<li><code>week10/Charter.md</code>: 1~7절과 동료 지적 1건 (실습 4)</li>
-<li><code>week10/Spec.md</code>: R1~R3과 검증 방법 (실습 5)</li>
+<li><code>week08/react/react_agent.py</code>: TODO 2곳 완성본 (mock 실행 통과)</li>
+<li><code>week08/실습기록.md</code>: mock 검증 기록(실습 1), 실제 실행 단계 기록과 서식 이탈 관찰(실습 2), SDK 대조 기록(실습 3)</li>
+<li><code>week08/Charter.md</code>: 1~7절과 동료 지적 1건 (실습 4)</li>
+<li><code>week08/Spec.md</code>: R1~R3과 검증 방법 (실습 5)</li>
 <li>[확인 1]부터 [확인 10]까지 중 수업에서 지정한 항목의 답 (실습기록.md에 포함)</li>
 </ol>
 <p>제출은 개인 폴더의 상태로 갈음합니다.</p>
@@ -628,7 +628,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="과제" class="level2">
 <h2 class="anchored" data-anchor-id="과제">11. 과제</h2>
-<p>다음 수업 전까지 <code>week10/과제/</code>에 제출합니다. 수업에서 착수한 Charter와 Spec을 완성합니다. 개인 프로젝트 주제가 아직 없는 학생은 공용 주제(학과 FAQ 챗봇의 웹 서비스화)로 같은 절차를 수행합니다.</p>
+<p>다음 수업 전까지 <code>week08/과제/</code>에 제출합니다. 수업에서 착수한 Charter와 Spec을 완성합니다. 개인 프로젝트 주제가 아직 없는 학생은 공용 주제(학과 FAQ 챗봇의 웹 서비스화)로 같은 절차를 수행합니다.</p>
 <ol type="1">
 <li><strong>문서</strong>: 완성한 <code>Charter.md</code>(동료 지적 반영분)와 <code>Spec.md</code>. Spec은 기능 요구사항 7개(R1~R7, 수업 작성분 포함)와 품질·운영 요구사항 2개(Q1~Q2, 배포 조건과 안전 조건 포함)를 EARS 문형으로, 각각 검증 방법과 함께 작성합니다. 예: Q1 “시스템은 학과 API 키를 공개 배포물에 포함하지 않아야 한다. 검증: 배포 폴더 전체에서 키 문자열 검색 결과 0건”</li>
 <li><strong>검증</strong>: R1~R7 중 하나를 골라 실제 검증 실물을 만듭니다(<code>과제_검증.md</code>). 테스트 코드 1개 또는 수동 검증 절차 1건(입력, 기대 동작, 확인 방법의 3줄)</li>

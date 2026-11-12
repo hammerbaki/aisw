@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-503787d7c3bf2380b4987019955d55ec.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-6780c10d4891196cfcf65c8b51969de7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -465,11 +465,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="자동-채점과-judge-채점-관찰" class="level2">
 <h2 class="anchored" data-anchor-id="자동-채점과-judge-채점-관찰">2. 자동 채점과 Judge 채점 관찰</h2>
-<p>두 채점의 차이는 실측으로 보아야 감이 잡힙니다. 이 장은 완성된 평가 러너의 결과를 관찰하는 것으로 진행하고, 검토자 정의 작성에 실습 시간을 집중합니다. 배포된 11주차 검증 키트를 개인 폴더의 <code>week11/</code>에 복사하고 <code>실습기록.md</code>를 준비합니다. <code>evals/</code>에는 학과 FAQ 챗봇의 정답셋 6건과 응답 로그, 완성된 평가 러너가 있습니다.</p>
+<p>두 채점의 차이는 실측으로 보아야 감이 잡힙니다. 이 장은 완성된 평가 러너의 결과를 관찰하는 것으로 진행하고, 검토자 정의 작성에 실습 시간을 집중합니다. 배포된 9주차 검증 키트를 개인 폴더의 <code>week09/</code>에 복사하고 <code>실습기록.md</code>를 준비합니다. <code>evals/</code>에는 학과 FAQ 챗봇의 정답셋 6건과 응답 로그, 완성된 평가 러너가 있습니다.</p>
 <p>교수가 규칙 채점만 실행한 결과와 Judge를 포함한 결과를 차례로 보이고, 학생은 두 표와 불일치 문항을 대조하여 기록합니다.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> evals/eval_runner.py <span class="at">--rule-only</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> evals/eval_runner.py</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>불일치 문항의 응답과 정답셋을 함께 읽으며 어느 채점이 옳았는지 한 줄씩 판단해 기록합니다. 이어서 <code>eval_runner.py</code>의 JUDGE_SYSTEM(채점 기준)에서 기준 세 가지 중 하나를 지운 뒤 재실행하면 판정이 어떻게 달라지는지 보입니다. 근거 없는 단정을 금지하는 기준을 지우면, 지어낸 절차를 담은 응답이 통과로 바뀌는 것이 전형적인 관찰 결과입니다. 심판의 품질은 곧 기준 프롬프트의 품질이라는 점, 그리고 실무 평가 파이프라인에서 채점 기준 문서가 코드처럼 리뷰·버전 관리된다는 점을 이 관찰에서 확인합니다. 관찰 결과는 <code>week11/실습기록.md</code>에 남깁니다.</p>
+<p>불일치 문항의 응답과 정답셋을 함께 읽으며 어느 채점이 옳았는지 한 줄씩 판단해 기록합니다. 이어서 <code>eval_runner.py</code>의 JUDGE_SYSTEM(채점 기준)에서 기준 세 가지 중 하나를 지운 뒤 재실행하면 판정이 어떻게 달라지는지 보입니다. 근거 없는 단정을 금지하는 기준을 지우면, 지어낸 절차를 담은 응답이 통과로 바뀌는 것이 전형적인 관찰 결과입니다. 심판의 품질은 곧 기준 프롬프트의 품질이라는 점, 그리고 실무 평가 파이프라인에서 채점 기준 문서가 코드처럼 리뷰·버전 관리된다는 점을 이 관찰에서 확인합니다. 관찰 결과는 <code>week09/실습기록.md</code>에 남깁니다.</p>
 </section>
 <section id="커스텀-서브에이전트-정의" class="level2">
 <h2 class="anchored" data-anchor-id="커스텀-서브에이전트-정의">3. 커스텀 서브에이전트 정의</h2>
@@ -480,7 +480,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="실습-배포-전-점검-검토자-작성" class="level2">
 <h2 class="anchored" data-anchor-id="실습-배포-전-점검-검토자-작성">4. 실습: 배포 전 점검 검토자 작성</h2>
-<p><code>week11/</code> 폴더에서 Claude Code를 실행하고 진행합니다. 키트의 <code>reviewer/검토자_골격.md</code>를 참고하되, 정의 파일은 직접 작성합니다.</p>
+<p><code>week09/</code> 폴더에서 Claude Code를 실행하고 진행합니다. 키트의 <code>reviewer/검토자_골격.md</code>를 참고하되, 정의 파일은 직접 작성합니다.</p>
 <ol type="1">
 <li><p><code>.claude/agents/deploy-checker.md</code>를 만들고 골격의 괄호 부분을 자기 문장으로 채웁니다. description(언제 쓰는 검토자인가), 점검 항목 3가지의 구체적 방법, 보고 형식(심각도, 파일:행, 설명, 권장 조치), 환각 방지 절을 작성합니다. tools는 <code>Read, Glob, Grep</code>으로 제한합니다.</p></li>
 <li><p>세션을 새로 시작하고 <code>/agents</code>로 deploy-checker가 목록에 나타나는지 확인합니다.</p></li>
@@ -526,7 +526,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="수집요약통지-파이프라인-관찰" class="level2">
 <h2 class="anchored" data-anchor-id="수집요약통지-파이프라인-관찰">9. 수집·요약·통지 파이프라인 관찰</h2>
-<p>파이프라인의 골격은 교수 실행으로 흐름을 확인하고, 종료 코드 분기 완성은 과제로 각자 마무리합니다. 배포된 11주차 자동화 키트를 개인 폴더의 <code>week11/</code>에 복사하고 <code>실습기록.md</code>를 준비합니다.</p>
+<p>파이프라인의 골격은 교수 실행으로 흐름을 확인하고, 종료 코드 분기 완성은 과제로 각자 마무리합니다. 배포된 9주차 자동화 키트를 개인 폴더의 <code>week09/</code>에 복사하고 <code>실습기록.md</code>를 준비합니다.</p>
 <p><code>pipeline/서버로그.txt</code>에는 연결 끊김, 시간 초과, 디스크 부족 같은 오류가 섞여 있습니다. <code>pipeline/</code> 폴더에서 파이프라인을 실행해 요약과 종료 코드를 함께 봅니다.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> pipeline.sh</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> 요약.md</span>
@@ -546,7 +546,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="실습-posttooluse-훅-구성" class="level2">
 <h2 class="anchored" data-anchor-id="실습-posttooluse-훅-구성">11. 실습: PostToolUse 훅 구성</h2>
 <ol type="1">
-<li><code>week11/</code> 폴더에 훅 설정을 넣고 세션을 재시작한 뒤 <code>/hooks</code>로 등록 상태를 확인합니다.</li>
+<li><code>week09/</code> 폴더에 훅 설정을 넣고 세션을 재시작한 뒤 <code>/hooks</code>로 등록 상태를 확인합니다.</li>
 <li>Claude Code에 간단한 파이썬 파일 생성을 요청합니다. 정상 코드에서는 훅이 통과하여 아무 보고도 나타나지 않는 것이 올바른 동작입니다.</li>
 <li>일부러 문법 오류가 있는 코드를 쓰게 유도합니다(예: “괄호를 닫지 않은 함수를 그대로 저장하라”). 훅이 오류를 보고하고 Claude가 이를 읽고 고치는지 관찰하여 기록합니다.</li>
 <li>자기 변형 단계: 검사 명령을 자기 프로젝트에 맞는 것(예: <code>pytest -q</code>)으로 바꿔 동작을 확인합니다.</li>
@@ -603,26 +603,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="당일-제출물">16. 당일 제출물</h2>
 <p>수업 종료 시점에 개인 폴더에 다음이 있어야 합니다.</p>
 <ol type="1">
-<li><code>week11/실습기록.md</code>: 두 채점 관찰과 불일치 판단(2장), 검토자 판정 기록과 개선 전후(6장), 번들 스킬 비교 요점(7장), 요약 대조 관찰(9장), 훅 관찰(11장), 배포 파이프라인 중단·통과 기록과 URL(13장), 재시도 관찰(14장)</li>
-<li><code>week11/.claude/agents/deploy-checker.md</code>: 직접 작성한 검토자 정의 파일</li>
-<li><code>week11/.claude/settings.json</code>: 훅 설정(11장)</li>
+<li><code>week09/실습기록.md</code>: 두 채점 관찰과 불일치 판단(2장), 검토자 판정 기록과 개선 전후(6장), 번들 스킬 비교 요점(7장), 요약 대조 관찰(9장), 훅 관찰(11장), 배포 파이프라인 중단·통과 기록과 URL(13장), 재시도 관찰(14장)</li>
+<li><code>week09/.claude/agents/deploy-checker.md</code>: 직접 작성한 검토자 정의 파일</li>
+<li><code>week09/.claude/settings.json</code>: 훅 설정(11장)</li>
 <li>[확인 1]부터 [확인 7]까지 중 수업에서 지정한 항목의 답(실습기록.md에 포함)</li>
 </ol>
 <p>제출은 개인 폴더의 상태로 갈음합니다.</p>
 </section>
 <section id="과제" class="level2">
 <h2 class="anchored" data-anchor-id="과제">17. 과제</h2>
-<p>다음 수업 전까지 <code>week11/과제/</code>에 제출합니다. 프로젝트 폴더에 산출물이 아직 적으면 개인 프로젝트 폴더나 공용 재료(키트의 site/를 복사해 자기 손으로 위반을 추가·제거한 판, 첫 배포 실습의 게임 폴더)로 수행합니다.</p>
+<p>다음 수업 전까지 <code>week09/과제/</code>에 제출합니다. 프로젝트 폴더에 산출물이 아직 적으면 개인 프로젝트 폴더나 공용 재료(키트의 site/를 복사해 자기 손으로 위반을 추가·제거한 판, 첫 배포 실습의 게임 폴더)로 수행합니다.</p>
 <ol type="1">
-<li><strong>배포 전 점검 적용</strong>(<code>week11/과제/</code>). deploy-checker를 자기 프로젝트 폴더에 투입한 점검 보고서와 지적 항목의 처리 계획을 <code>과제_점검보고.md</code>에 적고, 위반이 없었다면 통과 보고와 점검 범위를 기록합니다. 검토자 성능 재검증으로 자기 폴더에 위반 1건을 일부러 심어 검토자가 잡는지 확인한 뒤 제거하고, 심은 위반·발견 여부·오탐 여부의 3줄을 <code>과제_재검증.md</code>에 남깁니다.
+<li><strong>배포 전 점검 적용</strong>(<code>week09/과제/</code>). deploy-checker를 자기 프로젝트 폴더에 투입한 점검 보고서와 지적 항목의 처리 계획을 <code>과제_점검보고.md</code>에 적고, 위반이 없었다면 통과 보고와 점검 범위를 기록합니다. 검토자 성능 재검증으로 자기 폴더에 위반 1건을 일부러 심어 검토자가 잡는지 확인한 뒤 제거하고, 심은 위반·발견 여부·오탐 여부의 3줄을 <code>과제_재검증.md</code>에 남깁니다.
 <ul>
-<li><strong>의도 기록</strong>: Spec의 품질 요구사항(배포 조건)과 점검 항목의 대응 관계, 그리고 Claude에게 “이 Spec의 검증 방법에서 빈틈을 세 가지 찾아 지적하라”라고 요청해 받은 지적 중 반영한 것 1건(<code>week11/과제/의도기록.md</code>)</li>
+<li><strong>의도 기록</strong>: Spec의 품질 요구사항(배포 조건)과 점검 항목의 대응 관계, 그리고 Claude에게 “이 Spec의 검증 방법에서 빈틈을 세 가지 찾아 지적하라”라고 요청해 받은 지적 중 반영한 것 1건(<code>week09/과제/의도기록.md</code>)</li>
 </ul></li>
-<li><strong>파이프라인·배포 완성</strong>(<code>week11/과제/</code>). 9장의 <code>pipeline.sh</code>에 종료 코드 분기를 완성하고 정상 실행에서 종료 코드가 0인지 확인합니다. 자기 프로젝트용으로 조정한 <code>deploy.sh</code>(자기 검사 1개 이상 추가)와, 이 파이프라인으로 배포한 최신 URL을 <code>과제_배포기록.md</code>에 기록합니다. 위반을 일부러 넣었을 때 중단되는 출력과 정리 후 통과되는 출력을 각 1회 붙입니다.
+<li><strong>파이프라인·배포 완성</strong>(<code>week09/과제/</code>). 9장의 <code>pipeline.sh</code>에 종료 코드 분기를 완성하고 정상 실행에서 종료 코드가 0인지 확인합니다. 자기 프로젝트용으로 조정한 <code>deploy.sh</code>(자기 검사 1개 이상 추가)와, 이 파이프라인으로 배포한 최신 URL을 <code>과제_배포기록.md</code>에 기록합니다. 위반을 일부러 넣었을 때 중단되는 출력과 정리 후 통과되는 출력을 각 1회 붙입니다.
 <ul>
-<li><strong>의도 기록</strong>: 추가한 검사의 선택 이유와, 발표에서 시연할 시나리오 초안 3줄(<code>week11/과제/의도기록.md</code>)</li>
+<li><strong>의도 기록</strong>: 추가한 검사의 선택 이유와, 발표에서 시연할 시나리오 초안 3줄(<code>week09/과제/의도기록.md</code>)</li>
 </ul></li>
-<li><strong>동기화 점검과 크로스 테스트</strong>(<code>week11/과제/</code>). <code>sync/sync_체크리스트.md</code>를 <code>week11/sync점검.md</code>로 복사해 Spec의 R1~R3(이상)과 구현 상태를 대조하고, 어긋난 곳마다 코드 수정인지 문서 수정인지 조치를 정해 실행합니다. 짝과 산출물을 교환해 <code>크로스테스트_기록표.md</code>의 시나리오 3가지(정상, 경계값, 비정상 입력)로 시험하고 기록표를 주고받습니다.</li>
+<li><strong>동기화 점검과 크로스 테스트</strong>(<code>week09/과제/</code>). <code>sync/sync_체크리스트.md</code>를 <code>week09/sync점검.md</code>로 복사해 Spec의 R1~R3(이상)과 구현 상태를 대조하고, 어긋난 곳마다 코드 수정인지 문서 수정인지 조치를 정해 실행합니다. 짝과 산출물을 교환해 <code>크로스테스트_기록표.md</code>의 시나리오 3가지(정상, 경계값, 비정상 입력)로 시험하고 기록표를 주고받습니다.</li>
 </ol>
 <p>채점은 보고서 분량이나 검사 개수가 아니라 판정 기록의 정직성(누락·오탐을 숨기지 않았는가)과 중단·통과 증빙의 실재성을 중심으로 합니다.</p>
 <hr>
