@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-0f7719ecfb764d9b8ebcd528363db9a6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-268d74683ca1d9d2027c44de98d04c55.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-ab88f94875df08cd53119fedb3162b42.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -426,6 +426,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<div class="kit-link">
+<p><strong>실습 자료</strong> <a href="../../../docs/subjects/llm-ai/LLM_03주차_실습자료.html">이 주차 키트 파일 보기 · 내려받기</a></p>
+</div>
 <p>SDD에서는 완성된 소프트웨어에서 명세를 거꾸로 뽑아내고, 그 명세만으로 다시 만들어 보았습니다. 여기는 그 뒷부분입니다. <strong>“AI가 만들고, 사람이 검증한다”의 검증</strong>입니다.</p>
 <p>첫 주에 우리는 세 가지를 생각해 봤습니다. ① 내가 말하지 않았는데 AI가 스스로 정한 것은 무엇인가, ② 이 코드가 맞는지 확인할 방법이 있는가, ③ 요구를 하나 더 붙이려면 어디를 고쳐야 하는가. ①과 ③의 답이 SDD의 명세였고, <strong>②의 답이 TDD</strong>입니다.</p>
 <p>회사에서 듣게 될 질문이 둘 있습니다. <strong>“그래서, 개선됐나요?”</strong> AI에게 다시 만들라고 시켰다면 “다시 했다” “고쳤다”가 정확히 한 일입니다. “더 나아졌다” “개선되었다”라고는 아직 할 수 없습니다. 고치기 전에 판정 기준을 테스트 파일로 적어 두고, 고친 뒤 같은 파일을 다시 실행해 pytest가 0개 → 5개 통과로 바뀐 것을 봤을 때 비로소 “개선했다”고 말할 수 있습니다. 그리고 <strong>“클로드가 했습니다”</strong>라는 보고. “어떻게 했나”라고 물으면 AI 채팅창에 입력해 시킨 말과 AI가 대답해준 답변을 그대로 옮기는 경우가 많습니다. 사람의 검증이 빠진, 사람이 책임지지 않는 보고입니다. 했다는 말과 실제로 한 것을 가르는 근거가 테스트이고, 사람이 쓴 테스트가 통과했는지로 답합니다.</p>

@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-0f7719ecfb764d9b8ebcd528363db9a6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-268d74683ca1d9d2027c44de98d04c55.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-ab88f94875df08cd53119fedb3162b42.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -454,6 +454,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<div class="kit-link">
+<p><strong>실습 자료</strong> <a href="../../../docs/subjects/llm-ai/LLM_07주차_실습자료.html">이 주차 키트 파일 보기 · 내려받기</a></p>
+</div>
 <p>지난주에 만든 RAG 챗봇 <code>rag_chat.py</code>는 질문마다 검색을 돌렸습니다. 코드가 무조건 검색을 실행하고 그 결과를 프롬프트에 붙였습니다. 이 수업에서는 그 판단을 AI에게 넘깁니다. 검색기를 도구로 등록해 두고, 부를지 말지를 AI가 정하게 합니다(하네스). 그리고 도구가 실패했을 때 프로그램이 멈추지 않고 오류를 돌려보내 AI가 다시 시도하게 만듭니다(루프). 마지막으로 반복 절차는 스킬로, 도구는 MCP로 포장해 내 스크립트 밖에서도 쓰게 합니다.</p>
 <p>진행은 세 부분입니다. ① 도구 사용: 도구 정의와 도구 요청 · 결과가 오가는 모양을 보고, RAG 검색기를 AI가 스스로 부르는 도구로 만들어 도구 설명이 호출 판단을 어떻게 바꾸는지 봅니다(실습 1). ② 루프: 검증 없는 계산 도구가 어떻게 실패하는지 겪고, 검증과 폴백을 붙여 AI가 대처하게 만든 뒤, 루프의 세 형태와 평가를 봅니다(실습 2). ③ 부품으로 포장: 부품 지도를 보고, 점검 절차를 스킬로 만들고, 계산 도구를 MCP 서버로 포장해 Claude Code에 연결합니다(실습 3 · 4). 시작은 수업마다 같습니다. 환경 접속과 자료 받기(0장)입니다.</p>
 <hr>

@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-0f7719ecfb764d9b8ebcd528363db9a6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-268d74683ca1d9d2027c44de98d04c55.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-ab88f94875df08cd53119fedb3162b42.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -361,6 +361,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<div class="kit-link">
+<p><strong>실습 자료</strong> <a href="../../../docs/subjects/llm-ai/LLM_09주차_실습자료.html">이 주차 키트 파일 보기 · 내려받기</a></p>
+</div>
 <p>이 주차는 사람이 눈으로 확인하던 검증을 측정 가능한 시스템으로 바꾸고, 그 검증을 자동으로 실행되는 절차로 묶습니다. 1부에서는 산출물 품질을 정답셋과 자동 채점으로 재고, Claude를 심판(Judge)으로 세워 규칙 채점의 빈틈을 보완하며, 배포 전 점검을 전담하는 읽기 전용 검토자를 정의 파일로 직접 만들어 심어 둔 위반으로 성능을 확인합니다. 2부에서는 claude -p 헤드리스 모드와 훅(Hook)으로 검증을 자동 실행하고, 점검을 통과했을 때만 배포가 실행되는 파이프라인을 구성한 뒤, 개인 프로젝트 스프린트와 발표 준비로 마칩니다. 공식 문서는 <a href="https://code.claude.com/docs/en/sub-agents">서브에이전트 문서</a>와 <a href="https://code.claude.com/docs/en/cli-reference">CLI 참조 문서</a>입니다.</p>
 <p>이 주차의 기술은 평가(Evals)와 검토자 분리, 그리고 자동화 파이프라인입니다. 검증을 측정 가능한 시스템으로 옮기고, 지금까지 다룬 부품(명령, 훅, 점검, 배포)을 사람 없이 이어지는 절차로 연결합니다.</p>
 <pre class="mermaid">graph LR
