@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-22a0846da5108b0773bc0f4716ee2d77.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dcf116883d0d3758c9131f5ede2fa7e1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -487,7 +487,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>실습 자료</strong> <a href="../../../docs/subjects/llm-ai/LLM_07주차_실습자료.html">이 주차 키트 파일 보기 · 내려받기</a></p>
 </div>
 <p>지난주에 만든 RAG 챗봇 <code>rag_chat.py</code>는 질문마다 검색을 돌렸습니다. 코드가 무조건 검색을 실행하고 그 결과를 프롬프트에 붙였습니다. 이 수업에서는 그 판단을 AI에게 넘깁니다. 검색기를 도구로 등록해 두고, 부를지 말지를 AI가 정하게 합니다(하네스). 그리고 도구가 실패했을 때 프로그램이 멈추지 않고 오류를 돌려보내 AI가 다시 시도하게 만듭니다(루프). 마지막으로 반복 절차는 스킬로, 도구는 MCP로 포장해 내 스크립트 밖에서도 쓰게 합니다.</p>
-<p>진행은 세 부분입니다. ① 도구 사용: 도구 정의와 도구 요청 · 결과가 오가는 모양을 보고, RAG 검색기를 AI가 스스로 부르는 도구로 만들어 도구 설명이 호출 판단을 어떻게 바꾸는지 봅니다(실습 1). ② 루프: 검증 없는 계산 도구가 어떻게 실패하는지 겪고, 검증과 폴백을 붙여 AI가 대처하게 만든 뒤, 루프의 세 형태와 평가를 봅니다(실습 2). ③ 부품으로 포장: 부품 지도를 보고, 점검 절차를 스킬로 만들고, 계산 도구를 MCP 서버로 포장해 Claude Code에 연결합니다(실습 3 · 4). 시작은 수업마다 같습니다. 환경 접속과 자료 받기(0장)입니다.</p>
+<p>진행은 세 부분입니다.</p>
+<ol type="1">
+<li><strong>도구 사용</strong>: 도구 정의와 도구 요청 · 결과가 오가는 모양을 보고, RAG 검색기를 AI가 스스로 부르는 도구로 만들어 도구 설명이 호출 판단을 어떻게 바꾸는지 봅니다(실습 1).</li>
+<li><strong>루프</strong>: 검증 없는 계산 도구가 어떻게 실패하는지 겪고, 검증과 폴백을 붙여 AI가 대처하게 만든 뒤, 루프의 세 형태와 평가를 봅니다(실습 2).</li>
+<li><strong>부품으로 포장</strong>: 부품 지도를 보고, 점검 절차를 스킬로 만들고, 계산 도구를 MCP 서버로 포장해 Claude Code에 연결합니다(실습 3 · 4).</li>
+</ol>
+<p>시작은 수업마다 같습니다. 환경 접속과 자료 받기(0장)입니다.</p>
 <hr>
 <section id="시작하기-환경-접속-자료-받기-api-연동-rag-되짚기" class="level2">
 <h2 class="anchored" data-anchor-id="시작하기-환경-접속-자료-받기-api-연동-rag-되짚기">0. 시작하기: 환경 접속, 자료 받기, API 연동 · RAG 되짚기</h2>
@@ -513,7 +519,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre class="text"><code>   &gt; /status
      Model: haiku
    &gt; /exit</code></pre>
-<p>비밀번호를 잊었으면 손을 들어 알립니다. Remote-SSH가 안 되면 PowerShell 창 2개로 진행합니다. Model이 haiku가 아니면 <code>/model</code>에서 다시 선택합니다. 이 모델은 Claude Code 대화의 모델입니다. 도구 챗봇과 계산 도구가 부르는 API 모델은 환경변수 <code>COURSE_MODEL</code>(없으면 키트 코드의 기본값 <code>claude-haiku-4-5-20251001</code>)입니다. <code>echo</code> 줄이 빈 줄이면 <code>cat ~/*.txt</code>의 키를 <code>~/.bashrc</code>에 등록합니다. 도구 챗봇과 계산 도구가 이 키로 API를 부릅니다. 앞 8자 <code>sk-ant-a</code>는 모든 키가 같은 접두어라 비밀이 아니고, 그 뒤는 화면에 출력하지 않습니다.</p>
+<p>비밀번호를 잊었으면 손을 들어 알립니다. Remote-SSH가 안 되면 PowerShell 창 2개로 진행합니다. Model이 haiku가 아니면 <code>/model</code>에서 다시 선택합니다. 이 모델은 Claude Code 대화의 모델입니다. 도구 챗봇과 계산 도구가 부르는 API 모델은 환경변수 <code>COURSE_MODEL</code>(없으면 키트 코드의 기본값 <code>claude-haiku-4-5-20251001</code>)입니다.</p>
+<p><code>echo</code> 줄이 빈 줄이면 <code>cat ~/*.txt</code>의 키를 <code>~/.bashrc</code>에 등록합니다. 도구 챗봇과 계산 도구가 이 키로 API를 부릅니다. 앞 8자 <code>sk-ant-a</code>는 모든 키가 같은 접두어라 비밀이 아니고, 그 뒤는 화면에 출력하지 않습니다.</p>
 <p><strong>ssh로 서버 첫 접속: 내 PC에서 서버 안으로.</strong> 처음이거나 잊은 사람만 봅니다.</p>
 <ol type="1">
 <li><strong>PowerShell을 엽니다.</strong> 시작 검색 “Windows PowerShell” 또는 Win+X → 터미널.</li>
@@ -815,7 +822,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>네 단계는 안쪽 단계를 품으며 넓어집니다. 이번 주차를 단계별로 줄이면 1 프롬프트는 description으로 호출 판단 · 도구 결과 재주입, 3 하네스는 인자 검증 · 스킬 · MCP · 고정 테스트, 4 루프는 도구 호출 루프 · 검증 · 폴백 루프입니다. 한 줄로 줄이면 <strong>부를지는 AI가 정하고, 실패는 코드가 판정해 돌려보낸다</strong>입니다. 도구는 코드가 실행하는 함수, 스킬은 AI가 읽고 따르는 절차 문서입니다. 네 이름 모두 업계에서 실제 쓰는 말입니다. 도구 사용(tool use)과 컨텍스트 엔지니어링은 Anthropic 공식 용어(docs.claude.com · anthropic.com/engineering)이고, 하네스는 martinfowler.com의 해설이 대표적이며 Anthropic도 Claude Code를 「에이전틱 하네스」라 부릅니다. 루프 엔지니어링도 같은 흐름의 용어입니다.</p>
+<p>네 단계는 안쪽 단계를 품으며 넓어집니다. 이번 주차를 단계별로 줄이면 1 프롬프트는 description으로 호출 판단 · 도구 결과 재주입, 3 하네스는 인자 검증 · 스킬 · MCP · 고정 테스트, 4 루프는 도구 호출 루프 · 검증 · 폴백 루프입니다. 한 줄로 줄이면 <strong>부를지는 AI가 정하고, 실패는 코드가 판정해 돌려보낸다</strong>입니다. 도구는 코드가 실행하는 함수, 스킬은 AI가 읽고 따르는 절차 문서입니다. 네 이름 모두 업계에서 실제 쓰는 말입니다.</p>
+<p><strong>도구 사용</strong>(tool use)과 컨텍스트 엔지니어링은 Anthropic 공식 용어(docs.claude.com · anthropic.com/engineering)이고, 하네스는 martinfowler.com의 해설이 대표적이며 Anthropic도 Claude Code를 「에이전틱 하네스」라 부릅니다. 루프 엔지니어링도 같은 흐름의 용어입니다.</p>
 </section>
 <section id="이번-주차-구성" class="level3">
 <h3 class="anchored" data-anchor-id="이번-주차-구성">1-5. 이번 주차 구성</h3>
@@ -1013,7 +1021,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre class="text"><code>   [1차 응답] stop_reason = max_tokens
    [최종 답변] 부가가치세의 도입 역사 … 혹시 구체적인 부가세 계산이 필요하신가
    # 도구 호출 없음(③④ 건너뜀) · 답이 출력 한도에서 끊김</code></pre>
-<p>둘째 질문은 도구를 부르지 않아 <code>[호출 결정]</code> · <code>[코드가 실행]</code> 줄이 없습니다. 이번 실행에서는 <code>stop_reason</code>이 <code>end_turn</code>이 아니라 <code>max_tokens</code>였습니다. 답이 출력 한도(<code>calc_tool.py</code>의 <code>max_tokens=500</code>)에 걸려 문장 중간에서 끊긴 것입니다. <strong>해결.</strong> 코드: <code>create()</code>의 <code>max_tokens</code>를 늘립니다(예: 1024). 시스템 프롬프트: <code>system="세 문장 이내로 답하세요"</code>를 넣습니다. 출력 라벨 5종(<code>[1차 응답] stop_reason</code> → <code>[호출 결정]</code> → <code>[코드가 실행]</code> → <code>[결과 재주입 후 응답]</code> → <code>[최종 답변]</code>)이 도구 챗봇과 계산 도구의 관찰 기준입니다.</p>
+<p>둘째 질문은 도구를 부르지 않아 <code>[호출 결정]</code> · <code>[코드가 실행]</code> 줄이 없습니다. 이번 실행에서는 <code>stop_reason</code>이 <code>end_turn</code>이 아니라 <code>max_tokens</code>였습니다. 답이 출력 한도(<code>calc_tool.py</code>의 <code>max_tokens=500</code>)에 걸려 문장 중간에서 끊긴 것입니다.</p>
+<p><strong>해결.</strong> 코드: <code>create()</code>의 <code>max_tokens</code>를 늘립니다(예: 1024). 시스템 프롬프트: <code>system="세 문장 이내로 답하세요"</code>를 넣습니다. 출력 라벨 5종(<code>[1차 응답] stop_reason</code> → <code>[호출 결정]</code> → <code>[코드가 실행]</code> → <code>[결과 재주입 후 응답]</code> → <code>[최종 답변]</code>)이 도구 챗봇과 계산 도구의 관찰 기준입니다.</p>
 <ul>
 <li><span class="check-badge">확인 4</span> 도구 호출 사이클의 라벨 5종을 순서대로 말할 수 있다.</li>
 </ul>
@@ -1193,8 +1202,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
        결과 = handle_tool_use(이름, 인자)  # ◀ ③
        messages에 요청서·결과 추가 → create # ◀ ④</code></pre>
 <ol type="1">
-<li><strong>while이 사이클을 반복합니다.</strong> ① 질문과 도구 목록(<code>tools=[FAQ_TOOL]</code>)을 함께 보냅니다. ② <code>stop_reason</code>이 <code>tool_use</code>인 동안 반복합니다. 상한은 <code>MAX_ROUNDS</code>(5회). ③ <code>tool_use</code> 블록마다 <code>handle_tool_use</code>를 실행합니다. 이 함수가 Claude Code에 맡겨 채울 곳입니다.</li>
-<li><strong>결과를 쌓아 다시 보냅니다.</strong> ④ 요청서(<code>tool_use</code>)와 결과(<code>tool_result</code>)를 짝지어 messages에 더해 다시 호출합니다. <code>end_turn</code>이면 반복이 끝나고 답을 돌려줍니다.</li>
+<li><p><strong>while이 사이클을 반복합니다.</strong></p>
+<ul>
+<li>① 질문과 도구 목록(<code>tools=[FAQ_TOOL]</code>)을 함께 보냅니다.</li>
+<li>② <code>stop_reason</code>이 <code>tool_use</code>인 동안 반복합니다. 상한은 <code>MAX_ROUNDS</code>(5회).</li>
+<li>③ <code>tool_use</code> 블록마다 <code>handle_tool_use</code>를 실행합니다. 이 함수가 Claude Code에 맡겨 채울 곳입니다.</li>
+</ul></li>
+<li><p><strong>결과를 쌓아 다시 보냅니다.</strong> ④ 요청서(<code>tool_use</code>)와 결과(<code>tool_result</code>)를 짝지어 messages에 더해 다시 호출합니다. <code>end_turn</code>이면 반복이 끝나고 답을 돌려줍니다.</p></li>
 </ol>
 <p><strong>③이 돌려줄 문자열 · 독스트링의 형식</strong></p>
 <pre class="text"><code>   유사도 0.72: &lt;청크 내용&gt;      ◀ 정상 · 결과마다 한 줄
@@ -1283,9 +1297,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="실습-1-35-검색기를-도구로-③-내가-돌린-pytest로-판정한다">6-6. 실습 1 · 3/5 · 검색기를 도구로 ③: 내가 돌린 pytest로 판정한다</h3>
 <p>시작 · 끝: 터미널 2(서버 명령) · <code>week07</code>.</p>
 <ol type="1">
-<li><strong>[터미널 2] 테스트를 돌립니다.</strong> 판정은 AI의 보고가 아니라 내가 돌린 결과로 합니다. 돌리기 전에 VS Code에서 <code>faq_tool_chat.py</code>를 열어 <code>handle_tool_use</code>가 채워졌는지 눈으로만 봅니다.</li>
-<li><strong>점 세 개면 통과입니다.</strong> 점 하나가 검사 하나입니다. ① 없는 도구 이름이 오면 오류 글을 돌려주는가 ② 검색어가 비면 오류 글을 돌려주는가 ③ 결과를 「유사도 0.72: …」 줄로 만드는가.</li>
-<li><strong>F가 섞이면 다시 맡깁니다.</strong> AI가 지시와 조금 다르게 채운 것으로, 이상한 일이 아닙니다. 실패한 검사 이름을 Claude Code에 알려 고치게 합니다. 끝내 안 되면 <code>cp 예비/faq_tool_chat.py .</code> 로 완성본을 받아 다음 단계로 넘어갑니다.</li>
+<li><p><strong>[터미널 2] 테스트를 돌립니다.</strong> 판정은 AI의 보고가 아니라 내가 돌린 결과로 합니다. 돌리기 전에 VS Code에서 <code>faq_tool_chat.py</code>를 열어 <code>handle_tool_use</code>가 채워졌는지 눈으로만 봅니다.</p></li>
+<li><p><strong>점 세 개면 통과입니다.</strong> 점 하나가 검사 하나입니다.</p>
+<ul>
+<li>① 없는 도구 이름이 오면 오류 글을 돌려주는가</li>
+<li>② 검색어가 비면 오류 글을 돌려주는가</li>
+<li>③ 결과를 「유사도 0.72: …」 줄로 만드는가.</li>
+</ul></li>
+<li><p><strong>F가 섞이면 다시 맡깁니다.</strong> AI가 지시와 조금 다르게 채운 것으로, 이상한 일이 아닙니다. 실패한 검사 이름을 Claude Code에 알려 고치게 합니다. 끝내 안 되면 <code>cp 예비/faq_tool_chat.py .</code> 로 완성본을 받아 다음 단계로 넘어갑니다.</p></li>
 </ol>
 <p><strong>[터미널 2] · 입력과 결과</strong></p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>   <span class="ex">.venv/bin/python</span> <span class="at">-m</span> pytest <span class="at">-q</span> tests/test_faq_tool_chat.py</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1731,7 +1750,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>     <span class="cf">if</span> amount <span class="op">&lt;</span> <span class="dv">0</span>:                         ◀ ⑤</span>
 <span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>         <span class="cf">return</span> <span class="st">"오류: 금액은 0 이상이어야 합니다"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol type="1">
-<li><p><strong>지금 코드는 어디서 멈추나.</strong> ① ’미정’이면 <code>float</code>이 <code>ValueError</code>를 냅니다. 받는 곳이 없어 Traceback을 찍고 프로그램이 끝납니다. ② -50000이면 검사 없이 음수로 계산됩니다. ①의 줄을 아래 코드로 바꾸면 멈추지 않습니다.</p></li>
+<li><p><strong>지금 코드는 어디서 멈추나.</strong></p>
+<ul>
+<li>① ’미정’이면 <code>float</code>이 <code>ValueError</code>를 냅니다. 받는 곳이 없어 Traceback을 찍고 프로그램이 끝납니다.</li>
+<li>② -50000이면 검사 없이 음수로 계산됩니다. ①의 줄을 아래 코드로 바꾸면 멈추지 않습니다.</li>
+</ul></li>
 <li><p><strong>바꾼 뒤에는 말로 알린다.</strong> ③ <code>try</code> 안에서 예외(실행 중 오류)가 나면 멈추지 않고 ④ <code>except</code>로 건너뜁니다. <code>ValueError</code>(‘미정’) · <code>TypeError</code>(인자 없음)를 함께 받고, ⑤ 범위는 <code>if</code>로 거릅니다. 오류 문자열은 tool_result로 모델에게 가고, 모델이 이를 읽고 대처합니다. 인자가 없으면 <code>args.get("amount", None)</code>이 <code>None</code>이 되고 <code>float(None)</code>이 <code>TypeError</code>를 내므로 둘을 함께 받습니다.</p>
 <ul>
 <li><span class="check-badge">확인 17</span> run_tool이 멈추는 줄과, try / except가 받는 두 오류를 확인했다.</li>
@@ -2132,7 +2155,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li><strong>스킬은 이름 붙인 프롬프트다.</strong> 자주 쓰는 지시를 문서로 저장해 두고 <code>/이름</code>으로 부릅니다. 코드가 실행하는 함수가 아니라, AI가 읽고 따르는 문서입니다.</li>
 <li><strong>파일 하나로 만든다.</strong> <code>.claude/skills/이름/SKILL.md</code> 파일 하나면 됩니다. 이름은 영문 소문자 · 숫자 · 하이픈으로 짓습니다.</li>
-<li><strong>위는 언제 쓸지, 아래는 어떻게 할지.</strong> <code>---</code> 사이의 머리말(frontmatter)에 적은 description을 보고 AI가 이 스킬을 언제 쓸지 정합니다. 그 아래 본문에는 따를 절차를 적고, 규칙마다 이유를 붙입니다.</li>
+<li><strong>위는 언제 쓸지, 아래는 어떻게 할지.</strong> <code>---</code> 사이의 <strong>머리말</strong>(frontmatter)에 적은 description을 보고 AI가 이 스킬을 언제 쓸지 정합니다. 그 아래 본문에는 따를 절차를 적고, 규칙마다 이유를 붙입니다.</li>
 </ol>
 <p><strong>규칙과 절차를 두는 위치</strong></p>
 <table class="caption-top table">
@@ -2184,7 +2207,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="실습-3-skill.md-만들기" class="level2">
 <h2 class="anchored" data-anchor-id="실습-3-skill.md-만들기">13. 실습 3: SKILL.md 만들기</h2>
-<p>소재는 <strong>포트폴리오 점검 스킬</strong> <code>portfolio-check</code> 하나로 고정합니다. 키트의 <code>포트폴리오/</code>는 가상 인물 김하늘의 한 장짜리 페이지입니다(<code>index.html</code> · <code>요구사항명세서.md</code>의 REQ-01~04 · <code>tests/test_page.py</code> · <code>프로필.md</code>). 자기 프로젝트가 있으면 스킬 본문의 경로만 그 프로젝트로 바꿉니다. 가장 단순한 형태는 주어진 내용을 붙여 넣어 만들고, 발전형은 Claude Code에 맡겨 키우고, 안티패턴 3종으로 진단합니다. 형식은 고정 테스트 <code>tests/test_skill.py</code>(머리말 · 60줄 · 「왜냐하면」 두 개)로 판정합니다.</p>
+<p>소재는 <strong>포트폴리오 점검 스킬</strong> <code>portfolio-check</code> 하나로 고정합니다. 키트의 <code>포트폴리오/</code>는 가상 인물 김하늘의 한 장짜리 페이지입니다(<code>index.html</code> · <code>요구사항명세서.md</code>의 REQ-01~04 · <code>tests/test_page.py</code> · <code>프로필.md</code>).</p>
+<p>자기 프로젝트가 있으면 스킬 본문의 경로만 그 프로젝트로 바꿉니다. 가장 단순한 형태는 주어진 내용을 붙여 넣어 만들고, 발전형은 Claude Code에 맡겨 키우고, 안티패턴 3종으로 진단합니다. 형식은 고정 테스트 <code>tests/test_skill.py</code>(머리말 · 60줄 · 「왜냐하면」 두 개)로 판정합니다.</p>
 <section id="실습-3-14-skill.md-①-가장-단순한-형태" class="level3">
 <h3 class="anchored" data-anchor-id="실습-3-14-skill.md-①-가장-단순한-형태">13-1. 실습 3 · 1/4 · SKILL.md ①: 가장 단순한 형태</h3>
 <p>시작 · 끝: VS Code · <code>week07</code> 폴더.</p>
@@ -2219,9 +2243,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="실습-3-24-skill.md-②-호출을-확인한다">13-2. 실습 3 · 2/4 · SKILL.md ②: 호출을 확인한다</h3>
 <p>시작: 터미널 1 · 홈 → 끝나면: Claude Code 안 · <code>week07</code>.</p>
 <ol type="1">
-<li><strong>[터미널 1] 새 세션으로 들어갑니다.</strong> 새로 만든 스킬 폴더는 새로 연 세션에서 목록에 나타납니다(열린 세션이면 <code>/reload-skills</code>).</li>
-<li><strong>[Claude Code 안] <code>/이름</code>으로 부르고 표를 읽습니다.</strong> ① REQ마다 구현(섹션)과 테스트를 대조했습니다. 본문의 「표로 보고하라」가 만든 모양입니다. ② REQ-02 테스트 「없음」은 명세서가 사람 확인으로 둔 항목이라 정상, 있다고 적었다면 환각입니다. ③ REQ-04는 「하지 않는다」 요구라 「없음」 · 「충족」 모두 맞습니다. 테스트가 집 주소는 확인하지 않는다는 빈틈을 짚었는지 봅니다.</li>
-<li><strong>호출되지 않으면.</strong> SKILL.md가 <code>.claude/skills/portfolio-check/</code> 폴더 안에 있는지(<code>ls -a</code>), 첫 줄이 <code>---</code>인지 봅니다. 고친 뒤 <code>/reload-skills</code>나 <code>/exit</code> 후 다시 엽니다.</li>
+<li><p><strong>[터미널 1] 새 세션으로 들어갑니다.</strong> 새로 만든 스킬 폴더는 새로 연 세션에서 목록에 나타납니다(열린 세션이면 <code>/reload-skills</code>).</p></li>
+<li><p><strong>[Claude Code 안] <code>/이름</code>으로 부르고 표를 읽습니다.</strong></p>
+<ol type="1">
+<li>REQ마다 구현(섹션)과 테스트를 대조했습니다. 본문의 「표로 보고하라」가 만든 모양입니다.</li>
+<li>REQ-02 테스트 「없음」은 명세서가 사람 확인으로 둔 항목이라 정상, 있다고 적었다면 환각입니다.</li>
+<li>REQ-04는 「하지 않는다」 요구라 「없음」 · 「충족」 모두 맞습니다. 테스트가 집 주소는 확인하지 않는다는 빈틈을 짚었는지 봅니다.</li>
+</ol></li>
+<li><p><strong>호출되지 않으면.</strong> SKILL.md가 <code>.claude/skills/portfolio-check/</code> 폴더 안에 있는지(<code>ls -a</code>), 첫 줄이 <code>---</code>인지 봅니다. 고친 뒤 <code>/reload-skills</code>나 <code>/exit</code> 후 다시 엽니다.</p></li>
 </ol>
 <p><strong>[터미널 1 → Claude Code 안] · 입력</strong></p>
 <div class="sourceCode" id="cb70"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>   <span class="bu">cd</span> ~/week07</span>
@@ -2235,7 +2264,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    | REQ-03 | 이메일 1개         | 있음   |
    | REQ-04 | 전화번호 없음      | 전화만 |  ◀ ③
    빈틈: certs id 추가 · 집 주소 미검사</code></pre>
-<p>명세서(<code>요구사항명세서.md</code>)는 REQ-01(섹션 넷: about · skills · projects · contact) · REQ-02(카드를 누르면 상세 설명이 펼쳐짐) · REQ-03(<code>프로필.md</code>의 연락처만) · REQ-04(전화번호와 집 주소를 표시하지 않음)이고, 고정 테스트 <code>tests/test_page.py</code> 세 개는 REQ-01 · 03 · 04를 확인합니다. REQ-02는 브라우저에서 사람이 확인하는 항목입니다. 표의 「빈틈」 줄은 화면에 명세에 없는 <code>certs</code> 섹션이 있다는 것과, REQ-04 테스트가 전화번호만 보고 집 주소는 검사하지 않는다는 것을 짚은 것입니다. <strong>결과 비교.</strong> 표의 문장은 사람마다 다릅니다. REQ-02 「테스트 없음」, REQ-04 「주소는 테스트 없음」을 짚었는지 비교합니다.</p>
+<p>명세서(<code>요구사항명세서.md</code>)는 REQ-01(섹션 넷: about · skills · projects · contact) · REQ-02(카드를 누르면 상세 설명이 펼쳐짐) · REQ-03(<code>프로필.md</code>의 연락처만) · REQ-04(전화번호와 집 주소를 표시하지 않음)이고, 고정 테스트 <code>tests/test_page.py</code> 세 개는 REQ-01 · 03 · 04를 확인합니다.</p>
+<p>REQ-02는 브라우저에서 사람이 확인하는 항목입니다. 표의 「빈틈」 줄은 화면에 명세에 없는 <code>certs</code> 섹션이 있다는 것과, REQ-04 테스트가 전화번호만 보고 집 주소는 검사하지 않는다는 것을 짚은 것입니다. <strong>결과 비교.</strong> 표의 문장은 사람마다 다릅니다. REQ-02 「테스트 없음」, REQ-04 「주소는 테스트 없음」을 짚었는지 비교합니다.</p>
 <ul>
 <li><span class="check-badge">확인 24</span> 가장 단순한 형태의 스킬이 /portfolio-check로 호출되어 절차대로 동작하는 것을 확인했다.</li>
 </ul>
@@ -2244,9 +2274,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="실습-3-34-skill.md-③-발전형으로-키운다">13-3. 실습 3 · 3/4 · SKILL.md ③: 발전형으로 키운다</h3>
 <p>시작 · 끝: VS Code → Claude Code 안 · <code>week07</code>.</p>
 <ol type="1">
-<li><strong>[Claude Code 안] 네 절로 발전시키게 맡깁니다.</strong> 아래 지시를 Claude Code에 붙여 넣습니다(<code>내프롬프트.md</code> 2)와 같은 문장, 기준은 키트의 <code>skills/SKILL_골격.md</code>). ① 출력 서식 ② 절차 ③ 「왜냐하면」으로 이유를 붙인 규칙 2개 ④ 환각 방지 절(출처 명시 · “확인 필요” 표시).</li>
-<li><strong>[서버 터미널 → Claude Code 안] 테스트 뒤 같은 세션에서 다시 부릅니다.</strong> 고친 SKILL.md는 열린 세션에 바로 반영됩니다. 서버 터미널에서 테스트로 형식을 확인하고, 터미널 1에서 같은 호출로 다시 봅니다. pytest 허락 창이 뜨면 승인합니다(<code>.pytest_cache</code> 생성은 정상). 실패하면 name · 줄 수(60) · 「왜냐하면」 2개를 봅니다.</li>
-<li><strong>무엇이 달라져야 성공인가.</strong> 아래 판정 기준의 세 가지가 산출물에 나타나면 발전형이 동작한 것입니다. 이어서 스킬이 흔히 실패하는 작성 패턴인 안티패턴 3종으로 점검합니다.</li>
+<li><p><strong>[Claude Code 안] 네 절로 발전시키게 맡깁니다.</strong> 아래 지시를 Claude Code에 붙여 넣습니다(<code>내프롬프트.md</code> 2)와 같은 문장, 기준은 키트의 <code>skills/SKILL_골격.md</code>).</p>
+<ul>
+<li>① 출력 서식</li>
+<li>② 절차</li>
+<li>③ 「왜냐하면」으로 이유를 붙인 규칙 2개</li>
+<li>④ 환각 방지 절(출처 명시 · “확인 필요” 표시).</li>
+</ul></li>
+<li><p><strong>[서버 터미널 → Claude Code 안] 테스트 뒤 같은 세션에서 다시 부릅니다.</strong> 고친 SKILL.md는 열린 세션에 바로 반영됩니다. 서버 터미널에서 테스트로 형식을 확인하고, 터미널 1에서 같은 호출로 다시 봅니다. pytest 허락 창이 뜨면 승인합니다(<code>.pytest_cache</code> 생성은 정상). 실패하면 name · 줄 수(60) · 「왜냐하면」 2개를 봅니다.</p></li>
+<li><p><strong>무엇이 달라져야 성공인가.</strong> 아래 판정 기준의 세 가지가 산출물에 나타나면 발전형이 동작한 것입니다. 이어서 스킬이 흔히 실패하는 작성 패턴인 안티패턴 3종으로 점검합니다.</p></li>
 </ol>
 <p><strong>발전형 확인 · 두 터미널을 오가며</strong></p>
 <pre class="text"><code>   [Claude Code 안]
@@ -2325,10 +2361,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="실습-3-44-skill.md-④-안티패턴-3종으로-진단하고-결과를-읽는다">13-5. 실습 3 · 4/4 · SKILL.md ④: 안티패턴 3종으로 진단하고 결과를 읽는다</h3>
 <p>시작 · 끝: Claude Code 안 → 서버 터미널 · <code>week07</code> · 읽기만 합니다.</p>
 <ol type="1">
-<li><strong>안티패턴: 스킬이 흔히 실패하는 세 습관.</strong> ① 너무 긴 본문, ② 떼어 내지 않은 긴 내용, ③ 이유 없는 「반드시」입니다. 기준 숫자는 아래 표에 있습니다(키트의 <code>antipattern/진단기준.md</code>).</li>
-<li><strong>[Claude Code 안] 진단을 맡깁니다.</strong> 아래 프롬프트를 붙여 넣으면 실측 · 발현 여부 · 해결 권고가 표로 나옵니다(<code>내프롬프트.md</code> 3)과 같은 문장).</li>
-<li><strong>[서버 터미널] 숫자로 맞춰 봅니다.</strong> 표의 실측과 같으면 진단을 믿어도 됩니다. 예: 32줄 → ① 없음, 반드시류 0회 → ③ 없음. <code>No such file</code>이면 <code>week07</code> 폴더에서 다시 칩니다.</li>
-<li><strong>「모두 없음」은 잘 쓰였다는 뜻입니다.</strong> 걸리는 예는 키트의 세 샘플로 이어지는 두 보충에서 봅니다.</li>
+<li><p><strong>안티패턴: 스킬이 흔히 실패하는 세 습관.</strong></p>
+<ul>
+<li>① 너무 긴 본문</li>
+<li>② 떼어 내지 않은 긴 내용</li>
+<li>③ 이유 없는 「반드시」입니다.</li>
+</ul>
+<p>기준 숫자는 아래 표에 있습니다(키트의 <code>antipattern/진단기준.md</code>).</p></li>
+<li><p><strong>[Claude Code 안] 진단을 맡깁니다.</strong> 아래 프롬프트를 붙여 넣으면 실측 · 발현 여부 · 해결 권고가 표로 나옵니다(<code>내프롬프트.md</code> 3)과 같은 문장).</p></li>
+<li><p><strong>[서버 터미널] 숫자로 맞춰 봅니다.</strong> 표의 실측과 같으면 진단을 믿어도 됩니다. 예: 32줄 → ① 없음, 반드시류 0회 → ③ 없음. <code>No such file</code>이면 <code>week07</code> 폴더에서 다시 칩니다.</p></li>
+<li><p><strong>「모두 없음」은 잘 쓰였다는 뜻입니다.</strong> 걸리는 예는 키트의 세 샘플로 이어지는 두 보충에서 봅니다.</p></li>
 </ol>
 <p><strong>진단 기준과 화면 예시</strong></p>
 <pre class="text"><code>   ① 거대 본문      60줄 초과 → 분량을 줄인다
@@ -2348,7 +2390,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb80"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>   <span class="fu">wc</span> <span class="at">-l</span> .claude/skills/portfolio-check/SKILL.md</span>
 <span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">grep</span> <span class="at">-c</span> <span class="at">-E</span> <span class="st">"반드시|절대|금지"</span> .claude/skills/portfolio-check/SKILL.md</span>
 <span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">grep</span> <span class="at">-c</span> <span class="at">-E</span> <span class="st">"왜냐하면|때문"</span> .claude/skills/portfolio-check/SKILL.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>세 숫자를 기준과 대조합니다(결과에는 기준의 번호 ①②③과 섞이지 않게 ④⑤⑥을 붙였습니다). ④ 32줄은 60줄 이하라 ① 거대 본문에 걸리지 않습니다. ⑤ 반드시 · 절대 · 금지가 0회로 5회 미만이라 ③ 이유 없는 규칙에도 걸리지 않습니다(⑥ 이유는 2회이고, 고정 테스트도 「왜냐하면」 두 개를 봅니다). ② 참조 분리 부재는 숫자가 아니라 본문을 읽어 판정합니다. 상황별 분기가 넷 이상 나열되어 있는데 <code>references/</code>가 없으면 해당합니다. 위 숫자는 <code>예비/SKILL.md</code>의 값이라 내 파일은 다를 수 있습니다. Claude Code의 진단 표와 이 숫자가 다르면 숫자를 믿습니다. <strong>결과 비교.</strong> 표의 실측이 터미널 숫자와 같은지, 발현 여부가 기준과 맞는지 비교합니다.</p>
+<p>세 숫자를 기준과 대조합니다(결과에는 기준의 번호 ①②③과 섞이지 않게 ④⑤⑥을 붙였습니다). ④ 32줄은 60줄 이하라 ① 거대 본문에 걸리지 않습니다. ⑤ 반드시 · 절대 · 금지가 0회로 5회 미만이라 ③ 이유 없는 규칙에도 걸리지 않습니다(⑥ 이유는 2회이고, 고정 테스트도 「왜냐하면」 두 개를 봅니다). ② 참조 분리 부재는 숫자가 아니라 본문을 읽어 판정합니다.</p>
+<p>상황별 분기가 넷 이상 나열되어 있는데 <code>references/</code>가 없으면 해당합니다. 위 숫자는 <code>예비/SKILL.md</code>의 값이라 내 파일은 다를 수 있습니다. Claude Code의 진단 표와 이 숫자가 다르면 숫자를 믿습니다. <strong>결과 비교.</strong> 표의 실측이 터미널 숫자와 같은지, 발현 여부가 기준과 맞는지 비교합니다.</p>
 <ul>
 <li><span class="check-badge">확인 27</span> 세 안티패턴이 왜 발현하지 않았는지 숫자로 설명할 수 있다.</li>
 </ul>
@@ -2606,7 +2649,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    → tools/call vat_calc {"amount": 1200000}
    ← "…부가세 120,000원, 합계 1,320,000원"
    → Claude Code가 보냄   ← 서버가 돌려줌</code></pre>
-<p><strong>연결.</strong> <code>def</code> 줄의 함수 이름은 name, 인자는 입력 스키마, 독스트링은 description이 됩니다. 실습 1에서 손으로 쓰던 dict를 FastMCP가 만듭니다. <strong>스킬과 차이.</strong> 스킬은 Claude가 SKILL.md를 읽고 직접 일하고, MCP는 호출만 하며 계산 · 검증은 서버 함수가 합니다. 언제 부를지는 둘 다 설명 문장(description · 독스트링)이 정합니다. 키트의 실제 파일은 <code>float(amount)</code> 변환과 <code>try/except</code>, fastmcp가 없을 때도 직접 호출이 되게 하는 import 보호, <code>if __name__ == "__main__":</code> 아래의 <code>mcp.run()</code>까지 들어 있습니다(그래서 직접 import해도 서버가 켜지지 않습니다).</p>
+<p><strong>연결.</strong> <code>def</code> 줄의 함수 이름은 name, 인자는 입력 스키마, 독스트링은 description이 됩니다. 실습 1에서 손으로 쓰던 dict를 FastMCP가 만듭니다. <strong>스킬과 차이.</strong> 스킬은 Claude가 SKILL.md를 읽고 직접 일하고, MCP는 호출만 하며 계산 · 검증은 서버 함수가 합니다.</p>
+<p>언제 부를지는 둘 다 설명 문장(description · 독스트링)이 정합니다. 키트의 실제 파일은 <code>float(amount)</code> 변환과 <code>try/except</code>, fastmcp가 없을 때도 직접 호출이 되게 하는 import 보호, <code>if __name__ == "__main__":</code> 아래의 <code>mcp.run()</code>까지 들어 있습니다(그래서 직접 import해도 서버가 켜지지 않습니다).</p>
 <hr>
 </section>
 </section>
@@ -2717,7 +2761,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    질문 뒤
      Called vat-calc                                  ◀ ③
      - 합계: 1,320,000원</code></pre>
-<p>① 등록(기본 범위 local)은 이 폴더에서 여는 세션에 적용됩니다. ② 터미널 1에 이미 열려 있던 세션도 <code>/mcp</code>로 서버를 다시 붙일 수 있습니다. ③ 도구 호출 줄의 <code>amount</code>는 모델이 「120만원」을 공급가액으로 읽어 만든 인자입니다. 「부가세 포함 가격」을 어떻게 해석했는지는 모델의 판단이라, 다르게 읽었다면 질문을 바꿔 다시 물어 봅니다. 전용 스크립트에서만 쓸 수 있던 함수를 지금은 Claude Code가 표준 규약으로 부르고 있습니다. <strong>막히면.</strong> <code>claude mcp list</code>로 등록을 봅니다. 없으면 절대 경로로 다시 add, already exists면 remove 뒤 add. failed면 등록 명령을 서버 터미널에서 직접 실행해 오류를 봅니다.</p>
+<ul>
+<li>① 등록(기본 범위 local)은 이 폴더에서 여는 세션에 적용됩니다.</li>
+<li>② 터미널 1에 이미 열려 있던 세션도 <code>/mcp</code>로 서버를 다시 붙일 수 있습니다.</li>
+<li>③ 도구 호출 줄의 <code>amount</code>는 모델이 「120만원」을 공급가액으로 읽어 만든 인자입니다.</li>
+</ul>
+<p>「부가세 포함 가격」을 어떻게 해석했는지는 모델의 판단이라, 다르게 읽었다면 질문을 바꿔 다시 물어 봅니다. 전용 스크립트에서만 쓸 수 있던 함수를 지금은 Claude Code가 표준 규약으로 부르고 있습니다. <strong>막히면.</strong> <code>claude mcp list</code>로 등록을 봅니다. 없으면 절대 경로로 다시 add, already exists면 remove 뒤 add. failed면 등록 명령을 서버 터미널에서 직접 실행해 오류를 봅니다.</p>
 <ul>
 <li><span class="check-badge">확인 32</span> vat-calc가 연결되고, Called vat-calc 뒤 합계 1,320,000원이 나왔다.</li>
 </ul>
@@ -2974,7 +3023,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>④ <code>payment/</code> 폴더의 코드만 금액을 Decimal로 계산한다</p></li>
 <li><p>⑤ 분기마다 하는 보안 점검을 팀원 누구나 같은 결과로 돌린다</p></li>
 <li><p>⑥ 사내 재고 조회를 Claude Code · Cursor · Claude Desktop에서 함께 쓴다</p>
-<p>토론 뒤 기준 답: ① 고정 ② 도구 ③ CLAUDE.md ④ rules ⑤ 스킬 ⑥ MCP.</p>
+<p>토론 뒤 기준 답:</p>
+<ol type="1">
+<li>고정</li>
+<li>도구</li>
+<li>CLAUDE.md</li>
+<li>rules</li>
+<li>스킬</li>
+<li>MCP.</li>
+</ol>
 <ul>
 <li><span class="check-badge">확인 35</span> 여섯 상황을 판정 질문으로 나누고, 답이 갈린 항목의 조건을 말할 수 있다.</li>
 </ul></li>
@@ -2983,7 +3040,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="정리-23-왜-중요한가-검증과-부품-지도가-있으면-무엇이-달라지는가" class="level3">
 <h3 class="anchored" data-anchor-id="정리-23-왜-중요한가-검증과-부품-지도가-있으면-무엇이-달라지는가">18-2. 정리 2/3 · 왜 중요한가: 검증과 부품 지도가 있으면 무엇이 달라지는가</h3>
 <p>이 수업은 도구 하나, 스킬 하나였습니다. 인자가 이상해도 내가 알아챘고, 어느 부품이 도는지 내가 알았습니다.</p>
-<p><strong>작업이 늘면 갈림길이 됩니다.</strong> 도구 열 개, 프로젝트 열 개, 하루 수천 번 호출, “AI가 엉뚱한 계산을 했다”는 고객 문의가 오는 회사 서비스에서는 판단이 틀렸는지 실행이 틀렸는지, 어느 부품이 실렸는지 그 자리에서 말해야 합니다. <strong>검증 없이 · 부품 없이 쓰면</strong> 모델이 만든 인자를 그대로 믿고 계산하거나 죽고, 매번 같은 프롬프트를 다시 치고 결과 모양이 매번 다릅니다. <strong>검증과 부품 지도가 있으면</strong> 이상한 인자는 코드가 오류 문자열로 막고 모델이 되묻고, 규칙은 CLAUDE.md, 절차는 스킬, 연결은 MCP에 두고 로딩 시점으로 비용을 설명합니다.</p>
+<p><strong>작업이 늘면 갈림길이 됩니다.</strong> 도구 열 개, 프로젝트 열 개, 하루 수천 번 호출, “AI가 엉뚱한 계산을 했다”는 고객 문의가 오는 회사 서비스에서는 판단이 틀렸는지 실행이 틀렸는지, 어느 부품이 실렸는지 그 자리에서 말해야 합니다.</p>
+<p><strong>검증 없이 · 부품 없이 쓰면</strong> 모델이 만든 인자를 그대로 믿고 계산하거나 죽고, 매번 같은 프롬프트를 다시 치고 결과 모양이 매번 다릅니다. <strong>검증과 부품 지도가 있으면</strong> 이상한 인자는 코드가 오류 문자열로 막고 모델이 되묻고, 규칙은 CLAUDE.md, 절차는 스킬, 연결은 MCP에 두고 로딩 시점으로 비용을 설명합니다.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -3041,7 +3099,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>남은 것 · 이 수업의 다음 단계.</strong></p>
 <ul>
 <li><strong>루프 반복 자동화.</strong> AI가 테스트로 결과를 확인하고, 실패하면 고쳐 다시 도는 과정을 사람 없이 끝까지 돌립니다. 반복 상한과 사람에게 넘기는 조건이 핵심입니다.</li>
-<li><strong>멀티 에이전트 상호작용.</strong> 조사 · 작성 · 검토를 맡은 에이전트 여럿이 결과를 주고받습니다. 검토 에이전트가 판정자 루프(LLM as Judge)를 맡습니다.</li>
+<li><strong>멀티 에이전트 상호작용.</strong> 조사 · 작성 · 검토를 맡은 에이전트 여럿이 결과를 주고받습니다. 검토 에이전트가 <strong>판정자 루프</strong>(LLM as Judge)를 맡습니다.</li>
 </ul>
 <p>재료(도구 · 검증 · 스킬 · MCP)는 이미 손안에 있습니다. 자기 PC · 자기 키에서 시작합니다.</p>
 </section>

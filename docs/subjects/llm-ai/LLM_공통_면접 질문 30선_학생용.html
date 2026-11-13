@@ -41,7 +41,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-22a0846da5108b0773bc0f4716ee2d77.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dcf116883d0d3758c9131f5ede2fa7e1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -298,6 +298,10 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#a.-llm-원리-7문" id="toc-a.-llm-원리-7문" class="nav-link active" data-scroll-target="#a.-llm-원리-7문">A. LLM 원리 (7문)</a></li>
+  <li><a href="#b.-claude-code-운용-8문" id="toc-b.-claude-code-운용-8문" class="nav-link" data-scroll-target="#b.-claude-code-운용-8문">B. Claude Code 운용 (8문)</a></li>
+  <li><a href="#c.-llm-애플리케이션-개발-8문" id="toc-c.-llm-애플리케이션-개발-8문" class="nav-link" data-scroll-target="#c.-llm-애플리케이션-개발-8문">C. LLM 애플리케이션 개발 (8문)</a></li>
+  <li><a href="#d.-운영보안배포-7문" id="toc-d.-운영보안배포-7문" class="nav-link" data-scroll-target="#d.-운영보안배포-7문">D. 운영·보안·배포 (7문)</a></li>
+  <li><a href="#사용법" id="toc-사용법" class="nav-link" data-scroll-target="#사용법">사용법</a></li>
   </ul>
 </nav>
     </div>
@@ -330,38 +334,58 @@ ul.task-list li input[type="checkbox"] {
 <section id="a.-llm-원리-7문" class="level2">
 <h2 class="anchored" data-anchor-id="a.-llm-원리-7문">A. LLM 원리 (7문)</h2>
 <ol type="1">
-<li><p>LLM은 왜 텍스트를 토큰으로 쪼개서 처리합니까? (실마리: 토크나이저 실험)</p></li>
-<li><p>환각(그럴듯한 오답)은 왜 발생합니까? (실마리: LLM 동작 원리, 확률적 생성)</p></li>
-<li><p>같은 질문에 답이 매번 달라지는 이유와, 이것이 개발에 주는 함의는 무엇입니까? (실마리: 샘플링, 재현성 실험, TDD)</p></li>
-<li><p>컨텍스트 윈도우가 가득 차면 무슨 일이 일어나고, 어떻게 관리합니까? (실마리: 컨텍스트 실측, 컴팩션·유실 실험)</p></li>
-<li><p>모델 양자화는 무엇이고 무엇을 얻고 무엇을 잃습니까? (실마리: 소형 모델 설치, VRAM 계산)</p></li>
-<li><p>임베딩은 무엇이며 어디에 씁니까? (실마리: 유사도 검색기 구현)</p></li>
-<li><p>생성은 상용 API를 쓰면서 임베딩은 로컬 모델을 쓰는 구성은 왜 나옵니까? (실마리: 검색기와 챗봇의 모델 구성) ## B. Claude Code 운용 (8문)</p></li>
-<li><p>에이전트 루프를 설명해 보세요. (실마리: 에이전트 루프의 세 국면, ReAct 직접 구현)</p></li>
-<li><p>CLAUDE.md와 Skill과 Hook은 각각 언제 씁니까? (실마리: 확장 기능 지도, 트리거 표)</p></li>
-<li><p>지시로 부탁하는 것과 훅으로 강제하는 것은 무엇이 다릅니까? (실마리: 가드레일은 훅에, 강제력 사다리)</p></li>
-<li><p>서브에이전트는 왜 씁니까? 같은 세션에 검토를 시키면 안 되는 이유는요? (실마리: 컨텍스트 격리, 배포 전 점검 검토자)</p></li>
-<li><p>MCP(Model Context Protocol)는 왜 필요합니까? (실마리: 도구의 MCP 서버화)</p></li>
-<li><p>권한 모드와 체크포인트는 왜 있고 어떻게 씁니까? (실마리: 권한 4모드, 되감기)</p></li>
-<li><p>대화형이 아니라 스크립트에서 Claude Code를 쓰려면 어떻게 합니까? (실마리: 헤드리스 모드, 파이프라인)</p></li>
-<li><p>스킬을 만들 때 피해야 할 안티패턴은 무엇입니까? (실마리: 안티패턴 3종 진단) ## C. LLM 애플리케이션 개발 (8문)</p></li>
-<li><p>tool use(function calling)의 사이클을 설명하고, 도구 인자를 왜 검증해야 하는지 말해 보세요. (실마리: 도구 호출 사이클 관찰, run_tool의 인자 검증)</p></li>
-<li><p>명세 주도 개발(SDD)은 무엇이고, AI 협업에서 왜 중요합니까? (실마리: Charter·Spec 작성, EARS 문형, 코드-문서 동기화 게이트)</p></li>
-<li><p>RAG(Retrieval-Augmented Generation, 검색 증강 생성)의 구조를 설명하고, 어떤 문제를 풉니까? (실마리: 검색기 구현, 챗봇 조립)</p></li>
-<li><p>유사도 문턱을 낮추면, 높이면 각각 무엇이 잘못됩니까? (실마리: 문턱 실험)</p></li>
-<li><p>청킹은 왜 하며 청크 크기는 무엇을 절충합니까? (실마리: 청킹 실습)</p></li>
-<li><p>에이전트를 직접 구현하는 것과 SDK·프레임워크를 쓰는 것은 언제 각각 선택합니까? (실마리: ReAct 직접 구현과 SDK 대조)</p></li>
-<li><p>AI 산출물의 품질은 무엇으로 측정합니까? (실마리: 정답셋, 규칙 채점과 Judge)</p></li>
-<li><p>외부 API를 부르는 코드는 어떻게 테스트합니까? (실마리: Mock 어댑터) ## D. 운영·보안·배포 (7문)</p></li>
-<li><p>기업이 로컬(온프레미스) LLM을 쓰는 이유는 무엇입니까? (실마리: 온프레미스 보안 이론, 로컬 모델 실습)</p></li>
-<li><p>AI 도구 도입 심사에서 회사는 무엇을 봅니까? (실마리: 데이터 사용 정책, 엔터프라이즈 운영)</p></li>
-<li><p>API 키는 어떻게 관리해야 합니까? (실마리: 키 보안, 배포 전 점검)</p></li>
-<li><p>모델 출력을 웹 화면에 표시할 때 무엇을 조심해야 합니까? (실마리: XSS 소독)</p></li>
-<li><p>배포 파이프라인에 검사를 넣는 이유와 구조를 설명해 보세요. (실마리: 점검 통과 시에만 배포)</p></li>
-<li><p>반복 프롬프트의 비용은 어떻게 줄입니까? (실마리: 프롬프트 캐싱, 토큰 사용량 추적)</p></li>
-<li><p>무인 자동화가 실패할 때를 어떻게 설계합니까? (실마리: 재시도 상한, 폴백) ## 사용법</p></li>
-<li><p>각 질문에 대해 실마리의 실습 기록과 원전 문서를 다시 열어 자기 언어로 답을 만듭니다. AI가 만든 문장을 그대로 외우면 면접에서 되묻는 질문에 무너집니다.</p></li>
-<li><p>짝과 번갈아 묻고 답하는 모의 문답으로 연습합니다. 답한 뒤에는 “실제로 해 본 것”을 한 가지 붙이는 훈련을 합니다. 이 과목의 모든 질문에는 붙일 실습이 있습니다.</p></li>
+<li>LLM은 왜 텍스트를 토큰으로 쪼개서 처리합니까? (실마리: 토크나이저 실험)</li>
+<li>환각(그럴듯한 오답)은 왜 발생합니까? (실마리: LLM 동작 원리, 확률적 생성)</li>
+<li>같은 질문에 답이 매번 달라지는 이유와, 이것이 개발에 주는 함의는 무엇입니까? (실마리: 샘플링, 재현성 실험, TDD)</li>
+<li>컨텍스트 윈도우가 가득 차면 무슨 일이 일어나고, 어떻게 관리합니까? (실마리: 컨텍스트 실측, 컴팩션·유실 실험)</li>
+<li>모델 양자화는 무엇이고 무엇을 얻고 무엇을 잃습니까? (실마리: 소형 모델 설치, VRAM 계산)</li>
+<li>임베딩은 무엇이며 어디에 씁니까? (실마리: 유사도 검색기 구현)</li>
+<li>생성은 상용 API를 쓰면서 임베딩은 로컬 모델을 쓰는 구성은 왜 나옵니까? (실마리: 검색기와 챗봇의 모델 구성)</li>
+</ol>
+</section>
+<section id="b.-claude-code-운용-8문" class="level2">
+<h2 class="anchored" data-anchor-id="b.-claude-code-운용-8문">B. Claude Code 운용 (8문)</h2>
+<ol start="8" type="1">
+<li>에이전트 루프를 설명해 보세요. (실마리: 에이전트 루프의 세 국면, ReAct 직접 구현)</li>
+<li>CLAUDE.md와 Skill과 Hook은 각각 언제 씁니까? (실마리: 확장 기능 지도, 트리거 표)</li>
+<li>지시로 부탁하는 것과 훅으로 강제하는 것은 무엇이 다릅니까? (실마리: 가드레일은 훅에, 강제력 사다리)</li>
+<li>서브에이전트는 왜 씁니까? 같은 세션에 검토를 시키면 안 되는 이유는요? (실마리: 컨텍스트 격리, 배포 전 점검 검토자)</li>
+<li><strong>MCP</strong>(Model Context Protocol)는 왜 필요합니까? (실마리: 도구의 MCP 서버화)</li>
+<li>권한 모드와 체크포인트는 왜 있고 어떻게 씁니까? (실마리: 권한 4모드, 되감기)</li>
+<li>대화형이 아니라 스크립트에서 Claude Code를 쓰려면 어떻게 합니까? (실마리: 헤드리스 모드, 파이프라인)</li>
+<li>스킬을 만들 때 피해야 할 안티패턴은 무엇입니까? (실마리: 안티패턴 3종 진단)</li>
+</ol>
+</section>
+<section id="c.-llm-애플리케이션-개발-8문" class="level2">
+<h2 class="anchored" data-anchor-id="c.-llm-애플리케이션-개발-8문">C. LLM 애플리케이션 개발 (8문)</h2>
+<ol start="16" type="1">
+<li>tool use(function calling)의 사이클을 설명하고, 도구 인자를 왜 검증해야 하는지 말해 보세요. (실마리: 도구 호출 사이클 관찰, run_tool의 인자 검증)</li>
+<li>명세 주도 개발(SDD)은 무엇이고, AI 협업에서 왜 중요합니까? (실마리: Charter·Spec 작성, EARS 문형, 코드-문서 동기화 게이트)</li>
+<li><strong>RAG</strong>(Retrieval-Augmented Generation, 검색 증강 생성)의 구조를 설명하고, 어떤 문제를 풉니까? (실마리: 검색기 구현, 챗봇 조립)</li>
+<li>유사도 문턱을 낮추면, 높이면 각각 무엇이 잘못됩니까? (실마리: 문턱 실험)</li>
+<li>청킹은 왜 하며 청크 크기는 무엇을 절충합니까? (실마리: 청킹 실습)</li>
+<li>에이전트를 직접 구현하는 것과 SDK·프레임워크를 쓰는 것은 언제 각각 선택합니까? (실마리: ReAct 직접 구현과 SDK 대조)</li>
+<li>AI 산출물의 품질은 무엇으로 측정합니까? (실마리: 정답셋, 규칙 채점과 Judge)</li>
+<li>외부 API를 부르는 코드는 어떻게 테스트합니까? (실마리: Mock 어댑터)</li>
+</ol>
+</section>
+<section id="d.-운영보안배포-7문" class="level2">
+<h2 class="anchored" data-anchor-id="d.-운영보안배포-7문">D. 운영·보안·배포 (7문)</h2>
+<ol start="24" type="1">
+<li>기업이 로컬(온프레미스) LLM을 쓰는 이유는 무엇입니까? (실마리: 온프레미스 보안 이론, 로컬 모델 실습)</li>
+<li>AI 도구 도입 심사에서 회사는 무엇을 봅니까? (실마리: 데이터 사용 정책, 엔터프라이즈 운영)</li>
+<li>API 키는 어떻게 관리해야 합니까? (실마리: 키 보안, 배포 전 점검)</li>
+<li>모델 출력을 웹 화면에 표시할 때 무엇을 조심해야 합니까? (실마리: XSS 소독)</li>
+<li>배포 파이프라인에 검사를 넣는 이유와 구조를 설명해 보세요. (실마리: 점검 통과 시에만 배포)</li>
+<li>반복 프롬프트의 비용은 어떻게 줄입니까? (실마리: 프롬프트 캐싱, 토큰 사용량 추적)</li>
+<li>무인 자동화가 실패할 때를 어떻게 설계합니까? (실마리: 재시도 상한, 폴백)</li>
+</ol>
+</section>
+<section id="사용법" class="level2">
+<h2 class="anchored" data-anchor-id="사용법">사용법</h2>
+<ol type="1">
+<li>각 질문에 대해 실마리의 실습 기록과 원전 문서를 다시 열어 자기 언어로 답을 만듭니다. AI가 만든 문장을 그대로 외우면 면접에서 되묻는 질문에 무너집니다.</li>
+<li>짝과 번갈아 묻고 답하는 모의 문답으로 연습합니다. 답한 뒤에는 “실제로 해 본 것”을 한 가지 붙이는 훈련을 합니다. 이 과목의 모든 질문에는 붙일 실습이 있습니다.</li>
 </ol>
 
 
