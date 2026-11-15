@@ -1,0 +1,4113 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>[부록 A] 실습 환경 – 안중호 교수 강의 교재</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../courses/ai-agent/book/Agent_부록B_명령어카드_학생용.html" rel="next">
+<link href="../../../courses/ai-agent/book/Agent_13주차_학생용.html" rel="prev">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-dcf116883d0d3758c9131f5ede2fa7e1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({
+    startOnLoad: true,
+    securityLevel: "loose",
+    theme: "neutral",
+    fontFamily: '"Pretendard Variable", Pretendard, "Malgun Gothic", sans-serif'
+  });
+</script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">안중호 교수 강의 교재</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="검색"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">커리큘럼</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/semesters/index.html">
+ <span class="dropdown-text">전체 커리큘럼</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../docs/semesters/2026-2/index.html">
+ <span class="dropdown-text">2026년 2학기</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../docs/subjects/llm-ai/index.html">
+ <span class="dropdown-text">교재 · LLM AI 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/subjects/python/index.html">
+ <span class="dropdown-text">교재 · 파이썬 실습</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../courses/index.html">
+ <span class="dropdown-text">2027학년도 교재 (준비 중)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/llm-service/index.html">
+ <span class="dropdown-text">· LLM 서비스 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/office/index.html">
+ <span class="dropdown-text">· 컴퓨터활용</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/adsp/index.html">
+ <span class="dropdown-text">· 빅데이터개론</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/ai-agent/index.html">
+ <span class="dropdown-text">· AI에이전트 기획 및 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/aice/index.html">
+ <span class="dropdown-text">· 비즈니스빅데이터분석</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/about/교수_소개.html"> 
+<span class="menu-text">교수 소개</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../courses/ai-agent/book/Agent_01주차_학생용.html">교재</a></li><li class="breadcrumb-item"><a href="../../../courses/ai-agent/book/Agent_부록A_실습환경_학생용.html">[부록 A] 실습 환경</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/ai-agent/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AI에이전트 기획 및 개발</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">교재</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/ai-agent/book/Agent_01주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[1주차] AI 에이전트 운영의 요건: 보안, 신뢰성, 일관성, 재현성</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/ai-agent/book/Agent_02주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[2주차] 테스트 주도 개발</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/ai-agent/book/Agent_03주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[3주차] 팀 규칙의 공유: CLAUDE.md, 설정, 저장소 규약</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/ai-agent/book/Agent_04주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[4주차] 확장 기능의 구조: 커맨드, 스킬, 플러그인</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/ai-agent/book/Agent_05주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[5주차] 외부 도구의 연결: MCP</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/ai-agent/book/Agent_06주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[6주차] 훅과 서브에이전트</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/ai-agent/book/Agent_07주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[7주차] 하네스의 설계와 구축</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/ai-agent/book/Agent_08주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[8주차] 루프 엔지니어링과 자동화</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/ai-agent/book/Agent_09주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[9주차] 에이전트 루프의 구조: API와 도구 호출</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/ai-agent/book/Agent_10주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[10주차] 멀티 에이전트 운영 시스템의 설계: 역할 분담과 병렬 작업</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/ai-agent/book/Agent_11주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[11주차] 에이전트의 보안: 권한, 비밀 정보, 프롬프트 주입</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/ai-agent/book/Agent_12주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[12주차] 평가와 관측: 회귀 평가, 기록, 비용</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/ai-agent/book/Agent_13주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[13주차] 지속적 통합과 안정적 배포: 풀 리퀘스트 검토, 버전 고정</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/ai-agent/book/Agent_부록A_실습환경_학생용.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">[부록 A] 실습 환경</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/ai-agent/book/Agent_부록B_명령어카드_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[부록 B] 명령어 카드</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/ai-agent/book/Agent_부록C_양식모음_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[부록 C] 양식 모음</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">이 장의 차례</h2>
+   
+  <ul>
+  <li><a href="#장-사이-약속" id="toc-장-사이-약속" class="nav-link active" data-scroll-target="#장-사이-약속">장 사이 약속</a></li>
+  <li><a href="#절의-구성과-하는-때" id="toc-절의-구성과-하는-때" class="nav-link" data-scroll-target="#절의-구성과-하는-때">절의 구성과 하는 때</a></li>
+  <li><a href="#a-1.-실습-환경의-구성" id="toc-a-1.-실습-환경의-구성" class="nav-link" data-scroll-target="#a-1.-실습-환경의-구성">A-1. 실습 환경의 구성</a>
+  <ul class="collapse">
+  <li><a href="#a-1-1.-인증의-갈래" id="toc-a-1-1.-인증의-갈래" class="nav-link" data-scroll-target="#a-1-1.-인증의-갈래">A-1-1. 인증의 갈래</a></li>
+  </ul></li>
+  <li><a href="#a-2.-실습-서버-접속과-vs-code" id="toc-a-2.-실습-서버-접속과-vs-code" class="nav-link" data-scroll-target="#a-2.-실습-서버-접속과-vs-code">A-2. 실습 서버 접속과 VS Code</a></li>
+  <li><a href="#a-3.-터미널-두-개의-배치" id="toc-a-3.-터미널-두-개의-배치" class="nav-link" data-scroll-target="#a-3.-터미널-두-개의-배치">A-3. 터미널 두 개의 배치</a></li>
+  <li><a href="#a-4.-claude-code-설치와-갱신" id="toc-a-4.-claude-code-설치와-갱신" class="nav-link" data-scroll-target="#a-4.-claude-code-설치와-갱신">A-4. Claude Code 설치와 갱신</a></li>
+  <li><a href="#a-5.-claude-code-계정-로그인" id="toc-a-5.-claude-code-계정-로그인" class="nav-link" data-scroll-target="#a-5.-claude-code-계정-로그인">A-5. Claude Code 계정 로그인</a>
+  <ul class="collapse">
+  <li><a href="#a-5-1.-로그인과-확인" id="toc-a-5-1.-로그인과-확인" class="nav-link" data-scroll-target="#a-5-1.-로그인과-확인">A-5-1. 로그인과 확인</a></li>
+  <li><a href="#a-5-2.-셸에-키를-두지-않는-까닭" id="toc-a-5-2.-셸에-키를-두지-않는-까닭" class="nav-link" data-scroll-target="#a-5-2.-셸에-키를-두지-않는-까닭">A-5-2. 셸에 키를 두지 않는 까닭</a></li>
+  </ul></li>
+  <li><a href="#a-6.-claude-code-설정-파일의-위치와-범위" id="toc-a-6.-claude-code-설정-파일의-위치와-범위" class="nav-link" data-scroll-target="#a-6.-claude-code-설정-파일의-위치와-범위">A-6. Claude Code 설정 파일의 위치와 범위</a>
+  <ul class="collapse">
+  <li><a href="#a-6-1.-네-범위와-파일" id="toc-a-6-1.-네-범위와-파일" class="nav-link" data-scroll-target="#a-6-1.-네-범위와-파일">A-6-1. 네 범위와 파일</a></li>
+  <li><a href="#a-6-2.-개인-파일을-저장소에서-빼기" id="toc-a-6-2.-개인-파일을-저장소에서-빼기" class="nav-link" data-scroll-target="#a-6-2.-개인-파일을-저장소에서-빼기">A-6-2. 개인 파일을 저장소에서 빼기</a></li>
+  <li><a href="#a-6-3.-읽은-설정의-확인" id="toc-a-6-3.-읽은-설정의-확인" class="nav-link" data-scroll-target="#a-6-3.-읽은-설정의-확인">A-6-3. 읽은 설정의 확인</a></li>
+  <li><a href="#a-6-4.-연습용-격리-claude_config_dir" id="toc-a-6-4.-연습용-격리-claude_config_dir" class="nav-link" data-scroll-target="#a-6-4.-연습용-격리-claude_config_dir">A-6-4. 연습용 격리: <code>CLAUDE_CONFIG_DIR</code></a></li>
+  </ul></li>
+  <li><a href="#a-7.-플러그인-마켓플레이스와-mcp-서버의-등록-범위" id="toc-a-7.-플러그인-마켓플레이스와-mcp-서버의-등록-범위" class="nav-link" data-scroll-target="#a-7.-플러그인-마켓플레이스와-mcp-서버의-등록-범위">A-7. 플러그인 마켓플레이스와 MCP 서버의 등록 범위</a>
+  <ul class="collapse">
+  <li><a href="#a-7-1.-플러그인과-마켓플레이스" id="toc-a-7-1.-플러그인과-마켓플레이스" class="nav-link" data-scroll-target="#a-7-1.-플러그인과-마켓플레이스">A-7-1. 플러그인과 마켓플레이스</a></li>
+  <li><a href="#a-7-2.-mcp-서버" id="toc-a-7-2.-mcp-서버" class="nav-link" data-scroll-target="#a-7-2.-mcp-서버">A-7-2. MCP 서버</a></li>
+  </ul></li>
+  <li><a href="#a-8.-키트-배포-폴더와-키트-받기" id="toc-a-8.-키트-배포-폴더와-키트-받기" class="nav-link" data-scroll-target="#a-8.-키트-배포-폴더와-키트-받기">A-8. 키트 배포 폴더와 키트 받기</a>
+  <ul class="collapse">
+  <li><a href="#a-8-1.-서버의-폴더" id="toc-a-8-1.-서버의-폴더" class="nav-link" data-scroll-target="#a-8-1.-서버의-폴더">A-8-1. 서버의 폴더</a></li>
+  <li><a href="#a-8-2.-kit_home-등록" id="toc-a-8-2.-kit_home-등록" class="nav-link" data-scroll-target="#a-8-2.-kit_home-등록">A-8-2. <code>$KIT_HOME</code> 등록</a></li>
+  <li><a href="#a-8-3.-장의-키트-받기" id="toc-a-8-3.-장의-키트-받기" class="nav-link" data-scroll-target="#a-8-3.-장의-키트-받기">A-8-3. 장의 키트 받기</a></li>
+  </ul></li>
+  <li><a href="#a-9.-git과-github-cli의-준비" id="toc-a-9.-git과-github-cli의-준비" class="nav-link" data-scroll-target="#a-9.-git과-github-cli의-준비">A-9. Git과 GitHub CLI의 준비</a></li>
+  <li><a href="#a-10.-기준-저장소와-개인-비공개-저장소" id="toc-a-10.-기준-저장소와-개인-비공개-저장소" class="nav-link" data-scroll-target="#a-10.-기준-저장소와-개인-비공개-저장소">A-10. 기준 저장소와 개인 비공개 저장소</a>
+  <ul class="collapse">
+  <li><a href="#a-10-1.-기준-저장소-받기" id="toc-a-10-1.-기준-저장소-받기" class="nav-link" data-scroll-target="#a-10-1.-기준-저장소-받기">A-10-1. 기준 저장소 받기</a></li>
+  <li><a href="#a-10-2.-개인-비공개-저장소" id="toc-a-10-2.-개인-비공개-저장소" class="nav-link" data-scroll-target="#a-10-2.-개인-비공개-저장소">A-10-2. 개인 비공개 저장소</a></li>
+  <li><a href="#a-10-3.-비공개-저장소의-조건과-학생-혜택" id="toc-a-10-3.-비공개-저장소의-조건과-학생-혜택" class="nav-link" data-scroll-target="#a-10-3.-비공개-저장소의-조건과-학생-혜택">A-10-3. 비공개 저장소의 조건과 학생 혜택</a></li>
+  </ul></li>
+  <li><a href="#a-11.-파이썬-가상-환경과-장별-패키지" id="toc-a-11.-파이썬-가상-환경과-장별-패키지" class="nav-link" data-scroll-target="#a-11.-파이썬-가상-환경과-장별-패키지">A-11. 파이썬 가상 환경과 장별 패키지</a>
+  <ul class="collapse">
+  <li><a href="#a-11-1.-저장소-안의-가상-환경-하나" id="toc-a-11-1.-저장소-안의-가상-환경-하나" class="nav-link" data-scroll-target="#a-11-1.-저장소-안의-가상-환경-하나">A-11-1. 저장소 안의 가상 환경 하나</a></li>
+  <li><a href="#a-11-2.-장별로-더-설치하는-패키지" id="toc-a-11-2.-장별로-더-설치하는-패키지" class="nav-link" data-scroll-target="#a-11-2.-장별로-더-설치하는-패키지">A-11-2. 장별로 더 설치하는 패키지</a></li>
+  <li><a href="#a-11-3.-다시-만들기" id="toc-a-11-3.-다시-만들기" class="nav-link" data-scroll-target="#a-11-3.-다시-만들기">A-11-3. 다시 만들기</a></li>
+  </ul></li>
+  <li><a href="#a-12.-프로덕트의-api-키와-.env" id="toc-a-12.-프로덕트의-api-키와-.env" class="nav-link" data-scroll-target="#a-12.-프로덕트의-api-키와-.env">A-12. 프로덕트의 API 키와 <code>.env</code></a>
+  <ul class="collapse">
+  <li><a href="#a-12-1.-키가-필요한-곳" id="toc-a-12-1.-키가-필요한-곳" class="nav-link" data-scroll-target="#a-12-1.-키가-필요한-곳">A-12-1. 키가 필요한 곳</a></li>
+  <li><a href="#a-12-2.-.env-만들기" id="toc-a-12-2.-.env-만들기" class="nav-link" data-scroll-target="#a-12-2.-.env-만들기">A-12-2. <code>.env</code> 만들기</a></li>
+  <li><a href="#a-12-3.-키를-다루는-규칙" id="toc-a-12-3.-키를-다루는-규칙" class="nav-link" data-scroll-target="#a-12-3.-키를-다루는-규칙">A-12-3. 키를 다루는 규칙</a></li>
+  </ul></li>
+  <li><a href="#a-13.-모의-모드와-실제-모델-호출" id="toc-a-13.-모의-모드와-실제-모델-호출" class="nav-link" data-scroll-target="#a-13.-모의-모드와-실제-모델-호출">A-13. 모의 모드와 실제 모델 호출</a>
+  <ul class="collapse">
+  <li><a href="#a-13-1.-두-가지-바꿔-끼우기" id="toc-a-13-1.-두-가지-바꿔-끼우기" class="nav-link" data-scroll-target="#a-13-1.-두-가지-바꿔-끼우기">A-13-1. 두 가지 바꿔 끼우기</a></li>
+  <li><a href="#a-13-2.-값을-주는-자리와-우선순위" id="toc-a-13-2.-값을-주는-자리와-우선순위" class="nav-link" data-scroll-target="#a-13-2.-값을-주는-자리와-우선순위">A-13-2. 값을 주는 자리와 우선순위</a></li>
+  <li><a href="#a-13-3.-실제-모델을-부르는-실습" id="toc-a-13-3.-실제-모델을-부르는-실습" class="nav-link" data-scroll-target="#a-13-3.-실제-모델을-부르는-실습">A-13-3. 실제 모델을 부르는 실습</a></li>
+  </ul></li>
+  <li><a href="#a-14.-헤드리스-실행과-사용량" id="toc-a-14.-헤드리스-실행과-사용량" class="nav-link" data-scroll-target="#a-14.-헤드리스-실행과-사용량">A-14. 헤드리스 실행과 사용량</a>
+  <ul class="collapse">
+  <li><a href="#a-14-1.-헤드리스-실행이-쓰는-것" id="toc-a-14-1.-헤드리스-실행이-쓰는-것" class="nav-link" data-scroll-target="#a-14-1.-헤드리스-실행이-쓰는-것">A-14-1. 헤드리스 실행이 쓰는 것</a></li>
+  <li><a href="#a-14-2.-사용량을-보는-법과-거는-법" id="toc-a-14-2.-사용량을-보는-법과-거는-법" class="nav-link" data-scroll-target="#a-14-2.-사용량을-보는-법과-거는-법">A-14-2. 사용량을 보는 법과 거는 법</a></li>
+  <li><a href="#a-14-3.-헤드리스-실행의-안전-수칙" id="toc-a-14-3.-헤드리스-실행의-안전-수칙" class="nav-link" data-scroll-target="#a-14-3.-헤드리스-실행의-안전-수칙">A-14-3. 헤드리스 실행의 안전 수칙</a></li>
+  </ul></li>
+  <li><a href="#a-15.-agent-sdk-설치" id="toc-a-15.-agent-sdk-설치" class="nav-link" data-scroll-target="#a-15.-agent-sdk-설치">A-15. Agent SDK 설치</a>
+  <ul class="collapse">
+  <li><a href="#a-15-1.-설치" id="toc-a-15-1.-설치" class="nav-link" data-scroll-target="#a-15-1.-설치">A-15-1. 설치</a></li>
+  <li><a href="#a-15-2.-인증-api-키만" id="toc-a-15-2.-인증-api-키만" class="nav-link" data-scroll-target="#a-15-2.-인증-api-키만">A-15-2. 인증: API 키만</a></li>
+  </ul></li>
+  <li><a href="#a-16.-github-actions의-비밀-정보" id="toc-a-16.-github-actions의-비밀-정보" class="nav-link" data-scroll-target="#a-16.-github-actions의-비밀-정보">A-16. GitHub Actions의 비밀 정보</a>
+  <ul class="collapse">
+  <li><a href="#a-16-1.-등록" id="toc-a-16-1.-등록" class="nav-link" data-scroll-target="#a-16-1.-등록">A-16-1. 등록</a></li>
+  <li><a href="#a-16-2.-쓰는-규칙" id="toc-a-16-2.-쓰는-규칙" class="nav-link" data-scroll-target="#a-16-2.-쓰는-규칙">A-16-2. 쓰는 규칙</a></li>
+  </ul></li>
+  <li><a href="#a-17.-ci-보조-도구-actionlint와-pip-tools" id="toc-a-17.-ci-보조-도구-actionlint와-pip-tools" class="nav-link" data-scroll-target="#a-17.-ci-보조-도구-actionlint와-pip-tools">A-17. CI 보조 도구: actionlint와 pip-tools</a>
+  <ul class="collapse">
+  <li><a href="#a-17-1.-pip-tools" id="toc-a-17-1.-pip-tools" class="nav-link" data-scroll-target="#a-17-1.-pip-tools">A-17-1. pip-tools</a></li>
+  <li><a href="#a-17-2.-actionlint" id="toc-a-17-2.-actionlint" class="nav-link" data-scroll-target="#a-17-2.-actionlint">A-17-2. actionlint</a></li>
+  </ul></li>
+  <li><a href="#a-18.-샌드박스-도구-bubblewrap과-socat" id="toc-a-18.-샌드박스-도구-bubblewrap과-socat" class="nav-link" data-scroll-target="#a-18.-샌드박스-도구-bubblewrap과-socat">A-18. 샌드박스 도구: bubblewrap과 socat</a></li>
+  <li><a href="#a-19.-예약-실행-cron" id="toc-a-19.-예약-실행-cron" class="nav-link" data-scroll-target="#a-19.-예약-실행-cron">A-19. 예약 실행: cron</a></li>
+  <li><a href="#a-20.-개인-포트" id="toc-a-20.-개인-포트" class="nav-link" data-scroll-target="#a-20.-개인-포트">A-20. 개인 포트</a></li>
+  <li><a href="#a-21.-내-pc-실습-환경서버-없이-할-때" id="toc-a-21.-내-pc-실습-환경서버-없이-할-때" class="nav-link" data-scroll-target="#a-21.-내-pc-실습-환경서버-없이-할-때">A-21. 내 PC 실습 환경(서버 없이 할 때)</a>
+  <ul class="collapse">
+  <li><a href="#a-21-1.-설치" id="toc-a-21-1.-설치" class="nav-link" data-scroll-target="#a-21-1.-설치">A-21-1. 설치</a></li>
+  <li><a href="#a-21-2.-서버와-다른-점" id="toc-a-21-2.-서버와-다른-점" class="nav-link" data-scroll-target="#a-21-2.-서버와-다른-점">A-21-2. 서버와 다른 점</a></li>
+  </ul></li>
+  <li><a href="#a-22.-매-장의-시작-순서" id="toc-a-22.-매-장의-시작-순서" class="nav-link" data-scroll-target="#a-22.-매-장의-시작-순서">A-22. 매 장의 시작 순서</a></li>
+  <li><a href="#a-23.-자주-막히는-곳과-해결" id="toc-a-23.-자주-막히는-곳과-해결" class="nav-link" data-scroll-target="#a-23.-자주-막히는-곳과-해결">A-23. 자주 막히는 곳과 해결</a>
+  <ul class="collapse">
+  <li><a href="#a-23-1.-접속-설치-로그인" id="toc-a-23-1.-접속-설치-로그인" class="nav-link" data-scroll-target="#a-23-1.-접속-설치-로그인">A-23-1. 접속, 설치, 로그인</a></li>
+  <li><a href="#a-23-2.-저장소-가상-환경-키" id="toc-a-23-2.-저장소-가상-환경-키" class="nav-link" data-scroll-target="#a-23-2.-저장소-가상-환경-키">A-23-2. 저장소, 가상 환경, 키</a></li>
+  <li><a href="#a-23-3.-설정-플러그인-mcp" id="toc-a-23-3.-설정-플러그인-mcp" class="nav-link" data-scroll-target="#a-23-3.-설정-플러그인-mcp">A-23-3. 설정, 플러그인, MCP</a></li>
+  <li><a href="#a-23-4.-헤드리스-루프-멀티-에이전트" id="toc-a-23-4.-헤드리스-루프-멀티-에이전트" class="nav-link" data-scroll-target="#a-23-4.-헤드리스-루프-멀티-에이전트">A-23-4. 헤드리스, 루프, 멀티 에이전트</a></li>
+  <li><a href="#a-23-5.-보안-ci-포트" id="toc-a-23-5.-보안-ci-포트" class="nav-link" data-scroll-target="#a-23-5.-보안-ci-포트">A-23-5. 보안, CI, 포트</a></li>
+  </ul></li>
+  <li><a href="#확인-기록" id="toc-확인-기록" class="nav-link" data-scroll-target="#확인-기록">확인 기록</a></li>
+  <li><a href="#참고-자료" id="toc-참고-자료" class="nav-link" data-scroll-target="#참고-자료">참고 자료</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../courses/ai-agent/book/Agent_01주차_학생용.html">교재</a></li><li class="breadcrumb-item"><a href="../../../courses/ai-agent/book/Agent_부록A_실습환경_학생용.html">[부록 A] 실습 환경</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">[부록 A] 실습 환경</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>2027학년도 「AI에이전트 기획 및 개발」의 준비 중인 교재입니다. 편집 상태를 검토하기 위해 미리 공개한 것으로, 수업 전에 내용과 순서가 바뀔 수 있습니다.</p>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>「AI에이전트 기획 및 개발」 1~13장의 공통 부록 · 2026-11 기준(Claude Code 2.1.296, git 2.55, GitHub CLI 2.88에서 확인)</p>
+</blockquote>
+<p>이 부록은 실습 환경을 갖추는 절차를 한곳에 모은 것이다. 실습 서버 접속, Claude Code의 설치와 로그인, 설정 파일의 범위, 키트 받기, 기준 저장소와 개인 비공개 저장소, 가상 환경, 프로덕트의 API 키, 모의 모드와 실제 모델 호출, 헤드리스 실행, Agent SDK, CI의 비밀 정보와 보조 도구, 샌드박스 도구, 예약 실행, 개인 포트, 서버 없이 하는 길을 차례로 다룬다. 각 장의 0절은 이 절차를 되풀이하지 않고 이 부록을 가리킨다.</p>
+<p>이 과목의 실습 환경은 앞 과목 「LLM 서비스 개발」의 부록 A와 같은 서버, 같은 접속 방법, 같은 인증 원칙 위에 있다. 앞 과목에서 이미 한 절차(서버 접속, 비밀번호 변경, VS Code 연결, Claude Code 설치와 로그인, Git 설정, GitHub CLI 인증)는 확인만 하고 넘어간다. 이 과목에서 새로 생기는 것은 세 가지이다. 첫째, 학기 내내 저장소 하나(<code>~/agent-lab/jobprep</code>)를 운영한다. 둘째, Claude Code의 설정과 확장 기능을 직접 만들므로 설정 파일의 위치와 범위를 알아야 한다. 셋째, 사람이 아닌 프로그램이 Claude Code와 모델을 부르는 실습(헤드리스 실행, 루프, 멀티 에이전트, Agent SDK, CI)이 있으므로, 무엇이 어느 인증으로 얼마를 쓰는지를 미리 정해 둔다.</p>
+<section id="장-사이-약속" class="level2">
+<h2 class="anchored" data-anchor-id="장-사이-약속">장 사이 약속</h2>
+<p>1~13장은 같은 저장소, 같은 가상 환경, 같은 포트 규칙 위에서 이어진다. 장마다 다르게 하면 앞 장의 결과를 다음 장의 도구가 찾지 못한다. 모든 장의 강의안과 키트가 지키는 약속은 다음과 같다(2026-11-14 기준).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>항목</th>
+<th>약속</th>
+<th>처음 쓰는 장</th>
+<th>절</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>작업 공간</td>
+<td><code>~/agent-lab/</code>. 운영 대상 저장소는 <code>~/agent-lab/jobprep/</code> 하나이고, 13개 장의 결과가 모두 이 저장소에 쌓인다. 운영 문서는 <code>jobprep/docs/운영/</code>에 둔다</td>
+<td>1장</td>
+<td>A-9</td>
+</tr>
+<tr class="even">
+<td>원격 저장소</td>
+<td>1장에서 자기 GitHub 계정에 <strong>비공개(Private)</strong> 저장소 <code>jobprep</code>으로 올린다. 비공개 저장소의 규칙 집합(13장)은 GitHub Pro(학생 혜택)로 쓴다</td>
+<td>1장</td>
+<td>A-10</td>
+</tr>
+<tr class="odd">
+<td>키트</td>
+<td><code>mkdir -p ~/kits &amp;&amp; cp -rn "$KIT_HOME/Agent_NN주차" ~/kits/</code>. 키트는 저장소 밖에 두고, 각 장의 0절이 정한 파일만 저장소로 옮긴다</td>
+<td>1장</td>
+<td>A-8</td>
+</tr>
+<tr class="even">
+<td>기준산출물</td>
+<td>앞 장을 마치지 못한 학습자를 위해 키트의 <code>기준산출물/</code>에 앞 장의 결과 견본을 둔다. 앞 장을 마친 학습자는 자기 결과를 쓴다</td>
+<td>2장</td>
+<td>A-8</td>
+</tr>
+<tr class="odd">
+<td>가상 환경</td>
+<td><code>~/agent-lab/jobprep/.venv</code> 하나(<code>.gitignore</code>가 무시한다). 실행은 <code>.venv/bin/python …</code>. 장마다 그 장의 <code>requirements*.txt</code>를 이 환경에 더 설치한다. pytest는 9.2.0이다</td>
+<td>1장</td>
+<td>A-11</td>
+</tr>
+<tr class="even">
+<td>도구용 환경</td>
+<td>잠금 파일 도구와 워크플로 검사기는 저장소 밖 <code>~/agent-lab/.tools/</code>에 둔다</td>
+<td>13장</td>
+<td>A-17</td>
+</tr>
+<tr class="odd">
+<td>포트</td>
+<td>첫째 <code>8000+출석번호</code>(본문의 예시 8001, API), 둘째 <code>8100+출석번호</code>(예시 8101, 웹). 본문은 「부록 A의 자기 포트」라고 밝힌다</td>
+<td>1장</td>
+<td>A-20</td>
+</tr>
+<tr class="even">
+<td>Claude Code 인증</td>
+<td>계정 로그인. <code>ANTHROPIC_API_KEY</code>를 셸(<code>~/.bashrc</code>)에 등록하지 않는다</td>
+<td>1장</td>
+<td>A-5</td>
+</tr>
+<tr class="odd">
+<td>프로덕트의 API 키</td>
+<td><code>jobprep/.env</code>에만 둔다(<code>.gitignore</code>가 무시하고, 견본은 <code>.env.example</code>). 키가 없어도 모든 장이 모의 모드로 끝까지 간다</td>
+<td>1장</td>
+<td>A-12</td>
+</tr>
+<tr class="even">
+<td>모의 모드</td>
+<td><code>LLM_FAKE=1</code>이면 제품 코드가 모델을 부르지 않는다. 루프와 멀티 에이전트 스크립트는 <code>AGENT_CMD</code>에 가짜 에이전트를 넣는다</td>
+<td>1장, 8장</td>
+<td>A-13</td>
+</tr>
+<tr class="odd">
+<td>커밋 메시지</td>
+<td>3장의 Conventional Commits. 종류는 <code>feat</code>, <code>fix</code>, <code>docs</code>, <code>style</code>, <code>refactor</code>, <code>perf</code>, <code>test</code>, <code>build</code>, <code>ci</code>, <code>chore</code>, <code>revert</code>이고, 범위에 요구 ID나 영역을 적는다. 검사 기준은 3장 <code>ops/rules/check_commits.py</code>이다</td>
+<td>3장</td>
+<td>부록 B-2</td>
+</tr>
+<tr class="even">
+<td>브랜치</td>
+<td>3장 규약 <code>&lt;종류&gt;/&lt;영문-소문자-설명&gt;</code>. 여기에 8장의 <code>loop/&lt;이름&gt;</code>, <code>practice/&lt;이름&gt;</code>, 10장의 통합 브랜치 <code>feat/issue-NN</code>과 에이전트 작업 브랜치 <code>agent/&lt;이슈&gt;-&lt;작업&gt;</code>을 더한다. 13장의 CI 대상과 보호 규칙도 이 이름을 따른다</td>
+<td>2장</td>
+<td>부록 B-2</td>
+</tr>
+<tr class="odd">
+<td>ID</td>
+<td>운영 요건 <code>OR-&lt;SEC\|REL\|CON\|REP&gt;-NN</code>, 역할 <code>R1</code>~<code>R6</code>, 검토 규칙 <code>RV1</code>~<code>RV8</code>, 기능 요구 <code>REQ-&lt;영역&gt;-NN</code>. 3장 위반 규칙 <code>R1</code>~<code>R10</code>은 「3장 규칙 R3」처럼 장을 밝혀 가리킨다</td>
+<td>1장</td>
+<td>각 장</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="절의-구성과-하는-때" class="level2">
+<h2 class="anchored" data-anchor-id="절의-구성과-하는-때">절의 구성과 하는 때</h2>
+<p>대부분의 절차는 학사 1주차(오리엔테이션)에 한 번 하면 학기 내내 유지된다. 몇 가지는 그 기능을 처음 쓰는 장의 직전에 한다. 아래 표의 「하는 때」를 따른다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>절</th>
+<th>내용</th>
+<th>하는 때</th>
+<th>한 번이면 되는가</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A-1</td>
+<td>실습 환경의 구성과 인증의 갈래</td>
+<td>1주차</td>
+<td>읽기만 한다</td>
+</tr>
+<tr class="even">
+<td>A-2</td>
+<td>실습 서버 접속과 VS Code</td>
+<td>1주차</td>
+<td>매 수업 접속한다</td>
+</tr>
+<tr class="odd">
+<td>A-3</td>
+<td>터미널 두 개의 배치</td>
+<td>1주차</td>
+<td>매 수업</td>
+</tr>
+<tr class="even">
+<td>A-4</td>
+<td>Claude Code 설치와 갱신</td>
+<td>1주차</td>
+<td>한 번(이후 자동 갱신)</td>
+</tr>
+<tr class="odd">
+<td>A-5</td>
+<td>Claude Code 계정 로그인</td>
+<td>1주차</td>
+<td>한 번(만료되면 다시)</td>
+</tr>
+<tr class="even">
+<td>A-6</td>
+<td>Claude Code 설정 파일의 위치와 범위</td>
+<td>3장 전에 읽는다. 연습용 격리는 4장</td>
+<td>읽기, 격리는 필요할 때</td>
+</tr>
+<tr class="odd">
+<td>A-7</td>
+<td>플러그인 마켓플레이스와 MCP 서버의 등록 범위</td>
+<td>4·5장</td>
+<td>등록할 때마다</td>
+</tr>
+<tr class="even">
+<td>A-8</td>
+<td>키트 배포 폴더와 키트 받기</td>
+<td>1주차, 이후 매 장</td>
+<td>장마다</td>
+</tr>
+<tr class="odd">
+<td>A-9</td>
+<td>Git과 GitHub CLI의 준비</td>
+<td>1주차</td>
+<td>한 번</td>
+</tr>
+<tr class="even">
+<td>A-10</td>
+<td>기준 저장소와 개인 비공개 저장소</td>
+<td>1장(학생 혜택은 1주차에 신청)</td>
+<td>한 번</td>
+</tr>
+<tr class="odd">
+<td>A-11</td>
+<td>파이썬 가상 환경과 장별 패키지</td>
+<td>1장(만들기), 2·5·9장(더 설치)</td>
+<td>만들기는 한 번</td>
+</tr>
+<tr class="even">
+<td>A-12</td>
+<td>프로덕트의 API 키와 <code>.env</code></td>
+<td>1장(견본 복사), 키는 교수 안내 뒤</td>
+<td>한 번</td>
+</tr>
+<tr class="odd">
+<td>A-13</td>
+<td>모의 모드와 실제 모델 호출</td>
+<td>1장, 7~10장, 12장</td>
+<td>실행할 때마다</td>
+</tr>
+<tr class="even">
+<td>A-14</td>
+<td>헤드리스 실행과 사용량</td>
+<td>7·8·10장</td>
+<td>실행할 때마다</td>
+</tr>
+<tr class="odd">
+<td>A-15</td>
+<td>Agent SDK 설치</td>
+<td>9장</td>
+<td>한 번</td>
+</tr>
+<tr class="even">
+<td>A-16</td>
+<td>GitHub Actions의 비밀 정보</td>
+<td>13장</td>
+<td>읽기(시연은 교수)</td>
+</tr>
+<tr class="odd">
+<td>A-17</td>
+<td>CI 보조 도구: actionlint와 pip-tools</td>
+<td>13장</td>
+<td>한 번</td>
+</tr>
+<tr class="even">
+<td>A-18</td>
+<td>샌드박스 도구: bubblewrap과 socat</td>
+<td>11장</td>
+<td>확인만 한다</td>
+</tr>
+<tr class="odd">
+<td>A-19</td>
+<td>예약 실행: cron</td>
+<td>8장</td>
+<td>필요할 때</td>
+</tr>
+<tr class="even">
+<td>A-20</td>
+<td>개인 포트</td>
+<td>1장 전</td>
+<td>번호는 학기 내내 같다</td>
+</tr>
+<tr class="odd">
+<td>A-21</td>
+<td>내 PC 실습 환경(서버 없이 할 때)</td>
+<td>서버를 쓸 수 없을 때</td>
+<td>한 번</td>
+</tr>
+<tr class="even">
+<td>A-22</td>
+<td>매 장의 시작 순서</td>
+<td>매 수업</td>
+<td>매 수업</td>
+</tr>
+<tr class="odd">
+<td>A-23</td>
+<td>자주 막히는 곳과 해결</td>
+<td>막혔을 때</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>명령 블록 위의 꼬리표는 그 명령을 입력하는 자리이다. 본문 전체에서 같은 꼬리표를 쓴다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>꼬리표</th>
+<th>입력하는 자리</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>[내 PC · PowerShell]</code></td>
+<td>내 컴퓨터의 Windows PowerShell 창</td>
+</tr>
+<tr class="even">
+<td><code>[서버 터미널]</code></td>
+<td>실습 서버에 접속된 터미널(VS Code의 통합 터미널 또는 <code>ssh</code>로 접속한 창)</td>
+</tr>
+<tr class="odd">
+<td><code>[Claude Code]</code></td>
+<td><code>claude</code>를 실행한 뒤 나타나는 Claude Code의 입력 창</td>
+</tr>
+<tr class="even">
+<td><code>[브라우저]</code></td>
+<td>내 컴퓨터의 웹 브라우저</td>
+</tr>
+<tr class="odd">
+<td><code>[파일: 경로]</code></td>
+<td>그 경로에 있는 파일의 내용</td>
+</tr>
+</tbody>
+</table>
+<p>서버 주소와 계정은 이 부록에 싣지 않는다. 명령 안의 <code>서버주소</code>, <code>아이디</code>, <code>배포폴더</code>는 1주차에 화면으로 안내하는 값으로 바꾸어 입력한다. GitHub 사용자 이름은 <code>「GitHub 아이디」</code>로 적는다. 비밀번호, API 키, 토큰의 실제 값은 어디에도 적지 않는다.</p>
+<hr>
+</section>
+<section id="a-1.-실습-환경의-구성" class="level2">
+<h2 class="anchored" data-anchor-id="a-1.-실습-환경의-구성">A-1. 실습 환경의 구성</h2>
+<p>이 과목의 실습은 학과 리눅스 실습 서버에서 한다. 내 컴퓨터는 서버에 접속하는 창구이고, 파일과 프로그램은 서버의 내 홈 폴더에 있다. 서버를 쓸 수 없을 때를 위해 내 PC에서 같은 실습을 하는 길을 A-21에 둔다.</p>
+<pre class="mermaid">flowchart LR
+    subgraph PC["내 PC (Windows)"]
+        VS["VS Code&lt;br/&gt;+ Remote-SSH"]
+        BR["브라우저"]
+    end
+    subgraph SV["학과 실습 서버 (리눅스)"]
+        T1["터미널 1&lt;br/&gt;Claude Code"]
+        T2["터미널 2&lt;br/&gt;서버 터미널"]
+        KIT["$KIT_HOME&lt;br/&gt;배포 폴더(읽기 전용)"]
+        KITS["~/kits&lt;br/&gt;받은 키트"]
+        REPO["~/agent-lab/jobprep&lt;br/&gt;운영 대상 저장소"]
+        TOOLS["~/agent-lab/.tools&lt;br/&gt;CI 보조 도구"]
+        CFG["~/.claude, ~/.claude.json&lt;br/&gt;Claude Code 설정과 로그인"]
+    end
+    GH["GitHub&lt;br/&gt;개인 비공개 저장소&lt;br/&gt;Actions, 규칙 집합"]
+    AN["Anthropic&lt;br/&gt;Claude 계정 / API"]
+    VS --&gt; T1
+    VS --&gt; T2
+    KIT -- "cp -rn" --&gt; KITS
+    KITS -- "0절이 정한 파일만" --&gt; REPO
+    REPO -- "git push" --&gt; GH
+    T1 -- "계정 로그인" --&gt; AN
+    REPO -- "API 키(.env)&lt;br/&gt;실제 호출 단계만" --&gt; AN
+    T1 --- CFG
+    BR --&gt; GH
+</pre>
+<p>환경을 이루는 요소는 다음과 같다. 서버의 사양과 설치된 도구는 1주차에 다시 확인한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>요소</th>
+<th>내용</th>
+<th>설치</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>실습 서버</td>
+<td>학과 리눅스 서버. 학생마다 계정과 홈 폴더가 있다</td>
+<td>학과가 준비한다</td>
+</tr>
+<tr class="even">
+<td>편집기</td>
+<td>VS Code와 Remote - SSH 확장</td>
+<td>학생이 한 번 설치(A-2)</td>
+</tr>
+<tr class="odd">
+<td>Claude Code</td>
+<td>터미널에서 실행하는 AI 코딩 도구. 서버의 내 계정 안에 설치한다</td>
+<td>학생이 한 번 설치(A-4)</td>
+</tr>
+<tr class="even">
+<td>파이썬</td>
+<td>서버의 파이썬 3.12 이상. 저장소 안에 가상 환경 하나를 만들어 학기 내내 쓴다</td>
+<td>서버에 있음. 가상 환경은 A-11</td>
+</tr>
+<tr class="odd">
+<td>Git, GitHub CLI</td>
+<td>버전 관리 도구와 GitHub 명령 도구</td>
+<td>서버에 있음(A-9)</td>
+</tr>
+<tr class="even">
+<td>bash 4 이상, python3, curl</td>
+<td>훅(6장), 멀티 에이전트 스크립트(10장), 배포 스크립트(13장)가 쓴다</td>
+<td>서버에 있음(A-22의 점검)</td>
+</tr>
+<tr class="odd">
+<td>bubblewrap, socat</td>
+<td>Claude Code 샌드박스의 리눅스 구성 요소(11장)</td>
+<td>관리자가 설치한다(A-18)</td>
+</tr>
+<tr class="even">
+<td>cron</td>
+<td>정기 실행(8장)</td>
+<td>서버에 있음. 사용 허가는 서버마다 다르다(A-19)</td>
+</tr>
+<tr class="odd">
+<td>배포 폴더</td>
+<td>장마다 키트가 올라오는 읽기 전용 폴더. 경로는 환경 변수 <code>$KIT_HOME</code></td>
+<td>학과가 준비한다(A-8)</td>
+</tr>
+</tbody>
+</table>
+<section id="a-1-1.-인증의-갈래" class="level3">
+<h3 class="anchored" data-anchor-id="a-1-1.-인증의-갈래">A-1-1. 인증의 갈래</h3>
+<p>이 과목에서 모델을 부르는 길은 다섯 갈래이다. 어느 갈래가 어떤 인증을 쓰고 누구의 사용량을 쓰는지가 이 부록 전체의 기준이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>갈래</th>
+<th>쓰는 곳</th>
+<th>인증 수단</th>
+<th>사용량과 비용</th>
+<th>절</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>대화형 Claude Code</td>
+<td>모든 장의 <code>[Claude Code]</code> 프롬프트</td>
+<td>Claude 계정 로그인(<code>/login</code>)</td>
+<td>학생 계정의 요금제 사용 한도</td>
+<td>A-5</td>
+</tr>
+<tr class="even">
+<td>헤드리스 Claude Code</td>
+<td>7장 <code>run_task.sh</code>, 8장 루프와 <code>digest.sh</code>, 10장 <code>claude_impl.sh</code></td>
+<td>대화형과 같은 계정 로그인</td>
+<td>같은 계정의 사용 한도. 결과의 <code>total_cost_usd</code>는 추정치</td>
+<td>A-14</td>
+</tr>
+<tr class="odd">
+<td>프로덕트 코드</td>
+<td><code>jobprep</code>의 요약·질의응답(<code>LLM_FAKE=0</code>), 9장 <code>agent_loop</code>, 12장 <code>--backend real</code></td>
+<td><code>jobprep/.env</code>의 API 키</td>
+<td>키를 발급한 Console 작업 공간의 사용량</td>
+<td>A-12</td>
+</tr>
+<tr class="even">
+<td>Agent SDK</td>
+<td>9장 <code>agent_loop/sdk_agent.py</code></td>
+<td><code>jobprep/.env</code>의 API 키만</td>
+<td>위와 같다</td>
+<td>A-15</td>
+</tr>
+<tr class="odd">
+<td>CI의 Claude Code</td>
+<td>13장 Claude Code GitHub Actions(교수 시연)</td>
+<td>저장소 비밀 정보의 API 키</td>
+<td>교수 저장소의 키</td>
+<td>A-16</td>
+</tr>
+</tbody>
+</table>
+<p>갈래를 섞지 않는 까닭은 A-5와 A-15에서 다룬다. 요점은 둘이다. Claude 계정 로그인은 Claude Code를 사람이 쓰기 위한 것이고, 학습자가 만드는 프로그램(프로덕트, Agent SDK로 만든 에이전트)은 API 키로 인증한다[C4]. 그리고 키가 없어도 모든 장의 실습은 모의 모드와 가짜 에이전트로 끝까지 할 수 있다(A-13).</p>
+<hr>
+</section>
+</section>
+<section id="a-2.-실습-서버-접속과-vs-code" class="level2">
+<h2 class="anchored" data-anchor-id="a-2.-실습-서버-접속과-vs-code">A-2. 실습 서버 접속과 VS Code</h2>
+<p>앞 과목에서 쓴 서버와 접속 방법이 같다. 앞 과목에서 접속, 비밀번호 변경, VS Code 연결을 마쳤으면 이 절은 확인만 한다.</p>
+<ol type="1">
+<li>내 PC의 PowerShell에서 서버에 접속한다. <code>아이디</code>와 <code>서버주소</code>는 1주차에 안내하는 값이다.</li>
+</ol>
+<div class="code-label where-pc">
+<span>내 PC · PowerShell</span>
+</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ssh 아이디@서버주소</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="1">
+<li>처음 접속하면 서버의 호스트 키를 신뢰할지 묻는다. <code>yes</code>를 입력한다. 비밀번호는 입력하는 동안 화면에 보이지 않는 것이 정상이다.</li>
+<li>입력 줄이 <code>[아이디@서버이름 ~]$</code> 모양이면 서버에 들어온 것이다. 초기 비밀번호로 처음 접속했으면 바로 <code>passwd</code>로 본인만 아는 비밀번호로 바꾼다. 새 비밀번호는 GitHub, Claude 계정의 비밀번호와 다르게 정한다.</li>
+<li>VS Code에서 <code>Remote - SSH</code> 확장(식별자 <code>ms-vscode-remote.remote-ssh</code>)을 설치하고, <code>F1</code> → <code>Remote-SSH: Connect to Host...</code> → <code>아이디@서버주소</code>로 연결한다[V1]. 왼쪽 아래 상태 표시줄에 <code>SSH: 서버주소</code>가 보이면 연결된 것이다.</li>
+<li>File &gt; Open Folder로 <code>/home/아이디/agent-lab</code>을 연다(1장 전에는 <code>/home/아이디</code>). 폴더를 신뢰할지 물으면 신뢰한다.</li>
+</ol>
+<p>지금 창이 내 PC인지 서버인지는 입력 줄의 모양으로 구별한다. 막혔을 때 가장 먼저 확인할 것이 이 구별이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>입력 줄</th>
+<th>위치</th>
+<th>이 자리에서 하는 일</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>PS C:\Users\이름&gt;</code></td>
+<td>내 PC의 PowerShell</td>
+<td><code>ssh</code> 접속, 내 PC에 설치</td>
+</tr>
+<tr class="even">
+<td><code>[아이디@서버이름 jobprep]$</code></td>
+<td>서버의 bash</td>
+<td>이 과목의 거의 모든 실습</td>
+</tr>
+<tr class="odd">
+<td><code>&gt;</code> 또는 <code>❯</code>가 있는 입력 창</td>
+<td>Claude Code 대화</td>
+<td>프롬프트, 슬래시 명령</td>
+</tr>
+</tbody>
+</table>
+<p>서버의 도구를 확인한다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">--version</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">--version</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> <span class="at">--version</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-1</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> <span class="at">--version</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-1</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>Python 3.12.x
+git version 2.x.x
+gh version 2.x.x (...)
+GNU bash, version 5.x.x(...)</code></pre>
+<p>버전 번호는 서버에 따라 다르다. 파이썬은 3.12 이상, bash는 4 이상이어야 한다(10장의 스크립트가 <code>declare -A</code>와 <code>mapfile</code>을 쓴다). 낮거나 <code>command not found</code>가 나오면 교수에게 알린다. 서버의 도구 설치는 학생 계정으로 할 수 없다.</p>
+<p><span class="check-badge">확인 1</span> <code>ssh</code>로 서버에 접속하였고, <code>python3 --version</code>이 3.12 이상을, <code>bash --version</code>이 4 이상을 출력하며, VS Code 왼쪽 아래에 <code>SSH: 서버주소</code>가 보인다.</p>
+<p>Remote-SSH 연결이 여러 번 실패하면 그 시간에는 PowerShell 창 두 개로 진행한다. 두 창 모두에서 <code>ssh 아이디@서버주소</code>로 접속하면, 그 둘이 A-3의 두 터미널을 대신한다.</p>
+<hr>
+</section>
+<section id="a-3.-터미널-두-개의-배치" class="level2">
+<h2 class="anchored" data-anchor-id="a-3.-터미널-두-개의-배치">A-3. 터미널 두 개의 배치</h2>
+<p>이 과목은 터미널 두 개를 나란히 두고 일한다. 한쪽에서 Claude Code에게 일을 시키고, 다른 쪽에서 그 결과를 사람이 직접 실행하고 확인한다. 앞 과목의 「AI가 만들고 사람이 검증한다」는 원칙에, 이 과목은 「검증을 기계(테스트, 훅, 검사 도구)가 먼저 하게 한다」를 더한다. 검사 도구도 서버 터미널에서 사람이 돌려 본 뒤에 에이전트에게 맡긴다.</p>
+<ol type="1">
+<li>Remote-SSH로 연결된 VS Code 창에서 Terminal &gt; New Terminal을 누른다.</li>
+<li>터미널 패널 오른쪽 위의 분할 아이콘으로 터미널을 하나 더 연다.</li>
+<li>두 터미널 모두 <code>cd ~/agent-lab/jobprep</code>으로 저장소 맨 위에 선다(1장 이후).</li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>자리</th>
+<th>이름</th>
+<th>하는 일</th>
+<th>꼬리표</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>왼쪽</td>
+<td>Claude Code 터미널</td>
+<td><code>claude</code>를 실행해 일을 시킨다</td>
+<td><code>[Claude Code]</code></td>
+</tr>
+<tr class="even">
+<td>오른쪽</td>
+<td>서버 터미널</td>
+<td>파일 확인, 테스트와 검사 도구 실행, <code>git</code> 명령, 헤드리스 스크립트 실행</td>
+<td><code>[서버 터미널]</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>두 터미널의 현재 폴더는 따로 움직인다. 실습 전에 두 터미널 모두 <code>pwd</code>로 위치를 확인한다.</li>
+<li>Claude Code는 언제나 저장소 맨 위(<code>~/agent-lab/jobprep</code>)에서 띄운다. 프로젝트 설정(<code>.claude/settings.json</code>)과 <code>.mcp.json</code>을 그 폴더에서 읽기 때문이다[C3]. 키트 폴더(<code>~/kits/...</code>) 안에서 띄우지 않는다. 7~11장의 키트에는 <code>.claude/</code> 폴더와 <code>CLAUDE.md</code>가 들어 있어 키트 안에서 띄우면 그 파일들이 읽힐 수 있다.</li>
+<li>8장 이후 루프나 서버를 띄워 두는 동안에는 서버 터미널이 하나 더 필요할 수 있다. 분할 아이콘으로 셋째 터미널을 연다.</li>
+</ul>
+<p><span class="check-badge">확인 2</span> VS Code 안에 서버 프롬프트가 뜬 터미널이 두 개 나란히 있고, 두 터미널의 <code>pwd</code>가 같은 저장소 폴더를 출력한다(1장 이후).</p>
+<hr>
+</section>
+<section id="a-4.-claude-code-설치와-갱신" class="level2">
+<h2 class="anchored" data-anchor-id="a-4.-claude-code-설치와-갱신">A-4. Claude Code 설치와 갱신</h2>
+<p>Claude Code는 각자 자기 계정 안에 설치한다. 관리자 권한은 필요 없고, 실행 파일은 내 홈 폴더(<code>~/.local/bin/claude</code>)에 놓인다[C1]. 앞 과목에서 설치했으면 버전만 확인한다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-fsSL</span> https://claude.ai/install.sh <span class="kw">|</span> <span class="fu">bash</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>설치 주소는 공식 문서(Advanced setup)의 것만 쓴다(2026-11-14 확인)[C1]. 설치가 끝나면 터미널을 닫고 새로 연 뒤 버전을 확인한다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="at">--version</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> doctor</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>2.1.296 (Claude Code)</code></pre>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>명령</th>
+<th>하는 일</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>claude --version</code></td>
+<td>설치된 버전을 출력한다</td>
+</tr>
+<tr class="even">
+<td><code>claude doctor</code></td>
+<td>설치 상태와 설정 파일의 오류를 진단한다. 세션을 시작하지 않는다. 지금 폴더의 설정 파일을 신뢰 확인 없이 읽는다(<code>claude --help</code>)</td>
+</tr>
+<tr class="odd">
+<td><code>claude update</code></td>
+<td>지금 바로 최신판으로 갱신한다. 이 방식으로 설치한 Claude Code는 백그라운드에서 스스로 갱신하고, 갱신은 다음 실행부터 적용된다[C1]</td>
+</tr>
+<tr class="even">
+<td><code>claude install &lt;판&gt;</code></td>
+<td>정해진 판(<code>stable</code>, <code>latest</code>, 판 번호)을 설치한다(<code>claude install --help</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>이 교재의 명령과 출력은 2026-11-14의 Claude Code 2.1.296에서 확인한 것이다. Claude Code는 빠르게 바뀐다. 헤드리스 옵션, 플러그인 명령, 권한 모드의 기본값은 판에 따라 달라진 적이 있다. 예를 들어 헤드리스 실행에서 아무 모드도 정하지 않았을 때 Manual 모드로 시작하는 동작은 2.1.302부터라고 문서에 적혀 있다[C9]. 출력이 교재와 다르면 먼저 <code>claude --version</code>을 비교하고, 다르면 <code>claude --help</code>, <code>claude &lt;하위 명령&gt; --help</code>, 공식 문서를 우선한다. 13장은 CI에서 쓰는 Claude Code와 액션의 판을 고정하는 법을 다룬다.</p>
+<p><span class="check-badge">확인 3</span> 새로 연 터미널에서 <code>claude --version</code>이 <code>2.1.</code>로 시작하는 번호와 <code>(Claude Code)</code>를 출력하고, <code>claude doctor</code>가 설치 문제를 보고하지 않는다.</p>
+<hr>
+</section>
+<section id="a-5.-claude-code-계정-로그인" class="level2">
+<h2 class="anchored" data-anchor-id="a-5.-claude-code-계정-로그인">A-5. Claude Code 계정 로그인</h2>
+<p>이 과목에서 Claude Code는 계정 로그인으로 쓴다. 학생 개인이 API 키를 Claude Code에 등록하지 않는다. Claude Code를 쓸 수 있는 계정의 종류와 로그인 화면에서 고를 것은 1주차에 안내한다[C2]. 계정 종류에 따라 사용 한도가 다르며, 7·8·10장의 헤드리스 실행이 그 한도를 함께 쓴다(A-14).</p>
+<section id="a-5-1.-로그인과-확인" class="level3">
+<h3 class="anchored" data-anchor-id="a-5-1.-로그인과-확인">A-5-1. 로그인과 확인</h3>
+<p>Claude Code 터미널에서 <code>claude</code>를 실행하면 처음에 로그인 방식을 묻는다. 서버에는 브라우저가 없으므로 로그인 주소가 나오면 <code>c</code>를 눌러 복사하고 내 PC의 브라우저에 붙여 넣는다. 브라우저가 코드를 보여 주면 그 코드를 터미널의 <code>Paste code here if prompted</code> 자리에 붙여 넣는다[C2]. 셸에서 로그인만 하려면 <code>claude auth login</code>을 쓴다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> auth status <span class="at">--text</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>(로그인 전)
+Anthropic base URL: https://api.anthropic.com
+Not logged in. Run claude auth login to authenticate.</code></pre>
+<p>로그인한 뒤에는 같은 명령이 로그인 방식과 계정을 보여 준다. 위 출력은 빈 설정 폴더(A-6-4)에서 실행해 확인한 것이다(2026-11-14). Claude Code 안에서는 <code>/status</code>의 Status 탭이 버전, 모델, 계정, 읽은 설정 파일(Setting sources)을 보여 준다[C3].</p>
+</section>
+<section id="a-5-2.-셸에-키를-두지-않는-까닭" class="level3">
+<h3 class="anchored" data-anchor-id="a-5-2.-셸에-키를-두지-않는-까닭">A-5-2. 셸에 키를 두지 않는 까닭</h3>
+<p><strong><code>ANTHROPIC_API_KEY</code>를 <code>~/.bashrc</code>나 셸에 등록하지 않는다.</strong> Claude Code는 이 변수가 있으면 계정 로그인보다 그 키를 먼저 쓴다[C2]. 키를 셸에 두면 생기는 일은 셋이다.</p>
+<ol type="1">
+<li>대화형 Claude Code와 헤드리스 루프가 학생 계정 대신 그 키로 청구된다. 교수가 프로덕트 실습용으로 한도를 정해 발급한 키가 개발 도구의 사용량으로 빠르게 소진된다.</li>
+<li>셸에서 실행하는 모든 프로그램(훅, 루프의 에이전트, 실험 저장소의 테스트)이 키를 물려받는다. 11장의 위협 모델에서 이것은 비밀 정보가 퍼지는 통로이다.</li>
+<li><code>env</code> 한 번, 오류 메시지 하나로 키가 화면에 드러난다.</li>
+</ol>
+<p>다음은 같은 PC에서 가짜 값을 환경 변수로 주고 인증 상태를 본 결과이다(2026-11-14). 로그인 대신 환경 변수의 키가 인증 수단으로 잡힌다.</p>
+<pre class="text"><code>$ ANTHROPIC_API_KEY=가짜값 claude auth status --text
+API key: ANTHROPIC_API_KEY
+Anthropic base URL: https://api.anthropic.com</code></pre>
+<p>프로덕트 코드가 쓰는 키는 A-12의 방식으로 <code>jobprep/.env</code>에만 둔다. <code>jobprep</code>의 코드(<code>api/llm.py</code>)와 9장의 프로그램은 실행할 때 <code>python-dotenv</code>로 그 파일을 읽으므로, 셸에 없어도 동작한다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">test</span> <span class="at">-z</span> <span class="st">"</span><span class="va">$ANTHROPIC_API_KEY</span><span class="st">"</span> <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> <span class="st">"셸에 키 없음: 정상"</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-n</span> <span class="st">"ANTHROPIC_API_KEY"</span> ~/.bashrc ~/.profile <span class="dv">2</span><span class="op">&gt;</span>/dev/null <span class="kw">||</span> <span class="bu">echo</span> <span class="st">"설정 파일에 키 없음: 정상"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>셸에 키 없음: 정상
+설정 파일에 키 없음: 정상</code></pre>
+<ul>
+<li>로그인 정보는 리눅스에서 <code>~/.claude/.credentials.json</code>에 저장된다[C2]. 이 파일을 복사하거나 저장소에 넣지 않는다. 코드에서 읽어 쓰지도 않는다(A-15).</li>
+<li>로그인이 만료되면 <code>/login</code>을 다시 한다. 다른 계정으로 바꾸려면 <code>/logout</code> 뒤 <code>/login</code>을 한다[C2].</li>
+<li><code>claude setup-token</code>은 Claude 구독으로 장기 토큰을 만드는 명령이다(<code>claude setup-token --help</code>). CI에서 구독으로 Claude Code를 돌릴 때 쓰는 것이며, 이 과목의 학생은 쓰지 않는다(A-16).</li>
+</ul>
+<p><span class="check-badge">확인 4</span> <code>/status</code>의 로그인 방식과 계정이 1주차에 안내받은 것과 같고, 위 두 명령이 「정상」을 출력한다.</p>
+<hr>
+</section>
+</section>
+<section id="a-6.-claude-code-설정-파일의-위치와-범위" class="level2">
+<h2 class="anchored" data-anchor-id="a-6.-claude-code-설정-파일의-위치와-범위">A-6. Claude Code 설정 파일의 위치와 범위</h2>
+<p>3장부터 학습자는 Claude Code의 설정을 직접 만든다. 같은 설정이라도 <strong>어느 파일에 두는가</strong>가 「누구에게 적용되는가」를 정한다. 이 절은 3~7장에서 만드는 파일들이 어디에 놓이는지를 한 표로 모은다. 각 파일의 내용과 문법은 그 장에서 다룬다.</p>
+<section id="a-6-1.-네-범위와-파일" class="level3">
+<h3 class="anchored" data-anchor-id="a-6-1.-네-범위와-파일">A-6-1. 네 범위와 파일</h3>
+<p>Claude Code는 설정을 네 범위에서 읽는다[C3].</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>범위</th>
+<th>설정 파일</th>
+<th>적용 대상</th>
+<th>저장소에 올리는가</th>
+<th>이 과목에서 두는 것</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>관리(managed)</td>
+<td>리눅스 <code>/etc/claude-code/managed-settings.json</code> 등</td>
+<td>조직이 배포한 모든 컴퓨터</td>
+<td>해당 없음</td>
+<td>없다(있으면 <code>/status</code>에 보인다)</td>
+</tr>
+<tr class="even">
+<td>사용자(user)</td>
+<td><code>~/.claude/settings.json</code></td>
+<td>나, 이 컴퓨터의 모든 프로젝트</td>
+<td>아니요(홈 폴더)</td>
+<td>테마, 개인 선호</td>
+</tr>
+<tr class="odd">
+<td>프로젝트(shared project)</td>
+<td><code>jobprep/.claude/settings.json</code></td>
+<td>이 저장소에서 일하는 모든 사람</td>
+<td>예(커밋한다)</td>
+<td>3장 권한 규칙, 6장 훅, 7장 Stop 훅, 11장 거부 규칙</td>
+</tr>
+<tr class="even">
+<td>프로젝트 로컬(project local)</td>
+<td><code>jobprep/.claude/settings.local.json</code></td>
+<td>나, 이 저장소에서만</td>
+<td>아니요(<code>.gitignore</code>)</td>
+<td>확인 창의 「Yes, and don’t ask again」, 4장 플러그인의 local 설치</td>
+</tr>
+</tbody>
+</table>
+<p>같은 키가 여러 곳에 있으면 관리 → 명령행(<code>--settings</code>) → 프로젝트 로컬 → 프로젝트 → 사용자 순서로 위의 값이 이긴다. 다만 <code>permissions.allow</code> 같은 목록은 덮어쓰지 않고 합쳐진다[C3]. 3장의 권한 판정 모의기(<code>perm_sim.py</code>)가 이 합치기를 흉내 낸다.</p>
+<p>설정 파일 밖에도 Claude Code가 읽는 파일이 있다. 위치를 함께 알아 둔다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>파일</th>
+<th>위치</th>
+<th>내용</th>
+<th>다루는 장</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>CLAUDE.md</code></td>
+<td>저장소 맨 위(팀), <code>~/.claude/CLAUDE.md</code>(개인), <code>CLAUDE.local.md</code>(개인, 저장소에 올리지 않음)</td>
+<td>지시</td>
+<td>3장</td>
+</tr>
+<tr class="even">
+<td>경로별 규칙</td>
+<td><code>.claude/rules/*.md</code></td>
+<td>머리말의 <code>paths</code>에 맞는 파일을 다룰 때 읽히는 지시</td>
+<td>3장</td>
+</tr>
+<tr class="odd">
+<td>스킬</td>
+<td><code>.claude/skills/&lt;이름&gt;/SKILL.md</code>(이 과목은 4장에서 플러그인 안으로 옮긴다)</td>
+<td>필요할 때 불러오는 작업 지침</td>
+<td>4장</td>
+</tr>
+<tr class="even">
+<td>서브에이전트</td>
+<td><code>.claude/agents/*.md</code>(프로젝트), <code>~/.claude/agents/</code>(개인)</td>
+<td>역할 정의</td>
+<td>6·10장</td>
+</tr>
+<tr class="odd">
+<td>훅 스크립트</td>
+<td><code>.claude/hooks/</code>(스크립트), 등록은 <code>settings.json</code>의 <code>hooks</code></td>
+<td>도구 호출 앞뒤의 강제</td>
+<td>6장</td>
+</tr>
+<tr class="even">
+<td>MCP 서버</td>
+<td><code>.mcp.json</code>(프로젝트), <code>~/.claude.json</code>(로컬, 사용자)</td>
+<td>외부 도구 연결</td>
+<td>5장(A-7)</td>
+</tr>
+<tr class="odd">
+<td>플러그인 기록</td>
+<td><code>enabledPlugins</code>, <code>extraKnownMarketplaces</code> 키(설정 파일), <code>~/.claude/plugins/</code></td>
+<td>설치한 플러그인과 마켓플레이스</td>
+<td>4장(A-7)</td>
+</tr>
+<tr class="even">
+<td><code>~/.claude.json</code></td>
+<td>홈 폴더</td>
+<td>Claude Code가 스스로 쓰는 파일. 계정 정보, MCP 서버 설정, 프로젝트별 상태(폴더 신뢰 등)</td>
+<td>직접 고치지 않는다[C3]</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="a-6-2.-개인-파일을-저장소에서-빼기" class="level3">
+<h3 class="anchored" data-anchor-id="a-6-2.-개인-파일을-저장소에서-빼기">A-6-2. 개인 파일을 저장소에서 빼기</h3>
+<p><code>.claude/settings.local.json</code>과 <code>CLAUDE.local.md</code>는 개인 파일이다. Claude Code는 확인 창에서 처음 로컬 설정을 쓸 때 그 파일을 git의 전역 제외 목록에 더한다. 손으로 만든 경우에는 그렇게 하지 않으므로 저장소의 <code>.gitignore</code>에 직접 적는다[C3]. 이 과목은 3장에서 두 줄을 <code>.gitignore</code>에 넣는다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> check-ignore <span class="at">-v</span> .claude/settings.local.json CLAUDE.local.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>.gitignore:26:.claude/settings.local.json   .claude/settings.local.json
+.gitignore:27:CLAUDE.local.md   CLAUDE.local.md</code></pre>
+<p>줄 번호는 저장소마다 다르다. 아무것도 출력하지 않으면 <code>.gitignore</code>에 없는 것이다(3장 7-3).</p>
+</section>
+<section id="a-6-3.-읽은-설정의-확인" class="level3">
+<h3 class="anchored" data-anchor-id="a-6-3.-읽은-설정의-확인">A-6-3. 읽은 설정의 확인</h3>
+<p>어느 설정 파일이 실제로 읽혔는지는 Claude Code 안의 <code>/status</code>에서 <code>Setting sources</code> 줄로 본다. 이 줄은 읽은 파일만 알려 주고, 어느 키가 어느 파일에서 왔는지는 알려 주지 않는다. 문법이 깨진 설정 파일이나 거부된 항목은 셸의 <code>claude doctor</code>가 보여 준다[C3]. 헤드리스 실행(<code>claude -p</code>)은 대화 상자를 띄우지 않고 깨진 설정 파일을 <strong>조용히 건너뛴다</strong>(<code>claude --help</code>). 루프가 이상하게 규칙을 지키지 않으면 <code>claude doctor</code>를 먼저 돌린다.</p>
+</section>
+<section id="a-6-4.-연습용-격리-claude_config_dir" class="level3">
+<h3 class="anchored" data-anchor-id="a-6-4.-연습용-격리-claude_config_dir">A-6-4. 연습용 격리: <code>CLAUDE_CONFIG_DIR</code></h3>
+<p>4장(플러그인의 user 범위 설치)과 7장(하네스 플러그인)처럼 사용자 범위의 설정을 바꾸는 연습은, 실제 내 설정(<code>~/.claude/</code>)을 어지럽힐 수 있다. 환경 변수 <code>CLAUDE_CONFIG_DIR</code>을 정하면 Claude Code는 홈 폴더의 설정, 세션 기록, 플러그인을 그 폴더에 둔다[C3]. 연습용 빈 폴더를 정하면 내 설정과 섞이지 않는 사용자 범위를 따로 하나 갖게 된다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/agent-lab/cc-practice</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">CLAUDE_CONFIG_DIR</span><span class="op">=</span>~/agent-lab/cc-practice</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> auth status <span class="at">--text</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> plugin list</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> plugin marketplace list</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>Anthropic base URL: https://api.anthropic.com
+Not logged in. Run claude auth login to authenticate.
+No plugins installed. Use `claude plugin install` to install a plugin.
+Configured marketplaces:
+
+  ❯ anthropic-plugin-directory
+    Source: Built in (Anthropic Directory)</code></pre>
+<p>위 출력은 2026-11-14에 빈 폴더를 정하고 실행한 결과이다. 실행 뒤 그 폴더에 <code>.claude.json</code>이 생긴다. 격리의 성질은 다음과 같다.</p>
+<ul>
+<li><strong>로그인도 격리된다.</strong> 위처럼 <code>Not logged in</code>이 나온다. <code>claude plugin</code>과 <code>claude mcp</code>의 관리 명령은 로그인 없이 돌지만, 그 폴더로 대화를 하려면 다시 로그인해야 한다. 연습에서는 관리 명령의 결과(어느 파일에 무엇이 기록되는가)만 보고, 대화는 원래 설정으로 한다.</li>
+<li><strong>사용자 범위만 격리된다.</strong> 프로젝트 범위(<code>.claude/settings.json</code>, <code>.mcp.json</code>)와 프로젝트 로컬 범위(<code>.claude/settings.local.json</code>)는 여전히 저장소 폴더에 쓰인다. 연습은 저장소가 아닌 빈 폴더(예: <code>~/agent-lab/ops-demo</code>)에서 한다.</li>
+<li><strong><code>export</code>는 그 터미널에만 남는다.</strong> 연습이 끝나면 <code>unset CLAUDE_CONFIG_DIR</code>로 지운다. 그대로 두면 그 터미널의 Claude Code가 로그인되지 않은 연습 폴더를 계속 쓴다. 한 명령에만 주려면 <code>CLAUDE_CONFIG_DIR=~/agent-lab/cc-practice claude plugin list</code>처럼 명령 앞에 붙인다.</li>
+<li>세션을 띄울 때 설정 출처만 줄이려면 <code>--setting-sources user,project</code>처럼 읽을 범위를 정하는 옵션도 있다. 설정의 문제를 가리기 위해 모든 사용자 정의(CLAUDE.md, 스킬, 플러그인, 훅, MCP)를 끄고 시작하는 <code>--safe-mode</code>도 있다(<code>claude --help</code>). 둘 다 파일을 바꾸지 않는다.</li>
+</ul>
+<p><span class="check-badge">확인 5</span> <code>CLAUDE_CONFIG_DIR</code>을 연습 폴더로 정한 터미널에서 <code>claude plugin list</code>가 <code>No plugins installed</code>를 출력하고, <code>unset CLAUDE_CONFIG_DIR</code> 뒤의 <code>claude auth status --text</code>는 원래 계정을 보인다.</p>
+<hr>
+</section>
+</section>
+<section id="a-7.-플러그인-마켓플레이스와-mcp-서버의-등록-범위" class="level2">
+<h2 class="anchored" data-anchor-id="a-7.-플러그인-마켓플레이스와-mcp-서버의-등록-범위">A-7. 플러그인 마켓플레이스와 MCP 서버의 등록 범위</h2>
+<p>4장(플러그인)과 5장(MCP)은 무엇인가를 Claude Code에 <strong>등록</strong>한다. 등록 명령에는 모두 <code>--scope</code>(또는 <code>-s</code>)가 있고, 생략했을 때의 기본값이 명령마다 다르다. 기본값을 모르고 등록하면 의도와 다른 파일에 기록된다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>명령</th>
+<th>범위의 값</th>
+<th>생략하면</th>
+<th>근거</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>claude plugin marketplace add &lt;출처&gt;</code></td>
+<td><code>user</code>, <code>project</code>, <code>local</code></td>
+<td><code>user</code></td>
+<td><code>claude plugin marketplace add --help</code></td>
+</tr>
+<tr class="even">
+<td><code>claude plugin install &lt;플러그인&gt;@&lt;마켓플레이스&gt;</code></td>
+<td><code>user</code>, <code>project</code>, <code>local</code></td>
+<td><code>user</code></td>
+<td><code>claude plugin install --help</code></td>
+</tr>
+<tr class="odd">
+<td><code>claude mcp add &lt;이름&gt; -- &lt;명령&gt;</code></td>
+<td><code>local</code>, <code>user</code>, <code>project</code></td>
+<td><code>local</code></td>
+<td><code>claude mcp add --help</code></td>
+</tr>
+</tbody>
+</table>
+<section id="a-7-1.-플러그인과-마켓플레이스" class="level3">
+<h3 class="anchored" data-anchor-id="a-7-1.-플러그인과-마켓플레이스">A-7-1. 플러그인과 마켓플레이스</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>범위</th>
+<th>켜지는 대상</th>
+<th>기록되는 파일</th>
+<th>저장소에 올라가는가</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>user</code></td>
+<td>나, 이 컴퓨터의 모든 프로젝트</td>
+<td><code>~/.claude/settings.json</code>(<code>enabledPlugins</code>, <code>extraKnownMarketplaces</code>)와 <code>~/.claude/plugins/</code></td>
+<td>아니요</td>
+</tr>
+<tr class="even">
+<td><code>project</code></td>
+<td>이 저장소에서 일하는 모든 사람</td>
+<td><code>.claude/settings.json</code></td>
+<td>예</td>
+</tr>
+<tr class="odd">
+<td><code>local</code></td>
+<td>나, 이 저장소에서만</td>
+<td><code>.claude/settings.local.json</code></td>
+<td>아니요</td>
+</tr>
+</tbody>
+</table>
+<p>같은 플러그인이 여러 범위에 있으면 local이 project를, project가 user를 덮는다[C6]. project 범위의 기록을 커밋하면 팀원에게 「켜짐」으로 기록되지만 팀원의 컴퓨터에 내려받아지지는 않는다. 팀원은 저장소를 받은 뒤 한 번 <code>claude plugin install &lt;이름&gt;@&lt;마켓플레이스&gt; --scope project</code>를 실행한다[C6].</p>
+<p>다음은 4장의 마켓플레이스 견본(<code>jobprep-team</code>, 플러그인 <code>jobprep-ops</code>)을 연습 폴더에 local 범위로 등록하고 설치한 결과이다(2026-11-14, <code>CLAUDE_CONFIG_DIR</code> 격리).</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/ops-demo</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> plugin marketplace add ~/agent-lab/jobprep <span class="at">--scope</span> local</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> plugin install jobprep-ops@jobprep-team <span class="at">--scope</span> local</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> .claude/settings.local.json</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>Adding marketplace…✔ Successfully added marketplace: jobprep-team (declared in local settings)
+Installing plugin "jobprep-ops@jobprep-team"...✔ Successfully installed plugin: jobprep-ops@jobprep-team (scope: local)
+{
+  "extraKnownMarketplaces": {
+    "jobprep-team": {
+      "source": {
+        "source": "directory",
+        "path": "/home/아이디/agent-lab/jobprep"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "jobprep-ops@jobprep-team": true
+  }
+}</code></pre>
+<p>(경로는 서버에서 보일 형태로 바꾸어 적었다. 실행은 Windows에서 하였다.)</p>
+<p>로컬 폴더를 마켓플레이스로 등록하면 그 폴더의 <strong>절대 경로</strong>가 기록된다. 이 기록을 project 범위로 커밋하면 다른 사람의 컴퓨터에 없는 경로를 가리키게 된다. 팀에 나누는 마켓플레이스는 4장 10-5처럼 GitHub 저장소(<code>「GitHub 아이디」/jobprep</code>)로 등록한다. 같은 실행을 범위 없이(기본값 user) 하면 <code>(declared in user settings)</code>, <code>(scope: user)</code>가 나오고 기록은 <code>~/.claude/settings.json</code>에 들어간다. 저장소 폴더에는 아무것도 생기지 않는다. 이것을 모르고 실습하면 「팀 저장소에서 설치했는데 저장소에 기록이 없다」는 혼란이 생긴다.</p>
+</section>
+<section id="a-7-2.-mcp-서버" class="level3">
+<h3 class="anchored" data-anchor-id="a-7-2.-mcp-서버">A-7-2. MCP 서버</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>범위</th>
+<th>저장되는 곳</th>
+<th>적용되는 곳</th>
+<th>팀과 공유</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>local</code>(기본값)</td>
+<td><code>~/.claude.json</code>의 그 프로젝트 항목</td>
+<td>지금 프로젝트, 나만</td>
+<td>아니요</td>
+</tr>
+<tr class="even">
+<td><code>project</code></td>
+<td>프로젝트 맨 위의 <code>.mcp.json</code></td>
+<td>지금 프로젝트, 모두</td>
+<td>예(커밋한다)</td>
+</tr>
+<tr class="odd">
+<td><code>user</code></td>
+<td><code>~/.claude.json</code></td>
+<td>내 모든 프로젝트</td>
+<td>아니요</td>
+</tr>
+</tbody>
+</table>
+<p>같은 이름의 서버가 여러 범위에 있으면 로컬, 프로젝트, 사용자, 플러그인이 내놓은 서버, claude.ai 커넥터 순서로 하나만 쓰이며 필드를 섞지 않는다[C5]. 다음은 세 범위로 하나씩 등록했을 때 어느 파일이 바뀌는지를 본 결과이다(2026-11-14, <code>CLAUDE_CONFIG_DIR</code> 격리, 서버 명령은 실행되지 않는 이름으로 두었다).</p>
+<pre class="text"><code>$ claude mcp add demo-local -- python demo.py
+Added stdio MCP server demo-local with command: python demo.py to local config
+File modified: …/cc-practice/.claude.json [project: …/proj]
+$ claude mcp add -s project demo-proj -- python demo.py
+Added stdio MCP server demo-proj with command: python demo.py to project config
+File modified: …/proj/.mcp.json
+$ claude mcp add -s user demo-user -- python demo.py
+Added stdio MCP server demo-user with command: python demo.py to user config
+File modified: …/cc-practice/.claude.json
+$ claude mcp get demo-local
+demo-local:
+  Scope: Local config (private to you in this project)
+  Status: ✘ Failed to connect</code></pre>
+<ul>
+<li>5장의 <code>jobprep-ops</code> 서버는 project 범위(<code>.mcp.json</code>)에 둔다. 서버 코드가 저장소에 있으므로 연결 설정도 저장소에 있어야 짝이 맞는다.</li>
+<li>대화형 세션은 <code>.mcp.json</code>의 서버를 쓰기 전에 하나씩 승인을 묻는다. 승인하지 않은 서버는 <code>claude mcp list</code>에 <code>⏸ Pending approval</code>로 보인다. 선택을 되돌리려면 <code>claude mcp reset-project-choices</code>를 실행한다(<code>claude mcp --help</code>).</li>
+<li><strong>헤드리스 실행(<code>claude -p</code>)과 Agent SDK는 승인 창을 띄울 수 없으므로 <code>.mcp.json</code>의 서버를 묻지 않고 띄운다</strong>[C5]. 같은 이유로 <code>claude -p</code>는 처음 보는 폴더에서도 그 폴더의 <code>.claude/settings.json</code> 훅을 실행한다[C9]. 남의 저장소나 PR의 사본에서 <code>claude -p</code>를 돌리지 않는 까닭이다(8장 3-5, 11장).</li>
+<li>키가 필요한 MCP 서버는 <code>-e KEY=값</code>으로 넣지 않는다. 그 값이 <code>~/.claude.json</code>이나 <code>.mcp.json</code>에 평문으로 남는다. 이 과목의 서버는 키가 필요 없다.</li>
+</ul>
+<p><span class="check-badge">확인 6</span> 연습 폴더에서 <code>claude mcp add</code>를 범위 없이 실행하면 출력에 <code>to local config</code>가, <code>-s project</code>로 실행하면 <code>.mcp.json</code>이 나타나는 것을 확인하였다. 확인한 뒤 <code>claude mcp remove &lt;이름&gt;</code>으로 지우고 <code>unset CLAUDE_CONFIG_DIR</code>을 실행한다.</p>
+<hr>
+</section>
+</section>
+<section id="a-8.-키트-배포-폴더와-키트-받기" class="level2">
+<h2 class="anchored" data-anchor-id="a-8.-키트-배포-폴더와-키트-받기">A-8. 키트 배포 폴더와 키트 받기</h2>
+<section id="a-8-1.-서버의-폴더" class="level3">
+<h3 class="anchored" data-anchor-id="a-8-1.-서버의-폴더">A-8-1. 서버의 폴더</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>폴더</th>
+<th>권한</th>
+<th>쓰임</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>내 홈 <code>~</code></td>
+<td>읽기와 쓰기</td>
+<td>내 작업 공간. 다른 학생은 볼 수 없다</td>
+</tr>
+<tr class="even">
+<td>배포 폴더 <code>$KIT_HOME</code></td>
+<td>읽기 전용</td>
+<td>장마다 키트 폴더 <code>Agent_NN주차/</code>가 올라온다</td>
+</tr>
+<tr class="odd">
+<td>받은 키트 <code>~/kits/</code></td>
+<td>읽기와 쓰기</td>
+<td>배포 폴더에서 복사해 온 키트. 여기서 읽고, 필요한 파일을 저장소로 옮긴다</td>
+</tr>
+<tr class="even">
+<td>작업 공간 <code>~/agent-lab/</code></td>
+<td>읽기와 쓰기</td>
+<td>운영 대상 저장소 <code>jobprep/</code>, 도구용 환경 <code>.tools/</code>, 장마다 생기는 연습 폴더</td>
+</tr>
+<tr class="odd">
+<td>저장소 <code>~/agent-lab/jobprep/</code></td>
+<td>읽기와 쓰기</td>
+<td>1장에서 만들고 13장까지 쓰는 Git 저장소</td>
+</tr>
+</tbody>
+</table>
+<p><code>~/agent-lab/</code> 아래에 장마다 저장소가 아닌 폴더가 생긴다. 모두 <code>jobprep/</code> 밖에 있어야 한다. 저장소 안에 두면 <code>git status</code>에 섞이고, 실험이 운영 대상 저장소를 건드릴 수 있다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>폴더</th>
+<th>만드는 장</th>
+<th>쓰임</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>~/agent-lab/ops-demo/</code></td>
+<td>4장</td>
+<td>플러그인을 다른 저장소에 설치해 보는 연습 폴더</td>
+</tr>
+<tr class="even">
+<td><code>~/agent-lab/cc-practice/</code></td>
+<td>4장(선택)</td>
+<td><code>CLAUDE_CONFIG_DIR</code> 연습 폴더(A-6-4)</td>
+</tr>
+<tr class="odd">
+<td><code>~/agent-lab/exp/</code></td>
+<td>7장</td>
+<td>하네스 비교 실험 저장소(작업 3건 × 조건 2 × 반복)</td>
+</tr>
+<tr class="even">
+<td><code>~/agent-lab/.tools/</code></td>
+<td>13장</td>
+<td>pip-tools 가상 환경과 actionlint(A-17)</td>
+</tr>
+<tr class="odd">
+<td><code>~/agent-lab/deploy/</code></td>
+<td>13장</td>
+<td>배포 스크립트가 판마다 만드는 배포 폴더</td>
+</tr>
+<tr class="even">
+<td><code>~/hooklab/</code></td>
+<td>6장</td>
+<td>가장 작은 훅을 시험하는 연습 폴더</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="a-8-2.-kit_home-등록" class="level3">
+<h3 class="anchored" data-anchor-id="a-8-2.-kit_home-등록">A-8-2. <code>$KIT_HOME</code> 등록</h3>
+<p>배포 폴더의 실제 경로는 1주차에 안내한다. 앞 과목에서 등록한 <code>KIT_HOME</code>과 경로가 다를 수 있으므로 확인한다. 아래의 <code>배포폴더</code> 자리에 안내받은 경로를 넣는다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-n</span> <span class="st">"KIT_HOME"</span> ~/.bashrc</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'export KIT_HOME=배포폴더'</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.bashrc</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"</span><span class="va">$KIT_HOME</span><span class="st">"</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="st">"</span><span class="va">$KIT_HOME</span><span class="st">"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>배포폴더
+Agent_01주차  Agent_02주차  ...</code></pre>
+<ul>
+<li>첫 줄의 <code>grep</code>이 앞 과목의 줄을 보이면, 덧붙이지 말고 VS Code로 <code>~/.bashrc</code>를 열어 그 줄의 경로만 고친다. 같은 변수가 여러 줄이면 마지막 줄이 적용된다.</li>
+<li><code>&gt;&gt;</code>는 파일 끝에 덧붙이고 <code>&gt;</code>는 덮어쓴다. <code>~/.bashrc</code>에 <code>&gt;</code>를 쓰면 기존 설정이 모두 지워진다.</li>
+<li><code>source ~/.bashrc</code>는 지금 터미널에만 적용된다. 다른 터미널은 새로 연다.</li>
+</ul>
+</section>
+<section id="a-8-3.-장의-키트-받기" class="level3">
+<h3 class="anchored" data-anchor-id="a-8-3.-장의-키트-받기">A-8-3. 장의 키트 받기</h3>
+<p>각 장 0절의 첫 명령이 그 장의 키트를 받는 명령이다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/kits</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-rn</span> <span class="st">"</span><span class="va">$KIT_HOME</span><span class="st">/Agent_NN주차"</span> ~/kits/</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> ~/kits/Agent_NN주차</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>부분</th>
+<th>뜻</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>cp -r</code></td>
+<td>폴더를 안의 내용까지 통째로 복사한다</td>
+</tr>
+<tr class="even">
+<td><code>cp -n</code></td>
+<td>같은 이름의 파일이 이미 있으면 덮어쓰지 않는다. 받은 키트에 적은 내용이 다시 받아도 지워지지 않는다</td>
+</tr>
+<tr class="odd">
+<td><code>"$KIT_HOME/..."</code></td>
+<td>큰따옴표는 경로에 한글이 있어도 한 덩어리로 다루게 한다</td>
+</tr>
+</tbody>
+</table>
+<p>키트의 공통 구성은 다음과 같다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>이름</th>
+<th>뜻</th>
+<th>하는 일</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>README.md</code></td>
+<td>키트의 내용과 쓰는 순서</td>
+<td>먼저 읽는다</td>
+</tr>
+<tr class="even">
+<td><code>*_양식.md</code>, <code>양식/</code></td>
+<td>답을 적는 파일의 원본</td>
+<td>직접 쓰지 않고 0절이 안내하는 자리(<code>docs/운영/…</code>)로 복사해 채운다</td>
+</tr>
+<tr class="odd">
+<td><code>기준산출물/</code></td>
+<td>앞 장의 결과 견본</td>
+<td>앞 장을 마치지 못한 학습자만 0절의 안내대로 저장소에 복사한다</td>
+</tr>
+<tr class="even">
+<td><code>도구/</code></td>
+<td>키트에서 실행하는 보조 스크립트(설정 합치기, 검사)</td>
+<td>대개 저장소 폴더에서 <code>python ~/kits/Agent_NN주차/도구/…</code>로 실행한다</td>
+</tr>
+<tr class="odd">
+<td><code>tests/</code>, <code>ops/…/tests/</code></td>
+<td>키트가 주는 테스트</td>
+<td>0절이 정한 자리로 복사한다. 일부는 일부러 실패하는 상태로 온다(각 장 README의 「기대하는 실패 화면」)</td>
+</tr>
+</tbody>
+</table>
+<p>키트를 저장소에 통째로 넣지 않는다. 교수의 배포물과 학습자의 작업이 한 기록에 섞이고, 7~11장 키트의 <code>.claude/</code> 폴더가 저장소의 설정을 덮을 수 있다. <code>기준산출물/</code>을 복사할 때도 <code>cp -rn</code>을 쓴다. 이미 있는 자기 결과를 견본이 덮지 않게 하기 위해서이다.</p>
+<p>교수가 키트를 고쳐 다시 배포했을 때 새 판을 받으려면, 내 사본의 이름을 바꾸어 보관하고 다시 받는다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> ~/kits/Agent_NN주차 ~/kits/Agent_NN주차_내사본</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-rn</span> <span class="st">"</span><span class="va">$KIT_HOME</span><span class="st">/Agent_NN주차"</span> ~/kits/</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><span class="check-badge">확인 7</span> <code>echo "$KIT_HOME"</code>이 1주차에 안내받은 경로를 출력하고, <code>ls "$KIT_HOME"</code>에 <code>Agent_</code> 폴더가 보인다.</p>
+<hr>
+</section>
+</section>
+<section id="a-9.-git과-github-cli의-준비" class="level2">
+<h2 class="anchored" data-anchor-id="a-9.-git과-github-cli의-준비">A-9. Git과 GitHub CLI의 준비</h2>
+<p>앞 과목에서 한 설정이 그대로 쓰인다. 확인만 한다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> <span class="at">--list</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-E</span> <span class="st">"user\.|quotepath|defaultbranch"</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> auth status</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>user.name=홍길동
+user.email=GitHub에_등록한_이메일
+core.quotepath=false
+init.defaultbranch=main
+github.com
+  ✓ Logged in to github.com account 「GitHub 아이디」 (keyring)
+  - Active account: true
+  - Git operations protocol: https
+  - Token: gho_************************************</code></pre>
+<p>비어 있는 줄이 있으면 다음을 한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>비어 있는 것</th>
+<th>명령</th>
+<th>까닭</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>user.name</code>, <code>user.email</code></td>
+<td><code>git config --global user.name "이름"</code>, <code>git config --global user.email "GitHub에 등록한 이메일"</code></td>
+<td>커밋의 작성자. 이메일이 GitHub 계정과 같아야 커밋이 내 계정의 기여로 표시된다[H1]</td>
+</tr>
+<tr class="even">
+<td><code>core.quotepath</code></td>
+<td><code>git config --global core.quotepath false</code></td>
+<td>한글 파일 이름(<code>docs/운영/운영요건.md</code>)을 그대로 보인다</td>
+</tr>
+<tr class="odd">
+<td><code>init.defaultbranch</code></td>
+<td><code>git config --global init.defaultBranch main</code></td>
+<td>1장에서 <code>git init</code>으로 만든 첫 브랜치를 <code>main</code>으로 한다</td>
+</tr>
+<tr class="even">
+<td><code>gh auth status</code>가 로그인되지 않음</td>
+<td><code>gh auth login</code>(GitHub.com, HTTPS, Git 인증 예, 웹 브라우저 로그인)</td>
+<td>1장의 <code>gh repo create</code>, 10장의 PR, 13장의 <code>gh pr checks</code>, <code>gh release</code>, <code>gh api</code>가 쓴다[H2]</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>서버에서는 <code>gh auth login</code>이 브라우저를 열지 못한다. 화면의 한 번용 코드(<code>XXXX-XXXX</code>)를 내 PC의 브라우저에서 <code>https://github.com/login/device</code>에 입력한다.</li>
+<li><code>git push</code>가 사용자 이름과 비밀번호를 물으면 <code>gh auth setup-git</code>을 실행한다. GitHub는 <code>git push</code>에서 계정 비밀번호를 받지 않는다.</li>
+<li>토큰 줄(<code>Token: gho_…</code>)은 화면 공유와 캡처에서 가린다. <code>Token scopes</code>에 <code>workflow</code>가 있어야 13장에서 <code>.github/workflows/</code>의 파일을 푸시할 수 있다. 없으면 <code>gh auth refresh -s workflow</code>를 실행한다(<code>gh auth refresh --help</code>).</li>
+</ul>
+<p><span class="check-badge">확인 8</span> <code>git config --global --list</code>에 위 네 설정이 있고, <code>gh auth status</code>에 <code>✓ Logged in</code>과 <code>Git operations protocol: https</code>가 보인다.</p>
+<hr>
+</section>
+<section id="a-10.-기준-저장소와-개인-비공개-저장소" class="level2">
+<h2 class="anchored" data-anchor-id="a-10.-기준-저장소와-개인-비공개-저장소">A-10. 기준 저장소와 개인 비공개 저장소</h2>
+<section id="a-10-1.-기준-저장소-받기" class="level3">
+<h3 class="anchored" data-anchor-id="a-10-1.-기준-저장소-받기">A-10-1. 기준 저장소 받기</h3>
+<p>이 과목의 운영 대상은 키트 <code>Agent_01주차/jobprep/</code>의 기준 저장소이다. 「LLM 서비스 개발」의 공통 사례 「취업 준비 지원 서비스」를 정리한 것으로, 웹 화면, FastAPI API, 질의응답 검색, 요구사항 명세서(<code>REQ-&lt;영역&gt;-NN</code>), 운영 기록 견본, 테스트 43개가 들어 있다. 1장 0절이 이것을 작업 공간으로 복사해 Git 저장소로 만든다. 앞 과목의 개인 실습 저장소(<code>~/llm-service-lab/</code>)는 그대로 두고 따로 만든다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/kits ~/agent-lab</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-rn</span> <span class="st">"</span><span class="va">$KIT_HOME</span><span class="st">/Agent_01주차"</span> ~/kits/</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-rn</span> ~/kits/Agent_01주차/jobprep ~/agent-lab/</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-A</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>.env.example  .gitignore  README.md  api  data  docs  evals  logs  prompts  pytest.ini  rag  requirements.txt  tests  web</code></pre>
+<p>이어서 <code>git init</code>, 첫 커밋, 가상 환경(A-11), <code>.env</code> 견본 복사(A-12), <code>pytest -q</code>가 <code>43 passed</code>인지 확인을 1장 0절의 순서대로 한다. 1장 0절의 첫 커밋은 3장의 커밋 규약을 배우기 전이므로, 3장 이후의 커밋만 규약의 대상으로 삼는다. 3장의 <code>check_commits.py --range main..HEAD</code>는 작업 브랜치에서 새로 만든 커밋만 검사한다.</p>
+</section>
+<section id="a-10-2.-개인-비공개-저장소" class="level3">
+<h3 class="anchored" data-anchor-id="a-10-2.-개인-비공개-저장소">A-10-2. 개인 비공개 저장소</h3>
+<p>저장소는 자기 GitHub 계정에 <strong>비공개(Private)</strong> 로 만든다. 이 저장소에는 학기 내내의 운영 기록, 루프와 에이전트의 실행 기록, 보안 실습 결과가 쌓인다. 실수로 넣은 설정 파일이나 기록이 섞일 수 있고, 11장의 실습은 가짜 비밀과 공격 견본을 다룬다. 공개 저장소로 두면 이것들이 그대로 공개된다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> repo create jobprep <span class="at">--private</span> <span class="at">--source</span><span class="op">=</span>. <span class="at">--remote</span><span class="op">=</span>origin <span class="at">--push</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">-sb</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-1</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>✓ Created repository 「GitHub 아이디」/jobprep on GitHub
+✓ Added remote https://github.com/「GitHub 아이디」/jobprep.git
+✓ Pushed commits to https://github.com/「GitHub 아이디」/jobprep.git
+## main...origin/main</code></pre>
+<p><code>gh</code>가 없거나 로그인이 막히면 GitHub 웹에서 「New repository」로 이름 <code>jobprep</code>, Private, README 없이 빈 저장소를 만들고 <code>git remote add origin …</code>, <code>git push -u origin main</code>을 한다(1장 0-4). 저장소를 만든 뒤 공개 범위를 확인한다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> repo view <span class="at">--json</span> visibility <span class="at">--jq</span> .visibility</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>PRIVATE</code></pre>
+<p>13장의 짝 리뷰를 위해 짝을 협업자(collaborator)로 초대한다(13장 7-1). 교수가 저장소를 읽어야 하면 교수의 GitHub 아이디도 같은 방법으로 초대한다. 초대 방법은 수업에서 안내한다.</p>
+</section>
+<section id="a-10-3.-비공개-저장소의-조건과-학생-혜택" class="level3">
+<h3 class="anchored" data-anchor-id="a-10-3.-비공개-저장소의-조건과-학생-혜택">A-10-3. 비공개 저장소의 조건과 학생 혜택</h3>
+<p>비공개 저장소는 개인 계정의 무료 요금제(GitHub Free)에서도 만들 수 있다. 다만 이 과목이 쓰는 기능 두 가지에 요금제 조건이 있다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>기능</th>
+<th>GitHub Free</th>
+<th>GitHub Pro</th>
+<th>쓰는 장</th>
+<th>근거</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>규칙 집합(rulesets)</td>
+<td>공개 저장소만</td>
+<td>공개·비공개 저장소</td>
+<td>13장(<code>main</code> 보호, 필수 검사, 필수 승인)</td>
+<td>[H3]</td>
+</tr>
+<tr class="even">
+<td>보호 브랜치, 필수 리뷰어</td>
+<td>공개 저장소만</td>
+<td>비공개 저장소에도(「Advanced tools and insights in private repositories」)</td>
+<td>13장</td>
+<td>[H4]</td>
+</tr>
+<tr class="odd">
+<td>GitHub Actions</td>
+<td>비공개 저장소는 달마다 정해진 몫(2026-11 기준 Free 12달러, Pro 18달러어치)을 넘으면 비용이 붙는다</td>
+<td></td>
+<td>13장</td>
+<td>[H4]</td>
+</tr>
+<tr class="even">
+<td>GitHub Pages</td>
+<td>공개 저장소만</td>
+<td>비공개 저장소에서도 연다. 다만 사이트 자체는 공개된다</td>
+<td>앞 과목 9장</td>
+<td>[H4]</td>
+</tr>
+</tbody>
+</table>
+<p>규칙 집합의 조건은 GitHub Docs 「About rulesets」의 문장 「Rulesets are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, and GitHub Enterprise Cloud」로 확인하였다(2026-11-14)[H3]. 그러므로 비공개 저장소에 13장의 규칙 집합을 걸려면 GitHub Pro가 있어야 한다.</p>
+<p>재학생은 GitHub Education의 학생 혜택으로 GitHub Pro를 받는다. 학생 개발자 묶음(Student Developer Pack)은 혜택 목록에 「Free GitHub Pro while you are a student」를 적는다[H5]. 앞 과목에서 신청해 승인받았으면 다시 하지 않는다. 신청 조건과 절차는 다음과 같다(GitHub Docs, 2026-11-14 확인)[H6].</p>
+<ol type="1">
+<li>학위나 학력을 주는 과정에 재학 중이고, 13세 이상이며, 개인 GitHub 계정이 있어야 한다.</li>
+<li>재학 상태를 보이는 서류(재학 기간이 적힌 학생증, 재학 증명서 등)를 낸다. 학교 이메일을 요구하면 그 이메일을 GitHub 계정에 더하고 인증한다.</li>
+<li>브라우저에서 <code>https://github.com/settings/education/benefits</code>를 열고 「GitHub Education」 아래의 「Start an application」을 눌러 제출한다.</li>
+</ol>
+<p>문서는 심사 기간을 밝히지 않는다. 13장 직전에 신청하면 늦을 수 있으므로 1주차에 신청한다. 승인되었는지는 GitHub의 Settings &gt; Billing and plans에서 요금제가 Pro로 보이는지로 확인한다. 학생 혜택을 받지 못한 학습자의 13장 처리(공개 저장소의 사본에서 규칙 집합을 거는 길 등)는 13장과 수업의 안내를 따른다.</p>
+<p><span class="check-badge">확인 9</span> <code>gh repo view --json visibility --jq .visibility</code>가 <code>PRIVATE</code>를 출력하고, 학생 혜택을 신청하였다(승인 여부를 기록해 둔다).</p>
+<hr>
+</section>
+</section>
+<section id="a-11.-파이썬-가상-환경과-장별-패키지" class="level2">
+<h2 class="anchored" data-anchor-id="a-11.-파이썬-가상-환경과-장별-패키지">A-11. 파이썬 가상 환경과 장별 패키지</h2>
+<section id="a-11-1.-저장소-안의-가상-환경-하나" class="level3">
+<h3 class="anchored" data-anchor-id="a-11-1.-저장소-안의-가상-환경-하나">A-11-1. 저장소 안의 가상 환경 하나</h3>
+<p>이 과목은 가상 환경을 <strong>저장소 맨 위에 하나</strong>(<code>~/agent-lab/jobprep/.venv</code>) 만들어 학기 내내 쓴다. 앞 과목은 저장소들의 바깥(<code>~/llm-service-lab/.venv</code>)에 두었으나, 이 과목은 저장소가 하나뿐이고 훅(6장), 하네스 점검(7장), 루프(8장)가 <code>$저장소/.venv/bin/python</code>을 찾아 쓰기 때문에 저장소 안에 둔다. 기준 저장소의 <code>.gitignore</code>가 <code>.venv/</code>를 무시한다. 가상 환경은 1장 0절에서 만든다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> venv .venv</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv/bin/python</span> <span class="at">-m</span> pip install <span class="at">-r</span> requirements.txt</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv/bin/python</span> <span class="at">-m</span> pytest <span class="at">-q</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> check-ignore <span class="at">-v</span> .venv</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>...........................................                              [100%]
+43 passed in 1.56s
+.gitignore:7:.venv/ .venv</code></pre>
+<p>위의 <code>43 passed</code>는 2026-11-14에 Windows의 파이썬 3.13.7로 기준 저장소 사본을 설치하고 실행한 결과이다. 실행 시간은 컴퓨터마다 다르다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>쓰는 법</th>
+<th>뜻</th>
+<th>쓰는 때</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>.venv/bin/python -m pytest -q</code></td>
+<td>가상 환경의 파이썬을 경로로 부른다. 켜고 끄는 것을 신경 쓰지 않아도 된다</td>
+<td>Claude Code에게 맡기는 명령, 훅과 스크립트, 이 교재의 기본</td>
+</tr>
+<tr class="even">
+<td><code>source .venv/bin/activate</code> 뒤 <code>python -m pytest -q</code></td>
+<td>가상 환경을 켠다. 입력 줄 앞에 <code>(.venv)</code>가 붙는다</td>
+<td>사람이 서버 터미널에서 명령을 여러 번 칠 때(1·8·13장)</td>
+</tr>
+<tr class="odd">
+<td><code>deactivate</code></td>
+<td>가상 환경을 끈다</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>훅과 cron은 가상 환경을 켜지 않은 셸에서 돈다. 그래서 6장의 <code>run_tests.sh</code>와 <code>stop_gate.sh</code>는 <code>.venv/bin/python</code>을 경로로 부른다. 가상 환경이 없거나 이름이 다르면 훅이 「<code>.venv</code>를 찾지 못하였다」로 멈춘다.</li>
+<li><code>pip</code>는 <code>python -m pip</code>로 부른다. 가상 환경을 켜지 않은 채 <code>pip</code>만 치면 다른 파이썬에 설치될 수 있다.</li>
+<li>가상 환경은 언제든 지우고 다시 만들 수 있는 것으로 다룬다. 그 안에 내 코드를 두지 않는다.</li>
+</ul>
+</section>
+<section id="a-11-2.-장별로-더-설치하는-패키지" class="level3">
+<h3 class="anchored" data-anchor-id="a-11-2.-장별로-더-설치하는-패키지">A-11-2. 장별로 더 설치하는 패키지</h3>
+<p>장마다 그 장의 <code>requirements*.txt</code>를 같은 가상 환경에 더 설치한다. 새 가상 환경을 장마다 만들지 않는다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>장</th>
+<th>파일</th>
+<th>더하는 것</th>
+<th>크기와 주의</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><code>requirements.txt</code></td>
+<td>fastapi 0.162.7, uvicorn 0.54.0, anthropic 2.8.0, python-dotenv 1.2.4, httpx 0.28.1, pytest 9.2.0</td>
+<td>기준 저장소의 직접 의존성</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><code>requirements-dev.txt</code></td>
+<td>coverage 7.17.3(<code>-r requirements.txt</code> 포함)</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td><code>requirements-mcp.txt</code>의 내용을 <code>requirements.txt</code>에 덧붙임</td>
+<td>mcp 2.3.0</td>
+<td>저장소의 <code>mcp/</code> 폴더에 <code>__init__.py</code>를 만들지 않는다. 패키지 이름 <code>mcp</code>와 겹친다</td>
+</tr>
+<tr class="even">
+<td>9</td>
+<td><code>agent_loop/requirements-sdk.txt</code></td>
+<td>claude-agent-sdk 0.2.182</td>
+<td>내려받는 휠이 리눅스 x86-64에서 약 162MB, 설치한 폴더가 약 360MB이다(A-15)</td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td><code>requirements.lock</code>(잠금 파일)</td>
+<td>같은 패키지를 해시와 함께 고정</td>
+<td>설치는 <code>pip install --require-hashes -r requirements.lock</code>. 만드는 도구(pip-tools)는 저장소 밖 환경에 둔다(A-17)</td>
+</tr>
+</tbody>
+</table>
+<p>3·4·6·7·8·10·11·12장의 도구는 표준 라이브러리만 쓰므로 새로 설치할 것이 없다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv/bin/python</span> <span class="at">-m</span> pip install <span class="at">-r</span> requirements-dev.txt</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv/bin/python</span> <span class="at">-m</span> pip list <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-iE</span> <span class="st">"^(pytest|coverage|mcp|claude-agent-sdk) "</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>coverage          7.17.3
+pytest            9.2.0</code></pre>
+<p>목록에는 그 장까지 설치한 것만 보인다. 설치 중에 이미 있던 패키지를 다른 판으로 바꾼다는 줄(<code>Successfully uninstalled 패키지-판</code>)이 나오면, 두 장의 파일이 같은 패키지를 다른 판으로 고정한 것이다. 그대로 진행하되 교수에게 알린다. 키트에 없는 패키지를 Claude Code가 설치하자고 하면 바로 설치하지 않는다. 설치하기로 했으면 판과 함께 <code>requirements.txt</code>에 적고, 13장 이후에는 잠금 파일도 다시 만든다.</p>
+</section>
+<section id="a-11-3.-다시-만들기" class="level3">
+<h3 class="anchored" data-anchor-id="a-11-3.-다시-만들기">A-11-3. 다시 만들기</h3>
+<p>패키지가 꼬였으면 가상 환경을 지우고 다시 만든다. 저장소 안의 모든 <code>requirements*.txt</code>를 다시 설치한다. 잠금 파일이 있으면(13장 이후) 잠금 파일로 설치한다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="ex">deactivate</span> <span class="dv">2</span><span class="op">&gt;</span>/dev/null</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> .venv</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> venv .venv</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv/bin/python</span> <span class="at">-m</span> pip install <span class="at">-q</span> <span class="at">-r</span> requirements.txt</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> f <span class="kw">in</span> requirements-dev.txt agent_loop/requirements-sdk.txt<span class="kw">;</span> <span class="cf">do</span> <span class="bu">[</span> <span class="ot">-f</span> <span class="st">"</span><span class="va">$f</span><span class="st">"</span> <span class="bu">]</span> <span class="kw">&amp;&amp;</span> <span class="ex">.venv/bin/python</span> <span class="at">-m</span> pip install <span class="at">-q</span> <span class="at">-r</span> <span class="st">"</span><span class="va">$f</span><span class="st">"</span><span class="kw">;</span> <span class="cf">done</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv/bin/python</span> <span class="at">-m</span> pytest <span class="at">-q</span> <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-1</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>rm -rf .venv</code>는 반드시 저장소 맨 위에서 <code>pwd</code>를 확인한 뒤에 실행한다.</p>
+<p><span class="check-badge">확인 10</span> <code>.venv/bin/python -m pytest -q</code>의 마지막 줄이 <code>passed</code>로 끝나고(1장 기준 <code>43 passed</code>), <code>git check-ignore -v .venv</code>가 <code>.gitignore</code>의 줄을 출력한다.</p>
+<hr>
+</section>
+</section>
+<section id="a-12.-프로덕트의-api-키와-.env" class="level2">
+<h2 class="anchored" data-anchor-id="a-12.-프로덕트의-api-키와-.env">A-12. 프로덕트의 API 키와 <code>.env</code></h2>
+<section id="a-12-1.-키가-필요한-곳" class="level3">
+<h3 class="anchored" data-anchor-id="a-12-1.-키가-필요한-곳">A-12-1. 키가 필요한 곳</h3>
+<p><code>jobprep</code>의 요약과 질의응답, 9장의 에이전트 루프, 12장의 실제 모델 평가는 Anthropic의 Messages API를 부른다. 이 호출은 API 키로 인증한다. Claude Code에 로그인한 계정은 쓸 수 없다. Claude Code 문서 「Legal and compliance」는 구독 계정의 로그인(OAuth)을 Claude Code와 Anthropic의 앱을 통상적으로 쓰기 위한 것으로 두고, Claude의 기능을 쓰는 제품이나 서비스를 만드는 개발자는 Agent SDK를 쓰는 경우를 포함해 Claude Console의 API 키(또는 지원되는 클라우드 제공자)로 인증해야 한다고 적는다. 개발자가 Claude.ai의 자격 증명이나 세션 토큰을 「collect, store, or intermediate」(수집, 저장, 중개)해서는 안 된다는 문장도 있다[C4].</p>
+<p>실습용 키의 발급 여부는 정해지지 않았고, 수업 첫 주에 안내한다. 발급하는 경우에는 교수가 학과 조직의 Claude Console에서 실습용 작업 공간과 사용 한도를 정해 배부한다. <strong>키가 없어도 모든 장의 실습은 모의 모드로 끝까지 할 수 있다.</strong> 키는 각 장의 「실제 모델로 확인」 단계에서만 쓴다(A-13).</p>
+</section>
+<section id="a-12-2.-.env-만들기" class="level3">
+<h3 class="anchored" data-anchor-id="a-12-2.-.env-만들기">A-12-2. <code>.env</code> 만들기</h3>
+<p>기준 저장소의 <code>.env.example</code>은 변수의 이름과 기본값만 적은 견본이다. <code>ANTHROPIC_API_KEY</code>의 값은 비어 있다. 이 파일은 커밋하고, 실제 값은 복사본 <code>.env</code>에만 적는다.</p>
+<p><strong>[파일: jobprep/.env.example]</strong> (2026-11-14 키트의 내용, 주석 일부 줄임)</p>
+<pre class="text"><code># 1이면 LLM을 부르지 않고 모의 응답을 쓴다. 테스트와 첫 실행은 1로 한다.
+LLM_FAKE=1
+# 실제 호출에 쓸 모델 이름. 수업 직전에 공식 모델 목록에서 확인한 값을 쓴다.
+LLM_MODEL=claude-haiku-5-5
+# 실습용 API 키를 받은 경우에만 적는다(발급 여부는 수업 첫 주에 안내). 브라우저 코드나 저장소에 넣지 않는다.
+ANTHROPIC_API_KEY=
+# 프롬프트 판본(prompts/ 폴더의 파일 이름)
+PROMPT_SUMMARY=summary_v1
+PROMPT_ASK=ask_v1
+# 임베딩: auto(Ollama가 있으면 쓰고 없으면 대체 구현), ollama, fallback
+EMBED_BACKEND=auto
+OLLAMA_URL=http://localhost:11434
+EMBED_MODEL=nomic-embed-text</code></pre>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> .env.example .env</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> 600 .env</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> check-ignore <span class="at">-v</span> .env</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>.gitignore:2:.env   .env</code></pre>
+<ul>
+<li>키를 받으면 VS Code에서 <code>.env</code>를 열어 <code>ANTHROPIC_API_KEY=</code> 뒤에 붙여 넣는다. 따옴표와 공백 없이 한 줄로 넣는다. <code>echo "ANTHROPIC_API_KEY=…" &gt;&gt; .env</code>로 넣지 않는다. 명령이 셸의 기록(<code>~/.bash_history</code>)에 키와 함께 남는다.</li>
+<li><code>chmod 600</code>은 파일을 소유자만 읽고 쓸 수 있게 한다. 서버를 여러 사람이 쓰기 때문이다.</li>
+<li><code>git check-ignore -v .env</code>가 아무것도 출력하지 않으면 무시되지 않는 것이다. 커밋하기 전에 <code>.gitignore</code>를 고친다.</li>
+<li><code>api/main.py</code>와 9장의 프로그램은 <code>python-dotenv</code>로 저장소의 <code>.env</code>를 읽되, 이미 정해진 환경 변수는 덮어쓰지 않는다. 그래서 명령 앞에 붙인 값(<code>LLM_FAKE=0 …</code>)이 <code>.env</code>의 값보다 앞선다(A-13-2).</li>
+</ul>
+</section>
+<section id="a-12-3.-키를-다루는-규칙" class="level3">
+<h3 class="anchored" data-anchor-id="a-12-3.-키를-다루는-규칙">A-12-3. 키를 다루는 규칙</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>하는 것</th>
+<th>하지 않는 것</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>jobprep/.env</code>에만 둔다</td>
+<td>코드, 프롬프트, 운영 문서, 커밋 메시지, 이슈와 PR 본문에 키를 적는다</td>
+</tr>
+<tr class="even">
+<td>키의 존재는 「있음/없음」으로만 확인한다</td>
+<td>키 전체를 화면에 출력하거나 캡처한다</td>
+</tr>
+<tr class="odd">
+<td>서버 쪽 코드(<code>api/llm.py</code>)에서만 읽는다</td>
+<td>브라우저에서 도는 <code>web/</code>의 자바스크립트에 키를 넣는다</td>
+</tr>
+<tr class="even">
+<td><code>.claude/settings.json</code>에 <code>Read(./.env)</code>, <code>Read(./.env.*)</code> 거부 규칙을 둔다(3장)</td>
+<td>Claude Code에게 <code>.env</code>를 열어 보게 하거나 키를 붙여 넣는다</td>
+</tr>
+<tr class="odd">
+<td>6장의 보호 훅 목록(<code>protected.txt</code>)에 <code>.env</code>를 둔다</td>
+<td>에이전트가 <code>.env</code>의 <code>LLM_FAKE</code>를 고치게 둔다(6장의 견본이 이 시도를 막는다)</td>
+</tr>
+<tr class="even">
+<td>실험 저장소(7장)의 <code>.env</code>에는 실제 키 대신 표지 값을 넣는다</td>
+<td>실험 저장소나 연습 폴더에 실제 키를 복사한다</td>
+</tr>
+<tr class="odd">
+<td>11장의 비밀 탐지(<code>security/scan_secrets.py</code>)를 커밋 전에 돌린다</td>
+<td><code>~/.bashrc</code>에 <code>export ANTHROPIC_API_KEY=…</code>를 넣는다(A-5-2)</td>
+</tr>
+</tbody>
+</table>
+<p>키가 들어갔는지는 값을 출력하지 않고 확인한다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv/bin/python</span> <span class="at">-c</span> <span class="st">"from dotenv import load_dotenv; import os; load_dotenv(); print('KEY_SET' if os.getenv('ANTHROPIC_API_KEY') else 'KEY_EMPTY')"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>KEY_EMPTY</code></pre>
+<p>키를 넣기 전이면 <code>KEY_EMPTY</code>, 넣은 뒤이면 <code>KEY_SET</code>이 나온다.</p>
+<p><strong>키를 커밋하거나 푸시했으면</strong> 그 키는 이미 샌 것으로 본다. 다음 커밋에서 파일을 지워도 기록에 남는다. 바로 교수에게 알려 키를 폐기하고 새 키를 받는다. 기록을 고쳐 쓰는 것(강제 푸시)으로 해결하려 하지 않는다. 비공개 저장소여도 같다(11장).</p>
+<p><span class="check-badge">확인 11</span> <code>git check-ignore -v .env</code>가 <code>.gitignore</code>의 줄을 출력하고, 위 확인 명령이 <code>KEY_EMPTY</code> 또는 <code>KEY_SET</code>을 출력하며, <code>git status --short</code>에 <code>.env</code>가 없다.</p>
+<hr>
+</section>
+</section>
+<section id="a-13.-모의-모드와-실제-모델-호출" class="level2">
+<h2 class="anchored" data-anchor-id="a-13.-모의-모드와-실제-모델-호출">A-13. 모의 모드와 실제 모델 호출</h2>
+<section id="a-13-1.-두-가지-바꿔-끼우기" class="level3">
+<h3 class="anchored" data-anchor-id="a-13-1.-두-가지-바꿔-끼우기">A-13-1. 두 가지 바꿔 끼우기</h3>
+<p>이 과목에서 모델을 부르는 코드는 두 자리에서 바꿔 끼울 수 있게 되어 있다. 하나는 제품 코드의 LLM 호출이고, 다른 하나는 스크립트가 띄우는 에이전트 명령이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>자리</th>
+<th>변수</th>
+<th>모의 값</th>
+<th>실제 값</th>
+<th>쓰는 장</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>제품 코드의 LLM 호출(<code>api/llm.py</code>, 9장 <code>agent_loop</code>)</td>
+<td><code>LLM_FAKE</code></td>
+<td><code>1</code>(정해진 응답)</td>
+<td><code>0</code>(API 키로 호출)</td>
+<td>1·2·9·12장</td>
+</tr>
+<tr class="even">
+<td>12장 평가의 모델</td>
+<td><code>--backend</code></td>
+<td><code>sim</code>(변동 모의 모델, 기본값)</td>
+<td><code>real</code></td>
+<td>12장</td>
+</tr>
+<tr class="odd">
+<td>루프와 파이프라인의 에이전트 명령</td>
+<td><code>AGENT_CMD</code></td>
+<td><code>python ops/loop/fake_agent.py</code></td>
+<td>비우면 <code>claude</code>(헤드리스)</td>
+<td>8장</td>
+</tr>
+<tr class="even">
+<td>멀티 에이전트의 구현 에이전트</td>
+<td><code>AGENT_CMD</code></td>
+<td><code>python ops/multi/fake/impl_agent.py</code></td>
+<td><code>bash ops/multi/claude_impl.sh</code></td>
+<td>10장</td>
+</tr>
+<tr class="odd">
+<td>가짜 에이전트의 각본</td>
+<td><code>FAKE_SCENARIO</code></td>
+<td><code>success</code>, <code>fail</code>, <code>budget</code>, <code>cheat</code>, <code>digest</code>(8장), <code>T2=fail_once</code> 등(10장)</td>
+<td>쓰지 않음</td>
+<td>8·10장</td>
+</tr>
+</tbody>
+</table>
+<p>모의 모드를 두는 까닭은 셋이다. 키가 없거나 한도에 닿아도 수업이 멈추지 않는다. 같은 입력에 늘 같은 출력이 나오므로 테스트가 매번 같은 결과를 낸다. 비용이 들지 않는다. 가짜 에이전트는 2장에서 배운 테스트 더블을 에이전트 자리에 쓴 것이다. <code>claude -p</code>와 같은 옵션을 받고 같은 모양의 결과 객체를 내므로, 루프 스크립트는 바꾸지 않고 <code>AGENT_CMD</code>만 바꾼다.</p>
+<p>모의 모드로 확인하는 것은 흐름(입력 검사, 판정, 재시도, 상한, 기록, 사람 넘김)이다. 응답의 품질과 실제 에이전트의 행동은 실제 호출로만 확인할 수 있다.</p>
+</section>
+<section id="a-13-2.-값을-주는-자리와-우선순위" class="level3">
+<h3 class="anchored" data-anchor-id="a-13-2.-값을-주는-자리와-우선순위">A-13-2. 값을 주는 자리와 우선순위</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>자리</th>
+<th>쓰는 법</th>
+<th>적용 범위</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>명령 앞</td>
+<td><code>LLM_FAKE=0 .venv/bin/python -m agent_loop.loop "질문"</code></td>
+<td>그 명령 한 번</td>
+</tr>
+<tr class="even">
+<td><code>export</code></td>
+<td><code>export AGENT_CMD="python ops/loop/fake_agent.py"</code></td>
+<td>그 터미널을 닫거나 <code>unset</code>할 때까지</td>
+</tr>
+<tr class="odd">
+<td><code>.env</code></td>
+<td><code>LLM_FAKE=1</code></td>
+<td>그 저장소에서 <code>python-dotenv</code>로 읽는 코드</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>테스트(<code>tests/conftest.py</code>)는 <code>.env</code>와 상관없이 <code>LLM_FAKE=1</code>을 강제한다. 테스트를 아무리 돌려도 모델을 부르지 않는다.</li>
+<li><code>.env</code>의 <code>LLM_FAKE=1</code>은 바꾸지 않는다. 실제 호출은 명령 앞에 <code>LLM_FAKE=0</code>을 붙여 그 명령에만 준다.</li>
+<li><code>export AGENT_CMD=…</code>는 잊기 쉽다. 8장은 이 변수를 장 내내 쓰므로 한 번 <code>export</code>한다. 실제 에이전트로 돌릴 때는 <code>unset AGENT_CMD</code>를 한다. 지금 값은 <code>echo "${AGENT_CMD:-claude(기본)}"</code>로 본다.</li>
+</ul>
+</section>
+<section id="a-13-3.-실제-모델을-부르는-실습" class="level3">
+<h3 class="anchored" data-anchor-id="a-13-3.-실제-모델을-부르는-실습">A-13-3. 실제 모델을 부르는 실습</h3>
+<p>다음 표는 실제 모델을 부를 수 있는 단계를 모은 것이다. 이 단계들은 <strong>교수 시연</strong>이 기본이다. 학생은 모의 모드, 가짜 에이전트(<code>AGENT_CMD</code>), 교수가 배포한 실행 기록(장마다 <code>시연기록/</code>)으로 같은 확인을 한다. 키를 받은 학생이 직접 해 보는 것은 선택이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>장</th>
+<th>무엇을</th>
+<th>명령의 꼴</th>
+<th>인증</th>
+<th>대략의 규모</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><code>jobprep</code> 요약·질의응답의 실제 응답 확인</td>
+<td><code>LLM_FAKE=0</code>으로 API 서버 실행 뒤 요청 한두 건</td>
+<td>API 키</td>
+<td>호출 몇 번</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td>하네스 유무 비교 실험</td>
+<td><code>bash ops/harness/run_task.sh T1-off-1</code> 등</td>
+<td>계정 로그인(헤드리스)</td>
+<td>작업 3건 × 조건 2 = 6회, 한 회 <code>--max-turns 40</code></td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td>루프를 실제 에이전트로</td>
+<td><code>unset AGENT_CMD</code> 뒤 <code>python ops/loop/fix_until_green.py</code></td>
+<td>계정 로그인(헤드리스)</td>
+<td>시도 최대 3회, 루프 전체 상한 1.00달러(추정치 기준)</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>기록 요약 파이프라인</td>
+<td><code>DIGEST_DAY=2027-09-08 bash ops/loop/digest.sh logs</code></td>
+<td>계정 로그인(헤드리스)</td>
+<td>1회, 턴 1, 상한 0.10달러</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>직접 만든 루프와 SDK 판</td>
+<td><code>LLM_FAKE=0 .venv/bin/python -m agent_loop.loop "…"</code>, <code>… -m agent_loop.sdk_agent "…"</code></td>
+<td>API 키</td>
+<td>질문 한 번에 호출 몇 번</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>구현 에이전트 둘의 병렬 실행</td>
+<td><code>AGENT_CMD="bash ops/multi/claude_impl.sh" bash ops/multi/run_issue.sh ISSUE-07 T1 T2</code></td>
+<td>계정 로그인(헤드리스)</td>
+<td>작업 2개 × 시도 최대 3회</td>
+</tr>
+<tr class="odd">
+<td>12</td>
+<td>실제 모델의 회귀 평가</td>
+<td><code>python -m evals.run --suite all --prompt summary_v3 --runs 3 --backend real</code></td>
+<td>API 키</td>
+<td>판정자까지 약 230회 호출</td>
+</tr>
+<tr class="even">
+<td>13</td>
+<td>Claude Code의 PR 검토</td>
+<td>GitHub Actions의 <code>claude-code-action</code></td>
+<td>저장소 비밀 정보의 API 키</td>
+<td>교수 시연</td>
+</tr>
+</tbody>
+</table>
+<p>실제 호출의 순서는 다음과 같다.</p>
+<ol type="1">
+<li>모의 모드로 그 단계의 테스트와 확인을 모두 마친다.</li>
+<li>인증을 확인한다. API 키 갈래는 A-12의 <code>KEY_SET</code>, 계정 갈래는 <code>/status</code>이다.</li>
+<li>그 장이 안내하는 명령 <strong>하나만</strong> 실제로 실행한다. 반복문이나 테스트 전체를 실제 호출로 돌리지 않는다.</li>
+<li>비용 상한을 건다. 헤드리스 실행은 <code>--max-budget-usd</code>와 <code>--max-turns</code>(A-14), 루프는 <code>LOOP_BUDGET_USD</code>, 12장은 <code>--runs</code>를 줄인다.</li>
+<li>결과를 확인했으면 모의 모드로 돌아온다(<code>unset AGENT_CMD</code>, <code>.env</code>는 그대로).</li>
+</ol>
+<p>API 키 갈래의 호출이 실패하면 API는 HTTP 상태 코드와 오류 종류를 돌려준다[A1]. <code>jobprep</code>의 <code>api/llm.py</code>는 이를 <code>LLMError</code>로 바꾼다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>상태 코드와 종류</th>
+<th>흔한 원인</th>
+<th>조치</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>401 <code>authentication_error</code></td>
+<td>키가 비었거나 잘못 붙여 넣었거나 폐기되었다</td>
+<td><code>.env</code>의 줄을 다시 확인한다</td>
+</tr>
+<tr class="even">
+<td>400 <code>invalid_request_error</code></td>
+<td>요청 형식이 틀렸다. 작업 공간의 지출 한도에 닿았을 때도 온다</td>
+<td>메시지를 읽는다. 한도면 모의 모드로 진행하고 교수에게 알린다</td>
+</tr>
+<tr class="odd">
+<td>404 <code>not_found_error</code></td>
+<td><code>LLM_MODEL</code>의 이름이 틀렸다</td>
+<td>수업에서 안내한 모델 이름을 넣는다</td>
+</tr>
+<tr class="even">
+<td>429 <code>rate_limit_error</code></td>
+<td>속도 제한이나 지출 상한에 닿았다</td>
+<td>잠시 뒤 다시 한다. 계속되면 모의 모드</td>
+</tr>
+<tr class="odd">
+<td>529 <code>overloaded_error</code></td>
+<td>API가 일시적으로 과부하이다</td>
+<td>잠시 뒤 다시 한다</td>
+</tr>
+</tbody>
+</table>
+<p><span class="check-badge">확인 12</span> <code>echo "${AGENT_CMD:-없음}"</code>과 <code>grep '^LLM_FAKE' .env</code>로 지금 터미널과 저장소가 모의 모드인지 말할 수 있고, <code>.venv/bin/python -m pytest -q</code>가 키 없이 통과한다.</p>
+<hr>
+</section>
+</section>
+<section id="a-14.-헤드리스-실행과-사용량" class="level2">
+<h2 class="anchored" data-anchor-id="a-14.-헤드리스-실행과-사용량">A-14. 헤드리스 실행과 사용량</h2>
+<section id="a-14-1.-헤드리스-실행이-쓰는-것" class="level3">
+<h3 class="anchored" data-anchor-id="a-14-1.-헤드리스-실행이-쓰는-것">A-14-1. 헤드리스 실행이 쓰는 것</h3>
+<p><code>claude -p "프롬프트"</code>는 대화 화면 없이 프롬프트 하나를 처리하고 끝나는 실행이다. 7장의 측정, 8장의 루프와 파이프라인, 10장의 멀티 에이전트가 이것으로 Claude Code를 부른다. 헤드리스 실행이 무엇을 읽고 무엇을 쓰는지는 대화형과 거의 같다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>항목</th>
+<th>헤드리스 실행(<code>claude -p</code>)</th>
+<th>근거</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>인증</td>
+<td>대화형과 같은 계정 로그인. 그러므로 <strong>같은 계정의 사용 한도를 쓴다</strong></td>
+<td>[C2][C9]</td>
+</tr>
+<tr class="even">
+<td>읽는 설정</td>
+<td>저장소와 사용자 폴더의 <code>CLAUDE.md</code>, <code>.claude/settings.json</code>의 권한과 훅, <code>.mcp.json</code>, 스킬, 플러그인</td>
+<td>[C9]</td>
+</tr>
+<tr class="odd">
+<td>폴더 신뢰</td>
+<td>묻지 않는다. 처음 보는 폴더에서도 그 폴더의 훅을 실행하고 <code>.mcp.json</code>의 서버를 띄운다</td>
+<td>[C9], <code>claude --help</code></td>
+</tr>
+<tr class="even">
+<td>깨진 설정 파일</td>
+<td>오류 창 없이 조용히 건너뛴다</td>
+<td><code>claude --help</code></td>
+</tr>
+<tr class="odd">
+<td>권한 확인</td>
+<td>물을 사람이 없으므로, 묻게 될 호출은 거부된다. 허용할 것은 <code>--allowedTools</code>나 설정의 <code>allow</code>로 미리 정한다</td>
+<td>[C9]</td>
+</tr>
+</tbody>
+</table>
+<p><code>--bare</code>를 붙이면 이 가운데 훅, 스킬, 플러그인, MCP 서버, <code>CLAUDE.md</code>를 읽지 않고, 계정 로그인 대신 <code>ANTHROPIC_API_KEY</code>(또는 <code>--settings</code>의 <code>apiKeyHelper</code>)로만 인증한다[C9]. 이 과목은 키를 셸에 두지 않고, 7장의 하네스(훅)가 시도 안에서 작동해야 하므로 <code>--bare</code>를 쓰지 않는다(8장 2-7).</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="at">--help</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-E</span> <span class="st">"^  (-p, )?--(print|output-format|allowedTools|disallowedTools|permission-mode|max-budget-usd|bare|permission-prompts)"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>  --allowedTools, --allowed-tools &lt;tools...&gt;
+  --bare                                Minimal mode: skip hooks (those defined
+  --disallowedTools, --disallowed-tools &lt;tools...&gt;
+  --max-budget-usd &lt;amount&gt;             Maximum dollar amount to spend on API
+  --output-format &lt;format&gt;              Output format (only works with --print):
+  --permission-mode &lt;mode&gt;              Permission mode to use for the session
+  --permission-prompts &lt;target&gt;         Who answers permission prompts with
+  -p, --print                           Print response and exit (useful for</code></pre>
+<p>(Claude Code 2.1.296, 2026-11-14. <code>--max-turns</code>는 도움말에 나오지 않지만 CLI 참조 문서에 print 모드의 옵션으로 있다. 8장 0-5.)</p>
+</section>
+<section id="a-14-2.-사용량을-보는-법과-거는-법" class="level3">
+<h3 class="anchored" data-anchor-id="a-14-2.-사용량을-보는-법과-거는-법">A-14-2. 사용량을 보는 법과 거는 법</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>하려는 일</th>
+<th>방법</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>지금 세션의 비용과 요금제의 사용 한도를 본다</td>
+<td>Claude Code 안에서 <code>/usage</code>(별칭 <code>/cost</code>)</td>
+</tr>
+<tr class="even">
+<td>실행 한 번의 비용을 기록한다</td>
+<td><code>--output-format json</code>의 <code>total_cost_usd</code>, <code>usage</code>, <code>num_turns</code>. 클라이언트 쪽 <strong>추정치</strong>이며 실제 청구액과 다를 수 있다[C9]</td>
+</tr>
+<tr class="odd">
+<td>실행 한 번에 상한을 건다</td>
+<td><code>--max-budget-usd 0.50</code>(금액), <code>--max-turns 15</code>(턴). 상한에 닿으면 결과의 <code>subtype</code>이 <code>error_max_budget_usd</code>, <code>error_max_turns</code>이다</td>
+</tr>
+<tr class="even">
+<td>루프 전체에 상한을 건다</td>
+<td>8장 루프의 <code>LOOP_BUDGET_USD</code>(1.00), <code>LOOP_MAX_ATTEMPTS</code>(3), <code>LOOP_MAX_SECONDS</code>(1800)</td>
+</tr>
+<tr class="odd">
+<td>실행 기록을 모아 본다</td>
+<td>12장 <code>python -m ops.telemetry.report --budget-usd 5</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>구독형 계정에서 <code>total_cost_usd</code>는 청구액이 아니라 사용량의 추정치이다. 그래도 상한과 비교의 기준으로 쓰기에는 충분하다(8장 5-2). 이 값이 클수록 계정의 사용 한도에 빨리 닿는다.</li>
+<li>「Legal and compliance」는 Pro, Max 같은 요금제의 사용 한도가 Claude Code와 Agent SDK의 통상적인 개인 사용을 전제로 한다고 적는다[C4]. 루프를 밤새 돌리거나 여러 세션을 한꺼번에 띄우는 일은 한도에 금방 닿는다. 실습은 상한을 건 한 번의 실행으로 그친다.</li>
+<li>헤드리스 실행이 사용 한도에 닿으면 결과가 오류로 끝난다. 루프는 이것을 「비용을 알 수 없는 시도」로 보고 그 시도의 상한을 모두 쓴 것으로 센다(8장 5-2). 한도에 닿았으면 가짜 에이전트로 돌아와 나머지 확인을 마친다.</li>
+</ul>
+</section>
+<section id="a-14-3.-헤드리스-실행의-안전-수칙" class="level3">
+<h3 class="anchored" data-anchor-id="a-14-3.-헤드리스-실행의-안전-수칙">A-14-3. 헤드리스 실행의 안전 수칙</h3>
+<ol type="1">
+<li><strong>신뢰하는 폴더에서만</strong> 실행한다. 자기 저장소, 자기가 만든 실험 저장소(7장 <code>~/agent-lab/exp/</code>), 자기 worktree(10장)만이다. 남의 PR 사본이나 내려받은 저장소에서 <code>claude -p</code>를 돌리지 않는다. 그 폴더의 훅이 묻지 않고 실행된다.</li>
+<li><strong>권한을 좁게</strong> 준다. 루프는 <code>--permission-mode dontAsk</code>와 <code>--allowedTools</code>로 목록 밖을 모두 거부한다(8장 3절). <code>--dangerously-skip-permissions</code>와 <code>bypassPermissions</code>는 도움말이 인터넷이 막힌 격리 환경에서만 쓰라고 하는 옵션이므로 쓰지 않는다(<code>claude --help</code>).</li>
+<li><strong>상한을 건다.</strong> 금액(<code>--max-budget-usd</code>), 턴(<code>--max-turns</code>), 시간(스크립트의 시간 상한)을 함께 건다.</li>
+<li><strong>기록을 남긴다.</strong> <code>--output-format json</code> 또는 <code>stream-json</code>의 출력을 파일로 남기고, 세션 ID로 <code>claude --resume &lt;세션 ID&gt;</code>를 열어 사람이 살펴볼 수 있게 한다.</li>
+</ol>
+<p><span class="check-badge">확인 13</span> 위 <code>claude --help | grep …</code> 명령이 여덟 줄을 출력하고, <code>/usage</code>로 지금 계정의 사용 한도를 볼 수 있다.</p>
+<hr>
+</section>
+</section>
+<section id="a-15.-agent-sdk-설치" class="level2">
+<h2 class="anchored" data-anchor-id="a-15.-agent-sdk-설치">A-15. Agent SDK 설치</h2>
+<section id="a-15-1.-설치" class="level3">
+<h3 class="anchored" data-anchor-id="a-15-1.-설치">A-15-1. 설치</h3>
+<p>9장은 직접 만든 에이전트 루프와 같은 일을 Claude Agent SDK로 만든 판을 비교한다. Agent SDK는 Claude Code를 라이브러리로 쓰게 하는 파이썬·타입스크립트 패키지이며, 파이썬 패키지 이름은 <code>claude-agent-sdk</code>이다[C7]. 9장은 판 0.2.182를 고정한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>항목</th>
+<th>내용(2026-11-14 확인)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>파이썬 판</td>
+<td>3.10 이상[C7]. PyPI의 0.2.182 정보도 <code>&gt;=3.10</code></td>
+</tr>
+<tr class="even">
+<td>설치 명령</td>
+<td><code>pip install claude-agent-sdk</code>(9장은 <code>agent_loop/requirements-sdk.txt</code>로 판을 고정해 설치)</td>
+</tr>
+<tr class="odd">
+<td>Claude Code 실행 파일</td>
+<td>플랫폼별 휠에 함께 들어 있어 따로 설치하지 않아도 된다. 휠이 아닌 소스 묶음이 설치되는 플랫폼에서는 들어 있지 않다[C7]</td>
+</tr>
+<tr class="even">
+<td>내려받는 크기</td>
+<td>0.2.182의 리눅스 x86-64 휠 약 162MB, 리눅스 aarch64 약 161MB, Windows 약 164MB(PyPI의 파일 크기)</td>
+</tr>
+<tr class="odd">
+<td>설치한 크기</td>
+<td>Windows에서 패키지 폴더 약 357MB(안의 실행 파일 약 372,000,000바이트, 9장 집필 때 측정). 리눅스에서 잰 값은 없다</td>
+</tr>
+<tr class="even">
+<td>함께 설치되는 것</td>
+<td>mcp 2.3.0(5장과 같은 판), jsonschema, anyio</td>
+</tr>
+</tbody>
+</table>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">df</span> <span class="at">-h</span> ~ <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-1</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv/bin/python</span> <span class="at">-m</span> pip install <span class="at">-r</span> agent_loop/requirements-sdk.txt</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv/bin/python</span> <span class="at">-m</span> pip show claude-agent-sdk <span class="kw">|</span> <span class="fu">head</span> <span class="at">-3</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>설치 전에 <code>df -h ~</code>로 홈 폴더에 1GB 정도의 여유가 있는지 본다. 홈 폴더에 용량 한도가 있는 서버에서는 설치가 중간에 실패할 수 있다. 여러 학생이 같은 시간에 내려받으면 오래 걸리므로, 교수가 미리 안내한 시간이나 방법(패키지 미러 등)을 따른다.</p>
+</section>
+<section id="a-15-2.-인증-api-키만" class="level3">
+<h3 class="anchored" data-anchor-id="a-15-2.-인증-api-키만">A-15-2. 인증: API 키만</h3>
+<p>Agent SDK 문서는 사전 승인이 없는 한 제3자 개발자가 Agent SDK로 만든 에이전트를 포함해 자기 제품에서 claude.ai 로그인이나 그 사용 한도를 쓰게 하는 것을 허용하지 않으며, API 키 인증을 쓰라고 한다[C7]. 「Legal and compliance」도 Agent SDK를 쓰는 개발자는 Console의 API 키나 지원되는 클라우드 제공자로 인증해야 한다고 적는다[C4]. 그래서 이 과목은 다음과 같이 나눈다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>프로그램</th>
+<th>인증</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>학습자가 쓰는 Claude Code(대화형, 헤드리스)</td>
+<td>계정 로그인</td>
+</tr>
+<tr class="even">
+<td>9장 <code>agent_loop/loop.py</code>(직접 만든 루프)</td>
+<td><code>jobprep/.env</code>의 API 키</td>
+</tr>
+<tr class="odd">
+<td>9장 <code>agent_loop/sdk_agent.py</code>(Agent SDK 판)</td>
+<td><code>jobprep/.env</code>의 API 키</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Agent SDK는 <code>.env</code> 파일을 스스로 읽지 않는다. 문서는 키를 <code>.env</code>에 두었다면 <code>dotenv</code> 같은 패키지로 직접 읽으라고 한다[C7]. <code>sdk_agent.py</code>는 시작할 때 <code>load_dotenv()</code>로 저장소의 <code>.env</code>를 읽는다.</li>
+<li>Agent SDK에는 모의 모드가 없다. <code>sdk_agent.py</code>는 키가 없거나 <code>LLM_FAKE=1</code>이면 시작하지 않는다. 키가 없을 때 다른 자격 증명(계정 로그인)으로 넘어가지 않게 하기 위해서이다. 모델 없이 도는 확인은 <code>tests/test_sdk_tools.py</code> 세 개이다.</li>
+<li>Agent SDK는 Claude Code처럼 저장소의 <code>.claude/</code>와 <code>~/.claude/</code>에서 스킬, 커맨드, 메모리를 불러올 수 있다[C7]. 9장 판은 옵션으로 도구를 좁혀 쓴다(9장 10절).</li>
+</ul>
+<p><span class="check-badge">확인 14</span> (9장) <code>.venv/bin/python -m pip show claude-agent-sdk</code>가 <code>Version: 0.2.182</code>를 보이고, <code>.venv/bin/python -m pytest -q tests/test_sdk_tools.py</code>가 <code>3 passed</code>이다.</p>
+<hr>
+</section>
+</section>
+<section id="a-16.-github-actions의-비밀-정보" class="level2">
+<h2 class="anchored" data-anchor-id="a-16.-github-actions의-비밀-정보">A-16. GitHub Actions의 비밀 정보</h2>
+<p>13장의 CI 워크플로(<code>ci.yml</code>)는 비밀 정보를 하나도 읽지 않는다. 테스트(<code>test</code>), 회귀 평가(<code>eval</code>), 비밀 탐지(<code>secrets</code>), 규칙 검사(<code>rules</code>)가 모두 모의 모드로 돌기 때문이다. 학생 저장소에 API 키를 비밀 정보로 등록하지 않는다. 키가 꼭 필요한 Claude Code의 PR 검토(<code>claude-code-action</code>)는 교수 시연으로 본다(13장 6-4). 이 절은 그 시연과 프로젝트실습에서 쓸 때를 위한 절차이다.</p>
+<section id="a-16-1.-등록" class="level3">
+<h3 class="anchored" data-anchor-id="a-16-1.-등록">A-16-1. 등록</h3>
+<p>GitHub은 키를 저장소, 환경(environment), 조직 단위의 비밀 정보(secrets)로 맡아 두고 워크플로에서 <code>${{ secrets.이름 }}</code>으로 꺼내 쓰게 한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>방법</th>
+<th>절차</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>웹 화면</td>
+<td>저장소의 <strong>Settings</strong> → 왼쪽 Security 무리의 <strong>Secrets and variables</strong> → <strong>Actions</strong> → <strong>Secrets</strong> 탭 → <strong>New repository secret</strong> → 이름과 값 → <strong>Add secret</strong>[H7]</td>
+</tr>
+<tr class="even">
+<td>GitHub CLI</td>
+<td><code>gh secret set ANTHROPIC_API_KEY</code>를 실행하면 값을 묻는다. 붙여 넣고 <code>Enter</code>[H7]</td>
+</tr>
+<tr class="odd">
+<td>확인</td>
+<td><code>gh secret list</code>(값은 보이지 않고 이름과 갱신 시각만 보인다)</td>
+</tr>
+<tr class="even">
+<td>Claude Code</td>
+<td><code>/install-github-app</code>이 Claude GitHub App 설치, 비밀 정보 등록, 워크플로 PR 준비를 차례로 안내한다. 저장소 관리자 권한이 필요하다[C10]</td>
+</tr>
+</tbody>
+</table>
+<p><code>gh secret set</code>에 <code>--body "값"</code>으로 값을 주지 않는다. 셸 기록에 남는다. <code>gh secret set -f .env</code>는 <code>.env</code>의 모든 줄을 한꺼번에 비밀 정보로 올리는 기능이다(<code>gh secret set --help</code>). <code>.env</code>에는 필요 없는 값까지 들어 있으므로 쓰지 않는다.</p>
+</section>
+<section id="a-16-2.-쓰는-규칙" class="level3">
+<h3 class="anchored" data-anchor-id="a-16-2.-쓰는-규칙">A-16-2. 쓰는 규칙</h3>
+<ul>
+<li>비밀 정보를 출력하지 않는다. 실행 기록에 찍힌 값은 가려지지만 문서는 이 가림이 보장되지 않는다고 적는다(13장 2-7).</li>
+<li>비밀 정보 하나에 값 하나만 넣는다. JSON 묶음을 통째로 넣으면 가림이 제대로 동작하지 않는다.</li>
+<li>비밀 정보가 필요한 작업에만 넘긴다. <code>ci.yml</code>의 네 작업에는 넘기지 않는다.</li>
+<li>포크에서 온 PR이 일으킨 워크플로에는 비밀 정보가 넘어가지 않는다(<code>GITHUB_TOKEN</code>은 예외)[H7]. 외부인의 PR에 키가 쓰이지 않게 하는 장치이다.</li>
+<li>워크플로의 임시 토큰 <code>GITHUB_TOKEN</code>의 권한은 <code>permissions</code>로 좁힌다. <code>ci.yml</code>은 <code>contents: read</code>만 쓴다(13장 2-7).</li>
+<li>비밀 정보를 지워도 그 안에 있던 키는 여전히 유효하다. 키를 더 쓰지 않으려면 Console에서 키 자체를 폐기한다[C10].</li>
+<li>구독으로 CI의 Claude Code를 돌리는 길(<code>claude setup-token</code>으로 만든 토큰을 <code>CLAUDE_CODE_OAUTH_TOKEN</code>으로 등록)도 문서에 있다[C10]. 학생 계정의 장기 토큰을 저장소에 맡기는 일이므로 이 과목에서는 하지 않는다.</li>
+</ul>
+<p><span class="check-badge">확인 15</span> (13장) <code>gh secret list</code>가 학생 저장소에서 빈 목록을 보이고, <code>grep -c '\${{ *secrets\.' .github/workflows/ci.yml</code>이 <code>0</code>을 출력한다(워크플로가 비밀 정보를 읽지 않는다).</p>
+<hr>
+</section>
+</section>
+<section id="a-17.-ci-보조-도구-actionlint와-pip-tools" class="level2">
+<h2 class="anchored" data-anchor-id="a-17.-ci-보조-도구-actionlint와-pip-tools">A-17. CI 보조 도구: actionlint와 pip-tools</h2>
+<p>13장은 워크플로를 푸시하기 전에 검사하는 도구(actionlint)와 의존성 잠금 파일을 만드는 도구(pip-tools)를 쓴다. 둘 다 <code>jobprep</code>을 실행하는 데는 필요 없으므로 저장소의 가상 환경이 아니라 저장소 밖 <code>~/agent-lab/.tools/</code>에 둔다. 프로젝트 가상 환경에 깔면 <code>pip freeze</code>의 결과에 섞여 잠금 파일과 실제 환경의 비교가 흐려진다(13장 4-2).</p>
+<section id="a-17-1.-pip-tools" class="level3">
+<h3 class="anchored" data-anchor-id="a-17-1.-pip-tools">A-17-1. pip-tools</h3>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> venv ~/agent-lab/.tools</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="ex">~/agent-lab/.tools/bin/pip</span> install <span class="at">--quiet</span> pip-tools==7.6.2</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="ex">~/agent-lab/.tools/bin/pip-compile</span> <span class="at">--version</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>pip-compile, version 7.6.2</code></pre>
+<ul>
+<li>도구용 가상 환경도 프로젝트와 같은 <code>python3</code>로 만든다. 잠금 파일은 만든 파이썬의 판과 운영체제를 따라 풀린다. pip-tools 문서는 잠금 파일을 환경마다 따로 만들라고 권하며, 실제로 Windows에서 만든 잠금 파일에는 <code>colorama</code>가 들어가고 리눅스에서는 빠진다(13장 4-3)[P1].</li>
+<li>pip-tools 7.6.2는 파이썬 3.9 이상을 요구한다(PyPI 정보, 2026-11-14).</li>
+<li>잠금 파일을 만드는 명령과 다시 설치해 같은지 확인하는 명령은 13장 4-3, 4-4절과 부록 B-6에 있다.</li>
+</ul>
+</section>
+<section id="a-17-2.-actionlint" class="level3">
+<h3 class="anchored" data-anchor-id="a-17-2.-actionlint">A-17-2. actionlint</h3>
+<p>actionlint는 워크플로의 문법, 키 이름, 식, 작업 사이의 참조를 검사한다. 공식 릴리스에서 받고, 같은 릴리스의 체크섬 목록으로 내려받은 파일을 확인한 뒤 푼다[T1].</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">uname</span> <span class="at">-m</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/agent-lab/.tools/actionlint <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> ~/agent-lab/.tools/actionlint</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> release download v1.7.12 <span class="at">-R</span> rhysd/actionlint <span class="dt">\</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">-p</span> <span class="st">'actionlint_1.7.12_linux_amd64.tar.gz'</span> <span class="at">-p</span> <span class="st">'actionlint_1.7.12_checksums.txt'</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> linux_amd64.tar.gz actionlint_1.7.12_checksums.txt <span class="kw">|</span> <span class="fu">sha256sum</span> <span class="at">-c</span> <span class="at">-</span></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzf</span> actionlint_1.7.12_linux_amd64.tar.gz actionlint</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="ex">./actionlint</span> <span class="at">-version</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-1</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>x86_64
+actionlint_1.7.12_linux_amd64.tar.gz: OK
+1.7.12</code></pre>
+<ul>
+<li><code>uname -m</code>이 <code>aarch64</code>이면 <code>linux_arm64</code> 파일을 받는다. Windows에서는 <code>actionlint_1.7.12_windows_amd64.zip</code>이다. 세 파일이 릴리스 v1.7.12(2026-03-30 게시)에 있음을 2026-11-14에 <code>gh release view</code>로 확인하였다.</li>
+<li>체크섬 확인이 <code>OK</code>가 아니면 풀지 않는다. 내려받는 중에 파일이 깨졌거나 다른 파일이다.</li>
+<li>저장소 폴더에서 인자 없이 실행하면 <code>.github/workflows/</code>의 파일을 모두 검사한다: <code>~/agent-lab/.tools/actionlint/actionlint</code>.</li>
+</ul>
+<p><span class="check-badge">확인 16</span> (13장) <code>~/agent-lab/.tools/bin/pip-compile --version</code>이 <code>7.6.2</code>를, <code>~/agent-lab/.tools/actionlint/actionlint -version</code>이 <code>1.7.12</code>를 출력하고, 프로젝트 가상 환경의 <code>pip freeze</code>에 <code>pip-tools</code>가 없다.</p>
+<hr>
+</section>
+</section>
+<section id="a-18.-샌드박스-도구-bubblewrap과-socat" class="level2">
+<h2 class="anchored" data-anchor-id="a-18.-샌드박스-도구-bubblewrap과-socat">A-18. 샌드박스 도구: bubblewrap과 socat</h2>
+<p>Claude Code의 샌드박스는 Bash 명령을 파일 시스템과 네트워크가 제한된 상자 안에서 실행한다. 11장은 샌드박스를 프롬프트 주입의 피해를 가두는 장치로 다룬다. 샌드박스의 지원 범위와 필요한 것은 다음과 같다(2026-11-14)[C8].</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>환경</th>
+<th>지원</th>
+<th>필요한 것</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>macOS</td>
+<td>지원</td>
+<td>내장 기능(Seatbelt). 설치할 것 없음</td>
+</tr>
+<tr class="even">
+<td>리눅스, WSL2</td>
+<td>지원</td>
+<td><code>bubblewrap</code>(파일 시스템 격리), <code>socat</code>(네트워크를 샌드박스 프록시로 보내는 중계)</td>
+</tr>
+<tr class="odd">
+<td>WSL1</td>
+<td>지원하지 않음</td>
+<td>WSL2로 올린다</td>
+</tr>
+<tr class="even">
+<td>Windows 자체</td>
+<td>지원하지 않음. 명령이 샌드박스 없이 실행된다</td>
+<td>WSL2 안에서 Claude Code를 실행한다</td>
+</tr>
+</tbody>
+</table>
+<p>문서가 주는 설치 명령은 Ubuntu·Debian의 <code>sudo apt-get install bubblewrap socat</code>과 Fedora의 <code>sudo dnf install bubblewrap socat</code>이다[C8]. 둘 다 관리자 권한(<code>sudo</code>)이 필요하므로 학생 계정으로는 설치할 수 없다. 실습 서버에 있는지는 다음으로 확인한다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span> bwrap socat <span class="kw">||</span> <span class="bu">echo</span> <span class="st">"샌드박스에 필요한 도구가 없다"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>두 줄의 경로가 나오면 있는 것이다. 없으면 11장의 실습은 샌드박스를 켜지 않고 진행한다. 11장의 중심 실습(거부 규칙, 훅, 도구 제한, 출력 검사)은 샌드박스 없이 돈다. 결과는 11장의 <code>security/결과기록.md</code> 머리에 적는다(11장 [확인 15]).</li>
+<li>샌드박스는 기본으로 꺼져 있다. Claude Code 안의 <code>/sandbox</code>나 설정의 <code>sandbox.enabled</code>로 켠다. 필요한 도구가 없으면 <code>/sandbox</code> 화면에 Dependencies 탭만 보인다[C8].</li>
+<li>문서에 따르면 플랫폼이 지원하지 않거나 시작할 때의 의존성 검사가 실패하면, Claude Code는 기본으로 <strong>샌드박스 없이</strong> 명령을 실행한다. 샌드박스가 없을 때 아예 시작하지 않게 하려면 <code>sandbox.failIfUnavailable</code>을 <code>true</code>로 둔다[C8]. 「켰다고 생각했는데 실제로는 꺼져 있는」 상태가 이렇게 생길 수 있으므로, 샌드박스에 기대는 설정은 <code>/sandbox</code> 화면으로 실제 상태를 확인한다.</li>
+<li>서버 관리자에게 설치를 요청할 때는 위 꾸러미 이름을 알린다. 실습 서버(Rocky Linux 계열)의 꾸러미 이름과 저장소는 확인하지 못하였다.</li>
+</ul>
+<p><span class="check-badge">확인 17</span> (11장) <code>which bwrap socat</code>의 결과를 기록하였다(있음 또는 없음).</p>
+<hr>
+</section>
+<section id="a-19.-예약-실행-cron" class="level2">
+<h2 class="anchored" data-anchor-id="a-19.-예약-실행-cron">A-19. 예약 실행: cron</h2>
+<p>8장은 운영 기록 요약 파이프라인(<code>ops/loop/digest.sh</code>)을 평일 아침에 돌리는 crontab 줄을 설계한다. cron은 리눅스의 정기 실행 데몬이고, crontab의 한 줄은 다섯 개의 시각 필드(분, 시, 일, 월, 요일)와 명령으로 이루어진다[U1].</p>
+<div class="code-label where-server">
+<span>파일: crontab의 한 줄</span>
+</div>
+<pre class="text"><code>30 8 * * 1-5 cd $HOME/agent-lab/jobprep &amp;&amp; PATH=$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin bash ops/loop/digest.sh logs &gt;&gt; ops/loop/logs/cron-digest.log 2&gt;&amp;1</code></pre>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>부분</th>
+<th>까닭</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>30 8 * * 1-5</code></td>
+<td>월~금 8시 30분</td>
+</tr>
+<tr class="even">
+<td><code>cd $HOME/agent-lab/jobprep &amp;&amp;</code></td>
+<td>cron은 홈 폴더에서 명령을 시작한다. 스크립트는 저장소 맨 위에서 돌아야 한다</td>
+</tr>
+<tr class="odd">
+<td><code>PATH=…</code></td>
+<td>cron의 환경은 대화형 셸과 다르다. <code>~/.bashrc</code>를 읽지 않으므로 <code>claude</code>(<code>~/.local/bin</code>)를 찾지 못할 수 있다. <code>command -v claude</code>로 찾은 폴더를 넣는다</td>
+</tr>
+<tr class="even">
+<td><code>&gt;&gt; … 2&gt;&amp;1</code></td>
+<td>출력과 오류를 파일에 남긴다. 남기지 않으면 실패해도 알 수 없다</td>
+</tr>
+</tbody>
+</table>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crontab</span> <span class="at">-l</span> <span class="dv">2</span><span class="op">&gt;</span>/dev/null</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">crontab</span> <span class="at">-e</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>명령</th>
+<th>뜻</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>crontab -l</code></td>
+<td>지금 등록된 목록을 보인다</td>
+</tr>
+<tr class="even">
+<td><code>crontab -e</code></td>
+<td>편집기로 목록을 고친다. 한 줄을 넣고 저장하면 등록된다</td>
+</tr>
+<tr class="odd">
+<td><code>crontab -r</code></td>
+<td>목록 <strong>전체</strong>를 지운다. 쓰지 않는다. 한 줄을 지울 때는 <code>crontab -e</code>에서 그 줄만 지운다</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>누가 crontab을 쓸 수 있는지는 서버의 <code>cron.allow</code>, <code>cron.deny</code> 파일이 정한다. <code>cron.allow</code>가 있으면 거기 적힌 사용자만 쓸 수 있다[U2]. 실습 서버에서 학생의 cron 사용을 허용하는지는 교수의 안내를 따른다. 허용되지 않으면 등록하지 않고 crontab 줄을 설계서에만 적는다(8장).</li>
+<li>cron으로 도는 <code>digest.sh</code>는 <code>AGENT_CMD</code>가 없으면 실제 Claude Code를 부른다. 학생 계정의 사용량을 매일 쓰게 되므로, 등록하더라도 실습을 마치면 지운다. 가짜 에이전트로 돌리려면 줄 안에 <code>AGENT_CMD="python ops/loop/fake_agent.py" FAKE_SCENARIO=digest</code>를 넣는다.</li>
+<li>cron은 서버가 켜져 있는 동안만 돈다. 내 PC(Windows)에는 cron이 없다(A-21).</li>
+</ul>
+<p><span class="check-badge">확인 18</span> (8장) <code>crontab -l</code>로 등록 여부를 확인하였고, 등록했다면 그 줄에 <code>cd</code>, <code>PATH</code>, 출력 리다이렉션이 들어 있다.</p>
+<hr>
+</section>
+<section id="a-20.-개인-포트" class="level2">
+<h2 class="anchored" data-anchor-id="a-20.-개인-포트">A-20. 개인 포트</h2>
+<p>실습 서버는 여러 학생이 함께 쓰므로, 모두가 기본값(8000)으로 서버 프로그램을 띄우면 두 번째 사람부터 <code>Address already in use</code>로 실패한다. 이 과목은 앞 과목과 같은 규칙으로 학생마다 포트를 정한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>포트</th>
+<th>번호</th>
+<th>출석 번호 1번의 예</th>
+<th>쓰는 곳</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>첫째 포트</td>
+<td><code>8000 + 출석번호</code> (8001~8099)</td>
+<td>8001</td>
+<td><code>jobprep</code>의 API 서버(<code>uvicorn</code>), 13장 배포의 <code>API_PORT</code></td>
+</tr>
+<tr class="even">
+<td>둘째 포트</td>
+<td><code>8100 + 출석번호</code> (8101~8199)</td>
+<td>8101</td>
+<td>API와 함께 띄우는 웹 화면(<code>python3 -m http.server</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>본문의 명령은 출석 번호 1번의 8001과 8101로 적고 「부록 A의 자기 포트」라고 밝힌다. 입력할 때 자기 번호로 바꾼다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PORT</span><span class="op">=</span>8001</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="ex">ss</span> <span class="at">-ltn</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="st">":</span><span class="va">$PORT</span><span class="st"> "</span> <span class="kw">||</span> <span class="bu">echo</span> <span class="st">"포트 </span><span class="va">$PORT</span><span class="st"> 비어 있음"</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="va">LLM_FAKE</span><span class="op">=</span>1 <span class="ex">.venv/bin/uvicorn</span> api.main:app <span class="at">--port</span> <span class="va">$PORT</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>포트 8001 비어 있음
+INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)</code></pre>
+<ul>
+<li><code>uvicorn</code>은 <code>--host</code>를 주지 않으면 <code>127.0.0.1</code>에서만 받는다. 서버 밖의 네트워크에서 내 API에 들어오지 못한다. <code>--host 0.0.0.0</code>을 쓰지 않는다.</li>
+<li>웹 화면을 함께 띄울 때는 둘째 포트로 <code>python3 -m http.server 8101 --bind 127.0.0.1 --directory web</code>을 쓴다.</li>
+<li>내 PC의 브라우저로 보려면 VS Code의 Ports 탭에서 「Add Port」로 자기 포트를 더한다[V1]. 내 PC에서 하는 경우(A-21)에는 이 단계가 없다.</li>
+<li>13장의 배포 스크립트는 환경 변수 <code>API_PORT</code>(기본값 8000)를 읽는다. <code>API_PORT=8001 bash ops/deploy/deploy.sh v1.0.1</code>처럼 자기 첫째 포트를 준다.</li>
+<li>서버를 멈출 때는 <code>Ctrl+C</code>를 누른다. 백그라운드로 띄웠으면(<code>&amp;</code>) <code>kill %1</code> 또는 <code>kill &lt;pid&gt;</code>로 멈춘다(1장 4절). 터미널만 닫으면 프로그램이 남아 포트를 계속 차지할 수 있다.</li>
+</ul>
+<p><strong>기준 저장소의 웹 화면과 포트.</strong> 기준 저장소의 <code>web/js/common.js</code>는 API 주소를 「웹 페이지와 같은 호스트의 8000번 포트」로 정해 두었다(<code>API_BASE</code>). 자기 첫째 포트(8001 등)로 띄운 API를 웹 화면에서 부르려면 이 값과 맞지 않는다. 웹 화면까지 함께 확인하는 단계(10장의 내보내기 단추 등)에서 포트를 맞추는 방법은 그 장과 수업의 안내를 따른다. API만 확인하는 단계는 <code>curl http://127.0.0.1:8001/api/health</code>로 충분하다.</p>
+<p><span class="check-badge">확인 19</span> 자기 첫째 포트로 <code>uvicorn</code>을 띄웠을 때 <code>Uvicorn running on http://127.0.0.1:자기포트</code>가 나오고, 다른 터미널에서 <code>curl -s http://127.0.0.1:자기포트/api/health</code>가 응답한다.</p>
+<hr>
+</section>
+<section id="a-21.-내-pc-실습-환경서버-없이-할-때" class="level2">
+<h2 class="anchored" data-anchor-id="a-21.-내-pc-실습-환경서버-없이-할-때">A-21. 내 PC 실습 환경(서버 없이 할 때)</h2>
+<p>실습 서버에 접속할 수 없는 경우(서버 점검, 집에서 하는 복습, 네트워크 장애)를 위해 내 Windows PC에서 같은 실습을 하는 길을 둔다. 이 교재의 키트는 집필할 때 Windows 11의 Git Bash와 파이썬 3.13에서 실행해 확인하였다. 수업의 기본 환경은 서버이므로, 내 PC에서 한 결과는 GitHub 원격 저장소를 거쳐 서버의 저장소와 맞춘다.</p>
+<section id="a-21-1.-설치" class="level3">
+<h3 class="anchored" data-anchor-id="a-21-1.-설치">A-21-1. 설치</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>도구</th>
+<th>설치</th>
+<th>확인</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Git for Windows(Git Bash 포함)</td>
+<td><code>winget install --id Git.Git -e --source winget</code></td>
+<td><code>git --version</code></td>
+</tr>
+<tr class="even">
+<td>파이썬 3.12 이상</td>
+<td>python.org 또는 Microsoft Store의 파이썬 설치 관리자</td>
+<td><code>python --version</code></td>
+</tr>
+<tr class="odd">
+<td>GitHub CLI</td>
+<td><code>winget install --id GitHub.cli --source winget</code></td>
+<td><code>gh --version</code></td>
+</tr>
+<tr class="even">
+<td>Claude Code</td>
+<td>PowerShell에서 <code>irm https://claude.ai/install.ps1 \| iex</code>[C1]</td>
+<td><code>claude --version</code></td>
+</tr>
+<tr class="odd">
+<td>VS Code</td>
+<td>code.visualstudio.com</td>
+<td>실행</td>
+</tr>
+</tbody>
+</table>
+<p>Claude Code는 Git for Windows가 있으면 셸 명령을 Git Bash로 실행한다[C1]. 이 교재의 명령이 bash 기준이므로 Git for Windows를 먼저 설치하고, VS Code의 터미널을 Git Bash로 연다(<code>Terminal: Select Default Profile</code> → <code>Git Bash</code>). 이어서 A-5(로그인), A-9(Git과 GitHub CLI)를 내 PC에서 같은 명령으로 한다.</p>
+</section>
+<section id="a-21-2.-서버와-다른-점" class="level3">
+<h3 class="anchored" data-anchor-id="a-21-2.-서버와-다른-점">A-21-2. 서버와 다른 점</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>항목</th>
+<th>서버(리눅스)</th>
+<th>내 PC(Git Bash)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>파이썬 실행</td>
+<td><code>python3</code></td>
+<td><code>python</code>(<code>python3</code>이 없을 수 있다. 4장 스킬의 <code>allowed-tools</code>와 본문의 <code>python3</code>을 바꾼다)</td>
+</tr>
+<tr class="even">
+<td>가상 환경의 파이썬</td>
+<td><code>.venv/bin/python</code></td>
+<td><code>.venv/Scripts/python</code></td>
+</tr>
+<tr class="odd">
+<td>가상 환경 켜기</td>
+<td><code>source .venv/bin/activate</code></td>
+<td><code>source .venv/Scripts/activate</code></td>
+</tr>
+<tr class="even">
+<td>훅(6장)과 멀티 에이전트 스크립트(10장)</td>
+<td>bash로 돈다</td>
+<td>Git Bash 5.2 이상에서 돈다(집필 때 확인). 훅은 두 경로(<code>bin</code>, <code>Scripts</code>)를 모두 찾는다</td>
+</tr>
+<tr class="odd">
+<td>심볼릭 링크 테스트(9장)</td>
+<td>39 passed</td>
+<td>링크를 만들 권한이 없으면 하나가 건너뛰어져 <code>38 passed, 1 skipped</code></td>
+</tr>
+<tr class="even">
+<td>키트 받기</td>
+<td><code>cp -rn "$KIT_HOME/…" ~/kits/</code></td>
+<td>서버에 접속할 수 있을 때 <code>scp -r 아이디@서버주소:배포폴더/Agent_NN주차 ~/kits/</code>. 안 되면 교수가 다른 경로로 배포한다</td>
+</tr>
+<tr class="odd">
+<td>샌드박스(11장)</td>
+<td>bubblewrap, socat이 있으면 쓸 수 있다</td>
+<td>Windows 자체는 지원하지 않는다. WSL2 안에서만 된다(A-18)</td>
+</tr>
+<tr class="even">
+<td>cron(8장)</td>
+<td>있다</td>
+<td>없다. crontab 줄은 설계서에 적기만 한다</td>
+</tr>
+<tr class="odd">
+<td>actionlint(13장)</td>
+<td><code>linux_amd64.tar.gz</code></td>
+<td><code>windows_amd64.zip</code></td>
+</tr>
+<tr class="even">
+<td>Agent SDK(9장)</td>
+<td>리눅스 휠</td>
+<td>Windows 휠(약 164MB, 설치 뒤 약 357MB)</td>
+</tr>
+<tr class="odd">
+<td>잠금 파일(13장)</td>
+<td>서버의 파이썬으로 만든다</td>
+<td>만들지 않는다. Windows에서 만든 잠금 파일은 리눅스 러너와 다르다(<code>colorama</code>)</td>
+</tr>
+<tr class="even">
+<td>포트 전달</td>
+<td>VS Code Ports 탭</td>
+<td>필요 없다. <code>http://127.0.0.1:번호/</code>를 바로 연다</td>
+</tr>
+<tr class="odd">
+<td>줄 끝 문자</td>
+<td>LF</td>
+<td>Git이 CRLF로 바꿀 수 있다는 경고가 나온다. 2장 <code>test_guard.py</code>는 줄 끝 차이를 같은 내용으로 본다</td>
+</tr>
+<tr class="even">
+<td>설정 파일의 위치</td>
+<td><code>~/.claude/</code></td>
+<td><code>%USERPROFILE%\.claude\</code>(Git Bash에서 <code>~/.claude/</code>)[C3]</td>
+</tr>
+</tbody>
+</table>
+<p>Windows에 WSL2(Ubuntu)가 있으면 그 안에서 실습하는 것이 서버와 가장 비슷하다. 9장 키트는 WSL의 Ubuntu와 파이썬 3.12.3에서도 확인하였다. WSL2 안에서는 위 표의 서버 열을 따른다.</p>
+<p>같은 파일을 서버와 내 PC에서 동시에 고치면 충돌이 생긴다. 한쪽에서 커밋하고 푸시한 뒤, 다른 쪽에서 <code>git pull</code>로 받는 순서를 지킨다.</p>
+<p><span class="check-badge">확인 20</span> (내 PC의 길을 택한 경우) Git Bash에서 <code>git --version</code>, <code>python --version</code>, <code>gh --version</code>, <code>claude --version</code>이 모두 버전을 출력하고, 저장소에서 <code>.venv/Scripts/python -m pytest -q</code>가 통과한다.</p>
+<hr>
+</section>
+</section>
+<section id="a-22.-매-장의-시작-순서" class="level2">
+<h2 class="anchored" data-anchor-id="a-22.-매-장의-시작-순서">A-22. 매 장의 시작 순서</h2>
+<p>매 수업은 같은 순서로 시작한다. 각 장의 0절은 이 순서를 전제로 그 장의 키트와 앞 장 산출물의 확인만 적는다.</p>
+<ol type="1">
+<li><strong>접속.</strong> VS Code에서 Remote-SSH로 서버에 연결하고 <code>~/agent-lab</code>을 연다(A-2).</li>
+<li><strong>터미널 두 개.</strong> 두 터미널 모두 <code>cd ~/agent-lab/jobprep</code>(A-3).</li>
+<li><strong>환경 점검.</strong> 서버 터미널에서 다음을 실행한다.</li>
+</ol>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="at">--version</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> auth status <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="at">-n</span> 2p</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"KIT_HOME=</span><span class="va">$KIT_HOME</span><span class="st">"</span></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"API_KEY_ENV=</span><span class="va">${ANTHROPIC_API_KEY</span><span class="op">:+</span>있음<span class="va">}</span><span class="st">"</span></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"CONFIG_DIR=</span><span class="va">${CLAUDE_CONFIG_DIR</span><span class="op">:-</span>기본<span class="va">}</span><span class="st">"</span></span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"AGENT_CMD=</span><span class="va">${AGENT_CMD</span><span class="op">:-</span>없음<span class="va">}</span><span class="st">"</span></span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">-sb</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-1</span></span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv/bin/python</span> <span class="at">-m</span> pytest <span class="at">-q</span> <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-1</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>2.1.296 (Claude Code)
+  ✓ Logged in to github.com account 「GitHub 아이디」 (keyring)
+KIT_HOME=배포폴더
+API_KEY_ENV=
+CONFIG_DIR=기본
+AGENT_CMD=없음
+## main...origin/main
+66 passed in 2.10s</code></pre>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>줄</th>
+<th>기대하는 값</th>
+<th>다르면</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>claude --version</code></td>
+<td>버전 번호</td>
+<td>A-4</td>
+</tr>
+<tr class="even">
+<td><code>gh auth status</code></td>
+<td><code>✓ Logged in</code></td>
+<td>A-9</td>
+</tr>
+<tr class="odd">
+<td><code>KIT_HOME=</code></td>
+<td>1주차에 안내받은 경로</td>
+<td>A-8-2</td>
+</tr>
+<tr class="even">
+<td><code>API_KEY_ENV=</code></td>
+<td>빈 값</td>
+<td>A-5-2. <code>~/.bashrc</code>에서 그 줄을 지우고 <code>unset ANTHROPIC_API_KEY</code></td>
+</tr>
+<tr class="odd">
+<td><code>CONFIG_DIR=</code></td>
+<td><code>기본</code></td>
+<td>A-6-4. <code>unset CLAUDE_CONFIG_DIR</code></td>
+</tr>
+<tr class="even">
+<td><code>AGENT_CMD=</code></td>
+<td><code>없음</code>(8·10장을 하는 중이면 그 장의 값)</td>
+<td>A-13-2</td>
+</tr>
+<tr class="odd">
+<td><code>git status -sb</code></td>
+<td><code>## main...origin/main</code>, 고친 파일이 없음. 앞 장의 작업 브랜치에 있을 수도 있다</td>
+<td>앞 장에서 커밋하지 않은 것을 먼저 커밋하거나 정리한다</td>
+</tr>
+<tr class="even">
+<td><code>pytest -q</code></td>
+<td><code>passed</code>로만 끝남(개수는 장마다 늘어난다. 위의 66은 2장 이후의 예)</td>
+<td>앞 장의 결과를 확인한다. 키트가 일부러 실패하게 둔 테스트는 그 장 README가 알려 준다</td>
+</tr>
+</tbody>
+</table>
+<ol start="4" type="1">
+<li><strong>Claude Code 점검.</strong> Claude Code 터미널에서 <code>claude</code>를 실행하고 <code>/status</code>로 계정, 모델, Setting sources를 본다(A-5, A-6-3).</li>
+<li><strong>키트 받기.</strong> 그 장 0절의 명령으로 키트를 받는다(A-8-3).</li>
+</ol>
+<p><span class="check-badge">확인 21</span> 위 점검 명령의 출력이 표의 「기대하는 값」과 같다.</p>
+<hr>
+</section>
+<section id="a-23.-자주-막히는-곳과-해결" class="level2">
+<h2 class="anchored" data-anchor-id="a-23.-자주-막히는-곳과-해결">A-23. 자주 막히는 곳과 해결</h2>
+<section id="a-23-1.-접속-설치-로그인" class="level3">
+<h3 class="anchored" data-anchor-id="a-23-1.-접속-설치-로그인">A-23-1. 접속, 설치, 로그인</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>증상</th>
+<th>원인</th>
+<th>해결</th>
+<th>절</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ssh: command not found</code> 또는 <code>'ssh' 용어가 … 인식되지 않습니다</code></td>
+<td>내 PC의 OpenSSH 클라이언트가 꺼져 있다</td>
+<td>Windows 설정의 「선택적 기능」에서 <code>OpenSSH 클라이언트</code>를 추가하고 PowerShell을 새로 연다</td>
+<td>A-2</td>
+</tr>
+<tr class="even">
+<td><code>WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!</code></td>
+<td>서버가 다시 설치되었거나 다른 컴퓨터가 서버 주소를 가로챘다</td>
+<td>접속하지 말고 교수에게 알린다</td>
+<td>A-2</td>
+</tr>
+<tr class="odd">
+<td>터미널이 내 PC에서 열린다(<code>PS C:\...&gt;</code>)</td>
+<td>Remote-SSH 창이 아닌 일반 VS Code 창에서 열었다</td>
+<td>왼쪽 아래에 <code>SSH: 서버주소</code>가 보이는 창에서 다시 연다</td>
+<td>A-2</td>
+</tr>
+<tr class="even">
+<td><code>claude: command not found</code></td>
+<td>설치 뒤 터미널을 새로 열지 않았다</td>
+<td>터미널을 새로 연다. 그래도 안 되면 <code>~/.local/bin/claude --version</code></td>
+<td>A-4</td>
+</tr>
+<tr class="odd">
+<td><code>claude</code>를 실행하자 API 키를 쓸지 묻는다</td>
+<td>셸에 <code>ANTHROPIC_API_KEY</code>가 있다</td>
+<td>쓰지 않는다고 답하고, <code>~/.bashrc</code>에서 그 줄을 지우고 <code>unset ANTHROPIC_API_KEY</code></td>
+<td>A-5-2</td>
+</tr>
+<tr class="even">
+<td><code>Login expired · Please run /login</code></td>
+<td>로그인이 만료되었다</td>
+<td><code>/login</code></td>
+<td>A-5</td>
+</tr>
+<tr class="odd">
+<td><code>claude auth status</code>가 갑자기 <code>Not logged in</code>이다</td>
+<td>그 터미널에 <code>CLAUDE_CONFIG_DIR</code>이 남아 있다</td>
+<td><code>echo "$CLAUDE_CONFIG_DIR"</code> 확인 뒤 <code>unset CLAUDE_CONFIG_DIR</code></td>
+<td>A-6-4</td>
+</tr>
+<tr class="even">
+<td><code>echo "$KIT_HOME"</code>이 빈 줄이거나 <code>cp: cannot stat '/Agent_NN주차'</code></td>
+<td><code>KIT_HOME</code>을 등록하지 않았거나 그 터미널이 설정을 읽기 전에 열렸다</td>
+<td>A-8-2를 하고 <code>source ~/.bashrc</code></td>
+<td>A-8</td>
+</tr>
+<tr class="odd">
+<td><code>git push</code>가 사용자 이름과 비밀번호를 묻는다</td>
+<td>GitHub CLI 인증이 Git에 연결되지 않았다</td>
+<td><code>gh auth setup-git</code> 뒤 다시 푸시</td>
+<td>A-9</td>
+</tr>
+<tr class="even">
+<td><code>.github/workflows/</code>의 파일을 푸시할 때 <code>workflow</code> 범위가 없다고 거절된다</td>
+<td><code>gh</code> 토큰에 <code>workflow</code> 범위가 없다</td>
+<td><code>gh auth refresh -s workflow</code></td>
+<td>A-9</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="a-23-2.-저장소-가상-환경-키" class="level3">
+<h3 class="anchored" data-anchor-id="a-23-2.-저장소-가상-환경-키">A-23-2. 저장소, 가상 환경, 키</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>증상</th>
+<th>원인</th>
+<th>해결</th>
+<th>절</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>git status</code>에 수천 개의 파일이 보인다</td>
+<td>홈 폴더 등 다른 폴더에서 <code>git init</code>을 하였다</td>
+<td><code>pwd</code>로 위치를 확인한다. 잘못 만든 <code>.git</code>은 교수와 함께 지운다</td>
+<td>A-10</td>
+</tr>
+<tr class="even">
+<td>저장소가 공개(Public)로 만들어졌다</td>
+<td><code>--private</code>를 빠뜨렸다</td>
+<td><code>gh repo edit --visibility private --accept-visibility-change-consequences</code>. 이미 공개된 동안 올린 내용은 남이 복사했을 수 있다</td>
+<td>A-10</td>
+</tr>
+<tr class="odd">
+<td>Settings에서 규칙 집합을 만들었는데 적용되지 않는다는 안내가 나온다</td>
+<td>비공개 저장소인데 GitHub Free이다</td>
+<td>학생 혜택(GitHub Pro)의 승인 여부를 Settings &gt; Billing and plans에서 확인한다</td>
+<td>A-10-3</td>
+</tr>
+<tr class="even">
+<td>훅이나 하네스 점검이 「<code>.venv</code>를 찾지 못하였다」로 멈춘다</td>
+<td>저장소 맨 위에 가상 환경이 없거나 이름이 다르다</td>
+<td><code>~/agent-lab/jobprep/.venv</code>를 만든다</td>
+<td>A-11</td>
+</tr>
+<tr class="odd">
+<td><code>No module named pytest</code> 등</td>
+<td>가상 환경이 아닌 파이썬으로 실행하였거나 그 장의 패키지를 설치하지 않았다</td>
+<td><code>.venv/bin/python -m pip install -r 그 장의 requirements 파일</code> 뒤 <code>.venv/bin/python -m pytest</code></td>
+<td>A-11</td>
+</tr>
+<tr class="even">
+<td><code>import mcp</code>가 깨지거나 <code>mcp.server</code>를 찾지 못한다</td>
+<td>저장소의 <code>mcp/</code> 폴더에 <code>__init__.py</code>를 만들었다</td>
+<td>그 파일을 지운다. 패키지 이름 <code>mcp</code>와 겹친다</td>
+<td>A-11-2</td>
+</tr>
+<tr class="odd">
+<td>Agent SDK 설치가 중간에 <code>No space left on device</code>로 끝난다</td>
+<td>홈 폴더의 용량이 모자라다</td>
+<td><code>df -h ~</code>, <code>du -sh ~/.cache/pip</code>로 보고 교수에게 알린다. <code>~/.cache/pip</code>는 지워도 된다</td>
+<td>A-15</td>
+</tr>
+<tr class="even">
+<td><code>git status</code>에 <code>.env</code>가 보인다</td>
+<td><code>.gitignore</code>에 <code>.env</code>가 없다</td>
+<td><code>.gitignore</code>를 고친다. 이미 스테이징했으면 <code>git rm --cached .env</code></td>
+<td>A-12</td>
+</tr>
+<tr class="odd">
+<td>키를 커밋하거나 푸시하였다</td>
+<td></td>
+<td>교수에게 바로 알려 키를 폐기하고 새로 받는다</td>
+<td>A-12</td>
+</tr>
+<tr class="even">
+<td><code>sdk_agent.py</code>가 시작하지 않는다</td>
+<td>키가 없거나 <code>LLM_FAKE=1</code>이다(의도한 동작)</td>
+<td>실제 호출 단계에서만 <code>LLM_FAKE=0</code>과 키를 갖추고 실행한다</td>
+<td>A-15</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="a-23-3.-설정-플러그인-mcp" class="level3">
+<h3 class="anchored" data-anchor-id="a-23-3.-설정-플러그인-mcp">A-23-3. 설정, 플러그인, MCP</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>증상</th>
+<th>원인</th>
+<th>해결</th>
+<th>절</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>.claude/settings.json</code>을 고쳤는데 반영되지 않는다</td>
+<td>다른 범위의 같은 키가 이긴다. 또는 JSON 문법이 깨졌다</td>
+<td><code>/status</code>의 Setting sources, 셸의 <code>claude doctor</code></td>
+<td>A-6</td>
+</tr>
+<tr class="even">
+<td>헤드리스 실행에서만 규칙이 무시되는 것 같다</td>
+<td><code>-p</code>는 깨진 설정 파일을 조용히 건너뛴다</td>
+<td><code>claude doctor</code></td>
+<td>A-6-3</td>
+</tr>
+<tr class="odd">
+<td><code>git status</code>에 <code>.claude/settings.local.json</code>이 보인다</td>
+<td><code>.gitignore</code>에 없다(손으로 만든 경우)</td>
+<td>3장 7-3의 두 줄을 <code>.gitignore</code>에 더한다</td>
+<td>A-6-2</td>
+</tr>
+<tr class="even">
+<td>플러그인을 설치했는데 저장소에 기록이 없다</td>
+<td><code>--scope</code>를 빠뜨려 user 범위(<code>~/.claude/settings.json</code>)에 기록되었다</td>
+<td><code>claude plugin list</code>의 <code>Scope:</code>를 본다. 의도한 범위로 다시 설치한다</td>
+<td>A-7-1</td>
+</tr>
+<tr class="odd">
+<td>다른 컴퓨터에서 마켓플레이스 경로가 없다는 오류</td>
+<td>로컬 폴더 마켓플레이스를 project 범위로 커밋해 절대 경로가 들어갔다</td>
+<td>팀 공유는 GitHub 저장소 출처로 등록한다</td>
+<td>A-7-1</td>
+</tr>
+<tr class="even">
+<td>스킬을 고쳤는데 팀원의 결과가 그대로이다</td>
+<td>git 마켓플레이스에서 판을 올리지 않았다</td>
+<td>4장 10-6(판, 태그)</td>
+<td>A-7</td>
+</tr>
+<tr class="odd">
+<td><code>claude mcp list</code>에 <code>⏸ Pending approval</code></td>
+<td><code>.mcp.json</code> 서버를 아직 승인하지 않았다</td>
+<td>저장소 폴더에서 <code>claude</code>를 띄워 승인한다. 되돌리려면 <code>claude mcp reset-project-choices</code></td>
+<td>A-7-2</td>
+</tr>
+<tr class="even">
+<td>MCP 서버가 <code>✘ Failed to connect</code></td>
+<td>서버를 띄우는 명령의 경로가 틀렸다(가상 환경의 파이썬, 작업 폴더)</td>
+<td><code>claude mcp get &lt;이름&gt;</code>으로 명령과 인자를 보고, 서버 터미널에서 그 명령을 직접 실행해 본다</td>
+<td>A-7-2</td>
+</tr>
+<tr class="odd">
+<td>같은 이름의 MCP 서버가 팀원과 다르게 동작한다</td>
+<td>로컬 범위에 같은 이름으로 등록한 것이 프로젝트 범위를 이긴다</td>
+<td><code>claude mcp get &lt;이름&gt;</code>의 <code>Scope:</code>를 본다</td>
+<td>A-7-2</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="a-23-4.-헤드리스-루프-멀티-에이전트" class="level3">
+<h3 class="anchored" data-anchor-id="a-23-4.-헤드리스-루프-멀티-에이전트">A-23-4. 헤드리스, 루프, 멀티 에이전트</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>증상</th>
+<th>원인</th>
+<th>해결</th>
+<th>절</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>루프의 모든 시도가 <code>no_change</code>이다</td>
+<td><code>AGENT_CMD</code>의 경로가 틀렸거나 저장소 맨 위에서 실행하지 않았다</td>
+<td><code>pwd</code>, <code>echo "$AGENT_CMD"</code>, <code>FAKE_SCENARIO</code>의 이름</td>
+<td>A-13</td>
+</tr>
+<tr class="even">
+<td>가짜 에이전트로 돌린다고 생각했는데 실제 사용량이 늘었다</td>
+<td><code>AGENT_CMD</code>를 <code>unset</code>한 터미널에서 실행하였다</td>
+<td><code>echo "${AGENT_CMD:-claude(기본)}"</code>를 실행 전에 본다</td>
+<td>A-13-2</td>
+</tr>
+<tr class="odd">
+<td>결과의 <code>subtype</code>이 <code>error_max_budget_usd</code> 또는 <code>error_max_turns</code></td>
+<td>상한에 닿았다(의도한 안전장치)</td>
+<td>상한을 늘리기 전에 기록에서 무엇을 하다 닿았는지 본다</td>
+<td>A-14</td>
+</tr>
+<tr class="even">
+<td>헤드리스 실행이 필요한 명령을 하지 못하고 끝난다</td>
+<td>물을 사람이 없어 권한 요청이 거부되었다</td>
+<td><code>--allowedTools</code>에 필요한 명령을 좁게 더한다. <code>stream-json</code>의 <code>permission_denied</code>로 무엇이 거부되었는지 본다</td>
+<td>A-14</td>
+</tr>
+<tr class="odd">
+<td>사용 한도에 닿았다는 오류</td>
+<td>계정의 사용 한도를 다 썼다</td>
+<td>가짜 에이전트로 나머지를 마치고 교수에게 알린다</td>
+<td>A-14</td>
+</tr>
+<tr class="even">
+<td><code>dispatch.sh</code>: 「AGENT_CMD가 비었다」</td>
+<td>10장 스크립트는 기본값이 없다</td>
+<td><code>AGENT_CMD="python ops/multi/fake/impl_agent.py"</code></td>
+<td>A-13</td>
+</tr>
+<tr class="odd">
+<td><code>git status</code>에 <code>.claude/worktrees/</code>가 보인다</td>
+<td>worktree 폴더를 무시하지 않았다</td>
+<td><code>.gitignore</code>에 <code>.claude/worktrees/</code>를 더한다(10장 0절)</td>
+<td>부록 B-2</td>
+</tr>
+<tr class="even">
+<td><code>cannot delete branch … used by worktree</code></td>
+<td>그 브랜치가 worktree에 체크아웃되어 있다</td>
+<td><code>git worktree remove &lt;경로&gt;</code> 뒤 <code>git branch -d</code></td>
+<td>부록 B-2</td>
+</tr>
+<tr class="odd">
+<td>cron 기록 파일에 <code>claude: command not found</code></td>
+<td>cron의 <code>PATH</code>에 Claude Code의 폴더가 없다</td>
+<td><code>command -v claude</code>로 찾은 폴더를 crontab 줄의 <code>PATH</code>에 넣는다</td>
+<td>A-19</td>
+</tr>
+<tr class="even">
+<td><code>crontab</code>이 사용할 수 없다고 거절한다</td>
+<td>서버가 학생의 cron 사용을 막았다(<code>cron.allow</code>, <code>cron.deny</code>)</td>
+<td>등록하지 않고 crontab 줄을 설계서에만 적는다</td>
+<td>A-19</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="a-23-5.-보안-ci-포트" class="level3">
+<h3 class="anchored" data-anchor-id="a-23-5.-보안-ci-포트">A-23-5. 보안, CI, 포트</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>증상</th>
+<th>원인</th>
+<th>해결</th>
+<th>절</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>which bwrap socat</code>이 아무것도 내지 않는다</td>
+<td>서버에 샌드박스 도구가 없다</td>
+<td>11장은 샌드박스 없이 진행하고 결과 기록에 적는다</td>
+<td>A-18</td>
+</tr>
+<tr class="even">
+<td><code>/sandbox</code>에 Dependencies 탭만 보인다</td>
+<td>같은 원인</td>
+<td>위와 같다. 설치는 관리자가 한다</td>
+<td>A-18</td>
+</tr>
+<tr class="odd">
+<td><code>pip-compile</code>로 만든 잠금 파일이 CI에서 설치되지 않는다</td>
+<td>Windows에서 만들었다(<code>colorama</code> 등 플랫폼 차이)</td>
+<td>서버(리눅스)의 같은 파이썬 판으로 다시 만든다</td>
+<td>A-17</td>
+</tr>
+<tr class="even">
+<td><code>sha256sum: WARNING: 1 computed checksum did NOT match</code></td>
+<td>내려받은 actionlint 파일이 깨졌거나 다른 파일이다</td>
+<td>지우고 다시 받는다. 다시 실패하면 풀지 않고 교수에게 알린다</td>
+<td>A-17</td>
+</tr>
+<tr class="odd">
+<td><code>gh pr checks</code>가 종료 코드 8로 끝난다</td>
+<td>검사가 아직 진행 중이다</td>
+<td><code>gh pr checks --watch</code>로 끝날 때까지 기다린다</td>
+<td>부록 B-3</td>
+</tr>
+<tr class="even">
+<td><code>OSError: [Errno 98] Address already in use</code></td>
+<td>그 포트를 다른 프로그램(내가 앞서 띄운 것 또는 남의 것)이 쓴다. 또는 기본값 8000을 썼다</td>
+<td>자기 포트를 쓴다. <code>ss -ltn \| grep ":8001 "</code>으로 보고 앞서 띄운 서버를 멈춘다</td>
+<td>A-20</td>
+</tr>
+<tr class="odd">
+<td>웹 화면에서 API를 부르지 못한다</td>
+<td>웹의 <code>API_BASE</code>가 8000번을 가리키는데 API는 자기 포트로 떴다</td>
+<td>그 장과 수업의 안내를 따른다. API만 확인하는 단계는 <code>curl</code>로 한다</td>
+<td>A-20</td>
+</tr>
+<tr class="even">
+<td>위 표에 없는 Claude Code의 이상</td>
+<td>설치나 설정 파일의 문제</td>
+<td>셸에서 <code>claude doctor</code>, Claude Code 안에서 <code>/doctor</code>. 사용자 정의를 모두 끄고 시험하려면 <code>claude --safe-mode</code></td>
+<td>A-4</td>
+</tr>
+</tbody>
+</table>
+<p>막혔을 때 질문하는 법: 입력한 명령, 화면의 오류 메시지 전체(키와 토큰은 가린다), 그 명령을 입력한 자리(내 PC인지 서버인지, 어느 폴더인지), 직전에 바꾼 것, <code>claude --version</code>을 함께 알린다. Claude Code에게 물을 때도 같은 다섯 가지를 준다.</p>
+<hr>
+</section>
+</section>
+<section id="확인-기록" class="level2">
+<h2 class="anchored" data-anchor-id="확인-기록">확인 기록</h2>
+<p>이 부록의 명령은 집필할 때(2026-11-14) 집필용 Windows 11 PC(Git Bash, 파이썬 3.13.7, git 2.55.0, GitHub CLI 2.88.1, Claude Code 2.1.296)에서 확인할 수 있는 것은 실행해 확인하였다. 실제 모델은 부르지 않았고, GitHub에 저장소를 만들거나 푸시하지 않았다. 실습 서버에서만 되는 것은 확인하지 못하였으므로 1주차 전에 서버에서 다시 확인한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>항목</th>
+<th>확인한 방법</th>
+<th>결과</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>claude --help</code>, <code>claude mcp --help</code>, <code>claude mcp add --help</code>, <code>claude mcp add-json --help</code>, <code>claude plugin --help</code>, <code>claude plugin install/marketplace add/validate/details/tag --help</code>, <code>claude setup-token --help</code>, <code>claude agents --help</code></td>
+<td>Claude Code 2.1.296</td>
+<td>확인함. 범위의 기본값(플러그인과 마켓플레이스 <code>user</code>, MCP <code>local</code>)과 헤드리스 옵션 여덟 줄</td>
+</tr>
+<tr class="even">
+<td><code>CLAUDE_CONFIG_DIR</code>로 격리한 <code>claude auth status --text</code>, <code>claude plugin list</code>, <code>claude plugin marketplace list</code></td>
+<td>스크래치의 빈 폴더</td>
+<td>출력 확인함. 실제 사용자 설정은 바뀌지 않았다</td>
+</tr>
+<tr class="odd">
+<td>MCP 서버의 세 범위 등록과 기록된 파일, <code>claude mcp get</code></td>
+<td>격리한 설정 폴더와 빈 git 폴더</td>
+<td>확인함(local은 <code>.claude.json</code>의 프로젝트 항목, project는 <code>.mcp.json</code>, user는 <code>.claude.json</code> 최상위)</td>
+</tr>
+<tr class="even">
+<td>플러그인 마켓플레이스와 플러그인의 local·user 범위 설치, <code>claude plugin validate</code></td>
+<td>4장 키트의 <code>예비/</code> 파일로 만든 마켓플레이스를 격리한 설정에서 설치</td>
+<td>확인함. local은 <code>.claude/settings.local.json</code>, user는 설정 폴더의 <code>settings.json</code>과 <code>plugins/</code></td>
+</tr>
+<tr class="odd">
+<td><code>ANTHROPIC_API_KEY</code>가 있을 때의 <code>claude auth status</code></td>
+<td>앞 과목 부록 A의 같은 날 기록을 옮김</td>
+<td>옮김</td>
+</tr>
+<tr class="even">
+<td>기준 저장소의 <code>pip install -r requirements.txt</code>, <code>pytest -q</code>(43 passed), <code>.env</code>의 <code>git check-ignore</code>, <code>uvicorn --port 8001</code>과 <code>/api/health</code></td>
+<td>스크래치에 기준 저장소를 복사하고 가상 환경에서 실행</td>
+<td>확인함</td>
+</tr>
+<tr class="odd">
+<td>pytest 9.2.0, coverage 7.17.3 설치</td>
+<td>스크래치 가상 환경</td>
+<td>확인함</td>
+</tr>
+<tr class="even">
+<td>claude-agent-sdk 0.2.182의 휠 크기, 파이썬 요구, pip-tools 7.6.2의 파이썬 요구</td>
+<td>PyPI JSON</td>
+<td>확인함. 설치한 크기는 9장 교수용의 측정(Windows)을 옮김</td>
+</tr>
+<tr class="odd">
+<td>actionlint v1.7.12의 자산 이름과 게시일</td>
+<td><code>gh release view -R rhysd/actionlint</code></td>
+<td>확인함. 내려받기와 체크섬 확인은 13장의 기록을 옮김</td>
+</tr>
+<tr class="even">
+<td>규칙 집합의 요금제 조건, Pro의 비공개 저장소 기능, 학생 혜택, 비밀 정보 등록 화면</td>
+<td>GitHub Docs(About rulesets 본문, GitHub’s plans, Apply to GitHub Education, Using secrets)</td>
+<td>문서로 확인. 실제 신청과 설정은 하지 않았다</td>
+</tr>
+<tr class="odd">
+<td>설정 범위와 우선순위, <code>CLAUDE_CONFIG_DIR</code>, <code>~/.claude.json</code></td>
+<td>Claude Code 문서 Settings</td>
+<td>문서로 확인</td>
+</tr>
+<tr class="even">
+<td>헤드리스 실행의 인증, <code>--bare</code>, 신뢰 확인 생략, 비용 추정치</td>
+<td>Claude Code 문서 Headless</td>
+<td>문서로 확인. 실제 <code>claude -p</code>는 실행하지 않았다</td>
+</tr>
+<tr class="odd">
+<td>Agent SDK의 설치, 인증 제한, <code>.env</code>를 읽지 않음</td>
+<td>Agent SDK 문서 Overview, Quickstart, Legal and compliance</td>
+<td>문서로 확인. 설치는 9장 집필 때 확인</td>
+</tr>
+<tr class="even">
+<td>샌드박스의 지원 범위와 bubblewrap·socat</td>
+<td>Claude Code 문서 Sandboxing</td>
+<td>문서로 확인. 서버의 설치 여부와 Rocky Linux의 꾸러미 이름은 확인하지 못하였다</td>
+</tr>
+<tr class="odd">
+<td><code>/install-github-app</code>, <code>CLAUDE_CODE_OAUTH_TOKEN</code>, 비밀 정보 삭제 뒤에도 키가 유효함</td>
+<td>Claude Code 문서 GitHub Actions</td>
+<td>문서로 확인</td>
+</tr>
+<tr class="even">
+<td><code>gh secret set/list</code>, <code>gh pr checks</code>(종료 코드 8), <code>gh auth refresh</code></td>
+<td>gh 2.88.1의 <code>--help</code></td>
+<td>옵션 확인함. GitHub에 실제로 등록하지 않았다</td>
+</tr>
+<tr class="odd">
+<td>cron의 허용 파일과 <code>crontab -l/-e/-r</code></td>
+<td>crontab(1), crontab(5) man 페이지</td>
+<td>문서로 확인. 서버의 cron 허용 여부는 확인하지 못하였다</td>
+</tr>
+<tr class="even">
+<td>서버 접속, <code>passwd</code>, <code>$KIT_HOME</code> 경로, 서버의 bash·python3 판, <code>.venv/bin/</code> 경로, <code>ss -ltn</code>, VS Code 포트 전달, <code>uname -m</code>, <code>sha256sum</code></td>
+<td></td>
+<td>서버 전용이라 확인하지 못하였다</td>
+</tr>
+<tr class="odd">
+<td><code>gh repo create --private</code>, 협업자 초대, 규칙 집합 설정</td>
+<td></td>
+<td>GitHub 원격 조작이라 하지 않았다(13장이 로컬과 문서로 확인)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="참고-자료" class="level2">
+<h2 class="anchored" data-anchor-id="참고-자료">참고 자료</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>기호</th>
+<th>자료</th>
+<th>주소</th>
+<th>확인 날짜</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>C1</td>
+<td>Claude Code 문서: Advanced setup(설치, 갱신, Windows)</td>
+<td><a href="https://code.claude.com/docs/en/setup" class="uri">https://code.claude.com/docs/en/setup</a></td>
+<td>2026-11-14(앞 과목 부록 A의 확인을 따름)</td>
+</tr>
+<tr class="even">
+<td>C2</td>
+<td>Claude Code 문서: Authentication(로그인, 자격 증명 저장, 인증 우선순위)</td>
+<td><a href="https://code.claude.com/docs/en/authentication" class="uri">https://code.claude.com/docs/en/authentication</a></td>
+<td>2026-11-14(앞 과목 부록 A의 확인을 따름)</td>
+</tr>
+<tr class="odd">
+<td>C3</td>
+<td>Claude Code 문서: Settings files and precedence(범위, 우선순위, <code>CLAUDE_CONFIG_DIR</code>, <code>~/.claude.json</code>, 로컬 파일의 제외)</td>
+<td><a href="https://code.claude.com/docs/en/settings" class="uri">https://code.claude.com/docs/en/settings</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="even">
+<td>C4</td>
+<td>Claude Code 문서: Legal and compliance(인증 수단과 자격 증명의 사용, 사용 한도의 전제)</td>
+<td><a href="https://code.claude.com/docs/en/legal-and-compliance" class="uri">https://code.claude.com/docs/en/legal-and-compliance</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="odd">
+<td>C5</td>
+<td>Claude Code 문서: Connect Claude Code to tools via MCP(설치 범위, 우선순위, 프로젝트 서버의 승인)</td>
+<td><a href="https://code.claude.com/docs/en/mcp" class="uri">https://code.claude.com/docs/en/mcp</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="even">
+<td>C6</td>
+<td>Claude Code 문서: Install and manage plugins(설치 범위, 마켓플레이스 추가, 셸 명령)</td>
+<td><a href="https://code.claude.com/docs/en/plugins/install" class="uri">https://code.claude.com/docs/en/plugins/install</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="odd">
+<td>C7</td>
+<td>Claude Code 문서: Agent SDK overview, Quickstart(설치, 내장 실행 파일, API 키 인증, <code>.env</code>)</td>
+<td><a href="https://code.claude.com/docs/en/agent-sdk/overview" class="uri">https://code.claude.com/docs/en/agent-sdk/overview</a>, <a href="https://code.claude.com/docs/en/agent-sdk/quickstart" class="uri">https://code.claude.com/docs/en/agent-sdk/quickstart</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="even">
+<td>C8</td>
+<td>Claude Code 문서: Sandboxing(지원 범위, bubblewrap·socat, 설치 명령, 의존성이 없을 때)</td>
+<td><a href="https://code.claude.com/docs/en/sandboxing" class="uri">https://code.claude.com/docs/en/sandboxing</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="odd">
+<td>C9</td>
+<td>Claude Code 문서: Run Claude Code programmatically(헤드리스, <code>--bare</code>, 비용 추정치, 신뢰 확인)</td>
+<td><a href="https://code.claude.com/docs/en/headless" class="uri">https://code.claude.com/docs/en/headless</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="even">
+<td>C10</td>
+<td>Claude Code 문서: Claude Code GitHub Actions(<code>/install-github-app</code>, 비밀 정보 이름, 비용)</td>
+<td><a href="https://code.claude.com/docs/en/github-actions" class="uri">https://code.claude.com/docs/en/github-actions</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="odd">
+<td>A1</td>
+<td>Claude API 문서: Errors</td>
+<td><a href="https://platform.claude.com/docs/en/api/errors" class="uri">https://platform.claude.com/docs/en/api/errors</a></td>
+<td>2026-11-14(앞 과목 부록 A의 확인을 따름)</td>
+</tr>
+<tr class="even">
+<td>V1</td>
+<td>VS Code 문서: Remote Development using SSH</td>
+<td><a href="https://code.visualstudio.com/docs/remote/ssh" class="uri">https://code.visualstudio.com/docs/remote/ssh</a></td>
+<td>2026-11-14(앞 과목 부록 A의 확인을 따름)</td>
+</tr>
+<tr class="odd">
+<td>H1</td>
+<td>GitHub Docs: Setting your commit email address</td>
+<td><a href="https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-email-preferences/setting-your-commit-email-address" class="uri">https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-email-preferences/setting-your-commit-email-address</a></td>
+<td>2026-11-14(앞 과목 부록 A의 확인을 따름)</td>
+</tr>
+<tr class="even">
+<td>H2</td>
+<td>GitHub CLI 매뉴얼</td>
+<td><a href="https://cli.github.com/manual/" class="uri">https://cli.github.com/manual/</a></td>
+<td>2026-11-14(gh 2.88.1의 도움말로 확인)</td>
+</tr>
+<tr class="odd">
+<td>H3</td>
+<td>GitHub Docs: About rulesets(요금제별 사용 조건)</td>
+<td><a href="https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets" class="uri">https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="even">
+<td>H4</td>
+<td>GitHub Docs: GitHub’s plans(Free와 Pro, 비공개 저장소의 고급 기능, Actions 몫, Pages)</td>
+<td><a href="https://docs.github.com/en/get-started/learning-about-github/githubs-plans" class="uri">https://docs.github.com/en/get-started/learning-about-github/githubs-plans</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="odd">
+<td>H5</td>
+<td>GitHub Education: Student Developer Pack</td>
+<td><a href="https://education.github.com/pack" class="uri">https://education.github.com/pack</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="even">
+<td>H6</td>
+<td>GitHub Docs: Apply to GitHub Education as a student</td>
+<td><a href="https://docs.github.com/en/education/about-github-education/github-education-for-students/apply-to-github-education-as-a-student" class="uri">https://docs.github.com/en/education/about-github-education/github-education-for-students/apply-to-github-education-as-a-student</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="odd">
+<td>H7</td>
+<td>GitHub Docs: Using secrets in GitHub Actions</td>
+<td><a href="https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets" class="uri">https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="even">
+<td>P1</td>
+<td>pip-tools documentation 7.6.2</td>
+<td><a href="https://pip-tools.pypa.io/en/stable/" class="uri">https://pip-tools.pypa.io/en/stable/</a></td>
+<td>2026-11-14(13장의 확인을 따름)</td>
+</tr>
+<tr class="odd">
+<td>T1</td>
+<td>rhysd/actionlint 릴리스 v1.7.12</td>
+<td><a href="https://github.com/rhysd/actionlint/releases/tag/v1.7.12" class="uri">https://github.com/rhysd/actionlint/releases/tag/v1.7.12</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="even">
+<td>U1</td>
+<td>crontab(5) man 페이지</td>
+<td><a href="https://man7.org/linux/man-pages/man5/crontab.5.html" class="uri">https://man7.org/linux/man-pages/man5/crontab.5.html</a></td>
+<td>2026-11-14(8장의 확인을 따름)</td>
+</tr>
+<tr class="odd">
+<td>U2</td>
+<td>crontab(1) man 페이지(<code>cron.allow</code>, <code>cron.deny</code>, 옵션)</td>
+<td><a href="https://man7.org/linux/man-pages/man1/crontab.1.html" class="uri">https://man7.org/linux/man-pages/man1/crontab.1.html</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="even">
+<td>R1</td>
+<td>「LLM 서비스 개발」 부록 A 실습 환경(2027-1판)</td>
+<td>볼트 <code>courses/llm-service/book/Service_부록A_실습환경_학생용.md</code></td>
+<td>2026-11-14</td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> 맨 위로</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "복사완료!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "복사완료!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../courses/ai-agent/book/Agent_13주차_학생용.html" class="pagination-link" aria-label="[13주차] 지속적 통합과 안정적 배포: 풀 리퀘스트 검토, 버전 고정">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">[13주차] 지속적 통합과 안정적 배포: 풀 리퀘스트 검토, 버전 고정</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../courses/ai-agent/book/Agent_부록B_명령어카드_학생용.html" class="pagination-link" aria-label="[부록 B] 명령어 카드">
+        <span class="nav-page-text">[부록 B] 명령어 카드</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>안중호 교수 강의 교재 · 2026년 2학기판</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

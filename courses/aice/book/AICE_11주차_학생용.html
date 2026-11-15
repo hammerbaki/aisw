@@ -1,0 +1,1933 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>[11주차] 응시 전략과 답안 규칙 – 안중호 교수 강의 교재</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../courses/aice/book/AICE_부록_학생용.html" rel="next">
+<link href="../../../courses/aice/book/AICE_10주차_학생용.html" rel="prev">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-dcf116883d0d3758c9131f5ede2fa7e1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">안중호 교수 강의 교재</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="검색"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">커리큘럼</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/semesters/index.html">
+ <span class="dropdown-text">전체 커리큘럼</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../docs/semesters/2026-2/index.html">
+ <span class="dropdown-text">2026년 2학기</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../docs/subjects/llm-ai/index.html">
+ <span class="dropdown-text">교재 · LLM AI 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/subjects/python/index.html">
+ <span class="dropdown-text">교재 · 파이썬 실습</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../courses/index.html">
+ <span class="dropdown-text">2027학년도 교재 (준비 중)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/llm-service/index.html">
+ <span class="dropdown-text">· LLM 서비스 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/office/index.html">
+ <span class="dropdown-text">· 컴퓨터활용</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/adsp/index.html">
+ <span class="dropdown-text">· 빅데이터개론</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/ai-agent/index.html">
+ <span class="dropdown-text">· AI에이전트 기획 및 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/aice/index.html">
+ <span class="dropdown-text">· 비즈니스빅데이터분석</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/about/교수_소개.html"> 
+<span class="menu-text">교수 소개</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../courses/aice/book/AICE_00주차_학생용.html">교재</a></li><li class="breadcrumb-item"><a href="../../../courses/aice/book/AICE_11주차_학생용.html">[11주차] 응시 전략과 답안 규칙</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">비즈니스빅데이터분석</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">교재</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_00주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[0주차] 오리엔테이션</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_01주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[1주차] 데이터 불러오기와 구성 파악</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_02주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[2주차] 데이터 시각화: 분포와 관계</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_03주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[3주차] 결측치·이상치 처리와 열 정리</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_04주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[4주차] 범주형 데이터와 인코딩</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_05주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[5주차] 데이터 분할과 스케일링</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_06주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[6주차] 머신러닝 (1): 회귀 모델과 평가</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_07주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[7주차] 머신러닝 (2): 분류 모델과 평가</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_08주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[8주차] 모델 성능 개선: 교차 검증, 격자 탐색, 변수 중요도</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_09주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[9주차] 딥러닝 (1): 신경망의 구성과 학습</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_10주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[10주차] 딥러닝 (2): 학습 제어와 학습 곡선</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_11주차_학생용.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">[11주차] 응시 전략과 답안 규칙</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_부록_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">부록</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">이 장의 차례</h2>
+   
+  <ul>
+  <li><a href="#학습-목표" id="toc-학습-목표" class="nav-link active" data-scroll-target="#학습-목표">학습 목표</a></li>
+  <li><a href="#준비-사항" id="toc-준비-사항" class="nav-link" data-scroll-target="#준비-사항">준비 사항</a>
+  <ul class="collapse">
+  <li><a href="#학기-말의-일정" id="toc-학기-말의-일정" class="nav-link" data-scroll-target="#학기-말의-일정">학기 말의 일정</a></li>
+  </ul></li>
+  <li><a href="#분야별-시간-배분" id="toc-분야별-시간-배분" class="nav-link" data-scroll-target="#분야별-시간-배분">1. 분야별 시간 배분</a>
+  <ul class="collapse">
+  <li><a href="#시험의-구성" id="toc-시험의-구성" class="nav-link" data-scroll-target="#시험의-구성">1.1 시험의 구성</a></li>
+  <li><a href="#시간-배분의-기준" id="toc-시간-배분의-기준" class="nav-link" data-scroll-target="#시간-배분의-기준">1.2 시간 배분의 기준</a></li>
+  <li><a href="#건너뛰기의-기준" id="toc-건너뛰기의-기준" class="nav-link" data-scroll-target="#건너뛰기의-기준">1.3 건너뛰기의 기준</a></li>
+  </ul></li>
+  <li><a href="#선행-문항의-실패가-후속-문항에-미치는-영향" id="toc-선행-문항의-실패가-후속-문항에-미치는-영향" class="nav-link" data-scroll-target="#선행-문항의-실패가-후속-문항에-미치는-영향">2. 선행 문항의 실패가 후속 문항에 미치는 영향</a>
+  <ul class="collapse">
+  <li><a href="#문항의-연쇄" id="toc-문항의-연쇄" class="nav-link" data-scroll-target="#문항의-연쇄">2.1 문항의 연쇄</a></li>
+  <li><a href="#차단-방법" id="toc-차단-방법" class="nav-link" data-scroll-target="#차단-방법">2.2 차단 방법</a></li>
+  </ul></li>
+  <li><a href="#답안-셀-변수-이름-파일-이름의-규칙" id="toc-답안-셀-변수-이름-파일-이름의-규칙" class="nav-link" data-scroll-target="#답안-셀-변수-이름-파일-이름의-규칙">3. 답안 셀, 변수 이름, 파일 이름의 규칙</a>
+  <ul class="collapse">
+  <li><a href="#수험자-가이드의-응시-중-유의사항" id="toc-수험자-가이드의-응시-중-유의사항" class="nav-link" data-scroll-target="#수험자-가이드의-응시-중-유의사항">3.1 수험자 가이드의 응시 중 유의사항</a></li>
+  <li><a href="#답안-셀" id="toc-답안-셀" class="nav-link" data-scroll-target="#답안-셀">3.2 답안 셀</a></li>
+  <li><a href="#변수-이름과-답-변수의-자료형" id="toc-변수-이름과-답-변수의-자료형" class="nav-link" data-scroll-target="#변수-이름과-답-변수의-자료형">3.3 변수 이름과 답 변수의 자료형</a></li>
+  <li><a href="#파일-이름" id="toc-파일-이름" class="nav-link" data-scroll-target="#파일-이름">3.4 파일 이름</a></li>
+  </ul></li>
+  <li><a href="#커널-재시작-시의-복구-순서" id="toc-커널-재시작-시의-복구-순서" class="nav-link" data-scroll-target="#커널-재시작-시의-복구-순서">4. 커널 재시작 시의 복구 순서</a>
+  <ul class="collapse">
+  <li><a href="#재시작되면-무엇이-사라지는가" id="toc-재시작되면-무엇이-사라지는가" class="nav-link" data-scroll-target="#재시작되면-무엇이-사라지는가">4.1 재시작되면 무엇이 사라지는가</a></li>
+  <li><a href="#복구-순서" id="toc-복구-순서" class="nav-link" data-scroll-target="#복구-순서">4.2 복구 순서</a></li>
+  <li><a href="#같은-결과의-재현" id="toc-같은-결과의-재현" class="nav-link" data-scroll-target="#같은-결과의-재현">4.3 같은 결과의 재현</a></li>
+  <li><a href="#검토-시간의-전체-실행" id="toc-검토-시간의-전체-실행" class="nav-link" data-scroll-target="#검토-시간의-전체-실행">4.4 검토 시간의 전체 실행</a></li>
+  </ul></li>
+  <li><a href="#공식-문서의-신속한-검색" id="toc-공식-문서의-신속한-검색" class="nav-link" data-scroll-target="#공식-문서의-신속한-검색">5. 공식 문서의 신속한 검색</a>
+  <ul class="collapse">
+  <li><a href="#허용된-일곱-곳" id="toc-허용된-일곱-곳" class="nav-link" data-scroll-target="#허용된-일곱-곳">5.1 허용된 일곱 곳</a></li>
+  <li><a href="#장별로-찾는-위치" id="toc-장별로-찾는-위치" class="nav-link" data-scroll-target="#장별로-찾는-위치">5.2 장별로 찾는 위치</a></li>
+  <li><a href="#함수의-쪽을-빨리-읽는-방법" id="toc-함수의-쪽을-빨리-읽는-방법" class="nav-link" data-scroll-target="#함수의-쪽을-빨리-읽는-방법">5.3 함수의 쪽을 빨리 읽는 방법</a></li>
+  </ul></li>
+  <li><a href="#온라인-감독-환경과-금지-행위" id="toc-온라인-감독-환경과-금지-행위" class="nav-link" data-scroll-target="#온라인-감독-환경과-금지-행위">6. 온라인 감독 환경과 금지 행위</a>
+  <ul class="collapse">
+  <li><a href="#응시-방식과-감독" id="toc-응시-방식과-감독" class="nav-link" data-scroll-target="#응시-방식과-감독">6.1 응시 방식과 감독</a></li>
+  <li><a href="#금지-행위와-제재" id="toc-금지-행위와-제재" class="nav-link" data-scroll-target="#금지-행위와-제재">6.2 금지 행위와 제재</a></li>
+  <li><a href="#사전-환경점검" id="toc-사전-환경점검" class="nav-link" data-scroll-target="#사전-환경점검">6.3 사전 환경점검</a></li>
+  </ul></li>
+  <li><a href="#중심-실습-종합-모의-1" id="toc-중심-실습-종합-모의-1" class="nav-link" data-scroll-target="#중심-실습-종합-모의-1">7. 중심 실습: 종합 모의 1</a>
+  <ul class="collapse">
+  <li><a href="#실시-조건" id="toc-실시-조건" class="nav-link" data-scroll-target="#실시-조건">7.1 실시 조건</a></li>
+  <li><a href="#실시-절차" id="toc-실시-절차" class="nav-link" data-scroll-target="#실시-절차">7.2 실시 절차</a></li>
+  <li><a href="#시간-기록표" id="toc-시간-기록표" class="nav-link" data-scroll-target="#시간-기록표">7.3 시간 기록표</a></li>
+  <li><a href="#오답-원인표" id="toc-오답-원인표" class="nav-link" data-scroll-target="#오답-원인표">7.4 오답 원인표</a></li>
+  <li><a href="#채점-결과를-읽는-방법" id="toc-채점-결과를-읽는-방법" class="nav-link" data-scroll-target="#채점-결과를-읽는-방법">7.5 채점 결과를 읽는 방법</a></li>
+  </ul></li>
+  <li><a href="#정리" id="toc-정리" class="nav-link" data-scroll-target="#정리">8. 정리</a></li>
+  <li><a href="#참고-자료" id="toc-참고-자료" class="nav-link" data-scroll-target="#참고-자료">참고 자료</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../courses/aice/book/AICE_00주차_학생용.html">교재</a></li><li class="breadcrumb-item"><a href="../../../courses/aice/book/AICE_11주차_학생용.html">[11주차] 응시 전략과 답안 규칙</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">[11주차] 응시 전략과 답안 규칙</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<header class="chapter-head">
+<p class="chapter-part">비즈니스빅데이터분석</p>
+<p class="chapter-no"><span class="num">11</span><span class="unit">주차</span></p>
+<p class="chapter-title">응시 전략과 답안 규칙</p>
+</header>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>2027학년도 「비즈니스빅데이터분석」의 준비 중인 교재입니다. 편집 상태를 검토하기 위해 미리 공개한 것으로, 수업 전에 내용과 순서가 바뀔 수 있습니다.</p>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>학사 13주차 · 교재 11 · 4부 응시 전략 · 출제 분야: 전 분야(시험 형식과 응시 규정)</p>
+</blockquote>
+<p>1~10장은 시험지의 문항을 하나씩 떼어 연습하였다. 실제 시험은 표 데이터 한 건과 14문항을 90분 안에 푸는 형식이고, 100점 만점에 80점 이상이어야 합격한다. 문항별 배점은 공개되어 있지 않으나, 잃을 수 있는 점수가 20점뿐이므로 배점이 큰 AI 모델링 문항을 두세 개 놓치면 불합격이 된다. 또 앞 문항의 결과가 뒤 문항의 대상이 되므로, 시간 배분이나 답안 규칙의 실수 하나가 여러 문항의 점수를 잃게 만든다.</p>
+<p>본 장은 새로운 함수를 다루지 않고 시간 배분, 선행 문항의 실패 처리, 답안 규칙, 커널 재시작 시의 복구, 공식 문서의 검색, 감독 환경과 금지 행위를 정리한다. 이어서 실제 시험과 같은 조건으로 종합 모의 1(회귀 문제, 14문항 90분)을 치르고, 시간 기록표와 오답 원인표를 작성한다. 14주차와 15주차에는 같은 형식의 종합 모의 2와 3을 치른다.</p>
+<hr>
+<section id="학습-목표" class="level2">
+<h2 class="anchored" data-anchor-id="학습-목표">학습 목표</h2>
+<ol type="1">
+<li>90분을 출제 분야별로 나누어 문항당 시간의 상한을 정하고, 상한을 넘은 문항을 건너뛰는 기준을 적용한다.</li>
+<li>선행 문항의 실패가 후속 문항에 미치는 경로를 설명하고, 실패한 문항이 뒤 문항을 막지 않도록 처리한다.</li>
+<li>답안 셀, 변수 이름, 파일 이름의 규칙을 위반하지 않고 답안을 제출한다.</li>
+<li>커널이 재시작되었을 때 정해진 순서로 작업 상태를 복구한다.</li>
+<li>허용된 일곱 곳의 공식 문서에서 필요한 쪽을 빨리 찾고, 온라인 감독 환경의 금지 행위를 지킨다.</li>
+<li>종합 모의를 시간 안에 수행하고, 시간 기록표와 오답 원인표로 자신의 약점을 찾는다.</li>
+</ol>
+</section>
+<section id="준비-사항" class="level2">
+<h2 class="anchored" data-anchor-id="준비-사항">준비 사항</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>종합 모의 1</td>
+<td>문제지 노트북과 자료는 수업 시간에 배부한다. 회귀 문제, 14문항, 90분</td>
+</tr>
+<tr class="even">
+<td>양식</td>
+<td>시간 기록표와 오답 원인표(7.3절, 7.4절). 종이에 인쇄하여 배부한다</td>
+</tr>
+<tr class="odd">
+<td>참고</td>
+<td>부록 B(시험 규정 카드), 부록 C(함수 카드)</td>
+</tr>
+<tr class="even">
+<td>앞 장과의 연계</td>
+<td>1~10장 전체. 특히 1장 7절(문항의 네 가지 형식과 답안 규칙)과 각 장의 시간 제한 문항</td>
+</tr>
+<tr class="odd">
+<td>실습 환경</td>
+<td>접속과 설치는 부록 A를 따른다</td>
+</tr>
+</tbody>
+</table>
+<section id="학기-말의-일정" class="level3">
+<h3 class="anchored" data-anchor-id="학기-말의-일정">학기 말의 일정</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>학사 주차</th>
+<th>본 과목</th>
+<th>AICE 2027년 제4회</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>13</td>
+<td>11장, 종합 모의 1(회귀)</td>
+<td>접수 시작(11.22)</td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td>종합 모의 1의 해설, 종합 모의 2(이진 분류)</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>15</td>
+<td>종합 모의 3(다중 분류, 실전 조건), 응시 준비</td>
+<td>접수 마감(12.10). 사전 환경점검(12.10~12.16)</td>
+</tr>
+<tr class="even">
+<td>16</td>
+<td>기말고사(14문항 90분)</td>
+<td>시험(12.17~12.18)</td>
+</tr>
+</tbody>
+</table>
+<p>13~15주차의 종합 모의, 채점 결과의 확인, 오답 원인표의 작성은 모두 수업 시간 안에 마치며 수업 밖의 과제는 없다. 같은 시기에 「프로젝트실습Ⅱ」의 졸업 프로젝트를 완성하고 발표하기 때문이다. 시험 일정은 AICE의 2027년 일정 공지의 값이며 변경될 수 있으므로 접수 전에 공식 사이트에서 다시 확인한다.</p>
+<hr>
+</section>
+</section>
+<section id="분야별-시간-배분" class="level2">
+<h2 class="anchored" data-anchor-id="분야별-시간-배분">1. 분야별 시간 배분</h2>
+<section id="시험의-구성" class="level3">
+<h3 class="anchored" data-anchor-id="시험의-구성">1.1 시험의 구성</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>출제 분야</th>
+<th>본 과목의 장</th>
+<th>문항 수</th>
+<th>배점</th>
+<th>문항당 점수(추산)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>데이터 분석</td>
+<td>1~2</td>
+<td>5~6</td>
+<td>30</td>
+<td>5~6점</td>
+</tr>
+<tr class="even">
+<td>데이터 전처리</td>
+<td>3~5</td>
+<td>4~5</td>
+<td>30</td>
+<td>6~7.5점</td>
+</tr>
+<tr class="odd">
+<td>AI 모델링</td>
+<td>6~10</td>
+<td>4~5</td>
+<td>40</td>
+<td>8~10점</td>
+</tr>
+</tbody>
+</table>
+<p>문항별 배점은 공개되어 있지 않으므로 마지막 열은 분야 배점을 문항 수로 나눈 추산이다. AI 모델링 한 문항은 데이터 분석 한 문항의 1.5배 이상이다. 반면 데이터 분석의 문항은 점수가 작아도 시험지의 앞에 있어 뒤 문항이 모두 그 결과를 쓴다(2절).</p>
+</section>
+<section id="시간-배분의-기준" class="level3">
+<h3 class="anchored" data-anchor-id="시간-배분의-기준">1.2 시간 배분의 기준</h3>
+<p>90분을 배점에 비례하여 나누면 데이터 분석 27분, 데이터 전처리 27분, AI 모델링 36분이다. 본 과목은 이 비례 배분을 조정하여 다음을 기준으로 연습한다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>구간</th>
+<th>시간</th>
+<th>누적</th>
+<th>조정한 이유</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>데이터 분석</td>
+<td>20분</td>
+<td>20분</td>
+<td>짧은 코드가 많다</td>
+</tr>
+<tr class="even">
+<td>데이터 전처리</td>
+<td>25분</td>
+<td>45분</td>
+<td>결과의 크기를 확인하는 시간이 든다</td>
+</tr>
+<tr class="odd">
+<td>AI 모델링</td>
+<td>35분</td>
+<td>80분</td>
+<td>격자 탐색과 신경망 학습의 실행을 기다린다</td>
+</tr>
+<tr class="even">
+<td>검토</td>
+<td>10분</td>
+<td>90분</td>
+<td>처음부터 다시 실행하여 확인한다(4절)</td>
+</tr>
+</tbody>
+</table>
+<p>이 값은 출발점이며 종합 모의의 기록에 맞추어 각자 고친다. 분야 시간을 문항 수로 나누면 문항당 기준 시간이 된다(데이터 분석 5문항이면 4분, AI 모델링 5문항이면 7분).</p>
+</section>
+<section id="건너뛰기의-기준" class="level3">
+<h3 class="anchored" data-anchor-id="건너뛰기의-기준">1.3 건너뛰기의 기준</h3>
+<ol type="1">
+<li>한 문항에 기준 시간의 두 배를 쓰고도 끝나지 않으면 건너뛴다.</li>
+<li>건너뛰기 전에 그 문항의 답안 셀에 지금까지의 코드를 남기고, 맨 위 줄에 주석으로 표시한다(<code># 미완: 인자 확인 필요</code>처럼).</li>
+<li>뒤 문항이 그 문항의 결과를 쓰면 2절의 차단 방법을 먼저 적용한다.</li>
+<li>누적 80분이 되면 새 문항을 시작하지 않고 검토로 넘어간다.</li>
+<li>검토 시간에 남는 시간이 있으면 표시한 문항으로 되돌아간다. 점수가 큰 AI 모델링 문항부터 되돌아간다.</li>
+</ol>
+<p>막혔을 때의 순서는 “오류 메시지의 마지막 줄 읽기 → 공식 문서에서 함수의 쪽 찾기(5절) → 그래도 안 되면 표시하고 건너뛰기 → 검토 시간에 되돌아오기”이다.</p>
+<hr>
+</section>
+</section>
+<section id="선행-문항의-실패가-후속-문항에-미치는-영향" class="level2">
+<h2 class="anchored" data-anchor-id="선행-문항의-실패가-후속-문항에-미치는-영향">2. 선행 문항의 실패가 후속 문항에 미치는 영향</h2>
+<section id="문항의-연쇄" class="level3">
+<h3 class="anchored" data-anchor-id="문항의-연쇄">2.1 문항의 연쇄</h3>
+<p>AICE의 공개 샘플 문항에서는 한 문항의 결과 데이터프레임이 다음 문항의 대상이 된다. 본 과목의 공통 자료가 원본 → 정제본 → 인코딩본 → 훈련·검증 데이터 → 모델로 이어진 것과 같다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>실패한 문항</th>
+<th>뒤 문항의 증상</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>라이브러리 불러오기, 파일 읽기</td>
+<td>모든 문항에서 <code>NameError</code></td>
+</tr>
+<tr class="even">
+<td>이상치·결측치 처리</td>
+<td>행 수가 달라져 뒤의 모든 값이 기준과 다르다</td>
+</tr>
+<tr class="odd">
+<td>인코딩</td>
+<td>문자열 열이 남아 <code>fit</code>에서 <code>ValueError</code></td>
+</tr>
+<tr class="even">
+<td>분할</td>
+<td><code>X_train</code>이 없어 <code>NameError</code></td>
+</tr>
+<tr class="odd">
+<td>모델 학습</td>
+<td>예측에서 <code>NotFittedError</code></td>
+</tr>
+</tbody>
+</table>
+<p>뒤 문항이 받는 피해는 실행이 멈추는 것과, 실행은 되지만 값이 기준과 달라지는 것의 두 종류이다. 앞의 것은 눈에 보이지만 뒤의 것은 채점 결과를 보기 전까지 모른다.</p>
+</section>
+<section id="차단-방법" class="level3">
+<h3 class="anchored" data-anchor-id="차단-방법">2.2 차단 방법</h3>
+<p><strong>방법 1. 원본을 보존하고 결과는 지정된 새 변수에 저장한다.</strong> 원본이 남아 있으면 앞 문항의 실수를 고쳐 다시 실행할 수 있다.</p>
+<p><strong>방법 2. 단계마다 결과의 크기를 출력한다.</strong> 처리 문항의 답안 셀 끝에 <code>print(df_clean.shape)</code>를 두면 행 수가 예상과 다를 때 곧바로 알 수 있다.</p>
+<p><strong>방법 3. 막힌 처리 문항은 뒤 문항이 실행될 수 있는 형태로 남긴다.</strong> 예를 들어 이상치 제거 문항을 끝내지 못하였다면, 가이드가 지정한 변수 이름으로 원본의 복사본이라도 만들어 둔다.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 미완: 사분위수 경계 계산을 끝내지 못하였다. 뒤 문항을 위해 변수만 만든다.</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>df_clean <span class="op">=</span> df.copy()</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_clean.shape)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>이렇게 하면 뒤 문항의 코드는 실행되지만 값은 기준과 다를 수 있다. 시험이 부분 점수를 주는지, 뒤 문항을 위한 중간 데이터를 제공하는지는 공개되어 있지 않다. 방법 3은 실행이 멈추는 것을 막는 장치일 뿐이므로, 표시를 남기고 검토 시간에 돌아가 바로잡는다.</p>
+<p><strong>방법 4. 오래 걸리는 셀과 그 결과를 쓰는 셀을 나누어 생각한다.</strong> 셀은 오류가 난 줄의 바로 앞 줄까지 실행된 상태로 남는다. 8장의 시간 제한 문항 2에서는 <code>gs_t2.fit</code>이 실행된 뒤 예측에서 오류가 났으므로, 문항 3(변수 중요도)은 문항 2를 고치지 않아도 풀 수 있었다.</p>
+<hr>
+</section>
+</section>
+<section id="답안-셀-변수-이름-파일-이름의-규칙" class="level2">
+<h2 class="anchored" data-anchor-id="답안-셀-변수-이름-파일-이름의-규칙">3. 답안 셀, 변수 이름, 파일 이름의 규칙</h2>
+<section id="수험자-가이드의-응시-중-유의사항" class="level3">
+<h3 class="anchored" data-anchor-id="수험자-가이드의-응시-중-유의사항">3.1 수험자 가이드의 응시 중 유의사항</h3>
+<p>AICE 수험자 가이드의 Associate 응시 중 유의사항과 지키는 방법은 다음과 같다(1장 7절).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>유의사항</th>
+<th>지키는 방법</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>답안은 하나의 셀에만 작성한다. 여러 셀로 제출하면 채점되지 않는다</td>
+<td>작업용 셀은 제출 전에 지운다(3.2절)</td>
+</tr>
+<tr class="even">
+<td>문항 가이드의 파일명과 확장자 규칙을 그대로 따른다</td>
+<td>대소문자, 밑줄, 확장자까지 같게 한다(3.4절)</td>
+</tr>
+<tr class="odd">
+<td>패키지나 데이터를 처음에 불러오는 데 실패하면 뒤 문항에 연쇄적으로 영향을 미친다</td>
+<td>첫 문항의 출력을 확인한다(2절)</td>
+</tr>
+<tr class="even">
+<td>문항 가이드를 따르지 않으면 커널이 재시작될 수 있다</td>
+<td>설정값을 임의로 늘리지 않는다. 재시작되면 4절의 순서로 복구한다</td>
+</tr>
+<tr class="odd">
+<td>복사와 붙여넣기는 시험지 안의 ‘복사 기능’ 목록으로만 수행한다</td>
+<td>문서의 예제를 붙여 넣을 수 있다고 가정하지 않고 직접 입력한다</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="답안-셀" class="level3">
+<h3 class="anchored" data-anchor-id="답안-셀">3.2 답안 셀</h3>
+<p>값을 확인하려고 추가한 작업용 셀은 확인이 끝나면 바로 지운다. 검토 시간에 한꺼번에 지우려고 하면 어느 셀이 답안 셀인지 헷갈리고 시간이 모자라 남기게 된다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>상황</th>
+<th>올바른 처리</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>답안 셀의 코드가 길어졌다</td>
+<td>한 셀 안에서 빈 줄과 주석으로 단계를 구분한다</td>
+</tr>
+<tr class="even">
+<td>그래프 문항</td>
+<td>그리는 코드도 답안 셀 하나에 둔다. 여러 그래프는 <code>plt.subplots</code>로 한 그림에 나눈다(2장)</td>
+</tr>
+<tr class="odd">
+<td>빈칸 채우기 문항</td>
+<td>가이드가 지정하면 빈칸에 쓴 내용을 지정된 답 변수에도 기재한다</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="변수-이름과-답-변수의-자료형" class="level3">
+<h3 class="anchored" data-anchor-id="변수-이름과-답-변수의-자료형">3.3 변수 이름과 답 변수의 자료형</h3>
+<p>변수 이름이 한 글자라도 다르면 값이 맞아도 채점에서 찾지 못한다. 답 변수의 값은 자료형까지 가이드에 맞춘다.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 가이드: 결측치가 가장 많은 열의 이름을 ans3에 저장한다</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ans3 <span class="op">=</span> df.isna().<span class="bu">sum</span>().idxmax()      <span class="co"># 문자열 'visits_per_month'</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 잘못된 예</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>Ans3 <span class="op">=</span> df.isna().<span class="bu">sum</span>().idxmax()      <span class="co"># 이름의 대소문자가 다르다</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>ans3 <span class="op">=</span> df.isna().<span class="bu">sum</span>().<span class="bu">max</span>()         <span class="co"># 이름이 아니라 개수(숫자)이다</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>ans3 <span class="op">=</span> <span class="st">"visits_per_month "</span>           <span class="co"># 손으로 옮겨 적다가 공백이 들어갔다</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>가이드의 표현</th>
+<th>답 변수의 형태</th>
+<th>흔한 실수</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>“열의 이름”</td>
+<td>문자열</td>
+<td><code>max()</code>로 값을 저장</td>
+</tr>
+<tr class="even">
+<td>“행 수”</td>
+<td>정수</td>
+<td><code>shape</code>(튜플)를 저장</td>
+</tr>
+<tr class="odd">
+<td>“소수 넷째 자리까지 반올림”</td>
+<td><code>round(값, 4)</code></td>
+<td>출력만 반올림(<code>print(round(x, 4))</code>)</td>
+</tr>
+<tr class="even">
+<td>“최적 설정”</td>
+<td>딕셔너리(<code>best_params_</code>)</td>
+<td><code>best_score_</code>를 저장</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="파일-이름" class="level3">
+<h3 class="anchored" data-anchor-id="파일-이름">3.4 파일 이름</h3>
+<p>모델을 저장하는 문항은 파일 이름과 확장자를 가이드가 정한다. 10장의 모델 저장처럼 확장자가 저장 형식을 결정하는 경우가 있다.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 가이드: 학습한 모델을 'best_model.keras'로 저장한다</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>model.save(<span class="st">"best_model.keras"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 잘못된 예</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>model.save(<span class="st">"best_model"</span>)             <span class="co"># 확장자 누락</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>model.save(<span class="st">"Best_Model.keras"</span>)       <span class="co"># 대소문자가 다르다</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>model.save(<span class="st">"best-model.keras"</span>)       <span class="co"># 밑줄 대신 하이픈</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>가이드의 문자열과 한 글자씩 대조하고, 저장 후 파일이 생겼는지 파일 목록에서 확인한다.</p>
+<hr>
+</section>
+</section>
+<section id="커널-재시작-시의-복구-순서" class="level2">
+<h2 class="anchored" data-anchor-id="커널-재시작-시의-복구-순서">4. 커널 재시작 시의 복구 순서</h2>
+<section id="재시작되면-무엇이-사라지는가" class="level3">
+<h3 class="anchored" data-anchor-id="재시작되면-무엇이-사라지는가">4.1 재시작되면 무엇이 사라지는가</h3>
+<p>커널이 재시작되면 셀의 코드와 화면의 출력은 남지만, 변수, 불러온 라이브러리, 학습한 모델은 모두 사라진다. 출력이 남아 있어 상태가 그대로인 것처럼 보이는 것이 함정이다. 재시작 직후에 뒤 문항의 셀을 실행하면 <code>NameError: name 'df' is not defined</code>가 난다. 시험 환경의 자원은 CPU 2코어와 메모리 16G로 안내되어 있으므로, 가이드보다 큰 탐색 범위나 많은 에폭을 쓰지 않는다.</p>
+</section>
+<section id="복구-순서" class="level3">
+<h3 class="anchored" data-anchor-id="복구-순서">4.2 복구 순서</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>순서</th>
+<th>할 일</th>
+<th>확인</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>라이브러리를 불러오는 첫 셀을 실행한다</td>
+<td>오류 없이 끝나는가</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>데이터를 읽는 셀을 실행한다</td>
+<td><code>df.shape</code>가 문제지의 크기와 같은가</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>데이터 분석과 전처리의 답안 셀을 위에서부터 차례로 실행한다</td>
+<td>각 셀 끝의 크기 출력이 앞서 본 값과 같은가</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>분할과 스케일링의 셀을 실행한다</td>
+<td><code>X_train.shape</code></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>모델 문항은 지금 풀고 있는 문항에 필요한 것만 실행한다</td>
+<td>오래 걸리는 셀(격자 탐색, 신경망 학습)의 시간을 고려한다</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>중단된 문항으로 돌아가 이어서 푼다</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>셀은 Shift+Enter로 하나씩 실행하거나, 실행 메뉴에 “선택한 셀 위의 모든 셀 실행”이 있으면 그것을 쓴다. 이 순서가 통하려면 작업용 셀이 남아 있지 않아야 하고(변수를 덮어쓸 수 있다), 각 답안 셀이 위의 셀들만으로 실행되어야 한다.</p>
+</section>
+<section id="같은-결과의-재현" class="level3">
+<h3 class="anchored" data-anchor-id="같은-결과의-재현">4.3 같은 결과의 재현</h3>
+<p>다시 실행하여도 같은 값이 나오려면 분할, 나무 모델, 교차 검증의 섞기에 <code>random_state</code>를, 신경망에 <code>tf.random.set_seed</code>를 가이드의 값대로 고정한다. 신경망은 시드를 고정하여도 소수점 아래의 값이 조금 달라질 수 있다.</p>
+</section>
+<section id="검토-시간의-전체-실행" class="level3">
+<h3 class="anchored" data-anchor-id="검토-시간의-전체-실행">4.4 검토 시간의 전체 실행</h3>
+<p>검토 10분의 첫 일은 커널을 직접 재시작하고 처음부터 끝까지 실행하여 답 변수의 값을 확인하는 것이다. 신경망 학습처럼 오래 걸리는 셀이 있으면 검토를 일찍 시작한다.</p>
+<hr>
+</section>
+</section>
+<section id="공식-문서의-신속한-검색" class="level2">
+<h2 class="anchored" data-anchor-id="공식-문서의-신속한-검색">5. 공식 문서의 신속한 검색</h2>
+<section id="허용된-일곱-곳" class="level3">
+<h3 class="anchored" data-anchor-id="허용된-일곱-곳">5.1 허용된 일곱 곳</h3>
+<p>Associate는 제한적 오픈북 시험이며, 시험지 안에 주어진 일곱 곳의 문서(NumPy, pandas, matplotlib, seaborn, scikit-learn, TensorFlow, XGBoost의 scikit-learn 방식)만 참고할 수 있다. 시험지 밖의 링크로 접속하면 부정행위이다. 검색 엔진을 쓸 수 없으므로 사이트 안에서 어느 메뉴를 따라가야 하는지를 미리 알아 둔다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>사이트</th>
+<th>첫 쪽의 주요 메뉴</th>
+<th>주로 찾는 것</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>NumPy</td>
+<td>User Guide, API reference</td>
+<td><code>np.argmax</code>(10장)</td>
+</tr>
+<tr class="even">
+<td>pandas</td>
+<td>User Guide, API reference</td>
+<td>1~4장</td>
+</tr>
+<tr class="odd">
+<td>matplotlib</td>
+<td>User guide, Examples, API reference</td>
+<td><code>pyplot</code>(2장, 10장)</td>
+</tr>
+<tr class="even">
+<td>seaborn</td>
+<td>Tutorial, API, Gallery</td>
+<td>그래프 함수(2장, 8장)</td>
+</tr>
+<tr class="odd">
+<td>scikit-learn</td>
+<td>User Guide, API, Examples</td>
+<td>5~8장</td>
+</tr>
+<tr class="even">
+<td>TensorFlow</td>
+<td>Guide, Tutorials, API(<code>tf.keras</code>)</td>
+<td>9~10장</td>
+</tr>
+<tr class="odd">
+<td>XGBoost</td>
+<td>Python Package &gt; Python API Reference</td>
+<td>7장</td>
+</tr>
+</tbody>
+</table>
+<p>아래의 위치는 2026년 11월에 각 사이트의 공개 판에서 확인한 것이다. 시험지 안에서 열리는 문서의 판은 사전 환경점검에서 확인한다.</p>
+</section>
+<section id="장별로-찾는-위치" class="level3">
+<h3 class="anchored" data-anchor-id="장별로-찾는-위치">5.2 장별로 찾는 위치</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>장</th>
+<th>찾는 것</th>
+<th>위치</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><code>read_csv</code>의 인자</td>
+<td>pandas &gt; API reference &gt; Input/output &gt; <code>pandas.read_csv</code></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>그림의 분할</td>
+<td>matplotlib &gt; API reference &gt; <code>matplotlib.pyplot</code> &gt; <code>subplots</code></td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>그래프 함수의 인자</td>
+<td>seaborn &gt; API &gt; 함수 이름(<code>countplot</code>, <code>histplot</code>, <code>boxplot</code>, <code>heatmap</code> 등)</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>결측치의 삭제와 대체</td>
+<td>pandas &gt; User Guide &gt; Working with missing data</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>원핫 인코딩</td>
+<td>pandas &gt; API reference &gt; General functions &gt; <code>pandas.get_dummies</code></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>라벨 인코딩</td>
+<td>scikit-learn &gt; API &gt; <code>sklearn.preprocessing</code> &gt; <code>LabelEncoder</code></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>분할 함수의 인자</td>
+<td>scikit-learn &gt; API &gt; <code>sklearn.model_selection</code> &gt; <code>train_test_split</code></td>
+</tr>
+<tr class="even">
+<td>6~7</td>
+<td>모델의 하이퍼파라미터</td>
+<td>scikit-learn &gt; API &gt; <code>sklearn.tree</code>, <code>sklearn.ensemble</code>, <code>sklearn.linear_model</code> &gt; 모델 이름</td>
+</tr>
+<tr class="odd">
+<td>6~7</td>
+<td>지표 함수와 <code>scoring</code>의 이름</td>
+<td>scikit-learn &gt; User Guide &gt; Metrics and scoring</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td>XGBoost의 인자</td>
+<td>XGBoost &gt; Python Package &gt; Python API Reference &gt; Scikit-Learn API</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td>격자 탐색의 인자와 결과 속성</td>
+<td>scikit-learn &gt; API &gt; <code>sklearn.model_selection</code> &gt; <code>GridSearchCV</code></td>
+</tr>
+<tr class="even">
+<td>9</td>
+<td>층과 모델의 구성</td>
+<td>TensorFlow &gt; Guide &gt; Keras &gt; The Sequential model, API &gt; <code>tf.keras.layers.Dense</code></td>
+</tr>
+<tr class="odd">
+<td>10</td>
+<td>조기 종료, 체크포인트</td>
+<td>TensorFlow &gt; API &gt; <code>tf.keras.callbacks</code> &gt; <code>EarlyStopping</code>, <code>ModelCheckpoint</code></td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>모델 저장과 불러오기</td>
+<td>TensorFlow &gt; Guide &gt; Keras &gt; Save, serialize, and export models</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="함수의-쪽을-빨리-읽는-방법" class="level3">
+<h3 class="anchored" data-anchor-id="함수의-쪽을-빨리-읽는-방법">5.3 함수의 쪽을 빨리 읽는 방법</h3>
+<p>API 쪽은 어느 라이브러리나 서명(인자와 기본값), 요약, 인자 목록(Parameters, TensorFlow는 Args), 반환값(Returns), 속성(Attributes), 예제(Examples)의 순서이다.</p>
+<ol type="1">
+<li>인자의 철자와 기본값은 맨 위의 서명에서 본다.</li>
+<li>인자의 뜻은 쪽 안 찾기(Ctrl+F)로 인자 이름을 찾아 읽는다.</li>
+<li>결과 속성(<code>best_params_</code>, <code>feature_importances_</code>)은 Attributes에서 찾는다.</li>
+<li>사용법이 헷갈릴 때에만 Examples를 본다.</li>
+</ol>
+<p>함수 이름을 모르면 User Guide에서 주제를 찾고, 알면 API 쪽으로 바로 간다(1장 6절).</p>
+<hr>
+</section>
+</section>
+<section id="온라인-감독-환경과-금지-행위" class="level2">
+<h2 class="anchored" data-anchor-id="온라인-감독-환경과-금지-행위">6. 온라인 감독 환경과 금지 행위</h2>
+<section id="응시-방식과-감독" class="level3">
+<h3 class="anchored" data-anchor-id="응시-방식과-감독">6.1 응시 방식과 감독</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>응시 방식</td>
+<td>2027년 제4회는 온라인으로만 시행된다</td>
+</tr>
+<tr class="even">
+<td>시험 환경</td>
+<td>Jupyter 기반의 시험 전용 페이지. CPU 2코어, 메모리 16G</td>
+</tr>
+<tr class="odd">
+<td>시험 시각</td>
+<td>10시, 13시, 15시. 시험 시간은 90분</td>
+</tr>
+<tr class="even">
+<td>입실</td>
+<td>시작 30분 전부터. 시작 후에는 입장할 수 없다</td>
+</tr>
+<tr class="odd">
+<td>감독</td>
+<td>AI 기반 감독 솔루션이 실시간으로 감독하고 최종 판단은 감독관이 한다</td>
+</tr>
+<tr class="even">
+<td>문의</td>
+<td>1:1 감독관 채팅</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="금지-행위와-제재" class="level3">
+<h3 class="anchored" data-anchor-id="금지-행위와-제재">6.2 금지 행위와 제재</h3>
+<p>AICE의 부정행위 기준은 모든 등급에 다음을 금지한다. 적발되면 0점 처리되며, 수험자 가이드에는 최대 3년간 응시 자격이 제한될 수 있다고 적혀 있다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>구분</th>
+<th>금지되는 것</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>기기</td>
+<td>시험용 PC 외의 기기(듀얼 모니터, 패드, 휴대폰), 스마트 안경류</td>
+</tr>
+<tr class="even">
+<td>소리</td>
+<td>이어폰, 음성 채팅</td>
+</tr>
+<tr class="odd">
+<td>자료</td>
+<td>교재 등의 참고 자료, 시험 내용을 정리한 노트·블로그·메모장</td>
+</tr>
+<tr class="even">
+<td>도구</td>
+<td>ChatGPT, Gemini 등의 생성형 AI와 챗봇</td>
+</tr>
+<tr class="odd">
+<td>접속</td>
+<td>시험지 밖의 링크로 허용 사이트에 접속하는 것. Associate는 시험지 안의 일곱 곳만 참고할 수 있다</td>
+</tr>
+</tbody>
+</table>
+<p>본 과목의 시간 제한 문항, 종합 모의, 중간·기말고사도 같은 규칙을 적용한다.</p>
+</section>
+<section id="사전-환경점검" class="level3">
+<h3 class="anchored" data-anchor-id="사전-환경점검">6.3 사전 환경점검</h3>
+<p>접수를 마친 응시자는 시험 7일 전부터 1일 전까지 사전 환경점검에서 감독 환경과 실제 시험 환경의 샘플 문항을 미리 체험할 수 있다. 제4회의 경우 12월 10일부터 16일까지이다. 사전 환경점검에서 확인할 것은 다음과 같다.</p>
+<ol type="1">
+<li>응시할 PC와 장소에서 감독 프로그램이 정상으로 동작하는가.</li>
+<li>일곱 곳의 문서가 어떤 링크와 판으로 열리는가.</li>
+<li>라이브러리의 판에서 본 과목의 코드가 그대로 실행되는가.</li>
+<li>복사 기능 목록, 셀 삭제와 커널 재시작의 메뉴가 어디에 있는가.</li>
+</ol>
+<p>점검은 접수한 사람만 할 수 있으므로 응시할 수강생은 15주차 전에 접수를 마친다. 절차는 15주차에 안내한다.</p>
+<hr>
+</section>
+</section>
+<section id="중심-실습-종합-모의-1" class="level2">
+<h2 class="anchored" data-anchor-id="중심-실습-종합-모의-1">7. 중심 실습: 종합 모의 1</h2>
+<p>실제 시험과 같은 조건으로 종합 모의 1을 치르고, 시간 기록표와 오답 원인표를 작성한다. 문항은 1~10장의 내용으로 구성되며 처음 보는 가상 데이터를 쓴다. 목표 열은 수치형이다(회귀 문제).</p>
+<section id="실시-조건" class="level3">
+<h3 class="anchored" data-anchor-id="실시-조건">7.1 실시 조건</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>항목</th>
+<th>조건</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>문항과 시간</td>
+<td>14문항, 90분. 데이터 분석, 데이터 전처리, AI 모델링의 순서</td>
+</tr>
+<tr class="even">
+<td>배점</td>
+<td>분야별 30, 30, 40. 문항별 배점은 문제지에 적는다</td>
+</tr>
+<tr class="odd">
+<td>참고</td>
+<td>일곱 곳의 공식 문서만. 강의안, 노트북, 메모, 생성형 AI는 쓰지 않는다</td>
+</tr>
+<tr class="even">
+<td>답안</td>
+<td>문항마다 답안 셀 하나(3절)</td>
+</tr>
+<tr class="odd">
+<td>제출</td>
+<td>90분이 되면 그 시점의 노트북을 제출한다</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="실시-절차" class="level3">
+<h3 class="anchored" data-anchor-id="실시-절차">7.2 실시 절차</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>순서</th>
+<th>할 일</th>
+<th>시점</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>문제지 노트북을 열고 자료의 경로를 확인한다</td>
+<td>시작 전</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>분야별 문항 수를 세어 시간 기록표에 기준 시간을 적는다</td>
+<td>0분</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>문항을 순서대로 풀며, 시작할 때마다 시각을 적는다</td>
+<td>0~80분</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>기준 시간의 두 배가 지난 문항은 표시하고 건너뛴다(1.3절)</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>커널을 재시작하고 처음부터 실행하여 답 변수를 확인한다(4.4절)</td>
+<td>80분</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>작업용 셀이 없는지 확인하고 제출한다</td>
+<td>90분</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>채점 결과를 받아 시간 기록표의 나머지 칸과 오답 원인표를 작성한다</td>
+<td>종료 후 30분</td>
+</tr>
+</tbody>
+</table>
+<p>시험 중에는 문항을 시작한 시각만 적는다. 소요 시간은 다음 문항의 시작 시각과의 차이로 시험이 끝난 뒤에 계산한다.</p>
+</section>
+<section id="시간-기록표" class="level3">
+<h3 class="anchored" data-anchor-id="시간-기록표">7.3 시간 기록표</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>문항</th>
+<th>분야</th>
+<th>기준 시간(분)</th>
+<th>시작 시각</th>
+<th>소요 시간(분)</th>
+<th>상태</th>
+<th>비고</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>데이터 분석</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>데이터 분석</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>…</td>
+<td>…</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td>AI 모델링</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>검토</td>
+<td></td>
+<td>10</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>합계</td>
+<td></td>
+<td>90</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>기준 시간</strong>은 분야 시간을 분야별 문항 수로 나눈 값이다.</li>
+<li><strong>상태</strong>는 완료, 미완(건너뜀), 미응답, 되돌아와 완료 가운데 하나이다.</li>
+<li><strong>비고</strong>에는 시간을 많이 쓴 이유를 짧게 적는다(예: “인자 이름 검색 4분”).</li>
+</ul>
+<p>작성한 뒤 분야별 소요 시간의 합을 1.2절의 기준과 비교하고, 기준 시간의 두 배를 넘은 문항에서 건너뛰기 규칙을 지켰는지 확인한다.</p>
+</section>
+<section id="오답-원인표" class="level3">
+<h3 class="anchored" data-anchor-id="오답-원인표">7.4 오답 원인표</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>문항</th>
+<th>출제 분야 &gt; 세부 항목</th>
+<th>형식</th>
+<th>장</th>
+<th>결과</th>
+<th>원인</th>
+<th>구체적 내용</th>
+<th>다시 볼 곳</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(예) 9</td>
+<td>데이터 전처리 &gt; Train/Test 데이터셋 분할</td>
+<td>작성</td>
+<td>5</td>
+<td>오답</td>
+<td>C</td>
+<td><code>stratify</code>를 지정하지 않았다</td>
+<td>5장 5.3절</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>세부 항목, 형식, 장은 문제지의 문항마다 붙은 꼬리표를 옮겨 적는다. 오답과 미응답 문항만 적고, 원인은 다음 기호 가운데 가장 가까운 하나를 고른다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>기호</th>
+<th>원인</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>방법을 모른다</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>함수나 인자를 문서에서 찾지 못하였다</td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td>가이드(대상 데이터프레임, 설정값, 변수 이름)를 따르지 않았다</td>
+</tr>
+<tr class="even">
+<td>D</td>
+<td>선행 문항의 실패가 이어졌다</td>
+</tr>
+<tr class="odd">
+<td>E</td>
+<td>시간이 부족하였다</td>
+</tr>
+<tr class="even">
+<td>F</td>
+<td>실행 오류를 해결하지 못하였다</td>
+</tr>
+<tr class="odd">
+<td>G</td>
+<td>답 변수의 형태가 틀렸다(반올림 누락, 이름 대신 값)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="채점-결과를-읽는-방법" class="level3">
+<h3 class="anchored" data-anchor-id="채점-결과를-읽는-방법">7.5 채점 결과를 읽는 방법</h3>
+<p>종합 모의는 답 변수와 결과 데이터프레임을 검사하는 스크립트로 채점하며, 문항별 정답 여부, 분야별 점수, 합계를 돌려준다. 다음 순서로 읽는다.</p>
+<ol type="1">
+<li><strong>합계와 80점의 차이.</strong> 합격 기준까지 모자라거나 남는 점수를 확인한다.</li>
+<li><strong>분야별 득점률.</strong> 분야별 점수를 배점으로 나누어 가장 낮은 분야를 찾는다.</li>
+<li><strong>원인 기호의 집계.</strong> 가장 많은 원인을 찾는다(아래 표).</li>
+<li><strong>장의 집계.</strong> 같은 장이 두 번 이상 나오면 그 장의 중심 실습과 시간 제한 문항을 다시 푼다.</li>
+<li><strong>시간 기록표와의 대조.</strong> 오답 문항이 시간을 크게 넘긴 문항과 겹치면 지식보다 시간 관리가 문제이다.</li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>가장 많은 원인</th>
+<th>보완하는 방법</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A, B</td>
+<td>해당 장의 정리 표와 5.2절의 문서 위치를 다시 익힌다</td>
+</tr>
+<tr class="even">
+<td>C, G</td>
+<td>가이드의 대상, 설정값, 변수 이름을 풀기 전과 제출 전에 대조한다</td>
+</tr>
+<tr class="odd">
+<td>D</td>
+<td>2절의 차단 방법(단계마다 크기 출력)</td>
+</tr>
+<tr class="even">
+<td>E</td>
+<td>1.3절의 건너뛰기 규칙</td>
+</tr>
+<tr class="odd">
+<td>F</td>
+<td>부록 E(오류 사전)</td>
+</tr>
+</tbody>
+</table>
+<p>종합 모의의 점수는 성적에 반영하지 않고 제4회 응시 접수(12월 10일 마감)를 판단하는 자료로 쓴다. 14주차의 처음 30분에 문항별 해설을 한다.</p>
+<p><strong>제출물.</strong> 종합 모의 1의 답안 노트북, 시간 기록표, 오답 원인표. 모두 수업 시간 안에 제출한다.</p>
+<hr>
+</section>
+</section>
+<section id="정리" class="level2">
+<h2 class="anchored" data-anchor-id="정리">8. 정리</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>주제</th>
+<th>기억할 것</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>시험</td>
+<td>14문항 90분, 80점 이상 합격. 배점은 데이터 분석 30, 데이터 전처리 30, AI 모델링 40</td>
+</tr>
+<tr class="even">
+<td>시간 배분</td>
+<td>데이터 분석 20분, 전처리 25분, AI 모델링 35분, 검토 10분. 기준 시간의 두 배가 지나면 표시하고 건너뛴다</td>
+</tr>
+<tr class="odd">
+<td>연쇄</td>
+<td>원본을 보존하고 지정된 새 변수에 저장한다. 단계마다 크기를 출력한다. 막힌 처리 문항은 뒤 문항이 실행되도록 변수를 남긴다</td>
+</tr>
+<tr class="even">
+<td>답안 셀</td>
+<td>한 문항은 한 셀. 작업용 셀은 즉시 지운다</td>
+</tr>
+<tr class="odd">
+<td>이름</td>
+<td>변수 이름, 파일 이름, 확장자는 가이드의 문자열과 한 글자까지 같게. 답 변수는 자료형과 반올림까지 맞춘다</td>
+</tr>
+<tr class="even">
+<td>재시작</td>
+<td>import → 데이터 읽기 → 앞 답안 셀을 위에서부터 → 지금 문항. 시드를 고정하여 같은 결과를 재현한다</td>
+</tr>
+<tr class="odd">
+<td>문서 검색</td>
+<td>일곱 곳, 시험지 안의 링크로만. 함수 이름을 알면 API, 모르면 User Guide. 쪽 안에서는 Ctrl+F로 인자 이름</td>
+</tr>
+<tr class="even">
+<td>감독</td>
+<td>시작 30분 전 입실, 다른 기기·이어폰·메모·생성형 AI 금지, 적발 시 0점. 사전 환경점검은 시험 7일 전부터 1일 전까지</td>
+</tr>
+<tr class="odd">
+<td>종합 모의</td>
+<td>시간 기록표(시작 시각만 적는다)와 오답 원인표(원인 기호 A~G)로 약점을 찾는다</td>
+</tr>
+</tbody>
+</table>
+<p>다음 주에는 종합 모의 1의 해설에 이어 종합 모의 2(이진 분류 문제)를 같은 조건으로 치른다.</p>
+<hr>
+</section>
+<section id="참고-자료" class="level2">
+<h2 class="anchored" data-anchor-id="참고-자료">참고 자료</h2>
+<p>확인일은 2026-11-13이며, 표시한 항목은 2026-11-14에 확인하였다.</p>
+<ul>
+<li>AICE, AICE 소개(출제 범위 표, 문항 수, 시간, 합격 기준). <a href="https://aice.study/info/aice" class="uri">https://aice.study/info/aice</a></li>
+<li>AICE, Associate 상세(제한적 오픈북, 응시 환경, 사전 환경점검). <a href="https://aice.study/info/aice/asso" class="uri">https://aice.study/info/aice/asso</a></li>
+<li>AICE, 공지 「2027년 AICE 시험 일정 안내」(2026-11-11). <a href="https://aice.study/board/notice/detail/17952" class="uri">https://aice.study/board/notice/detail/17952</a></li>
+<li>AICE, 수험자 가이드(응시 중 유의사항, 부정행위 제재). <a href="https://aice.study/certi/examGuide" class="uri">https://aice.study/certi/examGuide</a></li>
+<li>AICE, 공지 「AICE 자격시험 부정행위 기준 안내」(2026-10-01). <a href="https://aice.study/board/notice/detail/17238" class="uri">https://aice.study/board/notice/detail/17238</a></li>
+<li>AICE, 샘플 문항(시험지의 구성과 문항의 형식). <a href="https://aice.study/certi/practice" class="uri">https://aice.study/certi/practice</a></li>
+<li>AICE, FAQ(시험 환경 미리 체험). <a href="https://aice.study/board/faq/list" class="uri">https://aice.study/board/faq/list</a></li>
+<li>NumPy documentation (2026-11-14 확인). <a href="https://numpy.org/doc/stable/" class="uri">https://numpy.org/doc/stable/</a></li>
+<li>pandas documentation (2026-11-14 확인). <a href="https://pandas.pydata.org/docs/" class="uri">https://pandas.pydata.org/docs/</a></li>
+<li>Matplotlib documentation (2026-11-14 확인). <a href="https://matplotlib.org/stable/" class="uri">https://matplotlib.org/stable/</a></li>
+<li>Matplotlib, <code>matplotlib.pyplot</code> (2026-11-14 확인). <a href="https://matplotlib.org/stable/api/pyplot_summary.html" class="uri">https://matplotlib.org/stable/api/pyplot_summary.html</a></li>
+<li>seaborn documentation (2026-11-14 확인). <a href="https://seaborn.pydata.org/" class="uri">https://seaborn.pydata.org/</a></li>
+<li>scikit-learn documentation (2026-11-14 확인). <a href="https://scikit-learn.org/stable/" class="uri">https://scikit-learn.org/stable/</a></li>
+<li>scikit-learn, API Reference (2026-11-14 확인). <a href="https://scikit-learn.org/stable/api/index.html" class="uri">https://scikit-learn.org/stable/api/index.html</a></li>
+<li>TensorFlow, Keras guide (2026-11-14 확인). <a href="https://www.tensorflow.org/guide/keras" class="uri">https://www.tensorflow.org/guide/keras</a></li>
+<li>TensorFlow, <code>tf.keras</code> API (2026-11-14 확인). <a href="https://www.tensorflow.org/api_docs/python/tf/keras" class="uri">https://www.tensorflow.org/api_docs/python/tf/keras</a></li>
+<li>XGBoost documentation (2026-11-14 확인). <a href="https://xgboost.readthedocs.io/en/stable/" class="uri">https://xgboost.readthedocs.io/en/stable/</a></li>
+<li>XGBoost, Using the Scikit-Learn Estimator Interface. <a href="https://xgboost.readthedocs.io/en/stable/python/sklearn_estimator.html" class="uri">https://xgboost.readthedocs.io/en/stable/python/sklearn_estimator.html</a></li>
+</ul>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> 맨 위로</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "복사완료!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "복사완료!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../courses/aice/book/AICE_10주차_학생용.html" class="pagination-link" aria-label="[10주차] 딥러닝 (2): 학습 제어와 학습 곡선">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">[10주차] 딥러닝 (2): 학습 제어와 학습 곡선</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../courses/aice/book/AICE_부록_학생용.html" class="pagination-link" aria-label="부록">
+        <span class="nav-page-text">부록</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>안중호 교수 강의 교재 · 2026년 2학기판</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

@@ -1,0 +1,3193 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>[2주차] 분석 기획과 방법론 – 안중호 교수 강의 교재</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../courses/adsp/book/ADsP_03주차_학생용.html" rel="next">
+<link href="../../../courses/adsp/book/ADsP_01주차_학생용.html" rel="prev">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-dcf116883d0d3758c9131f5ede2fa7e1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">안중호 교수 강의 교재</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="검색"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">커리큘럼</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/semesters/index.html">
+ <span class="dropdown-text">전체 커리큘럼</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../docs/semesters/2026-2/index.html">
+ <span class="dropdown-text">2026년 2학기</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../docs/subjects/llm-ai/index.html">
+ <span class="dropdown-text">교재 · LLM AI 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/subjects/python/index.html">
+ <span class="dropdown-text">교재 · 파이썬 실습</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../courses/index.html">
+ <span class="dropdown-text">2027학년도 교재 (준비 중)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/llm-service/index.html">
+ <span class="dropdown-text">· LLM 서비스 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/office/index.html">
+ <span class="dropdown-text">· 컴퓨터활용</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/adsp/index.html">
+ <span class="dropdown-text">· 빅데이터개론</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/ai-agent/index.html">
+ <span class="dropdown-text">· AI에이전트 기획 및 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/aice/index.html">
+ <span class="dropdown-text">· 비즈니스빅데이터분석</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/about/교수_소개.html"> 
+<span class="menu-text">교수 소개</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../courses/adsp/book/ADsP_01주차_학생용.html">교재</a></li><li class="breadcrumb-item"><a href="../../../courses/adsp/book/ADsP_02주차_학생용.html">[2주차] 분석 기획과 방법론</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">빅데이터개론</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">교재</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_01주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[1주차] 데이터 이해: 데이터, 빅데이터, 데이터 사이언스</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_02주차_학생용.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">[2주차] 분석 기획과 방법론</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_03주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[3주차] 분석 마스터 플랜과 거버넌스</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_04주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[4주차] 표 데이터와 데이터 마트</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_05주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[5주차] 결측값·이상값과 기술 통계</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_06주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[6주차] 통계학 개론: 표본, 분포, 추정, 검정</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_07주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[7주차] 상관 분석과 회귀 분석</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_08주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[8주차] 다차원 척도법과 주성분 분석</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_09주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[9주차] 시계열 분석</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_10주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[10주차] 분류 분석 (1): 데이터 분할, 로지스틱 회귀, 의사결정나무</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_11주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[11주차] 분류 분석 (2): 앙상블, 인공신경망, 모형 평가</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_12주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[12주차] 군집 분석과 연관 분석</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_13주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[13주차] R 코드와 출력의 해석</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_부록_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">부록</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">이 장의 차례</h2>
+   
+  <ul>
+  <li><a href="#학습-목표" id="toc-학습-목표" class="nav-link active" data-scroll-target="#학습-목표">학습 목표</a></li>
+  <li><a href="#준비-사항" id="toc-준비-사항" class="nav-link" data-scroll-target="#준비-사항">준비 사항</a></li>
+  <li><a href="#분석-기획의-방향" id="toc-분석-기획의-방향" class="nav-link" data-scroll-target="#분석-기획의-방향">1. 분석 기획의 방향</a>
+  <ul class="collapse">
+  <li><a href="#분석-기획" id="toc-분석-기획" class="nav-link" data-scroll-target="#분석-기획">1.1 분석 기획</a></li>
+  <li><a href="#목표-시점에-따른-기획-방식" id="toc-목표-시점에-따른-기획-방식" class="nav-link" data-scroll-target="#목표-시점에-따른-기획-방식">1.3 목표 시점에 따른 기획 방식</a></li>
+  <li><a href="#분석-기획에서-고려할-것" id="toc-분석-기획에서-고려할-것" class="nav-link" data-scroll-target="#분석-기획에서-고려할-것">1.4 분석 기획에서 고려할 것</a></li>
+  <li><a href="#혼동하기-쉬운-용어" id="toc-혼동하기-쉬운-용어" class="nav-link" data-scroll-target="#혼동하기-쉬운-용어">1.5 혼동하기 쉬운 용어</a></li>
+  <li><a href="#따라-하기" id="toc-따라-하기" class="nav-link" data-scroll-target="#따라-하기">따라 하기</a></li>
+  </ul></li>
+  <li><a href="#분석-방법론" id="toc-분석-방법론" class="nav-link" data-scroll-target="#분석-방법론">2. 분석 방법론</a>
+  <ul class="collapse">
+  <li><a href="#방법론의-필요성과-구성" id="toc-방법론의-필요성과-구성" class="nav-link" data-scroll-target="#방법론의-필요성과-구성">2.1 방법론의 필요성과 구성</a></li>
+  <li><a href="#방법론의-모델" id="toc-방법론의-모델" class="nav-link" data-scroll-target="#방법론의-모델">2.2 방법론의 모델</a></li>
+  <li><a href="#kdd-분석-방법론" id="toc-kdd-분석-방법론" class="nav-link" data-scroll-target="#kdd-분석-방법론">2.3 KDD 분석 방법론</a></li>
+  <li><a href="#crisp-dm-분석-방법론" id="toc-crisp-dm-분석-방법론" class="nav-link" data-scroll-target="#crisp-dm-분석-방법론">2.4 CRISP-DM 분석 방법론</a></li>
+  <li><a href="#빅데이터-분석-방법론" id="toc-빅데이터-분석-방법론" class="nav-link" data-scroll-target="#빅데이터-분석-방법론">2.5 빅데이터 분석 방법론</a></li>
+  <li><a href="#혼동하기-쉬운-용어-1" id="toc-혼동하기-쉬운-용어-1" class="nav-link" data-scroll-target="#혼동하기-쉬운-용어-1">2.6 혼동하기 쉬운 용어</a></li>
+  <li><a href="#따라-하기-1" id="toc-따라-하기-1" class="nav-link" data-scroll-target="#따라-하기-1">따라 하기</a></li>
+  </ul></li>
+  <li><a href="#분석-과제-발굴" id="toc-분석-과제-발굴" class="nav-link" data-scroll-target="#분석-과제-발굴">3. 분석 과제 발굴</a>
+  <ul class="collapse">
+  <li><a href="#하향식-접근과-상향식-접근" id="toc-하향식-접근과-상향식-접근" class="nav-link" data-scroll-target="#하향식-접근과-상향식-접근">3.1 하향식 접근과 상향식 접근</a></li>
+  <li><a href="#하향식-접근의-네-단계" id="toc-하향식-접근의-네-단계" class="nav-link" data-scroll-target="#하향식-접근의-네-단계">3.2 하향식 접근의 네 단계</a></li>
+  <li><a href="#문제-탐색" id="toc-문제-탐색" class="nav-link" data-scroll-target="#문제-탐색">3.3 문제 탐색</a></li>
+  <li><a href="#문제-정의-해결-방안-탐색-타당성-검토" id="toc-문제-정의-해결-방안-탐색-타당성-검토" class="nav-link" data-scroll-target="#문제-정의-해결-방안-탐색-타당성-검토">3.4 문제 정의, 해결 방안 탐색, 타당성 검토</a></li>
+  <li><a href="#상향식-접근" id="toc-상향식-접근" class="nav-link" data-scroll-target="#상향식-접근">3.5 상향식 접근</a></li>
+  <li><a href="#분석-과제-정의서" id="toc-분석-과제-정의서" class="nav-link" data-scroll-target="#분석-과제-정의서">3.6 분석 과제 정의서</a></li>
+  <li><a href="#혼동하기-쉬운-용어-2" id="toc-혼동하기-쉬운-용어-2" class="nav-link" data-scroll-target="#혼동하기-쉬운-용어-2">3.7 혼동하기 쉬운 용어</a></li>
+  <li><a href="#따라-하기-2" id="toc-따라-하기-2" class="nav-link" data-scroll-target="#따라-하기-2">따라 하기</a></li>
+  </ul></li>
+  <li><a href="#분석-프로젝트-관리" id="toc-분석-프로젝트-관리" class="nav-link" data-scroll-target="#분석-프로젝트-관리">4. 분석 프로젝트 관리</a>
+  <ul class="collapse">
+  <li><a href="#분석-과제의-관리-영역" id="toc-분석-과제의-관리-영역" class="nav-link" data-scroll-target="#분석-과제의-관리-영역">4.1 분석 과제의 관리 영역</a></li>
+  <li><a href="#분석-프로젝트의-특성" id="toc-분석-프로젝트의-특성" class="nav-link" data-scroll-target="#분석-프로젝트의-특성">4.2 분석 프로젝트의 특성</a></li>
+  <li><a href="#프로젝트-관리의-주제-그룹" id="toc-프로젝트-관리의-주제-그룹" class="nav-link" data-scroll-target="#프로젝트-관리의-주제-그룹">4.3 프로젝트 관리의 주제 그룹</a></li>
+  <li><a href="#혼동하기-쉬운-용어-3" id="toc-혼동하기-쉬운-용어-3" class="nav-link" data-scroll-target="#혼동하기-쉬운-용어-3">4.4 혼동하기 쉬운 용어</a></li>
+  <li><a href="#따라-하기-3" id="toc-따라-하기-3" class="nav-link" data-scroll-target="#따라-하기-3">따라 하기</a></li>
+  </ul></li>
+  <li><a href="#중심-실습-분석-과제-정의서의-작성" id="toc-중심-실습-분석-과제-정의서의-작성" class="nav-link" data-scroll-target="#중심-실습-분석-과제-정의서의-작성">5. 중심 실습: 분석 과제 정의서의 작성</a>
+  <ul class="collapse">
+  <li><a href="#준비" id="toc-준비" class="nav-link" data-scroll-target="#준비">준비</a></li>
+  <li><a href="#절차" id="toc-절차" class="nav-link" data-scroll-target="#절차">절차</a></li>
+  <li><a href="#조건을-바꾸어-보기" id="toc-조건을-바꾸어-보기" class="nav-link" data-scroll-target="#조건을-바꾸어-보기">조건을 바꾸어 보기</a></li>
+  <li><a href="#완료-기준" id="toc-완료-기준" class="nav-link" data-scroll-target="#완료-기준">완료 기준</a></li>
+  <li><a href="#제출물" id="toc-제출물" class="nav-link" data-scroll-target="#제출물">제출물</a></li>
+  </ul></li>
+  <li><a href="#자주-하는-실수와-오해" id="toc-자주-하는-실수와-오해" class="nav-link" data-scroll-target="#자주-하는-실수와-오해">6. 자주 하는 실수와 오해</a></li>
+  <li><a href="#정리" id="toc-정리" class="nav-link" data-scroll-target="#정리">7. 정리</a></li>
+  <li><a href="#참고-자료" id="toc-참고-자료" class="nav-link" data-scroll-target="#참고-자료">8. 참고 자료</a></li>
+  <li><a href="#주간-문항-세트-02" id="toc-주간-문항-세트-02" class="nav-link" data-scroll-target="#주간-문항-세트-02">주간 문항 세트 02</a>
+  <ul class="collapse">
+  <li><a href="#정답" id="toc-정답" class="nav-link" data-scroll-target="#정답">정답</a></li>
+  <li><a href="#풀이" id="toc-풀이" class="nav-link" data-scroll-target="#풀이">풀이</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../courses/adsp/book/ADsP_01주차_학생용.html">교재</a></li><li class="breadcrumb-item"><a href="../../../courses/adsp/book/ADsP_02주차_학생용.html">[2주차] 분석 기획과 방법론</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">[2주차] 분석 기획과 방법론</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<header class="chapter-head">
+<p class="chapter-part">빅데이터개론</p>
+<p class="chapter-no"><span class="num">2</span><span class="unit">주차</span></p>
+<p class="chapter-title">분석 기획과 방법론</p>
+</header>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>2027학년도 「빅데이터개론」의 준비 중인 교재입니다. 편집 상태를 검토하기 위해 미리 공개한 것으로, 수업 전에 내용과 순서가 바뀔 수 있습니다.</p>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>학사 3주차 · 교재 02 · 2부 데이터 분석 기획 · ADsP 2과목 데이터분석 기획 &gt; 데이터분석 기획의 이해</p>
+</blockquote>
+<p>분석 기획은 분석을 실행하기 전에 무엇을, 왜, 어떤 순서로 할지를 정하는 일이다. 이 장은 ADsP 2과목의 첫 주요 항목인 ’데이터분석 기획의 이해’를 다룬다. 분석 주제의 유형, 분석 방법론의 단계, 분석 과제를 찾는 두 접근, 분석 프로젝트의 관리 영역이 그 내용이다. 2과목은 50문항 가운데 10문항이며, 1과목과 마찬가지로 10문항 가운데 4문항 이상을 맞히지 못하면 과락이다.</p>
+<p>2과목의 문항은 계산을 요구하지 않는다. 용어의 짝과 단계의 순서를 묻거나, 사례를 주고 어느 유형과 어느 단계에 해당하는지를 묻는다. 그러므로 이 장은 비교표와 단계표를 중심으로 하고, 절마다 사례를 판별하는 따라 하기를 둔다. 사례는 교재 01의 중심 실습에서 읽은 거래 내역 표를 가진 가상의 온라인 상점(이하 ‘상점’)으로 통일한다. 이 장에는 코드가 없다. 중심 실습에서 쓰는 분석 과제 정의서는 3부(교재 04~12)에서 같은 자료를 실제로 분석할 때 다시 쓴다.</p>
+<hr>
+<section id="학습-목표" class="level2">
+<h2 class="anchored" data-anchor-id="학습-목표">학습 목표</h2>
+<ol type="1">
+<li>분석 대상과 분석 방법을 아는지에 따라 분석 주제의 네 유형을 구분하고, 목표 시점에 따른 두 기획 방식을 비교한다.</li>
+<li>KDD, CRISP-DM, 빅데이터 분석 방법론의 단계를 순서대로 말하고, 단계마다 하는 일을 짝짓는다.</li>
+<li>사례를 보고 하향식 접근과 상향식 접근 가운데 어느 것인지 판단하고, 하향식 접근의 네 단계를 설명한다.</li>
+<li>분석 과제의 다섯 관리 영역과 프로젝트 관리의 열 가지 주제 그룹을 구분한다.</li>
+<li>학기 공통 자료로 풀 분석 과제 하나를 CRISP-DM의 단계에 맞춘 정의서로 작성한다.</li>
+</ol>
+</section>
+<section id="준비-사항" class="level2">
+<h2 class="anchored" data-anchor-id="준비-사항">준비 사항</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>실습 노트북</td>
+<td>없다. 따라 하기와 중심 실습은 표를 채우고 사례를 판별하는 활동이다</td>
+</tr>
+<tr class="even">
+<td>자료</td>
+<td>학기 공통 자료인 <code>transactions.csv</code>(거래 내역)와 <code>customers.csv</code>(고객 표). 이 장에서는 파일을 열지 않고 5절 「준비」의 설명을 읽는다</td>
+</tr>
+<tr class="odd">
+<td>앞 장과의 연계</td>
+<td>교재 01의 정형·반정형·비정형 데이터(1절), 암묵지와 형식지(1절), 빅데이터가 만든 변화(3절), 데이터 사이언스의 구성 영역(4절)을 전제로 한다</td>
+</tr>
+<tr class="even">
+<td>실습 환경</td>
+<td>이 장에서는 쓰지 않는다. 3부에서 쓰는 실습 환경은 부록 A에 있다</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="분석-기획의-방향" class="level2">
+<h2 class="anchored" data-anchor-id="분석-기획의-방향">1. 분석 기획의 방향</h2>
+<section id="분석-기획" class="level3">
+<h3 class="anchored" data-anchor-id="분석-기획">1.1 분석 기획</h3>
+<p>분석 기획은 실제 분석을 수행하기 전에 분석 과제를 정의하고, 의도한 결과를 얻을 수 있도록 관리 방안을 미리 계획하는 작업이다. 어떤 과제를(What), 왜(Why), 어떤 방법으로(How) 수행할지를 정한다.</p>
+<p>분석을 기획하는 사람에게는 세 영역의 역량이 고루 필요하다. 교재 01의 4절에서 본 데이터 사이언스의 세 영역(분석, IT, 비즈니스 분석)과 이어지는 내용이다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>영역</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>수학과 통계학의 지식</td>
+<td>분석 기법을 이해하고 결과를 해석하는 바탕</td>
+</tr>
+<tr class="even">
+<td>정보 기술</td>
+<td>데이터를 다루는 프로그래밍과 시스템의 기술</td>
+</tr>
+<tr class="odd">
+<td>해당 업무에 대한 이해</td>
+<td>분석 주제가 속한 업무 영역의 지식과 전문성</td>
+</tr>
+</tbody>
+</table>
+<p>기획은 세 영역 가운데 한쪽으로 치우치지 않아야 한다. 기법만 알고 업무를 모르면 쓸모없는 과제를 정하게 되고, 업무만 알고 기법을 모르면 실행할 수 없는 과제를 정하게 된다. ### 1.2 분석 주제의 유형</p>
+<p>분석 주제는 두 물음으로 나눈다. 무엇을 분석할지(분석 대상, What)를 아는가, 어떻게 분석할지(분석 방법, How)를 아는가이다. 두 물음의 답에 따라 네 유형이 나온다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>분석 방법을 안다</th>
+<th>분석 방법을 모른다</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>분석 대상을 안다</strong></td>
+<td>최적화(Optimization)</td>
+<td>솔루션(Solution)</td>
+</tr>
+<tr class="even">
+<td><strong>분석 대상을 모른다</strong></td>
+<td>통찰(Insight)</td>
+<td>발견(Discovery)</td>
+</tr>
+</tbody>
+</table>
+<p>솔루션은 ’해결’로 옮기기도 한다. 상점의 사례로 옮기면 다음과 같다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>유형</th>
+<th>상황</th>
+<th>하는 일</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>최적화</td>
+<td>품목군별 재고가 모자라거나 남는다는 문제를 알고, 지난 거래량으로 발주량을 계산하는 방법도 안다</td>
+<td>알고 있는 방법을 적용하여 결과를 더 좋게 만든다</td>
+</tr>
+<tr class="even">
+<td>솔루션</td>
+<td>반품이 늘어난 것이 문제라는 것은 알지만, 어떤 분석으로 원인을 찾을지 모른다</td>
+<td>문제에 맞는 분석 방법(해법)을 찾는다</td>
+</tr>
+<tr class="odd">
+<td>통찰</td>
+<td>고객을 묶는 군집 분석은 할 줄 알지만, 무엇을 알아낼지는 정해 두지 않았다</td>
+<td>아는 방법으로 자료를 살펴 새로운 분석 대상을 얻는다</td>
+</tr>
+<tr class="even">
+<td>발견</td>
+<td>무엇을 분석할지도, 어떻게 분석할지도 정해지지 않았다</td>
+<td>자료를 탐색하여 분석 대상 자체를 새로 찾는다</td>
+</tr>
+</tbody>
+</table>
+<p>네 유형은 고정된 것이 아니다. 발견으로 시작한 과제가 분석 대상이 정해지면 솔루션이나 최적화로 옮겨 간다. 유형은 과제에 붙은 이름이 아니라 그 시점에 무엇을 알고 있는가를 나타낸다.</p>
+<p>표를 외울 때에는 가로와 세로를 따로 기억한다. 분석 대상을 알면 윗줄(최적화, 솔루션)이고, 모르면 아랫줄(통찰, 발견)이다. 분석 방법을 알면 왼쪽 열(최적화, 통찰)이고, 모르면 오른쪽 열(솔루션, 발견)이다.</p>
+</section>
+<section id="목표-시점에-따른-기획-방식" class="level3">
+<h3 class="anchored" data-anchor-id="목표-시점에-따른-기획-방식">1.3 목표 시점에 따른 기획 방식</h3>
+<p>분석 기획은 목표로 삼는 시점에 따라 둘로 나눈다. 당면한 과제를 빠르게 해결하려는 과제 중심적 접근과, 분석을 조직에 지속적으로 내재화하려는 장기적 마스터 플랜 접근이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>구분</th>
+<th>과제 중심적 접근</th>
+<th>장기적 마스터 플랜 접근</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>목표 시점</td>
+<td>단기</td>
+<td>중장기</td>
+</tr>
+<tr class="even">
+<td>1차 목표</td>
+<td>속도와 시험(Speed &amp; Test)</td>
+<td>정확도와 전개(Accuracy &amp; Deploy)</td>
+</tr>
+<tr class="odd">
+<td>과제의 유형</td>
+<td>빠른 성과(Quick-Win)</td>
+<td>장기적 관점(Long Term View)</td>
+</tr>
+<tr class="even">
+<td>접근 방식</td>
+<td>문제 해결(Problem Solving)</td>
+<td>문제 정의(Problem Definition)</td>
+</tr>
+<tr class="odd">
+<td>상점의 예</td>
+<td>다음 달 할인 행사의 대상 품목군을 2주 안에 정한다</td>
+<td>3년에 걸쳐 고객 자료를 정비하고 분석 과제의 순서를 정한다</td>
+</tr>
+</tbody>
+</table>
+<p>두 방식은 어느 하나를 고르는 관계가 아니다. 과제 중심적 접근으로 이해관계자가 분석의 가치를 빠르게 확인하게 하고, 장기적 마스터 플랜 접근으로 과제들을 일관된 방향에 놓는다. 둘을 함께 쓰는 것이 바람직하다. 마스터 플랜은 교재 03에서 다룬다.</p>
+</section>
+<section id="분석-기획에서-고려할-것" class="level3">
+<h3 class="anchored" data-anchor-id="분석-기획에서-고려할-것">1.4 분석 기획에서 고려할 것</h3>
+<p>분석을 기획할 때에는 다음 세 가지를 미리 살핀다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>고려할 것</th>
+<th>내용</th>
+<th>상점의 예</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>가용 데이터(Available Data)</td>
+<td>분석에 쓸 데이터가 있는지를 먼저 확인한다. 데이터의 유형(정형, 반정형, 비정형)에 따라 쓸 수 있는 분석 방법과 도구가 달라진다</td>
+<td>거래 내역과 고객 표(정형)는 있다. 방문 기록(반정형)과 상품 후기(비정형)는 모아 두지 않았다</td>
+</tr>
+<tr class="even">
+<td>적절한 활용 사례(Proper Use Case)</td>
+<td>비슷한 분석이 이미 잘 구현되어 쓰이는 시나리오와 해법이 있으면 그것을 최대한 활용한다</td>
+<td>고객 세분화는 다른 유통 업종에 널리 쓰이는 사례가 있다</td>
+</tr>
+<tr class="odd">
+<td>장애 요소에 대한 사전 계획(Low Barrier of Execution)</td>
+<td>분석을 수행하고 결과를 쓰는 과정에서 걸림돌이 될 것을 미리 찾아 대비한다. 비용, 결과의 이해 가능성, 운영 환경에서의 성능, 조직에 정착시키기 위한 교육과 변화 관리가 여기에 든다</td>
+<td>분석 결과를 판촉 담당자가 이해하지 못하면 쓰이지 않는다. 설명할 수 있는 수준의 방법을 고른다</td>
+</tr>
+</tbody>
+</table>
+<p>일회성 분석으로 끝내지 않고 조직의 역량으로 남기려면 계속적인 교육과 활용 방안 같은 변화 관리를 기획 단계에서 함께 계획한다.</p>
+</section>
+<section id="혼동하기-쉬운-용어" class="level3">
+<h3 class="anchored" data-anchor-id="혼동하기-쉬운-용어">1.5 혼동하기 쉬운 용어</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>짝</th>
+<th>구분</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>솔루션과 통찰</td>
+<td>솔루션은 대상을 알고 방법을 모른다. 통찰은 방법을 알고 대상을 모른다. 표의 대각선에 놓인 둘을 바꾸어 놓은 보기에 유의한다</td>
+</tr>
+<tr class="even">
+<td>최적화와 발견</td>
+<td>둘 다 아는 것이 최적화, 둘 다 모르는 것이 발견이다</td>
+</tr>
+<tr class="odd">
+<td>과제 중심적 접근과 장기적 마스터 플랜 접근</td>
+<td>과제 중심은 속도와 시험, 빠른 성과, 문제 해결이다. 마스터 플랜은 정확도와 전개, 장기적 관점, 문제 정의다. 문제 해결과 문제 정의를 서로 바꾸어 놓은 보기에 유의한다</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="따라-하기" class="level3">
+<h3 class="anchored" data-anchor-id="따라-하기">따라 하기</h3>
+<p>상점에서 나온 여섯 가지 상황을 분석 주제의 유형으로 판별한다. 표를 공책에 옮기고 칸을 채운다. 두 물음의 답을 먼저 적고, 유형은 1.2절의 표에서 찾는다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>사례</th>
+<th>상황</th>
+<th>분석 대상을 아는가</th>
+<th>분석 방법을 아는가</th>
+<th>유형</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>가</td>
+<td>품목군별 월 매출 합계를 매달 그룹별 집계로 내어 보고한다</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>나</td>
+<td>가입한 뒤 첫 구매까지 걸리는 기간이 길어졌다. 이를 줄이고 싶으나 어떤 분석을 써야 할지 정하지 못했다</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>다</td>
+<td>군집 분석을 다룰 줄 아는 담당자가 고객 표를 이리저리 묶어 보며 쓸 만한 집단이 있는지 살핀다</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>라</td>
+<td>새로 생긴 부서가 상점의 자료로 무엇을 할 수 있을지 아무것도 정하지 않았다</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>마</td>
+<td>간편결제와 카드의 건당 금액 평균을 t-검정으로 견주기로 하였다</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>바</td>
+<td>할인 문자를 보낸 뒤 매출이 늘었는지 알고 싶으나 무엇을 어떻게 재야 할지 정하지 못했다</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><span class="check-badge">확인 1</span> 여섯 사례마다 두 물음의 답(안다, 모른다)을 적고 유형을 하나씩 정하였다.</li>
+<li><span class="check-badge">확인 2</span> 네 유형이 모두 한 번 이상 나왔고, 대상을 아는 사례(가, 나, 마, 바)는 모두 윗줄의 유형(최적화, 솔루션)에 놓였다.</li>
+</ul>
+<p>이어서 다음 두 과제가 과제 중심적 접근과 장기적 마스터 플랜 접근 가운데 어느 쪽에 가까운지 판별한다. (ㄱ) 다음 주 행사에 쓸 할인 쿠폰의 금액을 이번 주 안에 정한다. (ㄴ) 앞으로 세 해 동안 어떤 자료를 새로 모으고 어떤 분석을 차례로 도입할지 정한다.</p>
+<ul>
+<li><span class="check-badge">확인 3</span> (ㄱ)과 (ㄴ)을 두 접근에 하나씩 놓고, 각각의 1차 목표(속도와 시험, 정확도와 전개)를 함께 적었다.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="분석-방법론" class="level2">
+<h2 class="anchored" data-anchor-id="분석-방법론">2. 분석 방법론</h2>
+<section id="방법론의-필요성과-구성" class="level3">
+<h3 class="anchored" data-anchor-id="방법론의-필요성과-구성">2.1 방법론의 필요성과 구성</h3>
+<p>자료에 근거한 의사결정을 가로막는 요소로 다음 셋을 든다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>장애 요소</th>
+<th>뜻</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>고정 관념(Stereotype)</td>
+<td>이미 굳어진 생각에 따라 판단한다</td>
+</tr>
+<tr class="even">
+<td>편향된 생각(Bias)</td>
+<td>한쪽으로 치우친 경험이나 선호에 따라 판단한다</td>
+</tr>
+<tr class="odd">
+<td>프레이밍 효과(Framing Effect)</td>
+<td>같은 사실이라도 제시하는 틀에 따라 판단이 달라진다</td>
+</tr>
+</tbody>
+</table>
+<p>분석 방법론은 분석을 개인의 감각에 맡기지 않고, 누가 하더라도 일정한 품질로 되풀이할 수 있게 하는 절차의 체계다. 방법론은 다음 네 가지로 구성된다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>구성 요소</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>절차(Procedures)</td>
+<td>무엇을 어떤 순서로 하는가</td>
+</tr>
+<tr class="even">
+<td>방법(Methods)</td>
+<td>각 절차를 어떻게 수행하는가</td>
+</tr>
+<tr class="odd">
+<td>도구와 기법(Tools &amp; Techniques)</td>
+<td>수행에 쓰는 도구와 기법</td>
+</tr>
+<tr class="even">
+<td>템플릿과 산출물(Templates &amp; Outputs)</td>
+<td>채워 넣는 양식과 그 결과로 남는 문서</td>
+</tr>
+</tbody>
+</table>
+<p>방법론은 개인의 경험에서 만들어지고 다시 개인의 역량으로 돌아간다. 교재 01의 1절에서 본 암묵지와 형식지가 여기서 다시 쓰인다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>과정</th>
+<th>변화</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>형식화</td>
+<td>암묵지 → 형식지</td>
+<td>개인의 머릿속에 있던 경험을 문서로 적는다</td>
+</tr>
+<tr class="even">
+<td>체계화</td>
+<td>형식지 → 방법론</td>
+<td>문서를 절차, 방법, 도구로 정리하여 방법론으로 만든다</td>
+</tr>
+<tr class="odd">
+<td>내재화</td>
+<td>방법론 → 암묵지</td>
+<td>방법론을 익혀 개인의 역량으로 만든다</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="방법론의-모델" class="level3">
+<h3 class="anchored" data-anchor-id="방법론의-모델">2.2 방법론의 모델</h3>
+<p>방법론이 단계를 진행하는 방식은 소프트웨어 개발의 생명 주기 모델에서 빌려 온 세 모델로 설명한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>모델</th>
+<th>진행 방식</th>
+<th>특징</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>폭포수 모델(Waterfall Model)</td>
+<td>단계를 순차적으로 진행한다. 앞 단계의 결과를 확인해야 다음 단계로 간다</td>
+<td>하향식으로 진행한다. 문제가 발견되면 앞 단계로 되돌아가는 피드백을 둔다. 요구 사항이 바뀌면 대응하기 어렵다</td>
+</tr>
+<tr class="even">
+<td>프로토타입 모델(Prototype Model)</td>
+<td>일부분을 먼저 만들어 사용자에게 보이고, 써 본 결과를 반영하여 고친다</td>
+<td>사용자의 요구를 처음부터 분명히 알기 어려울 때 쓴다. 폭포수 모델의 단점을 보완한다</td>
+</tr>
+<tr class="odd">
+<td>나선형 모델(Spiral Model)</td>
+<td>같은 과정을 여러 번 반복하며 점증적으로 개발한다</td>
+<td>반복마다 위험을 분석한다. 처음 시도하는 프로젝트에 적용하기 쉽다. 반복을 관리하는 체계가 없으면 복잡도가 커진다</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="kdd-분석-방법론" class="level3">
+<h3 class="anchored" data-anchor-id="kdd-분석-방법론">2.3 KDD 분석 방법론</h3>
+<p>KDD(Knowledge Discovery in Databases)는 데이터베이스에서 의미 있는 지식을 찾아내는 절차를 다섯 단계로 정리한 방법론이다. 1996년에 페이야드(Fayyad) 등이 제시하였다. 데이터 마이닝은 KDD 전체 과정 가운데 한 단계의 이름이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>순서</th>
+<th>단계</th>
+<th>하는 일</th>
+<th>상점의 예</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>데이터 선택(Selection)</td>
+<td>업무 영역을 이해하고 분석 목표를 정한 뒤, 분석에 쓸 목표 데이터를 고른다</td>
+<td>2026년의 거래 내역과 고객 표를 분석 대상으로 고른다</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>전처리(Preprocessing)</td>
+<td>잡음, 이상값, 결측값을 찾아 없애거나 다시 처리하여 일관된 데이터를 얻는다</td>
+<td>금액이 0원인 거래, 고객 번호가 빈 거래가 있는지 살핀다</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>변환(Transformation)</td>
+<td>분석 목적에 맞게 변수를 만들거나 고르고, 차원을 줄인다. 훈련용 자료와 검증용 자료로 나눈다</td>
+<td>고객별 거래 횟수와 금액 합계를 만들고, 고객을 두 묶음으로 나눈다</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>데이터 마이닝(Data Mining)</td>
+<td>분석 목적에 맞는 기법과 알고리즘을 골라 적용하여 패턴을 찾는다</td>
+<td>의사결정나무로 가전 구매 고객을 분류한다</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>해석과 평가(Interpretation/Evaluation)</td>
+<td>찾은 패턴을 해석하고 분석 목표에 맞는지 평가한다. 얻은 지식을 업무에 활용한다</td>
+<td>분류 결과가 안내 문자 발송에 쓸 만한지 판단한다</td>
+</tr>
+</tbody>
+</table>
+<p>전처리 단계에서 데이터가 더 필요하다고 드러나면 데이터 선택 단계를 다시 수행한다. 다른 단계에서도 필요하면 앞 단계로 되돌아간다.</p>
+</section>
+<section id="crisp-dm-분석-방법론" class="level3">
+<h3 class="anchored" data-anchor-id="crisp-dm-분석-방법론">2.4 CRISP-DM 분석 방법론</h3>
+<p>CRISP-DM(Cross Industry Standard Process for Data Mining)은 업종에 관계없이 쓸 수 있도록 만든 데이터 마이닝의 표준 절차다. 1990년대 후반에 여러 기업이 모인 컨소시엄이 만들었고, 2000년에 1.0판 안내서가 나왔다. 네 수준의 계층과 여섯 단계로 구성된다.</p>
+<p><strong>네 수준</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>수준</th>
+<th>이름</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>단계(Phases)</td>
+<td>가장 위의 수준. 여섯 단계다</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>일반화 태스크(Generic Tasks)</td>
+<td>단계를 구성하는 일의 단위. 예: 데이터 정제</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>세분화 태스크(Specialized Tasks)</td>
+<td>일반화 태스크를 구체적인 상황에 맞게 나눈 것. 예: 수치형 열의 정제, 범주형 열의 정제</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>프로세스 실행(Process Instances)</td>
+<td>실제 분석에서 수행한 구체적인 실행</td>
+</tr>
+</tbody>
+</table>
+<p><strong>여섯 단계</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>순서</th>
+<th>단계</th>
+<th>하는 일</th>
+<th>주요 태스크</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>업무 이해(Business Understanding)</td>
+<td>업무의 관점에서 프로젝트의 목적과 요구 사항을 이해하고, 이를 분석의 목표로 바꾼다</td>
+<td>업무 목적 파악, 상황 파악, 데이터 마이닝 목표 설정, 프로젝트 계획 수립</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>데이터 이해(Data Understanding)</td>
+<td>데이터를 모으고 속성을 파악하며 품질의 문제를 찾는다</td>
+<td>초기 데이터 수집, 데이터 기술 분석, 데이터 탐색, 데이터 품질 확인</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>데이터 준비(Data Preparation)</td>
+<td>분석 기법에 맞는 분석용 데이터 세트를 만든다</td>
+<td>분석용 데이터 세트 선택, 데이터 정제, 분석용 데이터 세트 편성, 데이터 통합, 데이터 포맷팅</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>모델링(Modeling)</td>
+<td>기법과 알고리즘을 골라 모형을 만들고 기술적으로 평가한다</td>
+<td>모델링 기법 선택, 모델 테스트 계획 설계, 모델 작성, 모델 평가</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>평가(Evaluation)</td>
+<td>모형이 처음에 정한 업무 목적에 맞는지 평가하고, 결과를 받아들일지 판단한다</td>
+<td>분석 결과 평가, 모델링 과정 평가, 모델 적용성 평가</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>전개(Deployment)</td>
+<td>모형을 실제 업무에 적용할 계획을 세우고 프로젝트를 마무리한다</td>
+<td>전개 계획 수립, 모니터링과 유지보수 계획 수립, 프로젝트 종료 보고서 작성, 프로젝트 리뷰</td>
+</tr>
+</tbody>
+</table>
+<p>데이터 준비는 시간이 가장 많이 드는 단계다. CRISP-DM의 안내서 가운데 하나는 데이터 준비에 프로젝트 시간과 노력의 50~70%가 드는 것으로 추정한다. <strong>단계 사이의 되돌아감</strong></p>
+<p>CRISP-DM의 단계는 한 방향으로만 흐르지 않는다. 단계의 순서는 엄격하지 않으며, 대부분의 프로젝트는 필요에 따라 단계 사이를 오간다. 폭포수 모델처럼 차례로 끝내는 것이 아니라, 앞 단계로 되돌아가며 완성도를 높인다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>되돌아가는 자리</th>
+<th>까닭</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>업무 이해 ↔︎ 데이터 이해</td>
+<td>데이터를 살펴보면 업무의 목적을 다시 잡아야 할 때가 있다</td>
+</tr>
+<tr class="even">
+<td>데이터 준비 ↔︎ 모델링</td>
+<td>모형을 만들다 보면 변수를 더 만들거나 데이터를 다시 정제해야 할 때가 있다</td>
+</tr>
+<tr class="odd">
+<td>평가 → 업무 이해</td>
+<td>평가에서 결과가 업무 목적에 맞지 않으면 처음으로 돌아가 목적과 과제를 다시 정한다</td>
+</tr>
+</tbody>
+</table>
+<p>전개가 끝난 뒤에도 운영에서 얻은 경험으로 다음 분석을 시작하므로, 여섯 단계 전체가 하나의 순환을 이룬다.</p>
+<p><strong>KDD와의 대응</strong></p>
+<p>두 방법론은 단계의 수와 이름이 다르지만 하는 일은 겹친다. KDD의 다섯 단계에는 CRISP-DM의 업무 이해와 전개에 해당하는 독립된 단계가 없다. KDD의 데이터 선택 단계가 업무 영역의 이해와 목표 설정을 언급하지만, CRISP-DM은 이를 업무 이해라는 첫 단계로 따로 둔다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>KDD</th>
+<th>CRISP-DM</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(대응하는 단계가 없다)</td>
+<td>업무 이해</td>
+</tr>
+<tr class="even">
+<td>데이터 선택, 전처리</td>
+<td>데이터 이해</td>
+</tr>
+<tr class="odd">
+<td>변환</td>
+<td>데이터 준비</td>
+</tr>
+<tr class="even">
+<td>데이터 마이닝</td>
+<td>모델링</td>
+</tr>
+<tr class="odd">
+<td>해석과 평가</td>
+<td>평가</td>
+</tr>
+<tr class="even">
+<td>(대응하는 단계가 없다)</td>
+<td>전개</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="빅데이터-분석-방법론" class="level3">
+<h3 class="anchored" data-anchor-id="빅데이터-분석-방법론">2.5 빅데이터 분석 방법론</h3>
+<p>빅데이터 분석 방법론은 세 계층과 다섯 단계로 구성된다.</p>
+<p><strong>세 계층</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>계층</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>단계(Phase)</td>
+<td>가장 위의 계층. 단계마다 산출물이 만들어진다. 산출물은 기준선(Baseline)으로 설정하여 관리하고 버전 관리로 통제한다</td>
+</tr>
+<tr class="even">
+<td>태스크(Task)</td>
+<td>단계를 구성하는 단위 활동. 물리적 또는 논리적 단위로 품질을 검토하는 대상이다</td>
+</tr>
+<tr class="odd">
+<td>스텝(Step)</td>
+<td>태스크를 구성하는 가장 작은 단위. 작업 분할 구조도(WBS)의 워크 패키지에 해당한다. 입력 자료, 처리와 도구, 출력 자료로 구성된 단위 프로세스다</td>
+</tr>
+</tbody>
+</table>
+<p><strong>다섯 단계와 주요 태스크</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>순서</th>
+<th>단계</th>
+<th>하는 일</th>
+<th>주요 태스크</th>
+<th>주요 산출물</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>분석 기획(Planning)</td>
+<td>업무를 이해하고 프로젝트의 범위, 계획, 위험 대응을 정한다</td>
+<td>비즈니스 이해 및 범위 설정, 프로젝트 정의 및 계획 수립, 프로젝트 위험 계획 수립</td>
+<td>프로젝트 범위 정의서, 수행 계획서</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>데이터 준비(Preparing)</td>
+<td>필요한 데이터를 정의하고, 저장할 곳을 설계하고, 수집하여 정합성을 점검한다</td>
+<td>필요 데이터 정의, 데이터 스토어 설계, 데이터 수집 및 정합성 점검</td>
+<td>데이터 정의서, 데이터 스토어</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>데이터 분석(Analyzing)</td>
+<td>분석용 데이터를 만들어 탐색하고, 모형을 만들어 평가하고 검증한다</td>
+<td>분석용 데이터 준비, 텍스트 분석, 탐색적 분석, 모델링, 모델 평가 및 검증</td>
+<td>분석용 데이터 세트, 모델 평가 보고서</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>시스템 구현(Developing)</td>
+<td>분석 결과를 운영 중인 시스템에 적용하거나 시험용 시스템을 만든다</td>
+<td>설계 및 구현, 시스템 테스트 및 운영</td>
+<td>시스템 설계서, 운영 지침서</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>평가 및 전개(Deploying)</td>
+<td>프로젝트의 성과를 평가하고 모형의 발전 계획을 세운 뒤 마무리한다</td>
+<td>모델 발전 계획 수립, 프로젝트 평가 및 보고</td>
+<td>모델 발전 계획서, 최종 보고서</td>
+</tr>
+</tbody>
+</table>
+<p>데이터 분석 단계에서 데이터가 모자라다고 드러나면 데이터 준비 단계로 되돌아간다. 두 단계는 필요한 만큼 반복한다.</p>
+<p>분석 기획 단계에서는 프로젝트 범위 정의서(SOW, Statement of Work), 작업 분할 구조도(WBS)가 든 수행 계획서, 위험 관리 계획서를 만든다. 위험에 대응하는 방법은 회피(Avoid), 전이(Transfer), 완화(Mitigate), 수용(Accept)의 넷이다.</p>
+</section>
+<section id="혼동하기-쉬운-용어-1" class="level3">
+<h3 class="anchored" data-anchor-id="혼동하기-쉬운-용어-1">2.6 혼동하기 쉬운 용어</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>짝</th>
+<th>구분</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>단계의 수</td>
+<td>KDD는 다섯, CRISP-DM은 여섯, 빅데이터 분석 방법론은 다섯이다</td>
+</tr>
+<tr class="even">
+<td>계층</td>
+<td>CRISP-DM은 네 수준(단계, 일반화 태스크, 세분화 태스크, 프로세스 실행)이다. 빅데이터 분석 방법론은 세 계층(단계, 태스크, 스텝)이다</td>
+</tr>
+<tr class="odd">
+<td>KDD의 전처리와 변환</td>
+<td>전처리는 잡음, 이상값, 결측값을 처리한다. 변환은 변수를 만들고 고르며 차원을 줄이고, 훈련용과 검증용으로 나눈다</td>
+</tr>
+<tr class="even">
+<td>CRISP-DM의 데이터 이해와 데이터 준비</td>
+<td>데이터 이해는 수집, 기술 분석, 탐색, 품질 확인이다. 데이터 준비는 선택, 정제, 편성, 통합, 포맷팅이다. 품질 확인은 데이터 이해에, 정제와 통합은 데이터 준비에 속한다</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="따라-하기-1" class="level3">
+<h3 class="anchored" data-anchor-id="따라-하기-1">따라 하기</h3>
+<p>상점이 ‘재구매 고객 예측’ 과제를 진행하며 한 활동 여섯 개가 순서 없이 놓여 있다. 활동마다 CRISP-DM의 단계를 적고, 단계의 순서대로 기호를 늘어놓는다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>기호</th>
+<th>활동</th>
+<th>CRISP-DM의 단계</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ㄱ</td>
+<td>고객별 거래 횟수와 금액 합계를 새 열로 만들고 두 표를 <code>고객ID</code>로 합친다</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>ㄴ</td>
+<td>“재구매율을 높인다”는 상점의 목적을 “다음 분기에 다시 살 고객을 맞힌다”는 물음으로 바꾸어 적는다</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>ㄷ</td>
+<td>고른 모형의 결과를 판촉 문자 발송 절차에 넣고, 달마다 결과를 점검할 계획을 세운다</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>ㄹ</td>
+<td>두 표의 열과 건수를 살피고 빈칸과 이상한 값이 있는지 확인한다</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>ㅁ</td>
+<td>의사결정나무와 로지스틱 회귀를 만들어 검증용 자료에서 맞힌 비율을 견준다</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>ㅂ</td>
+<td>고른 모형이 재구매율 향상이라는 처음 목적에 쓸 만한지 판촉 담당자와 검토한다</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><span class="check-badge">확인 4</span> 여섯 활동에 단계를 하나씩 적었고, 여섯 단계가 모두 한 번씩 쓰였다.</li>
+<li><span class="check-badge">확인 5</span> 단계의 순서대로 늘어놓은 결과가 ㄴ, ㄹ, ㄱ, ㅁ, ㅂ, ㄷ이다.</li>
+<li><span class="check-badge">확인 6</span> ㅁ과 ㅂ을 서로 다른 단계에 놓은 까닭을 ’기술적 평가’와 ’업무 목적’이라는 말을 넣어 한 줄로 적었다.</li>
+</ul>
+<p>이어서 빅데이터 분석 방법론의 태스크 다섯 개(데이터 스토어 설계, 탐색적 분석, 프로젝트 위험 계획 수립, 시스템 테스트 및 운영, 모델 발전 계획 수립)를 다섯 단계에 하나씩 놓는다. 마지막으로 KDD의 다섯 단계를 2.4절의 대응표 없이 CRISP-DM의 단계 옆에 적어 본다.</p>
+<ul>
+<li><span class="check-badge">확인 7</span> 다섯 태스크가 다섯 단계에 하나씩 놓였고, KDD에 대응하는 단계가 없는 CRISP-DM의 단계로 업무 이해와 전개를 적었다.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="분석-과제-발굴" class="level2">
+<h2 class="anchored" data-anchor-id="분석-과제-발굴">3. 분석 과제 발굴</h2>
+<section id="하향식-접근과-상향식-접근" class="level3">
+<h3 class="anchored" data-anchor-id="하향식-접근과-상향식-접근">3.1 하향식 접근과 상향식 접근</h3>
+<p>분석 과제를 찾는 길은 둘이다. 문제에서 출발하는 하향식 접근(Top-Down Approach)과 데이터에서 출발하는 상향식 접근(Bottom-Up Approach)이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>구분</th>
+<th>하향식 접근</th>
+<th>상향식 접근</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>출발점</td>
+<td>풀어야 할 문제</td>
+<td>가지고 있는 데이터</td>
+</tr>
+<tr class="even">
+<td>쓰는 때</td>
+<td>문제가 분명히 주어져 있을 때</td>
+<td>문제를 정의하기 어려울 때</td>
+</tr>
+<tr class="odd">
+<td>물음의 관점</td>
+<td>왜(Why) 그런 일이 생기는가</td>
+<td>무엇이(What) 데이터에 있는가</td>
+</tr>
+<tr class="even">
+<td>진행</td>
+<td>문제 탐색 → 문제 정의 → 해결 방안 탐색 → 타당성 검토</td>
+<td>데이터를 먼저 살피고, 결과를 보며 문제를 찾아 고쳐 나간다</td>
+</tr>
+<tr class="odd">
+<td>주로 쓰는 분석</td>
+<td>정의한 문제에 맞추어 해결 방안 탐색에서 고른 분석</td>
+<td>목표 값이 없는 분석. 비지도 학습이 대표적이다</td>
+</tr>
+<tr class="even">
+<td>어울리는 분석 주제의 유형</td>
+<td>분석 대상이 정해진 경우(최적화, 솔루션)</td>
+<td>분석 대상 자체를 찾는 경우(통찰, 발견)</td>
+</tr>
+</tbody>
+</table>
+<p>실제 과제 발굴에서는 두 접근을 섞어 쓴다. 가능한 방안을 넓게 찾는 발산(Diverge)의 단계는 상향식 접근에 해당하고, 그 가운데 고르고 검증하는 수렴(Converge)의 단계는 하향식 접근에 해당한다. 디자인 싱킹(Design Thinking)은 발산과 수렴을 되풀이하여 과제를 찾는 방법이다.</p>
+</section>
+<section id="하향식-접근의-네-단계" class="level3">
+<h3 class="anchored" data-anchor-id="하향식-접근의-네-단계">3.2 하향식 접근의 네 단계</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>순서</th>
+<th>단계</th>
+<th>하는 일</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>문제 탐색(Problem Discovery)</td>
+<td>업무 전체를 빠짐없이 훑어 풀어야 할 문제를 찾아낸다. 해법보다 문제를 놓치지 않는 것이 중요하다</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>문제 정의(Problem Definition)</td>
+<td>찾아낸 업무의 문제를 데이터의 문제로 바꾸어 정의한다</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>해결 방안 탐색(Solution Search)</td>
+<td>정의한 문제를 풀 분석 기법과 시스템, 역량을 찾는다</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>타당성 검토(Feasibility Study)</td>
+<td>경제적 타당성과 데이터·기술적 타당성을 검토하여 과제로 확정할지 정한다</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="문제-탐색" class="level3">
+<h3 class="anchored" data-anchor-id="문제-탐색">3.3 문제 탐색</h3>
+<p>문제 탐색은 세 가지 방법으로 한다.</p>
+<p><strong>비즈니스 모델 기반 문제 탐색.</strong> 기업의 비즈니스 모델을 단순화하여 업무, 제품, 고객의 세 단위로 문제를 찾고, 이를 관리하는 두 영역인 규제와 감사, 지원 인프라를 더한다. 모두 다섯 영역이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>영역</th>
+<th>살피는 것</th>
+<th>상점의 과제 예</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>업무(Operation)</td>
+<td>제품과 서비스를 만들고 제공하기 위한 내부 프로세스와 주요 자원</td>
+<td>품목군별 재고량의 최적화</td>
+</tr>
+<tr class="even">
+<td>제품(Product)</td>
+<td>생산하고 제공하는 제품과 서비스의 개선</td>
+<td>품목군별 판매 현황의 점검</td>
+</tr>
+<tr class="odd">
+<td>고객(Customer)</td>
+<td>제품과 서비스를 받는 고객, 그리고 고객에게 닿는 채널</td>
+<td>결제수단별 이용 고객의 특성 파악</td>
+</tr>
+<tr class="even">
+<td>규제와 감사(Regulation &amp; Audit)</td>
+<td>제품의 생산과 전달 과정에서 생기는 규제와 보안</td>
+<td>부정 결제의 탐지, 개인정보 처리 기록의 점검</td>
+</tr>
+<tr class="odd">
+<td>지원 인프라(IT &amp; Human Resource)</td>
+<td>분석을 수행하는 시스템과 이를 운영하는 인력</td>
+<td>주문이 몰리는 시기의 서버 증설 시점 예측, 상담 인력의 배치</td>
+</tr>
+</tbody>
+</table>
+<p>지금의 사업 방식에서 벗어나 새로운 문제를 찾으려면 탐색의 범위를 넓힌다. 관점은 넷이다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>관점</th>
+<th>살피는 것</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>거시적 관점</td>
+<td>사회, 기술, 경제, 환경, 정치의 변화(STEEP)</td>
+</tr>
+<tr class="even">
+<td>경쟁자 확대 관점</td>
+<td>대체재, 경쟁자, 신규 진입자</td>
+</tr>
+<tr class="odd">
+<td>시장의 요구 탐색 관점</td>
+<td>고객, 채널, 영향자</td>
+</tr>
+<tr class="even">
+<td>역량의 재해석 관점</td>
+<td>내부 역량, 협력사와 네트워크</td>
+</tr>
+</tbody>
+</table>
+<p><strong>외부 참조 모델 기반 문제 탐색.</strong> 같은 업종이나 비슷한 업종의 분석 사례를 견주어 보고(벤치마킹), 자기 회사에 적용할 과제를 빠르게 찾는다. <strong>분석 유스케이스 정의.</strong> 찾아낸 문제를 문제의 상황, 해결했을 때의 효과와 함께 적어 둔다. 이것이 다음 단계인 문제 정의의 입력이 된다.</p>
+</section>
+<section id="문제-정의-해결-방안-탐색-타당성-검토" class="level3">
+<h3 class="anchored" data-anchor-id="문제-정의-해결-방안-탐색-타당성-검토">3.4 문제 정의, 해결 방안 탐색, 타당성 검토</h3>
+<p><strong>문제 정의.</strong> 업무의 문제를 데이터의 문제로 바꾼다. 필요한 데이터와 기법을 정하려면 문제가 데이터의 말로 적혀 있어야 한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>업무의 문제</th>
+<th>데이터의 문제</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>한 번 사고 다시 오지 않는 고객이 많다</td>
+<td>고객별 거래 횟수와 마지막 거래일을 구하고, 재구매 여부에 영향을 주는 변수를 찾는다</td>
+</tr>
+<tr class="even">
+<td>간편결제 할인을 계속할지 정해야 한다</td>
+<td>간편결제 거래와 카드 거래의 건당 금액 평균이 다른지 검정한다</td>
+</tr>
+</tbody>
+</table>
+<p><strong>해결 방안 탐색.</strong> 지금의 시스템으로 분석할 수 있는가, 분석 역량을 가지고 있는가의 두 물음에 따라 방안이 넷으로 갈린다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>분석 역량이 있다</th>
+<th>분석 역량이 없다</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>기존 시스템으로 가능하다</strong></td>
+<td>기존 시스템을 개선하여 활용한다</td>
+<td>교육과 채용으로 역량을 확보한다</td>
+</tr>
+<tr class="even">
+<td><strong>새 기법과 시스템이 필요하다</strong></td>
+<td>시스템을 고도화한다</td>
+<td>전문 업체에 맡긴다</td>
+</tr>
+</tbody>
+</table>
+<p><strong>타당성 검토.</strong> 다음 두 가지를 검토한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>타당성</th>
+<th>검토하는 것</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>경제적 타당성</td>
+<td>비용 대비 편익. 데이터, 시스템, 인력, 유지보수에 드는 비용과 분석 결과로 얻는 경제적 가치를 견준다</td>
+</tr>
+<tr class="even">
+<td>데이터 및 기술적 타당성</td>
+<td>데이터가 있는가, 분석 시스템의 환경이 갖추어져 있는가, 분석 역량이 있는가</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="상향식-접근" class="level3">
+<h3 class="anchored" data-anchor-id="상향식-접근">3.5 상향식 접근</h3>
+<p>문제가 분명하지 않으면 하향식 접근의 첫 단계인 문제 탐색부터 막힌다. 상향식 접근은 가지고 있는 데이터를 먼저 분석하고, 그 결과에서 문제를 찾아 계속 고쳐 나간다.</p>
+<ul>
+<li><strong>비지도 학습.</strong> 상향식 접근의 분석은 주로 비지도 학습으로 한다. 목표 값을 정하지 않고 데이터 자체의 결합, 연관성, 유사성을 살피는 방법이다. 군집 분석, 연관 분석이 여기에 든다. 정해진 목표 값을 맞히도록 학습하는 지도 학습(분류, 회귀)과 구분한다.</li>
+<li><strong>상관 관계의 분석.</strong> 원인을 따져 묻는 대신 함께 나타나는 것을 먼저 찾는다. 교재 01의 3절에서 본 “인과 관계에서 상관 관계로”의 변화와 이어진다.</li>
+<li><strong>프로토타이핑 접근법.</strong> 일단 분석을 시도해 보고, 결과를 확인하면서 반복하여 고쳐 나가는 방법이다. 완전하지 않더라도 신속하게 모형을 만들어 보이고, 사용자가 그것을 보며 문제를 더 분명히 알게 한다.</li>
+</ul>
+<p>프로토타이핑이 필요한 까닭은 셋이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>까닭</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>문제에 대한 인식 수준</td>
+<td>문제를 정확히 알지 못하거나 새로운 문제일 때, 시험용 모형으로 문제를 이해하고 구체화한다</td>
+</tr>
+<tr class="even">
+<td>필요 데이터 존재 여부의 불확실성</td>
+<td>필요한 데이터가 있는지 불확실할 때, 대체할 데이터를 사용자와 반복하여 협의한다</td>
+</tr>
+<tr class="odd">
+<td>데이터 사용 목적의 가변성</td>
+<td>데이터의 가치는 처음 정한 목적에 고정되지 않는다. 쓰임이 바뀌거나 넓어질 수 있다</td>
+</tr>
+</tbody>
+</table>
+<p>프로토타이핑은 다음 순서를 되풀이한다.</p>
+<blockquote class="blockquote">
+<p>가설의 생성 → 디자인에 대한 실험 → 실제 환경에서의 테스트 → 테스트 결과에서 통찰 도출과 가설 확인</p>
+</blockquote>
+</section>
+<section id="분석-과제-정의서" class="level3">
+<h3 class="anchored" data-anchor-id="분석-과제-정의서">3.6 분석 과제 정의서</h3>
+<p>하향식 접근이나 상향식 접근으로 찾은 과제는 분석 과제 정의서로 정리한다. 정의서는 과제의 내용을 한곳에 적은 문서이며, 프로젝트를 수행하는 계획의 입력으로 쓰인다. 다음 항목을 적는다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>소스 데이터</td>
+<td>분석에 쓰는 데이터와 그 출처</td>
+</tr>
+<tr class="even">
+<td>분석 방법</td>
+<td>적용할 분석 기법</td>
+</tr>
+<tr class="odd">
+<td>데이터 입수와 분석의 난이도</td>
+<td>데이터를 구하기 쉬운가, 분석이 어려운가</td>
+</tr>
+<tr class="even">
+<td>분석 수행 주기</td>
+<td>한 번 하는 분석인가, 주기적으로 되풀이하는가</td>
+</tr>
+<tr class="odd">
+<td>분석 결과의 검증 책임</td>
+<td>결과가 맞는지를 누가 확인하는가(검증 오너십)</td>
+</tr>
+<tr class="even">
+<td>상세 분석 과정</td>
+<td>분석을 진행하는 구체적인 절차</td>
+</tr>
+</tbody>
+</table>
+<p>5절의 중심 실습에서 이 정의서를 CRISP-DM의 단계에 맞춘 양식으로 작성한다.</p>
+</section>
+<section id="혼동하기-쉬운-용어-2" class="level3">
+<h3 class="anchored" data-anchor-id="혼동하기-쉬운-용어-2">3.7 혼동하기 쉬운 용어</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>짝</th>
+<th>구분</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>하향식과 상향식</td>
+<td>하향식은 문제에서, 상향식은 데이터에서 출발한다. 하향식은 왜(Why), 상향식은 무엇(What)의 관점이다</td>
+</tr>
+<tr class="even">
+<td>문제 탐색과 문제 정의</td>
+<td>문제 탐색은 업무의 문제를 찾아내는 단계다. 문제 정의는 그것을 데이터의 문제로 바꾸는 단계다</td>
+</tr>
+<tr class="odd">
+<td>프로토타입 모델과 프로토타이핑 접근법</td>
+<td>프로토타입 모델은 방법론의 진행 방식(2.2절)이다. 프로토타이핑 접근법은 상향식으로 과제를 찾는 방법이다. 먼저 만들어 보고 고친다는 생각은 같다</td>
+</tr>
+<tr class="even">
+<td>발산과 수렴</td>
+<td>발산은 상향식, 수렴은 하향식에 해당한다</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="따라-하기-2" class="level3">
+<h3 class="anchored" data-anchor-id="따라-하기-2">따라 하기</h3>
+<p>다음 다섯 사례가 하향식 접근인지 상향식 접근인지 판별한다. 하향식이면 그 과제가 비즈니스 모델의 다섯 영역 가운데 어디에 속하는지도 적는다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>사례</th>
+<th>상황</th>
+<th>접근</th>
+<th>영역(하향식일 때)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>가</td>
+<td>경영 회의에서 “가전의 반품률을 낮추라”는 지시가 내려와, 반품의 원인이 될 만한 것을 목록으로 만든다</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>나</td>
+<td>쌓인 거래 내역을 연관 분석으로 살피다가, 도서와 식품이 같은 날 함께 팔리는 경우가 많은 것을 보고 묶음 판촉을 과제로 삼는다</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>다</td>
+<td>주문이 몰린 달에 서버가 멈춘 일이 있어, 접속량을 예측하여 증설 시점을 정하는 과제를 세운다</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>라</td>
+<td>정해 둔 과제 없이 고객 표와 거래 내역을 군집 분석으로 묶어 보며 집단마다 특징을 적는다</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>마</td>
+<td>간편결제 고객과 카드 고객이 어떤 경로로 상점에 들어오는지 파악하여 경로별 안내를 달리하려 한다</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><span class="check-badge">확인 8</span> 다섯 사례를 하향식과 상향식으로 나누었고, 판단의 근거로 “문제가 먼저 주어졌는가”에 대한 답을 사례마다 적었다.</li>
+<li><span class="check-badge">확인 9</span> 하향식으로 판별한 세 사례에 다섯 영역 가운데 하나씩(제품, 지원 인프라, 고객)을 붙였다.</li>
+</ul>
+<p>이어서 사례 가의 업무 문제를 3.4절의 표처럼 데이터의 문제로 바꾸어 한 문장으로 쓴다. 그 문장에 필요한 열이 5절 「준비」의 두 표에 있는지 확인한다.</p>
+<ul>
+<li><span class="check-badge">확인 10</span> 데이터의 말로 바꾼 문장을 썼고, 거기에 필요한 반품 기록이 학기 공통 자료에 없다는 점을 ’데이터 및 기술적 타당성’의 문제로 적었다.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="분석-프로젝트-관리" class="level2">
+<h2 class="anchored" data-anchor-id="분석-프로젝트-관리">4. 분석 프로젝트 관리</h2>
+<section id="분석-과제의-관리-영역" class="level3">
+<h3 class="anchored" data-anchor-id="분석-과제의-관리-영역">4.1 분석 과제의 관리 영역</h3>
+<p>분석 프로젝트는 범위, 일정, 품질, 위험, 의사소통 같은 일반적인 관리 항목에 더하여 다음 다섯 영역을 관리한다. 분석 과제에만 있는 특성이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>영역</th>
+<th>관리하는 것</th>
+<th>상점의 예</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>데이터 크기(Data Size)</td>
+<td>분석할 데이터의 양. 양에 따라 저장과 처리의 방식이 달라진다</td>
+<td>거래 428건은 한 대의 PC로 다룬다. 방문 기록 수억 건은 그럴 수 없다</td>
+</tr>
+<tr class="even">
+<td>데이터 복잡도(Data Complexity)</td>
+<td>데이터의 유형과 출처의 다양함. 정형 데이터만 쓰는가, 비정형 데이터와 여러 시스템의 데이터를 합치는가</td>
+<td>거래 내역(정형)에 상품 후기(비정형)를 더하면 복잡도가 커진다</td>
+</tr>
+<tr class="odd">
+<td>속도(Speed)</td>
+<td>분석 결과가 필요한 시점. 하루나 주 단위로 모아 처리해도 되는가, 실시간으로 처리해야 하는가</td>
+<td>월 매출 보고는 모아서 처리한다. 부정 결제의 탐지는 결제 순간에 판단해야 한다</td>
+</tr>
+<tr class="even">
+<td>분석 복잡도(Analytic Complexity)</td>
+<td>모형의 복잡함. 모형이 복잡할수록 정확도는 오르지만 해석하기 어려워진다</td>
+<td>판촉 담당자가 이해할 수 있는 모형과 가장 잘 맞히는 모형 사이에서 기준점을 정한다</td>
+</tr>
+<tr class="odd">
+<td>정확도와 정밀도(Accuracy &amp; Precision)</td>
+<td>정확도는 모형의 결과와 실제 값의 차이가 작은 정도다. 정밀도는 모형을 되풀이해 썼을 때 결과가 흩어지는 정도가 작은 것, 곧 일관성이다</td>
+<td>다음 달 매출 예측이 실제와 가까우면 정확하다. 자료를 바꾸어 다시 예측해도 값이 비슷하면 정밀하다</td>
+</tr>
+</tbody>
+</table>
+<p>분석 복잡도와 정확도는 한쪽을 올리면 다른 쪽을 내주어야 하는 관계(상충 관계)에 있다. 해석할 수 있으면서 정확도가 충분한 모형을 찾는 것이 관리의 목표다. 정확도와 정밀도 사이에도 상충 관계가 있는 경우가 많으므로, 모형을 쓰는 목적에 맞추어 어느 쪽을 앞세울지 정한다. 분석 결과를 활용하는 측면에서는 정확도가 중요하고, 모형의 안정성 측면에서는 정밀도가 중요하다.</p>
+</section>
+<section id="분석-프로젝트의-특성" class="level3">
+<h3 class="anchored" data-anchor-id="분석-프로젝트의-특성">4.2 분석 프로젝트의 특성</h3>
+<ul>
+<li>분석가는 데이터의 영역과 업무의 영역 사이에서 둘을 잇는 조정자의 역할을 한다. 분석 기법만이 아니라 프로젝트 관리의 역량도 필요하다.</li>
+<li>분석 프로젝트는 처음에 의도한 결과가 한 번에 나오지 않는다. 데이터와 모형을 바꾸어 가며 반복하므로 범위와 일정이 처음 계획에서 자주 벗어난다.</li>
+</ul>
+</section>
+<section id="프로젝트-관리의-주제-그룹" class="level3">
+<h3 class="anchored" data-anchor-id="프로젝트-관리의-주제-그룹">4.3 프로젝트 관리의 주제 그룹</h3>
+<p>프로젝트 관리의 국제 표준인 ISO 21500은 관리할 주제를 열 개의 주제 그룹으로 나누고, 관리의 진행을 착수, 기획, 실행, 통제, 종료의 다섯 프로세스 그룹으로 나눈다. 분석 프로젝트에서는 주제 그룹마다 유의할 점이 있다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>주제 그룹</th>
+<th>분석 프로젝트에서 유의할 점</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>통합(Integration)</td>
+<td>프로젝트 관리의 여러 프로세스를 하나로 묶어 운영한다</td>
+</tr>
+<tr class="even">
+<td>이해관계자(Stakeholder)</td>
+<td>데이터 전문가, 업무 전문가, 분석 전문가, 시스템 전문가처럼 다양한 전문가가 참여하므로 이해관계자를 식별하고 관리한다</td>
+</tr>
+<tr class="odd">
+<td>범위(Scope)</td>
+<td>분석을 진행하면서 데이터의 형태와 양, 적용하는 알고리즘에 따라 범위가 자주 바뀐다. 결과물이 보고서인지 시스템인지를 미리 정해 둔다</td>
+</tr>
+<tr class="even">
+<td>자원(Resource)</td>
+<td>분석 전문가가 부족하므로 인력의 확보 방안을 미리 검토한다</td>
+</tr>
+<tr class="odd">
+<td>시간(Time)</td>
+<td>의도한 결과가 한 번에 나오지 않아 반복이 많다. 기간을 정해 두고 그 안에서 할 일을 조정하는 타임 박싱(Time Boxing) 기법으로 일정을 관리한다</td>
+</tr>
+<tr class="even">
+<td>원가(Cost)</td>
+<td>외부 데이터를 사 오거나 상용 도구를 쓰면 비용이 크게 든다. 사전에 조사한다</td>
+</tr>
+<tr class="odd">
+<td>리스크(Risk)</td>
+<td>데이터를 확보하지 못하거나 데이터와 알고리즘의 한계로 결과가 나오지 않을 위험을 미리 식별하고 대응한다</td>
+</tr>
+<tr class="even">
+<td>품질(Quality)</td>
+<td>품질 목표를 정하고 품질 통제와 품질 보증으로 나누어 수행한다</td>
+</tr>
+<tr class="odd">
+<td>조달(Procurement)</td>
+<td>목적에 맞는 외부 자원을 적절히 쓴다. 시험적인 분석에는 장비를 사기보다 빌려 쓰는 방식을 검토한다</td>
+</tr>
+<tr class="even">
+<td>의사소통(Communication)</td>
+<td>전문적인 분석 결과를 이해관계자 모두가 이해할 수 있는 형태로 공유하도록 의사소통 체계를 마련한다</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="혼동하기-쉬운-용어-3" class="level3">
+<h3 class="anchored" data-anchor-id="혼동하기-쉬운-용어-3">4.4 혼동하기 쉬운 용어</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>짝</th>
+<th>구분</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>데이터 크기와 데이터 복잡도</td>
+<td>크기는 양이고, 복잡도는 유형과 출처의 다양함이다</td>
+</tr>
+<tr class="even">
+<td>관리 영역과 주제 그룹</td>
+<td>관리 영역은 다섯(데이터 크기, 데이터 복잡도, 속도, 분석 복잡도, 정확도와 정밀도)이다. 주제 그룹은 열(통합, 이해관계자, 범위, 자원, 시간, 원가, 리스크, 품질, 조달, 의사소통)이다</td>
+</tr>
+<tr class="odd">
+<td>주제 그룹과 프로세스 그룹</td>
+<td>범위, 시간, 원가는 주제 그룹이다. 통제는 프로세스 그룹이며 주제 그룹이 아니다</td>
+</tr>
+<tr class="even">
+<td>범위와 시간</td>
+<td>데이터와 알고리즘에 따라 할 일의 경계가 바뀌는 것은 범위, 반복 때문에 일정이 늘어나는 것은 시간이다</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="따라-하기-3" class="level3">
+<h3 class="anchored" data-anchor-id="따라-하기-3">따라 하기</h3>
+<p>다음 여섯 상황이 분석 과제의 관리 영역 또는 프로젝트 관리의 주제 그룹 가운데 어디에 해당하는지 적는다. 가~라는 관리 영역에서, 마와 바는 주제 그룹에서 고른다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>상황</th>
+<th>내용</th>
+<th>해당하는 것</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>가</td>
+<td>상품 후기의 글을 거래 내역에 합쳐 분석하기로 하였다</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>나</td>
+<td>결제가 일어나는 순간에 부정 결제인지를 판정해야 한다</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>다</td>
+<td>가장 잘 맞히는 모형을 판촉 담당자에게 설명할 수 없어, 덜 복잡한 모형과 견주고 있다</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>라</td>
+<td>같은 모형을 다른 달의 자료에 적용하자 예측 값이 크게 흔들렸다</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>마</td>
+<td>모형을 몇 번 다시 만들어야 할지 알 수 없어, 2주씩 기간을 정해 두고 그 안에서 나온 결과로 다음 일을 정한다</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>바</td>
+<td>한 번 시험해 볼 분석에 쓸 서버를 사지 않고 빌려 쓰기로 하였다</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><span class="check-badge">확인 11</span> 가~라에 관리 영역 다섯 가운데 넷(데이터 복잡도, 속도, 분석 복잡도, 정확도와 정밀도)을 하나씩 놓았다.</li>
+<li><span class="check-badge">확인 12</span> 마와 바에 주제 그룹(시간, 조달)을 놓고, 마에서 쓴 기법의 이름(타임 박싱)을 적었다.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="중심-실습-분석-과제-정의서의-작성" class="level2">
+<h2 class="anchored" data-anchor-id="중심-실습-분석-과제-정의서의-작성">5. 중심 실습: 분석 과제 정의서의 작성</h2>
+<p>학기 공통 자료로 풀 분석 과제 하나를 정하고, CRISP-DM의 여섯 단계에 맞춘 한 장의 정의서를 작성한다. 3부(교재 04~12)에서 이 자료를 실제로 분석한다. 교재 04에서 두 표를 합쳐 고객 한 명이 한 줄인 표를 만들고, 교재 06에서 금액 열로 표본과 검정을 다룬다. 정의서는 3부의 장들을 읽을 때 “이 분석은 어떤 과제에 쓰는가”를 떠올리는 기준이 된다.</p>
+<section id="준비" class="level3">
+<h3 class="anchored" data-anchor-id="준비">준비</h3>
+<p>학기 공통 자료는 상점의 두 표다. 교재 01의 중심 실습에서 읽은 표가 <code>transactions.csv</code>의 앞부분이다. 이 장에서는 파일을 열지 않고 아래 설명만 읽는다.</p>
+<p><strong><code>transactions.csv</code>: 거래 내역.</strong> 한 줄이 거래 한 건이며 428건이다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>열</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>거래ID</code></td>
+<td>거래 번호. <code>T0001</code>부터 <code>T0428</code>까지</td>
+</tr>
+<tr class="even">
+<td><code>고객ID</code></td>
+<td>거래한 고객의 번호</td>
+</tr>
+<tr class="odd">
+<td><code>거래일</code></td>
+<td>2026-01-01부터 2026-12-31까지</td>
+</tr>
+<tr class="even">
+<td><code>품목군</code></td>
+<td>식품, 생활, 의류, 가전, 도서의 다섯 가지</td>
+</tr>
+<tr class="odd">
+<td><code>수량</code></td>
+<td>1에서 4까지. 가전은 모두 1이다</td>
+</tr>
+<tr class="even">
+<td><code>금액</code></td>
+<td>그 거래의 총액(원). 7,500원에서 246,400원까지</td>
+</tr>
+<tr class="odd">
+<td><code>결제수단</code></td>
+<td>카드, 간편결제, 계좌이체의 세 가지</td>
+</tr>
+</tbody>
+</table>
+<p><strong><code>customers.csv</code>: 고객 표.</strong> 한 줄이 고객 한 명이며 60명이다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>열</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>고객ID</code></td>
+<td>고객 번호. <code>C001</code>부터 <code>C060</code>까지</td>
+</tr>
+<tr class="even">
+<td><code>성별</code></td>
+<td>여, 남</td>
+</tr>
+<tr class="odd">
+<td><code>연령대</code></td>
+<td>20대, 30대, 40대, 50대</td>
+</tr>
+<tr class="even">
+<td><code>지역</code></td>
+<td>서울, 경기, 부산, 대전, 광주</td>
+</tr>
+<tr class="odd">
+<td><code>가입일</code></td>
+<td>2024-01-27부터 2025-11-22까지</td>
+</tr>
+</tbody>
+</table>
+<p>두 표는 <code>고객ID</code>로 이어진다. 고객 60명 가운데 넷은 2026년에 거래가 한 번도 없다. 두 표에 빈칸(결측값)은 없다. 방문 기록, 반품 기록, 상품 후기, 판촉 문자를 보낸 기록은 이 자료에 없다.</p>
+<p><strong>양식.</strong> 정의서는 열한 칸이다. 3.6절의 정의서 항목이 CRISP-DM의 단계에 따라 놓여 있다. 5번이 소스 데이터, 8번이 분석 방법, 9번이 검증 책임, 10번이 수행 주기, 11번이 난이도이고, 5번에서 8번까지를 차례로 읽으면 상세 분석 과정이 된다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>단계</th>
+<th>번호</th>
+<th>항목</th>
+<th>쓸 내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>업무 이해</td>
+<td>1</td>
+<td>과제 이름</td>
+<td>한 줄로 쓴다</td>
+</tr>
+<tr class="even">
+<td>업무 이해</td>
+<td>2</td>
+<td>배경과 업무 목적</td>
+<td>상점이 이 분석으로 무엇을 정하려 하는가</td>
+</tr>
+<tr class="odd">
+<td>업무 이해</td>
+<td>3</td>
+<td>분석 목표</td>
+<td>업무 목적을 자료의 열로 답할 수 있는 물음으로 바꾼 것</td>
+</tr>
+<tr class="even">
+<td>업무 이해</td>
+<td>4</td>
+<td>분석 주제의 유형</td>
+<td>최적화, 솔루션, 통찰, 발견 가운데 하나와 그 근거</td>
+</tr>
+<tr class="odd">
+<td>데이터 이해</td>
+<td>5</td>
+<td>소스 데이터</td>
+<td>쓸 파일과 열의 이름</td>
+</tr>
+<tr class="even">
+<td>데이터 이해</td>
+<td>6</td>
+<td>확인할 것</td>
+<td>자료의 기간과 건수, 품질에서 살필 점</td>
+</tr>
+<tr class="odd">
+<td>데이터 준비</td>
+<td>7</td>
+<td>분석 단위와 만들 변수</td>
+<td>분석용 표의 한 줄이 무엇인가(거래 한 건, 고객 한 명 등). 새로 만들 변수</td>
+</tr>
+<tr class="even">
+<td>모델링</td>
+<td>8</td>
+<td>분석 방법</td>
+<td>방법의 이름과 그 방법을 배우는 장</td>
+</tr>
+<tr class="odd">
+<td>평가</td>
+<td>9</td>
+<td>평가 기준과 검증 책임</td>
+<td>결과가 업무 목적에 맞는지를 무엇으로 판단하는가. 누가 확인하는가</td>
+</tr>
+<tr class="even">
+<td>전개</td>
+<td>10</td>
+<td>결과의 활용과 수행 주기</td>
+<td>결과를 어디에 쓰는가. 얼마마다 다시 분석하는가</td>
+</tr>
+<tr class="odd">
+<td>전개</td>
+<td>11</td>
+<td>난이도와 장애 요소</td>
+<td>데이터를 구하기 쉬운가, 분석이 어려운가. 이 자료로는 알 수 없는 것</td>
+</tr>
+</tbody>
+</table>
+<p><strong>작성 예.</strong> 다음은 ’품목군별 월 매출 현황 파악’이라는 과제로 1번에서 6번까지를 채운 예다. 7번에서 11번까지는 수업에서 함께 채운다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>번호</th>
+<th>항목</th>
+<th>작성 예</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>과제 이름</td>
+<td>품목군별 월 매출 현황 파악</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>배경과 업무 목적</td>
+<td>상점은 다섯 품목군을 판다. 다음 해의 판촉 예산을 품목군과 달에 따라 나누려면 어느 품목군이 언제 많이 팔리는지를 알아야 한다</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>분석 목표</td>
+<td>2026년의 품목군별, 월별 거래 금액의 합계와 거래 건수를 구하고, 합계가 큰 품목군과 달을 찾는다</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>분석 주제의 유형</td>
+<td>최적화. 분석 대상(품목군별 매출)과 분석 방법(그룹별 집계)을 모두 알고 있다</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>소스 데이터</td>
+<td><code>transactions.csv</code>의 <code>거래일</code>, <code>품목군</code>, <code>금액</code></td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>확인할 것</td>
+<td>거래 428건, 2026년 1월부터 12월까지. 빈칸은 없다. 가전은 한 건의 금액이 커서 합계를 좌우하므로 건수를 함께 본다</td>
+</tr>
+</tbody>
+</table>
+<p>3번의 분석 목표를 쓸 때 2.4절의 업무 이해 단계와 3.4절의 문제 정의를 떠올린다. “어느 품목군이 잘 팔리는지 안다”는 업무의 말이고, “품목군별, 월별 금액의 합계를 구한다”는 데이터의 말이다. 정의서의 3번은 데이터의 말로 쓴다.</p>
+<p><strong>과제 후보와 분석 방법.</strong> 과제는 아래 후보 가운데 하나를 고른다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>후보</th>
+<th>과제</th>
+<th>배경</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>가</td>
+<td>고객 세분화</td>
+<td>지금은 모든 고객에게 같은 판촉 문자를 보낸다. 구매 행동이 비슷한 고객끼리 묶어 집단마다 판촉을 달리하려 한다</td>
+</tr>
+<tr class="even">
+<td>나</td>
+<td>결제수단별 거래 금액 비교</td>
+<td>간편결제 거래의 건당 금액이 카드 거래와 다른지 확인하여, 간편결제 할인 행사를 이어 갈 근거로 삼으려 한다</td>
+</tr>
+<tr class="odd">
+<td>다</td>
+<td>가전 구매 고객 예측</td>
+<td>가전은 한 건의 금액이 크다. 가전을 살 가능성이 높은 고객을 가려 안내 문자를 보내려 한다</td>
+</tr>
+</tbody>
+</table>
+<p>8번의 분석 방법은 아래 표에서 고른다. 방법의 내용은 3부에서 배우므로, 여기서는 “어떤 물음에 답하는 방법인가”만 보고 고른다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>분석 방법</th>
+<th>답하는 물음</th>
+<th>배우는 장</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>그룹별 집계와 기술 통계</td>
+<td>어느 집단이 얼마나 많은가, 큰가</td>
+<td>교재 04, 05</td>
+</tr>
+<tr class="even">
+<td>t-검정</td>
+<td>두 집단의 평균이 다르다고 할 수 있는가</td>
+<td>교재 06</td>
+</tr>
+<tr class="odd">
+<td>회귀 분석</td>
+<td>한 수치를 다른 변수들로 설명할 수 있는가</td>
+<td>교재 07</td>
+</tr>
+<tr class="even">
+<td>분류 분석</td>
+<td>대상이 어느 범주에 속할지 맞힐 수 있는가</td>
+<td>교재 10, 11</td>
+</tr>
+<tr class="odd">
+<td>군집 분석</td>
+<td>비슷한 대상끼리 어떻게 묶이는가</td>
+<td>교재 12</td>
+</tr>
+<tr class="even">
+<td>연관 분석</td>
+<td>무엇과 무엇이 함께 나타나는가</td>
+<td>교재 12</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="절차" class="level3">
+<h3 class="anchored" data-anchor-id="절차">절차</h3>
+<section id="단계-1.-과제의-선택" class="level4">
+<h4 class="anchored" data-anchor-id="단계-1.-과제의-선택">단계 1. 과제의 선택</h4>
+<ol type="1">
+<li>위의 과제 후보 가운데 하나를 고른다.</li>
+<li>고른 후보의 배경을 읽고, 1번(과제 이름)을 한 줄로 쓴다.</li>
+<li>2번(배경과 업무 목적)에 상점이 이 분석으로 정하려는 것을 한 문장으로 쓴다.</li>
+</ol>
+<ul>
+<li><span class="check-badge">확인 13</span> 1번과 2번이 채워졌고, 2번에 상점이 내릴 결정(무엇을 정하려는가)이 들어 있다.</li>
+</ul>
+</section>
+<section id="단계-2.-업무-이해-칸의-작성" class="level4">
+<h4 class="anchored" data-anchor-id="단계-2.-업무-이해-칸의-작성">단계 2. 업무 이해 칸의 작성</h4>
+<ol type="1">
+<li>2번의 업무 목적을 자료의 열로 답할 수 있는 물음으로 바꾸어 3번에 쓴다.</li>
+<li>분석 대상과 분석 방법을 각각 아는지를 판단하여 4번에 유형과 근거를 쓴다.</li>
+</ol>
+<ul>
+<li><span class="check-badge">확인 14</span> 3번이 데이터의 말(열 이름이나 집계, 비교, 분류 같은 방법의 말)로 적혔다.</li>
+<li><span class="check-badge">확인 15</span> 4번에 유형 하나와 함께 “대상을 안다, 방법을 안다”처럼 두 물음의 답이 적혔고, 그 조합이 1.2절의 표와 맞는다.</li>
+</ul>
+</section>
+<section id="단계-3.-데이터-이해와-데이터-준비-칸의-작성" class="level4">
+<h4 class="anchored" data-anchor-id="단계-3.-데이터-이해와-데이터-준비-칸의-작성">단계 3. 데이터 이해와 데이터 준비 칸의 작성</h4>
+<ol type="1">
+<li>3번의 물음에 답하는 데 필요한 열을 「준비」의 두 표에서 골라 5번에 쓴다.</li>
+<li>6번에 자료의 건수와 기간, 품질에서 살필 점을 하나 이상 쓴다.</li>
+<li>7번에 분석용 표의 한 줄이 무엇인지와 새로 만들 변수를 쓴다.</li>
+</ol>
+<ul>
+<li><span class="check-badge">확인 16</span> 5번의 열 이름이 모두 「준비」의 표에 있는 이름이며, 두 표를 함께 쓰면 잇는 열(<code>고객ID</code>)이 적혀 있다.</li>
+<li><span class="check-badge">확인 17</span> 7번에 분석 단위(거래 한 건, 고객 한 명 등)가 하나로 정해져 있다.</li>
+</ul>
+</section>
+<section id="단계-4.-모델링-평가-전개-칸의-작성" class="level4">
+<h4 class="anchored" data-anchor-id="단계-4.-모델링-평가-전개-칸의-작성">단계 4. 모델링, 평가, 전개 칸의 작성</h4>
+<ol type="1">
+<li>8번에 분석 방법을 방법 표에서 골라 배우는 장과 함께 쓴다.</li>
+<li>9번에 결과가 업무 목적에 맞는지를 판단할 기준과 확인할 사람을 쓴다.</li>
+<li>10번에 결과를 쓰는 곳과 다시 분석하는 주기를 쓴다.</li>
+<li>11번에 이 자료로는 알 수 없는 것을 하나 이상 쓴다.</li>
+</ol>
+<ul>
+<li><span class="check-badge">확인 18</span> 8번의 방법이 3번의 물음과 맞는다(방법 표의 ’답하는 물음’이 3번과 같은 꼴이다).</li>
+<li><span class="check-badge">확인 19</span> 11번에 「준비」의 마지막 문단에 적힌 ‘이 자료에 없는 기록’ 가운데 하나 이상이 장애 요소로 적혔다.</li>
+</ul>
+</section>
+<section id="단계-5.-동료-검토" class="level4">
+<h4 class="anchored" data-anchor-id="단계-5.-동료-검토">단계 5. 동료 검토</h4>
+<ol type="1">
+<li>옆 사람과 정의서를 바꾸어 읽는다.</li>
+<li>3번의 분석 목표가 5번에 적은 열로 답할 수 있는 물음인지 확인한다.</li>
+<li>11번이 비어 있지 않은지, 9번에 검증할 사람이 적혀 있는지 확인한다.</li>
+<li>고칠 점 하나를 상대의 정의서 아래에 적어 돌려준다.</li>
+</ol>
+<ul>
+<li><span class="check-badge">확인 20</span> 상대의 정의서에서 3번과 5번이 맞물리는지를 판정하였고, 고칠 점 한 가지를 적어 돌려주었다.</li>
+</ul>
+</section>
+</section>
+<section id="조건을-바꾸어-보기" class="level3">
+<h3 class="anchored" data-anchor-id="조건을-바꾸어-보기">조건을 바꾸어 보기</h3>
+<p>정의서를 쓴 뒤 다음 물음에 답한다.</p>
+<ol type="1">
+<li>고른 과제의 분석 방법을 모른다고 가정한다. 분석 주제의 유형은 무엇으로 바뀌는가. 그때 정의서의 몇 번을 비워 두게 되는가.</li>
+<li>이 과제를 2주 안에 결과를 내는 과제 중심적 접근으로 수행할 때와, 해마다 되풀이하는 장기적 마스터 플랜의 한 과제로 수행할 때를 견준다. 정의서의 9번과 10번은 어떻게 달라지는가.</li>
+<li>과제를 미리 정하지 않고 두 표를 먼저 살펴보다가 과제를 얻었다고 가정한다. 하향식 접근과 상향식 접근 가운데 어느 것인가.</li>
+</ol>
+<ul>
+<li><span class="check-badge">확인 21</span> 1번 물음의 답에 바뀐 유형의 이름과 비워 두는 칸의 번호가 들어 있다.</li>
+</ul>
+</section>
+<section id="완료-기준" class="level3">
+<h3 class="anchored" data-anchor-id="완료-기준">완료 기준</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>번호</th>
+<th>점검 항목</th>
+<th>점검 방법</th>
+<th>기준 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>칸의 채움</td>
+<td>열한 칸을 센다</td>
+<td>11칸 모두 채움</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>분석 목표와 소스 데이터의 일치</td>
+<td>3번의 물음에 답하는 데 필요한 열이 5번에 있는지 대조한다</td>
+<td>빠진 열 0개</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>열 이름</td>
+<td>5번의 열 이름을 「준비」의 표와 대조한다</td>
+<td>표에 없는 이름 0개</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>유형의 근거</td>
+<td>4번의 근거를 1.2절의 표와 대조한다</td>
+<td>두 물음의 답이 모두 적혔고 표와 일치</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>분석 방법</td>
+<td>8번을 방법 표와 대조한다</td>
+<td>방법 1개 이상, 배우는 장 기재</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>장애 요소</td>
+<td>11번을 읽는다</td>
+<td>이 자료로 알 수 없는 것 1개 이상</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>조건을 바꾼 답</td>
+<td>1번 물음의 답을 읽는다</td>
+<td>유형의 이름과 칸 번호가 든 한 문장</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="제출물" class="level3">
+<h3 class="anchored" data-anchor-id="제출물">제출물</h3>
+<ul>
+<li>열한 칸을 채운 분석 과제 정의서 한 장</li>
+<li>「조건을 바꾸어 보기」의 1번 물음에 대한 답 한 문장</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="자주-하는-실수와-오해" class="level2">
+<h2 class="anchored" data-anchor-id="자주-하는-실수와-오해">6. 자주 하는 실수와 오해</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>증상 또는 오해</th>
+<th>원인</th>
+<th>바로잡기</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>솔루션과 통찰을 바꾸어 고른다</td>
+<td>이름의 느낌으로 고르고, 대상과 방법 가운데 무엇을 아는지를 따지지 않는다</td>
+<td>먼저 “대상을 아는가”로 줄을 정한다. 대상을 알면 윗줄(최적화, 솔루션)이다</td>
+</tr>
+<tr class="even">
+<td>’평가’라는 말이 든 활동을 모두 평가 단계에 놓는다</td>
+<td>모델링 단계의 ‘모델 평가’ 태스크와 평가 단계를 구분하지 않는다</td>
+<td>모형의 성능을 재는 것은 모델링, 업무 목적에 맞는지를 보는 것은 평가 단계다</td>
+</tr>
+<tr class="odd">
+<td>데이터 품질 확인을 데이터 준비 단계에 놓는다</td>
+<td>품질을 확인하는 일과 고치는 일을 하나로 본다</td>
+<td>확인은 데이터 이해, 정제는 데이터 준비다</td>
+</tr>
+<tr class="even">
+<td>빅데이터 분석 방법론의 데이터 준비를 분석용 데이터 세트를 만드는 단계로 안다</td>
+<td>CRISP-DM의 데이터 준비와 이름이 같다</td>
+<td>빅데이터 분석 방법론의 데이터 준비는 필요 데이터의 정의와 수집이다. 분석용 데이터 세트는 데이터 분석 단계에서 만든다</td>
+</tr>
+<tr class="odd">
+<td>KDD에도 업무 이해와 전개 단계가 있다고 답한다</td>
+<td>두 방법론의 단계를 일대일로 맞추려 한다</td>
+<td>KDD는 다섯 단계이며 업무 이해와 전개에 대응하는 단계가 없다</td>
+</tr>
+<tr class="even">
+<td>데이터를 쓰기만 하면 상향식이라고 판단한다</td>
+<td>하향식 접근도 데이터를 쓴다는 점을 놓친다</td>
+<td>출발점이 문제인지 데이터인지를 본다. 문제가 먼저 주어졌으면 하향식이다</td>
+</tr>
+<tr class="odd">
+<td>경쟁자를 비즈니스 모델의 다섯 영역에 넣는다</td>
+<td>범위 확장의 관점과 비즈니스 모델의 영역을 섞는다</td>
+<td>다섯 영역은 업무, 제품, 고객, 규제와 감사, 지원 인프라다. 경쟁자는 범위를 넓힐 때의 관점이다</td>
+</tr>
+<tr class="even">
+<td>관리 영역의 정밀도를 분류 모형의 정밀도로 읽는다</td>
+<td>이름이 같다</td>
+<td>이 장의 정밀도는 반복했을 때의 일관성이다. 교재 11의 정밀도는 양성으로 예측한 것 가운데 실제 양성의 비율이다</td>
+</tr>
+<tr class="odd">
+<td>정의서의 분석 목표를 “매출을 늘린다”처럼 쓴다</td>
+<td>업무의 말과 데이터의 말을 구분하지 않는다</td>
+<td>열 이름과 방법(합계, 비교, 분류)이 들어간 물음으로 바꾸어 쓴다</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="정리" class="level2">
+<h2 class="anchored" data-anchor-id="정리">7. 정리</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>주제</th>
+<th>기억할 것</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>분석 주제의 유형</td>
+<td>대상과 방법을 모두 알면 최적화, 대상만 알면 솔루션, 방법만 알면 통찰, 둘 다 모르면 발견</td>
+</tr>
+<tr class="even">
+<td>목표 시점에 따른 기획</td>
+<td>과제 중심적 접근은 속도와 시험, 빠른 성과, 문제 해결. 장기적 마스터 플랜 접근은 정확도와 전개, 장기적 관점, 문제 정의</td>
+</tr>
+<tr class="odd">
+<td>기획에서 고려할 것</td>
+<td>가용 데이터, 적절한 활용 사례, 장애 요소에 대한 사전 계획</td>
+</tr>
+<tr class="even">
+<td>방법론의 구성과 모델</td>
+<td>절차, 방법, 도구와 기법, 템플릿과 산출물. 폭포수(순차), 프로토타입(먼저 만들고 고침), 나선형(반복과 점증)</td>
+</tr>
+<tr class="odd">
+<td>KDD</td>
+<td>데이터 선택 → 전처리 → 변환 → 데이터 마이닝 → 해석과 평가. 업무 이해와 전개에 대응하는 단계가 없다</td>
+</tr>
+<tr class="even">
+<td>CRISP-DM</td>
+<td>업무 이해 → 데이터 이해 → 데이터 준비 → 모델링 → 평가 → 전개. 네 수준. 단계 사이를 오간다. 데이터 준비에 시간이 가장 많이 든다</td>
+</tr>
+<tr class="odd">
+<td>빅데이터 분석 방법론</td>
+<td>단계, 태스크, 스텝의 세 계층. 분석 기획 → 데이터 준비 → 데이터 분석 → 시스템 구현 → 평가 및 전개</td>
+</tr>
+<tr class="even">
+<td>하향식 접근</td>
+<td>문제 탐색 → 문제 정의 → 해결 방안 탐색 → 타당성 검토. 문제 탐색의 다섯 영역은 업무, 제품, 고객, 규제와 감사, 지원 인프라</td>
+</tr>
+<tr class="odd">
+<td>상향식 접근</td>
+<td>데이터에서 출발. 비지도 학습, 프로토타이핑, 디자인 싱킹의 발산</td>
+</tr>
+<tr class="even">
+<td>분석 과제 정의서</td>
+<td>소스 데이터, 분석 방법, 난이도, 수행 주기, 검증 책임, 상세 분석 과정</td>
+</tr>
+<tr class="odd">
+<td>분석 과제의 관리 영역</td>
+<td>데이터 크기, 데이터 복잡도, 속도, 분석 복잡도, 정확도와 정밀도</td>
+</tr>
+<tr class="even">
+<td>프로젝트 관리의 주제 그룹</td>
+<td>통합, 이해관계자, 범위, 자원, 시간, 원가, 리스크, 품질, 조달, 의사소통</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="참고-자료" class="level2">
+<h2 class="anchored" data-anchor-id="참고-자료">8. 참고 자료</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>자료</th>
+<th>주소</th>
+<th>확인일</th>
+<th>쓴 곳</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>한국데이터산업진흥원 데이터자격검정, 데이터분석 준전문가 소개(과목, 세부 항목, 합격 기준)</td>
+<td><a href="https://www.dataq.or.kr/www/sub/a_06.do" class="uri">https://www.dataq.or.kr/www/sub/a_06.do</a></td>
+<td>2026-11-14</td>
+<td>머리말, 문항의 꼬리표</td>
+</tr>
+<tr class="even">
+<td>IT위키, 데이터 분석 기획(분석 주제의 유형, 기획 시 고려 사항)</td>
+<td><a href="https://itwiki.kr/w/데이터_분석_기획" class="uri">https://itwiki.kr/w/데이터_분석_기획</a></td>
+<td>2026-11-14</td>
+<td>1.2절, 1.4절</td>
+</tr>
+<tr class="odd">
+<td>IT위키, 분석 마스터 플랜(과제 중심 접근과 마스터 플랜 접근)</td>
+<td><a href="https://itwiki.kr/w/분석_마스터_플랜" class="uri">https://itwiki.kr/w/분석_마스터_플랜</a></td>
+<td>2026-11-14</td>
+<td>1.3절</td>
+</tr>
+<tr class="even">
+<td>IT위키, KDD</td>
+<td><a href="https://itwiki.kr/w/KDD" class="uri">https://itwiki.kr/w/KDD</a></td>
+<td>2026-11-14</td>
+<td>2.3절</td>
+</tr>
+<tr class="odd">
+<td>IT위키, CRISP-DM(네 수준, 여섯 단계, 단계 사이의 되돌아감)</td>
+<td><a href="https://itwiki.kr/w/CRISP-DM" class="uri">https://itwiki.kr/w/CRISP-DM</a></td>
+<td>2026-11-14</td>
+<td>2.4절</td>
+</tr>
+<tr class="even">
+<td>IBM, SPSS Modeler CRISP-DM Guide(단계 사이의 이동, 데이터 준비의 시간)</td>
+<td><a href="https://www.ibm.com/docs/en/SS3RA7_18.6.0/pdf/ModelerCRISPDM.pdf" class="uri">https://www.ibm.com/docs/en/SS3RA7_18.6.0/pdf/ModelerCRISPDM.pdf</a></td>
+<td>2026-11-14</td>
+<td>2.4절</td>
+</tr>
+<tr class="odd">
+<td>Foroughi, F. &amp; Luksch, P.(2018), Data Science Methodology for Cybersecurity Projects, Table 1(KDD와 CRISP-DM의 대응)</td>
+<td><a href="https://arxiv.org/abs/1803.04219" class="uri">https://arxiv.org/abs/1803.04219</a></td>
+<td>2026-11-14</td>
+<td>2.3절, 2.4절의 대응표</td>
+</tr>
+<tr class="even">
+<td>IT위키, 빅데이터 분석 방법론(세 계층, 다섯 단계와 태스크, 산출물)</td>
+<td><a href="https://itwiki.kr/w/빅데이터_분석_방법론" class="uri">https://itwiki.kr/w/빅데이터_분석_방법론</a></td>
+<td>2026-11-14</td>
+<td>2.5절</td>
+</tr>
+<tr class="odd">
+<td>IT위키, 분석 과제 발굴(하향식과 상향식)</td>
+<td><a href="https://itwiki.kr/w/분석_과제_발굴" class="uri">https://itwiki.kr/w/분석_과제_발굴</a></td>
+<td>2026-11-14</td>
+<td>3절</td>
+</tr>
+<tr class="even">
+<td>IT위키, 분석 프로젝트 관리와 ISO 21500</td>
+<td><a href="https://itwiki.kr/w/분석_프로젝트_관리" class="uri">https://itwiki.kr/w/분석_프로젝트_관리</a>, <a href="https://itwiki.kr/w/ISO_21500" class="uri">https://itwiki.kr/w/ISO_21500</a></td>
+<td>2026-11-14</td>
+<td>4절</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="주간-문항-세트-02" class="level2">
+<h2 class="anchored" data-anchor-id="주간-문항-세트-02">주간 문항 세트 02</h2>
+<p>20문항이다. 1~10번은 수업에서 풀고 11~20번은 과제로 푼다. 1~15번은 이 장의 문항이고 16~20번은 교재 01의 복습이다. 실전의 문항당 시간으로는 36분이 걸린다. 정답과 풀이는 세트 뒤에 있다.</p>
+<p><strong>문항 1.</strong> 분석 대상은 알고 있으나 분석 방법을 알지 못할 때의 분석 주제 유형은?</p>
+<ul>
+<li>① 최적화</li>
+<li>② 솔루션</li>
+<li>③ 통찰</li>
+<li>④ 발견</li>
+</ul>
+<p><code>범위: 데이터분석 기획 &gt; 데이터분석 기획의 이해 &gt; 분석 기획 방향성 도출</code> <code>유형: 용어 구분</code> <code>장: 2</code></p>
+<p><strong>문항 2.</strong> 어느 온라인 상점은 품목군별 재고가 자주 모자라거나 남는다는 문제를 알고 있고, 지난 거래량으로 수요를 예측하여 발주량을 계산하는 방법도 이미 쓰고 있다. 이 계산을 더 정교하게 다듬는 분석 과제의 유형으로 가장 적절한 것은?</p>
+<ul>
+<li>① 최적화</li>
+<li>② 솔루션</li>
+<li>③ 통찰</li>
+<li>④ 발견</li>
+</ul>
+<p><code>범위: 데이터분석 기획 &gt; 데이터분석 기획의 이해 &gt; 분석 기획 방향성 도출</code> <code>유형: 사례 판단</code> <code>장: 2</code></p>
+<p><strong>문항 3.</strong> 목표 시점에 따른 분석 기획 방식에 대한 설명으로 가장 적절하지 않은 것은?</p>
+<ul>
+<li>① 과제 중심적 접근은 당면한 과제를 빠르게 해결하는 데 목적이 있다.</li>
+<li>② 장기적 마스터 플랜 접근은 분석을 조직에 지속적으로 내재화하는 데 목적이 있다.</li>
+<li>③ 두 방식은 서로 보완하므로 함께 쓰는 것이 바람직하다.</li>
+<li>④ 과제 중심적 접근은 문제 정의의 방식으로, 장기적 마스터 플랜 접근은 문제 해결의 방식으로 접근한다.</li>
+</ul>
+<p><code>범위: 데이터분석 기획 &gt; 데이터분석 기획의 이해 &gt; 분석 기획 방향성 도출</code> <code>유형: 옳지 않은 것 고르기</code> <code>장: 2</code></p>
+<p><strong>문항 4.</strong> 방법론의 모델 가운데 나선형 모델에 대한 설명으로 가장 적절한 것은?</p>
+<ul>
+<li>① 앞 단계가 끝나야 다음 단계로 넘어가는 순차적인 모델이다.</li>
+<li>② 일부분을 먼저 만들어 사용자에게 보이고, 써 본 결과를 반영하여 고치는 모델이다.</li>
+<li>③ 같은 과정을 반복하며 점증적으로 개발하는 모델이며, 반복을 관리하는 체계가 없으면 복잡도가 커진다.</li>
+<li>④ 단계, 태스크, 스텝의 세 계층으로 일을 나누는 모델이다.</li>
+</ul>
+<p><code>범위: 데이터분석 기획 &gt; 데이터분석 기획의 이해 &gt; 분석 방법론</code> <code>유형: 용어 구분</code> <code>장: 2</code></p>
+<p><strong>문항 5.</strong> KDD 분석 방법론에서 분석 목적에 맞게 변수를 만들거나 고르고 차원을 줄이며, 자료를 훈련용과 검증용으로 나누는 단계는?</p>
+<ul>
+<li>① 데이터 선택</li>
+<li>② 전처리</li>
+<li>③ 변환</li>
+<li>④ 데이터 마이닝</li>
+</ul>
+<p><code>범위: 데이터분석 기획 &gt; 데이터분석 기획의 이해 &gt; 분석 방법론</code> <code>유형: 용어 구분</code> <code>장: 2</code></p>
+<p><strong>문항 6.</strong> CRISP-DM 분석 방법론의 데이터 준비 단계에서 하는 일로 가장 적절하지 않은 것은?</p>
+<ul>
+<li>① 분석용 데이터 세트의 선택</li>
+<li>② 데이터 정제</li>
+<li>③ 데이터 통합</li>
+<li>④ 데이터 품질 확인</li>
+</ul>
+<p><code>범위: 데이터분석 기획 &gt; 데이터분석 기획의 이해 &gt; 분석 방법론</code> <code>유형: 옳지 않은 것 고르기</code> <code>장: 2</code></p>
+<p><strong>문항 7.</strong> CRISP-DM 분석 방법론에 대한 설명으로 가장 적절한 것은?</p>
+<ul>
+<li>① 단계는 한 방향으로만 진행되며 앞 단계로 되돌아갈 수 없다.</li>
+<li>② 평가 단계에서 결과가 업무 목적에 맞지 않으면 업무 이해 단계로 되돌아갈 수 있다.</li>
+<li>③ 데이터 선택, 전처리, 변환, 데이터 마이닝, 해석과 평가의 다섯 단계로 구성된다.</li>
+<li>④ 단계, 태스크, 스텝의 세 계층으로 구성된다.</li>
+</ul>
+<p><code>범위: 데이터분석 기획 &gt; 데이터분석 기획의 이해 &gt; 분석 방법론</code> <code>유형: 용어 구분</code> <code>장: 2</code></p>
+<p><strong>문항 8.</strong> 분석 담당자가 검증용 자료에서 예측이 맞은 비율을 구하여 여러 모형 가운데 하나를 골랐다(가). 그다음 이 모형의 결과가 처음에 정한 업무 목적인 재구매율 향상에 쓸 만한지를 업무 담당자와 함께 검토했다(나). CRISP-DM에서 (가)와 (나)가 속한 단계를 옳게 짝지은 것은?</p>
+<ul>
+<li>① (가) 데이터 준비, (나) 모델링</li>
+<li>② (가) 모델링, (나) 전개</li>
+<li>③ (가) 모델링, (나) 평가</li>
+<li>④ (가) 평가, (나) 전개</li>
+</ul>
+<p><code>범위: 데이터분석 기획 &gt; 데이터분석 기획의 이해 &gt; 분석 방법론</code> <code>유형: 사례 판단</code> <code>장: 2</code></p>
+<p><strong>문항 9.</strong> 빅데이터 분석 방법론의 계층에 대한 설명으로 가장 적절하지 않은 것은?</p>
+<ul>
+<li>① 태스크는 가장 위의 계층이며, 여러 단계를 묶은 것이다.</li>
+<li>② 단계마다 산출물이 만들어지며, 산출물은 기준선으로 설정하여 관리한다.</li>
+<li>③ 스텝은 작업 분할 구조도(WBS)의 워크 패키지에 해당한다.</li>
+<li>④ 스텝은 입력 자료, 처리와 도구, 출력 자료로 구성된 단위 프로세스다.</li>
+</ul>
+<p><code>범위: 데이터분석 기획 &gt; 데이터분석 기획의 이해 &gt; 분석 방법론</code> <code>유형: 옳지 않은 것 고르기</code> <code>장: 2</code></p>
+<p><strong>문항 10.</strong> 빅데이터 분석 방법론의 분석 기획 단계에서 수행하는 태스크로 가장 적절하지 않은 것은?</p>
+<ul>
+<li>① 비즈니스 이해 및 범위 설정</li>
+<li>② 프로젝트 정의 및 계획 수립</li>
+<li>③ 프로젝트 위험 계획 수립</li>
+<li>④ 필요 데이터 정의</li>
+</ul>
+<p><code>범위: 데이터분석 기획 &gt; 데이터분석 기획의 이해 &gt; 분석 방법론</code> <code>유형: 옳지 않은 것 고르기</code> <code>장: 2</code></p>
+<p><strong>문항 11.</strong> 하향식 접근으로 분석 과제를 발굴하는 단계를 순서대로 나열한 것은?</p>
+<ul>
+<li>① 문제 탐색 → 문제 정의 → 해결 방안 탐색 → 타당성 검토</li>
+<li>② 문제 정의 → 문제 탐색 → 타당성 검토 → 해결 방안 탐색</li>
+<li>③ 문제 탐색 → 해결 방안 탐색 → 문제 정의 → 타당성 검토</li>
+<li>④ 타당성 검토 → 문제 탐색 → 문제 정의 → 해결 방안 탐색</li>
+</ul>
+<p><code>범위: 데이터분석 기획 &gt; 데이터분석 기획의 이해 &gt; 분석 과제 발굴</code> <code>유형: 용어 구분</code> <code>장: 2</code></p>
+<p><strong>문항 12.</strong> 어느 온라인 상점이 비즈니스 모델을 바탕으로 분석 과제를 찾고 있다. “결제 과정의 부정 거래를 가려내고, 개인정보 처리 기록이 법규에 맞는지 점검한다”는 과제가 속하는 영역으로 가장 적절한 것은?</p>
+<ul>
+<li>① 업무</li>
+<li>② 규제와 감사</li>
+<li>③ 고객</li>
+<li>④ 지원 인프라</li>
+</ul>
+<p><code>범위: 데이터분석 기획 &gt; 데이터분석 기획의 이해 &gt; 분석 과제 발굴</code> <code>유형: 사례 판단</code> <code>장: 2</code></p>
+<p><strong>문항 13.</strong> 상향식 접근에 대한 설명으로 가장 적절하지 않은 것은?</p>
+<ul>
+<li>① 문제를 정의하기 어려울 때 가지고 있는 데이터에서 출발하여 과제를 찾는다.</li>
+<li>② 목표 값이 정해져 있지 않은 비지도 학습의 방법을 주로 쓴다.</li>
+<li>③ 일단 분석을 시도하고 결과를 확인하며 고쳐 나가는 프로토타이핑 접근법을 쓴다.</li>
+<li>④ 문제 탐색에서 시작하여 문제 정의, 해결 방안 탐색, 타당성 검토의 순서로 진행한다.</li>
+</ul>
+<p><code>범위: 데이터분석 기획 &gt; 데이터분석 기획의 이해 &gt; 분석 과제 발굴</code> <code>유형: 옳지 않은 것 고르기</code> <code>장: 2</code></p>
+<p><strong>문항 14.</strong> 분석 과제의 관리 영역 가운데 정확도(Accuracy)와 정밀도(Precision)에 대한 설명으로 가장 적절한 것은?</p>
+<ul>
+<li>① 정확도는 모형을 되풀이해 썼을 때 결과가 흩어지는 정도가 작다는 뜻이다.</li>
+<li>② 정밀도는 모형의 결과와 실제 값의 차이가 작다는 뜻이다.</li>
+<li>③ 분석 결과를 활용하는 측면에서는 정확도가, 모형의 안정성 측면에서는 정밀도가 중요하다.</li>
+<li>④ 두 값은 언제나 함께 높아지므로 하나만 관리하면 된다.</li>
+</ul>
+<p><code>범위: 데이터분석 기획 &gt; 데이터분석 기획의 이해 &gt; 분석 프로젝트 관리 방안</code> <code>유형: 용어 구분</code> <code>장: 2</code></p>
+<p><strong>문항 15.</strong> 분석 프로젝트에서는 분석을 진행하면서 데이터의 형태와 양, 적용하는 알고리즘에 따라 처음에 정한 할 일의 경계가 자주 바뀐다. 이 내용과 관계가 가장 깊은 프로젝트 관리의 주제 그룹은?</p>
+<ul>
+<li>① 범위</li>
+<li>② 조달</li>
+<li>③ 원가</li>
+<li>④ 의사소통</li>
+</ul>
+<p><code>범위: 데이터분석 기획 &gt; 데이터분석 기획의 이해 &gt; 분석 프로젝트 관리 방안</code> <code>유형: 사례 판단</code> <code>장: 2</code></p>
+<p><strong>문항 16.</strong> 빅데이터가 데이터를 다루는 방식에 가져온 변화를 나타낸 것으로 가장 적절하지 않은 것은?</p>
+<ul>
+<li>① 사전 처리에서 사후 처리로</li>
+<li>② 전수 조사에서 표본 조사로</li>
+<li>③ 질에서 양으로</li>
+<li>④ 인과 관계에서 상관 관계로</li>
+</ul>
+<p><code>범위: 데이터 이해 &gt; 데이터의 가치와 미래 &gt; 빅데이터의 이해</code> <code>유형: 옳지 않은 것 고르기</code> <code>장: 1</code></p>
+<p><strong>문항 17.</strong> 어느 온라인 상점의 신입 직원들이 회사의 포장 작업 지침서를 읽고 여러 번 연습하여, 지침서를 보지 않고도 품목군에 맞게 포장할 수 있게 되었다. 암묵지와 형식지가 서로 바뀌는 네 과정 가운데 이 과정에 해당하는 것은?</p>
+<ul>
+<li>① 공통화</li>
+<li>② 내면화</li>
+<li>③ 연결화</li>
+<li>④ 표출화</li>
+</ul>
+<p><code>범위: 데이터 이해 &gt; 데이터의 이해 &gt; 데이터와 정보</code> <code>유형: 사례 판단</code> <code>장: 1</code></p>
+<p><strong>문항 18.</strong> 어느 온라인 상점이 새로 들어온 상품 문의 글을 ‘배송’, ‘환불’, ’교환’의 세 집단 가운데 어디에 속하는지 가려 담당자에게 넘기려 한다. 이 일에 쓰는 빅데이터 활용 기본 테크닉으로 가장 적절한 것은?</p>
+<ul>
+<li>① 연관 규칙 학습</li>
+<li>② 유전 알고리즘</li>
+<li>③ 유형 분석</li>
+<li>④ 소셜 네트워크 분석</li>
+</ul>
+<p><code>범위: 데이터 이해 &gt; 데이터의 가치와 미래 &gt; 비즈니스 모델</code> <code>유형: 사례 판단</code> <code>장: 1</code></p>
+<p><strong>문항 19.</strong> 데이터 웨어하우스의 특징에 대한 설명으로 가장 적절하지 않은 것은?</p>
+<ul>
+<li>① 업무 기능이 아니라 고객, 상품과 같은 주제를 중심으로 자료를 구성한다.</li>
+<li>② 여러 시스템에서 온 자료를 일관된 형식으로 통합한다.</li>
+<li>③ 시점별 자료를 쌓아 두어 시간에 따른 변화를 볼 수 있다.</li>
+<li>④ 거래가 생길 때마다 이미 저장된 자료를 수시로 고치고 지운다.</li>
+</ul>
+<p><code>범위: 데이터 이해 &gt; 데이터의 이해 &gt; 데이터베이스 활용</code> <code>유형: 옳지 않은 것 고르기</code> <code>장: 1</code></p>
+<p><strong>문항 20.</strong> 데이터 사이언티스트에게 필요한 역량에 대한 설명으로 가장 적절하지 않은 것은?</p>
+<ul>
+<li>① 하드 스킬에는 빅데이터에 대한 이론적 지식과 분석 기술의 숙련이 든다.</li>
+<li>② 통찰력 있는 분석, 설득력 있는 전달, 다분야 간 협력은 하드 스킬에 든다.</li>
+<li>③ 분석 기술만으로는 전략적 통찰을 얻기 어려우므로 소프트 스킬이 함께 필요하다.</li>
+<li>④ 스토리텔링과 시각화는 설득력 있는 전달에 쓰인다.</li>
+</ul>
+<p><code>범위: 데이터 이해 &gt; 가치 창조를 위한 데이터 사이언스와 전략 인사이트 &gt; 전략 인사이트 도출을 위한 필요 역량</code> <code>유형: 옳지 않은 것 고르기</code> <code>장: 1</code></p>
+<section id="정답" class="level3">
+<h3 class="anchored" data-anchor-id="정답">정답</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>문항</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>정답</td>
+<td>②</td>
+<td>①</td>
+<td>④</td>
+<td>③</td>
+<td>③</td>
+<td>④</td>
+<td>②</td>
+<td>③</td>
+<td>①</td>
+<td>④</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>문항</th>
+<th>11</th>
+<th>12</th>
+<th>13</th>
+<th>14</th>
+<th>15</th>
+<th>16</th>
+<th>17</th>
+<th>18</th>
+<th>19</th>
+<th>20</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>정답</td>
+<td>①</td>
+<td>②</td>
+<td>④</td>
+<td>③</td>
+<td>①</td>
+<td>②</td>
+<td>②</td>
+<td>③</td>
+<td>④</td>
+<td>②</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="풀이" class="level3">
+<h3 class="anchored" data-anchor-id="풀이">풀이</h3>
+<ol type="1">
+<li><strong>②.</strong> 분석 대상을 알고 방법을 모르면 솔루션이다. 대상과 방법을 모두 알면 최적화, 방법만 알면 통찰, 둘 다 모르면 발견이다. (1.2절)</li>
+<li><strong>①.</strong> 분석 대상(재고의 과부족)과 분석 방법(수요 예측에 따른 발주량 계산)을 모두 알고 있으므로 최적화다. ②의 솔루션은 방법을 모를 때다. (1.2절)</li>
+<li><strong>④.</strong> 두 방식의 접근 방식을 서로 바꾸어 놓았다. 과제 중심적 접근이 문제 해결, 장기적 마스터 플랜 접근이 문제 정의다. (1.3절)</li>
+<li><strong>③.</strong> 나선형 모델은 반복하며 점증적으로 개발한다. ①은 폭포수 모델, ②는 프로토타입 모델이다. ④는 빅데이터 분석 방법론의 계층이며 방법론의 모델이 아니다. (2.2절, 2.5절)</li>
+<li><strong>③.</strong> 변수의 생성과 선택, 차원 축소, 훈련용과 검증용의 분리는 변환 단계의 일이다. ②의 전처리는 잡음, 이상값, 결측값을 처리한다. (2.3절)</li>
+<li><strong>④.</strong> 데이터 품질 확인은 데이터 이해 단계의 태스크다. 데이터 준비 단계의 태스크는 분석용 데이터 세트 선택, 데이터 정제, 분석용 데이터 세트 편성, 데이터 통합, 데이터 포맷팅이다. (2.4절)</li>
+<li><strong>②.</strong> CRISP-DM은 단계 사이를 오가며, 평가에서 업무 이해로 돌아가는 길이 있다. ①은 그 반대다. ③은 KDD의 단계다. ④는 빅데이터 분석 방법론의 계층이며, CRISP-DM은 네 수준(단계, 일반화 태스크, 세분화 태스크, 프로세스 실행)이다. (2.4절)</li>
+<li><strong>③.</strong> (가)는 모형을 기술적으로 평가하는 모델링 단계의 ‘모델 평가’ 태스크다. (나)는 모형이 업무 목적에 맞는지를 판단하는 평가 단계다. ’평가’라는 말이 들어 있다고 (가)를 평가 단계로 읽지 않는다. (2.4절, 2.6절)</li>
+<li><strong>①.</strong> 가장 위의 계층은 단계다. 태스크는 단계를 구성하는 단위 활동이다. ②, ③, ④는 옳다. (2.5절)</li>
+<li><strong>④.</strong> 필요 데이터 정의는 데이터 준비 단계의 태스크다. 분석 기획 단계의 태스크는 ①, ②, ③의 셋이다. (2.5절)</li>
+<li><strong>①.</strong> 하향식 접근은 문제 탐색, 문제 정의, 해결 방안 탐색, 타당성 검토의 순서다. (3.2절)</li>
+<li><strong>②.</strong> 부정 거래와 법규 준수는 규제와 보안의 문제이므로 규제와 감사 영역이다. 결제가 고객과 닿는 지점이라는 이유로 ③을 고르지 않는다. 고객 영역은 고객과 채널의 관점에서 제품과 서비스를 살핀다. (3.3절)</li>
+<li><strong>④.</strong> 문제 탐색에서 타당성 검토까지의 네 단계는 하향식 접근의 절차다. ①, ②, ③은 상향식 접근의 설명이다. (3.2절, 3.5절)</li>
+<li><strong>③.</strong> 활용 측면은 정확도, 안정성 측면은 정밀도다. ①과 ②는 두 용어의 뜻을 서로 바꾸어 놓았다. ④는 두 값이 상충 관계에 있는 경우가 많다는 점과 어긋난다. (4.1절)</li>
+<li><strong>①.</strong> 할 일의 경계는 범위다. 분석 프로젝트의 범위는 데이터와 알고리즘에 따라 자주 바뀐다. 반복으로 일정이 늘어나는 것을 다루는 주제 그룹은 시간이다. (4.3절)</li>
+<li><strong>②.</strong> 수집과 처리의 비용이 내려가 일부가 아니라 전체를 다룰 수 있게 되었으므로, 변화의 방향은 표본 조사에서 전수 조사로다. ②는 방향을 거꾸로 적었다. ①, ③, ④는 옳은 방향이다. (교재 01의 3절)</li>
+<li><strong>②.</strong> 글로 된 지침서(형식지)를 읽고 익혀 몸에 밴 요령(암묵지)으로 만들었으므로 내면화다. 방향이 반대인 ④의 표출화는 암묵지를 글로 꺼내는 것이다. 공통화는 암묵지를 암묵지로 전하는 것, 연결화는 형식지를 모아 새 형식지를 만드는 것이다. (교재 01의 1절)</li>
+<li><strong>③.</strong> 새로운 대상이 미리 정해 둔 집단 가운데 어디에 속하는지 가리는 것은 유형 분석이다. ①은 함께 나타나는 항목을 찾고, ②는 해결안을 섞고 바꾸며 최적의 안을 찾고, ④는 사람 사이의 연결 구조를 본다. (교재 01의 3절)</li>
+<li><strong>④.</strong> 데이터 웨어하우스에 한번 적재한 자료는 수시로 고치거나 지우지 않는다(비휘발성). ①은 주제 지향성, ②는 통합성, ③은 시계열성이다. 수시로 갱신하는 것은 거래를 처리하는 운영 시스템의 특징이다. (교재 01의 2절)</li>
+<li><strong>②.</strong> 통찰력 있는 분석, 설득력 있는 전달, 다분야 간 협력은 소프트 스킬이다. 하드 스킬은 ①의 둘이다. ③과 ④는 옳다. (교재 01의 4절)</li>
+</ol>
+
+
+</section>
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> 맨 위로</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "복사완료!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "복사완료!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../courses/adsp/book/ADsP_01주차_학생용.html" class="pagination-link" aria-label="[1주차] 데이터 이해: 데이터, 빅데이터, 데이터 사이언스">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">[1주차] 데이터 이해: 데이터, 빅데이터, 데이터 사이언스</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../courses/adsp/book/ADsP_03주차_학생용.html" class="pagination-link" aria-label="[3주차] 분석 마스터 플랜과 거버넌스">
+        <span class="nav-page-text">[3주차] 분석 마스터 플랜과 거버넌스</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>안중호 교수 강의 교재 · 2026년 2학기판</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

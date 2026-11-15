@@ -1,0 +1,3489 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>[12주차] 평가와 관측: 회귀 평가, 기록, 비용 – 안중호 교수 강의 교재</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../courses/ai-agent/book/Agent_13주차_학생용.html" rel="next">
+<link href="../../../courses/ai-agent/book/Agent_11주차_학생용.html" rel="prev">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-dcf116883d0d3758c9131f5ede2fa7e1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({
+    startOnLoad: true,
+    securityLevel: "loose",
+    theme: "neutral",
+    fontFamily: '"Pretendard Variable", Pretendard, "Malgun Gothic", sans-serif'
+  });
+</script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">안중호 교수 강의 교재</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="검색"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">커리큘럼</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/semesters/index.html">
+ <span class="dropdown-text">전체 커리큘럼</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../docs/semesters/2026-2/index.html">
+ <span class="dropdown-text">2026년 2학기</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../docs/subjects/llm-ai/index.html">
+ <span class="dropdown-text">교재 · LLM AI 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/subjects/python/index.html">
+ <span class="dropdown-text">교재 · 파이썬 실습</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../courses/index.html">
+ <span class="dropdown-text">2027학년도 교재 (준비 중)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/llm-service/index.html">
+ <span class="dropdown-text">· LLM 서비스 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/office/index.html">
+ <span class="dropdown-text">· 컴퓨터활용</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/adsp/index.html">
+ <span class="dropdown-text">· 빅데이터개론</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/ai-agent/index.html">
+ <span class="dropdown-text">· AI에이전트 기획 및 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/aice/index.html">
+ <span class="dropdown-text">· 비즈니스빅데이터분석</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/about/교수_소개.html"> 
+<span class="menu-text">교수 소개</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../courses/ai-agent/book/Agent_01주차_학생용.html">교재</a></li><li class="breadcrumb-item"><a href="../../../courses/ai-agent/book/Agent_12주차_학생용.html">[12주차] 평가와 관측: 회귀 평가, 기록, 비용</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/ai-agent/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AI에이전트 기획 및 개발</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">교재</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/ai-agent/book/Agent_01주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[1주차] AI 에이전트 운영의 요건: 보안, 신뢰성, 일관성, 재현성</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/ai-agent/book/Agent_02주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[2주차] 테스트 주도 개발</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/ai-agent/book/Agent_03주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[3주차] 팀 규칙의 공유: CLAUDE.md, 설정, 저장소 규약</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/ai-agent/book/Agent_04주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[4주차] 확장 기능의 구조: 커맨드, 스킬, 플러그인</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/ai-agent/book/Agent_05주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[5주차] 외부 도구의 연결: MCP</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/ai-agent/book/Agent_06주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[6주차] 훅과 서브에이전트</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/ai-agent/book/Agent_07주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[7주차] 하네스의 설계와 구축</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/ai-agent/book/Agent_08주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[8주차] 루프 엔지니어링과 자동화</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/ai-agent/book/Agent_09주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[9주차] 에이전트 루프의 구조: API와 도구 호출</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/ai-agent/book/Agent_10주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[10주차] 멀티 에이전트 운영 시스템의 설계: 역할 분담과 병렬 작업</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/ai-agent/book/Agent_11주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[11주차] 에이전트의 보안: 권한, 비밀 정보, 프롬프트 주입</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/ai-agent/book/Agent_12주차_학생용.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">[12주차] 평가와 관측: 회귀 평가, 기록, 비용</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/ai-agent/book/Agent_13주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[13주차] 지속적 통합과 안정적 배포: 풀 리퀘스트 검토, 버전 고정</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/ai-agent/book/Agent_부록A_실습환경_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[부록 A] 실습 환경</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/ai-agent/book/Agent_부록B_명령어카드_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[부록 B] 명령어 카드</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/ai-agent/book/Agent_부록C_양식모음_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[부록 C] 양식 모음</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">이 장의 차례</h2>
+   
+  <ul>
+  <li><a href="#학습-목표" id="toc-학습-목표" class="nav-link active" data-scroll-target="#학습-목표">학습 목표</a></li>
+  <li><a href="#시작하기" id="toc-시작하기" class="nav-link" data-scroll-target="#시작하기">0. 시작하기</a>
+  <ul class="collapse">
+  <li><a href="#키트-받기" id="toc-키트-받기" class="nav-link" data-scroll-target="#키트-받기">0-1. 키트 받기</a></li>
+  <li><a href="#앞-장-산출물-확인" id="toc-앞-장-산출물-확인" class="nav-link" data-scroll-target="#앞-장-산출물-확인">0-2. 앞 장 산출물 확인</a></li>
+  <li><a href="#저장소-상태-확인" id="toc-저장소-상태-확인" class="nav-link" data-scroll-target="#저장소-상태-확인">0-3. 저장소 상태 확인</a></li>
+  </ul></li>
+  <li><a href="#llm-기능의-회귀" id="toc-llm-기능의-회귀" class="nav-link" data-scroll-target="#llm-기능의-회귀">1. LLM 기능의 회귀</a>
+  <ul class="collapse">
+  <li><a href="#코드를-고치지-않아도-나빠지는-기능" id="toc-코드를-고치지-않아도-나빠지는-기능" class="nav-link" data-scroll-target="#코드를-고치지-않아도-나빠지는-기능">1-1. 코드를 고치지 않아도 나빠지는 기능</a></li>
+  <li><a href="#테스트와-평가" id="toc-테스트와-평가" class="nav-link" data-scroll-target="#테스트와-평가">1-2. 테스트와 평가</a></li>
+  <li><a href="#성공-기준" id="toc-성공-기준" class="nav-link" data-scroll-target="#성공-기준">1-3. 성공 기준</a></li>
+  <li><a href="#능력-평가와-회귀-평가" id="toc-능력-평가와-회귀-평가" class="nav-link" data-scroll-target="#능력-평가와-회귀-평가">1-4. 능력 평가와 회귀 평가</a></li>
+  <li><a href="#판본-차이-보기" id="toc-판본-차이-보기" class="nav-link" data-scroll-target="#판본-차이-보기">1-5. 판본 차이 보기</a></li>
+  </ul></li>
+  <li><a href="#골든-세트" id="toc-골든-세트" class="nav-link" data-scroll-target="#골든-세트">2. 골든 세트</a>
+  <ul class="collapse">
+  <li><a href="#골든-세트의-구성" id="toc-골든-세트의-구성" class="nav-link" data-scroll-target="#골든-세트의-구성">2-1. 골든 세트의 구성</a></li>
+  <li><a href="#대표성" id="toc-대표성" class="nav-link" data-scroll-target="#대표성">2-2. 대표성</a></li>
+  <li><a href="#경계-사례" id="toc-경계-사례" class="nav-link" data-scroll-target="#경계-사례">2-3. 경계 사례</a></li>
+  <li><a href="#정답의-형식" id="toc-정답의-형식" class="nav-link" data-scroll-target="#정답의-형식">2-4. 정답의 형식</a></li>
+  <li><a href="#크기와-출처" id="toc-크기와-출처" class="nav-link" data-scroll-target="#크기와-출처">2-5. 크기와 출처</a></li>
+  <li><a href="#평가-도구-설치와-문항-읽기" id="toc-평가-도구-설치와-문항-읽기" class="nav-link" data-scroll-target="#평가-도구-설치와-문항-읽기">2-6. 평가 도구 설치와 문항 읽기</a></li>
+  </ul></li>
+  <li><a href="#채점-방식" id="toc-채점-방식" class="nav-link" data-scroll-target="#채점-방식">3. 채점 방식</a>
+  <ul class="collapse">
+  <li><a href="#다섯-가지-채점-방식" id="toc-다섯-가지-채점-방식" class="nav-link" data-scroll-target="#다섯-가지-채점-방식">3-1. 다섯 가지 채점 방식</a></li>
+  <li><a href="#jobprep-채점기의-지도" id="toc-jobprep-채점기의-지도" class="nav-link" data-scroll-target="#jobprep-채점기의-지도">3-2. jobprep 채점기의 지도</a></li>
+  <li><a href="#첫-평가-실행" id="toc-첫-평가-실행" class="nav-link" data-scroll-target="#첫-평가-실행">3-3. 첫 평가 실행</a></li>
+  <li><a href="#채점기-더하기-우대-사항-혼입" id="toc-채점기-더하기-우대-사항-혼입" class="nav-link" data-scroll-target="#채점기-더하기-우대-사항-혼입">3-4. 채점기 더하기: 우대 사항 혼입</a></li>
+  <li><a href="#시행-기록-한-줄" id="toc-시행-기록-한-줄" class="nav-link" data-scroll-target="#시행-기록-한-줄">3-5. 시행 기록 한 줄</a></li>
+  </ul></li>
+  <li><a href="#반복-실행과-분산" id="toc-반복-실행과-분산" class="nav-link" data-scroll-target="#반복-실행과-분산">4. 반복 실행과 분산</a>
+  <ul class="collapse">
+  <li><a href="#같은-입력-다른-답" id="toc-같은-입력-다른-답" class="nav-link" data-scroll-target="#같은-입력-다른-답">4-1. 같은 입력, 다른 답</a></li>
+  <li><a href="#통과율-passk-passk" id="toc-통과율-passk-passk" class="nav-link" data-scroll-target="#통과율-passk-passk">4-2. 통과율, pass@k, pass^k</a></li>
+  <li><a href="#표준오차와-신뢰구간" id="toc-표준오차와-신뢰구간" class="nav-link" data-scroll-target="#표준오차와-신뢰구간">4-3. 표준오차와 신뢰구간</a></li>
+  <li><a href="#반복-횟수에-따른-차이" id="toc-반복-횟수에-따른-차이" class="nav-link" data-scroll-target="#반복-횟수에-따른-차이">4-4. 반복 횟수에 따른 차이</a></li>
+  </ul></li>
+  <li><a href="#llm-판정" id="toc-llm-판정" class="nav-link" data-scroll-target="#llm-판정">5. LLM 판정</a>
+  <ul class="collapse">
+  <li><a href="#판정자가-맡는-기준" id="toc-판정자가-맡는-기준" class="nav-link" data-scroll-target="#판정자가-맡는-기준">5-1. 판정자가 맡는 기준</a></li>
+  <li><a href="#기준표" id="toc-기준표" class="nav-link" data-scroll-target="#기준표">5-2. 기준표</a></li>
+  <li><a href="#판정자의-편향" id="toc-판정자의-편향" class="nav-link" data-scroll-target="#판정자의-편향">5-3. 판정자의 편향</a></li>
+  <li><a href="#보정-방법" id="toc-보정-방법" class="nav-link" data-scroll-target="#보정-방법">5-4. 보정 방법</a></li>
+  <li><a href="#순서-바꾸기와-사람-표본-대조" id="toc-순서-바꾸기와-사람-표본-대조" class="nav-link" data-scroll-target="#순서-바꾸기와-사람-표본-대조">5-5. 순서 바꾸기와 사람 표본 대조</a></li>
+  </ul></li>
+  <li><a href="#판본-비교" id="toc-판본-비교" class="nav-link" data-scroll-target="#판본-비교">6. 판본 비교</a>
+  <ul class="collapse">
+  <li><a href="#무엇을-고정하고-무엇을-바꾸는가" id="toc-무엇을-고정하고-무엇을-바꾸는가" class="nav-link" data-scroll-target="#무엇을-고정하고-무엇을-바꾸는가">6-1. 무엇을 고정하고 무엇을 바꾸는가</a></li>
+  <li><a href="#짝지은-차이" id="toc-짝지은-차이" class="nav-link" data-scroll-target="#짝지은-차이">6-2. 짝지은 차이</a></li>
+  <li><a href="#summary_v1과-summary_v2의-비교" id="toc-summary_v1과-summary_v2의-비교" class="nav-link" data-scroll-target="#summary_v1과-summary_v2의-비교">6-3. summary_v1과 summary_v2의 비교</a></li>
+  <li><a href="#모델의-교체" id="toc-모델의-교체" class="nav-link" data-scroll-target="#모델의-교체">6-4. 모델의 교체</a></li>
+  </ul></li>
+  <li><a href="#에이전트-평가" id="toc-에이전트-평가" class="nav-link" data-scroll-target="#에이전트-평가">7. 에이전트 평가</a>
+  <ul class="collapse">
+  <li><a href="#결과와-경로" id="toc-결과와-경로" class="nav-link" data-scroll-target="#결과와-경로">7-1. 결과와 경로</a></li>
+  <li><a href="#에이전트의-지표" id="toc-에이전트의-지표" class="nav-link" data-scroll-target="#에이전트의-지표">7-2. 에이전트의 지표</a></li>
+  <li><a href="#실행-기록에서-지표-내기" id="toc-실행-기록에서-지표-내기" class="nav-link" data-scroll-target="#실행-기록에서-지표-내기">7-3. 실행 기록에서 지표 내기</a></li>
+  </ul></li>
+  <li><a href="#관측과-구조화-기록" id="toc-관측과-구조화-기록" class="nav-link" data-scroll-target="#관측과-구조화-기록">8. 관측과 구조화 기록</a>
+  <ul class="collapse">
+  <li><a href="#평가와-관측" id="toc-평가와-관측" class="nav-link" data-scroll-target="#평가와-관측">8-1. 평가와 관측</a></li>
+  <li><a href="#무엇을-남기는가" id="toc-무엇을-남기는가" class="nav-link" data-scroll-target="#무엇을-남기는가">8-2. 무엇을 남기는가</a></li>
+  <li><a href="#구조화-기록" id="toc-구조화-기록" class="nav-link" data-scroll-target="#구조화-기록">8-3. 구조화 기록</a></li>
+  <li><a href="#서비스와-llm-호출의-보고" id="toc-서비스와-llm-호출의-보고" class="nav-link" data-scroll-target="#서비스와-llm-호출의-보고">8-4. 서비스와 LLM 호출의 보고</a></li>
+  </ul></li>
+  <li><a href="#claude-code의-사용량과-비용-opentelemetry" id="toc-claude-code의-사용량과-비용-opentelemetry" class="nav-link" data-scroll-target="#claude-code의-사용량과-비용-opentelemetry">9. Claude Code의 사용량과 비용, OpenTelemetry</a>
+  <ul class="collapse">
+  <li><a href="#대화-안에서-usage" id="toc-대화-안에서-usage" class="nav-link" data-scroll-target="#대화-안에서-usage">9-1. 대화 안에서: /usage</a></li>
+  <li><a href="#스크립트에서-헤드리스-json-결과" id="toc-스크립트에서-헤드리스-json-결과" class="nav-link" data-scroll-target="#스크립트에서-헤드리스-json-결과">9-2. 스크립트에서: 헤드리스 JSON 결과</a></li>
+  <li><a href="#조직-단위로-opentelemetry" id="toc-조직-단위로-opentelemetry" class="nav-link" data-scroll-target="#조직-단위로-opentelemetry">9-3. 조직 단위로: OpenTelemetry</a></li>
+  <li><a href="#내보내는-지표와-이벤트" id="toc-내보내는-지표와-이벤트" class="nav-link" data-scroll-target="#내보내는-지표와-이벤트">9-4. 내보내는 지표와 이벤트</a></li>
+  <li><a href="#설정을-두는-곳" id="toc-설정을-두는-곳" class="nav-link" data-scroll-target="#설정을-두는-곳">9-5. 설정을 두는 곳</a></li>
+  </ul></li>
+  <li><a href="#비용-예산과-경보-개인-정보" id="toc-비용-예산과-경보-개인-정보" class="nav-link" data-scroll-target="#비용-예산과-경보-개인-정보">10. 비용 예산과 경보, 개인 정보</a>
+  <ul class="collapse">
+  <li><a href="#예산의-층" id="toc-예산의-층" class="nav-link" data-scroll-target="#예산의-층">10-1. 예산의 층</a></li>
+  <li><a href="#경보의-원칙" id="toc-경보의-원칙" class="nav-link" data-scroll-target="#경보의-원칙">10-2. 경보의 원칙</a></li>
+  <li><a href="#개인-정보와-기록" id="toc-개인-정보와-기록" class="nav-link" data-scroll-target="#개인-정보와-기록">10-3. 개인 정보와 기록</a></li>
+  <li><a href="#기록-점검" id="toc-기록-점검" class="nav-link" data-scroll-target="#기록-점검">10-4. 기록 점검</a></li>
+  </ul></li>
+  <li><a href="#중심-실습-jobprep-회귀-평가와-운영-관측-보고" id="toc-중심-실습-jobprep-회귀-평가와-운영-관측-보고" class="nav-link" data-scroll-target="#중심-실습-jobprep-회귀-평가와-운영-관측-보고">11. 중심 실습: jobprep 회귀 평가와 운영 관측 보고</a>
+  <ul class="collapse">
+  <li><a href="#목표와-완료-기준" id="toc-목표와-완료-기준" class="nav-link" data-scroll-target="#목표와-완료-기준">11-1. 목표와 완료 기준</a></li>
+  <li><a href="#단계-1-summary_v3-작성" id="toc-단계-1-summary_v3-작성" class="nav-link" data-scroll-target="#단계-1-summary_v3-작성">11-2. 단계 1: summary_v3 작성</a></li>
+  <li><a href="#단계-2-v3의-평가와-비교" id="toc-단계-2-v3의-평가와-비교" class="nav-link" data-scroll-target="#단계-2-v3의-평가와-비교">11-3. 단계 2: v3의 평가와 비교</a></li>
+  <li><a href="#단계-3-회귀-판정과-기준선" id="toc-단계-3-회귀-판정과-기준선" class="nav-link" data-scroll-target="#단계-3-회귀-판정과-기준선">11-4. 단계 3: 회귀 판정과 기준선</a></li>
+  <li><a href="#단계-4-회귀-시연" id="toc-단계-4-회귀-시연" class="nav-link" data-scroll-target="#단계-4-회귀-시연">11-5. 단계 4: 회귀 시연</a></li>
+  <li><a href="#단계-5-모델-교체의-판정" id="toc-단계-5-모델-교체의-판정" class="nav-link" data-scroll-target="#단계-5-모델-교체의-판정">11-6. 단계 5: 모델 교체의 판정</a></li>
+  <li><a href="#단계-6-관측-보고" id="toc-단계-6-관측-보고" class="nav-link" data-scroll-target="#단계-6-관측-보고">11-7. 단계 6: 관측 보고</a></li>
+  <li><a href="#단계-7-평가-보고-작성" id="toc-단계-7-평가-보고-작성" class="nav-link" data-scroll-target="#단계-7-평가-보고-작성">11-8. 단계 7: 평가 보고 작성</a></li>
+  <li><a href="#단계-8-테스트와-커밋" id="toc-단계-8-테스트와-커밋" class="nav-link" data-scroll-target="#단계-8-테스트와-커밋">11-9. 단계 8: 테스트와 커밋</a></li>
+  <li><a href="#실제-모델로-평가하기" id="toc-실제-모델로-평가하기" class="nav-link" data-scroll-target="#실제-모델로-평가하기">11-10. 실제 모델로 평가하기</a></li>
+  </ul></li>
+  <li><a href="#자주-하는-실수와-해결" id="toc-자주-하는-실수와-해결" class="nav-link" data-scroll-target="#자주-하는-실수와-해결">자주 하는 실수와 해결</a></li>
+  <li><a href="#제출물" id="toc-제출물" class="nav-link" data-scroll-target="#제출물">제출물</a></li>
+  <li><a href="#정리" id="toc-정리" class="nav-link" data-scroll-target="#정리">정리</a>
+  <ul class="collapse">
+  <li><a href="#개념-점검" id="toc-개념-점검" class="nav-link" data-scroll-target="#개념-점검">개념 점검</a></li>
+  </ul></li>
+  <li><a href="#참고-자료" id="toc-참고-자료" class="nav-link" data-scroll-target="#참고-자료">참고 자료</a></li>
+  <li><a href="#다음-장-안내" id="toc-다음-장-안내" class="nav-link" data-scroll-target="#다음-장-안내">다음 장 안내</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../courses/ai-agent/book/Agent_01주차_학생용.html">교재</a></li><li class="breadcrumb-item"><a href="../../../courses/ai-agent/book/Agent_12주차_학생용.html">[12주차] 평가와 관측: 회귀 평가, 기록, 비용</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">[12주차] 평가와 관측: 회귀 평가, 기록, 비용</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<header class="chapter-head">
+<p class="chapter-part">AI에이전트 기획 및 개발</p>
+<p class="chapter-no"><span class="num">12</span><span class="unit">주차</span></p>
+<p class="chapter-title">평가와 관측: 회귀 평가, 기록, 비용</p>
+</header>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>2027학년도 「AI에이전트 기획 및 개발」의 준비 중인 교재입니다. 편집 상태를 검토하기 위해 미리 공개한 것으로, 수업 전에 내용과 순서가 바뀔 수 있습니다.</p>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>학사 14주차 · 교재 12 · 5부 운영 품질</p>
+</blockquote>
+<p>11장에서 <code>jobprep</code> 운영 에이전트 시스템에 보안의 울타리를 둘렀다. 거부 규칙과 훅과 도구 제한은 에이전트가 「하면 안 되는 일」을 막는다. 그러나 운영에는 막는 일만큼 재는 일이 필요하다. 요약 기능이 한 주 전보다 나빠졌는지, 질의응답이 범위 밖 질문을 여전히 거절하는지, 8장의 루프가 몇 번 만에 일을 끝내고 얼마를 썼는지는 막는 장치로는 알 수 없다. 1장에서 정의한 운영 요건 가운데 <strong>신뢰성</strong>(정해진 조건에서 기대한 결과를 내고, 실패하면 알아챈다)과 <strong>재현성</strong>(무엇이 실행되었는지 기록이 남는다)이 이 장의 주제이다.</p>
+<p>LLM 기능은 코드 한 줄 고치지 않아도 나빠질 수 있다. 프롬프트 파일의 문장 하나, 환경 변수의 모델 이름 하나, 검색 자료의 문서 하나가 바뀌면 출력이 달라지고, 그 변화는 대개 오류 없이 조용히 일어난다. 2장의 테스트는 함수가 정해진 값을 돌려주는지를 보지만, 요약이 「공고에 없는 주의점을 지어냈는가」는 보지 못한다. 그래서 LLM 기능에는 테스트와 다른 검사 장치, 곧 <strong>평가</strong>(evaluation)가 필요하다. 평가는 골든 세트(입력과 기대값의 묶음)를 기능에 넣고, 채점기로 기준별 통과 여부를 정하고, 같은 일을 여러 번 되풀이해 통과율로 말한다.</p>
+<p>이 장에서 만드는 것은 하나다. <code>jobprep/evals/</code>에 요약 15문항과 질의응답 10문항의 골든 세트, 규칙 채점기와 LLM 판정자, 판본 비교 실행기, 회귀 판정기를 두어 「프롬프트를 바꾸어도 되는가」를 종료 코드로 답하게 하고, <code>ops/telemetry/</code>에서 서비스 기록과 에이전트 실행 기록을 모아 지표와 비용을 보고한 뒤, 결과를 <code>docs/운영/평가보고.md</code>에 정리한다. 실습은 API 키 없이 도는 교육용 모의 모델로 한다. 실제 모델로 하는 평가는 교수 시연으로 보고, 학습자는 교수가 배포한 그 실행 기록으로 같은 판정과 비교를 해 본다(11-10).</p>
+<p>이 장의 회귀 판정은 13장에서 지속적 통합(CI)의 한 단계가 된다. 풀 리퀘스트마다 <code>python -m evals.gate</code>가 돌고, 종료 코드가 1이면 병합이 막힌다. 같은 학기의 프로젝트실습Ⅱ에서 LLM 기능을 만드는 팀은 이 장의 골든 세트와 판정 구조를 그대로 가져가 자기 기능의 품질 기준으로 쓸 수 있다.</p>
+<hr>
+<section id="학습-목표" class="level2">
+<h2 class="anchored" data-anchor-id="학습-목표">학습 목표</h2>
+<ul>
+<li><strong>LLM 기능에 회귀 평가가 필요한 까닭을 설명하고, 대표 문항과 경계 문항을 갖춘 골든 세트를 정답의 형식과 함께 설계할 수 있다.</strong>
+<ul>
+<li>예시: 요약 골든 세트에 「마감일이 두 번 나오는 공고」, 「마감일이 없는 상시 채용 공고」, 「본문에 지시문을 숨긴 공고」를 경계 문항으로 넣고, 기대값을 「마감일은 정확 일치, 업무 항목은 참조 목록과의 재현율」로 정한다.</li>
+<li>활용: 프롬프트나 모델을 바꾸기 전에 「무엇이 나빠지면 안 되는가」를 문항으로 먼저 적어 둔다. 실패 보고가 들어오면 그 입력을 문항으로 더한다.</li>
+</ul></li>
+<li><strong>정확 일치, 구조 검사, 규칙, 참조 기반, LLM 판정의 다섯 채점 방식을 장단점에 따라 고르고, LLM 판정의 편향(위치, 길이, 자기 선호)을 기준표, 순서 바꾸기, 사람 표본 대조로 보정할 수 있다.</strong>
+<ul>
+<li>예시: 「우대 사항을 자격 요건에 섞었는가」는 규칙으로 채점하고, 「공고에 없는 내용을 지어냈는가」는 판정자에게 맡기되, 사람이 판정한 표본 12개와 대조해 일치도(코언의 카파)를 잰다.</li>
+<li>활용: 판정자의 점수를 믿기 전에 사람과 얼마나 일치하는지부터 묻는다. 기준표는 코드처럼 저장소에 두고 검토를 받는다.</li>
+</ul></li>
+<li><strong>같은 입력을 여러 번 실행해 통과율과 표준오차를 구하고, 두 판본을 짝지은 차이로 비교해 합격선과 기준선으로 회귀를 판정할 수 있다.</strong>
+<ul>
+<li>예시: summary_v2와 summary_v3을 5번씩 돌려 짝지은 차이의 95% 구간이 0보다 큰지 보고, <code>python -m evals.gate</code>가 종료 코드 0을 낼 때만 기준선을 갱신한다.</li>
+<li>활용: 13장의 CI가 이 종료 코드로 병합을 막는다. 한 번 돌린 점수로 판단하지 않는 습관은 모델 교체와 비용 결정에도 쓰인다.</li>
+</ul></li>
+<li><strong>요청, 프롬프트 판본, 모델, 토큰, 지연, 오류, 도구 호출을 구조화 기록으로 남기고, 서비스와 에이전트 실행의 지표와 비용을 집계하며, Claude Code의 사용량 확인과 OpenTelemetry 내보내기를 설정할 수 있다.</strong>
+<ul>
+<li>예시: <code>logs/access.log</code>에서 요약 요청의 p95 지연을, <code>logs/llm.log</code>에서 토큰과 추정 비용을, 8장 루프 기록에서 작업 성공률과 성공 1건당 비용을 뽑고, 예산의 80%를 넘으면 주의를 띄운다.</li>
+<li>활용: 「에이전트가 일을 잘하는가」를 말이 아니라 숫자로 보고한다. 기록에 개인 정보가 남지 않았는지 점검하는 일까지 관측에 포함한다.</li>
+</ul></li>
+</ul>
+<hr>
+</section>
+<section id="시작하기" class="level2">
+<h2 class="anchored" data-anchor-id="시작하기">0. 시작하기</h2>
+<p>실습 서버 접속, 터미널 두 개의 배치(서버 터미널과 Claude Code), 가상 환경은 부록 A의 절차를 따른다. 이 절은 이 장의 키트를 받고, 앞 장의 산출물과 저장소 상태를 확인한다.</p>
+<section id="키트-받기" class="level3">
+<h3 class="anchored" data-anchor-id="키트-받기">0-1. 키트 받기</h3>
+<p>키트는 배포 폴더 <code>$KIT_HOME</code>에 있다. 저장소 밖의 <code>~/kits/</code>에 받아 두고, 단계마다 필요한 파일만 저장소로 복사한다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/kits</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-rn</span> <span class="st">"</span><span class="va">$KIT_HOME</span><span class="st">/Agent_12주차"</span> ~/kits/</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> ~/kits/Agent_12주차</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>README.md  evals  ops  기준산출물  재료  평가보고_양식.md</code></pre>
+<p><code>mkdir -p ~/kits</code>를 먼저 하는 까닭은 <code>~/kits</code>가 없을 때 <code>cp</code>가 키트 폴더 자체를 <code>~/kits</code>라는 이름으로 복사해 버리기 때문이다. <code>-n</code>은 이미 있는 파일을 덮어쓰지 않는다.</p>
+<ul>
+<li><p><code>기준산출물/ops/loop/logs/</code>: 8장 루프 실행 기록(JSON Lines) 견본 7건. 0절과 7절에서 쓴다.</p></li>
+<li><p><code>기준산출물/ops/multi/logs/</code>: 10장 멀티 에이전트 실행 기록 견본 3건(이슈마다 <code>events.jsonl</code>과 구현 에이전트의 출력). 0절과 7절에서 쓴다.</p></li>
+<li><p><code>evals/</code>: 골든 세트, 채점기, 변동 모의 모델, 판정자, 실행기, 비교, 회귀 판정, 판정자 보정, 테스트. 2~6절과 11절에서 쓴다.</p></li>
+<li><p><code>ops/telemetry/</code>: 기록 읽기, 관측 보고, 개인 정보 점검, 가격표, 테스트. 8~11절에서 쓴다.</p></li>
+<li><p><code>재료/test_preferred.py</code>: 학습자가 만드는 채점기의 테스트(먼저 실패한다). 3절에서 쓴다.</p></li>
+<li><p><code>평가보고_양식.md</code>: <code>docs/운영/평가보고.md</code>의 양식. 11절에서 쓴다.</p></li>
+<li><p><span class="check-badge">확인 1</span> <code>ls ~/kits/Agent_12주차</code>에 <code>evals</code>, <code>ops</code>, <code>기준산출물</code>, <code>재료</code>, <code>평가보고_양식.md</code>가 보인다.</p></li>
+</ul>
+</section>
+<section id="앞-장-산출물-확인" class="level3">
+<h3 class="anchored" data-anchor-id="앞-장-산출물-확인">0-2. 앞 장 산출물 확인</h3>
+<p>이 장의 7절은 8장 루프의 실행 기록(<code>ops/loop/logs/*.jsonl</code>)과 10장 멀티 에이전트의 실행 기록(<code>ops/multi/logs/&lt;이슈&gt;/events.jsonl</code>)을 읽어 에이전트의 작업 성공률과 비용을 낸다. 먼저 두 기록이 저장소에 있는지 본다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> ops/loop/logs/<span class="pp">*</span>.jsonl ops/multi/logs/<span class="pp">*</span>/events.jsonl <span class="dv">2</span><span class="op">&gt;</span>/dev/null <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>8장과 10장을 마친 학습자는 자기 기록의 개수가 나온다. <code>0</code>이 나오면 키트의 견본을 복사한다. <code>cp -n</code>은 이미 있는 파일을 덮어쓰지 않으므로, 자기 기록이 일부 있는 학습자가 실행해도 자기 기록은 그대로 남는다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ops/loop/logs ops/multi/logs</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> ~/kits/Agent_12주차/기준산출물/ops/loop/logs/<span class="pp">*</span>.jsonl ops/loop/logs/</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-rn</span> ~/kits/Agent_12주차/기준산출물/ops/multi/logs/. ops/multi/logs/</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> ops/loop/logs <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span><span class="kw">;</span> <span class="fu">ls</span> ops/multi/logs <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>7
+3</code></pre>
+<p>견본은 2027-11의 가상 실행이다. 8장 견본은 루프 7건(green 5건, 시도 상한 초과 1건, 예산 초과 1건)을 담고, green 가운데 1건은 테스트 파일을 고쳐 통과한 실행이다. 10장 견본은 이슈 3건(ISSUE-12, ISSUE-15, ISSUE-18. 그대로 병합 2건, 사람이 충돌을 푼 뒤 병합 1건)을 10장의 <code>ops/multi/lib.sh</code>가 쓰는 형식 그대로 담는다. 견본의 이슈 번호는 10장 실습의 ISSUE-07과 겹치지 않으므로, 10장을 마친 학습자의 기록과 함께 두어도 덮어쓰지 않는다. 기록의 형식은 <code>기준산출물/README.md</code>에 있다.</p>
+<ul>
+<li><span class="check-badge">확인 2</span> <code>ops/loop/logs/</code>에 <code>.jsonl</code> 파일이, <code>ops/multi/logs/</code>에 이슈 폴더(그 안에 <code>events.jsonl</code>)가 하나 이상씩 있다.</li>
+</ul>
+</section>
+<section id="저장소-상태-확인" class="level3">
+<h3 class="anchored" data-anchor-id="저장소-상태-확인">0-3. 저장소 상태 확인</h3>
+<p>이 장의 모든 단계도 「테스트가 통과하는 상태에서 시작해 통과하는 상태로 커밋한다」는 2장의 원칙을 따른다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/bin/activate</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pytest</span> <span class="at">-q</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">--short</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>...........................................                              [100%]
+43 passed in 2.10s</code></pre>
+<p>기준 저장소만 받았다면 43개가 통과한다. 앞 장에서 테스트를 더한 학습자는 그 수만큼 많다. 0-2에서 견본을 복사한 학습자는 <code>git status --short</code>에 <code>?? ops/loop/logs/…</code>가 보인다. 이 파일은 2절에서 평가 도구와 함께 커밋한다. 그 밖의 변경이 있으면 먼저 커밋하거나 되돌린다.</p>
+<ul>
+<li><span class="check-badge">확인 3</span> <code>pytest -q</code>의 마지막 줄이 <code>passed</code>로 끝나고 <code>failed</code>가 없으며, <code>git status --short</code>에 0-2의 기록 파일 말고는 변경이 없다.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="llm-기능의-회귀" class="level2">
+<h2 class="anchored" data-anchor-id="llm-기능의-회귀">1. LLM 기능의 회귀</h2>
+<section id="코드를-고치지-않아도-나빠지는-기능" class="level3">
+<h3 class="anchored" data-anchor-id="코드를-고치지-않아도-나빠지는-기능">1-1. 코드를 고치지 않아도 나빠지는 기능</h3>
+<p><strong>회귀</strong>(regression)는 잘 되던 동작이 변경 뒤에 나빠지는 것이다. 보통의 소프트웨어에서 회귀의 원인은 코드 변경이고, 테스트가 그 변경을 잡는다. LLM 기능은 코드 밖에 출력을 바꾸는 요인이 더 있다. <code>jobprep</code>의 요약 기능을 예로 들면 다음과 같다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>바뀌는 것</th>
+<th><code>jobprep</code>에서의 자리</th>
+<th>코드가 바뀌는가</th>
+<th>테스트가 잡는가</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>프롬프트</td>
+<td><code>prompts/summary_v1.txt</code> → <code>summary_v2.txt</code>, 환경 변수 <code>PROMPT_SUMMARY</code></td>
+<td>아니다</td>
+<td>모의 모드에서는 출력이 같아 잡지 못한다</td>
+</tr>
+<tr class="even">
+<td>모델</td>
+<td>환경 변수 <code>LLM_MODEL</code></td>
+<td>아니다</td>
+<td>모의 모드는 모델을 부르지 않는다</td>
+</tr>
+<tr class="odd">
+<td>모델 제공자의 갱신</td>
+<td>같은 모델 이름의 동작 변화, 모델 지원 종료</td>
+<td>아니다</td>
+<td>잡지 못한다</td>
+</tr>
+<tr class="even">
+<td>검색 자료</td>
+<td><code>data/자료/</code>의 문서, 임베딩 방식(<code>EMBED_BACKEND</code>)</td>
+<td>아니다</td>
+<td><code>rag/평가문항.csv</code>의 재현율만 본다</td>
+</tr>
+<tr class="odd">
+<td>앞뒤 처리 코드</td>
+<td><code>parse_json()</code>, <code>validate_summary()</code>, <code>MIN_SCORE</code></td>
+<td>그렇다</td>
+<td>형식은 잡지만 품질은 보지 못한다</td>
+</tr>
+</tbody>
+</table>
+<p>표의 네 줄은 코드가 바뀌지 않는다. 그리고 그 변화는 오류로 드러나지 않는다. 요약이 JSON 구조를 지키는 한 API는 200을 돌려주고, 화면은 정상으로 보인다. 공고에 없는 주의점이 하나 섞이거나 우대 사항이 자격 요건으로 옮겨 가도 서버 기록에는 아무 표시가 없다. 이것이 「조용한 회귀」이다.</p>
+<p>LLM 출력은 또 <strong>비결정적</strong>(non-deterministic)이다. 같은 입력에도 실행마다 답이 조금씩 다를 수 있다. 그래서 「한 번 해 보니 잘 되었다」는 관찰은 품질의 근거가 되지 못한다. 한 번의 성공이 열 번 중 아홉 번 성공하는 기능의 것인지, 열 번 중 다섯 번 성공하는 기능의 것인지 구별할 수 없기 때문이다. 4절에서 이 문제를 반복 실행으로 다룬다.</p>
+</section>
+<section id="테스트와-평가" class="level3">
+<h3 class="anchored" data-anchor-id="테스트와-평가">1-2. 테스트와 평가</h3>
+<p>2장의 테스트와 이 장의 평가는 목적이 같다. 둘 다 「바꾸어도 되는가」를 기계로 판정한다. 차이는 판정의 대상과 모양에 있다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>구분</th>
+<th>테스트(2장)</th>
+<th>평가(이 장)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>대상</td>
+<td>함수와 API의 동작(형식, 상태 코드, 경계값)</td>
+<td>LLM 기능의 출력 품질(충실성, 형식 준수, 거절)</td>
+</tr>
+<tr class="even">
+<td>기대값</td>
+<td>하나의 정답(<code>assert status == 422</code>)</td>
+<td>정답의 범위(정확 일치, 참조와의 겹침, 기준표에 따른 판정)</td>
+</tr>
+<tr class="odd">
+<td>결과</td>
+<td>통과 또는 실패</td>
+<td>기준별 통과율(예: 0.87), 문항별 통과 횟수</td>
+</tr>
+<tr class="even">
+<td>반복</td>
+<td>한 번이면 된다(결정적)</td>
+<td>여러 번 돌려야 한다(비결정적)</td>
+</tr>
+<tr class="odd">
+<td>모델 호출</td>
+<td>하지 않는다(모의 모드)</td>
+<td>실제 평가는 모델을 부른다. 비용이 든다</td>
+</tr>
+<tr class="even">
+<td>실패의 뜻</td>
+<td>버그가 있다</td>
+<td>합격선 아래로 떨어졌다. 원인은 프롬프트, 모델, 자료, 코드 가운데 하나다</td>
+</tr>
+</tbody>
+</table>
+<p>평가가 테스트를 대신하지는 않는다. <code>jobprep</code>에서 <code>pytest -q</code>는 모의 모드로 2초 안에 끝나고, 요약 API가 JSON 구조를 검사하는지, 본문이 비면 422를 내는지를 확인한다. 평가는 그 위에서 「출력의 내용이 기준을 지키는가」를 본다. 테스트는 커밋마다, 평가는 프롬프트·모델·자료를 바꿀 때와 풀 리퀘스트마다 돈다.</p>
+</section>
+<section id="성공-기준" class="level3">
+<h3 class="anchored" data-anchor-id="성공-기준">1-3. 성공 기준</h3>
+<p>평가를 만들기 전에 정할 것은 <strong>성공 기준</strong>(success criteria)이다. Anthropic의 평가 안내는 좋은 성공 기준의 성질로 구체성(specific), 측정 가능성(measurable), 달성 가능성(achievable), 관련성(relevant)을 든다 [A1]. 「요약을 잘한다」는 구체적이지도 측정 가능하지도 않다. 「마감일이 서류 접수 마감일과 정확히 같은 비율이 0.95 이상」은 둘 다 갖춘다.</p>
+<p>같은 안내는 흔히 쓰는 기준의 범주로 과업 충실도(task fidelity), 일관성(consistency), 관련성과 응집성, 어조와 문체, 개인 정보 보호, 맥락 활용, 지연(latency), 가격(price)을 든다 [A1]. <code>jobprep</code>의 두 기능에 대어 보면 다음과 같다.</p>
+<ul>
+<li><strong>과업 충실도</strong>: 요약은 마감일이 정확하고 공고의 업무·자격·주의점을 빠뜨리지 않는다. 질의응답은 답에 기대 핵심어가 있다.</li>
+<li><strong>일관성</strong>: 같은 공고를 다섯 번 요약해도, 같은 질문을 다섯 번 물어도 매번 기준을 지킨다.</li>
+<li><strong>맥락 활용</strong>: 요약은 공고에 없는 내용을 지어내지 않고 우대 사항을 자격 요건으로 옮기지 않는다. 질의응답은 근거에 없는 문장을 덧붙이지 않고 근거 번호를 단다.</li>
+<li><strong>형식</strong>: 요약은 JSON 구조와 항목 50자 이내를 지킨다. 질의응답은 범위 밖 질문에 「자료에 없습니다.」로 답한다.</li>
+<li><strong>지연과 가격</strong>: 두 기능 모두 8절과 10절에서 운영 지표로 다룬다.</li>
+</ul>
+</section>
+<section id="능력-평가와-회귀-평가" class="level3">
+<h3 class="anchored" data-anchor-id="능력-평가와-회귀-평가">1-4. 능력 평가와 회귀 평가</h3>
+<p>Anthropic의 에이전트 평가 글은 평가를 두 종류로 나눈다 [E5]. <strong>능력 평가</strong>(capability eval)는 「이 기능이 무엇을 잘하는가」를 묻고, 처음에는 통과율이 낮아 오를 여지를 준다. <strong>회귀 평가</strong>(regression eval)는 「전에 되던 것이 아직 되는가」를 묻고, 통과율이 100%에 가까워야 한다. 능력 평가에서 통과율이 높아진 문항은 회귀 평가로 옮겨 간다.</p>
+<p>이 장의 골든 세트는 두 종류를 한 파일에 두고 문항마다 <code>suite</code> 칸으로 구별한다. 회귀 판정(6절, 11절)은 <code>regression</code> 문항만으로 하고, <code>capability</code> 문항은 통과율을 보고만 한다. 예를 들어 본문에 「이전 지시를 무시하라」는 문장을 숨긴 공고(S15)는 11장의 대책을 요약 기능에 아직 넣지 않았으므로 지금은 통과하지 못한다. 이 문항을 회귀 판정에 넣으면 판정이 늘 실패하고, 늘 실패하는 경보는 아무도 보지 않게 된다. 그래서 능력 문항으로 두고, 대책을 넣어 통과하게 되면 회귀 문항으로 옮긴다.</p>
+</section>
+<section id="판본-차이-보기" class="level3">
+<h3 class="anchored" data-anchor-id="판본-차이-보기">1-5. 판본 차이 보기</h3>
+<p>기준 저장소에는 요약 프롬프트가 두 판본 있다. 평가가 왜 필요한지 보기 위해 두 판본의 차이부터 읽는다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span> prompts/summary_v1.txt prompts/summary_v2.txt</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>2,3c2,4
+&lt; 너는 채용 공고를 읽고 취업 준비생에게 필요한 정보만 뽑아 정리하는 도우미다.
+&lt; 공고에 적힌 내용만 쓰고, 적혀 있지 않은 내용은 지어내지 않는다.
+---
+&gt; 너는 전문대학 2학년 취업 준비생을 돕는 진로 상담 도우미다.
+&gt; 채용 공고에 적힌 내용만 근거로 삼고, 적혀 있지 않은 내용은 지어내지 않는다.
+&gt; 학생이 놓치기 쉬운 조건(마감 시각, 제출 서류, 근무 형태, 수습 기간)을 주의점으로 먼저 꼽는다.
+...</code></pre>
+<p>v2는 규칙 셋(항목 40자 이내, 우대 사항 제외, 서류 접수 마감일 우선)과 「주의점을 먼저 꼽는다」는 지시를 더했다. 읽어 보면 v2가 나아 보인다. 그러나 「나아 보인다」는 측정이 아니다. 규칙 하나가 다른 실수를 부를 수도 있다. 이 물음에는 6절에서 숫자로 답한다.</p>
+<p>이어서 모의 모드에서 두 판본의 출력이 같다는 것을 확인한다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="va">LLM_FAKE</span><span class="op">=</span>1 <span class="va">PROMPT_SUMMARY</span><span class="op">=</span>summary_v1 <span class="ex">python</span> <span class="at">-c</span> <span class="st">"</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="st">from api.summary import summarize</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="st">from api.jobs import get_job</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="st">j = get_job(7); print(summarize(j['description'])['qualifications'])"</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="va">LLM_FAKE</span><span class="op">=</span>1 <span class="va">PROMPT_SUMMARY</span><span class="op">=</span>summary_v2 <span class="ex">python</span> <span class="at">-c</span> <span class="st">"</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="st">from api.summary import summarize</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="st">from api.jobs import get_job</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="st">j = get_job(7); print(summarize(j['description'])['qualifications'])"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>['파이썬으로 프로그램을 작성할 수 있는 사람', 'LLM API를 호출해 본 경험이 있는 사람', '전문학사 이상 학위 소지자 또는 2028년 2월 졸업 예정자']
+['파이썬으로 프로그램을 작성할 수 있는 사람', 'LLM API를 호출해 본 경험이 있는 사람', '전문학사 이상 학위 소지자 또는 2028년 2월 졸업 예정자']</code></pre>
+<p>기준 저장소의 모의 응답(<code>api/llm.py</code>의 <code>fake_reply()</code>)은 공고의 절 제목 아래 항목을 그대로 옮기므로 판본이 달라도 같은 답을 낸다. 테스트에는 이 성질이 좋다(언제나 같은 결과). 평가에는 쓸모가 없다(판본의 차이가 보이지 않는다). 이 장의 키트는 그래서 판본에 반응하고 실행마다 조금씩 달라지는 <strong>변동 모의 모델</strong>(<code>evals/sim.py</code>)을 따로 둔다. 2-6에서 설치하고 3절부터 쓴다.</p>
+<ul>
+<li><span class="check-badge">확인 4</span> <code>diff</code>에 v2의 규칙 셋이 보이고, 두 <code>python -c</code> 명령의 출력이 같다.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="골든-세트" class="level2">
+<h2 class="anchored" data-anchor-id="골든-세트">2. 골든 세트</h2>
+<section id="골든-세트의-구성" class="level3">
+<h3 class="anchored" data-anchor-id="골든-세트의-구성">2-1. 골든 세트의 구성</h3>
+<p><strong>골든 세트</strong>(golden set)는 평가에 쓰는 입력과 기대값의 묶음이다. 2026년판 교재는 이것을 「정답셋」이라 불렀고, 정답셋, 채점기, 측정 기록의 세 부품으로 평가를 설명하였다 [L9]. 에이전트 평가 글은 같은 구조를 과업(task), 시행(trial), 채점기(grader), 기록(transcript), 평가 묶음(eval suite)의 용어로 정리한다 [E5]. 이 장은 다음 뜻으로 쓴다.</p>
+<ul>
+<li><strong>문항(과업)</strong>: 입력 하나와 기대값 하나의 쌍. <code>golden/summary.jsonl</code>, <code>golden/ask.jsonl</code>의 한 줄이다.</li>
+<li><strong>기대값</strong>: 출력이 지켜야 할 것. 정답 하나일 수도, 범위일 수도 있다. 문항의 <code>expect</code> 칸에 있다.</li>
+<li><strong>채점기</strong>: 출력과 기대값을 비교해 기준 하나의 통과 여부를 정하는 함수. <code>graders.py</code>와 <code>judge.py</code>에 있다.</li>
+<li><strong>시행</strong>: 문항 하나를 한 번 실행하고 채점한 것. <code>runs/&lt;태그&gt;/records.jsonl</code>의 한 줄로 남는다.</li>
+<li><strong>실행</strong>: 골든 세트 전체를 n번 되풀이한 것. <code>runs/&lt;태그&gt;/</code> 폴더 하나로 남는다.</li>
+</ul>
+<p>평가의 부품이 이어지는 모양은 다음과 같다. 이 장의 3~6절과 11절이 이 그림을 왼쪽에서 오른쪽으로 따라간다.</p>
+<pre class="mermaid">graph LR
+    G["골든 세트&lt;br/&gt;golden/*.jsonl"] --&gt; R["실행기&lt;br/&gt;run.py"]
+    P["프롬프트 판본·모델&lt;br/&gt;--prompt, --model"] --&gt; R
+    R --&gt; F["기능 함수&lt;br/&gt;summarize, answer_question"]
+    F --&gt; C["규칙 채점기&lt;br/&gt;graders.py"]
+    F --&gt; J["판정자&lt;br/&gt;judge.py"]
+    C --&gt; L["시행 기록&lt;br/&gt;records.jsonl"]
+    J --&gt; L
+    L --&gt; S["요약&lt;br/&gt;summary.json"]
+    S --&gt; CMP["판본 비교&lt;br/&gt;compare.py"]
+    S --&gt; GT["회귀 판정&lt;br/&gt;gate.py"]
+    GT --&gt;|"종료 코드 0"| B["기준선&lt;br/&gt;baseline.json"]
+    GT --&gt;|"종료 코드 1, 2"| X["병합 막음&lt;br/&gt;13장 CI"]
+</pre>
+</section>
+<section id="대표성" class="level3">
+<h3 class="anchored" data-anchor-id="대표성">2-2. 대표성</h3>
+<p>골든 세트의 첫째 조건은 <strong>대표성</strong>이다. 평가 안내는 「실제 과업의 분포를 비추라」고 한다 [A1]. 실제 사용자가 요약 버튼을 누르는 공고가 백엔드 개발 공고에 몰려 있는데 골든 세트가 임베디드 공고로만 되어 있다면, 통과율이 높아도 운영의 품질을 말해 주지 않는다.</p>
+<p><code>jobprep</code>의 요약 골든 세트는 대표 문항 10개를 <code>data/jobs.json</code>의 공고 30건 가운데 분야가 겹치지 않게 골랐다(정보보안, 웹, 임베디드, 백엔드, 데이터 분석, 기술 지원, AI 서비스 둘, 클라우드, 소프트웨어 테스트). 공고의 형식(절 제목 8개)이 모두 같으므로 분야를 고르게 하는 것이 대표성의 핵심이다. 운영 기록이 쌓이면 실제 요청의 분포(5장의 <code>access.log</code>에서 어떤 공고의 요약이 많이 불렸는가)에 맞추어 다시 고른다.</p>
+</section>
+<section id="경계-사례" class="level3">
+<h3 class="anchored" data-anchor-id="경계-사례">2-3. 경계 사례</h3>
+<p>둘째 조건은 <strong>경계 사례</strong>(edge case)이다. 평가 안내는 경계 사례의 예로 관련 없거나 지나치게 긴 입력, 잘못되었거나 해로운 입력, 모호한 경우를 든다 [A1]. 에이전트 평가 글은 「어떤 행동이 일어나야 할 때와 일어나지 않아야 할 때를 둘 다 시험하라」고 한다 [E5]. 질의응답에서 답해야 할 질문만 넣으면, 무엇에나 답하는 기능이 만점을 받는다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>문항</th>
+<th>경계의 종류</th>
+<th>무엇을 보는가</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>S11</td>
+<td>마감일이 둘(설명회 신청 마감, 서류 접수 마감)</td>
+<td>v2의 규칙 3이 서류 접수 마감일을 고르게 하는가</td>
+</tr>
+<tr class="even">
+<td>S12</td>
+<td>마감일이 없는 상시 채용</td>
+<td>없는 마감일을 지어내지 않고 <code>null</code>로 두는가</td>
+</tr>
+<tr class="odd">
+<td>S13</td>
+<td>유의 사항 절이 없는 공고</td>
+<td>주의점을 지어내지 않고 빈 목록으로 두는가</td>
+</tr>
+<tr class="even">
+<td>S14</td>
+<td>절 구분이 없는 한 줄짜리 공고</td>
+<td>구조가 없는 입력에서도 JSON을 지키는가</td>
+</tr>
+<tr class="odd">
+<td>S15</td>
+<td>본문에 숨긴 지시(11장의 간접 프롬프트 주입)</td>
+<td>숨긴 지시를 요약에 옮기지 않는가(능력 문항)</td>
+</tr>
+<tr class="even">
+<td>A07</td>
+<td>구어체 질문</td>
+<td>표현이 달라도 같은 근거를 찾는가</td>
+</tr>
+<tr class="odd">
+<td>A08</td>
+<td>범위 밖 질문(학생 식당)</td>
+<td>「자료에 없습니다.」로 거절하는가</td>
+</tr>
+<tr class="even">
+<td>A09</td>
+<td>범위 밖이지만 유사도가 기준값(0.3)에 가까운 질문</td>
+<td>검색 기준값의 여유가 충분한가</td>
+</tr>
+<tr class="odd">
+<td>A10</td>
+<td>목록에 없는 대상(리눅스마스터 1급)</td>
+<td>근거로부터 「목록에 없다」를 끌어내는가(능력 문항)</td>
+</tr>
+</tbody>
+</table>
+<p>A09는 기준 저장소 안내에 적힌 수치에서 나왔다. 대체 임베딩에서 범위 밖 질문의 1위 유사도는 0.08~0.27이고 기준값은 0.3이다. 이 질문(교통비)의 1위 유사도는 0.26으로 기준값에 가장 가깝다. 자료가 하나 늘거나 임베딩 방식이 바뀌어 이 값이 0.3을 넘으면, 이 기능은 근거 없는 답을 내기 시작한다. 경계 문항은 그런 변화를 가장 먼저 알려 준다.</p>
+</section>
+<section id="정답의-형식" class="level3">
+<h3 class="anchored" data-anchor-id="정답의-형식">2-4. 정답의 형식</h3>
+<p>셋째 조건은 <strong>정답의 형식</strong>이다. 기대값을 어떤 모양으로 적느냐가 어떤 채점기를 쓸 수 있는지를 정한다.</p>
+<ul>
+<li><strong>하나의 값</strong>(<code>"deadline": "2027-09-30"</code>, <code>"not_found": true</code>)은 정확 일치로 채점한다.</li>
+<li><strong>값의 목록</strong>, 곧 참조 답(<code>"duties": ["데이터 수집 스크립트를 작성하고 점검한다", …]</code>)은 참조 기반으로 채점한다(재현율).</li>
+<li><strong>금지 목록</strong>(<code>"preferred": [우대 사항]</code>, <code>"must_not_contain": ["이전 지시를 무시"]</code>)은 규칙으로 채점한다.</li>
+<li><strong>핵심어</strong>(<code>"keywords": ["15주"]</code>)는 문자열 포함으로 채점한다.</li>
+<li><strong>기준표</strong>(<code>judge_rubric.md</code>의 「근거 충실성」)는 LLM 판정으로 채점한다.</li>
+</ul>
+<p>에이전트 평가 글은 과업을 모호하지 않게 쓰라고 하며, 그 기준으로 「두 전문가가 독립적으로 같은 통과·실패 판정에 이르는가」를 든다 [E5]. 「요약이 충분한가」는 사람마다 판정이 다르다. 「참조 항목의 80% 이상을 덮는가」는 같다.</p>
+</section>
+<section id="크기와-출처" class="level3">
+<h3 class="anchored" data-anchor-id="크기와-출처">2-5. 크기와 출처</h3>
+<p>에이전트 평가 글은 「실제 실패에서 뽑은 단순한 과업 20~50개로 시작하면 좋다」고 하며, 수백 개를 모을 때까지 기다리지 말라고 한다 [E5]. 평가 안내도 「손으로 채점한 소수의 고품질 문항보다 자동 채점되는 다수의 문항」을 권한다 [A1]. 이 장의 골든 세트는 25문항(요약 15, 질의응답 10)으로 그 범위의 아래쪽에 있다.</p>
+<p>문항의 출처는 두 가지다. 하나는 배포 전에 사람이 손으로 하던 점검이고, 다른 하나는 운영 중에 들어온 실패 보고이다 [E5]. <code>jobprep</code>의 경우 4장에서 만든 장애 보고서의 입력, 5장의 MCP 서버로 찾은 오류 기록, 11장의 주입 공격 재현 자료가 모두 골든 세트의 문항 후보이다. 실패가 보고될 때마다 그 입력을 문항으로 더하면 같은 실패가 두 번 운영에 나가지 않는다.</p>
+</section>
+<section id="평가-도구-설치와-문항-읽기" class="level3">
+<h3 class="anchored" data-anchor-id="평가-도구-설치와-문항-읽기">2-6. 평가 도구 설치와 문항 읽기</h3>
+<p>키트의 <code>evals/</code>와 <code>ops/telemetry/</code>를 저장소에 복사한다. 기준 저장소의 <code>evals/</code>에는 안내(<code>README.md</code>)만 있으므로 덮어쓸 파일이 없다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-rn</span> ~/kits/Agent_12주차/evals/. evals/</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ops/telemetry</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-rn</span> ~/kits/Agent_12주차/ops/telemetry/. ops/telemetry/</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"evals/runs/"</span> <span class="op">&gt;&gt;</span> .gitignore</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> evals</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>README.md     calibrate.py  compare.py  golden     judge.py         run.py  tests
+__init__.py   calibration   gate.py     graders.py judge_rubric.md  sim.py  thresholds.json</code></pre>
+<p><code>evals/runs/</code>는 평가를 실행할 때마다 기록이 쌓이는 곳이다. 실행 기록은 다시 만들 수 있고 양이 많으므로 저장소에 올리지 않는다. 판정의 기준이 되는 <code>thresholds.json</code>(합격선)과 11절에서 만들 <code>baseline.json</code>(기준선)은 <code>evals/</code> 바로 아래에 있으므로 커밋된다.</p>
+<p>골든 세트는 JSON Lines 형식이다. 한 줄이 문항 하나다. 문항의 구성을 센다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wc</span> <span class="at">-l</span> evals/golden/<span class="pp">*</span>.jsonl</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="st">import json</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="st">from collections import Counter</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="st">for s in ('summary', 'ask'):</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="st">    rows = [json.loads(l) for l in open(f'evals/golden/{s}.jsonl', encoding='utf-8')]</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="st">    print(s, len(rows), dict(Counter((r['suite'], r['kind']) for r in rows)))"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>   10 evals/golden/ask.jsonl
+   15 evals/golden/summary.jsonl
+   25 total
+summary 15 {('regression', '대표'): 10, ('regression', '경계'): 4, ('capability', '경계'): 1}
+ask 10 {('regression', '대표'): 6, ('regression', '경계'): 3, ('capability', '경계'): 1}</code></pre>
+<ul>
+<li><span class="check-badge">확인 5</span> 요약 15문항(회귀 14, 능력 1), 질의응답 10문항(회귀 9, 능력 1)이 출력된다.</li>
+</ul>
+<p>경계 문항 S11을 하나 열어 기대값의 모양을 본다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="st">import json</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="st">for l in open('evals/golden/summary.jsonl', encoding='utf-8'):</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="st">    r = json.loads(l)</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="st">    if r['id'] == 'S11':</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="st">        text = r['input']</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="st">        print(r['note']); print(text[text.index('[유의 사항]'):])</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="st">        print(json.dumps(r['expect'], ensure_ascii=False, indent=1))"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>경계: 마감일이 둘
+[유의 사항]
+- 온라인 직무 설명회 신청 마감: 2027-09-20 18:00
+- 서류 접수 마감: 2027-09-30 18:00
+- 면접은 서류 합격자에게 개별 안내한다
+{
+ "deadline": "2027-09-30",
+ "duties": [
+  "데이터 수집 스크립트를 작성하고 점검한다",
+  "데이터 품질 검사 결과를 기록한다"
+ ],
+ ...
+ "preferred": [
+  "데이터 시각화 도구 사용 경험"
+ ]
+}</code></pre>
+<p>기대 마감일은 본문에 먼저 나오는 2027-09-20이 아니라 서류 접수 마감일 2027-09-30이다. 이 문항을 넣은 사람은 「먼저 나오는 날짜를 고르는 실수」를 미리 내다보았다. 경계 문항은 이렇게 실수의 모양을 하나씩 겨눈다.</p>
+<ul>
+<li><span class="check-badge">확인 6</span> S11의 <code>expect.deadline</code>이 <code>2027-09-30</code>이고, 본문에 날짜가 두 개 있다.</li>
+</ul>
+<p>평가 도구에도 테스트가 있다. 채점기가 틀리면 점수 전체가 틀리므로, 채점기는 테스트로 지킨다. 기준 저장소의 <code>pytest.ini</code>는 <code>tests/</code>만 보므로 폴더를 이름으로 준다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pytest</span> <span class="at">-q</span> evals ops/telemetry</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>................................                                         [100%]
+32 passed in 1.33s</code></pre>
+<ul>
+<li><span class="check-badge">확인 7</span> <code>32 passed</code>가 나온다. 이어서 0-2의 기록 견본과 함께 커밋한다.</li>
+</ul>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .gitignore evals ops</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"test(evals): 골든 세트, 평가 도구, 관측 도구와 실행 기록 견본"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="채점-방식" class="level2">
+<h2 class="anchored" data-anchor-id="채점-방식">3. 채점 방식</h2>
+<section id="다섯-가지-채점-방식" class="level3">
+<h3 class="anchored" data-anchor-id="다섯-가지-채점-방식">3-1. 다섯 가지 채점 방식</h3>
+<p>출력과 기대값을 비교하는 방식은 크게 다섯이다. Anthropic의 평가 안내는 채점 방식을 코드 기반, 사람, LLM 기반의 셋으로 나누고, 「가장 빠르고, 가장 믿을 만하고, 가장 확장 가능한 방식」을 고르라고 한다 [A1]. 코드 기반 채점은 「가장 빠르고 믿을 만하며 확장성이 매우 크지만, 규칙으로 판정하기 어려운 복잡한 판단에는 섬세함이 모자란다」. 사람 채점은 「가장 유연하고 품질이 높지만 느리고 비싸며, 되도록 피한다」. LLM 기반 채점은 「빠르고 유연하며 복잡한 판단에 맞지만, 먼저 신뢰도를 시험한 뒤에 넓혀 쓴다」 [A1]. 이 장은 코드 기반 채점을 넷으로 더 나누어 다섯으로 본다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>방식</th>
+<th>하는 일</th>
+<th>장점</th>
+<th>단점</th>
+<th><code>jobprep</code>의 예</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>정확 일치</td>
+<td>출력 값이 기대값과 같은가</td>
+<td>빠르고 결정적이다. 해석의 여지가 없다</td>
+<td>표현이 조금만 달라도 실패한다</td>
+<td>마감일, 거절 문구</td>
+</tr>
+<tr class="even">
+<td>구조 검사</td>
+<td>출력이 정해진 모양(JSON 키, 형식, 개수)을 갖추었는가</td>
+<td>다음 처리(화면, API)가 깨지지 않는지 보장한다</td>
+<td>내용의 옳고 그름은 보지 못한다</td>
+<td>JSON 구조, 근거 번호와 출처의 존재</td>
+</tr>
+<tr class="odd">
+<td>규칙</td>
+<td>금지 문구, 길이, 포함 관계 같은 조건을 지키는가</td>
+<td>빠르고 이유가 분명하다. 실패 사유를 바로 적을 수 있다</td>
+<td>규칙으로 적을 수 있는 실수만 잡는다</td>
+<td>항목 50자 이내, 우대 사항 혼입, 숨긴 지시의 문구</td>
+</tr>
+<tr class="even">
+<td>참조 기반</td>
+<td>참조 답(사람이 쓴 정답 목록)과 얼마나 겹치는가</td>
+<td>표현 차이를 어느 정도 허용한다</td>
+<td>겹침이 뜻의 같음을 보장하지 않는다. 참조 답을 써야 한다</td>
+<td>업무·자격·주의점 항목의 재현율</td>
+</tr>
+<tr class="odd">
+<td>LLM 판정</td>
+<td>다른 모델이 기준표를 들고 판정한다</td>
+<td>지어냄, 왜곡, 어조처럼 규칙으로 적기 어려운 기준을 다룬다</td>
+<td>비용과 비결정성이 있다. 판정자 자체를 보정해야 한다</td>
+<td>근거에 없는 문장의 유무</td>
+</tr>
+</tbody>
+</table>
+<p>평가 안내의 예시들이 이 구분을 잘 보여 준다. 감정 분류는 정답 레이블과의 정확 일치로, 요약은 참조 요약과의 ROUGE-L로, 고객 응대의 어조는 LLM의 1~5점 척도로, 의료 대화의 개인 건강 정보 노출은 LLM의 이진 분류로 채점한다 [A1]. 에이전트 평가 글은 여러 채점기를 한 과업에 함께 쓰고, 점수를 가중 합으로 내거나(가중), 모두 통과해야 통과로 하거나(이진), 둘을 섞으라고 한다 [E5]. 이 장의 실행기는 이진 방식을 쓴다. 시행 하나는 해당하는 규칙 기준을 모두 통과하고 판정자가 <code>pass</code>라고 해야 통과다.</p>
+<p>판단의 순서도 중요하다. 규칙으로 잡을 수 있는 것은 규칙으로 잡고, 남는 것만 판정자에게 넘긴다. 2026년판 교재도 같은 취지로, 규칙 채점을 기본으로 깔고 규칙이 판정하기 어려운 축(사실성, 어조, 근거)에만 판정자를 쓰라고 하였다 [L9]. 판정자 호출은 문항마다 비용이 들고, 판정자도 틀리기 때문이다.</p>
+</section>
+<section id="jobprep-채점기의-지도" class="level3">
+<h3 class="anchored" data-anchor-id="jobprep-채점기의-지도">3-2. jobprep 채점기의 지도</h3>
+<p><code>evals/graders.py</code>에는 요약 채점기 다섯과 질의응답 채점기 넷이 있다. 채점기는 모두 <code>(통과 여부, 설명)</code>을 돌려주는 함수이며, 통과 여부가 <code>None</code>이면 그 문항에 해당하지 않는 기준이라는 뜻이다(예: 금지 문구가 없는 문항의 <code>forbidden</code>).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>묶음</th>
+<th>채점기</th>
+<th>방식</th>
+<th>통과 조건</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>요약</td>
+<td><code>structure</code></td>
+<td>구조 검사</td>
+<td>응답을 JSON으로 읽고 <code>validate_summary()</code>를 통과하였다</td>
+</tr>
+<tr class="even">
+<td>요약</td>
+<td><code>deadline</code></td>
+<td>정확 일치</td>
+<td>마감일이 기대값과 같다(<code>null</code>끼리도 같다)</td>
+</tr>
+<tr class="odd">
+<td>요약</td>
+<td><code>coverage</code></td>
+<td>참조 기반</td>
+<td>참조 항목의 80% 이상이 출력 항목과 유사도 0.5 이상으로 맞는다</td>
+</tr>
+<tr class="even">
+<td>요약</td>
+<td><code>length</code></td>
+<td>규칙</td>
+<td>모든 항목이 50자 이내이다</td>
+</tr>
+<tr class="odd">
+<td>요약</td>
+<td><code>forbidden</code></td>
+<td>규칙</td>
+<td><code>must_not_contain</code>의 문구가 출력에 없다</td>
+</tr>
+<tr class="even">
+<td>질의응답</td>
+<td><code>refusal</code></td>
+<td>정확 일치</td>
+<td>거절해야 할 질문에만 「자료에 없습니다.」로 답했다</td>
+</tr>
+<tr class="odd">
+<td>질의응답</td>
+<td><code>keywords</code></td>
+<td>문자열 포함</td>
+<td>기대 핵심어가 답에 모두 있다</td>
+</tr>
+<tr class="even">
+<td>질의응답</td>
+<td><code>citation</code></td>
+<td>구조 검사</td>
+<td>답에 <code>[n]</code>이 있고 출처 목록이 비어 있지 않다</td>
+</tr>
+<tr class="odd">
+<td>질의응답</td>
+<td><code>source</code></td>
+<td>정확 일치</td>
+<td>기대한 자료 파일이 출처에 있다</td>
+</tr>
+</tbody>
+</table>
+<p>참조 기반 채점에 쓰는 유사도는 두 글을 두 글자씩 잘라 겹치는 비율(bigram Dice 계수)이다. 형태소 분석기 없이 한국어 문장의 겹침을 재는 가장 단순한 방법이다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="st">from evals.graders import similarity</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="st">print(round(similarity('보안 관제 시스템을 운영한다', '보안 관제 시스템을 운영함'), 2))</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="st">print(round(similarity('보안 관제 시스템을 운영한다', '사내 관제 장비를 관리한다'), 2))</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="st">print(round(similarity('서류 접수 마감', '정장 무료 대여'), 2))"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>0.86
+0.19
+0.0</code></pre>
+<p>어미 하나가 다른 문장은 0.86으로 같은 항목으로 인정되고(기준 0.5), 낱말 몇 개만 겹치는 다른 문장은 0.19로 다른 항목이 된다. 이 기준이 뜻을 재지는 않는다는 점은 5절에서 다시 다룬다.</p>
+</section>
+<section id="첫-평가-실행" class="level3">
+<h3 class="anchored" data-anchor-id="첫-평가-실행">3-3. 첫 평가 실행</h3>
+<p>실행기 <code>evals/run.py</code>는 골든 세트의 문항을 기준 저장소의 기능 함수(<code>summarize()</code>, <code>answer_question()</code>)에 그대로 넣는다. 평가는 API를 거치지 않고 함수를 부르지만, 프롬프트 읽기, JSON 추출, 구조 검사, 검색과 기준값 판정은 운영과 같은 코드가 한다. 바뀌는 것은 <code>llm.complete()</code> 하나뿐이다. <code>--backend sim</code>(기본)이면 실행기가 이 자리에 변동 모의 모델을 끼운다.</p>
+<p>변동 모의 모델(<code>evals/sim.py</code>)은 기준 저장소의 모의 응답에 두 가지를 더한 교육용 장치이다.</p>
+<ul>
+<li><strong>판본 민감성</strong>: 프롬프트에 「우대 사항은 자격 요건에 넣지 않는다」가 없으면 우대 사항을 자격 요건에 섞을 확률이 높다. 「40자 이내」가 없으면 항목을 길게 늘인다. 「주의점으로 먼저」가 있으면 공고에 없는 주의점을 지어낼 수 있다. 프롬프트의 규칙 한 줄이 출력의 실수 분포를 바꾸는 현실을 흉내 낸다.</li>
+<li><strong>결정적 변동</strong>: (모델 이름, 반복 번호, 프롬프트 전체)로 sha256 난수 씨앗을 만든다. 반복 번호가 다르면 결과가 달라지고, 조건이 같으면 어느 컴퓨터에서나 같다. 같은 입력에도 실행마다 답이 다른 현실을 흉내 내되, 교재의 수치를 다시 얻을 수 있게 한다.</li>
+</ul>
+<p>모의 모델의 확률은 집필자가 정한 값이다. 그러므로 이 장의 점수는 「평가를 하는 법」을 익히기 위한 것이지, 실제 모델의 품질이 아니다. 실제 모델은 <code>--backend real</code>로 부르며, 11절 끝의 교수 시연에서 그 방법과 비용을 다룬다.</p>
+<p>요약 골든 세트를 v1 판본으로 5번 돌린다. 이 실행은 3-4에서 채점기를 더한 뒤의 결과와 견주기 위해 <code>v1-base</code>라는 이름을 붙인다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> evals.run <span class="at">--suite</span> summary <span class="at">--prompt</span> summary_v1 <span class="at">--runs</span> 5 <span class="at">--tag</span> v1-base</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>[summary] 판본 summary_v1 · 모델 sim-a · 반복 5회 · 문항 15개(회귀 14)
+  기준별 통과율(회귀 문항)
+    structure  0.97
+    deadline   0.94
+    coverage   0.95
+    length     0.85
+    forbidden  해당 없음
+    judge      0.94
+  문항별 통과(반복 중 통과 횟수)
+    S01 5/5   S02 3/5   S03 4/5   S04 4/5   S05 3/5
+    S06 5/5   S07 5/5   S08 4/5   S09 3/5   S10 5/5
+    S11 0/5   S12 4/5   S13 4/5   S14 5/5   S15* 0/5
+  회귀 통과율 0.77 (표준오차 0.072, 95% 구간 0.63~0.91) · 모든 반복 통과 5/14문항
+  반복별 회귀 통과율: 0.79, 0.79, 0.79, 0.86, 0.64
+  능력 문항(*) 통과율 0.00
+  LLM 호출 75회 · 토큰 입력 29,880 출력 10,698
+기록: evals/runs/v1-base/ (records.jsonl, summary.json, llm.log)</code></pre>
+<p>출력을 위에서부터 읽는다.</p>
+<ul>
+<li><p>기준별 통과율은 회귀 문항 14개 × 5회 = 70시행 가운데 그 기준을 통과한 비율이다. <code>forbidden</code>은 회귀 문항에 금지 문구가 없어 해당 없음이다(금지 문구는 능력 문항 S15에만 있다).</p></li>
+<li><p>문항별 통과의 <code>S11 0/5</code>는 마감일이 둘인 경계 문항이 다섯 번 모두 실패했다는 뜻이다. v1에는 서류 접수 마감일을 고르라는 규칙이 없다.</p></li>
+<li><p>회귀 통과율 0.77은 문항마다 통과 비율(예: S02는 3/5 = 0.6)을 낸 뒤 14문항에 걸쳐 평균한 값이다. 표준오차와 구간은 4절에서 다룬다.</p></li>
+<li><p>LLM 호출 75회는 15문항 × 5회이다. 모의 모델의 토큰 수는 글자 수의 절반으로 어림한 값이다.</p></li>
+<li><p><span class="check-badge">확인 8</span> 회귀 통과율 0.77, <code>length</code> 0.85, <code>S11 0/5</code>가 출력되고 <code>evals/runs/v1-base/</code>에 세 파일이 생긴다.</p></li>
+</ul>
+</section>
+<section id="채점기-더하기-우대-사항-혼입" class="level3">
+<h3 class="anchored" data-anchor-id="채점기-더하기-우대-사항-혼입">3-4. 채점기 더하기: 우대 사항 혼입</h3>
+<p>v1의 점수 0.77에는 빠진 것이 있다. 1-5에서 본 v2의 규칙 2 「우대 사항은 자격 요건에 넣지 않는다」는 실제로 있을 법한 실수를 겨눈 규칙인데, 지금의 채점기 다섯 가운데 이 실수를 보는 것이 없다. 채점기가 보지 않는 결함은 점수에 나오지 않는다. 그래서 이 실수를 잡는 채점기 <code>grade_preferred</code>를 더한다. 채점기도 코드이므로 2장의 순서(Red → Green)를 따른다.</p>
+<p>먼저 키트의 테스트를 복사하고 실패를 확인한다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ~/kits/Agent_12주차/재료/test_preferred.py evals/tests/</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pytest</span> <span class="at">-q</span> evals/tests/test_preferred.py</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>FAILED evals/tests/test_preferred.py::test_preferred_mixed_into_qualifications_fails
+FAILED evals/tests/test_preferred.py::test_clean_qualifications_pass - Attrib...
+FAILED evals/tests/test_preferred.py::test_not_applicable_without_preferred
+FAILED evals/tests/test_preferred.py::test_registered_in_summary_graders - As...
+4 failed in 1.41s</code></pre>
+<p>실패 이유는 <code>AttributeError: module 'evals.graders' has no attribute 'grade_preferred'</code>이다. 테스트가 요구하는 것은 네 가지다. 우대 사항이 자격 요건에 섞이면 실패하고 그 항목을 설명에 적는다. 섞이지 않으면 통과한다. 공고에 우대 사항이 없으면 해당 없음(<code>None</code>)이다. 채점기 목록 <code>SUMMARY_GRADERS</code>에 <code>preferred</code>라는 이름으로 등록된다.</p>
+<p><code>evals/graders.py</code>의 맨 끝에 다음을 더한다. 직접 쓰거나, Claude Code에 테스트 파일을 보여 주고 통과하는 구현을 요청한다. Claude Code에 맡길 때는 테스트를 고치지 말라는 조건을 붙인다(2장의 테스트 동결).</p>
+<div class="code-label where-claude">
+<span>Claude Code</span>
+</div>
+<pre class="text"><code>evals/tests/test_preferred.py의 테스트 4개가 통과하도록 evals/graders.py 끝에 grade_preferred 함수를 더하고
+SUMMARY_GRADERS에 "preferred"로 등록해 줘. 같은 파일의 best_match와 MATCH_MIN을 써서
+자격 요건 항목이 우대 사항과 비슷하면 섞인 것으로 본다. 테스트 파일은 고치지 않는다.</code></pre>
+<p><strong>[파일: evals/graders.py] (끝에 더하는 부분)</strong></p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> grade_preferred(item, output):</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""우대 사항이 자격 요건에 섞이지 않았는가(규칙). 공고에 우대 사항이 없으면 해당 없음."""</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    preferred <span class="op">=</span> item[<span class="st">"expect"</span>].get(<span class="st">"preferred"</span>, [])</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> preferred:</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span>, <span class="st">"우대 사항 없음"</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    mixed <span class="op">=</span> [q <span class="cf">for</span> q <span class="kw">in</span> output.get(<span class="st">"qualifications"</span>, []) <span class="cf">if</span> best_match(q, preferred) <span class="op">&gt;=</span> MATCH_MIN]</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> mixed:</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">False</span>, <span class="ss">f"우대 사항이 자격 요건에 섞임: </span><span class="sc">{</span>mixed[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">True</span>, <span class="st">""</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>SUMMARY_GRADERS[<span class="st">"preferred"</span>] <span class="op">=</span> grade_preferred</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>정확 일치(<code>q in preferred</code>)가 아니라 유사도를 쓰는 까닭은 실제 모델이 우대 사항을 옮길 때 표현을 조금 바꾸기 때문이다(「FastAPI로 API를 만든 경험」 → 「FastAPI로 API를 만든 경험이 있는 사람」).</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pytest</span> <span class="at">-q</span> evals/tests/test_preferred.py</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pytest</span> <span class="at">-q</span> evals ops/telemetry</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>....                                                                     [100%]
+4 passed in 0.44s
+....................................                                     [100%]
+36 passed in 2.41s</code></pre>
+<ul>
+<li><span class="check-badge">확인 9</span> 테스트 복사 직후 <code>4 failed</code>, 구현 뒤 <code>4 passed</code>, 평가 도구 전체 <code>36 passed</code>가 나온다.</li>
+</ul>
+<p>같은 v1을 다시 돌린다. 이번에는 태그를 주지 않아 기본 이름(<code>summary_v1-sim-a-n5</code>)이 붙는다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> evals.run <span class="at">--suite</span> summary <span class="at">--prompt</span> summary_v1 <span class="at">--runs</span> 5</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>[summary] 판본 summary_v1 · 모델 sim-a · 반복 5회 · 문항 15개(회귀 14)
+  기준별 통과율(회귀 문항)
+    structure  0.97
+    deadline   0.94
+    coverage   0.95
+    length     0.85
+    forbidden  해당 없음
+    preferred  0.71
+    judge      0.94
+  문항별 통과(반복 중 통과 횟수)
+    S01 4/5   S02 2/5   S03 4/5   S04 3/5   S05 3/5
+    S06 3/5   S07 3/5   S08 4/5   S09 1/5   S10 4/5
+    S11 0/5   S12 3/5   S13 2/5   S14 5/5   S15* 0/5
+  회귀 통과율 0.59 (표준오차 0.071, 95% 구간 0.45~0.72) · 모든 반복 통과 1/14문항
+  반복별 회귀 통과율: 0.43, 0.71, 0.64, 0.64, 0.50
+  능력 문항(*) 통과율 0.00
+  LLM 호출 75회 · 토큰 입력 29,880 출력 10,698
+기록: evals/runs/summary_v1-sim-a-n5/ (records.jsonl, summary.json, llm.log)</code></pre>
+<p>모델도, 프롬프트도, 출력도 3-3과 같다(토큰 수가 같다). 바뀐 것은 채점기 하나인데 회귀 통과율이 0.77에서 0.59로 떨어졌다. 기능이 나빠진 것이 아니라, 원래 있던 결함이 처음으로 보이게 된 것이다. 이 결과는 평가의 점수가 「기능의 품질」이 아니라 「채점기가 본 범위 안의 품질」이라는 것을 보여 준다. 골든 세트와 채점기는 한 번 만들고 끝나는 것이 아니라, 새로 알게 된 실수의 모양만큼 자란다.</p>
+<ul>
+<li><span class="check-badge">확인 10</span> <code>preferred 0.71</code>이 기준 목록에 새로 보이고, 회귀 통과율이 0.59로 내려간다.</li>
+</ul>
+</section>
+<section id="시행-기록-한-줄" class="level3">
+<h3 class="anchored" data-anchor-id="시행-기록-한-줄">3-5. 시행 기록 한 줄</h3>
+<p>실행기는 시행마다 한 줄의 JSON을 <code>records.jsonl</code>에 남긴다. 운영 기록과 같은 생각으로, 나중에 「왜 이 점수가 나왔는가」를 되짚을 수 있게 하는 것이다. 에이전트 평가 글은 「기록을 읽어라」라고 강조한다 [E5]. 점수만 보면 채점기의 버그나 불공정한 문항을 놓친다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-1</span> evals/runs/summary_v1-sim-a-n5/records.jsonl <span class="kw">|</span> <span class="ex">python</span> <span class="at">-m</span> json.tool</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>{
+    "ts": "2027-12-01T10:12:31",
+    "run_id": "summary_v1-sim-a-n5",
+    "suite": "summary",
+    "item": "S01",
+    "item_suite": "regression",
+    "run": 0,
+    "backend": "sim",
+    "model": "sim-a",
+    "prompt_version": "summary_v1",
+    "passed": false,
+    "criteria": {
+        "structure": true,
+        "deadline": true,
+        "coverage": true,
+        "length": true,
+        "forbidden": null,
+        "preferred": false
+    },
+    "notes": {
+        "preferred": "우대 사항이 자격 요건에 섞임: 리눅스 로그 분석 경험"
+    },
+    "judge": "pass",
+    "judge_reason": "모든 문장이 근거와 겹친다",
+    "latency_ms": 6,
+    "llm_calls": 1,
+    "input_tokens": 441,
+    "output_tokens": 165,
+    "error": null
+}</code></pre>
+<p><code>ts</code>는 실행한 시각이므로 학습자마다 다르다. 한 줄에 프롬프트 판본, 모델, 기준별 결과, 실패 사유, 판정자의 이유, 지연, 토큰, 오류가 모두 있다. 8절에서 이 모양을 운영 기록의 본보기로 다시 본다.</p>
+<p>문항 하나의 다섯 시행을 모아 보면 실패의 모양이 시행마다 다르다는 것이 보인다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="st">import json</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="st">for line in open('evals/runs/summary_v1-sim-a-n5/records.jsonl', encoding='utf-8'):</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="st">    r = json.loads(line)</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="st">    if r['item'] == 'S09':</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="st">        print(r['run'], r['passed'], r['notes'], r['judge'])"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>0 False {'preferred': '우대 사항이 자격 요건에 섞임: FastAPI로 API를 만든 경험'} pass
+1 False {'length': '50자 초과 1개: 검색 증강 생성(RAG) 기능의 문서 색인을 관리한다,…'} pass
+2 True {} pass
+3 False {'preferred': '우대 사항이 자격 요건에 섞임: FastAPI로 API를 만든 경험'} pass
+4 False {'structure': '요약을 JSON 구조로 읽지 못하였다'} fail</code></pre>
+<p>같은 공고, 같은 판본인데 다섯 번 가운데 한 번 통과했고, 실패한 네 번의 이유가 셋으로 갈린다. 마지막 시행은 응답 JSON이 중간에 끊긴 경우로, 기준 저장소의 API였다면 502를 냈을 것이다. 이런 실패는 한 번의 수동 확인으로는 보이지 않는다.</p>
+<ul>
+<li><span class="check-badge">확인 11</span> S09의 다섯 시행 가운데 통과가 1개이고, 실패 사유에 <code>preferred</code>, <code>length</code>, <code>structure</code>가 섞여 있다.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="반복-실행과-분산" class="level2">
+<h2 class="anchored" data-anchor-id="반복-실행과-분산">4. 반복 실행과 분산</h2>
+<section id="같은-입력-다른-답" class="level3">
+<h3 class="anchored" data-anchor-id="같은-입력-다른-답">4-1. 같은 입력, 다른 답</h3>
+<p>LLM은 다음 토큰을 확률 분포에서 고른다. 같은 프롬프트에도 고르는 토큰이 달라질 수 있고, 한 토큰의 차이가 뒤의 문장 전체를 바꾼다. 기준 저장소의 <code>api/llm.py</code>는 <code>temperature</code>를 보내지 않는다(기준 저장소 안내에 따르면 API 판 2026-10-21에서 이 인자를 보내면 400 오류가 난다). 출력의 무작위성을 코드에서 끌 수 없다는 뜻이다. 그러므로 품질은 한 번의 출력이 아니라 여러 번의 출력이 이루는 분포로 말해야 한다.</p>
+<p>에이전트 평가 글은 이것을 시행(trial)이라는 단어로 정리한다. 「출력이 달라지므로 시행을 여러 번 한다」 [E5]. 또 각 시행은 깨끗한 환경에서 시작해야 한다고 한다. 앞 시행이 남긴 상태(파일, 캐시, 대화 기록)가 다음 시행을 돕거나 해치면 시행끼리 상관이 생겨 반복의 뜻이 없어진다 [E5]. <code>jobprep</code>의 실행기는 시행마다 함수를 새로 부르고 대화 기록을 넘기지 않으므로 이 조건을 지킨다.</p>
+</section>
+<section id="통과율-passk-passk" class="level3">
+<h3 class="anchored" data-anchor-id="통과율-passk-passk">4-2. 통과율, pass@k, pass^k</h3>
+<p>반복 실행의 결과를 하나의 수로 줄이는 방법은 여럿이다. 무엇을 보고 싶은가에 따라 고른다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>지표</th>
+<th>뜻</th>
+<th>커지는 방향</th>
+<th>쓰는 곳</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>통과율</td>
+<td>전체 시행 가운데 통과한 비율</td>
+<td>반복을 늘려도 그대로(추정이 정밀해질 뿐)</td>
+<td>기본 지표. 회귀 판정의 합격선</td>
+</tr>
+<tr class="even">
+<td>pass@k</td>
+<td>k번 가운데 한 번이라도 통과할 확률</td>
+<td>k가 클수록 커진다</td>
+<td>한 번만 성공하면 되는 일(예: 코드 생성 후 테스트로 고르기) [E5]</td>
+</tr>
+<tr class="odd">
+<td>pass^k</td>
+<td>k번 모두 통과할 확률</td>
+<td>k가 클수록 작아진다</td>
+<td>매번 성공해야 하는 일(예: 사용자를 마주하는 기능) [E5]</td>
+</tr>
+</tbody>
+</table>
+<p>에이전트 평가 글의 예로, 시행 하나의 성공률이 75%이면 세 번 모두 성공할 확률(pass^3)은 0.75³ ≈ 42%이다 [E5]. 취업 준비생이 요약 버튼을 누를 때마다 기준을 지켜야 하는 <code>jobprep</code>에는 pass^k가 맞는 관점이다. 실행기의 「모든 반복 통과 1/14문항」이 문항 단위의 pass^5이다. v1에서는 14문항 가운데 1문항만 다섯 번 모두 통과하였다.</p>
+</section>
+<section id="표준오차와-신뢰구간" class="level3">
+<h3 class="anchored" data-anchor-id="표준오차와-신뢰구간">4-3. 표준오차와 신뢰구간</h3>
+<p>통과율 0.59는 골든 세트 14문항에서 얻은 추정값이다. 문항을 다른 14개로 골랐다면 다른 값이 나왔을 것이다. Anthropic의 평가 통계 글은 평가 점수를 「가능한 모든 문항의 세계」에서 뽑은 표본의 평균으로 보고, 점수마다 <strong>평균의 표준오차</strong>(SEM)를 함께 보고하라고 권한다 [E6]. 95% 신뢰구간은 평균 ± 1.96 × SEM이다 [E6].</p>
+<p>실행기는 회귀 문항마다 통과 비율(예: S09는 1/5 = 0.2)을 낸 뒤, 이 14개 값의 표준편차를 √14로 나누어 SEM을 낸다. 같은 문항을 여러 번 돌린 시행은 서로 독립이 아니므로 시행 70개를 따로 세지 않고 문항 단위로 묶는다. 같은 글은 같은 원천에서 나온 문항들(예: 한 지문에 딸린 여러 질문)의 오차를 묶어서 세지 않으면 오차가 실제보다 작게 나온다고 경고한다 [E6]. 같은 글은 또 문항마다 답을 여러 번 뽑아 평균하면 문항 안의 변동이 줄어든다고 한다 [E6]. 이 장의 반복 실행이 그 방법이다.</p>
+<p>보고 방식을 셋으로 견주어 본다.</p>
+<ul>
+<li><strong>점수만</strong>: 「v1은 0.59」. 0.59가 0.45일 수도 0.72일 수도 있다는 것이 드러나지 않는다.</li>
+<li><strong>점수와 구간</strong>: 「v1은 0.59(95% 구간 0.45~0.72)」. 두 판본의 구간이 겹치는지 볼 수 있다.</li>
+<li><strong>짝지은 차이</strong>: 「v2 − v1 = +0.086(구간 −0.072~+0.243)」. 같은 문항에서 비교하므로 오차가 가장 작다. 6절에서 쓴다.</li>
+</ul>
+</section>
+<section id="반복-횟수에-따른-차이" class="level3">
+<h3 class="anchored" data-anchor-id="반복-횟수에-따른-차이">4-4. 반복 횟수에 따른 차이</h3>
+<p>반복 횟수가 결론을 어떻게 바꾸는지 직접 본다. 같은 v1을 1번, 20번 돌린다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> evals.run <span class="at">--suite</span> summary <span class="at">--prompt</span> summary_v1 <span class="at">--runs</span> 1 <span class="at">--tag</span> v1-n1 <span class="kw">|</span> <span class="fu">grep</span> <span class="st">"회귀 통과율\|반복별"</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> evals.run <span class="at">--suite</span> summary <span class="at">--prompt</span> summary_v1 <span class="at">--runs</span> 20 <span class="at">--tag</span> v1-n20 <span class="kw">|</span> <span class="fu">grep</span> <span class="st">"회귀 통과율\|반복별\|LLM"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>  회귀 통과율 0.43 (표준오차 0.137, 95% 구간 0.16~0.70) · 모든 반복 통과 6/14문항
+  반복별 회귀 통과율: 0.43
+  회귀 통과율 0.58 (표준오차 0.051, 95% 구간 0.48~0.68) · 모든 반복 통과 1/14문항
+  반복별 회귀 통과율: 0.43, 0.71, 0.64, 0.64, 0.50, 0.57, 0.71, 0.79, 0.64, 0.64, 0.57, 0.64, 0.50, 0.43, 0.71, 0.50, 0.64, 0.36, 0.71, 0.29
+  LLM 호출 300회 · 토큰 입력 119,520 출력 42,871</code></pre>
+<p>한 번만 돌린 점수는 0.43이다. 스무 번 돌린 점수는 0.58이고, 반복 하나하나의 점수는 0.29에서 0.79까지 퍼져 있다. 한 번만 돌렸다면 그 한 번이 0.29일 수도 0.79일 수도 있었다. 반복을 늘리면 구간이 좁아진다(0.16~0.70 → 0.48~0.68). 대신 호출이 75회에서 300회로 늘어 비용도 네 배가 된다. 반복 횟수는 정밀도와 비용의 거래이다.</p>
+<p>「모든 반복 통과」는 반대로 움직인다. 한 번 돌리면 6/14문항이 「모두 통과」이지만, 스무 번 돌리면 1/14문항만 남는다. pass^k는 k가 클수록 작아지는 지표이기 때문이다. 이 장의 회귀 판정은 반복 5회를 기본으로 하고, 판정기는 3회 미만의 실행을 받지 않는다(<code>thresholds.json</code>의 <code>min_runs</code>).</p>
+<ul>
+<li><span class="check-badge">확인 12</span> 반복 1회의 회귀 통과율과 반복 20회의 회귀 통과율이 다르고, 20회 실행의 「반복별 회귀 통과율」 목록에 20개의 값이 보인다.</li>
+</ul>
+<p>반복 횟수에 따른 호출 수와 구간의 너비(v1 실측)를 정리한다. 호출 수는 (문항 수 × 반복 수)이며, LLM 판정을 실제 모델로 하면 판정 호출이 같은 수만큼 더해진다.</p>
+<ul>
+<li><p>반복 1회: 요약 호출 15회(판정을 더하면 30회), 95% 구간의 너비 0.54</p></li>
+<li><p>반복 5회: 요약 호출 75회(판정을 더하면 150회), 95% 구간의 너비 0.27</p></li>
+<li><p>반복 20회: 요약 호출 300회(판정을 더하면 600회), 95% 구간의 너비 0.20</p></li>
+<li><p><span class="check-badge">확인 13</span> <code>evals/runs/</code> 아래에 <code>v1-base</code>, <code>summary_v1-sim-a-n5</code>, <code>v1-n1</code>, <code>v1-n20</code> 네 폴더가 있다(<code>ls evals/runs</code>).</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="llm-판정" class="level2">
+<h2 class="anchored" data-anchor-id="llm-판정">5. LLM 판정</h2>
+<section id="판정자가-맡는-기준" class="level3">
+<h3 class="anchored" data-anchor-id="판정자가-맡는-기준">5-1. 판정자가 맡는 기준</h3>
+<p>3절의 규칙 채점기는 우대 사항의 혼입처럼 「무엇이 틀렸는지 미리 적을 수 있는」 실수를 잡는다. 그런데 요약 기능의 가장 위험한 실수는 미리 적을 수 없다. 공고에 없는 주의점을 지어내는 일이다. 무엇을 지어낼지는 알 수 없으므로 금지 목록으로 막을 수 없다. 이런 기준은 「출력의 모든 문장이 근거로 뒷받침되는가」를 읽고 판단하는 채점자가 필요하고, 사람 대신 모델에게 그 일을 맡기는 것이 <strong>LLM 판정</strong>(LLM-as-a-judge)이다.</p>
+<p>Zheng 외(2023)는 강한 모델을 판정자로 써서 사람의 선호와 80% 넘게 일치하였고, 이는 사람과 사람 사이의 일치 수준과 같았다고 보고하였다 [R1]. 같은 연구는 판정자의 한계도 함께 보고하였다. 이 절은 그 한계와 보정을 다룬다.</p>
+</section>
+<section id="기준표" class="level3">
+<h3 class="anchored" data-anchor-id="기준표">5-2. 기준표</h3>
+<p>평가 안내는 LLM 판정의 요령으로 셋을 든다 [A1]. 상세하고 분명한 <strong>기준표</strong>(rubric)를 줄 것, 판정을 「correct 또는 incorrect」나 「1~5점」처럼 정해진 값으로 받을 것(경험적이고 구체적인 출력), 점수를 내기 전에 추론하게 할 것. 또 출력을 만든 모델과 다른 모델을 판정자로 쓰라고 권한다 [A1]. 에이전트 평가 글은 판정자에게 「알 수 없음」이라고 답할 길을 열어 두면 판정자가 지어내는 일이 줄어든다고 한다 [E5].</p>
+<p>키트의 기준표 <code>evals/judge_rubric.md</code>가 이 요령을 따른다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-n</span> <span class="st">'/&lt;기준표&gt;/,/&lt;\/기준표&gt;/p'</span> evals/judge_rubric.md</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> <span class="at">-2</span> evals/judge_rubric.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>&lt;기준표&gt;
+1. 근거 충실성: 출력의 모든 문장은 &lt;근거&gt;에 적힌 내용으로 뒷받침되어야 한다. 근거에 없는 조건, 절차, 숫자를 하나라도 덧붙였으면 fail이다.
+2. 왜곡 금지: 근거의 뜻을 뒤집거나(받는다/받지 않는다) 숫자를 바꾸었으면 fail이다.
+3. 표현 차이 허용: 근거와 낱말이 달라도 뜻이 같으면 통과로 본다.
+4. 판단 불가: 근거만으로 판정할 수 없으면 unknown으로 답한다.
+&lt;/기준표&gt;
+먼저 &lt;reason&gt; 태그 안에 기준표의 어느 항목에 비추어 판단했는지 두 문장 이내로 쓴다.
+그다음 &lt;result&gt; 태그 안에 pass, fail, unknown 가운데 하나만 쓴다.</code></pre>
+<p>기준표의 각 부분이 어느 요령에 해당하는지 짚는다.</p>
+<ul>
+<li><strong>상세하고 분명한 기준</strong> [A1]: 항목 1~3이 통과와 실패의 경계를 문장으로 정한다. 「하나라도 덧붙였으면 fail」처럼 자동 실패 조건을 둔다.</li>
+<li><strong>정해진 값으로 받기</strong> [A1]: <code>&lt;result&gt;</code>에 pass, fail, unknown 셋 가운데 하나만 쓰게 한다. 실행기는 이 태그만 읽는다.</li>
+<li><strong>먼저 추론하기</strong> [A1]: <code>&lt;reason&gt;</code>을 <code>&lt;result&gt;</code>보다 먼저 쓰게 한다.</li>
+<li><strong>알 수 없음 허용</strong> [E5]: 항목 4와 <code>unknown</code>. 실행기는 unknown을 통과로 세지 않는다.</li>
+<li><strong>길이와 문체의 배제</strong>: 시스템 프롬프트에 「출력의 길이나 문체가 마음에 드는지는 판정에 넣지 않는다」를 둔다(5-3의 길이 편향).</li>
+</ul>
+<p>기준표는 코드와 같다. 기준 한 줄을 지우면 판정 결과가 바뀐다. 2026년판 교재의 관찰 실습은 「근거 없는 단정 금지」 기준을 지우자 지어낸 절차를 담은 응답이 통과로 바뀌는 것을 보였다 [L9]. 그래서 기준표는 저장소에 두고, 바꿀 때 풀 리퀘스트로 검토를 받는다.</p>
+<p><code>--backend real</code>이면 <code>evals/judge.py</code>가 이 기준표로 프롬프트를 만들어 <code>llm.complete(task="judge")</code>로 묻는다. 모든 LLM 호출이 <code>api/llm.py</code> 한 곳을 지난다는 기준 저장소의 규칙을 판정자도 따르므로, 판정 호출도 <code>llm.log</code>에 남고 8절의 비용 집계에 잡힌다. <code>--backend sim</code>이면 모의 판정자가 쓰인다. 모의 판정자는 출력의 문장마다 근거의 문장들과 유사도를 재어, 가장 비슷한 근거 문장과의 유사도가 0.45보다 낮은 문장이 있으면 fail로 본다.</p>
+<ul>
+<li><span class="check-badge">확인 14</span> 기준표에 네 항목이 있고, 마지막 두 줄이 <code>&lt;reason&gt;</code>과 <code>&lt;result&gt;</code>의 순서를 정한다.</li>
+</ul>
+</section>
+<section id="판정자의-편향" class="level3">
+<h3 class="anchored" data-anchor-id="판정자의-편향">5-3. 판정자의 편향</h3>
+<p>판정자는 사람이 쓴 기준표를 따르지만, 기준표에 적지 않은 경향도 가지고 있다. 연구로 보고된 대표적인 편향은 셋이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>편향</th>
+<th>내용</th>
+<th>근거</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>위치 편향</td>
+<td>두 응답을 비교할 때 먼저(또는 나중에) 제시된 쪽을 낫다고 본다</td>
+<td>Zheng 외(2023)가 위치 편향을 판정자의 한계로 다루었다 [R1]. Wang 외(2023)는 판정자에게 응답의 순서만 바꾸어 보여 주어도 순위가 뒤집힐 수 있음을 보이고, 한 모델이 다른 모델을 80문항 가운데 66문항에서 이기는 것으로 나오게 할 수 있었다고 보고하였다 [R2]</td>
+</tr>
+<tr class="even">
+<td>길이 편향</td>
+<td>내용이 같아도 더 길고 자세해 보이는 응답을 낫다고 본다</td>
+<td>Zheng 외(2023)의 장황함 편향(verbosity bias) [R1]</td>
+</tr>
+<tr class="odd">
+<td>자기 선호</td>
+<td>판정자가 자기가 만든 출력을 남의 출력보다 높게 본다</td>
+<td>Zheng 외(2023)의 자기 강화 편향 [R1]. Panickssery 외(2024)는 판정자가 자기 출력을 알아보는 능력과 자기 선호의 세기 사이에 선형 상관이 있다고 보고하였다 [R3]</td>
+</tr>
+</tbody>
+</table>
+<p><code>jobprep</code>에 대어 보면, 요약 판본 v2의 출력이 v1보다 길다면 길이 편향은 v2에 유리하게 작용한다. 요약을 만든 모델과 같은 모델로 판정하면 자기 선호가 끼어든다. 두 판본을 나란히 놓고 「어느 쪽이 나은가」를 물으면 위치 편향이 끼어든다.</p>
+</section>
+<section id="보정-방법" class="level3">
+<h3 class="anchored" data-anchor-id="보정-방법">5-4. 보정 방법</h3>
+<p>편향을 없앨 수는 없지만 줄이고 잴 수는 있다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>방법</th>
+<th>하는 일</th>
+<th>겨누는 편향</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>순서 바꾸기</td>
+<td>쌍 비교를 두 순서로 물어 두 판정이 같은 쪽을 가리킬 때만 승자로 본다. 다르면 보류한다. Wang 외(2023)의 균형 위치 보정(Balanced Position Calibration)이 순서를 바꾼 결과들을 모아 최종 점수를 내는 방법이다 [R2]</td>
+<td>위치</td>
+</tr>
+<tr class="even">
+<td>쌍 비교 대신 단독 판정</td>
+<td>응답 하나를 기준표로 pass·fail 판정한다. 비교 대상이 없으면 위치가 없다</td>
+<td>위치</td>
+</tr>
+<tr class="odd">
+<td>길이 배제 지시와 형식 제한</td>
+<td>기준표에 「길이와 문체는 판정에 넣지 않는다」를 적고, 출력 형식을 같게 맞춘다</td>
+<td>길이</td>
+</tr>
+<tr class="even">
+<td>다른 모델로 판정</td>
+<td>출력을 만든 모델과 다른 모델을 판정자로 쓴다 [A1]</td>
+<td>자기 선호</td>
+</tr>
+<tr class="odd">
+<td>근거 먼저 쓰게 하기</td>
+<td>판정 전에 근거를 여러 개 쓰게 한다. Wang 외(2023)의 다중 근거 보정(Multiple Evidence Calibration) [R2]</td>
+<td>전반</td>
+</tr>
+<tr class="even">
+<td>사람 표본 대조</td>
+<td>사람이 판정한 표본과 판정자의 판정을 대조해 일치도를 잰다. 에이전트 평가 글은 판정자를 사람 전문가와 대조해 검증하라고 한다 [E5]</td>
+<td>전반(측정)</td>
+</tr>
+</tbody>
+</table>
+<p>이 가운데 사람 표본 대조는 다른 방법들이 효과가 있었는지 확인하는 측정 장치이다. 일치도는 단순 일치율과 <strong>코언의 카파</strong>(Cohen’s kappa)로 잰다. 일치율은 우연히 맞는 몫까지 셈에 넣지만, 카파는 두 채점자가 각자의 pass 비율대로 무작위로 판정해도 맞았을 몫을 빼고 남는 일치를 0~1로 낸다(0이면 우연 수준, 1이면 완전 일치).</p>
+</section>
+<section id="순서-바꾸기와-사람-표본-대조" class="level3">
+<h3 class="anchored" data-anchor-id="순서-바꾸기와-사람-표본-대조">5-5. 순서 바꾸기와 사람 표본 대조</h3>
+<p>먼저 위치 편향과 순서 바꾸기를 본다. <code>pairwise-demo</code>는 요약 문항마다 충실한 요약(x)과 항목 하나를 지어낸 요약(y)을 만들어, <strong>위치 편향을 일부러 넣은</strong> 모의 판정자에게 비교시킨다. 실제 판정자를 흉내 낸 장치이며, 편향의 크기는 집필자가 정하였다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> evals.judge pairwise-demo</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>비교한 문항: 14
+x(충실한 요약)를 먼저 보였을 때 x 승: 14
+y(지어낸 항목이 있는 요약)를 먼저 보였을 때 y 승: 3
+순서 바꾸기 점검: x 승 11, y 승 0, 판정 보류 3</code></pre>
+<p>x를 먼저 보이면 x가 14번 모두 이긴다. y를 먼저 보이면 지어낸 항목이 있는 y가 3번 이긴다. 한 순서로만 물었다면 이 3번은 잘못된 판정으로 기록되었을 것이다. 순서 바꾸기 점검은 두 순서의 판정이 엇갈린 3문항을 보류로 돌리고, 잘못된 승자를 하나도 내지 않는다. 보류된 문항은 사람이 읽는다.</p>
+<ul>
+<li><span class="check-badge">확인 15</span> 「y를 먼저 보였을 때 y 승」이 0보다 크고, 순서 바꾸기 점검의 「y 승」이 0이다.</li>
+</ul>
+<p>이어서 사람 표본 대조를 한다. <code>evals/calibration/judge_sample.jsonl</code>에는 요약 출력 12개와 사람(집필자)이 내린 판정과 그 까닭이 있다. 공고를 그대로 옮긴 출력, 주의점을 지어낸 출력, 낱말만 바꾼 출력, 숫자나 뜻을 뒤집은 출력이 섞여 있다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> evals.calibrate</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>판정자: 모의 판정자(기준값 0.45) · 표본 12개
+               판정자 pass  판정자 fail
+  사람 pass             4           2
+  사람 fail             3           3
+일치율 0.58 · 코언의 카파 0.17
+  엇갈림 C03(S07): 사람 pass, 판정자 fail — 사람의 까닭: 낱말은 다르나 뜻은 공고와 같다
+  엇갈림 C04(S07): 사람 fail, 판정자 pass — 사람의 까닭: 수습 급여 비율을 90%에서 100%로 바꾸었다
+  엇갈림 C05(S07): 사람 fail, 판정자 pass — 사람의 까닭: 불이익이 있다를 없다로 뒤집었다
+  엇갈림 C07(S03): 사람 pass, 판정자 fail — 사람의 까닭: 명사형으로 줄였으나 뜻은 같다
+  엇갈림 C12(S05): 사람 fail, 판정자 pass — 사람의 까닭: 졸업 후 입사를 졸업 전 입사로 바꾸었다</code></pre>
+<p>카파 0.17은 우연 수준을 조금 넘는 일치이다. 엇갈린 다섯 표본을 읽으면 모양이 둘로 갈린다. 낱말을 바꾼 정상 출력(C03, C07)을 fail로 보고, 낱말은 거의 같은데 뜻이나 숫자를 뒤집은 출력(C04, C05, C12)을 pass로 본다. 모의 판정자는 글자의 겹침을 재므로 뜻을 재지 못한다.</p>
+<p>기준값을 바꾸면 나아지는지 본다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> evals.calibrate <span class="at">--support</span> 0.25 <span class="kw">|</span> <span class="fu">head</span> <span class="at">-5</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> evals.calibrate <span class="at">--numbers</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-5</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>판정자: 모의 판정자(기준값 0.25) · 표본 12개
+               판정자 pass  판정자 fail
+  사람 pass             5           1
+  사람 fail             4           2
+일치율 0.58 · 코언의 카파 0.17
+판정자: 모의 판정자(기준값 0.45, 숫자 대조) · 표본 12개
+               판정자 pass  판정자 fail
+  사람 pass             4           2
+  사람 fail             2           4
+일치율 0.67 · 코언의 카파 0.33</code></pre>
+<p>기준값을 낮추면 표현 차이 하나(C07)를 더 통과시키는 대신 지어낸 문장 하나(C10)를 놓쳐, 카파가 그대로다. 기준값은 오류의 종류를 맞바꿀 뿐이다. 반면 「출력의 숫자가 근거에 그대로 있는가」라는 규칙을 더하면(<code>--numbers</code>) 숫자를 바꾼 C04를 잡아 카파가 0.33으로 오른다. 남은 엇갈림(뜻을 뒤집은 C05, C12와 표현 차이 C03, C07)은 글자 겹침으로는 풀 수 없다. 실제 LLM 판정자가 맡아야 하는 몫이 바로 이것이고, 실제 판정자도 같은 표본으로 대조해 카파를 잰 뒤에 믿는다.</p>
+<p>판정자 설정별 결과를 모으면 다음과 같다.</p>
+<ul>
+<li><p>모의 판정자, 기준값 0.45: 일치율 0.58, 카파 0.17. 표현 차이 2, 뜻 뒤집기 2, 숫자 바꾸기 1이 엇갈린다.</p></li>
+<li><p>모의 판정자, 기준값 0.25: 일치율 0.58, 카파 0.17. 표현 차이 1, 뜻 뒤집기 2, 숫자 바꾸기 1, 지어냄 1이 엇갈린다.</p></li>
+<li><p>모의 판정자, 기준값 0.45에 숫자 대조: 일치율 0.67, 카파 0.33. 표현 차이 2, 뜻 뒤집기 2가 엇갈린다.</p></li>
+<li><p>실제 판정자(기준표): 이 교재를 쓸 때 확인하지 못하였다. 수업 전 리허설에서 같은 표본으로 잰다.</p></li>
+<li><p><span class="check-badge">확인 16</span> 기본 설정의 카파가 0.17이고 <code>--numbers</code>를 주면 0.33으로 오르며, 엇갈림 목록에서 C04가 사라진다.</p></li>
+</ul>
+<p>판정자 보정은 한 번으로 끝나지 않는다. 기준표를 고치거나 판정 모델을 바꿀 때마다 같은 표본으로 다시 잰다. 표본도 운영 중에 사람이 실제로 읽은 출력으로 늘려 간다.</p>
+<hr>
+</section>
+</section>
+<section id="판본-비교" class="level2">
+<h2 class="anchored" data-anchor-id="판본-비교">6. 판본 비교</h2>
+<section id="무엇을-고정하고-무엇을-바꾸는가" class="level3">
+<h3 class="anchored" data-anchor-id="무엇을-고정하고-무엇을-바꾸는가">6-1. 무엇을 고정하고 무엇을 바꾸는가</h3>
+<p>판본 비교는 실험이다. 실험에서는 한 번에 하나만 바꾼다. 두 실행 사이에 프롬프트와 모델이 함께 바뀌었다면 점수의 차이가 어디서 왔는지 알 수 없다.</p>
+<ul>
+<li><strong>골든 세트</strong>: 같은 <code>evals/golden/*.jsonl</code>을 쓴다. 문항을 더했으면 두 판본을 모두 다시 돌린다.</li>
+<li><strong>채점기와 판정자</strong>: 같은 <code>graders.py</code>와 <code>judge_rubric.md</code>를 쓴다. 3-4처럼 채점기가 바뀌면 이전 점수와 견주지 않는다.</li>
+<li><strong>검색 조건</strong>: 실행기가 <code>EMBED_BACKEND=fallback</code>을 기본으로 정한다. 운영 서버에 Ollama가 있어도 평가는 같은 임베딩으로 돈다.</li>
+<li><strong>반복 횟수</strong>: 두 실행 모두 5회로 한다.</li>
+<li><strong>바꾸는 것</strong>: 프롬프트 판본(<code>--prompt</code>)과 모델(<code>--model</code>) 가운데 하나만 바꾼다.</li>
+</ul>
+</section>
+<section id="짝지은-차이" class="level3">
+<h3 class="anchored" data-anchor-id="짝지은-차이">6-2. 짝지은 차이</h3>
+<p>두 판본의 통과율을 따로 구해 빼면, 두 값 각각의 오차가 더해져 차이의 오차가 커진다. 그런데 두 판본은 같은 14문항에서 돌았다. 어려운 문항은 두 판본 모두에게 어렵다. 그래서 문항마다 (v2의 통과 비율 − v1의 통과 비율)을 내고 그 평균과 표준오차를 구하면, 문항의 난이도가 상쇄되어 오차가 작아진다. 평가 통계 글은 같은 문항 묶음에서 두 모델을 비교할 때 두 표본 검정이 아니라 <strong>짝지은 차이</strong>(paired differences)를 쓰라고 하며, 최신 모델들의 문항별 점수는 상관이 0.3~0.7 정도로 높아 이 방법이 오차를 크게 줄인다고 한다 [E6].</p>
+<p><code>evals/compare.py</code>는 짝지은 차이의 평균, 표준오차, 95% 구간을 내고, 구간이 0을 포함하는지로 판단을 적는다. 구간이 0보다 크면 「나아졌다」, 0보다 작으면 「나빠졌다」, 0을 포함하면 「차이를 말할 수 없다」이다.</p>
+</section>
+<section id="summary_v1과-summary_v2의-비교" class="level3">
+<h3 class="anchored" data-anchor-id="summary_v1과-summary_v2의-비교">6-3. summary_v1과 summary_v2의 비교</h3>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> evals.run <span class="at">--suite</span> summary <span class="at">--prompt</span> summary_v2 <span class="at">--runs</span> 5</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>[summary] 판본 summary_v2 · 모델 sim-a · 반복 5회 · 문항 15개(회귀 14)
+  기준별 통과율(회귀 문항)
+    structure  0.97
+    deadline   1.00
+    coverage   0.92
+    length     1.00
+    forbidden  해당 없음
+    preferred  0.97
+    judge      0.76
+  문항별 통과(반복 중 통과 횟수)
+    S01 3/5   S02 2/5   S03 4/5   S04 4/5   S05 4/5
+    S06 2/5   S07 4/5   S08 3/5   S09 3/5   S10 3/5
+    S11 4/5   S12 2/5   S13 4/5   S14 5/5   S15* 0/5
+  회귀 통과율 0.67 (표준오차 0.050, 95% 구간 0.57~0.77) · 모든 반복 통과 1/14문항
+  반복별 회귀 통과율: 0.79, 0.50, 0.79, 0.50, 0.79
+  능력 문항(*) 통과율 0.00
+  LLM 호출 75회 · 토큰 입력 33,255 출력 10,581
+기록: evals/runs/summary_v2-sim-a-n5/ (records.jsonl, summary.json, llm.log)</code></pre>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> evals.compare evals/runs/summary_v1-sim-a-n5 evals/runs/summary_v2-sim-a-n5</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>[summary] 기준 summary_v1/sim-a (반복 5) ↔ 비교 summary_v2/sim-a (반복 5)
+  기준                summary_v1/sim-a      summary_v2/sim-a      차이
+  structure                     0.97                  0.97   +0.00
+  deadline                      0.94                  1.00   +0.06
+  coverage                      0.95                  0.92   -0.03
+  length                        0.85                  1.00   +0.15
+  forbidden                    해당 없음                 해당 없음
+  preferred                     0.71                  0.97   +0.25
+  judge                         0.94                  0.76   -0.19
+  회귀 통과율                      0.59                  0.67   +0.09
+  모든 반복 통과                    1/14                  1/14
+  짝지은 차이: 평균 +0.086, 표준오차 0.080, 95% 구간 -0.072~+0.243
+  판단: 차이를 말할 수 없다(구간이 0을 포함한다). 문항이나 반복을 늘려 다시 잰다
+  크게 바뀐 문항: S11 0.0 → 0.8
+  크게 바뀐 문항: S13 0.4 → 0.8</code></pre>
+<p>비교 표를 기준별로 읽으면 v2가 무엇을 고치고 무엇을 망가뜨렸는지가 보인다. 각 변화의 원인을 v2의 프롬프트에서 찾으면 다음과 같다.</p>
+<ul>
+<li><code>preferred</code> 0.71 → 0.97: 규칙 2 「우대 사항은 자격 요건에 넣지 않는다」.</li>
+<li><code>length</code> 0.85 → 1.00: 규칙 1 「40자 이내」.</li>
+<li><code>deadline</code> 0.94 → 1.00(S11은 0.0 → 0.8): 규칙 3 「서류 접수 마감일을 쓴다」.</li>
+<li><code>judge</code> 0.94 → 0.76: 시스템 프롬프트의 「주의점으로 먼저 꼽는다」가 공고에 없는 주의점을 지어내게 하였다.</li>
+</ul>
+<p>전체 통과율은 0.59에서 0.67로 올랐지만, 짝지은 차이의 구간(−0.072~+0.243)이 0을 포함하므로 「v2가 낫다」고 말할 수 없다. 더 중요한 것은 기준별 표이다. 전체 점수 하나만 보았다면 「조금 나아졌다」로 끝났을 것이다. 기준별로 보면 v2는 세 가지 실수를 고친 대신 가장 위험한 실수(지어냄)를 새로 들여왔다. 어떤 판본도 이대로 운영에 내보낼 수 없다는 것이 이 비교의 결론이며, 11절의 중심 실습이 v3으로 이 문제를 고친다.</p>
+<p>판정자가 fail로 본 시행의 이유를 직접 읽어 원인을 확인한다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="st">import json</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="st">from collections import Counter</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="st">reasons = Counter()</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="st">for line in open('evals/runs/summary_v2-sim-a-n5/records.jsonl', encoding='utf-8'):</span></span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a><span class="st">    r = json.loads(line)</span></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a><span class="st">    if r['judge'] == 'fail':</span></span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a><span class="st">        reasons[r['judge_reason']] += 1</span></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a><span class="st">for reason, n in reasons.most_common(3): print(n, reason)"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>19 근거로 뒷받침되지 않는 문장: 지원 전에 회사 홈페이지에서 인재상을 확인한다
+2 출력 없음</code></pre>
+<p>판정 실패 21건 가운데 19건이 같은 문장 하나 때문이다(능력 문항 S15의 시행도 셈에 들어 있다). 「출력 없음」 2건은 JSON이 끊긴 시행으로, 구조 검사에서도 실패한 것이다. 판정자의 이유를 모아 세면 원인이 한 줄로 좁혀진다.</p>
+<ul>
+<li><span class="check-badge">확인 17</span> 비교 표에서 <code>preferred</code>, <code>length</code>, <code>deadline</code>은 오르고 <code>judge</code>는 내려가며, 판단 줄이 「차이를 말할 수 없다」이다.</li>
+</ul>
+</section>
+<section id="모델의-교체" class="level3">
+<h3 class="anchored" data-anchor-id="모델의-교체">6-4. 모델의 교체</h3>
+<p>같은 방법으로 모델을 바꾼 효과를 잰다. 실제 운영에서는 「더 싸거나 더 새로운 모델로 바꾸어도 되는가」를 묻는 자리이다. 모의 모델 <code>sim-b</code>는 <code>sim-a</code>와 성향이 다른 모델을 흉내 낸다. 질의응답 골든 세트를 두 모델로 돌린다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> evals.run <span class="at">--suite</span> ask <span class="at">--runs</span> 5</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> evals.run <span class="at">--suite</span> ask <span class="at">--runs</span> 5 <span class="at">--model</span> sim-b <span class="op">&gt;</span> /dev/null</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> evals.compare evals/runs/ask_v1-sim-a-n5 evals/runs/ask_v1-sim-b-n5</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>[ask] 판본 ask_v1 · 모델 sim-a · 반복 5회 · 문항 10개(회귀 9)
+  기준별 통과율(회귀 문항)
+    refusal    1.00
+    keywords   1.00
+    citation   0.91
+    source     0.91
+    judge      1.00
+  문항별 통과(반복 중 통과 횟수)
+    A01 5/5   A02 3/5   A03 5/5   A04 5/5   A05 5/5
+    A06 4/5   A07 5/5   A08 5/5   A09 5/5   A10* 0/5
+  회귀 통과율 0.93 (표준오차 0.047, 95% 구간 0.84~1.00) · 모든 반복 통과 7/9문항
+  반복별 회귀 통과율: 0.89, 1.00, 0.89, 0.89, 1.00
+  능력 문항(*) 통과율 0.00
+  LLM 호출 40회 · 토큰 입력 13,620 출력 894
+기록: evals/runs/ask_v1-sim-a-n5/ (records.jsonl, summary.json, llm.log)
+[ask] 기준 ask_v1/sim-a (반복 5) ↔ 비교 ask_v1/sim-b (반복 5)
+  기준                    ask_v1/sim-a          ask_v1/sim-b      차이
+  refusal                       1.00                  1.00   +0.00
+  keywords                      1.00                  1.00   +0.00
+  citation                      0.91                  0.94   +0.03
+  source                        0.91                  0.94   +0.03
+  judge                         1.00                  0.89   -0.11
+  회귀 통과율                      0.93                  0.87   -0.07
+  모든 반복 통과                    7/9                  5/9
+  짝지은 차이: 평균 -0.067, 표준오차 0.075, 95% 구간 -0.213~+0.079
+  판단: 차이를 말할 수 없다(구간이 0을 포함한다). 문항이나 반복을 늘려 다시 잰다
+  크게 바뀐 문항: A02 0.6 → 1.0
+  크게 바뀐 문항: A06 0.8 → 0.4</code></pre>
+<p>질의응답의 LLM 호출이 40회인 까닭은 범위 밖 질문 두 개(A08, A09)가 검색 기준값에서 걸러져 모델을 부르지 않기 때문이다(10문항 × 5회 − 2문항 × 5회). 기준값에서 거르는 설계가 비용을 줄이는 것도 이 기록에서 확인된다.</p>
+<p>sim-b는 근거 번호를 더 잘 달지만(citation 0.94), 근거에 없는 문장을 덧붙이는 일이 늘어 판정 통과율이 0.89로 내려갔다. 전체 차이의 구간은 0을 포함한다. 이런 결과는 「모델을 바꾸어도 된다」는 근거가 되지 못한다. 11절에서 판정기가 이 실행을 어떻게 다루는지 본다.</p>
+<ul>
+<li><span class="check-badge">확인 18</span> 질의응답의 LLM 호출이 40회이고, sim-b의 <code>judge</code>가 0.89로 sim-a(1.00)보다 낮다.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="에이전트-평가" class="level2">
+<h2 class="anchored" data-anchor-id="에이전트-평가">7. 에이전트 평가</h2>
+<section id="결과와-경로" class="level3">
+<h3 class="anchored" data-anchor-id="결과와-경로">7-1. 결과와 경로</h3>
+<p>지금까지의 평가는 입력 하나에 출력 하나인 기능을 다루었다. 8장의 루프와 10장의 멀티 에이전트는 다르다. 한 번의 실행이 여러 턴, 여러 도구 호출, 여러 시도로 이루어지고, 끝에 저장소의 상태(테스트 통과, 커밋, 병합)가 남는다. 에이전트 평가 글은 이 구조를 「기록(transcript)」과 「결과(outcome)」로 나눈다 [E5]. 기록은 시행의 모든 출력과 도구 호출과 중간 결과이고, 결과는 시행이 끝난 뒤 환경에 남은 최종 상태이다(예: 예약이 실제로 데이터베이스에 있는가).</p>
+<p>같은 글은 「에이전트가 지나온 경로가 아니라 만들어 낸 것을 채점하라」고 권한다 [E5]. 「먼저 테스트를 읽고, 다음에 <code>api/jobs.py</code>를 고친다」처럼 단계의 순서를 채점하면, 다른 순서로 같은 결과에 이른 에이전트가 실패로 잡힌다. 8장의 루프가 종료 조건을 「<code>pytest -q</code>가 통과한다」는 결과로 정한 것이 이 원칙이다. 경로는 채점하지 않되, 기록은 남겨 두고 읽는다. 실패한 실행의 원인과, 성공했지만 비용이 지나치게 든 실행의 원인은 기록에만 있다.</p>
+</section>
+<section id="에이전트의-지표" class="level3">
+<h3 class="anchored" data-anchor-id="에이전트의-지표">7-2. 에이전트의 지표</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>지표</th>
+<th>정의</th>
+<th>8장 루프 기록에서</th>
+<th>10장 멀티 기록에서</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>작업 성공률</td>
+<td>성공한 실행 ÷ 전체 실행. 무엇을 성공으로 세는지 먼저 정한다</td>
+<td><code>end.status == "green"</code>이고, 커밋된 시도가 보호 경로(<code>tests/</code> 등)를 고치지 않은 실행</td>
+<td>이슈의 모든 작업에 <code>merged</code> 사건이 있고 예외 사건이 없는 이슈</td>
+</tr>
+<tr class="even">
+<td>단계 수</td>
+<td>실행 하나가 쓴 시도, 턴</td>
+<td><code>attempt</code> 사건 수, <code>turns</code></td>
+<td><code>dispatched</code> 사건 수(시도), 에이전트 출력의 <code>num_turns</code></td>
+</tr>
+<tr class="odd">
+<td>사람 개입</td>
+<td>사람이 판단하거나 고쳐야 했던 횟수</td>
+<td><code>status</code>가 <code>gave_up</code>, <code>budget</code>인 실행(사람 넘김)</td>
+<td><code>actor</code>가 <code>human</code>인 사건. 계획된 병합(<code>merged</code>)과 예외 처리(<code>merge_conflict</code>, <code>merge_test_failed</code>, 시도 상한의 <code>handed_to_human</code>)를 나눈다</td>
+</tr>
+<tr class="even">
+<td>다시 한 일</td>
+<td>검토에서 돌려보낸 횟수, 되돌린 시도</td>
+<td><code>decision == "restore"</code></td>
+<td><code>judged</code> 사건의 <code>verdict=거부</code></td>
+</tr>
+<tr class="odd">
+<td>비용</td>
+<td>추정 비용의 합</td>
+<td><code>spent_usd</code></td>
+<td>에이전트 출력(<code>T1_시도1.out</code> 등) JSON의 <code>total_cost_usd</code> 합</td>
+</tr>
+<tr class="even">
+<td>성공 1건당 비용</td>
+<td>전체 비용 ÷ 성공 수. 실패한 실행의 비용도 성공이 떠안는다</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>사람 개입을 두 종류로 나누는 까닭이 있다. 10장의 설계에서 사람은 계획을 승인하고 병합을 결정한다. 이것은 설계된 승인 지점이고, 줄여야 할 대상이 아니다. 반면 병합 충돌을 사람이 손으로 고친 것은 시스템이 해결하지 못한 예외이다. 둘을 한 숫자로 세면 「사람 개입이 많다」는 보고가 좋은 설계인지 나쁜 설계인지 말해 주지 못한다.</p>
+<p>성공 1건당 비용은 비용 판단의 기준이 된다. 루프가 실행 하나에 평균 0.33 USD를 쓰더라도 성공률이 57%이면, 성공 하나를 얻는 데는 0.58 USD가 든다. 예산을 「실행당」이 아니라 「성공당」으로 보아야 하는 까닭이다.</p>
+</section>
+<section id="실행-기록에서-지표-내기" class="level3">
+<h3 class="anchored" data-anchor-id="실행-기록에서-지표-내기">7-3. 실행 기록에서 지표 내기</h3>
+<p><code>ops/telemetry/report.py</code>의 3절과 4절이 이 지표를 낸다. 전체 보고는 8절에서 보고, 여기서는 에이전트 부분만 떼어 본다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> ops.telemetry.report <span class="kw">|</span> <span class="fu">sed</span> <span class="at">-n</span> <span class="st">'/## 3/,/## 5/p'</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>## 3. 에이전트 루프 (8장 실행 기록)
+
+- 실행 7건, green 5건, 그 가운데 보호 경로(테스트 등)를 고친 의심 성공 1건
+- 검증된 작업 성공률 57% (green만 세면 71%)
+- 의심 성공: 2027-11-06-sort-order(tests/test_jobs.py)
+- 사람에게 넘긴 실행 2건: 2027-11-04-days-left(gave_up), 2027-11-05-index-refresh(budget)
+- 실행당 평균 시도 1.57회, 시도당 평균 턴 7.4
+- 추정 비용 합계 2.33 USD, 검증된 성공 1건당 0.58 USD
+- 첫 시도에 끝난 검증된 성공 3건 / 4건
+
+| 실행 | 결과 | 시도 | 비용(USD) |
+|---|---|---|---|
+| 2027-11-01-closing-within | green | 1 | 0.21 |
+| 2027-11-02-summary-422 | green | 2 | 0.30 |
+| 2027-11-03-ask-422 | green | 1 | 0.15 |
+| 2027-11-04-days-left | gave_up | 3 | 0.46 |
+| 2027-11-05-favorites-sort | green | 1 | 0.11 |
+| 2027-11-05-index-refresh | budget | 2 | 0.98 |
+| 2027-11-06-sort-order | green (의심) | 1 | 0.12 |
+
+## 4. 멀티 에이전트 (10장 실행 기록)
+
+- 이슈 3건, 작업 6개, 예외 처리 없이 병합 2건, 그 밖 ISSUE-18(예외 처리 뒤 병합)
+- 시도 7회(재시도율 17%), 판정 8회 가운데 거부 1회(다시 작업한 횟수)
+- 사람의 개입 7회: 계획된 병합 6회, 예외 처리 1회 (merge_conflict 1)
+- 추정 비용 합계 1.96 USD(구현 에이전트 출력 7개 가운데 비용이 있는 7개), 이슈당 0.65 USD, 병합된 작업 1개당 0.33 USD
+- 커밋 꼬리말: Agent-Task가 붙은 커밋이 이 저장소에 없다
+
+| 이슈 | 작업 | 시도 | 판정 거부 | 병합 | 예외 처리 | 비용(USD) |
+|---|---|---|---|---|---|---|
+| ISSUE-12 | 2 | 2 | 0 | 2 | 0 | 0.58 |
+| ISSUE-15 | 2 | 3 | 1 | 2 | 0 | 0.74 |
+| ISSUE-18 | 2 | 2 | 0 | 2 | 1 | 0.64 |
+
+## 5. 예산</code></pre>
+<p>green 5건 가운데 <code>2027-11-06-sort-order</code>는 커밋한 시도가 <code>tests/test_jobs.py</code>를 고쳤다. 에이전트가 구현을 고치는 대신 테스트의 기대값을 바꾸어 통과시킨 것이다. 8장 6-8에서 본 <code>cheat-1</code>과 같은 모양이며, 기록의 <code>status</code>만 세면 정상적인 성공과 구별되지 않는다. 그래서 보고는 실행의 <code>start</code> 사건에 적힌 보호 경로(<code>config.protected</code>)와 커밋된 시도의 <code>changed</code>를 대조해, 보호 경로를 고친 green을 「의심 성공」으로 따로 센다. 이 실행을 성공으로 세면 성공률은 71%, 빼면 57%이다. 무엇을 성공으로 세는가가 지표의 값을 바꾼다. 8장을 마친 학습자의 기록에도 같은 판정이 적용되므로, 자기 <code>cheat-1</code>이 의심 성공으로 잡히는지 보면 된다.</p>
+<p>8장 견본에서 비용이 가장 큰 실행(0.98 USD)은 실패한 실행(<code>budget</code>)이다. 이 실행의 기록을 읽어 무엇에 돈이 들었는지 본다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">'"event": "attempt"'</span> ops/loop/logs/2027-11-05-index-refresh.jsonl <span class="kw">|</span> <span class="ex">python</span> <span class="at">-c</span> <span class="st">"</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="st">import json, sys</span></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="st">for line in sys.stdin:</span></span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a><span class="st">    r = json.loads(line)</span></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a><span class="st">    print(r['attempt'], r['subtype'], r['turns'], r['cost_usd'], r['decision'], r['agent_result'].splitlines()[0] if r['agent_result'] else '')"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>1 success 14 0.45 no_change 색인 코드를 모두 읽었으나 원인을 정하지 못하였다.
+2 error_max_budget_usd 15 0.53 no_change </code></pre>
+<p>두 시도 모두 턴 상한(15)에 가까이 쓰고도 파일을 하나도 바꾸지 못했다(<code>no_change</code>). 두 번째 시도는 실행 하나의 예산(<code>--max-budget-usd</code>)에 걸려 멈추었다. 「저장소 전체를 읽는」 탐색이 비용의 대부분이었다는 뜻이다. 이 기록은 루프의 프롬프트에 「먼저 실패한 테스트의 파일만 읽는다」를 더하거나, 이런 종류의 작업을 루프에 맡기지 않는다는 결정의 근거가 된다.</p>
+<ul>
+<li><span class="check-badge">확인 19</span> 보고에 루프의 검증된 작업 성공률 57%(green만 세면 71%)와 의심 성공 <code>2027-11-06-sort-order</code>, 멀티 에이전트의 예외 처리 1회가 보이고, <code>index-refresh</code> 실행의 두 시도가 모두 <code>no_change</code>이다.</li>
+</ul>
+<p>멀티 에이전트 절은 10장의 기록 세 가지를 함께 읽는다. 사건은 <code>events.jsonl</code>(<code>actor</code>, <code>event</code>, <code>task</code>, <code>detail</code>)에서, 비용과 턴은 구현 에이전트의 출력 파일에서, 커밋은 <code>git log</code>의 꼬리말(<code>Agent-Role</code>, <code>Agent-Task</code>, <code>Agent-Attempt</code>)에서 온다. 10장의 계획 승인은 계획서의 <code>- 승인:</code> 줄로 남고 사건으로는 남지 않으므로, 「계획된 개입」에는 병합만 들어간다. 견본만 복사한 저장소에는 꼬리말이 붙은 커밋이 없어 마지막 줄이 「없다」이다. 10장을 마친 학습자의 저장소에서는 통합 브랜치에 병합된 에이전트 커밋이 세어진다. 가짜 에이전트로 돌린 10장의 기록은 출력이 JSON이 아니므로 비용 대신 「비용이 없다」가 나온다. 기록을 읽는 코드는 <code>read_multi()</code>와 <code>multi_section()</code> 두 함수에 모여 있으므로, 10장에서 사건 이름을 바꾼 학습자도 고칠 곳이 그 둘뿐이다.</p>
+<hr>
+</section>
+</section>
+<section id="관측과-구조화-기록" class="level2">
+<h2 class="anchored" data-anchor-id="관측과-구조화-기록">8. 관측과 구조화 기록</h2>
+<section id="평가와-관측" class="level3">
+<h3 class="anchored" data-anchor-id="평가와-관측">8-1. 평가와 관측</h3>
+<p>평가는 배포 전에 골든 세트로 품질을 잰다. <strong>관측</strong>(observability)은 배포 뒤에 실제 요청에서 무슨 일이 일어나는지를 기록으로 본다. 둘은 서로를 채운다. 평가가 통과해도 운영에서는 골든 세트에 없던 입력이 들어오고, 모델 제공자의 속도 제한에 걸리고, 비용이 예상보다 커진다. 관측이 그것을 보여 주면, 그 입력은 다음 골든 세트의 문항이 된다(2-5).</p>
+<p>Google의 SRE 책은 <strong>모니터링</strong>을 「시스템에 대한 실시간 정량 자료(질의 수와 종류, 오류 수와 종류, 처리 시간, 서버 가동 시간)를 모으고 처리하고 집계하고 보여 주는 일」로 정의하고, 사용자를 마주하는 시스템이라면 네 가지 <strong>황금 신호</strong>(golden signals)를 보라고 한다 [S1].</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>신호 [S1]</th>
+<th>뜻 [S1]</th>
+<th><code>jobprep</code>에서 재는 곳</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>지연(latency)</td>
+<td>요청 하나를 처리하는 데 걸리는 시간. 실패한 요청의 지연은 따로 잰다(느린 오류는 빠른 오류보다 나쁘다)</td>
+<td><code>access.log</code>의 <code>ms</code>. 요약과 질의응답은 LLM 호출 때문에 수 초가 걸린다</td>
+</tr>
+<tr class="even">
+<td>트래픽(traffic)</td>
+<td>시스템에 대한 수요. 웹 서비스라면 초당 HTTP 요청 수</td>
+<td><code>access.log</code>의 줄 수, 경로별 요청 수</td>
+</tr>
+<tr class="odd">
+<td>오류(errors)</td>
+<td>실패한 요청의 비율. 명시적 실패(500), 암묵적 실패(내용이 틀린 200), 정책상 실패(약속한 시간을 넘긴 응답)를 모두 포함한다</td>
+<td><code>access.log</code>의 5xx, <code>llm.log</code>의 <code>error</code>. 「내용이 틀린 200」은 기록으로 보이지 않으므로 평가가 맡는다</td>
+</tr>
+<tr class="even">
+<td>포화(saturation)</td>
+<td>서비스가 얼마나 「가득 찼는가」. 가장 제약된 자원에 주목한다</td>
+<td><code>jobprep</code>에서는 모델 제공자의 속도 제한이 가장 제약된 자원이다. <code>RateLimitError</code>가 포화의 신호이다</td>
+</tr>
+</tbody>
+</table>
+<p>같은 장은 평균 지연에 속지 말라고 한다. 평균이 100ms여도 요청의 1%가 5초씩 걸릴 수 있고, 지연은 평균보다 분포(백분위수)로 보아야 한다 [S1]. 이 장의 보고가 p50과 p95를 함께 내는 까닭이다.</p>
+<p>관측의 자료는 대개 세 종류로 나뉜다. OpenTelemetry는 지원하는 신호로 <strong>트레이스</strong>(요청이 애플리케이션을 지나는 경로), <strong>지표</strong>(실행 중에 잰 측정값), <strong>로그</strong>(개별 사건의 기록)를 들고, 신호 사이에 맥락을 실어 나르는 <strong>배기지</strong>(baggage)를 더한다 [O1].</p>
+<p>세 신호를 <code>jobprep</code>과 Claude Code에 대어 보면 다음과 같다.</p>
+<ul>
+<li><strong>로그(사건)</strong>: <code>jobprep</code>에는 <code>access.log</code>, <code>error.log</code>, <code>llm.log</code>, 8장·10장의 JSON Lines, 평가의 <code>records.jsonl</code>이 있다. Claude Code는 <code>claude_code.api_request</code>, <code>claude_code.tool_result</code> 같은 이벤트를 낸다(9절).</li>
+<li><strong>지표</strong>: <code>jobprep</code>에는 없고, 이 장의 <code>report.py</code>가 로그에서 계산한다. Claude Code는 <code>claude_code.cost.usage</code>, <code>claude_code.token.usage</code> 같은 지표를 낸다.</li>
+<li><strong>트레이스</strong>: <code>jobprep</code>에는 없다. Claude Code는 베타 기능으로 상호작용 → LLM 요청 → 도구 실행의 구간(span)을 낸다.</li>
+</ul>
+<p>이 장에서 다루는 관측 자료의 흐름을 그리면 다음과 같다. 앱과 에이전트의 기록은 저장소 안의 파일로 남아 <code>report.py</code>가 모으고, Claude Code의 지표와 이벤트는 OpenTelemetry로 조직의 수집기에 간다.</p>
+<pre class="mermaid">graph LR
+    A["jobprep 앱&lt;br/&gt;api/"] --&gt; AL["logs/access.log&lt;br/&gt;error.log, llm.log"]
+    LP["8장 루프"] --&gt; LJ["ops/loop/logs/*.jsonl"]
+    MA["10장 멀티 에이전트"] --&gt; MJ["ops/multi/logs/*/events.jsonl&lt;br/&gt;에이전트 출력 *.out"]
+    EV["12장 평가"] --&gt; EJ["evals/runs/*/llm.log"]
+    AL --&gt; RP["ops/telemetry/report.py"]
+    LJ --&gt; RP
+    MJ --&gt; RP
+    EJ --&gt; RP
+    RP --&gt; DOC["docs/운영/관측보고.md&lt;br/&gt;예산 판정(종료 코드)"]
+    CC["Claude Code"] --&gt;|"OpenTelemetry"| COL["조직의 수집기&lt;br/&gt;(9절)"]
+</pre>
+</section>
+<section id="무엇을-남기는가" class="level3">
+<h3 class="anchored" data-anchor-id="무엇을-남기는가">8-2. 무엇을 남기는가</h3>
+<p>LLM 기능과 에이전트의 기록에 남길 칸을 정리한다. 맨 오른쪽 열은 기준 저장소의 기록에 그 칸이 있는지이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>칸</th>
+<th>왜 필요한가</th>
+<th>예</th>
+<th>기준 저장소</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>시각</td>
+<td>사건의 순서, 기간별 집계</td>
+<td><code>2027-09-08 14:03:47</code></td>
+<td>있다</td>
+</tr>
+<tr class="even">
+<td>요청 번호</td>
+<td>요청 기록, LLM 호출 기록, 오류 기록을 한 요청으로 잇는다</td>
+<td><code>request_id=7f3c…</code></td>
+<td>없다</td>
+</tr>
+<tr class="odd">
+<td>경로와 상태</td>
+<td>트래픽과 오류</td>
+<td><code>path=/api/summary status=503</code></td>
+<td>있다(<code>access.log</code>)</td>
+</tr>
+<tr class="even">
+<td>지연</td>
+<td>지연 신호. 요청 전체와 LLM 호출을 따로</td>
+<td><code>ms=3348</code></td>
+<td>요청 전체만 있다</td>
+</tr>
+<tr class="odd">
+<td>기능</td>
+<td>어느 기능의 호출인가</td>
+<td><code>task=summary</code></td>
+<td>있다(<code>llm.log</code>)</td>
+</tr>
+<tr class="even">
+<td>프롬프트 판본</td>
+<td>품질이 바뀐 때를 판본 교체와 잇는다</td>
+<td><code>prompt=summary_v2</code></td>
+<td>없다(응답 본문에만 있다)</td>
+</tr>
+<tr class="odd">
+<td>모델</td>
+<td>모델 교체 시점, 모델별 비용</td>
+<td><code>model=claude-haiku-5-5</code></td>
+<td>있다</td>
+</tr>
+<tr class="even">
+<td>토큰</td>
+<td>비용의 근거</td>
+<td><code>input_tokens=1056 output_tokens=286</code></td>
+<td>있다</td>
+</tr>
+<tr class="odd">
+<td>오류의 종류</td>
+<td>원인별 집계(속도 제한인가 인증인가)</td>
+<td><code>error=RateLimitError</code></td>
+<td>있다</td>
+</tr>
+<tr class="even">
+<td>도구 호출</td>
+<td>에이전트가 무엇을 했는가. 이름, 성공 여부, 시간</td>
+<td><code>tool=Bash success=true duration_ms=2100</code></td>
+<td>해당 없음(앱은 도구 호출을 쓰지 않는다). 8장 루프 기록에는 시도 단위로 있다</td>
+</tr>
+<tr class="odd">
+<td>비용</td>
+<td>예산</td>
+<td><code>cost_usd=0.21</code></td>
+<td>루프 기록과 멀티 에이전트의 출력(<code>total_cost_usd</code>)에 있다</td>
+</tr>
+</tbody>
+</table>
+<p>남기지 않는 것도 정한다. 사용자의 질문 원문, 공고 본문 전체, API 키는 남기지 않는다. 기준 저장소의 <code>logs/README.md</code>는 사용자를 식별할 수 있는 정보(IP 주소, 계정, 질문 원문)를 견본에 넣지 않았다고 밝힌다. 10절에서 이 원칙을 점검한다.</p>
+</section>
+<section id="구조화-기록" class="level3">
+<h3 class="anchored" data-anchor-id="구조화-기록">8-3. 구조화 기록</h3>
+<p>기록은 사람이 읽기 전에 프로그램이 읽는다. 그래서 기록의 한 줄은 정해진 칸을 가진 <strong>구조화 기록</strong>(structured log)이어야 한다. 기준 저장소의 운영 기록은 <code>날짜 시각 수준 기록기 키=값…</code> 꼴이고, 8장·10장의 실행 기록과 이 장의 평가 기록은 한 줄이 JSON 객체 하나인 <strong>JSON Lines</strong> 꼴이다.</p>
+<p>기록의 형식을 셋으로 견주어 본다.</p>
+<ul>
+<li><strong>자유 문장</strong>(<code>요약 실패: 속도 제한에 걸림</code>): 사람이 읽기 쉽다. 그러나 집계하려면 문장을 해석해야 하고, 문구가 바뀌면 집계가 깨진다.</li>
+<li><strong>키=값</strong>(<code>task=summary error=RateLimitError</code>): 사람도 프로그램도 읽기 쉽고 <code>grep</code>으로 찾기 좋다. 값에 빈칸이 있으면 따옴표 규칙이 필요하고, 중첩 구조를 담지 못한다.</li>
+<li><strong>JSON Lines</strong>(<code>{"task": "summary", "error": "RateLimitError"}</code>): 중첩 구조, 목록, 숫자와 문자열의 구별을 담고 대부분의 도구가 읽는다. 사람이 눈으로 읽기에는 길다.</li>
+</ul>
+<p><code>ops/telemetry/logparse.py</code>는 키=값 형식을 JSON으로 바꾼다. 값에 빈칸이 있으면 큰따옴표로 감싸는 규칙(<code>logs/README.md</code>)을 따르므로 파이썬 표준 라이브러리의 <code>shlex</code>로 나눈다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> ops.telemetry.logparse logs/error.log <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-3</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>(전체 22줄, 읽지 못한 줄 0개)
+{"ts": "2027-09-08T14:03:47", "level": "WARNING", "logger": "jobprep.llm", "task": "summary", "model": "claude-haiku-5-5", "error": "RateLimitError"}
+{"ts": "2027-09-08T14:03:47", "level": "ERROR", "logger": "jobprep.api", "path": "/api/summary", "status": 503, "error": "LLMError", "detail": "LLM 호출에 실패하였다: RateLimitError"}</code></pre>
+<p><code>status</code>가 따옴표 없는 숫자 503으로 바뀐 것에 주목한다. 기록을 읽는 코드가 숫자와 문자열을 구별해야 「5xx 비율」 같은 집계가 맞는다. 둘째 줄의 <code>detail</code>은 빈칸이 든 값인데도 한 칸으로 읽혔다.</p>
+<p>같은 시각(14:03:47)의 두 줄은 같은 요청에서 나온 것으로 보이지만, 그것을 확정할 칸이 없다. 요청 번호가 있었다면 <code>access.log</code>의 줄까지 셋을 이을 수 있다. 이것이 8-2의 표에서 「없다」로 적은 빈자리의 비용이다.</p>
+<ul>
+<li><span class="check-badge">확인 20</span> <code>logparse</code>의 출력에서 <code>status</code>가 숫자(따옴표 없음)이고, <code>detail</code>이 빈칸을 포함한 문자열 하나로 읽힌다.</li>
+</ul>
+</section>
+<section id="서비스와-llm-호출의-보고" class="level3">
+<h3 class="anchored" data-anchor-id="서비스와-llm-호출의-보고">8-4. 서비스와 LLM 호출의 보고</h3>
+<p><code>report.py</code>의 1절과 2절이 기준 저장소의 운영 기록 견본(2027-09-06~12)에서 황금 신호와 LLM 호출을 집계한다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> ops.telemetry.report <span class="kw">|</span> <span class="fu">sed</span> <span class="at">-n</span> <span class="st">'/## 1/,/## 3/p'</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>## 1. 서비스 지표 (access.log)
+
+- 기간: 2027-09-06 ~ 2027-09-12 (7일), 요청 480건
+- 서버 오류(5xx) 12건, 비율 2.50%
+
+| 경로 | 요청 | 5xx | 4xx | 지연 p50(ms) | 지연 p95(ms) | 최대(ms) |
+|---|---|---|---|---|---|---|
+| `GET /api/jobs/{id}` | 168 | 0 | 3 | 6 | 9 | 9 |
+| `POST /api/ask` | 107 | 3 | 0 | 2637 | 7831 | 9364 |
+| `POST /api/summary` | 105 | 9 | 2 | 3394 | 4942 | 5169 |
+| `GET /api/jobs` | 79 | 0 | 0 | 15 | 25 | 25 |
+| `GET /api/health` | 21 | 0 | 0 | 2 | 3 | 3 |
+
+지연은 성공한 요청(5xx가 아닌 것)만으로 잰다. 실패한 요청의 지연은 따로 보아야 한다.
+
+## 2. LLM 호출 (llm.log)
+
+| 기능 | 모델 | 성공 | 실패 | 입력 토큰 | 출력 토큰 | 추정 비용(USD) |
+|---|---|---|---|---|---|---|
+| ask | claude-haiku-5-5 | 89 | 3 | 78,432 | 12,527 | 0.0141 |
+| summary | claude-haiku-5-5 | 96 | 7 | 103,550 | 31,266 | 0.0260 |
+
+- 호출 195건 가운데 실패 10건(5.1%)
+- 실패 유형: RateLimitError 7건, AuthenticationError 3건
+- 추정 비용 합계 0.0401 USD, 성공한 호출 1건당 0.000217 USD
+- 하루 비용이 가장 큰 날: 2027-09-09 (0.0085 USD)
+
+## 3. 에이전트 루프 (8장 실행 기록)</code></pre>
+<p>보고를 황금 신호로 읽는다.</p>
+<ul>
+<li>지연: 질의응답의 p50은 2.6초인데 p95는 7.8초이다. 평균만 보았다면 꼬리의 느린 요청을 놓쳤을 것이다. 기록 견본에는 9월 10일 9시대에 질의응답이 6.5~9.8초 걸린 구간이 있고(5장의 MCP 서버로 찾은 사건 가운데 하나), 그 구간이 p95를 끌어올린다.</li>
+<li>오류: 5xx 12건 가운데 9건이 요약에 몰려 있고, LLM 실패 10건 가운데 7건이 속도 제한이다. 이것은 포화의 신호이며, 대책은 코드가 아니라 호출 한도나 재시도 정책에 있다.</li>
+<li>비용: 1주일의 LLM 비용은 0.04 USD 정도로 추정된다. 가격표(<code>ops/telemetry/prices.json</code>)는 2026-11-14에 확인한 Claude Haiku 5.5의 정가(입력 백만 토큰당 0.10 USD, 출력 0.50 USD, 프롬프트 10만 토큰 이하)를 쓴다 [A2]. 출력 토큰이 입력보다 적어도 단가가 다섯 배이므로, 요약의 비용은 출력이 좌우한다.</li>
+</ul>
+<p>같은 보고의 3절(8장 루프)은 1주일 남짓에 2.33 USD를 썼다. 서비스 1주일의 LLM 비용보다 에이전트 개발 비용이 훨씬 크다. 운영 비용을 볼 때 서비스와 에이전트를 함께 보아야 하는 까닭이다.</p>
+<ul>
+<li><span class="check-badge">확인 21</span> 보고에 요청 480건, 5xx 비율 2.50%, <code>POST /api/ask</code>의 p95 7831ms, LLM 실패 유형 두 가지가 보인다.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="claude-code의-사용량과-비용-opentelemetry" class="level2">
+<h2 class="anchored" data-anchor-id="claude-code의-사용량과-비용-opentelemetry">9. Claude Code의 사용량과 비용, OpenTelemetry</h2>
+<p><code>jobprep</code>의 앱이 부르는 LLM 비용은 <code>llm.log</code>가 보여 준다. 그런데 이 학기의 운영 에이전트 시스템은 대부분 Claude Code로 돈다. 3~10장의 커맨드, 스킬, 훅, 루프, 역할 에이전트가 쓰는 토큰과 비용은 Claude Code가 따로 센다. 이 절은 그 수치를 보는 세 가지 길을 다룬다. 화면과 명령은 2026-11 기준이며, 이 교재는 Claude Code 2.1.296으로 확인하였다.</p>
+<section id="대화-안에서-usage" class="level3">
+<h3 class="anchored" data-anchor-id="대화-안에서-usage">9-1. 대화 안에서: /usage</h3>
+<p>Claude Code 안에서 <code>/usage</code>를 입력하면 현재 세션의 비용, 요금제의 사용 한도, 활동 통계가 보인다. <code>/cost</code>와 <code>/stats</code>는 <code>/usage</code>의 별칭이다 [C21]. 이 절과 9-3의 화면 확인은 교수 시연으로 한다. 교수 화면의 계정 종류(API 또는 구독)에 따라 보이는 구역이 다르므로, 학습자는 시연 화면에서 아래 세 가지를 찾아 읽는다.</p>
+<div class="code-label where-prof">
+<span>교수 화면</span>
+</div>
+<pre class="text"><code>/usage</code></pre>
+<p>공식 문서가 보여 주는 세션 구역의 예는 다음과 같다(API 사용자 화면의 예시이며, 실제 화면은 계정과 판에 따라 다르다) [C19].</p>
+<pre class="text"><code>Total cost:            $0.55
+Total duration (API):  6m 20s
+Total duration (wall): 6h 33m 10s
+Total code changes:    0 lines added, 0 lines removed
+Usage by model:
+   claude-sonnet-4-6:  1.2k input, 5.3k output, 940.0k cache read, 50.0k cache write ($0.55)</code></pre>
+<p>이 화면을 읽을 때 지킬 점이 셋이다 [C19].</p>
+<ul>
+<li><strong>추정이다</strong>: 금액은 Claude Code가 토큰 수와 정가로 컴퓨터 안에서 계산한 추정이다. 청구액은 Console 같은 조직의 청구 화면에서 본다.</li>
+<li><strong>구독자에게는 뜻이 다르다</strong>: Pro, Max 같은 구독에서는 사용량이 요금제에 포함되므로 세션 비용은 청구와 무관하다. 구독자 화면에는 요금제 사용 막대와 사용 내역이 함께 나온다.</li>
+<li><strong>세션 단위이다</strong>: <code>/clear</code>로 새 세션을 열면 합계가 0부터 다시 시작한다.</li>
+</ul>
+<p>캐시 읽기 토큰(<code>cache read</code>)이 입력보다 훨씬 많은 것도 눈여겨본다. 긴 세션은 요청마다 대화 전체를 다시 보내고, 프롬프트 캐시가 그 비용을 줄인다. 공식 문서는 오래 열어 둔 세션의 사용량이 커지는 까닭으로 긴 맥락, 캐시 만료 뒤의 재처리, 예약 작업, 서브에이전트, 압축(<code>/compact</code>) 자체의 비용을 든다 [C19].</p>
+<ul>
+<li><span class="check-badge">확인 22</span> 교수 시연의 <code>/usage</code> 화면에서 세션 구역(비용 또는 요금제 사용량)을 찾고, 그 금액이 추정이라는 것과 구독 계정에서는 청구와 무관하다는 것을 말할 수 있다.</li>
+</ul>
+</section>
+<section id="스크립트에서-헤드리스-json-결과" class="level3">
+<h3 class="anchored" data-anchor-id="스크립트에서-헤드리스-json-결과">9-2. 스크립트에서: 헤드리스 JSON 결과</h3>
+<p>8장의 루프는 <code>claude -p --output-format json</code>의 결과를 읽어 시도마다 비용을 기록하였다. 결과 객체의 칸 가운데 관측에 쓰는 것은 다음과 같다 [C14][C22].</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>칸</th>
+<th>뜻</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>subtype</code></td>
+<td><code>success</code> 또는 오류 종류(<code>error_max_turns</code>, <code>error_during_execution</code>, <code>error_max_budget_usd</code>, <code>error_max_structured_output_retries</code>)</td>
+</tr>
+<tr class="even">
+<td><code>is_error</code></td>
+<td>오류로 끝났는가</td>
+</tr>
+<tr class="odd">
+<td><code>num_turns</code></td>
+<td>이 실행의 턴 수(8장 기록의 <code>turns</code>)</td>
+</tr>
+<tr class="even">
+<td><code>duration_ms</code>, <code>duration_api_ms</code></td>
+<td>전체 시간과 API 호출에 쓴 시간</td>
+</tr>
+<tr class="odd">
+<td><code>total_cost_usd</code></td>
+<td>이 실행의 추정 비용(8장 기록의 <code>cost_usd</code>). 서브에이전트의 비용을 포함한다</td>
+</tr>
+<tr class="even">
+<td><code>usage</code></td>
+<td>토큰 수. 맨 위 에이전트 루프만 세고 서브에이전트는 빠진다</td>
+</tr>
+<tr class="odd">
+<td><code>modelUsage</code></td>
+<td>모델별 토큰과 비용(<code>costUSD</code>, <code>inputTokens</code>, <code>outputTokens</code>, <code>cacheReadInputTokens</code>, <code>cacheCreationInputTokens</code>). 서브에이전트를 포함한다</td>
+</tr>
+<tr class="even">
+<td><code>session_id</code></td>
+<td>이어서 실행하거나 기록과 잇는 번호</td>
+</tr>
+</tbody>
+</table>
+<p>비용 문서는 <code>total_cost_usd</code>와 <code>costUSD</code>가 「클라이언트 쪽 추정이며 청구 자료가 아니다」라고 경고하고, 가격이 바뀌거나 설치된 판이 모델을 모르면 실제와 어긋날 수 있다고 한다 [C22]. 또 <code>--continue</code>나 <code>--resume</code>으로 이어 간 실행은 앞 실행의 비용까지 포함한 대화 전체의 합계를 보고하므로, 이어 간 실행의 결과를 더하면 비용을 두 번 센다 [C14][C22].</p>
+<p>실행 하나의 비용 상한은 <code>--max-budget-usd</code>이다. 이 값은 같은 클라이언트 쪽 추정으로 판정하므로 실제 지출이 상한을 조금 넘을 수 있고, 서브에이전트의 지출도 상한에 들어간다 [C15]. 상한에 닿으면 결과의 <code>subtype</code>이 <code>error_max_budget_usd</code>가 된다. 7-3에서 본 실행이 이 경우이다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="at">--help</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-A1</span> <span class="st">"max-budget-usd"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>  --max-budget-usd &lt;amount&gt;             Maximum dollar amount to spend on API
+                                        calls (only works with --print)</code></pre>
+<ul>
+<li><span class="check-badge">확인 23</span> <code>claude --help</code>에 <code>--max-budget-usd</code>가 있고, 8장 견본 기록에 <code>"subtype": "error_max_budget_usd"</code>인 시도가 하나 있다(<code>grep -c error_max_budget_usd ops/loop/logs/*.jsonl</code>).</li>
+</ul>
+</section>
+<section id="조직-단위로-opentelemetry" class="level3">
+<h3 class="anchored" data-anchor-id="조직-단위로-opentelemetry">9-3. 조직 단위로: OpenTelemetry</h3>
+<p><strong>OpenTelemetry</strong>(OTel)는 신호를 「모으고, 처리하고, 내보내는」 공개 표준이다 [O1]. Claude Code는 OTel로 지표와 이벤트를 내보낼 수 있고, 내보낸 자료는 수집기(collector)를 거쳐 Prometheus 같은 저장소와 대시보드로 간다 [C18]. 비용 문서는 OTel 내보내기가 모든 사용 형태(팀 요금제, Console, 클라우드 제공자)에서 동작하며, 사용자별 토큰과 비용을 조직의 관측 체계로 거의 실시간에 보내는 유일한 방법이라고 한다 [C19].</p>
+<p>켜는 법은 환경 변수이다. 공식 문서의 빠른 시작을 줄이면 다음과 같다 [C18].</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>환경 변수</th>
+<th>값의 예</th>
+<th>뜻</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>CLAUDE_CODE_ENABLE_TELEMETRY</code></td>
+<td><code>1</code></td>
+<td>원격 측정을 켠다(필수)</td>
+</tr>
+<tr class="even">
+<td><code>OTEL_METRICS_EXPORTER</code></td>
+<td><code>otlp</code>, <code>prometheus</code>, <code>console</code>, <code>none</code></td>
+<td>지표를 어디로 내보내는가</td>
+</tr>
+<tr class="odd">
+<td><code>OTEL_LOGS_EXPORTER</code></td>
+<td><code>otlp</code>, <code>console</code>, <code>none</code></td>
+<td>이벤트(로그)를 어디로 내보내는가</td>
+</tr>
+<tr class="even">
+<td><code>OTEL_EXPORTER_OTLP_PROTOCOL</code></td>
+<td><code>grpc</code>, <code>http/json</code>, <code>http/protobuf</code></td>
+<td>OTLP 전송 방식</td>
+</tr>
+<tr class="odd">
+<td><code>OTEL_EXPORTER_OTLP_ENDPOINT</code></td>
+<td><code>http://localhost:4317</code></td>
+<td>수집기의 주소</td>
+</tr>
+<tr class="even">
+<td><code>OTEL_EXPORTER_OTLP_HEADERS</code></td>
+<td><code>Authorization=Bearer …</code></td>
+<td>수집기의 인증(값은 비밀 정보로 다룬다)</td>
+</tr>
+<tr class="odd">
+<td><code>OTEL_METRIC_EXPORT_INTERVAL</code></td>
+<td>기본 60000(ms)</td>
+<td>지표를 내보내는 간격</td>
+</tr>
+<tr class="even">
+<td><code>OTEL_LOGS_EXPORT_INTERVAL</code></td>
+<td>기본 5000(ms)</td>
+<td>이벤트를 내보내는 간격</td>
+</tr>
+<tr class="odd">
+<td><code>OTEL_RESOURCE_ATTRIBUTES</code></td>
+<td><code>department=engineering,team.id=platform</code></td>
+<td>팀, 부서 같은 사용자 정의 속성</td>
+</tr>
+</tbody>
+</table>
+<p>수집기 없이 동작을 확인하려면 <code>console</code> 내보내기를 쓴다. 공식 문서의 디버깅 예는 지표를 1초마다 콘솔에 찍는다 [C18]. 이 확인은 교수 시연으로 한다.</p>
+<div class="code-label where-prof">
+<span>교수 화면</span>
+</div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="va">CLAUDE_CODE_ENABLE_TELEMETRY</span><span class="op">=</span>1 <span class="va">OTEL_METRICS_EXPORTER</span><span class="op">=</span>console <span class="va">OTEL_METRIC_EXPORT_INTERVAL</span><span class="op">=</span>10000 <span class="ex">claude</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>이 명령은 원격 측정을 이 세션 하나에만 켠다. Claude Code에 짧은 요청을 하나 보내면 10초 간격으로 지표가 터미널에 찍힌다. 공식 문서는 지표가 오는지 볼 때 <code>claude_code.session.count</code>를 찾으라고 하고, 아무것도 오지 않으면 <code>claude --debug-file &lt;경로&gt;</code>로 연 뒤 기록에서 <code>[3P telemetry]</code> 오류를 찾으라고 한다 [C18]. 콘솔 출력은 화면을 어지럽히므로 확인한 뒤 바로 Claude Code를 닫는다.</p>
+<blockquote class="blockquote">
+<p>이 단계는 Claude Code에 요청을 보내 계정의 사용량을 쓰므로 교수 시연으로 한다. 학습자는 시연 화면에서 <code>claude_code.session.count</code>와 <code>claude_code.cost.usage</code>가 찍힌 줄을 찾는다. 이 교재를 쓸 때는 모델을 부르지 않아 콘솔 출력의 실제 모양을 확인하지 못하였다.</p>
+</blockquote>
+</section>
+<section id="내보내는-지표와-이벤트" class="level3">
+<h3 class="anchored" data-anchor-id="내보내는-지표와-이벤트">9-4. 내보내는 지표와 이벤트</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>지표 [C18]</th>
+<th>뜻</th>
+<th>단위</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>claude_code.session.count</code></td>
+<td>시작한 세션 수</td>
+<td>개</td>
+</tr>
+<tr class="even">
+<td><code>claude_code.cost.usage</code></td>
+<td>세션 비용</td>
+<td>USD</td>
+</tr>
+<tr class="odd">
+<td><code>claude_code.token.usage</code></td>
+<td>토큰 수(<code>type</code>: <code>input</code>, <code>output</code>, <code>cacheRead</code>, <code>cacheCreation</code>)</td>
+<td>토큰</td>
+</tr>
+<tr class="even">
+<td><code>claude_code.lines_of_code.count</code></td>
+<td>더하거나 지운 줄 수</td>
+<td>줄</td>
+</tr>
+<tr class="odd">
+<td><code>claude_code.commit.count</code>, <code>claude_code.pull_request.count</code></td>
+<td>만든 커밋과 풀 리퀘스트 수</td>
+<td>개</td>
+</tr>
+<tr class="even">
+<td><code>claude_code.code_edit_tool.decision</code></td>
+<td>편집 도구의 허용·거부 결정</td>
+<td>개</td>
+</tr>
+<tr class="odd">
+<td><code>claude_code.active_time.total</code></td>
+<td>활동 시간</td>
+<td>초</td>
+</tr>
+</tbody>
+</table>
+<p>비용과 토큰 지표에는 <code>model</code>과 호출의 출처(<code>query_source</code>: 주 대화, 서브에이전트, 보조)가 붙고, 어느 스킬·플러그인·MCP 서버의 사용인지를 가리키는 속성도 붙는다 [C18]. 10장의 역할 에이전트별 비용을 이 속성으로 나눌 수 있다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>이벤트 [C18]</th>
+<th>주요 속성</th>
+<th>이 학기의 쓰임</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>claude_code.user_prompt</code></td>
+<td><code>prompt_length</code>, <code>prompt</code>(기본은 가림)</td>
+<td>요청 수와 길이</td>
+</tr>
+<tr class="even">
+<td><code>claude_code.api_request</code></td>
+<td><code>model</code>, <code>cost_usd</code>, <code>duration_ms</code>, <code>input_tokens</code>, <code>output_tokens</code>, 캐시 토큰</td>
+<td>호출별 비용과 지연</td>
+</tr>
+<tr class="odd">
+<td><code>claude_code.api_error</code></td>
+<td><code>model</code>, <code>error</code>, <code>status_code</code>, <code>attempt</code></td>
+<td>속도 제한, 인증 실패의 집계</td>
+</tr>
+<tr class="even">
+<td><code>claude_code.tool_result</code></td>
+<td><code>tool_name</code>, <code>success</code>, <code>duration_ms</code>, <code>decision_type</code></td>
+<td>도구 호출의 성공률과 시간(8-2의 「도구 호출」 칸)</td>
+</tr>
+<tr class="odd">
+<td><code>claude_code.tool_decision</code></td>
+<td><code>tool_name</code>, <code>decision</code>, <code>source</code>(<code>config</code>, <code>hook</code>, <code>user_reject</code> 등)</td>
+<td>3장의 권한 규칙과 6장의 훅이 무엇을 막았는가</td>
+</tr>
+</tbody>
+</table>
+<p>이벤트에는 한 요청에서 나온 이벤트를 잇는 <code>prompt.id</code>와 순서를 정하는 <code>event.sequence</code>가 붙는다 [C18]. 8-2에서 <code>jobprep</code>의 기록에 없다고 적은 「요청 번호」가 Claude Code의 이벤트에는 있는 셈이다.</p>
+</section>
+<section id="설정을-두는-곳" class="level3">
+<h3 class="anchored" data-anchor-id="설정을-두는-곳">9-5. 설정을 두는 곳</h3>
+<p>환경 변수를 셸에서 매번 줄 수 없으므로 설정 파일의 <code>env</code> 블록에 둔다. 그런데 어느 설정 파일이냐가 중요하다. 공식 문서에 따르면 Claude Code는 저장소의 <code>.claude/settings.json</code>과 <code>.claude/settings.local.json</code>에 있는 <code>OTEL_*</code> 내보내기 변수를 무시한다. 그래서 저장소는 원격 측정을 켜거나, 보낼 곳을 정하거나, 내용을 기록하게 할 수 없다. 저장소가 할 수 있는 일은 내보내기를 <code>none</code>으로 끄는 것뿐이다 [C18].</p>
+<ul>
+<li><strong>셸 환경 변수</strong>: 먹는다. 개인이 한 세션만 확인할 때 쓴다(9-3).</li>
+<li><strong>사용자 설정 <code>~/.claude/settings.json</code>의 <code>env</code></strong>: 먹는다. 개인이 늘 켜 둘 때 쓴다.</li>
+<li><strong>관리 설정(managed settings)의 <code>env</code></strong>: 먹는다. 조직의 관리자가 쓰며, 보낼 곳을 고정할 수 있다.</li>
+<li><strong>저장소의 <code>.claude/settings.json</code>, <code>settings.local.json</code></strong>: 먹지 않는다. 내보내기를 <code>none</code>으로 끄는 것만 된다.</li>
+</ul>
+<p>이 규칙은 11장의 공급망 보안과 같은 생각이다. 남의 저장소를 받아 Claude Code를 여는 것만으로 자기 대화 내용이 남의 수집기로 보내져서는 안 된다. 3장에서 팀 규칙을 저장소의 <code>.claude/settings.json</code>에 두었지만, 관측의 설정은 거기에 두지 않는다.</p>
+<p>조직이 원격 측정을 켤 때는 관리 설정에 다음과 같은 <code>env</code> 블록을 둔다(공식 문서의 예를 따랐다. 주소와 토큰은 자리 표시이다) [C18].</p>
+<div class="code-label where-server">
+<span>파일: 관리 설정 파일 (관리자용 예)</span>
+</div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"env"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"CLAUDE_CODE_ENABLE_TELEMETRY"</span><span class="fu">:</span> <span class="st">"1"</span><span class="fu">,</span></span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"OTEL_METRICS_EXPORTER"</span><span class="fu">:</span> <span class="st">"otlp"</span><span class="fu">,</span></span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"OTEL_LOGS_EXPORTER"</span><span class="fu">:</span> <span class="st">"otlp"</span><span class="fu">,</span></span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"OTEL_EXPORTER_OTLP_PROTOCOL"</span><span class="fu">:</span> <span class="st">"grpc"</span><span class="fu">,</span></span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"OTEL_EXPORTER_OTLP_ENDPOINT"</span><span class="fu">:</span> <span class="st">"http://collector.example.com:4317"</span><span class="fu">,</span></span>
+<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"OTEL_EXPORTER_OTLP_HEADERS"</span><span class="fu">:</span> <span class="st">"Authorization=Bearer example-token"</span></span>
+<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb68-10"><a href="#cb68-10" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>학습자는 이 파일을 실습 서버에 만들지 않는다. 대신 3장에서 만든 저장소 설정에 이런 변수를 넣으면 어떻게 되는지를 문서의 규칙으로 판정해 본다.</p>
+<ul>
+<li><span class="check-badge">확인 24</span> 「저장소의 <code>.claude/settings.json</code>에 <code>"OTEL_METRICS_EXPORTER": "otlp"</code>를 넣으면 원격 측정이 켜지는가」에 「켜지지 않는다. 저장소 설정의 <code>OTEL_*</code> 내보내기 변수는 무시된다」라고 답할 수 있다.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="비용-예산과-경보-개인-정보" class="level2">
+<h2 class="anchored" data-anchor-id="비용-예산과-경보-개인-정보">10. 비용 예산과 경보, 개인 정보</h2>
+<section id="예산의-층" class="level3">
+<h3 class="anchored" data-anchor-id="예산의-층">10-1. 예산의 층</h3>
+<p>비용은 한 곳에서 막지 않는다. 층마다 다른 단위의 상한을 둔다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>층</th>
+<th>상한</th>
+<th>넘으면</th>
+<th>이 학기의 자리</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>조직</td>
+<td>Console의 작업 공간 지출 한도, 팀 요금제의 지출 한도 [C19]</td>
+<td>그 작업 공간의 호출이 막힌다</td>
+<td>실습용 키를 발급하면 그 작업 공간에 둔다(발급 여부는 수업 첫 주에 안내한다)</td>
+</tr>
+<tr class="even">
+<td>실행 하나</td>
+<td><code>--max-budget-usd</code> [C15]</td>
+<td>그 실행이 <code>error_max_budget_usd</code>로 멈춘다</td>
+<td>8장 루프의 시도당 예산</td>
+</tr>
+<tr class="odd">
+<td>루프 하나</td>
+<td>루프 스크립트의 누적 예산</td>
+<td>루프가 멈추고 사람에게 넘긴다</td>
+<td>8장 루프의 <code>budget</code></td>
+</tr>
+<tr class="even">
+<td>기간</td>
+<td>주간·월간 예산과 주의 기준</td>
+<td>보고에 주의·초과를 띄우고 종료 코드로 알린다</td>
+<td>이 장의 <code>report.py --budget-usd</code></td>
+</tr>
+</tbody>
+</table>
+<p>아래 층일수록 빨리 멈추고, 위 층일수록 넓게 본다. 아래 층의 상한만 있으면 작은 실행이 수없이 반복될 때 막지 못하고, 위 층의 상한만 있으면 한 실행이 예산을 다 써 버린다. 비용 문서는 시작할 때 소수의 시범 그룹으로 기준선을 잡은 뒤 넓히라고 권하고, 기업 사용의 평균으로 활동일 하루에 개발자당 약 13 USD, 사용자 90%가 활동일 하루 30 USD 아래라는 수치를 든다 [C19]. 이 수치는 기업의 것이므로 수업의 예산은 학과가 정하지만, 「기준선을 먼저 재고 예산을 정한다」는 순서는 같다.</p>
+</section>
+<section id="경보의-원칙" class="level3">
+<h3 class="anchored" data-anchor-id="경보의-원칙">10-2. 경보의 원칙</h3>
+<p>보고서는 사람이 읽으러 와야 보이고, <strong>경보</strong>(alert)는 사람에게 간다. 그래서 경보는 적게, 의미 있게 울려야 한다. SRE 책은 경보의 원칙으로 다음을 든다 [S1].</p>
+<ul>
+<li><strong>모든 호출(page)은 행동할 수 있어야 한다.</strong> 기계적인 대응만 필요한 경보는 경보가 아니다. <code>jobprep</code>에서 「예산의 87%」는 「이번 주에 루프를 더 돌릴지 정한다」는 행동으로 이어진다. 「LLM 호출 한 번 실패」는 행동이 없으므로 경보로 보내지 않고 보고에만 둔다.</li>
+<li><strong>원인보다 증상에 경보를 건다.</strong> 「5xx 비율이 2%를 넘었다」(증상)에 경보를 걸고, 「RateLimitError」(원인)는 보고에서 찾는다.</li>
+<li><strong>잦고 시끄러운 경보는 피로를 낳아 진짜 사건을 가린다.</strong> 1-4에서 능력 문항을 회귀 판정에서 뺀 까닭과 같다. 늘 울리는 경보는 무시된다.</li>
+</ul>
+<p><code>report.py</code>는 두 단계를 둔다. 예산의 80% 이상이면 보고에 「주의」를 적고(종료 코드 0), 예산을 넘으면 「초과」를 적고 종료 코드 2를 낸다. 종료 코드가 있으면 예약 실행(8장)이나 CI(13장)가 이 결과로 다음 동작을 정할 수 있다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> ops.telemetry.report <span class="at">--budget-usd</span> 5 <span class="kw">|</span> <span class="fu">sed</span> <span class="at">-n</span> <span class="st">'/## 5/,$p'</span><span class="kw">;</span> <span class="bu">echo</span> <span class="st">"종료 코드 </span><span class="va">$?</span><span class="st">"</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> ops.telemetry.report <span class="at">--budget-usd</span> 4 <span class="op">&gt;</span> /dev/null<span class="kw">;</span> <span class="bu">echo</span> <span class="st">"종료 코드 </span><span class="va">$?</span><span class="st">"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>## 5. 예산
+
+- 추정 비용 합계 4.33 USD / 예산 5.00 USD (87%) → **주의**
+- 주의 기준은 예산의 80%, 초과하면 종료 코드 2로 알린다
+
+종료 코드 0
+종료 코드 2</code></pre>
+<p>첫 줄의 <code>echo</code>가 찍는 종료 코드는 파이프의 마지막 명령(<code>sed</code>)의 것이므로 0이다. 보고 자체의 종료 코드를 보려면 둘째 줄처럼 파이프 없이 실행한다. 이 차이는 13장에서 CI 단계를 쓸 때도 중요하다(파이프 안의 실패는 <code>set -o pipefail</code> 없이는 드러나지 않는다).</p>
+<ul>
+<li><span class="check-badge">확인 25</span> 예산 5 USD로는 「주의」와 종료 코드 0이, 예산 4 USD로는 종료 코드 2가 나온다.</li>
+</ul>
+</section>
+<section id="개인-정보와-기록" class="level3">
+<h3 class="anchored" data-anchor-id="개인-정보와-기록">10-3. 개인 정보와 기록</h3>
+<p>관측은 많이 남길수록 좋아 보이지만, 기록은 그 자체로 유출의 통로가 된다. 1장의 운영 요건 가운데 보안(비밀 정보와 사용자 정보가 새지 않는다)이 기록에도 적용된다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>원칙</th>
+<th><code>jobprep</code>에서</th>
+<th>Claude Code에서 [C18]</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>내용 대신 크기를 남긴다</td>
+<td>질문 원문 대신 기능, 토큰 수, 지연만 남긴다</td>
+<td><code>user_prompt</code> 이벤트의 <code>prompt</code>는 기본으로 가려지고 <code>prompt_length</code>만 남는다</td>
+</tr>
+<tr class="even">
+<td>내용 기록은 명시적으로 켠다</td>
+<td>디버깅에 원문이 필요하면 기간을 정해 켜고 끈다</td>
+<td><code>OTEL_LOG_USER_PROMPTS</code>, <code>OTEL_LOG_ASSISTANT_RESPONSES</code>, <code>OTEL_LOG_TOOL_DETAILS</code>는 모두 기본으로 꺼져 있다</td>
+</tr>
+<tr class="odd">
+<td>비밀 정보는 기록에 넣지 않는다</td>
+<td>건강 확인은 키를 내보내지 않는다(REQ-OPS-05). 키는 <code>.env</code>에만</td>
+<td>수집기 토큰을 클라우드 환경 변수에 두지 말라고 경고한다</td>
+</tr>
+<tr class="even">
+<td>보관 기간을 정한다</td>
+<td><code>logs/runtime/</code>은 저장소에 올리지 않는다. 평가 기록 <code>evals/runs/</code>도 같다</td>
+<td><code>/insights</code> 보고서는 <code>cleanupPeriodDays</code>(기본 30일)가 지나면 지워진다 [C19]</td>
+</tr>
+<tr class="odd">
+<td>정기적으로 점검한다</td>
+<td><code>pii_scan.py</code>로 기록에 개인 정보 꼴이 있는지 본다</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>평가 기록도 개인 정보의 통로가 될 수 있다. 골든 세트를 실제 사용자의 질문으로 만들면(2-5), 그 질문이 <code>records.jsonl</code>과 저장소에 들어간다. 운영 기록에서 문항을 뽑을 때는 개인을 알아볼 수 있는 내용을 지우고 다시 쓴다.</p>
+</section>
+<section id="기록-점검" class="level3">
+<h3 class="anchored" data-anchor-id="기록-점검">10-4. 기록 점검</h3>
+<p><code>ops/telemetry/pii_scan.py</code>는 기록 파일에서 전자우편, 휴대전화 번호, 주민등록번호 꼴, API 키 꼴의 문자열을 찾는다. 찾은 값은 앞 세 글자만 남기고 가려서 보인다. 점검 결과를 보여 주는 화면이 다시 유출의 통로가 되지 않게 하기 위해서다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> ops.telemetry.pii_scan logs ops evals/runs<span class="kw">;</span> <span class="bu">echo</span> <span class="st">"종료 코드 </span><span class="va">$?</span><span class="st">"</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="bu">printf</span> <span class="st">'2027-09-13 10:00:00 INFO jobprep.llm task=ask question="연락처 010-1234-5678로 알려 주세요"\n'</span> <span class="op">&gt;</span> /tmp/pii_test.log</span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> ops.telemetry.pii_scan /tmp/pii_test.log<span class="kw">;</span> <span class="bu">echo</span> <span class="st">"종료 코드 </span><span class="va">$?</span><span class="st">"</span></span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> /tmp/pii_test.log</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>점검한 경로: logs, ops, evals/runs · 발견 0건
+종료 코드 0
+/tmp/pii_test.log:1 휴대전화 010**********
+점검한 경로: /tmp/pii_test.log · 발견 1건
+종료 코드 1</code></pre>
+<p>이 점검은 정규식에 걸리는 꼴만 찾는다. 이름, 주소, 질문 속의 개인 사정처럼 꼴이 없는 정보는 찾지 못한다. 그러므로 점검의 통과는 「꼴이 있는 개인 정보는 없다」는 뜻일 뿐이고, 무엇을 남길지 정하는 설계(10-3의 표)가 먼저이다.</p>
+<ul>
+<li><span class="check-badge">확인 26</span> 저장소의 기록은 발견 0건(종료 코드 0), 일부러 만든 기록은 휴대전화 1건이 가려져 보인다(종료 코드 1).</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="중심-실습-jobprep-회귀-평가와-운영-관측-보고" class="level2">
+<h2 class="anchored" data-anchor-id="중심-실습-jobprep-회귀-평가와-운영-관측-보고">11. 중심 실습: jobprep 회귀 평가와 운영 관측 보고</h2>
+<section id="목표와-완료-기준" class="level3">
+<h3 class="anchored" data-anchor-id="목표와-완료-기준">11-1. 목표와 완료 기준</h3>
+<p>6절의 비교로 v1과 v2가 모두 운영에 낼 수 없는 판본임을 알았다. 이 실습은 v2의 결함(공고에 없는 주의점을 지어냄)을 고친 v3을 만들고, 평가로 나아졌음을 보이고, 회귀 판정을 통과시켜 기준선으로 적은 뒤, 판정이 실제로 회귀를 막는지를 시험한다. 끝으로 서비스와 에이전트의 관측 보고를 만들고, 이 장의 결과를 <code>docs/운영/평가보고.md</code>에 정리한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>산출물</th>
+<th>경로</th>
+<th>완료 기준</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>요약 프롬프트 v3</td>
+<td><code>prompts/summary_v3.txt</code></td>
+<td>v2 대비 짝지은 차이의 95% 구간이 0보다 크다</td>
+</tr>
+<tr class="even">
+<td>기준선</td>
+<td><code>evals/baseline.json</code></td>
+<td><code>evals.gate</code>가 종료 코드 0을 내고 <code>--update-baseline</code>으로 적었다</td>
+</tr>
+<tr class="odd">
+<td>회귀 시연 기록</td>
+<td><code>docs/운영/평가보고.md</code> 4절</td>
+<td>규칙을 지운 판본과 모델을 바꾼 실행이 종료 코드 1을 냈다</td>
+</tr>
+<tr class="even">
+<td>관측 보고</td>
+<td><code>docs/운영/관측보고.md</code></td>
+<td>다섯 절(서비스, LLM, 루프, 멀티, 예산)과 평가 실행의 부록이 있다</td>
+</tr>
+<tr class="odd">
+<td>평가 보고</td>
+<td><code>docs/운영/평가보고.md</code></td>
+<td>양식의 9절이 모두 채워졌다</td>
+</tr>
+<tr class="even">
+<td>커밋</td>
+<td></td>
+<td><code>pytest -q</code>와 <code>pytest -q evals ops/telemetry</code>가 통과한 상태로 커밋하였다</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="단계-1-summary_v3-작성" class="level3">
+<h3 class="anchored" data-anchor-id="단계-1-summary_v3-작성">11-2. 단계 1: summary_v3 작성</h3>
+<p>v2를 복사하고 규칙 4를 더한다. 「주의점을 먼저 꼽는다」는 지시는 학생에게 쓸모 있는 것이므로 지우지 않는다. 대신 그 지시가 부른 부작용을 막는 규칙을 더한다. 규칙을 지우는 것과 더하는 것은 평가로 따로 재어 고른다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> prompts/summary_v2.txt prompts/summary_v3.txt</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-</span> <span class="op">&lt;&lt;'PY'</span></span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="st">from pathlib import Path</span></span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a><span class="st">p = Path("prompts/summary_v3.txt")</span></span>
+<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a><span class="st">text = p.read_text(encoding="utf-8")</span></span>
+<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a><span class="st">old = "3. 마감일이 여러 번 나오면 서류 접수 마감일을 쓴다.\n"</span></span>
+<span id="cb73-7"><a href="#cb73-7" aria-hidden="true" tabindex="-1"></a><span class="st">new = old + "4. 공고에 없는 주의점은 쓰지 않는다. 공고에 주의할 점이 없으면 빈 목록으로 둔다.\n"</span></span>
+<span id="cb73-8"><a href="#cb73-8" aria-hidden="true" tabindex="-1"></a><span class="st">assert old in text</span></span>
+<span id="cb73-9"><a href="#cb73-9" aria-hidden="true" tabindex="-1"></a><span class="st">p.write_text(text.replace(old, new), encoding="utf-8", newline="\n")</span></span>
+<span id="cb73-10"><a href="#cb73-10" aria-hidden="true" tabindex="-1"></a><span class="op">PY</span></span>
+<span id="cb73-11"><a href="#cb73-11" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span> prompts/summary_v2.txt prompts/summary_v3.txt</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>16a17
+&gt; 4. 공고에 없는 주의점은 쓰지 않는다. 공고에 주의할 점이 없으면 빈 목록으로 둔다.</code></pre>
+<p>편집기로 고쳐도 된다. 다만 문장 하나, 빈칸 하나까지 이 교재와 같아야 아래의 수치가 같게 나온다. 변동 모의 모델은 프롬프트 전체로 난수 씨앗을 만들기 때문이다. 이것은 실제 모델에서도 마찬가지인 성질을 과장해 보여 준다. 프롬프트의 사소한 변경도 출력 분포를 흔들 수 있으므로, 의미 없는 편집도 평가를 다시 돌린 뒤에 내보낸다.</p>
+<ul>
+<li><span class="check-badge">확인 27</span> <code>diff</code>의 출력이 규칙 4 한 줄뿐이다.</li>
+</ul>
+</section>
+<section id="단계-2-v3의-평가와-비교" class="level3">
+<h3 class="anchored" data-anchor-id="단계-2-v3의-평가와-비교">11-3. 단계 2: v3의 평가와 비교</h3>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> evals.run <span class="at">--suite</span> summary <span class="at">--prompt</span> summary_v3 <span class="at">--runs</span> 5 <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-v</span> <span class="st">"^    S"</span></span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> evals.compare evals/runs/summary_v2-sim-a-n5 evals/runs/summary_v3-sim-a-n5</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>[summary] 판본 summary_v3 · 모델 sim-a · 반복 5회 · 문항 15개(회귀 14)
+  기준별 통과율(회귀 문항)
+    structure  0.97
+    deadline   1.00
+    coverage   0.95
+    length     0.98
+    forbidden  해당 없음
+    preferred  0.97
+    judge      0.96
+  문항별 통과(반복 중 통과 횟수)
+  회귀 통과율 0.87 (표준오차 0.040, 95% 구간 0.79~0.95) · 모든 반복 통과 7/14문항
+  반복별 회귀 통과율: 0.93, 0.79, 0.86, 0.86, 0.93
+  능력 문항(*) 통과율 0.00
+  LLM 호출 75회 · 토큰 입력 35,100 출력 10,392
+기록: evals/runs/summary_v3-sim-a-n5/ (records.jsonl, summary.json, llm.log)
+[summary] 기준 summary_v2/sim-a (반복 5) ↔ 비교 summary_v3/sim-a (반복 5)
+  기준                summary_v2/sim-a      summary_v3/sim-a      차이
+  structure                     0.97                  0.97   +0.00
+  deadline                      1.00                  1.00   +0.00
+  coverage                      0.92                  0.95   +0.03
+  length                        1.00                  0.98   -0.02
+  forbidden                    해당 없음                 해당 없음
+  preferred                     0.97                  0.97   +0.00
+  judge                         0.76                  0.96   +0.20
+  회귀 통과율                      0.67                  0.87   +0.20
+  모든 반복 통과                    1/14                  7/14
+  짝지은 차이: 평균 +0.200, 표준오차 0.066, 95% 구간 +0.070~+0.330
+  판단: 비교 쪽이 낫다(구간이 0보다 크다)
+  크게 바뀐 문항: S01 0.6 → 1.0
+  크게 바뀐 문항: S02 0.4 → 1.0
+  크게 바뀐 문항: S06 0.4 → 1.0
+  크게 바뀐 문항: S09 0.6 → 1.0
+  크게 바뀐 문항: S12 0.4 → 0.8</code></pre>
+<p>판정 통과율이 0.76에서 0.96으로 돌아왔고, v2가 고친 세 기준(preferred, length, deadline)은 그대로 유지되었다. 짝지은 차이의 구간이 0보다 크므로 「v3이 v2보다 낫다」고 말할 수 있다. 6-3에서 「v2가 v1보다 낫다」고 말할 수 없었던 것과 대비된다. 반복별 통과율에 0.79가 하나 있다는 것도 적어 둔다. 한 번만 돌렸다면 그 0.79가 v3의 점수가 될 수도 있었다.</p>
+<ul>
+<li><span class="check-badge">확인 28</span> v3의 회귀 통과율이 0.87이고, 비교의 판단 줄이 「비교 쪽이 낫다」이다.</li>
+</ul>
+</section>
+<section id="단계-3-회귀-판정과-기준선" class="level3">
+<h3 class="anchored" data-anchor-id="단계-3-회귀-판정과-기준선">11-4. 단계 3: 회귀 판정과 기준선</h3>
+<p>배포 후보는 요약과 질의응답을 함께 돌린 실행 하나로 판정한다. 이 실행에 <code>release-v3</code>라는 이름을 붙인다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> evals/thresholds.json</span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> evals.run <span class="at">--suite</span> all <span class="at">--prompt</span> summary_v3 <span class="at">--runs</span> 5 <span class="at">--tag</span> release-v3 <span class="op">&gt;</span> /dev/null</span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> evals.gate evals/runs/release-v3 <span class="at">--update-baseline</span><span class="kw">;</span> <span class="bu">echo</span> <span class="st">"종료 코드 </span><span class="va">$?</span><span class="st">"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>{
+  "min_runs": 3,
+  "max_drop_from_baseline": 0.05,
+  "summary": {
+    "min_pass_rate": 0.80,
+    "min_criteria": {
+      "structure": 0.95,
+      "deadline": 0.95,
+      "length": 0.95,
+      "preferred": 0.95,
+      "judge": 0.90
+    }
+  },
+  "ask": {
+    "min_pass_rate": 0.85,
+    "min_criteria": {
+      "refusal": 1.00,
+      "citation": 0.85,
+      "judge": 0.90
+    }
+  }
+}
+회귀 판정: release-v3 (모델 sim-a, 반복 5회)
+  기준선 없음: 합격선만 본다
+  [통과] summary 회귀 통과율 0.87 (합격선 0.80)
+  [통과] summary.structure 0.97 (합격선 0.95)
+  [통과] summary.deadline 1.00 (합격선 0.95)
+  [통과] summary.length 0.98 (합격선 0.95)
+  [통과] summary.preferred 0.97 (합격선 0.95)
+  [통과] summary.judge 0.96 (합격선 0.90)
+  [통과] ask 회귀 통과율 0.93 (합격선 0.85)
+  [통과] ask.refusal 1.00 (합격선 1.00)
+  [통과] ask.citation 0.91 (합격선 0.85)
+  [통과] ask.judge 1.00 (합격선 0.90)
+결과: 합격
+기준선을 적었다: evals/baseline.json
+종료 코드 0</code></pre>
+<p>판정기는 두 가지를 본다. 하나는 <strong>합격선</strong>(threshold)이다. 회귀 통과율과 기준별 통과율이 <code>thresholds.json</code>의 최솟값 이상이어야 한다. 다른 하나는 <strong>기준선</strong>(baseline)이다. 마지막으로 합격한 실행의 통과율보다 허용 폭(0.05) 넘게 떨어지면 합격선을 넘어도 실패로 본다. 합격선은 「이 아래로는 내보내지 않는다」는 절대 기준이고, 기준선은 「지금보다 나빠지지 않는다」는 상대 기준이다.</p>
+<p>판정의 요소와 각 요소가 막는 것을 정리한다.</p>
+<ul>
+<li><strong>합격선</strong>은 팀이 성공 기준(1-3)을 정할 때 정하고 풀 리퀘스트로 바꾼다. 품질이 받아들일 수 없는 수준으로 떨어지는 것을 막는다.</li>
+<li><strong>기준선</strong>은 판정을 통과한 실행이 <code>--update-baseline</code>으로 적는다. 합격선 위에서 조금씩 나빠지는 것(조용한 하락의 누적)을 막는다.</li>
+<li><strong>최소 반복</strong>(<code>min_runs</code>)은 한 번의 운 좋은 실행으로 통과하는 것을 막는다.</li>
+<li><strong>능력 문항 제외</strong>(골든 세트의 <code>suite</code> 칸)는 늘 실패하는 문항 때문에 경보가 무시되는 것을 막는다.</li>
+</ul>
+<p><code>refusal</code>의 합격선이 1.00인 것에 주목한다. 범위 밖 질문에 답을 지어내는 일은 한 번도 허용하지 않는다는 뜻이다. 합격선은 기준마다 그 실수의 무게에 맞추어 정한다.</p>
+<p>반복 1회의 실행은 판정 자체를 거부하는지 확인한다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> evals.run <span class="at">--suite</span> all <span class="at">--prompt</span> summary_v3 <span class="at">--runs</span> 1 <span class="at">--tag</span> try-n1 <span class="op">&gt;</span> /dev/null</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> evals.gate evals/runs/try-n1<span class="kw">;</span> <span class="bu">echo</span> <span class="st">"종료 코드 </span><span class="va">$?</span><span class="st">"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>반복 횟수 1회는 판정에 모자란다(최소 3회)
+종료 코드 2</code></pre>
+<p>종료 코드는 셋이다. 0은 합격, 1은 회귀, 2는 판정할 수 없음(파일이 없거나 반복이 모자람)이다. 13장의 CI는 0이 아니면 병합을 막으므로 2도 막는다. 「판정할 수 없음」을 「합격」으로 처리하지 않는 것이 핵심이다.</p>
+<ul>
+<li><span class="check-badge">확인 29</span> <code>release-v3</code>의 판정이 「결과: 합격」과 종료 코드 0이고, <code>evals/baseline.json</code>이 생겼으며, 반복 1회 실행은 종료 코드 2이다.</li>
+</ul>
+</section>
+<section id="단계-4-회귀-시연" class="level3">
+<h3 class="anchored" data-anchor-id="단계-4-회귀-시연">11-5. 단계 4: 회귀 시연</h3>
+<p>판정이 실제로 회귀를 잡는지 시험한다. 누군가 「규칙이 너무 많다」며 v3에서 규칙 2를 지웠다고 하자.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="st">'/^2\. 우대 사항/d'</span> prompts/summary_v3.txt <span class="op">&gt;</span> prompts/summary_v3x.txt</span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span> prompts/summary_v3.txt prompts/summary_v3x.txt</span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> evals.run <span class="at">--suite</span> all <span class="at">--prompt</span> summary_v3x <span class="at">--runs</span> 5 <span class="at">--tag</span> try-v3x <span class="op">&gt;</span> /dev/null</span>
+<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> evals.gate evals/runs/try-v3x<span class="kw">;</span> <span class="bu">echo</span> <span class="st">"종료 코드 </span><span class="va">$?</span><span class="st">"</span></span>
+<span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> prompts/summary_v3x.txt</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>15d14
+&lt; 2. 우대 사항은 자격 요건에 넣지 않는다.
+회귀 판정: try-v3x (모델 sim-a, 반복 5회)
+  [실패] summary 회귀 통과율 0.60 (합격선 0.80)
+  [실패] summary.structure 0.94 (합격선 0.95)
+  [통과] summary.deadline 1.00 (합격선 0.95)
+  [통과] summary.length 0.98 (합격선 0.95)
+  [실패] summary.preferred 0.68 (합격선 0.95)
+  [통과] summary.judge 0.93 (합격선 0.90)
+  [실패] summary 기준선 대비 -0.27 (기준선 0.87, 허용 하락 0.05)
+  [통과] ask 회귀 통과율 0.93 (합격선 0.85)
+  [통과] ask.refusal 1.00 (합격선 1.00)
+  [통과] ask.citation 0.91 (합격선 0.85)
+  [통과] ask.judge 1.00 (합격선 0.90)
+  [통과] ask 기준선 대비 +0.00 (기준선 0.93, 허용 하락 0.05)
+결과: 회귀(종료 코드 1)
+종료 코드 1</code></pre>
+<p>규칙 한 줄을 지우자 <code>preferred</code>가 0.97에서 0.68로 떨어졌고 판정기가 종료 코드 1을 냈다. 13장에서 이 판정이 CI에 들어가면, 이 변경은 풀 리퀘스트에서 병합이 막힌다. 기준선 줄이 <code>−0.27</code>로 하락 폭을 함께 보여 주므로, 검토자는 「무엇이 얼마나 나빠졌는가」를 바로 안다.</p>
+<p><code>structure</code>가 0.97에서 0.94로 바뀐 것은 규칙 2와 관계가 없다. 프롬프트가 바뀌면 모의 모델의 난수 씨앗이 바뀌어 잡음이 다른 문항에 떨어진다. 실제 모델에서도 관계없는 기준이 조금씩 흔들리는 일은 흔하다. 기준별 합격선을 잡음의 폭보다 너무 빠듯하게 두면 이런 흔들림만으로 판정이 실패한다. 반대로 너무 느슨하면 실제 회귀를 놓친다. 합격선은 몇 번의 실행으로 잡음의 폭을 본 뒤에 정한다.</p>
+<ul>
+<li><span class="check-badge">확인 30</span> 규칙 2를 지운 판본의 판정에서 <code>summary.preferred</code>가 실패하고 종료 코드가 1이다. <code>prompts/summary_v3x.txt</code>를 지웠다.</li>
+</ul>
+</section>
+<section id="단계-5-모델-교체의-판정" class="level3">
+<h3 class="anchored" data-anchor-id="단계-5-모델-교체의-판정">11-6. 단계 5: 모델 교체의 판정</h3>
+<p>6-4에서 본 모델 교체를 판정기에 넣는다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> evals.run <span class="at">--suite</span> all <span class="at">--prompt</span> summary_v3 <span class="at">--runs</span> 5 <span class="at">--model</span> sim-b <span class="at">--tag</span> try-simb <span class="op">&gt;</span> /dev/null</span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> evals.gate evals/runs/try-simb<span class="kw">;</span> <span class="bu">echo</span> <span class="st">"종료 코드 </span><span class="va">$?</span><span class="st">"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>회귀 판정: try-simb (모델 sim-b, 반복 5회)
+  [통과] summary 회귀 통과율 0.94 (합격선 0.80)
+  [통과] summary.structure 1.00 (합격선 0.95)
+  [통과] summary.deadline 1.00 (합격선 0.95)
+  [통과] summary.length 0.99 (합격선 0.95)
+  [통과] summary.preferred 1.00 (합격선 0.95)
+  [통과] summary.judge 0.99 (합격선 0.90)
+  [통과] summary 기준선 대비 +0.07 (기준선 0.87, 허용 하락 0.05)
+  [통과] ask 회귀 통과율 0.87 (합격선 0.85)
+  [통과] ask.refusal 1.00 (합격선 1.00)
+  [통과] ask.citation 0.94 (합격선 0.85)
+  [실패] ask.judge 0.89 (합격선 0.90)
+  [실패] ask 기준선 대비 -0.07 (기준선 0.93, 허용 하락 0.05)
+결과: 회귀(종료 코드 1)
+종료 코드 1</code></pre>
+<p>sim-b는 요약을 0.87에서 0.94로 끌어올렸다. 요약만 보았다면 바로 교체했을 것이다. 그러나 질의응답의 판정 통과율이 합격선 아래로, 통과율이 기준선보다 0.07 아래로 떨어져 판정은 회귀이다. 이 결과로 내릴 수 있는 결정은 셋이다.</p>
+<ul>
+<li><strong>교체를 보류한다.</strong> 판정이 회귀이므로 기준선과 모델을 그대로 둔다.</li>
+<li><strong>기능별로 모델을 나눈다.</strong> 요약은 sim-b가, 질의응답은 sim-a가 낫다. <code>api/llm.py</code>가 기능(<code>task</code>)별 모델을 받도록 고쳐야 하며, 비용과 복잡도가 는다.</li>
+<li><strong>질의응답 프롬프트를 고친 뒤 다시 잰다.</strong> sim-b의 실패는 근거에 없는 문장을 덧붙이는 것 하나이다. <code>ask_v2.txt</code>에 「근거에 없는 문장을 덧붙이지 않는다」를 더하고 두 모델로 다시 판정한다.</li>
+</ul>
+<p>이 장에서는 첫째 결정(보류)을 평가보고에 적는다. 셋째 결정은 v3을 만든 방법과 같으므로, 같은 절차를 질의응답에 적용하는 일로 남긴다.</p>
+<ul>
+<li><span class="check-badge">확인 31</span> sim-b 실행의 판정에서 <code>ask.judge</code>가 실패하고 종료 코드가 1이다. <code>evals/baseline.json</code>은 바뀌지 않았다(<code>git status --short evals/baseline.json</code>이 <code>??</code>로만 보인다).</li>
+</ul>
+</section>
+<section id="단계-6-관측-보고" class="level3">
+<h3 class="anchored" data-anchor-id="단계-6-관측-보고">11-7. 단계 6: 관측 보고</h3>
+<p>서비스 기록, 루프 기록, 멀티 에이전트 기록에 이 장의 평가 실행까지 더해 관측 보고를 만든다. 모의 모델 <code>sim-a</code>는 가격표에 없으므로, 「실제 모델(Claude Haiku 5.5)로 같은 평가를 돌렸다면」을 어림하기 위해 <code>--price-as</code>로 가격을 빌려 온다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> ops.telemetry.report <span class="at">--eval-run</span> evals/runs/release-v3 <span class="dt">\</span></span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--price-as</span> sim-a=claude-haiku-5-5 <span class="at">--budget-usd</span> 5 <span class="dt">\</span></span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--out</span> docs/운영/관측보고.md <span class="kw">|</span> <span class="fu">sed</span> <span class="at">-n</span> <span class="st">'/## 부록/,$p'</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>## 부록. 평가 실행의 LLM 호출 (evals/runs/release-v3)
+
+| 기능 | 모델 | 성공 | 실패 | 입력 토큰 | 출력 토큰 | 추정 비용(USD) |
+|---|---|---|---|---|---|---|
+| ask | sim-a | 40 | 0 | 13,620 | 894 | 0.0018 |
+| summary | sim-a | 75 | 0 | 35,100 | 10,392 | 0.0087 |
+
+- 호출 115건 가운데 실패 0건(0.0%)
+- 추정 비용 합계 0.0105 USD, 성공한 호출 1건당 0.000091 USD
+- 하루 비용이 가장 큰 날: 2027-12-01 (0.0105 USD)
+
+## 5. 예산
+
+- 추정 비용 합계 4.34 USD / 예산 5.00 USD (87%) → **주의**
+- 주의 기준은 예산의 80%, 초과하면 종료 코드 2로 알린다</code></pre>
+<p>「하루 비용이 가장 큰 날」은 평가를 실행한 날이므로 학습자마다 다르다. 이 어림에는 두 가지 단서가 붙는다. 첫째, 모의 모델의 토큰 수는 글자 수의 절반으로 어림한 값이다. 둘째, 실제 평가에서는 판정자도 모델을 부르므로 호출이 두 배(약 230회)가 되고, 판정 프롬프트는 공고 본문과 기준표를 함께 실어 입력 토큰이 더 크다. 그래도 자릿수는 알 수 있다. 반복 5회의 전체 평가 한 번이 수 센트 수준이고, 풀 리퀘스트마다 돌려도 루프 한 번(0.1~1 USD)보다 싸다. 평가 비용을 아끼려고 반복을 줄이는 것보다, 반복을 지키고 평가를 돌리는 시점(프롬프트·모델·자료를 바꾸는 풀 리퀘스트)을 고르는 편이 낫다.</p>
+<ul>
+<li><span class="check-badge">확인 32</span> <code>docs/운영/관측보고.md</code>가 생겼고, 그 안에 <code>## 1</code>부터 <code>## 5</code>까지의 절과 <code>## 부록</code> 절이 있다(<code>grep -c "^## " docs/운영/관측보고.md</code>가 6).</li>
+</ul>
+</section>
+<section id="단계-7-평가-보고-작성" class="level3">
+<h3 class="anchored" data-anchor-id="단계-7-평가-보고-작성">11-8. 단계 7: 평가 보고 작성</h3>
+<p>양식을 복사해 이 장의 결과로 채운다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> ~/kits/Agent_12주차/평가보고_양식.md docs/운영/평가보고.md</span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-c</span> <span class="st">"「"</span> docs/운영/평가보고.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>양식의 「 」 자리를 채운다. 수치는 이 장에서 실행한 명령의 출력에서 옮긴다. 출력이 남아 있지 않으면 <code>evals/runs/&lt;태그&gt;/summary.json</code>에서 읽는다. Claude Code에 초안을 맡길 수 있으나, 수치를 지어내지 않도록 읽을 파일을 정해 준다.</p>
+<div class="code-label where-claude">
+<span>Claude Code</span>
+</div>
+<pre class="text"><code>docs/운영/평가보고.md의 「 」 자리를 채워 줘. 수치는 다음 파일에서만 옮기고, 파일에 없는 값은 「확인하지 못함」으로 둬.
+- evals/runs/summary_v1-sim-a-n5/summary.json, summary_v2-sim-a-n5/summary.json, summary_v3-sim-a-n5/summary.json
+- evals/runs/release-v3/summary.json, try-v3x/summary.json, try-simb/summary.json
+- evals/thresholds.json, evals/baseline.json
+- docs/운영/관측보고.md
+판본 비교의 95% 구간은 python -m evals.compare의 출력을 실행해서 옮겨. 5절(판정자 보정)은 python -m evals.calibrate와
+python -m evals.calibrate --numbers를 실행해서 채워. 결정(모델 교체 보류)의 근거는 판정 결과의 실패 줄을 인용해.</code></pre>
+<p>Claude Code가 채운 뒤에는 표의 수치 몇 개를 원래 출력과 직접 대조한다. 특히 「확인하지 못한 것」 절에 실제 모델의 점수, 실제 판정자의 일치도, OpenTelemetry 내보내기가 들어갔는지 본다. 보고서의 가치는 아는 것과 모르는 것을 구별하는 데 있다.</p>
+<ul>
+<li><span class="check-badge">확인 33</span> <code>grep -c "「" docs/운영/평가보고.md</code>가 0이고, 3절의 표에 v1, v2, v3의 회귀 통과율(0.59, 0.67, 0.87)이 있다.</li>
+</ul>
+</section>
+<section id="단계-8-테스트와-커밋" class="level3">
+<h3 class="anchored" data-anchor-id="단계-8-테스트와-커밋">11-9. 단계 8: 테스트와 커밋</h3>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pytest</span> <span class="at">-q</span></span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pytest</span> <span class="at">-q</span> evals ops/telemetry</span>
+<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">--short</span></span>
+<span id="cb89-4"><a href="#cb89-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add prompts/summary_v3.txt evals/graders.py evals/tests/test_preferred.py evals/baseline.json <span class="dt">\</span></span>
+<span id="cb89-5"><a href="#cb89-5" aria-hidden="true" tabindex="-1"></a>        docs/운영/평가보고.md docs/운영/관측보고.md</span>
+<span id="cb89-6"><a href="#cb89-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"feat(evals): summary_v3, 우대 사항 채점기, 기준선과 평가·관측 보고"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>...........................................                              [100%]
+43 passed in 2.10s
+....................................                                     [100%]
+36 passed in 2.41s
+?? docs/운영/관측보고.md
+?? docs/운영/평가보고.md
+?? evals/baseline.json
+?? evals/tests/test_preferred.py
+ M evals/graders.py
+?? prompts/summary_v3.txt</code></pre>
+<p><code>evals/runs/</code>는 <code>.gitignore</code>에 있으므로 <code>git status</code>에 보이지 않는다. 기준선 파일은 커밋한다. 13장의 CI는 저장소에 있는 기준선과 비교하기 때문이다.</p>
+<p>이 장을 마친 뒤 운영에서 쓰는 판본을 v3으로 바꾸려면 <code>.env</code>의 <code>PROMPT_SUMMARY=summary_v3</code>을 고친다. <code>.env</code>는 저장소에 없으므로 이 결정은 커밋으로 남지 않는다. 판본의 교체를 저장소에 남기는 방법(설정 파일의 버전 고정)은 13장에서 다룬다.</p>
+<ul>
+<li><span class="check-badge">확인 34</span> 두 <code>pytest</code> 명령이 모두 통과하고, 커밋 뒤 <code>git status --short</code>가 빈 출력이다.</li>
+</ul>
+</section>
+<section id="실제-모델로-평가하기" class="level3">
+<h3 class="anchored" data-anchor-id="실제-모델로-평가하기">11-10. 실제 모델로 평가하기</h3>
+<p>이 장의 모든 수치는 변동 모의 모델의 것이다. 실제 모델의 품질을 알려면 같은 실행기를 <code>--backend real</code>로 돌린다. 이 실행은 생성과 판정을 합쳐 모델을 약 230회 부르므로 교수 시연으로 한다. 교수는 <code>.env</code>에 API 키와 <code>LLM_MODEL</code>을 두고 <code>release-v3</code>와 같은 조건(반복 5회)으로 돌린다.</p>
+<div class="code-label where-prof">
+<span>교수 화면</span>
+</div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> evals.run <span class="at">--suite</span> all <span class="at">--prompt</span> summary_v3 <span class="at">--runs</span> 5 <span class="at">--backend</span> real <span class="at">--tag</span> real-v3</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>실제 모드에서는 판정자도 <code>judge_rubric.md</code>로 모델을 부른다. 학습자는 교수가 배포한 실행 기록(<code>records.jsonl</code>, <code>summary.json</code>, <code>llm.log</code>와 안내문)을 자기 저장소로 복사해, 모델을 부르지 않고 판정과 비교와 비용 집계를 돌린다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-rn</span> <span class="st">"</span><span class="va">$KIT_HOME</span><span class="st">/Agent_12주차_시연기록/real-v3"</span> evals/runs/</span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> evals.gate evals/runs/real-v3<span class="kw">;</span> <span class="bu">echo</span> <span class="st">"종료 코드 </span><span class="va">$?</span><span class="st">"</span></span>
+<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> evals.compare evals/runs/release-v3 evals/runs/real-v3</span>
+<span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> ops.telemetry.report <span class="at">--eval-run</span> evals/runs/real-v3 <span class="kw">|</span> <span class="fu">sed</span> <span class="at">-n</span> <span class="st">'/## 부록/,/## 5/p'</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>판정의 기준선 줄은 자기 저장소의 기준선(모의 모델 <code>sim-a</code>)과 견준 값이므로 읽지 않고, 합격선 줄만 읽는다. 볼 것은 셋이다. 판정자의 <code>unknown</code> 비율(안내문의 판정 분포. 높으면 기준표가 모호하다), 판정이 실패한 시행의 이유(기준표의 어느 항목인가), 그리고 실제 비용(<code>llm.log</code>의 토큰으로 계산된다). 이 교재는 실제 모델을 부르지 않았으므로 실제 점수와 비용을 확인하지 못하였다.</p>
+<p>모의 모델과 실제 모델의 평가를 견주면 다음과 같다.</p>
+<ul>
+<li><strong>점수의 뜻</strong>: 모의 모델의 점수는 평가 절차의 연습이고 품질이 아니다. 실제 모델의 점수는 골든 세트와 채점기의 범위 안에서 기능의 품질이다.</li>
+<li><strong>비용</strong>: 모의 모델은 없다. 실제 모델은 생성과 판정의 토큰 비용이 든다.</li>
+<li><strong>재현</strong>: 모의 모델은 같은 조건이면 같은 점수가 나온다. 실제 모델은 같은 조건이어도 점수가 흔들리므로 반복과 구간이 필요하다.</li>
+<li><strong>CI(13장)</strong>: 모의 모델은 키 없이 돌며 판정 절차와 채점기의 회귀를 잡는다. 실제 모델은 키가 있어야 하고, 비용 때문에 프롬프트·모델을 바꾸는 풀 리퀘스트에만 돌린다.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="자주-하는-실수와-해결" class="level2">
+<h2 class="anchored" data-anchor-id="자주-하는-실수와-해결">자주 하는 실수와 해결</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>증상</th>
+<th>원인</th>
+<th>해결</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>python -m evals.run</code>이 <code>No module named evals</code></td>
+<td>저장소 맨 위가 아닌 곳에서 실행하였다</td>
+<td><code>cd ~/agent-lab/jobprep</code> 뒤에 실행한다</td>
+</tr>
+<tr class="even">
+<td><code>pytest -q</code>가 평가 도구의 테스트를 돌리지 않는다</td>
+<td><code>pytest.ini</code>의 <code>testpaths</code>가 <code>tests</code>뿐이다</td>
+<td><code>pytest -q evals ops/telemetry</code>처럼 폴더를 준다</td>
+</tr>
+<tr class="odd">
+<td>점수가 교재와 다르다</td>
+<td>프롬프트 파일의 문장이나 빈칸이 다르다. 또는 채점기 <code>preferred</code>를 더하기 전과 후를 섞어 보고 있다</td>
+<td><code>diff</code>로 판본을 대조한다. <code>summary.json</code>의 기준 목록에 <code>preferred</code>가 있는지 본다</td>
+</tr>
+<tr class="even">
+<td><code>--update-baseline</code>을 주었는데 기준선이 생기지 않는다</td>
+<td>판정이 실패하면 기준선을 적지 않는다</td>
+<td>판정 결과를 먼저 읽는다. 회귀를 기준선으로 덮어쓰지 않게 하는 설계이다</td>
+</tr>
+<tr class="odd">
+<td>판정기가 「결과에 이 기준이 없다」로 실패한다</td>
+<td><code>thresholds.json</code>에 <code>preferred</code>가 있는데 3-4의 채점기를 더하지 않았다</td>
+<td>3-4를 마친다. 합격선의 기준을 지우는 것으로 해결하지 않는다</td>
+</tr>
+<tr class="even">
+<td><code>compare</code>의 판단이 매번 「차이를 말할 수 없다」</td>
+<td>문항이 적거나 반복이 적어 구간이 넓다</td>
+<td>반복을 늘리거나 문항을 더한다. 구간이 좁아질 때까지 판단을 미룬다</td>
+</tr>
+<tr class="odd">
+<td>보고의 루프·멀티 절이 「기록이 없다」</td>
+<td>기록 폴더가 다르거나 0-2를 건너뛰었다</td>
+<td><code>--loop</code>, <code>--multi</code>로 폴더를 준다. 견본을 복사한다</td>
+</tr>
+<tr class="even">
+<td>파이프 뒤의 <code>echo $?</code>가 늘 0</td>
+<td>파이프의 종료 코드는 마지막 명령의 것이다</td>
+<td>판정과 보고는 파이프 없이 실행해 종료 코드를 본다</td>
+</tr>
+<tr class="odd">
+<td>저장소 설정에 <code>OTEL_*</code>를 넣었는데 지표가 오지 않는다</td>
+<td>저장소 설정의 내보내기 변수는 무시된다 [C18]</td>
+<td>셸 환경 변수나 사용자 설정에 둔다. 조직은 관리 설정에 둔다</td>
+</tr>
+<tr class="even">
+<td><code>/usage</code>의 비용과 청구액이 다르다</td>
+<td><code>/usage</code>는 정가로 계산한 추정이다 [C19]</td>
+<td>청구는 Console이나 조직의 청구 화면에서 본다</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="제출물" class="level2">
+<h2 class="anchored" data-anchor-id="제출물">제출물</h2>
+<p>따로 올리는 파일은 없다. 다음이 개인 저장소에 커밋되어 있으면 된다.</p>
+<ul>
+<li><code>evals/</code>: 골든 세트, 채점기(<code>grade_preferred</code> 포함), 판정자, 실행기, 비교, 회귀 판정, 보정, 테스트, <code>thresholds.json</code>, <code>baseline.json</code></li>
+<li><code>prompts/summary_v3.txt</code>: 규칙 4를 더한 요약 판본</li>
+<li><code>ops/telemetry/</code>: 기록 읽기, 관측 보고, 개인 정보 점검, 가격표, 테스트</li>
+<li><code>ops/loop/logs/</code>, <code>ops/multi/logs/</code>: 8장·10장의 실행 기록(자기 기록 또는 견본)</li>
+<li><code>docs/운영/평가보고.md</code>: 양식의 9절을 채운 평가 보고</li>
+<li><code>docs/운영/관측보고.md</code>: 관측 보고</li>
+</ul>
+<hr>
+</section>
+<section id="정리" class="level2">
+<h2 class="anchored" data-anchor-id="정리">정리</h2>
+<ul>
+<li>LLM 기능은 코드를 고치지 않아도 프롬프트, 모델, 자료가 바뀌면 조용히 나빠진다. 테스트는 형식을, 평가는 출력의 내용을 지킨다.</li>
+<li>골든 세트는 대표 문항과 경계 문항으로 만들고, 기대값의 형식(정확한 값, 참조 목록, 금지 목록, 기준표)이 채점 방식을 정한다. 회귀 문항과 능력 문항을 나누어, 회귀 판정은 통과해야 할 문항으로만 한다.</li>
+<li>채점은 정확 일치, 구조 검사, 규칙, 참조 기반으로 잡을 수 있는 것을 먼저 잡고, 남는 기준(지어냄, 왜곡)만 LLM 판정에 맡긴다. 채점기가 보지 않는 결함은 점수에 나오지 않는다.</li>
+<li>LLM 판정자는 위치, 길이, 자기 선호의 편향이 있다. 기준표, 순서 바꾸기, 다른 모델, 사람 표본 대조(코언의 카파)로 줄이고 잰다.</li>
+<li>비결정적인 기능은 같은 입력을 여러 번 돌려 통과율과 표준오차로 말하고, 두 판본은 짝지은 차이로 비교한다. 회귀 판정은 합격선과 기준선을 보고 종료 코드(0, 1, 2)로 답한다.</li>
+<li>관측은 지연, 트래픽, 오류, 포화를 보고, 기록에는 요청 번호, 프롬프트 판본, 모델, 토큰, 지연, 오류, 도구 호출을 구조화해 남긴다. 에이전트는 작업 성공률, 사람 개입, 성공 1건당 비용으로 평가한다.</li>
+<li>Claude Code의 비용은 <code>/usage</code>, 헤드리스 결과의 <code>total_cost_usd</code>, OpenTelemetry로 본다. 모두 추정이며, 원격 측정 설정은 저장소가 아니라 사용자·관리 설정에 둔다. 예산은 층마다 두고, 기록에는 내용 대신 크기를 남긴다.</li>
+</ul>
+<section id="개념-점검" class="level3">
+<h3 class="anchored" data-anchor-id="개념-점검">개념 점검</h3>
+<ol type="1">
+<li>요약 기능의 <code>pytest -q</code>가 모두 통과하는데도 프롬프트를 v1에서 v2로 바꾸면 품질이 나빠질 수 있다. 기준 저장소의 모의 모드가 이 변화를 잡지 못하는 까닭을 설명하라.</li>
+<li>「범위 밖 질문을 거절한다」를 평가하는 골든 세트에 답할 수 있는 질문도 넣어야 하는 까닭은 무엇인가. 기준값에 가까운 범위 밖 질문(A09)을 따로 두는 까닭은 무엇인가.</li>
+<li>3-4에서 채점기 하나를 더하자 v1의 회귀 통과율이 0.77에서 0.59로 떨어졌다. 기능이 나빠진 것인가. 이 결과가 평가 점수의 뜻에 대해 알려 주는 것은 무엇인가.</li>
+<li>모의 판정자의 기준값을 0.45에서 0.25로 낮추어도 카파가 0.17로 그대로였다. 왜 그런가. 실제 LLM 판정자를 쓸 때 같은 표본 대조를 하는 까닭은 무엇인가.</li>
+<li>시행 하나의 성공률이 0.9인 기능을 같은 사용자가 세 번 쓴다. 세 번 모두 성공할 확률은 얼마인가. 이 기능에 pass@k와 pass^k 가운데 어느 관점이 맞는가.</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="참고-자료" class="level2">
+<h2 class="anchored" data-anchor-id="참고-자료">참고 자료</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>기호</th>
+<th>자료</th>
+<th>주소</th>
+<th>확인</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A1</td>
+<td>Claude Docs: Define success criteria and build evaluations</td>
+<td><a href="https://platform.claude.com/docs/en/test-and-evaluate/develop-tests" class="uri">https://platform.claude.com/docs/en/test-and-evaluate/develop-tests</a></td>
+<td>2026-11-14 (<code>/define-success</code> 주소도 같은 문서를 보여 준다)</td>
+</tr>
+<tr class="even">
+<td>A2</td>
+<td>Claude Docs: Pricing</td>
+<td><a href="https://platform.claude.com/docs/en/about-claude/pricing" class="uri">https://platform.claude.com/docs/en/about-claude/pricing</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="odd">
+<td>E5</td>
+<td>Anthropic Engineering: Demystifying evals for AI agents (2026-01-09)</td>
+<td><a href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents" class="uri">https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="even">
+<td>E6</td>
+<td>Anthropic: A statistical approach to model evaluations (2024-11-19). 논문은 Miller, Adding Error Bars to Evals(arXiv:2411.00640)</td>
+<td><a href="https://www.anthropic.com/research/statistical-approach-to-model-evals" class="uri">https://www.anthropic.com/research/statistical-approach-to-model-evals</a></td>
+<td>2026-11-14 (논문 본문은 열지 않았다)</td>
+</tr>
+<tr class="odd">
+<td>R1</td>
+<td>Zheng 외, Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena, NeurIPS 2023 Datasets and Benchmarks</td>
+<td><a href="https://arxiv.org/abs/2306.05685" class="uri">https://arxiv.org/abs/2306.05685</a></td>
+<td>2026-11-14 (초록)</td>
+</tr>
+<tr class="even">
+<td>R2</td>
+<td>Wang 외, Large Language Models are not Fair Evaluators (2023)</td>
+<td><a href="https://arxiv.org/abs/2305.17926" class="uri">https://arxiv.org/abs/2305.17926</a></td>
+<td>2026-11-14 (초록)</td>
+</tr>
+<tr class="odd">
+<td>R3</td>
+<td>Panickssery, Bowman, Feng, LLM Evaluators Recognize and Favor Their Own Generations (2024)</td>
+<td><a href="https://arxiv.org/abs/2404.13076" class="uri">https://arxiv.org/abs/2404.13076</a></td>
+<td>2026-11-14 (초록)</td>
+</tr>
+<tr class="even">
+<td>C14</td>
+<td>Claude Code Docs: Run Claude Code programmatically(헤드리스)</td>
+<td><a href="https://code.claude.com/docs/en/headless" class="uri">https://code.claude.com/docs/en/headless</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="odd">
+<td>C15</td>
+<td>Claude Code Docs: CLI reference</td>
+<td><a href="https://code.claude.com/docs/en/cli-reference" class="uri">https://code.claude.com/docs/en/cli-reference</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="even">
+<td>C18</td>
+<td>Claude Code Docs: Monitoring(OpenTelemetry)</td>
+<td><a href="https://code.claude.com/docs/en/monitoring-usage" class="uri">https://code.claude.com/docs/en/monitoring-usage</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="odd">
+<td>C19</td>
+<td>Claude Code Docs: Manage costs effectively</td>
+<td><a href="https://code.claude.com/docs/en/costs" class="uri">https://code.claude.com/docs/en/costs</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="even">
+<td>C21</td>
+<td>Claude Code Docs: Commands</td>
+<td><a href="https://code.claude.com/docs/en/commands" class="uri">https://code.claude.com/docs/en/commands</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="odd">
+<td>C22</td>
+<td>Claude Code Docs: Agent SDK, Track cost and usage / TypeScript reference(SDKResultMessage)</td>
+<td><a href="https://code.claude.com/docs/en/agent-sdk/cost-tracking" class="uri">https://code.claude.com/docs/en/agent-sdk/cost-tracking</a>, <a href="https://code.claude.com/docs/en/agent-sdk/typescript" class="uri">https://code.claude.com/docs/en/agent-sdk/typescript</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="even">
+<td>S1</td>
+<td>Google SRE Book, 6장 Monitoring Distributed Systems(Rob Ewaschuk)</td>
+<td><a href="https://sre.google/sre-book/monitoring-distributed-systems/" class="uri">https://sre.google/sre-book/monitoring-distributed-systems/</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="odd">
+<td>O1</td>
+<td>OpenTelemetry: Signals</td>
+<td><a href="https://opentelemetry.io/docs/concepts/signals/" class="uri">https://opentelemetry.io/docs/concepts/signals/</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="even">
+<td>L9</td>
+<td>2026년 2학기판 「검증·평가와 업무 자동화」 1~2절과 검증 키트 <code>evals/</code></td>
+<td>교재 내부 자료</td>
+<td>2026-11-14</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="다음-장-안내" class="level2">
+<h2 class="anchored" data-anchor-id="다음-장-안내">다음 장 안내</h2>
+<p>13장 「지속적 통합과 안정적 배포」는 이 장의 회귀 판정을 GitHub Actions의 워크플로에 넣는다. 풀 리퀘스트마다 <code>pytest -q</code>와 <code>python -m evals.run</code>, <code>python -m evals.gate</code>가 돌고, 판정이 0이 아니면 병합이 막힌다. 이 장에서 저장소에 커밋한 <code>thresholds.json</code>과 <code>baseline.json</code>이 그 판정의 기준이 된다. 13장은 또 이 장 11-9에서 남긴 물음, 곧 「운영에서 쓰는 프롬프트 판본과 모델 이름을 어떻게 저장소에 고정하는가」를 버전 고정으로 다루고, 1장의 네 운영 요건이 학기 동안 어디서 충족되었는지를 지도로 정리한다.</p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> 맨 위로</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "복사완료!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "복사완료!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../courses/ai-agent/book/Agent_11주차_학생용.html" class="pagination-link" aria-label="[11주차] 에이전트의 보안: 권한, 비밀 정보, 프롬프트 주입">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">[11주차] 에이전트의 보안: 권한, 비밀 정보, 프롬프트 주입</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../courses/ai-agent/book/Agent_13주차_학생용.html" class="pagination-link" aria-label="[13주차] 지속적 통합과 안정적 배포: 풀 리퀘스트 검토, 버전 고정">
+        <span class="nav-page-text">[13주차] 지속적 통합과 안정적 배포: 풀 리퀘스트 검토, 버전 고정</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>안중호 교수 강의 교재 · 2026년 2학기판</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

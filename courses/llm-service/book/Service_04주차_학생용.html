@@ -1,0 +1,3217 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>[4주차] 시장 조사와 경쟁 서비스 분석 – 안중호 교수 강의 교재</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../courses/llm-service/book/Service_05주차_학생용.html" rel="next">
+<link href="../../../courses/llm-service/book/Service_03주차_학생용.html" rel="prev">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-dcf116883d0d3758c9131f5ede2fa7e1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({
+    startOnLoad: true,
+    securityLevel: "loose",
+    theme: "neutral",
+    fontFamily: '"Pretendard Variable", Pretendard, "Malgun Gothic", sans-serif'
+  });
+</script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">안중호 교수 강의 교재</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="검색"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">커리큘럼</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/semesters/index.html">
+ <span class="dropdown-text">전체 커리큘럼</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../docs/semesters/2026-2/index.html">
+ <span class="dropdown-text">2026년 2학기</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../docs/subjects/llm-ai/index.html">
+ <span class="dropdown-text">교재 · LLM AI 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/subjects/python/index.html">
+ <span class="dropdown-text">교재 · 파이썬 실습</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../courses/index.html">
+ <span class="dropdown-text">2027학년도 교재 (준비 중)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/llm-service/index.html">
+ <span class="dropdown-text">· LLM 서비스 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/office/index.html">
+ <span class="dropdown-text">· 컴퓨터활용</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/adsp/index.html">
+ <span class="dropdown-text">· 빅데이터개론</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/ai-agent/index.html">
+ <span class="dropdown-text">· AI에이전트 기획 및 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/aice/index.html">
+ <span class="dropdown-text">· 비즈니스빅데이터분석</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/about/교수_소개.html"> 
+<span class="menu-text">교수 소개</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../courses/llm-service/book/Service_01주차_학생용.html">교재</a></li><li class="breadcrumb-item"><a href="../../../courses/llm-service/book/Service_04주차_학생용.html">[4주차] 시장 조사와 경쟁 서비스 분석</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/llm-service/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LLM 서비스 개발</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">교재</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/llm-service/book/Service_01주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[1주차] 생성형 AI 기반 서비스 개발의 개요</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/llm-service/book/Service_02주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[2주차] 개인 개발 환경: Claude Code와 Git</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/llm-service/book/Service_03주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[3주차] 팀 공동 작업: GitHub 기반 협업 흐름</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/llm-service/book/Service_04주차_학생용.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">[4주차] 시장 조사와 경쟁 서비스 분석</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/llm-service/book/Service_05주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[5주차] 사용자 조사와 페르소나 설계</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/llm-service/book/Service_06주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[6주차] 리버스 엔지니어링과 명세 주도 개발</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/llm-service/book/Service_07주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[7주차] 사용자 경험 설계: 사용자 여정과 정보 구조</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/llm-service/book/Service_08주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[8주차] UI 설계와 프로토타이핑</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/llm-service/book/Service_09주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[9주차] 웹 프로덕트의 구현과 배포</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/llm-service/book/Service_10주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[10주차] LLM 기능의 통합: API 연동과 프롬프트 설계</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/llm-service/book/Service_11주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[11주차] 검색 증강 생성(RAG) 기능의 구현</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/llm-service/book/Service_12주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[12주차] 다중 프로덕트의 비교 구현</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/llm-service/book/Service_13주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[13주차] 사용성 평가와 서비스 개선</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/llm-service/book/Service_부록A_실습환경_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[부록 A] 실습 환경</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/llm-service/book/Service_부록B_명령어카드_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[부록 B] 명령어 카드</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/llm-service/book/Service_부록C_양식모음_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[부록 C] 양식 모음</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">이 장의 차례</h2>
+   
+  <ul>
+  <li><a href="#학습-목표" id="toc-학습-목표" class="nav-link active" data-scroll-target="#학습-목표">학습 목표</a></li>
+  <li><a href="#시작하기" id="toc-시작하기" class="nav-link" data-scroll-target="#시작하기">0. 시작하기</a>
+  <ul class="collapse">
+  <li><a href="#키트-받기" id="toc-키트-받기" class="nav-link" data-scroll-target="#키트-받기">0-1. 키트 받기</a></li>
+  <li><a href="#저장소-상태-확인" id="toc-저장소-상태-확인" class="nav-link" data-scroll-target="#저장소-상태-확인">0-2. 저장소 상태 확인</a></li>
+  <li><a href="#점검기의-첫-실행" id="toc-점검기의-첫-실행" class="nav-link" data-scroll-target="#점검기의-첫-실행">0-3. 점검기의 첫 실행</a></li>
+  <li><a href="#웹-도구의-허용-확인" id="toc-웹-도구의-허용-확인" class="nav-link" data-scroll-target="#웹-도구의-허용-확인">0-4. 웹 도구의 허용 확인</a></li>
+  </ul></li>
+  <li><a href="#시장-조사의-목적과-조사-질문" id="toc-시장-조사의-목적과-조사-질문" class="nav-link" data-scroll-target="#시장-조사의-목적과-조사-질문">1. 시장 조사의 목적과 조사 질문</a>
+  <ul class="collapse">
+  <li><a href="#서비스-기획에서-조사의-자리" id="toc-서비스-기획에서-조사의-자리" class="nav-link" data-scroll-target="#서비스-기획에서-조사의-자리">1-1. 서비스 기획에서 조사의 자리</a></li>
+  <li><a href="#조사-질문" id="toc-조사-질문" class="nav-link" data-scroll-target="#조사-질문">1-2. 조사 질문</a></li>
+  <li><a href="#조사의-범위" id="toc-조사의-범위" class="nav-link" data-scroll-target="#조사의-범위">1-3. 조사의 범위</a></li>
+  <li><a href="#실습-조사-질문-표-쓰기" id="toc-실습-조사-질문-표-쓰기" class="nav-link" data-scroll-target="#실습-조사-질문-표-쓰기">1-4. 실습: 조사 질문 표 쓰기</a></li>
+  </ul></li>
+  <li><a href="#차-자료와-2차-자료" id="toc-차-자료와-2차-자료" class="nav-link" data-scroll-target="#차-자료와-2차-자료">2. 1차 자료와 2차 자료</a>
+  <ul class="collapse">
+  <li><a href="#두-자료의-구분" id="toc-두-자료의-구분" class="nav-link" data-scroll-target="#두-자료의-구분">2-1. 두 자료의 구분</a></li>
+  <li><a href="#자료의-신뢰도-판단" id="toc-자료의-신뢰도-판단" class="nav-link" data-scroll-target="#자료의-신뢰도-판단">2-2. 자료의 신뢰도 판단</a></li>
+  <li><a href="#출처를-적는-형식" id="toc-출처를-적는-형식" class="nav-link" data-scroll-target="#출처를-적는-형식">2-3. 출처를 적는 형식</a></li>
+  <li><a href="#ai-답변의-자리" id="toc-ai-답변의-자리" class="nav-link" data-scroll-target="#ai-답변의-자리">2-4. AI 답변의 자리</a></li>
+  </ul></li>
+  <li><a href="#공공-통계의-검색과-읽기" id="toc-공공-통계의-검색과-읽기" class="nav-link" data-scroll-target="#공공-통계의-검색과-읽기">3. 공공 통계의 검색과 읽기</a>
+  <ul class="collapse">
+  <li><a href="#어디에-무엇이-있는가" id="toc-어디에-무엇이-있는가" class="nav-link" data-scroll-target="#어디에-무엇이-있는가">3-1. 어디에 무엇이 있는가</a></li>
+  <li><a href="#kosis에서-통계표-찾기" id="toc-kosis에서-통계표-찾기" class="nav-link" data-scroll-target="#kosis에서-통계표-찾기">3-2. KOSIS에서 통계표 찾기</a></li>
+  <li><a href="#통계표를-읽는-네-가지" id="toc-통계표를-읽는-네-가지" class="nav-link" data-scroll-target="#통계표를-읽는-네-가지">3-3. 통계표를 읽는 네 가지</a></li>
+  <li><a href="#같은-이름-다른-값" id="toc-같은-이름-다른-값" class="nav-link" data-scroll-target="#같은-이름-다른-값">3-4. 같은 이름, 다른 값</a></li>
+  <li><a href="#원문-pdf에서-수치-찾기" id="toc-원문-pdf에서-수치-찾기" class="nav-link" data-scroll-target="#원문-pdf에서-수치-찾기">3-5. 원문 PDF에서 수치 찾기</a></li>
+  <li><a href="#공표-주기와-갱신" id="toc-공표-주기와-갱신" class="nav-link" data-scroll-target="#공표-주기와-갱신">3-6. 공표 주기와 갱신</a></li>
+  <li><a href="#고용24에서-찾는-것" id="toc-고용24에서-찾는-것" class="nav-link" data-scroll-target="#고용24에서-찾는-것">3-7. 고용24에서 찾는 것</a></li>
+  </ul></li>
+  <li><a href="#시장-규모의-추정" id="toc-시장-규모의-추정" class="nav-link" data-scroll-target="#시장-규모의-추정">4. 시장 규모의 추정</a>
+  <ul class="collapse">
+  <li><a href="#tam-sam-som" id="toc-tam-sam-som" class="nav-link" data-scroll-target="#tam-sam-som">4-1. TAM, SAM, SOM</a></li>
+  <li><a href="#하향식과-상향식" id="toc-하향식과-상향식" class="nav-link" data-scroll-target="#하향식과-상향식">4-2. 하향식과 상향식</a></li>
+  <li><a href="#추정에서-흔한-오류" id="toc-추정에서-흔한-오류" class="nav-link" data-scroll-target="#추정에서-흔한-오류">4-3. 추정에서 흔한 오류</a></li>
+  <li><a href="#가정이-바뀌면-민감도" id="toc-가정이-바뀌면-민감도" class="nav-link" data-scroll-target="#가정이-바뀌면-민감도">4-4. 가정이 바뀌면: 민감도</a></li>
+  </ul></li>
+  <li><a href="#경쟁-서비스의-분류와-기능-비교" id="toc-경쟁-서비스의-분류와-기능-비교" class="nav-link" data-scroll-target="#경쟁-서비스의-분류와-기능-비교">5. 경쟁 서비스의 분류와 기능 비교</a>
+  <ul class="collapse">
+  <li><a href="#직접-경쟁-간접-경쟁-대체재" id="toc-직접-경쟁-간접-경쟁-대체재" class="nav-link" data-scroll-target="#직접-경쟁-간접-경쟁-대체재">5-1. 직접 경쟁, 간접 경쟁, 대체재</a></li>
+  <li><a href="#비교할-서비스-고르기" id="toc-비교할-서비스-고르기" class="nav-link" data-scroll-target="#비교할-서비스-고르기">5-2. 비교할 서비스 고르기</a></li>
+  <li><a href="#화면에서-기능-목록-뽑기" id="toc-화면에서-기능-목록-뽑기" class="nav-link" data-scroll-target="#화면에서-기능-목록-뽑기">5-3. 화면에서 기능 목록 뽑기</a></li>
+  <li><a href="#기능-비교표-만드는-법" id="toc-기능-비교표-만드는-법" class="nav-link" data-scroll-target="#기능-비교표-만드는-법">5-4. 기능 비교표 만드는 법</a></li>
+  <li><a href="#기능-비교의-함정" id="toc-기능-비교의-함정" class="nav-link" data-scroll-target="#기능-비교의-함정">5-5. 기능 비교의 함정</a></li>
+  <li><a href="#화면-단위의-관찰-6장으로" id="toc-화면-단위의-관찰-6장으로" class="nav-link" data-scroll-target="#화면-단위의-관찰-6장으로">5-6. 화면 단위의 관찰: 6장으로</a></li>
+  <li><a href="#경쟁-서비스-조사의-예절" id="toc-경쟁-서비스-조사의-예절" class="nav-link" data-scroll-target="#경쟁-서비스-조사의-예절">5-7. 경쟁 서비스 조사의 예절</a></li>
+  </ul></li>
+  <li><a href="#포지셔닝-맵" id="toc-포지셔닝-맵" class="nav-link" data-scroll-target="#포지셔닝-맵">6. 포지셔닝 맵</a>
+  <ul class="collapse">
+  <li><a href="#포지셔닝" id="toc-포지셔닝" class="nav-link" data-scroll-target="#포지셔닝">6-1. 포지셔닝</a></li>
+  <li><a href="#축-고르기" id="toc-축-고르기" class="nav-link" data-scroll-target="#축-고르기">6-2. 축 고르기</a></li>
+  <li><a href="#점수-규칙과-그림" id="toc-점수-규칙과-그림" class="nav-link" data-scroll-target="#점수-규칙과-그림">6-3. 점수 규칙과 그림</a></li>
+  <li><a href="#그림-읽기" id="toc-그림-읽기" class="nav-link" data-scroll-target="#그림-읽기">6-4. 그림 읽기</a></li>
+  <li><a href="#축을-바꾸어-다시-그리기" id="toc-축을-바꾸어-다시-그리기" class="nav-link" data-scroll-target="#축을-바꾸어-다시-그리기">6-5. 축을 바꾸어 다시 그리기</a></li>
+  </ul></li>
+  <li><a href="#가치-제안" id="toc-가치-제안" class="nav-link" data-scroll-target="#가치-제안">7. 가치 제안</a>
+  <ul class="collapse">
+  <li><a href="#가치-제안-캔버스" id="toc-가치-제안-캔버스" class="nav-link" data-scroll-target="#가치-제안-캔버스">7-1. 가치 제안 캔버스</a></li>
+  <li><a href="#적합" id="toc-적합" class="nav-link" data-scroll-target="#적합">7-2. 적합</a></li>
+  <li><a href="#근거의-구분" id="toc-근거의-구분" class="nav-link" data-scroll-target="#근거의-구분">7-3. 근거의 구분</a></li>
+  <li><a href="#가치-제안-문장" id="toc-가치-제안-문장" class="nav-link" data-scroll-target="#가치-제안-문장">7-4. 가치 제안 문장</a></li>
+  <li><a href="#가치-맵에서-요구사항-후보로" id="toc-가치-맵에서-요구사항-후보로" class="nav-link" data-scroll-target="#가치-맵에서-요구사항-후보로">7-5. 가치 맵에서 요구사항 후보로</a></li>
+  </ul></li>
+  <li><a href="#ai를-활용한-조사" id="toc-ai를-활용한-조사" class="nav-link" data-scroll-target="#ai를-활용한-조사">8. AI를 활용한 조사</a>
+  <ul class="collapse">
+  <li><a href="#claude-code의-웹-도구" id="toc-claude-code의-웹-도구" class="nav-link" data-scroll-target="#claude-code의-웹-도구">8-1. Claude Code의 웹 도구</a></li>
+  <li><a href="#조사-프롬프트-설계" id="toc-조사-프롬프트-설계" class="nav-link" data-scroll-target="#조사-프롬프트-설계">8-2. 조사 프롬프트 설계</a></li>
+  <li><a href="#ai-조사의-실패-유형" id="toc-ai-조사의-실패-유형" class="nav-link" data-scroll-target="#ai-조사의-실패-유형">8-3. AI 조사의 실패 유형</a></li>
+  <li><a href="#출처-대조-절차" id="toc-출처-대조-절차" class="nav-link" data-scroll-target="#출처-대조-절차">8-4. 출처 대조 절차</a></li>
+  <li><a href="#연습-오류를-넣은-초안의-대조" id="toc-연습-오류를-넣은-초안의-대조" class="nav-link" data-scroll-target="#연습-오류를-넣은-초안의-대조">8-5. 연습: 오류를 넣은 초안의 대조</a></li>
+  <li><a href="#같은-프롬프트를-두-번" id="toc-같은-프롬프트를-두-번" class="nav-link" data-scroll-target="#같은-프롬프트를-두-번">8-6. 같은 프롬프트를 두 번</a></li>
+  <li><a href="#웹-도구가-막힐-때" id="toc-웹-도구가-막힐-때" class="nav-link" data-scroll-target="#웹-도구가-막힐-때">8-7. 웹 도구가 막힐 때</a></li>
+  </ul></li>
+  <li><a href="#조사-보고의-구조" id="toc-조사-보고의-구조" class="nav-link" data-scroll-target="#조사-보고의-구조">9. 조사 보고의 구조</a></li>
+  <li><a href="#중심-실습-취업-준비-지원-서비스의-시장-조사-보고" id="toc-중심-실습-취업-준비-지원-서비스의-시장-조사-보고" class="nav-link" data-scroll-target="#중심-실습-취업-준비-지원-서비스의-시장-조사-보고">10. 중심 실습: 취업 준비 지원 서비스의 시장 조사 보고</a>
+  <ul class="collapse">
+  <li><a href="#완료-기준" id="toc-완료-기준" class="nav-link" data-scroll-target="#완료-기준">10-1. 완료 기준</a></li>
+  <li><a href="#진행-순서와-막혔을-때" id="toc-진행-순서와-막혔을-때" class="nav-link" data-scroll-target="#진행-순서와-막혔을-때">10-2. 진행 순서와 막혔을 때</a></li>
+  <li><a href="#공공-통계의-초안" id="toc-공공-통계의-초안" class="nav-link" data-scroll-target="#공공-통계의-초안">10-3. 공공 통계의 초안</a></li>
+  <li><a href="#경쟁-서비스의-초안" id="toc-경쟁-서비스의-초안" class="nav-link" data-scroll-target="#경쟁-서비스의-초안">10-4. 경쟁 서비스의 초안</a></li>
+  <li><a href="#출처-대조" id="toc-출처-대조" class="nav-link" data-scroll-target="#출처-대조">10-5. 출처 대조</a></li>
+  <li><a href="#시장-규모의-추정-1" id="toc-시장-규모의-추정-1" class="nav-link" data-scroll-target="#시장-규모의-추정-1">10-6. 시장 규모의 추정</a></li>
+  <li><a href="#포지셔닝과-가치-제안" id="toc-포지셔닝과-가치-제안" class="nav-link" data-scroll-target="#포지셔닝과-가치-제안">10-7. 포지셔닝과 가치 제안</a></li>
+  <li><a href="#최종-점검과-커밋" id="toc-최종-점검과-커밋" class="nav-link" data-scroll-target="#최종-점검과-커밋">10-8. 최종 점검과 커밋</a></li>
+  <li><a href="#같은-절차의-다른-쓰임" id="toc-같은-절차의-다른-쓰임" class="nav-link" data-scroll-target="#같은-절차의-다른-쓰임">10-9. 같은 절차의 다른 쓰임</a></li>
+  </ul></li>
+  <li><a href="#자주-하는-실수와-해결" id="toc-자주-하는-실수와-해결" class="nav-link" data-scroll-target="#자주-하는-실수와-해결">자주 하는 실수와 해결</a></li>
+  <li><a href="#제출물" id="toc-제출물" class="nav-link" data-scroll-target="#제출물">제출물</a></li>
+  <li><a href="#정리" id="toc-정리" class="nav-link" data-scroll-target="#정리">정리</a>
+  <ul class="collapse">
+  <li><a href="#개념-점검" id="toc-개념-점검" class="nav-link" data-scroll-target="#개념-점검">개념 점검</a></li>
+  </ul></li>
+  <li><a href="#참고-자료" id="toc-참고-자료" class="nav-link" data-scroll-target="#참고-자료">참고 자료</a></li>
+  <li><a href="#다음-장-안내" id="toc-다음-장-안내" class="nav-link" data-scroll-target="#다음-장-안내">다음 장 안내</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../courses/llm-service/book/Service_01주차_학생용.html">교재</a></li><li class="breadcrumb-item"><a href="../../../courses/llm-service/book/Service_04주차_학생용.html">[4주차] 시장 조사와 경쟁 서비스 분석</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">[4주차] 시장 조사와 경쟁 서비스 분석</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<header class="chapter-head">
+<p class="chapter-part">LLM 서비스 개발</p>
+<p class="chapter-no"><span class="num">4</span><span class="unit">주차</span></p>
+<p class="chapter-title">시장 조사와 경쟁 서비스 분석</p>
+</header>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>2027학년도 「LLM 서비스 개발」의 준비 중인 교재입니다. 편집 상태를 검토하기 위해 미리 공개한 것으로, 수업 전에 내용과 순서가 바뀔 수 있습니다.</p>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>학사 5주차 · 교재 04 · 2부 조사와 정의</p>
+</blockquote>
+<p>1부(1~3장)에서 개발 환경을 갖추었다. 개인 실습 저장소 <code>llm-service-lab</code>에 Claude Code의 작업을 커밋으로 기록하고, 팀 저장소에서 풀 리퀘스트로 협업하는 흐름을 한 바퀴 돌았다. 2부는 그 환경 위에서 “무엇을 누구에게 만들 것인가”를 정한다. 1장에서 본 서비스 기획의 단계(조사 → 정의 → 명세 → 설계 → 구현 → 평가) 가운데 첫 단계가 이 장의 조사다.</p>
+<p>이 장은 과목의 공통 사례 「취업 준비 지원 서비스」를 대상으로 시장 조사를 한다. 대상 사용자는 전문대학 2학년 취업 준비생이다. 공공 통계로 사용자 집단의 규모를 추정하고, 이미 있는 취업 지원 서비스 다섯 개의 기능을 화면에서 뽑아 비교하고, 그 결과로 포지셔닝과 가치 제안을 쓴다. 조사의 초안은 Claude Code의 웹 검색과 웹 페이지 읽기 도구에 맡긴다. 그러나 보고에 들어가는 수치는 학습자가 모두 원문을 열어 대조한다. AI는 그럴듯한 수치와 존재하지 않는 주소를 만들어 낼 수 있기 때문이다.</p>
+<p>이 장에서 만드는 것은 하나다. <strong>출처와 확인 날짜가 붙은 시장 조사 보고</strong>이다. 보고는 <code>ch04/</code> 폴더의 다섯 파일(시장 조사, 경쟁 서비스 비교표, 포지셔닝, 가치 제안, 출처 대조 기록)로 남는다. 5장은 이 보고의 가치 제안을 가설로 삼아 사용자 인터뷰를 설계하고, 6장은 비교표에서 고른 경쟁 서비스 한 화면의 명세를 복원한다. 같은 학기 프로젝트실습Ⅰ에서 팀의 주제를 조사할 때도 같은 양식과 절차를 쓴다.</p>
+<hr>
+<section id="학습-목표" class="level2">
+<h2 class="anchored" data-anchor-id="학습-목표">학습 목표</h2>
+<ul>
+<li><strong>조사 질문을 결정에 연결하여 세운다.</strong> 조사는 자료를 모으는 일이 아니라 결정에 필요한 답을 얻는 일이다.
+<ul>
+<li>예시: “취업 시장은 어떤가” 대신 “전문대학 졸업 학년 학생은 한 해에 몇 명인가(서비스 규모의 결정)”로 쓴다.</li>
+<li>활용: 프로젝트실습Ⅰ의 주제 조사에서 조사 질문 표를 먼저 쓰고 자료를 찾는다.</li>
+</ul></li>
+<li><strong>공공 통계를 찾아 단위, 기준 시점, 분모를 읽고 시장 규모를 추정한다.</strong>
+<ul>
+<li>예시: 전문대학 취업률 72.1%의 분모가 졸업자가 아니라 취업대상자임을 원문 표의 주석에서 확인한다.</li>
+<li>활용: 사업계획서와 발표 자료의 수치에 표 이름과 기준 시점을 붙인다.</li>
+</ul></li>
+<li><strong>경쟁 서비스를 분류하고, 화면에서 뽑은 기능으로 비교표와 포지셔닝 맵을 만든다.</strong>
+<ul>
+<li>예시: 다섯 서비스의 메뉴를 관찰해 사용자 업무 기준의 기능 16행 비교표를 만든다.</li>
+<li>활용: 6장에서 비교표의 한 서비스를 골라 화면의 명세를 복원한다(리버스 엔지니어링).</li>
+</ul></li>
+<li><strong>AI의 조사 초안을 원문과 대조하여 출처 없는 수치와 지어낸 주소를 걸러 낸다.</strong>
+<ul>
+<li>예시: 상태 코드 200이 나왔지만 “통계표 정보가 없습니다”라는 알림이 뜨는 주소를 찾아낸다.</li>
+<li>활용: 업무에서 AI가 쓴 보고서를 제출하기 전에 수치마다 원문 대조 기록을 남긴다.</li>
+</ul></li>
+</ul>
+<hr>
+</section>
+<section id="시작하기" class="level2">
+<h2 class="anchored" data-anchor-id="시작하기">0. 시작하기</h2>
+<p>접속, Claude Code 로그인, 저장소의 원격 연결은 부록 A를 따른다. 이 절은 4장의 키트를 받고 작업 폴더를 준비한다. 작업은 <code>[서버 터미널]</code>과 Claude Code 터미널 두 개를 나란히 두고 한다.</p>
+<section id="키트-받기" class="level3">
+<h3 class="anchored" data-anchor-id="키트-받기">0-1. 키트 받기</h3>
+<p>키트는 배포 폴더(<code>$KIT_HOME</code>, 부록 A)에 있다. 키트 전체를 홈의 <code>kits/</code>로 복사하고, 양식 다섯 개를 저장소의 <code>ch04/</code> 폴더에 산출물 이름으로 복사한다. <code>cp -n</code>은 이미 있는 파일을 덮어쓰지 않으므로 다시 실행해도 작업이 지워지지 않는다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/kits</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-rn</span> <span class="st">"</span><span class="va">$KIT_HOME</span><span class="st">/Service_04주차"</span> ~/kits/</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ch04</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> f <span class="kw">in</span> 시장조사 경쟁서비스_비교표 포지셔닝 가치제안 출처대조<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cp</span> <span class="at">-n</span> ~/kits/Service_04주차/<span class="va">${f}</span>_양식.md ch04/<span class="va">${f}</span>.md</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> ch04 ~/kits/Service_04주차</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>/home/아이디/kits/Service_04주차:
+README.md         가치제안_양식.md           기준산출물  시연              조사프롬프트_견본.md  포지셔닝_양식.md
+requirements.txt  경쟁서비스_비교표_양식.md  도구        시장조사_양식.md  출처대조_양식.md
+
+ch04:
+가치제안.md  경쟁서비스_비교표.md  시장조사.md  출처대조.md  포지셔닝.md</code></pre>
+<p>키트에는 다음이 들어 있다. 자세한 설명은 키트의 <code>README.md</code>에 있다.</p>
+<ul>
+<li><p><code>*_양식.md</code> 다섯 개: 산출물의 양식. <code>ch04/</code>로 복사해 채운다(10절).</p></li>
+<li><p><code>조사프롬프트_견본.md</code>: Claude Code에 보내는 조사 프롬프트 P1~P6(8절, 10절).</p></li>
+<li><p><code>시연/AI초안_예시.md</code>: 오류를 일부러 넣은 AI 조사 초안. 연습 재료다(8절).</p></li>
+<li><p><code>시연/P2_1회.md</code>, <code>시연/P2_2회.md</code>: P2를 두 번 실행한 기록. 교수 시연의 기록이 배포되며, 없으면 교재 예시 기록이다(8-6절).</p></li>
+<li><p><code>도구/check_ch04.py</code>: 산출물의 형식 점검기(0절, 8절, 10절).</p></li>
+<li><p><code>도구/링크점검.sh</code>: 문서 안 주소마다 HTTP 상태 코드를 찍는다(8절, 10절).</p></li>
+<li><p><code>기준산출물/README.md</code>: 저장소가 없는 학습자를 위한 안내(0절).</p></li>
+<li><p><span class="check-badge">확인 1</span> <code>ls ch04</code>에 다섯 파일(가치제안, 경쟁서비스_비교표, 시장조사, 출처대조, 포지셔닝)이 보인다.</p></li>
+</ul>
+</section>
+<section id="저장소-상태-확인" class="level3">
+<h3 class="anchored" data-anchor-id="저장소-상태-확인">0-2. 저장소 상태 확인</h3>
+<p>4장은 앞 장의 내용 산출물을 쓰지 않는다. 필요한 것은 2장에서 만든 저장소 하나다. 작업을 시작하기 전에 저장소가 깨끗한지, 원격이 연결되어 있는지 본다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">--short</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span> <span class="at">-3</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote <span class="at">-v</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>?? ch04/
+a1b2c3d 3장 협업 기록
+9f8e7d6 2장 실습 정리
+...
+origin  https://github.com/아이디/llm-service-lab.git (fetch)
+origin  https://github.com/아이디/llm-service-lab.git (push)</code></pre>
+<p><code>?? ch04/</code>는 방금 복사한 양식이 아직 추적되지 않았다는 뜻이다. 커밋은 10절의 끝에서 한다. 저장소가 없으면 키트의 <code>기준산출물/README.md</code>에 있는 명령으로 빈 저장소를 만들고 시작한다. 원격 연결은 2장과 부록 A를 따라 나중에 해도 된다.</p>
+<ul>
+<li><span class="check-badge">확인 2</span> <code>git status --short</code>에 <code>?? ch04/</code> 한 줄만 보이고, <code>git remote -v</code>에 <code>origin</code> 두 줄이 보인다(원격을 아직 연결하지 않았으면 빈 출력).</li>
+</ul>
+</section>
+<section id="점검기의-첫-실행" class="level3">
+<h3 class="anchored" data-anchor-id="점검기의-첫-실행">0-3. 점검기의 첫 실행</h3>
+<p>키트의 점검기 <code>check_ch04.py</code>는 이 장의 완료 기준 가운데 형식으로 확인할 수 있는 것(출처 기호, 비교표의 크기, 그림의 점, 대조 기록)을 검사한다. 양식을 복사한 직후에 한 번 실행해 「미통과」 화면을 본다. 10절의 끝에서 같은 명령이 「통과」를 내는 것이 이 장의 목표다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> ~/kits/Service_04주차/도구/check_ch04.py all ch04</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>[미통과] 1. 시장조사.md - 출처가 붙은 수치 0개
+    출처 S1: 확인 날짜(YYYY-MM-DD)가 없다
+    출처가 붙은 수치가 0개다 (3개 이상 필요)
+    양식의 「 」 자리가 그대로 남은 줄 25개 (처음: 3행)
+[미통과] 2. 경쟁서비스_비교표.md - 서비스 5개, 기능 1행
+    기능 행이 1개다 (10개 이상 필요)
+    ...
+[미통과] 3. 포지셔닝.md - 점 2개
+    ...
+결과: 미통과 항목이 있다</code></pre>
+<p>점검기는 양식의 「 」 자리가 고쳐지지 않고 남은 줄도 센다. 양식의 안내 문장을 지우지 않고 그 아래에 내용을 덧붙이면 그 줄이 계속 남으므로, 자리 표시는 내용으로 바꾸어 쓴다.</p>
+<ul>
+<li><span class="check-badge">확인 3</span> 마지막 줄이 <code>결과: 미통과 항목이 있다</code>이다. 양식 상태에서는 이것이 정상이다.</li>
+</ul>
+</section>
+<section id="웹-도구의-허용-확인" class="level3">
+<h3 class="anchored" data-anchor-id="웹-도구의-허용-확인">0-4. 웹 도구의 허용 확인</h3>
+<p>이 장은 Claude Code의 웹 검색(WebSearch)과 웹 페이지 읽기(WebFetch) 도구를 쓴다. 두 도구는 기본 설정에서 쓰기 전에 허용을 묻는다 [C2]. Claude Code 터미널에서 저장소 루트로 이동해 <code>claude</code>를 실행하고, <code>/permissions</code>로 지금 허용된 규칙을 확인한다.</p>
+<div class="code-label where-claude">
+<span>Claude Code</span>
+</div>
+<pre class="text"><code>/permissions</code></pre>
+<p>목록에 <code>WebFetch</code>나 <code>WebSearch</code> 규칙이 없으면 정상이다. 처음 웹 도구를 쓸 때 허용 질문이 나오고, 이때 어느 도메인을 읽으려는지 확인하고 허용한다. 「Yes, and don’t ask again for 도메인」을 고르면 그 도메인의 허용 규칙이 저장소의 <code>.claude/settings.local.json</code>에 저장된다 [C2]. 화면의 이름과 선택지는 2026-11 기준이며 바뀔 수 있다.</p>
+<ul>
+<li><span class="check-badge">확인 4</span> <code>/permissions</code> 화면이 열리고, 규칙 목록과 각 규칙이 어느 설정 파일에서 왔는지가 보인다.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="시장-조사의-목적과-조사-질문" class="level2">
+<h2 class="anchored" data-anchor-id="시장-조사의-목적과-조사-질문">1. 시장 조사의 목적과 조사 질문</h2>
+<section id="서비스-기획에서-조사의-자리" class="level3">
+<h3 class="anchored" data-anchor-id="서비스-기획에서-조사의-자리">1-1. 서비스 기획에서 조사의 자리</h3>
+<p>생성형 AI가 코드의 상당 부분을 쓰게 되면서, 개발자에게 남는 일의 무게는 무엇을 만들지 정하는 일로 옮겨 갔다(1장). 무엇을 만들지는 회의실의 직관이 아니라 조사로 정한다. 조사가 없으면 명세(6장)는 만드는 사람의 가정으로 채워지고, 그 가정은 사용성 평가(13장)에서야 드러난다. 그때 고치면 명세와 설계와 구현을 모두 되돌려야 한다.</p>
+<p>이 과목에서 조사는 두 장에 걸친다. 4장의 시장 조사는 “이 서비스가 놓일 시장”을 본다. 사용자 집단의 크기, 이미 있는 서비스, 비어 있는 자리가 대상이다. 5장의 사용자 조사는 “이 서비스를 쓸 사람”을 본다. 사용자의 행동, 불편, 목표가 대상이다. 4장이 2차 자료(이미 공표된 통계와 공개된 화면)를 주로 쓰고, 5장이 1차 자료(인터뷰와 설문)를 주로 쓰는 것은 이 차이 때문이다.</p>
+<pre class="mermaid">flowchart LR
+    A["4장 시장 조사&lt;br/&gt;규모·경쟁·포지셔닝"] --&gt; B["가치 제안&lt;br/&gt;(가설)"]
+    B --&gt; C["5장 사용자 조사&lt;br/&gt;인터뷰로 가설 확인"]
+    C --&gt; D["6장 명세&lt;br/&gt;요구사항명세서 v1"]
+    A --&gt; E["6장 리버스 엔지니어링&lt;br/&gt;경쟁 서비스 한 화면"]
+</pre>
+<p>그림의 두 화살표가 이 장의 산출물이 쓰이는 곳이다. 가치 제안은 5장에서 확인할 가설이 되고, 기능 비교표는 6장에서 명세를 복원할 화면을 고르는 근거가 된다.</p>
+</section>
+<section id="조사-질문" class="level3">
+<h3 class="anchored" data-anchor-id="조사-질문">1-2. 조사 질문</h3>
+<p>조사는 질문에서 시작한다. 좋은 조사 질문은 답이 나왔을 때 무엇을 결정할지가 분명하다. “취업 시장은 어떤가”는 답이 무엇이든 결정이 바뀌지 않으므로 조사 질문이 아니다. “전문대학 졸업 학년 학생은 한 해에 몇 명인가”는 답에 따라 서비스의 첫 목표 규모와 운영 방식이 달라지므로 조사 질문이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>구분</th>
+<th>나쁜 질문</th>
+<th>좋은 질문</th>
+<th>좋은 질문이 정하는 것</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>규모</td>
+<td>취업 준비생은 많은가</td>
+<td>전문대학 졸업 학년 학생은 한 해에 몇 명인가</td>
+<td>첫 해 목표 사용자 수</td>
+</tr>
+<tr class="even">
+<td>필요</td>
+<td>취업이 어려운가</td>
+<td>졸업 후 첫 일자리까지 평균 몇 개월이 걸리는가</td>
+<td>지원 기간을 졸업 전에 둘지 졸업 후까지 둘지</td>
+</tr>
+<tr class="odd">
+<td>행동</td>
+<td>학생들은 무엇을 쓰는가</td>
+<td>청년은 주로 어떤 경로로 일자리를 얻는가</td>
+<td>공고 정보의 수집을 기능의 중심에 둘지</td>
+</tr>
+<tr class="even">
+<td>경쟁</td>
+<td>경쟁 서비스가 있는가</td>
+<td>이미 있는 서비스는 무엇을 제공하고, 무엇이 확인되지 않는가</td>
+<td>차별점과 포지셔닝</td>
+</tr>
+<tr class="odd">
+<td>불편</td>
+<td>학생들이 불편한 것은</td>
+<td>대상 사용자는 취업 준비에서 무엇을 가장 불편해하는가</td>
+<td>가치 제안 (5장에서 인터뷰로 확인)</td>
+</tr>
+</tbody>
+</table>
+<p>좋은 질문의 공통점은 세 가지다. 대상이 좁다(전문대학 졸업 학년). 답의 형태가 정해져 있다(몇 명, 몇 개월, 어떤 경로). 답이 나오면 바뀌는 결정이 적혀 있다. 질문마다 “이 질문으로 정하려는 것” 열을 함께 쓰는 까닭이 여기에 있다. 결정이 적히지 않은 질문은 조사를 끝없이 늘린다.</p>
+</section>
+<section id="조사의-범위" class="level3">
+<h3 class="anchored" data-anchor-id="조사의-범위">1-3. 조사의 범위</h3>
+<p>조사 질문을 정하면 범위도 정해진다. 이 장의 범위는 다음과 같다.</p>
+<ul>
+<li>범위 안: 공공 기관이 공표한 통계표와 보도자료. 경쟁 서비스의 공식 누리집에서 로그인 없이 보이는 화면. 사용자 수로 잰 시장 규모. 대상 사용자의 불편에 대한 가설.</li>
+<li>범위 밖: 유료 시장 보고서(원문을 열어 대조할 수 없다). 로그인 뒤의 화면(계정이 필요하고 개인 정보가 섞인다). 매출로 잰 시장 규모(공통 사례는 학생에게 무료인 서비스로 가정한다). 불편의 확인(5장의 인터뷰가 맡는다).</li>
+</ul>
+<p>범위 밖의 것이 필요해지면 범위를 넓히지 말고 “한계와 다음 조사”에 적는다. 이 장의 보고 양식 8절이 그 자리다.</p>
+</section>
+<section id="실습-조사-질문-표-쓰기" class="level3">
+<h3 class="anchored" data-anchor-id="실습-조사-질문-표-쓰기">1-4. 실습: 조사 질문 표 쓰기</h3>
+<p><code>ch04/시장조사.md</code>를 VS Code에서 열고 2절의 조사 질문 표를 채운다. 위의 「좋은 질문」 다섯 개를 출발점으로 삼되, 학습자 자신이 전문대학 2학년이라는 점을 살려 Q5의 불편을 자기 경험에서 하나 더 구체적으로 적는다. 다 쓰면 Claude Code에 검토를 맡긴다. 이 프롬프트는 웹 도구를 쓰지 않는다.</p>
+<div class="code-label where-claude">
+<span>Claude Code</span>
+</div>
+<pre class="text"><code>ch04/시장조사.md의 2절 「조사 질문」 표를 검토하라. 공통 사례는 「취업 준비 지원 서비스」, 대상 사용자는 전문대학 2학년 취업 준비생이다.
+각 질문마다 (1) 이 질문의 답으로 무엇을 결정하는가 (2) 2차 자료로 답할 수 있는가, 1차 자료(인터뷰·설문)가 필요한가 (3) 답이 수치라면 어떤 단위와 기준 시점이 필요한가를 표로 답하라.
+질문을 새로 쓰지 말고 고칠 점만 제안하라. 파일은 고치지 말라.</code></pre>
+<p>예시 응답의 일부다(실제 화면과 다를 수 있다).</p>
+<pre class="text"><code>| 질문 | 결정 | 자료 | 단위·기준 시점 |
+| Q1 | 첫 해 목표 사용자 수 | 2차(교육통계) | 명, 학년도 또는 조사 기준일 |
+| Q2 | 지원 기간 | 2차(취업통계, 청년층 부가조사) | %, 개월, 조사 연월 |
+| Q5 | 가치 제안 | 1차(인터뷰) 필요 | 수치 아님 |</code></pre>
+<p>검토 결과에서 받아들일 것만 손으로 고친다. “파일은 고치지 말라”는 지시를 넣은 까닭은, 질문 표는 학습자가 결정의 주체로서 쓰는 것이기 때문이다.</p>
+<ul>
+<li><span class="check-badge">확인 5</span> <code>ch04/시장조사.md</code>의 2절 표에 Q1~Q5가 있고, 모든 행의 「이 질문으로 정하려는 것」 칸이 채워져 있다.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="차-자료와-2차-자료" class="level2">
+<h2 class="anchored" data-anchor-id="차-자료와-2차-자료">2. 1차 자료와 2차 자료</h2>
+<section id="두-자료의-구분" class="level3">
+<h3 class="anchored" data-anchor-id="두-자료의-구분">2-1. 두 자료의 구분</h3>
+<p><strong>1차 자료</strong>(primary data)는 조사하는 사람이 자기 질문을 위해 직접 모은 자료다. 인터뷰 기록, 설문 응답, 사용성 테스트의 관찰 기록이 여기에 속한다. <strong>2차 자료</strong>(secondary data)는 다른 사람이 다른 목적으로 이미 모아 공표한 자료다. 공공 통계, 연구 보고서, 기업의 공개 화면과 공지가 여기에 속한다. Nielsen Norman Group은 2차 조사(데스크 리서치)를 새 프로젝트를 시작하기 전에 이미 있는 조사 결과와 정보를 모으는 일로 설명하고, 1차 조사를 대신하는 것이 아니라 보완하는 것으로 본다 [M7].</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>구분</th>
+<th>이 과목의 예</th>
+<th>장점</th>
+<th>한계</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1차 자료</td>
+<td>동료 인터뷰 기록, 설문 응답 (5장)</td>
+<td>내 질문에 정확히 맞춘 자료다. 행동과 이유를 들을 수 있다</td>
+<td>시간이 든다. 표본이 작다</td>
+</tr>
+<tr class="even">
+<td>2차 자료</td>
+<td>교육통계, 청년층 부가조사, 경쟁 서비스의 화면 (4장)</td>
+<td>빠르고 싸다. 표본이 크다(전수 조사나 국가 표본)</td>
+<td>다른 목적으로 모은 자료라서 내 질문과 정의가 어긋날 수 있다</td>
+</tr>
+</tbody>
+</table>
+<p>2차 자료의 한계는 이 장 전체를 관통하는 주의점이다. 예를 들어 통계청(현 국가데이터처)의 청년층 부가조사는 청년을 15~29세로 정의한다 [T3]. 공통 사례의 대상인 전문대학 2학년은 이 범위에 대부분 들지만, 조사의 “대졸자”에는 4년제 졸업자가 함께 들어 있다. 2차 자료의 수치를 내 질문의 답으로 쓸 때는 정의가 얼마나 겹치는지 함께 적어야 한다.</p>
+</section>
+<section id="자료의-신뢰도-판단" class="level3">
+<h3 class="anchored" data-anchor-id="자료의-신뢰도-판단">2-2. 자료의 신뢰도 판단</h3>
+<p>같은 수치가 여러 곳에 나올 때 어느 것을 쓸지는 다음 기준으로 판단한다. NN/g는 2차 자료를 쓸 때 방법과 한계를 밝히지 않은 자료를 경고 신호로 보고, 다른 대상에서 얻은 결과가 내 사용자에게 그대로 적용되지 않을 수 있다고 지적한다 [M7].</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>기준</th>
+<th>묻는 것</th>
+<th>이 장의 적용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>작성 주체</td>
+<td>누가 만들었고, 그 수치로 이익을 얻는가</td>
+<td>공공 기관의 통계를 우선한다. 서비스 회사가 낸 자기 서비스의 이용 수치는 참고만 한다</td>
+</tr>
+<tr class="even">
+<td>방법의 공개</td>
+<td>조사 대상, 표본, 조사 방법, 정의가 공개되어 있는가</td>
+<td>보도자료의 「일러두기」와 표의 주석을 읽는다</td>
+</tr>
+<tr class="odd">
+<td>기준 시점</td>
+<td>언제의 상태를 잰 것인가</td>
+<td>조사 기준일과 공표일을 구분해 적는다</td>
+</tr>
+<tr class="even">
+<td>대상과 분모</td>
+<td>누구를 센 것이고, 비율의 분모는 무엇인가</td>
+<td>취업률의 분모(취업대상자)처럼 정의를 확인한다</td>
+</tr>
+<tr class="odd">
+<td>원문 접근</td>
+<td>원문을 열어 수치를 직접 볼 수 있는가</td>
+<td>원문을 볼 수 없는 자료는 쓰지 않는다</td>
+</tr>
+</tbody>
+</table>
+<p>자료의 위계도 대략 정할 수 있다. 위로 갈수록 원문에 가깝다.</p>
+<ol type="1">
+<li>통계표 원문 (KOSIS의 통계표, 기관이 공표한 통계 보고서의 표)</li>
+<li>기관의 보도자료 (통계표를 요약한 본문과 붙임 표)</li>
+<li>언론 기사 (보도자료를 다시 쓴 것. 수치를 반올림하거나 대상을 줄여 쓰는 일이 잦다)</li>
+<li>블로그와 커뮤니티 글</li>
+<li>출처를 밝히지 않은 AI의 답변</li>
+</ol>
+<p>이 장의 보고에는 1과 2만 쓴다. 3~5에서 수치를 발견하면 그것은 “어디를 찾아볼지”의 단서일 뿐이고, 1이나 2의 원문을 찾아 그 수치를 다시 확인한 뒤에 쓴다.</p>
+</section>
+<section id="출처를-적는-형식" class="level3">
+<h3 class="anchored" data-anchor-id="출처를-적는-형식">2-3. 출처를 적는 형식</h3>
+<p>출처는 다른 사람이 같은 수치를 다시 찾아갈 수 있게 적는다. 주소 하나만으로는 부족하다. 보도자료 PDF는 수십 쪽이고, 통계표는 시점과 항목을 골라야 값이 보이기 때문이다. 이 장의 보고는 출처마다 다음 일곱 칸을 적는다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>칸</th>
+<th>적는 것</th>
+<th>예</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>기호</td>
+<td>보고 안에서 부르는 이름</td>
+<td>S2</td>
+</tr>
+<tr class="even">
+<td>자료 이름</td>
+<td>자료의 제목 그대로</td>
+<td>「2024년도 고등교육기관 졸업자 취업통계」 조사 결과 발표</td>
+</tr>
+<tr class="odd">
+<td>발행 기관</td>
+<td>자료를 낸 기관</td>
+<td>교육부·국가데이터처·한국교육개발원</td>
+</tr>
+<tr class="even">
+<td>표 이름·위치</td>
+<td>수치가 있는 표와 쪽</td>
+<td>학교 유형별 취업률 표 (3쪽)</td>
+</tr>
+<tr class="odd">
+<td>기준 시점</td>
+<td>조사 기준일 또는 조사 연월</td>
+<td>2024-12-31</td>
+</tr>
+<tr class="even">
+<td>주소</td>
+<td>원문을 여는 주소</td>
+<td>https://…</td>
+</tr>
+<tr class="odd">
+<td>확인 날짜</td>
+<td>학습자가 직접 열어 본 날</td>
+<td>2026-11-14</td>
+</tr>
+</tbody>
+</table>
+<p>본문의 수치 뒤에는 <code>[S2]</code>처럼 기호를 단다. 근거 없이 정한 값(첫 해의 채택률 같은 것)에는 <code>[가정 A3]</code>처럼 가정 기호를 달고, 가정 표에 근거와 확인 방법을 적는다. 출처가 붙은 수치, 가정, 계산을 이렇게 나누어 표시하면 읽는 사람이 어느 수치를 믿고 어느 수치를 의심해야 하는지 알 수 있다.</p>
+<ul>
+<li><span class="check-badge">확인 6</span> <code>ch04/시장조사.md</code>의 3절 「방법과 자료」에 2차 자료와 1차 자료가 각각 한 줄 이상 적혀 있다. 1차 자료를 이 장에서 모으지 않는다면 그렇게 적고 5장을 가리킨다.</li>
+</ul>
+</section>
+<section id="ai-답변의-자리" class="level3">
+<h3 class="anchored" data-anchor-id="ai-답변의-자리">2-4. AI 답변의 자리</h3>
+<p>2-2절의 위계에서 AI의 답변은 맨 아래에 있다. 그러나 AI가 조사에 쓸모없다는 뜻은 아니다. AI는 자료가 아니라 자료를 찾는 길잡이로 쓸 때 가장 쓸모 있다. 묻는 방식을 바꾸면 된다.</p>
+<pre class="text"><code>나쁜 질문: 전문대학 졸업자의 취업률은 몇 %인가?</code></pre>
+<pre class="text"><code>좋은 질문: 전문대학 졸업자의 취업률을 공표하는 공공 통계의 이름, 작성 기관, 공표 주기, 조사 기준일을 알려 달라. 수치는 쓰지 말라. 각 통계의 공식 누리집 주소를 함께 적고, 주소를 확인하지 못했으면 그렇다고 적어라.</code></pre>
+<p>첫 질문은 AI에게 수치를 요구한다. AI는 기억에 있는 수치(학습한 시점의 값)를 내놓거나, 검색한 기사의 반올림된 값을 내놓을 수 있다. 어느 쪽이든 학습자는 그 수치가 언제의 무엇인지 모른다. 둘째 질문은 수치 대신 “어느 표를 열면 되는가”를 묻는다. 답이 틀려도 손해가 작다. 알려 준 통계를 찾아 열어 보면 맞는지 바로 알 수 있기 때문이다. 이 장의 조사 프롬프트(P2)도 수치를 요구하지만, 수치마다 원문 주소와 인용을 함께 요구해 결과를 대조할 수 있게 만든다.</p>
+<hr>
+</section>
+</section>
+<section id="공공-통계의-검색과-읽기" class="level2">
+<h2 class="anchored" data-anchor-id="공공-통계의-검색과-읽기">3. 공공 통계의 검색과 읽기</h2>
+<section id="어디에-무엇이-있는가" class="level3">
+<h3 class="anchored" data-anchor-id="어디에-무엇이-있는가">3-1. 어디에 무엇이 있는가</h3>
+<p>공통 사례의 조사 질문(Q1~Q3)에 답하는 공공 통계는 대부분 세 곳에 있다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>통계</th>
+<th>작성 기관</th>
+<th>담긴 것</th>
+<th>찾는 곳</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>교육기본통계</td>
+<td>교육부·한국교육개발원</td>
+<td>학교 수, 재적학생 수, 신입생 충원율 (매년 4월 1일 기준)</td>
+<td>교육부 보도자료 [T5], 교육통계 서비스</td>
+</tr>
+<tr class="even">
+<td>고등교육기관 졸업자 취업통계</td>
+<td>교육부·국가데이터처·한국교육개발원</td>
+<td>학교 유형별·계열별 졸업자, 취업대상자, 취업자, 취업률, 유지취업률, 월평균 소득 (매년 12월 31일 기준)</td>
+<td>교육부 보도자료 [T5]</td>
+</tr>
+<tr class="odd">
+<td>경제활동인구조사 청년층 부가조사</td>
+<td>국가데이터처</td>
+<td>15~29세 청년의 졸업 소요기간, 첫 취업 소요기간, 취업경로, 미취업 기간 (매년 5월 조사)</td>
+<td>국가통계포털 KOSIS [M1], 국가데이터처 보도자료</td>
+</tr>
+<tr class="even">
+<td>고용24</td>
+<td>고용노동부·한국고용정보원</td>
+<td>채용 정보, 직업훈련, 청년 고용 지원 사업의 안내</td>
+<td>고용24 누리집 [M2]</td>
+</tr>
+</tbody>
+</table>
+<p>통계청은 2025년 10월 1일 국가데이터처로 승격되었다 [T6]. 그 뒤의 보도자료는 국가데이터처 이름으로 나오고, 그 이전 자료는 통계청 이름으로 나온다. 같은 조사이므로 기관 이름이 다르다고 다른 통계로 보지 않는다.</p>
+<p>보도자료는 기관 누리집의 보도자료 게시판에 올라오고, KDI 경제교육·정보센터의 경제정책자료처럼 여러 기관의 보도자료를 모아 다시 게재하는 곳도 있다. 다시 게재한 곳의 PDF는 원문과 같은 파일이지만, 출처를 적을 때는 「기관 이름의 보도자료(게재처)」처럼 원 발행 기관을 앞에 쓴다. 이 장의 참고 자료 T1~T3은 KDI 게재본의 주소를 적었다. 교육부 보도자료 게시판은 목록의 각 항목이 고정 주소를 드러내지 않아 주소로 가리키기 어렵기 때문이다(2026-11-14 확인).</p>
+</section>
+<section id="kosis에서-통계표-찾기" class="level3">
+<h3 class="anchored" data-anchor-id="kosis에서-통계표-찾기">3-2. KOSIS에서 통계표 찾기</h3>
+<p>KOSIS는 국가승인통계의 표를 한곳에 모은 포털이다 [M1]. 표마다 기관 코드(<code>orgId</code>)와 표 코드(<code>tblId</code>)가 있어, 그 두 값이 든 주소로 같은 표를 다시 열 수 있다. 첫 취업 소요기간의 표를 찾아 본다.</p>
+<div class="code-label where-server">
+<span>브라우저</span>
+</div>
+<pre class="text"><code>1. https://kosis.kr 을 연다
+2. 통합검색 창에 「첫 취업 소요기간」을 넣고 검색한다
+3. 통계표 목록에서 다음 표를 고른다
+   성별/첫 취업 소요기간 및 평균소요기간 (졸업/중퇴 취업유경험자)
+   국가데이터처, 경제활동인구조사, 2004~2026
+4. 표 화면 위쪽의 경로를 읽는다
+   노동 &gt; 경제활동인구조사 &gt; 청년층 부가조사
+5. 화면의 「주소 및 출처정보」에서 표의 주소를 복사한다</code></pre>
+<blockquote class="blockquote">
+<p>그림 필요: KOSIS 통합검색에서 「첫 취업 소요기간」을 검색한 결과 화면(통계표 8건, 맨 위 표의 이름과 수록 기간이 보이게)</p>
+</blockquote>
+<p>2026-11-14에 같은 검색을 하면 통계표 8건이 나오고, 맨 위의 두 표가 국가데이터처의 경제활동인구조사 표(2004~2026 수록본과 시계열 보정 전 자료인 2004~2017 수록본)였다. 나머지는 지방자치단체의 사회조사 표였다. 같은 이름의 표가 둘 이상이면 수록 기간과 경로를 보고 최신 수록본을 고른다. 고른 표의 주소는 다음과 같다 [T4].</p>
+<pre class="text"><code>https://kosis.kr/statHtml/statHtml.do?orgId=101&amp;tblId=DT_1DE9058S</code></pre>
+<p>같은 경로(노동 &gt; 경제활동인구조사 &gt; 청년층 부가조사)에는 「성 및 학제별 대학졸업소요기간」, 「성별/학력별 취업경로 (졸업/중퇴 취업자)」, 「성별 미취업기간별 미취업자」, 「성별 취업시험준비유무 및 준비분야(비경제활동인구)」 같은 표가 함께 있다(2026-11-14 확인). 조사 질문 Q2와 Q3에 답하는 표가 모두 이 경로에 모여 있다.</p>
+<p>화면의 표 이름과 메뉴의 위치는 2026-11 기준이다. KOSIS는 화면을 자주 고치므로 메뉴가 다르면 통합검색에서 표 이름으로 찾는다.</p>
+<ul>
+<li><span class="check-badge">확인 7</span> 브라우저에 「성별/첫 취업 소요기간 및 평균소요기간 (졸업/중퇴 취업유경험자)」 표가 열리고, 주소에 <code>tblId=DT_1DE9058S</code>가 들어 있다.</li>
+</ul>
+</section>
+<section id="통계표를-읽는-네-가지" class="level3">
+<h3 class="anchored" data-anchor-id="통계표를-읽는-네-가지">3-3. 통계표를 읽는 네 가지</h3>
+<p>통계표의 수치는 네 가지를 함께 읽어야 뜻이 정해진다. 단위, 기준 시점, 대상(분모), 주석이다. 이 넷 가운데 하나라도 빼고 수치를 옮기면, 수치는 맞는데 뜻이 틀린 문장이 된다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>읽을 것</th>
+<th>묻는 것</th>
+<th>예</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>단위</td>
+<td>명인가 천 명인가, %인가 %p인가</td>
+<td>청년층 부가조사의 인원은 천 명 단위다. “782만 2천명”은 표에서 7,822로 나온다 [T3]</td>
+</tr>
+<tr class="even">
+<td>기준 시점</td>
+<td>언제의 상태인가. 공표일과 다르다</td>
+<td>2024년도 취업통계는 2025-12-30에 공표되었고, 기준일은 2024-12-31이다 [T2]</td>
+</tr>
+<tr class="odd">
+<td>대상(분모)</td>
+<td>누구를 셌고, 비율은 무엇으로 나누었는가</td>
+<td>취업률의 분모는 졸업자가 아니라 취업대상자다 [T2]</td>
+</tr>
+<tr class="even">
+<td>주석</td>
+<td>정의, 포함과 제외, 이용 시 유의</td>
+<td>재적학생은 재학생, 휴학생, 학사학위 취득 유예생을 합한 수다 [T1]</td>
+</tr>
+</tbody>
+</table>
+<p>단위 가운데 %와 %p(퍼센트포인트)의 구분도 자주 틀린다. 전문대학 취업률은 2023년도 72.4%에서 2024년도 72.1%로 바뀌었고, 원문은 이를 0.3%p 감소로 적었다 [T2]. 이것을 “0.3% 감소”로 쓰면 뜻이 달라진다. 72.4의 0.3%는 약 0.2이므로, “0.3% 감소”는 72.2% 정도가 되었다는 말이 된다. 비율끼리의 차이는 %p로, 어떤 값이 몇 퍼센트 늘거나 줄었는지는 %로 쓴다. 같은 보도자료가 전문대학 졸업자의 월평균 소득이 전년보다 4.5% 올랐다고 적은 것이 후자의 예다 [T2].</p>
+<p>가장 자주 틀리는 것이 분모다. 2024년도 취업통계의 전문대학 행을 원문 표에서 옮기면 다음과 같다 [T2].</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>학교 유형</th>
+<th>학교 수</th>
+<th>졸업자</th>
+<th>취업대상자</th>
+<th>취업자</th>
+<th>취업률(%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>전문대학</td>
+<td>134</td>
+<td>139,033</td>
+<td>120,431</td>
+<td>86,850</td>
+<td>72.1</td>
+</tr>
+</tbody>
+</table>
+<p>원문 보도자료는 취업률을 “취업자 ÷ 취업대상자 × 100”으로 정의하고, 취업대상자를 “졸업자 − (진학자 + 입대자 + 취업불가능자 + 제외인정자 + 외국인유학생)”으로 정의한다 [T2]. 취업자에는 건강보험 직장가입자뿐 아니라 해외취업자, 농림어업종사자, 개인창작활동종사자, 1인 창(사)업자, 프리랜서가 들어간다 [T2]. 이 정의를 모르고 졸업자로 나누면 다른 숫자가 나온다. 직접 계산해 본다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-c</span> <span class="st">"print(round(86850/120431*100, 1), round(86850/139033*100, 1))"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>72.1 62.5</code></pre>
+<p>72.1은 공표된 취업률과 같다. 62.5는 졸업자를 분모로 한 비율이다. 62.5%는 어느 원문에도 “전문대학 취업률”로 나오지 않는다. AI의 초안이나 기사에 “전문대학 취업률 62.5%”가 있으면 그것은 분모를 바꾼 계산이다. 원문 표의 값으로 다시 계산해 공표된 값과 맞추어 보는 일을 <strong>재계산 검증</strong>이라 부르기로 한다. 원문의 정의를 확인하는 가장 빠른 방법이다.</p>
+<ul>
+<li><span class="check-badge">확인 8</span> 위 명령의 출력이 <code>72.1 62.5</code>이다. 시장조사.md 4-1절에 취업률을 쓸 때 분모(취업대상자)를 함께 적었다.</li>
+</ul>
+</section>
+<section id="같은-이름-다른-값" class="level3">
+<h3 class="anchored" data-anchor-id="같은-이름-다른-값">3-4. 같은 이름, 다른 값</h3>
+<p>같은 항목이 통계마다 다른 값으로 나오는 일이 많다. 전문대학의 수가 그 예다. 2026년 교육기본통계는 2026년 4월 1일 기준 전문대학을 126개교로 적었다 [T1]. 2024년도 취업통계는 2024년 2월·2023년 8월 졸업자가 있는 전문대학을 134개교로 적었다 [T2]. 두 값은 둘 다 맞다. 기준 시점이 다르고(그 사이 전문대학 몇 곳이 다른 대학과 통합되었다 [T1]), 조사 대상이 다르다(재학생이 있는 학교와 졸업자가 있는 학교). 보고에서 두 값을 섞어 “전문대학 134개교에 재적학생 504,897명”처럼 쓰면 틀린 문장이 된다.</p>
+<p>한 가지 더 주의할 것이 있다. 두 통계 모두 「기능대학」을 전문대학에 넣지 않고 「기타」로 분류한다 [T1] [T2]. 학습자의 학교가 어느 유형으로 분류되는지는 그 통계의 분류 기준을 읽어야 안다. 공통 사례의 대상은 “전문대학 2학년”으로 정했으므로, 이 장은 통계의 「전문대학」 행을 쓴다.</p>
+<p>청년층 부가조사에도 같은 주의가 필요하다. 2026년 5월 조사에서 첫 일자리가 임금근로자인 청년의 첫 취업 평균 소요기간은 11.2개월이었고, 대졸이상은 8.5개월, 고졸이하는 1년 5.1개월이었다 [T3]. 2025년 5월의 같은 값은 11.3개월이었다 [T3]. “청년의 첫 취업 소요기간은 11.3개월”이라는 문장은 2025년에는 맞고 2026년에는 틀리다. 기준 시점을 문장에 넣으면 이런 혼동이 줄어든다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>수치</th>
+<th>맞는 문장</th>
+<th>틀린 문장 (이유)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>72.1%</td>
+<td>2024년 2월·2023년 8월 전문대학 졸업자의 취업률(취업대상자 기준)은 72.1%다</td>
+<td>전문대학 졸업자 10명 중 7명이 취업했다 (분모가 졸업자가 아니다)</td>
+</tr>
+<tr class="even">
+<td>504,897명</td>
+<td>2026년 4월 1일 기준 전문대학 재적학생은 504,897명이다</td>
+<td>전문대학 재학생은 약 50만 명이다 (재적에는 휴학생이 들어 있다)</td>
+</tr>
+<tr class="odd">
+<td>11.2개월</td>
+<td>2026년 5월 조사에서 첫 일자리가 임금근로자인 청년의 첫 취업 평균 소요기간은 11.2개월이다</td>
+<td>청년은 졸업 후 평균 11.2개월 동안 취업하지 못한다 (취업한 사람만의 평균이다)</td>
+</tr>
+<tr class="even">
+<td>48.6%</td>
+<td>2026년 5월, 15~29세 최종학교 졸업자 중 현재 미취업자의 48.6%가 미취업 기간 1년 이상이다</td>
+<td>졸업자의 48.6%가 1년 넘게 취업하지 못한다 (분모가 미취업자다)</td>
+</tr>
+</tbody>
+</table>
+<p>마지막 두 행의 틀린 문장은 원문의 수치를 그대로 쓰면서 대상을 바꾼 것이다. 이런 오류는 수치만 대조해서는 찾지 못하고, 표의 대상을 함께 읽어야 찾는다.</p>
+<p>여기까지 직접 확인한 수치 가운데 둘(예: 전문대학 취업률과 전문대학 재적학생 수)을 시장조사.md 4-1절의 표와 10절의 출처 표에 손으로 적는다. 학습자가 원문에서 직접 옮긴 이 두 행은 10절에서 AI가 쓴 초안을 대조할 때 기준이 된다. 출처 표의 확인 날짜는 원문을 연 날이다.</p>
+<ul>
+<li><span class="check-badge">확인 9</span> 시장조사.md 4-1절의 표에 「기준 시점」 열이 채워져 있고, 같은 항목(예: 전문대학 수)의 서로 다른 기준 시점 값이 한 문장에 섞여 있지 않다. 10절 출처 표의 「표 이름·위치」 칸에는 쪽 번호나 표 이름이 있고, 주소만 있는 행이 없다.</li>
+</ul>
+</section>
+<section id="원문-pdf에서-수치-찾기" class="level3">
+<h3 class="anchored" data-anchor-id="원문-pdf에서-수치-찾기">3-5. 원문 PDF에서 수치 찾기</h3>
+<p>보도자료 PDF는 본문 앞쪽에 요약 표가 있고, 뒤쪽 「붙임」에 상세 표가 있다. 원문을 열어 수치를 찾을 때는 브라우저의 찾기 기능(<code>Ctrl+F</code>)으로 수치 자체(예: <code>120,431</code>)를 검색한다. 표의 이름이나 단어로 찾으면 요약과 붙임에 같은 단어가 여러 번 나와 시간이 든다. 수치로 찾으면 그 수치가 있는 표가 바로 나온다.</p>
+<p>PDF가 스캔 이미지라서 찾기가 되지 않으면 쪽을 넘기며 표의 제목으로 찾는다. 2026-11-14에 확인한 세 보도자료(T1~T3)는 모두 글자를 고를 수 있는 PDF였다.</p>
+<p>PDF를 서버에 내려받아 터미널에서 찾을 수도 있다. 서버에 <code>pdftotext</code>(poppler-utils)가 설치되어 있으면 다음처럼 한다. 설치 여부는 실습 서버마다 다르다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">command</span> <span class="at">-v</span> pdftotext <span class="kw">&amp;&amp;</span> <span class="ex">pdftotext</span> 보도자료.pdf <span class="at">-</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-n</span> <span class="st">"120,431"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>설치되어 있지 않으면 첫 명령이 아무것도 출력하지 않고 끝난다. 그때는 브라우저에서 찾는다.</p>
+</section>
+<section id="공표-주기와-갱신" class="level3">
+<h3 class="anchored" data-anchor-id="공표-주기와-갱신">3-6. 공표 주기와 갱신</h3>
+<p>공공 통계는 해마다 같은 시기에 새 판이 나온다. 이 장에서 쓴 세 통계의 최근 공표일은 다음과 같다(2026-11-14 확인).</p>
+<ul>
+<li>교육기본통계: 2026-08-26 공표, 기준일 2026-04-01 [T1]</li>
+<li>고등교육기관 졸업자 취업통계: 2025-12-30 공표, 기준일 2024-12-31, 대상은 2024년 2월·2023년 8월 졸업자 [T2]</li>
+<li>청년층 부가조사: 2026-07-23 공표, 조사 2026년 5월 [T3]</li>
+</ul>
+<p>취업통계는 조사 기준일(12월 31일)로부터 1년쯤 뒤에 공표된다. 그러므로 가장 최근 판을 써도 보고를 쓰는 시점보다 한두 해 앞선 졸업자의 상태를 보는 것이다. 이 장의 보고를 2027학년도 1학기에 다시 쓰면 2025년 졸업자의 취업통계(2026년 말 공표 예정으로 보이나 2026-11-14에는 확인하지 못하였다)가 나와 있을 수 있다. 조사 보고는 한 번 쓰고 끝나는 문서가 아니다. 새 판이 나오면 출처 표의 기준 시점을 보고 바꿀 행을 찾는다.</p>
+<p>보고에 쓴 기준 시점을 한눈에 보려면 출처 표의 행만 뽑는다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-E</span> <span class="st">'^\| S[0-9]+ '</span> ch04/시장조사.md <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span><span class="st">'|'</span> <span class="at">-f2,6,8</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code> S1 | 2026-04-01 | 2026-11-14
+ S2 | 2024-12-31 | 2026-11-14
+ S3 | 2026년 5월 | 2026-11-14
+ S4 | 2026년 5월 | 2026-11-14</code></pre>
+<p>첫 열은 기호, 둘째 열은 기준 시점, 셋째 열은 확인 날짜다(위 출력은 교재 견본의 결과다). 확인 날짜가 오래된 행부터 원문을 다시 연다. 기준 시점보다 새 판이 나왔으면 그 출처를 새 판으로 바꾸고, 본문의 수치와 대조 기록을 함께 고친다.</p>
+<ul>
+<li><span class="check-badge">확인 10</span> 위 명령의 출력에 시장조사.md 출처 표의 모든 행이 나오고, 둘째 열(기준 시점)과 셋째 열(확인 날짜)이 비어 있지 않다.</li>
+</ul>
+</section>
+<section id="고용24에서-찾는-것" class="level3">
+<h3 class="anchored" data-anchor-id="고용24에서-찾는-것">3-7. 고용24에서 찾는 것</h3>
+<p>고용24는 이 장에서 두 번 등장한다. 3절에서는 공공 고용 정보를 찾는 곳이고, 5절에서는 비교할 경쟁 서비스다. 같은 누리집을 두 가지 눈으로 본다.</p>
+<p>자료를 찾는 눈으로 보면, 고용24의 메뉴에는 청년과 대학생을 위한 공공 지원 사업이 모여 있다. 2026-11-14의 「취업지원」 메뉴에는 청년 취업역량강화 아래 청년도전지원사업, 청년성장프로젝트, 직장적응지원, 우리학교 취업지원실, 청년일자리도약장려금, 졸업생·고교생 맞춤형 고용서비스 같은 항목이 있었고, 취업가이드 아래 이력서·자소서 작성가이드, 직업심리검사, 취업똑똑 온라인 취업상담이 있었다 [K5]. 이 목록은 공통 사례의 가치 제안에 두 가지를 준다. 하나는 대체재다. 학교의 취업지원실과 공공 상담은 자기소개서 피드백의 대체재다. 다른 하나는 연계의 기회다. 공통 사례가 공공 지원 사업을 대신할 필요는 없고, 학생이 그런 사업이 있다는 것을 알게 하는 것만으로도 이득 창출이 된다.</p>
+<p>경쟁 서비스의 눈으로 보면, 고용24는 공고 검색, 채용 캘린더, AI 일자리추천, 이력서·자기소개서 관리, 입사지원 내역까지 갖춘 서비스다 [K5]. 공통 사례와 기능이 많이 겹친다. 그러나 다섯 대메뉴(채용정보, 취업지원, 실업급여, 직업 능력 개발, 출산휴가·육아휴직) 가운데 셋은 취업 준비 밖의 고용 서비스다 [K5]. 이 장이 고용24를 간접 경쟁으로 분류한 근거가 이 관찰이다.</p>
+<p>공공 지원 사업의 지원 금액, 대상, 신청 기간은 해마다 바뀐다. 보고에 사업의 세부 조건을 쓸 때는 고용24의 해당 사업 안내 화면을 출처로 적고, 기준 연도를 밝힌다. 이 장의 보고는 사업의 이름까지만 쓴다.</p>
+<hr>
+</section>
+</section>
+<section id="시장-규모의-추정" class="level2">
+<h2 class="anchored" data-anchor-id="시장-규모의-추정">4. 시장 규모의 추정</h2>
+<section id="tam-sam-som" class="level3">
+<h3 class="anchored" data-anchor-id="tam-sam-som">4-1. TAM, SAM, SOM</h3>
+<p>시장 규모는 세 겹으로 나누어 추정한다. 바깥에서 안쪽으로 좁혀 간다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>구분</th>
+<th>영문</th>
+<th>뜻</th>
+<th>공통 사례에서</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>TAM</td>
+<td>Total Addressable Market</td>
+<td>경쟁이 없고 모든 잠재 사용자가 쓴다고 할 때의 전체 시장. 예측이 아니라 상한이다</td>
+<td>국내 전문대학 재적학생 전체</td>
+</tr>
+<tr class="even">
+<td>SAM</td>
+<td>Serviceable Addressable Market (Serviceable Available Market이라고도 쓴다)</td>
+<td>지금의 사업 방식, 지역, 유통 경로로 닿을 수 있는 부분</td>
+<td>한 해에 졸업하는 전문대학 학생</td>
+</tr>
+<tr class="odd">
+<td>SOM</td>
+<td>Serviceable Obtainable Market</td>
+<td>경쟁과 자원(인력, 예산)을 고려할 때 가까운 기간에 실제로 얻을 수 있는 부분</td>
+<td>첫 해에 실제로 쓰게 할 수 있는 학생</td>
+</tr>
+</tbody>
+</table>
+<p>Stripe의 안내는 세 값을 이렇게 정의하고, 각 값이 앞 값의 부분집합이라고 설명한다 [M5]. 정의 자체보다 중요한 것은 세 값을 나누는 까닭이다. TAM만 말하면 “전국 전문대학생 50만 명이 우리 사용자”라는 과장이 되고, SOM만 말하면 서비스가 자랄 여지를 보이지 못한다. 세 값을 함께 쓰면 “상한은 이만큼이고, 지금 닿을 수 있는 것은 이만큼이고, 첫 해의 목표는 이만큼”이라는 근거 있는 문장이 된다.</p>
+<pre class="mermaid">flowchart TB
+    subgraph TAM["TAM: 전문대학 재적학생 504,897명 (2026-04-01)"]
+        subgraph SAM["SAM: 한 해 졸업자 139,033명 (2024년 졸업)"]
+            SOM["SOM: 첫 해 약 300명 (가정에 기댄 추정)"]
+        end
+    end
+</pre>
+<p>시장의 크기를 무엇으로 잴지도 정해야 한다. 기업의 시장 추정은 보통 매출(사용자 수 × 사용자당 연 매출)로 한다 [M5]. 공통 사례는 학생에게 무료로 제공하는 서비스로 가정하므로 사용자 수로 잰다. 이 선택 자체가 가정이므로 보고의 가정 표에 적는다.</p>
+<p>만약 유료 서비스로 가정을 바꾸면 같은 사용자 수에 사용자당 연 매출을 곱한다. 예를 들어 자기소개서 피드백을 한 해 동안 쓰는 데 3만 원을 받는다고 가정하면(가정, 근거 없음) SAM은 다음과 같다.</p>
+<pre class="text"><code>SAM(매출) = 139,033명 × 30,000원 ≈ 41억 7천만 원   (계산, 사용자 수 [T2], 가격은 가정)</code></pre>
+<p>이 값은 크게 보이지만 “졸업 학년 전원이 돈을 낸다”는 상한이다. 매출로 잰 SAM은 가격이라는 가정 하나를 더 품으므로, 사용자 수로 잰 SAM보다 불확실하다. 공통 사례가 사용자 수로 시장을 재는 까닭에는 이 점도 있다.</p>
+</section>
+<section id="하향식과-상향식" class="level3">
+<h3 class="anchored" data-anchor-id="하향식과-상향식">4-2. 하향식과 상향식</h3>
+<p>추정의 방법은 둘이다 [M5].</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>방법</th>
+<th>출발점</th>
+<th>계산</th>
+<th>장점</th>
+<th>약점</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>하향식(top-down)</td>
+<td>공표된 전체 시장의 수치</td>
+<td>전체에 비율을 곱해 좁힌다</td>
+<td>빠르다. 시장을 더 볼 가치가 있는지 가늠할 때 쓴다</td>
+<td>보고서의 범주가 내 서비스보다 넓기 쉽고, 비율의 근거를 대기 어렵다</td>
+</tr>
+<tr class="even">
+<td>상향식(bottom-up)</td>
+<td>내 서비스가 닿는 단위(학교, 학과, 사용자)</td>
+<td>단위 수 × 단위당 사용자 × 채택률</td>
+<td>가정 하나하나를 확인할 수 있어 설득력이 크다</td>
+<td>단위당 값을 모르면 가정이 늘어난다</td>
+</tr>
+</tbody>
+</table>
+<p>공통 사례에 두 방법을 적용한다. 출처가 있는 값은 [T번호], 가정한 값은 (가정)으로 표시한다.</p>
+<p><strong>하향식.</strong> SAM(한 해 졸업자 139,033명 [T2])에 첫 해 점유율 0.2%(가정)를 곱한다.</p>
+<pre class="text"><code>SOM(하향식) = 139,033 × 0.002 ≈ 278명</code></pre>
+<p><strong>상향식.</strong> 첫 해에 협력할 학교 수(3개교, 가정)에서 출발한다. 학교당 졸업자 수는 취업통계의 두 값으로 계산한다(139,033 ÷ 134 [T2]). 협력 학교의 졸업 학년 가운데 첫 해에 쓰는 비율(채택률 10%, 가정)을 곱한다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-c</span> <span class="st">"</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="st">per_school = 139033 / 134</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="st">print('학교당 졸업자', round(per_school))</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="st">print('SOM 상향식', round(3 * per_school * 0.10))</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="st">print('SOM 하향식', round(139033 * 0.002))</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="st">"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>학교당 졸업자 1038
+SOM 상향식 311
+SOM 하향식 278</code></pre>
+<p>두 결과가 같은 자릿수(수백 명)에 있으면 첫 해 목표를 그 범위(약 300명)로 둘 수 있다. 두 결과가 열 배 넘게 차이 나면 어느 쪽의 가정이 틀렸는지 먼저 따진다. 하향식의 0.2%와 상향식의 10%는 모두 근거 없는 가정이다. 보고는 이 사실을 숨기지 않고 가정 표에 “근거 없음. 5장 설문에서 사용 의향을 묻는다”처럼 적는다. 가정을 밝혀 두면 나중에 자료가 생겼을 때 그 가정 하나만 바꾸어 다시 계산할 수 있다.</p>
+<ul>
+<li><span class="check-badge">확인 11</span> 위 명령의 출력 세 줄이 <code>1038</code>, <code>311</code>, <code>278</code>이다.</li>
+</ul>
+</section>
+<section id="추정에서-흔한-오류" class="level3">
+<h3 class="anchored" data-anchor-id="추정에서-흔한-오류">4-3. 추정에서 흔한 오류</h3>
+<p>Stripe의 안내는 시장 추정에서 흔한 실수를 다섯 가지로 든다 [M5]. 공통 사례에 맞추어 옮기면 다음과 같다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>오류</th>
+<th>뜻</th>
+<th>공통 사례에서 생기는 모습</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>시장을 너무 넓게 정의</td>
+<td>산업 전체의 수치를 좁은 제품의 TAM으로 쓴다</td>
+<td>“국내 채용 시장 규모”를 전문대학 2학년 서비스의 TAM으로 쓴다</td>
+</tr>
+<tr class="even">
+<td>큰 시장의 작은 점유율</td>
+<td>“1%만 얻어도”라는 주장으로 얻는 방법을 설명하지 않는다</td>
+<td>“전국 청년 782만 명의 1%”</td>
+</tr>
+<tr class="odd">
+<td>TAM과 SAM의 혼동</td>
+<td>전체 시장을 지금 닿을 수 있는 시장으로 보인다</td>
+<td>재적학생 50만 명 전체를 첫 해 대상으로 쓴다</td>
+</tr>
+<tr class="even">
+<td>근거 없는 가정</td>
+<td>오래된 보고서, 출처 없는 수치</td>
+<td>출처가 없는 “취업 앱 이용률 70%”를 채택률로 쓴다</td>
+</tr>
+<tr class="odd">
+<td>계획 없는 SOM</td>
+<td>인력과 예산과 맞지 않는 SOM</td>
+<td>학생 팀이 첫 해에 1만 명을 목표로 둔다</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><span class="check-badge">확인 12</span> 시장조사.md 4-2절에 TAM, SAM, SOM(상향식), SOM(하향식)의 네 행이 있고, 가정한 값마다 <code>[가정 A번호]</code>가 붙어 있으며, 9절 가정 표에 같은 번호가 있다.</li>
+</ul>
+</section>
+<section id="가정이-바뀌면-민감도" class="level3">
+<h3 class="anchored" data-anchor-id="가정이-바뀌면-민감도">4-4. 가정이 바뀌면: 민감도</h3>
+<p>SOM은 가정에 기대므로, 가정이 바뀔 때 결과가 얼마나 움직이는지 함께 보아야 한다. 가정 하나를 몇 가지 값으로 바꾸어 결과의 범위를 보는 일을 <strong>민감도 분석</strong>이라 한다. 상향식 SOM의 두 가정(협력 학교 수, 채택률)을 세 값씩 바꾸어 본다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-</span> <span class="op">&lt;&lt;'EOF'</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="st">per_school = 139033 / 134</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="st">print("학교 수  채택률 5%  10%  20%")</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="st">for schools in (1, 3, 5):</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="st">    row = [round(schools * per_school * r) for r in (0.05, 0.10, 0.20)]</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="st">    print(f"{schools:&gt;5}  {row[0]:&gt;8}  {row[1]:&gt;4}  {row[2]:&gt;4}")</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="op">EOF</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>학교 수  채택률 5%  10%  20%
+    1        52   104   208
+    3       156   311   623
+    5       259   519  1038</code></pre>
+<p>결과는 52명에서 1,038명까지 스무 배 가까이 움직인다. 이 표에서 읽을 것은 두 가지다. 첫째, SOM 한 값(311명)만 보고하면 이 불확실성이 가려진다. 보고에는 기준값과 함께 범위를 적는다(“기준 311명, 가정에 따라 52~1,038명”). 둘째, 결과를 크게 움직이는 가정이 무엇인지 보인다. 이 계산에서는 두 가정이 모두 결과에 비례하므로 영향이 같지만, 실제로는 협력 학교 수는 운영 계획으로 정할 수 있고 채택률은 사용자에게 달려 있다. 사용자에게 달린 가정(채택률)이 먼저 확인할 대상이다. 5장의 설문에서 사용 의향을 묻는 까닭이 여기에 있다.</p>
+<p>민감도의 범위를 보고에 넣을 때도 기호 규칙은 같다. 52와 1,038은 출처 수치와 가정으로 계산한 값이므로 문장에 “계산”을 넣고 사용한 가정의 기호를 단다.</p>
+<pre class="text"><code>상향식 SOM은 기준 311명이고, 협력 학교 1~5개교와 채택률 5~20%의 범위에서 52~1,038명이다(계산) [가정 A2] [가정 A3].</code></pre>
+<ul>
+<li><span class="check-badge">확인 13</span> 위 명령의 출력 가운데 학교 수 3, 채택률 10%의 칸이 4-2절의 상향식 결과(311)와 같다.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="경쟁-서비스의-분류와-기능-비교" class="level2">
+<h2 class="anchored" data-anchor-id="경쟁-서비스의-분류와-기능-비교">5. 경쟁 서비스의 분류와 기능 비교</h2>
+<section id="직접-경쟁-간접-경쟁-대체재" class="level3">
+<h3 class="anchored" data-anchor-id="직접-경쟁-간접-경쟁-대체재">5-1. 직접 경쟁, 간접 경쟁, 대체재</h3>
+<p>경쟁 서비스는 “같은 사용자의 같은 업무를 무엇이 대신 해결하는가”로 찾는다. 이름이 비슷한 서비스만 찾으면 실제 경쟁자를 놓친다. 취업 준비생이 마감일을 챙기는 데 쓰는 가장 흔한 도구는 취업 사이트가 아니라 휴대전화의 메모나 표 계산 프로그램일 수 있다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>분류</th>
+<th>정의</th>
+<th>공통 사례의 예</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>직접 경쟁</td>
+<td>같은 사용자의 같은 업무를 같은 방식(온라인 서비스)으로 지원한다</td>
+<td>취업 준비생 대상 채용 정보·자기소개서 서비스 (사람인, 잡코리아, 링커리어, 자소설닷컴)</td>
+</tr>
+<tr class="even">
+<td>간접 경쟁</td>
+<td>같은 업무를 지원하지만 중심 사용자나 중심 업무가 다르다</td>
+<td>공공 고용 서비스 전반을 다루는 고용24, 이직 콘텐츠가 첫 화면에 많은 원티드</td>
+</tr>
+<tr class="odd">
+<td>대체재</td>
+<td>다른 방식으로 같은 업무를 해결한다</td>
+<td>학교 취업지원실의 상담, 표 계산 프로그램과 메모, 범용 AI 대화 서비스, 스터디 모임</td>
+</tr>
+</tbody>
+</table>
+<p>분류는 판단이다. 판단에는 근거를 붙인다. 예를 들어 원티드를 간접 경쟁으로 둔 근거는 2026-11-14의 첫 화면에 “이직 로드맵” 같은 콘텐츠와 이직·연봉 질문을 멘토에게 묻는 안내가 보였다는 관찰이다 [K6]. 이 관찰이 “원티드는 신입 공고가 없다”는 뜻은 아니다. 관찰한 것과 추정한 것을 구분해 적는다.</p>
+<p>대체재는 비교표에 넣지 않더라도 보고에는 적는다. 대체재가 강하면 새 서비스가 들어갈 자리가 좁다. 공통 사례의 경우 “범용 AI 대화 서비스로 자기소개서를 고친다”는 대체재가 있으므로, 공통 사례의 자기소개서 피드백은 범용 대화 서비스와 무엇이 다른지(공고와의 대조, 일정과의 연결)를 가치 제안에서 밝혀야 한다.</p>
+<ul>
+<li><span class="check-badge">확인 14</span> 경쟁서비스_비교표.md 4절의 분류 표에 직접 경쟁, 간접 경쟁, 대체재 세 행이 있고, 각 행의 「분류의 근거」 칸이 채워져 있다.</li>
+</ul>
+</section>
+<section id="비교할-서비스-고르기" class="level3">
+<h3 class="anchored" data-anchor-id="비교할-서비스-고르기">5-2. 비교할 서비스 고르기</h3>
+<p>NN/g의 경쟁 사용성 평가 안내는 비교 대상을 2~4개로 두고, 후보가 많으면 비슷한 기능, 좋은 사용자 경험, 혁신적인 설계, 시장에서의 비중, 사용자가 실제로 함께 비교할 가능성으로 먼저 거르라고 권한다 [M3]. 또 내 서비스보다 못한 서비스만이 아니라 나은 서비스도 넣으라고 한다 [M3]. 못한 서비스만 보면 배울 것이 적다.</p>
+<p>이 장은 사용성 평가가 아니라 기능 비교를 하므로 다섯 개를 고른다. 기능 비교는 사용자 과업을 직접 시켜 보는 평가보다 서비스당 시간이 적게 들기 때문이다. 공통 사례의 다섯 서비스와 고른 까닭은 다음과 같다.</p>
+<ul>
+<li>사람인 [K1]: 첫 화면에 신입·인턴 메뉴와 AI 기능 메뉴가 함께 있다.</li>
+<li>잡코리아 [K2]: 공채 정보와 신입·인턴 메뉴가 첫 화면에 있다.</li>
+<li>링커리어 [K3]: 대외활동·공모전·자기소개서 메뉴가 중심이다.</li>
+<li>자소설닷컴 [K4]: 채용달력과 자기소개서 메뉴가 첫 화면에 있다.</li>
+<li>고용24 [K5]: 고용노동부의 공공 고용 서비스이며, 취업지원 메뉴 아래 「우리학교 취업지원실」이 있다.</li>
+</ul>
+<p>이 다섯 개는 공통 사례의 기준 선택이다. 수업 시점에 서비스가 바뀌었으면 같은 기준으로 바꾸어 고르고, 고른 까닭을 비교표 4절의 「분류의 근거」에 적는다.</p>
+</section>
+<section id="화면에서-기능-목록-뽑기" class="level3">
+<h3 class="anchored" data-anchor-id="화면에서-기능-목록-뽑기">5-3. 화면에서 기능 목록 뽑기</h3>
+<p>경쟁 서비스의 기능을 아는 가장 확실한 방법은 그 서비스의 화면을 직접 보는 것이다. 보도 기사나 블로그의 소개는 오래되었거나 과장되었을 수 있다. 화면을 관찰해 구조와 기능을 문서로 되살리는 일이 <strong>리버스 엔지니어링</strong>(reverse engineering)이고, 기능 목록은 그 첫 단계다. 6장은 여기서 한 걸음 더 나아가, 한 화면의 정보 항목과 조작과 규칙을 명세로 복원하고 그 명세만으로 다시 만들어 원본과 비교한다.</p>
+<p>화면에서 기능을 뽑는 절차는 네 단계다.</p>
+<ol type="1">
+<li><strong>화면을 고정한다.</strong> 어느 주소를, 어떤 상태(로그인 여부, PC 또는 모바일)로, 언제 보았는지 적는다. 같은 서비스라도 로그인 전후와 기기에 따라 화면이 다르다.</li>
+<li><strong>메뉴를 그대로 옮긴다.</strong> 메뉴의 이름을 바꾸지 않고 화면의 표기 그대로 적는다. “채용달력”, “공고달력”, “채용 캘린더”는 서비스마다 다른 이름이다. 옮기는 단계에서 이름을 통일하면 무엇을 보았는지 되짚을 수 없다.</li>
+<li><strong>기능을 사용자 업무로 묶는다.</strong> 옮긴 메뉴를 사용자가 하려는 일(공고 찾기, 일정 챙기기, 서류 쓰기, 회사 알아보기, 물어보기)로 묶는다. 비교표의 행은 메뉴 이름이 아니라 이 업무의 이름이다.</li>
+<li><strong>관찰과 추정을 나눈다.</strong> 화면에 글자로 보인 것만 「확인됨」으로 적는다. 메뉴 이름으로 기능을 짐작한 것(예: 「취업톡톡」은 커뮤니티일 것이다)은 비고에 “메뉴 이름으로 판단”이라고 적는다.</li>
+</ol>
+<pre class="mermaid">flowchart LR
+    A["화면 고정&lt;br/&gt;주소·상태·날짜"] --&gt; B["메뉴 옮기기&lt;br/&gt;표기 그대로"]
+    B --&gt; C["업무로 묶기&lt;br/&gt;비교표의 행"]
+    C --&gt; D["관찰과 추정 나누기&lt;br/&gt;○ △ -"]
+</pre>
+<p>2026-11-14에 사람인의 첫 화면을 관찰하여 메뉴를 옮긴 예다 [K1].</p>
+<pre class="text"><code>채용정보: 지역별, 직업별, 역세권별, HOT100, 헤드헌팅, 채용관, 큐레이션, 파견대행, 외국인 채용, 중장년 채용
+신입·인턴: 신입·인턴 홈, 실시간 공고, 채용달력, 신입연봉, 자소서
+기업·연봉: 기업리뷰, 연봉정보, 면접후기, 기업큐레이션
+커뮤니티: 커리어피드 홈, 현직자 인터뷰
+취업 자료: 멘토링매치, 자소서 진단, 취업TOOL, 이력서 양식, HR매거진
+그 밖의 기능: AI 서류합격 코칭, Ai매치, Ai 모의면접, 인적성검사 안내, 연봉계산기, 글자수세기
+MY: 이력서 관리, 스크랩, 지원현황, 최근본</code></pre>
+<p>이 목록에서 「채용달력」은 “일정 챙기기”, 「자소서 진단」과 「AI 서류합격 코칭」은 “서류 쓰기”, 「기업리뷰」와 「연봉정보」는 “회사 알아보기”로 묶인다.</p>
+<ul>
+<li><span class="check-badge">확인 15</span> 경쟁서비스_비교표.md 2절의 근거 표에 다섯 서비스의 관찰 주소, 확인 날짜, 관찰한 메뉴가 화면 표기 그대로 적혀 있다.</li>
+</ul>
+</section>
+<section id="기능-비교표-만드는-법" class="level3">
+<h3 class="anchored" data-anchor-id="기능-비교표-만드는-법">5-4. 기능 비교표 만드는 법</h3>
+<p>비교표의 칸에 무엇을 쓰는지가 비교표의 품질을 정한다. 이 장의 비교표는 세 기호만 쓴다.</p>
+<ul>
+<li>○(확인됨): 메뉴나 화면에서 그 기능을 글자로 확인하였다.</li>
+<li>△(일부·조건부): 기능의 일부만 있거나(작성 가이드는 있으나 작성 도구는 없다), 앱에서만 된다는 안내가 있다. 조건을 비고에 쓴다.</li>
+<li>-(확인되지 않음): 관찰한 범위에서 보지 못하였다.</li>
+</ul>
+<p>「-」를 “없음”으로 읽으면 안 된다. 첫 화면에서 보지 못한 기능이 로그인 뒤나 앱에 있을 수 있다. 「×(없음)」를 쓰려면 없다는 것을 확인해야 하는데, 공개 화면만으로는 그것을 확인하기 어렵다. 경쟁 서비스를 비방하지 않고 사실만 적는 방법이기도 하다.</p>
+<p>다섯 서비스의 첫 화면과 전체 메뉴를 2026-11-14에 관찰해 만든 비교표에서 9행을 뽑은 것이다 [K1]~[K5]. 교재의 견본 비교표는 16행이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>기능 (사용자 업무 기준)</th>
+<th>사람인</th>
+<th>잡코리아</th>
+<th>링커리어</th>
+<th>자소설닷컴</th>
+<th>고용24</th>
+<th>비고</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>채용 공고 검색</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>채용 일정 달력</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>채용달력, 이번 달 공채 일정, 공고달력, 채용달력, 채용 캘린더</td>
+</tr>
+<tr class="odd">
+<td>이력서 작성·관리</td>
+<td>○</td>
+<td>-</td>
+<td>○</td>
+<td>-</td>
+<td>○</td>
+<td>잡코리아는 첫 화면 메뉴에서 관찰되지 않았다</td>
+</tr>
+<tr class="even">
+<td>자기소개서 작성 도구</td>
+<td>○</td>
+<td>-</td>
+<td>○</td>
+<td>○</td>
+<td>△</td>
+<td>고용24는 작성 가이드와 관리 메뉴</td>
+</tr>
+<tr class="odd">
+<td>AI 서류·자기소개서 코칭</td>
+<td>○</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>사람인 「AI 서류합격 코칭」</td>
+</tr>
+<tr class="even">
+<td>AI 공고 추천</td>
+<td>○</td>
+<td>○</td>
+<td>-</td>
+<td>△</td>
+<td>○</td>
+<td>자소설닷컴은 관심 기반 추천(AI 표기 없음)</td>
+</tr>
+<tr class="odd">
+<td>기업 정보·리뷰</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>지원 현황 관리</td>
+<td>○</td>
+<td>-</td>
+<td>○</td>
+<td>-</td>
+<td>○</td>
+<td>고용24 「알선/입사지원 내역」</td>
+</tr>
+<tr class="odd">
+<td>직업훈련·공공 지원 제도 연계</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>○</td>
+<td>국민내일배움카드, 국민취업지원제도</td>
+</tr>
+</tbody>
+</table>
+<p>표를 읽는 법도 정해 둔다. 모든 서비스가 ○인 행(공고 검색, 일정 달력, 기업 정보)은 공통 사례가 갖추어야 하지만 차별점은 되지 못하는 기능이다. 한두 서비스만 ○인 행(AI 코칭, 공공 지원 제도)은 차별점의 후보이거나, 수요가 작아 다른 서비스가 넣지 않은 기능이다. 어느 쪽인지는 비교표만으로 알 수 없고, 5장의 사용자 조사로 확인한다.</p>
+<p>잡코리아의 이력서 칸이 「-」인 것은 관찰 범위의 한계를 보여 준다. 대형 채용 서비스에 이력서 기능이 없다고 보기는 어렵다. 그러나 이 장의 규칙은 “첫 화면과 전체 메뉴에서 글자로 확인한 것”이므로 「-」로 둔다. 이런 칸은 비고에 “첫 화면 메뉴에서 관찰되지 않았다”고 적어, 읽는 사람이 없다는 뜻으로 오해하지 않게 한다. 관찰 범위를 넓히면(예: 6장에서 한 서비스의 하위 화면까지 관찰) 칸의 값이 바뀔 수 있다.</p>
+</section>
+<section id="기능-비교의-함정" class="level3">
+<h3 class="anchored" data-anchor-id="기능-비교의-함정">5-5. 기능 비교의 함정</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>함정</th>
+<th>설명</th>
+<th>피하는 법</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>메뉴가 있다 = 쓸 만하다</td>
+<td>메뉴의 존재는 기능의 품질을 말하지 않는다</td>
+<td>품질은 13장의 사용성 평가 방법으로 따로 본다. 이 장의 비교표는 존재만 적는다</td>
+</tr>
+<tr class="even">
+<td>이름으로 같은 기능이라 판단</td>
+<td>“AI 추천”이 서비스마다 하는 일이 다를 수 있다</td>
+<td>비고에 화면의 표기를 그대로 남긴다</td>
+</tr>
+<tr class="odd">
+<td>이기는 서비스를 정하는 표</td>
+<td>비교표를 점수 경쟁으로 쓰면 ○가 많은 서비스를 따라 만들게 된다</td>
+<td>NN/g는 경쟁 평가의 목적이 내 설계를 개선하는 것이며, 경쟁자를 베끼지 말고 차별화할 기회를 찾으라고 한다 [M3]</td>
+</tr>
+<tr class="even">
+<td>오래된 관찰</td>
+<td>서비스는 메뉴를 자주 바꾼다</td>
+<td>관찰 날짜를 적고, 수업 시점에 다시 관찰한다</td>
+</tr>
+<tr class="odd">
+<td>상표의 과용</td>
+<td>서비스 이름과 화면을 보고서 밖에서 쓰거나 평가를 덧붙인다</td>
+<td>상표는 사실을 서술하는 범위에서만 쓰고, 확인되지 않은 주장을 쓰지 않는다</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><span class="check-badge">확인 16</span> 경쟁서비스_비교표.md의 첫 번째 표에 서비스 열이 5개 이상, 기능 행이 10개 이상 있고, 모든 칸이 ○, △, - 가운데 하나다.</li>
+</ul>
+</section>
+<section id="화면-단위의-관찰-6장으로" class="level3">
+<h3 class="anchored" data-anchor-id="화면-단위의-관찰-6장으로">5-6. 화면 단위의 관찰: 6장으로</h3>
+<p>비교표는 서비스 다섯 개를 메뉴 수준에서 넓게 본 결과다. 6장의 리버스 엔지니어링은 반대로 화면 하나를 깊게 본다. 6장의 대상은 공공 채용 공고 목록 화면 하나이고, 그 화면의 정보 항목(무엇이 보이는가), 조작(무엇을 할 수 있는가), 규칙(정렬, 거르기, 쪽 나누기)을 문장으로 복원한다. 비교표에서 그 화면을 고르는 근거를 이 장에서 남긴다.</p>
+<p>화면 하나를 관찰한 기록은 다음 형식을 쓴다. 6장의 구조 분석 양식과 같은 칸이다.</p>
+<pre class="text"><code>화면: 「서비스 이름」 「화면 이름」   주소: 「」   관찰 날짜: 「YYYY-MM-DD」   상태: 로그인 안 함, PC
+정보 항목: 「목록 한 행에 보이는 항목들」                      [관찰]
+조작:      「검색, 거르기, 정렬, 쪽 이동 등 화면의 단추와 입력」  [관찰]
+규칙:      「기본 정렬 순서, 한 쪽의 행 수 등」                  [관찰 또는 추정]
+화면 뒤:   「서버가 하는 일로 보이는 것」                        [추정]</code></pre>
+<p>마지막 칸이 리버스 엔지니어링의 어려운 부분이다. 화면 뒤의 처리(예: 마감된 공고를 목록에서 빼는 규칙)는 화면에 글자로 나오지 않으므로 언제나 추정이다. 추정에는 [추정]을 붙여, 6장에서 명세로 옮길 때 확인할 목록으로 쓴다.</p>
+<p>이 장의 범위에서 화면 하나를 깊게 관찰할 필요는 없다. 다만 비교표를 만들며 “이 화면은 6장에서 볼 만하다”고 판단한 화면이 있으면 비교표의 3절 「관찰에서 읽은 것」에 한 줄로 남긴다. 판단의 기준은 셋이다. 공통 사례의 핵심 업무(공고 찾기, 일정 챙기기)를 다루는 화면인가. 로그인 없이 볼 수 있는가. 화면의 조작이 다섯 개 이하로 단순한가.</p>
+<p>Claude Code에 화면 하나의 관찰 초안을 맡기는 프롬프트는 다음과 같다. 6장에서 같은 형식을 다시 쓴다.</p>
+<div class="code-label where-claude">
+<span>Claude Code</span>
+</div>
+<pre class="text"><code>「주소」 페이지 하나를 웹 페이지 읽기 도구로 읽고, 위 화면 관찰 기록의 형식으로 정리하라.
+정보 항목과 조작은 페이지에 글자로 나타난 것만 [관찰]로 적는다. 페이지에서 알 수 없는 처리는 [추정]을 붙이고 왜 그렇게 추정했는지 한 줄로 적는다.
+페이지가 스크립트로 그려져 내용을 읽지 못하면 읽지 못했다고 보고하라. 파일은 만들지 말고 화면에 출력만 하라.</code></pre>
+<ul>
+<li><span class="check-badge">확인 17</span> 경쟁서비스_비교표.md 3절에 6장에서 깊게 관찰할 만한 화면 하나가 이름과 주소로 적혀 있고, 위의 세 기준 가운데 몇 개를 충족하는지 적혀 있다.</li>
+</ul>
+</section>
+<section id="경쟁-서비스-조사의-예절" class="level3">
+<h3 class="anchored" data-anchor-id="경쟁-서비스-조사의-예절">5-7. 경쟁 서비스 조사의 예절</h3>
+<p>경쟁 서비스는 남의 서비스다. 관찰하는 방법에도 지킬 선이 있다.</p>
+<ol type="1">
+<li><strong>공개된 화면만 본다.</strong> 이 장의 관찰은 로그인하지 않은 상태에서 누구나 볼 수 있는 화면으로 한정한다. 관찰을 위해 계정을 만들거나 유료 기능을 결제하지 않는다. 로그인 뒤의 기능이 꼭 필요하면 학습자가 평소 쓰는 자기 계정으로 보되, 화면에 나온 다른 사람의 정보(지원자 수, 댓글 작성자 등)를 기록에 옮기지 않는다.</li>
+<li><strong>한 번에 한 페이지씩 읽는다.</strong> Claude Code의 웹 페이지 읽기 도구는 한 번에 주소 하나를 읽는다. 이 장의 관찰에는 서비스마다 첫 화면 하나면 충분하다. 공고 목록을 대량으로 긁어 모으는 프로그램을 만들거나 AI에게 그런 수집을 시키지 않는다. 서비스마다 이용약관이 자동 수집을 제한할 수 있고, 수집한 공고와 게시글에는 다른 사람의 저작권과 개인 정보가 섞여 있다.</li>
+<li><strong>사실만 쓴다.</strong> 비교표와 보고에는 관찰한 사실(메뉴의 이름, 기능의 유무)만 쓴다. “불편하다”, “광고가 많아 쓰기 싫다” 같은 평가는 평가 방법(13장의 휴리스틱 평가나 사용성 테스트)과 결과가 없으면 쓰지 않는다. 서비스를 깎아내리는 문장은 사실이어도 조사 보고의 목적(내 서비스의 방향을 정하는 것)에 보탬이 되지 않는다.</li>
+<li><strong>상표는 서술에만 쓴다.</strong> 서비스 이름은 무엇을 관찰했는지 밝히기 위해 쓴다. 공통 사례의 이름, 화면, 홍보 문구에 다른 서비스의 이름이나 로고를 쓰지 않는다.</li>
+<li><strong>화면을 그대로 옮기지 않는다.</strong> 화면 캡처는 수업 안에서 관찰 근거로만 쓰고, 공개 저장소에 올리지 않는다. 비교표의 근거는 메뉴 이름(짧은 사실)으로 충분하다.</li>
+</ol>
+<ul>
+<li><span class="check-badge">확인 18</span> 경쟁서비스_비교표.md와 시장조사.md에 경쟁 서비스에 대한 평가 문장(관찰한 사실이 아닌 좋고 나쁨의 판단)이 없다. 있으면 관찰한 사실로 바꾸거나 지운다.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="포지셔닝-맵" class="level2">
+<h2 class="anchored" data-anchor-id="포지셔닝-맵">6. 포지셔닝 맵</h2>
+<section id="포지셔닝" class="level3">
+<h3 class="anchored" data-anchor-id="포지셔닝">6-1. 포지셔닝</h3>
+<p><strong>포지셔닝</strong>(positioning)은 사용자가 한 서비스를 경쟁 서비스와 견주어 마음속 어디에 두는가이다. 이 개념은 알 리스(Al Ries)와 잭 트라우트(Jack Trout)가 1981년의 책 『Positioning: The Battle for Your Mind』로 널리 알렸다 [M8]. 포지셔닝 맵(인식 지도, perceptual map)은 사용자에게 중요한 두 속성을 두 축으로 두고, 서비스들이 그 평면의 어디에 있는지를 점으로 그린 그림이다 [M8]. 그림에서 붐비는 자리와 비어 있는 자리가 보인다.</p>
+<p>교과서적인 인식 지도는 사용자 설문으로 그린다. 응답자가 각 서비스를 두 속성에 대해 평가하고, 평균을 점으로 찍는다 [M8]. 이 장은 아직 사용자 조사 전이므로 설문 대신 비교표의 관찰을 정해진 규칙으로 점수화해 그린다. 그러므로 이 장의 그림은 “사용자가 어떻게 보는가”가 아니라 “기능으로 보면 어디에 있는가”이다. 이 차이를 그림 위에 적는다.</p>
+</section>
+<section id="축-고르기" class="level3">
+<h3 class="anchored" data-anchor-id="축-고르기">6-2. 축 고르기</h3>
+<p>축을 고르는 기준은 셋이다. 마케팅 강사 Geoff Fripp의 안내는 실제로 선택을 가르는 속성(결정 속성)을 축으로 고르고, 사용자가 함께 움직인다고 여기는 두 속성(대표적으로 가격과 품질)을 한 그림에 두지 말고, 한 쌍의 축에 기대지 말고 여러 쌍으로 그려 보라고 권한다 [M9].</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>후보 축</th>
+<th>결정 속성인가</th>
+<th>다른 축과 독립인가</th>
+<th>비교표에서 점수를 낼 수 있는가</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>대상의 범위 (전 연령 → 전문대학 졸업 학년)</td>
+<td>그렇다. 공통 사례의 대상 정의와 같다</td>
+<td>지원 방식과 독립이다</td>
+<td>메뉴 구성으로 판단할 수 있다</td>
+</tr>
+<tr class="even">
+<td>지원의 방식 (정보 제공 → 실행 지원)</td>
+<td>그렇다. 공고를 보여 주는 것과 지원을 끝까지 돕는 것은 다른 업무다</td>
+<td>대상 범위와 독립이다</td>
+<td>실행 지원 행의 ○ 수로 계산할 수 있다</td>
+</tr>
+<tr class="odd">
+<td>가격 (무료 → 유료)</td>
+<td>학생에게는 중요하다</td>
+<td>다섯 서비스의 기본 기능이 모두 무료로 보여 차이가 작다</td>
+<td>유료 범위를 공개 화면으로 확인하기 어렵다</td>
+</tr>
+<tr class="even">
+<td>공고 수 (적음 → 많음)</td>
+<td>중요할 수 있다</td>
+<td>서비스 규모와 함께 움직인다</td>
+<td>공고 수를 공개 화면으로 비교하기 어렵다</td>
+</tr>
+</tbody>
+</table>
+<p>이 장은 앞의 두 축을 쓴다. 남은 두 후보는 “확인하기 어렵다”는 이유로 뺐으므로, 보고의 한계 절에 “가격과 공고 수 축은 그리지 않았다”고 적는다.</p>
+</section>
+<section id="점수-규칙과-그림" class="level3">
+<h3 class="anchored" data-anchor-id="점수-규칙과-그림">6-3. 점수 규칙과 그림</h3>
+<p>축의 값을 감으로 정하면 그림이 그리는 사람의 의견이 된다. 점수 규칙을 먼저 정하고, 규칙에 비교표를 넣어 점수를 계산한다. 규칙이 있으면 다른 사람이 같은 비교표로 같은 그림을 다시 그릴 수 있다.</p>
+<ul>
+<li>가로(대상의 범위): 0 전 국민 고용 서비스, 0.25 전 연령 대상이며 신입·인턴 메뉴가 있음, 0.5 대학생 활동(대외활동, 공모전 등)이 메뉴의 중심, 0.75 특정 학교 유형이나 학년 전용 메뉴가 있음, 1 전문대학 졸업 학년 전용.</li>
+<li>세로(지원의 방식): 비교표의 실행 지원 6행(공고 스크랩·마감 알림, 이력서 작성·관리, 자기소개서 작성 도구, AI 서류·자기소개서 코칭, AI 모의면접, 지원 현황 관리)에서 ○ 1점, △ 0.5점의 합을 6으로 나눈 값.</li>
+</ul>
+<p>세로 점수는 계산이므로 터미널에서 확인할 수 있다. 견본 비교표의 실행 지원 6행을 서비스별로 옮겨 계산한다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-</span> <span class="op">&lt;&lt;'EOF'</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="st">score = {"○": 1, "△": 0.5, "-": 0}</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="st">rows = {  # 스크랩·알림, 이력서, 자기소개서, AI 코칭, AI 모의면접, 지원 현황</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="st">    "사람인":     "○ ○ ○ ○ ○ ○",</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="st">    "잡코리아":   "○ - - - - -",</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="st">    "링커리어":   "○ ○ ○ - - ○",</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="st">    "자소설닷컴": "- - ○ - - -",</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="st">    "고용24":     "- ○ △ - - ○",</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="st">for name, marks in rows.items():</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a><span class="st">    print(name, round(sum(score[m] for m in marks.split()) / 6, 2))</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a><span class="op">EOF</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>사람인 1.0
+잡코리아 0.17
+링커리어 0.67
+자소설닷컴 0.17
+고용24 0.42</code></pre>
+<p>이 점수를 mermaid의 사분면 그림(<code>quadrantChart</code>)으로 그린다. 점의 좌표는 0과 1 사이의 수이고, <code>quadrant-1</code>은 오른쪽 위, <code>quadrant-2</code>는 왼쪽 위, <code>quadrant-3</code>은 왼쪽 아래, <code>quadrant-4</code>는 오른쪽 아래다 [M10].</p>
+<div class="code-label where-server">
+<span>파일: ch04/포지셔닝.md 의 그림 부분</span>
+</div>
+<pre class="mermaid">quadrantChart
+    title 취업 준비 지원 서비스의 포지셔닝 (2026-11-14 관찰 기준)
+    x-axis 전 연령 대상 --&gt; 전문대학 졸업 학년 전용
+    y-axis 정보 제공 중심 --&gt; 실행 지원 중심
+    quadrant-1 대상 특화와 실행 지원
+    quadrant-2 범용 실행 지원
+    quadrant-3 범용 정보 제공
+    quadrant-4 대상 특화 정보 제공
+    사람인: [0.25, 1]
+    잡코리아: [0.25, 0.17]
+    링커리어: [0.5, 0.67]
+    자소설닷컴: [0.5, 0.17]
+    고용24: [0.05, 0.42]
+    공통 사례 목표: [0.9, 0.85]
+</pre>
+<p>파이썬은 사람인의 점수를 <code>1.0</code>으로 출력했지만 그림에는 <code>1</code>로 적었다. 2026-11-14에 mermaid 11.17.2의 문법 검사기로 확인한 결과, <code>quadrantChart</code>의 좌표에 <code>1.0</code>, <code>1.00</code>, <code>.5</code>를 쓰면 문법 오류가 나고 <code>1</code>, <code>0.5</code>, <code>0.999</code>는 통과하였다. 계산 결과를 그림으로 옮길 때 이 표기를 고친다. 고용24의 가로 점수 0은 축 위에 겹쳐 보이지 않으므로 0.05에 그리고, 그렇게 했다는 것을 그림 아래에 적는다. 공통 사례의 점은 관찰이 아니라 목표다.</p>
+<ul>
+<li><span class="check-badge">확인 19</span> <code>python3 ~/kits/Service_04주차/도구/check_ch04.py all ch04</code>의 출력에서 「3. 포지셔닝.md」 줄이 <code>[통과]</code>이고 <code>점 6개</code>가 보인다. 그림 자체는 10절에서 푸시한 뒤 GitHub 저장소 화면에서 본다. GitHub는 Markdown 파일의 mermaid 블록을 그림으로 그린다 [G1]. 그림 대신 오류가 보이면 GitHub가 쓰는 mermaid의 판을 <code>info</code> 한 줄짜리 mermaid 블록으로 확인한다 [G1].</li>
+</ul>
+</section>
+<section id="그림-읽기" class="level3">
+<h3 class="anchored" data-anchor-id="그림-읽기">6-4. 그림 읽기</h3>
+<p>그림의 오른쪽 위(대상 특화와 실행 지원)에는 관찰된 서비스가 없다. 이 빈 자리를 곧바로 기회로 읽으면 안 된다. 빈 자리는 세 가지로 해석할 수 있다. 아직 아무도 채우지 않은 수요일 수 있고, 수요가 없어서 아무도 들어가지 않은 자리일 수 있고, 관찰 범위 밖(로그인 뒤 기능, 학교 안의 시스템)에 이미 있는 것일 수 있다. 셋 가운데 무엇인지는 그림이 말해 주지 않는다. Fripp의 안내도 오른쪽 위가 언제나 좋은 자리라고 가정하지 말고 그림 하나를 분석의 전부로 삼지 말라고 한다 [M9].</p>
+<p>또 하나 읽을 것은 축 하나의 경쟁이다. 세로축(실행 지원)에서는 사람인이 가장 높다. 공통 사례가 실행 지원만으로 차별화하려 하면 이미 그 자리에 있는 서비스와 정면으로 겨룬다. 공통 사례의 차별점은 가로축(대상 특화)과 세로축을 함께 갖추는 데 있다. 이 해석이 다음 절의 가치 제안으로 이어진다.</p>
+<ul>
+<li><span class="check-badge">확인 20</span> 포지셔닝.md 4절에 빈 자리에 대한 해석이 있고, 그 해석을 5장에서 확인하겠다는 문장이 있다.</li>
+</ul>
+</section>
+<section id="축을-바꾸어-다시-그리기" class="level3">
+<h3 class="anchored" data-anchor-id="축을-바꾸어-다시-그리기">6-5. 축을 바꾸어 다시 그리기</h3>
+<p>한 쌍의 축에 기대지 말고 여러 쌍으로 그려 보라는 권고를 실제로 해 본다 [M9]. 가로축을 “AI 기능의 비중”으로 바꾼다. 비교표의 AI 3행(AI 서류·자기소개서 코칭, AI 공고 추천, AI 모의면접)에서 ○ 1점, △ 0.5점의 합을 3으로 나눈다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-</span> <span class="op">&lt;&lt;'EOF'</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="st">score = {"○": 1, "△": 0.5, "-": 0}</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="st">ai = {  # AI 코칭, AI 공고 추천, AI 모의면접</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="st">    "사람인": "○ ○ ○", "잡코리아": "- ○ -", "링커리어": "- - -",</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="st">    "자소설닷컴": "- △ -", "고용24": "- ○ -",</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="st">for name, marks in ai.items():</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="st">    print(name, round(sum(score[m] for m in marks.split()) / 3, 2))</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="op">EOF</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>사람인 1.0
+잡코리아 0.33
+링커리어 0.0
+자소설닷컴 0.17
+고용24 0.33</code></pre>
+<pre class="mermaid">quadrantChart
+    title AI 기능의 비중과 실행 지원 (2026-11-14 관찰 기준)
+    x-axis AI 기능 적음 --&gt; AI 기능 많음
+    y-axis 정보 제공 중심 --&gt; 실행 지원 중심
+    사람인: [0.97, 0.97]
+    잡코리아: [0.33, 0.17]
+    링커리어: [0.03, 0.67]
+    자소설닷컴: [0.17, 0.17]
+    고용24: [0.33, 0.42]
+</pre>
+<p>두 번째 그림에서 사람인은 두 축 모두 가장 높고, 나머지는 대체로 왼쪽 아래에 모인다. 이 그림이 새로 알려 주는 것은 많지 않다. AI 기능이 많은 서비스가 실행 지원 기능도 많은 경향이 있어, 두 축이 어느 정도 함께 움직이기 때문이다. 함께 움직이는 두 속성을 한 그림에 두면 같은 생각을 두 번 그리게 된다는 권고가 이것이다 [M9]. 그래서 이 장은 첫 번째 그림(대상의 범위와 지원의 방식)을 보고에 쓴다. 두 번째 그림은 버리지 말고 포지셔닝.md의 끝에 “검토했으나 쓰지 않은 축”으로 남긴다. 다른 사람이 같은 축을 다시 검토하는 수고를 줄인다.</p>
+<p>점을 그림의 모서리(0이나 1)에 두면 축 위에 겹쳐 보이지 않으므로 0.03과 0.97로 조금 안쪽에 그렸다. 첫 번째 그림의 고용24(0.05)와 같은 처리이고, 점수 표에는 원래 값을 둔다.</p>
+<hr>
+</section>
+</section>
+<section id="가치-제안" class="level2">
+<h2 class="anchored" data-anchor-id="가치-제안">7. 가치 제안</h2>
+<section id="가치-제안-캔버스" class="level3">
+<h3 class="anchored" data-anchor-id="가치-제안-캔버스">7-1. 가치 제안 캔버스</h3>
+<p><strong>가치 제안</strong>(value proposition)은 “이 서비스가 누구에게 어떤 가치를 주는가”를 한 문장으로 밝힌 것이다. Strategyzer의 가치 제안 캔버스는 이를 두 부분으로 나누어 쓴다 [M4]. 오른쪽은 한 고객 세그먼트의 <strong>고객 프로필</strong>, 왼쪽은 그 고객에게 주는 <strong>가치 맵</strong>이다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>부분</th>
+<th>칸</th>
+<th>뜻</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>고객 프로필</td>
+<td>고객 업무 (customer jobs)</td>
+<td>고객이 해내려는 일</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>불편 (pains)</td>
+<td>그 일을 하며 겪는 어려움, 위험, 장애물</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>이득 (gains)</td>
+<td>고객이 원하는 결과와 혜택</td>
+</tr>
+<tr class="even">
+<td>가치 맵</td>
+<td>제품·서비스 (products and services)</td>
+<td>제공하는 것</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>불편 해소 (pain relievers)</td>
+<td>제공하는 것이 어떤 불편을 줄이는가</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>이득 창출 (gain creators)</td>
+<td>제공하는 것이 어떤 이득을 만드는가</td>
+</tr>
+</tbody>
+</table>
+<p>고객 업무는 세 종류로 나눈다 [M6]. <strong>기능적 업무</strong>는 실제로 해내야 하는 일(마감 전에 서류를 낸다)이다. <strong>사회적 업무</strong>는 다른 사람에게 어떻게 보이고 싶은가(졸업 전에 취업이 정해졌다는 것을 보이고 싶다)이다. <strong>감정적 업무</strong>는 느끼고 싶은 상태(준비가 늦었다는 불안에서 벗어나고 싶다)이다. 처음 쓰는 캔버스는 기능적 업무만 적기 쉽다. 세 종류를 모두 한 줄 이상 적으면 빠진 불편과 이득을 찾는 데 도움이 된다.</p>
+<pre class="mermaid">flowchart LR
+    subgraph VM["가치 맵"]
+        PS["제품·서비스"]
+        PR["불편 해소"]
+        GC["이득 창출"]
+    end
+    subgraph CP["고객 프로필"]
+        J["고객 업무"]
+        P["불편"]
+        G["이득"]
+    end
+    PR -- 대응 --&gt; P
+    GC -- 대응 --&gt; G
+    PS -.-&gt; J
+</pre>
+</section>
+<section id="적합" class="level3">
+<h3 class="anchored" data-anchor-id="적합">7-2. 적합</h3>
+<p>가치 맵의 불편 해소와 이득 창출이 고객 프로필의 중요한 불편과 이득에 대응할 때 <strong>적합</strong>(fit)이 있다고 한다 [M6]. Strategyzer는 캔버스에 그린 적합이 고객이 확인해 주기 전까지는 주장일 뿐이므로, 그린 대응을 증거로 시험하고 고치라고 한다 [M4]. 이 장의 가치 제안이 “가설”인 까닭이다.</p>
+<p>적합을 점검하는 방법은 단순하다. 고객 프로필의 항목마다 대응하는 가치 맵 항목을 표로 잇고, 대응하지 않는 항목을 찾는다. 대응하지 않는 항목은 둘 중 하나로 처리한다. 가치 맵에 새 항목을 더하거나, 범위 밖으로 두고 그렇게 적는다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>고객 프로필 항목</th>
+<th>대응하는 가치 맵 항목</th>
+<th>상태</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>J1 공고 찾기 · P1 공고가 흩어짐 · G1 맞는 공고만 보기</td>
+<td>공고 모아보기, 전공·졸업 시기로 거르기</td>
+<td>대응함</td>
+</tr>
+<tr class="even">
+<td>J2 일정 챙기기 · P2 마감일을 놓침 · G2 이번 주 할 일</td>
+<td>지원 일정 관리</td>
+<td>대응함</td>
+</tr>
+<tr class="odd">
+<td>J3 자기소개서 고쳐 쓰기 · P4 봐 줄 사람이 없음 · G3 고칠 곳을 앎</td>
+<td>자기소개서 피드백</td>
+<td>대응함</td>
+</tr>
+<tr class="even">
+<td>J4 취업이 정해졌다는 것을 보이기 (사회적)</td>
+<td>없음</td>
+<td>대응하지 않음. 범위 밖으로 둔다</td>
+</tr>
+<tr class="odd">
+<td>J5 불안을 줄이기 (감정적) · G4 진행을 숫자로 보기</td>
+<td>진행 현황</td>
+<td>부분 대응</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="근거의-구분" class="level3">
+<h3 class="anchored" data-anchor-id="근거의-구분">7-3. 근거의 구분</h3>
+<p>캔버스의 각 항목에는 “확인 근거” 칸을 둔다. 2차 자료로 뒷받침되는 항목은 출처 기호를 적는다. 예를 들어 “공고를 찾는 일”이 중요한 업무라는 것은 취업경험자의 주된 취업경로 1위가 “신문·잡지·인터넷 등 응모”(29.9%)라는 통계로 뒷받침된다 [T3]. “마감일을 놓친다”는 불편은 이 장의 자료로 뒷받침되지 않는다. 그 칸은 비워 두고 5장의 인터뷰에서 확인할 목록에 올린다.</p>
+<p>근거 칸을 비워 두는 것이 이 양식의 핵심이다. AI에게 캔버스 초안을 맡기면 모든 칸을 그럴듯한 문장으로 채운다. 근거 칸이 모두 채워진 캔버스는 오히려 의심해야 한다.</p>
+</section>
+<section id="가치-제안-문장" class="level3">
+<h3 class="anchored" data-anchor-id="가치-제안-문장">7-4. 가치 제안 문장</h3>
+<p>캔버스의 내용을 한 문장으로 줄인다. 이 장은 다음 문형을 쓴다.</p>
+<pre class="text"><code>「대상」이 「업무」를 할 때 겪는 「불편」을 「방법」으로 줄여 「이득」을 얻게 한다. 「대안」과 달리 「차별점」.</code></pre>
+<p>공통 사례의 견본 문장이다.</p>
+<blockquote class="blockquote">
+<p>전문대학 2학년 취업 준비생이 여러 사이트에 흩어진 공고와 마감일을 챙기고 자기소개서를 고쳐 쓸 때, 공고 요약과 지원 일정과 자기소개서 피드백을 한 화면에 모아 준비 시간을 줄인다. 공고를 모아 보여 주는 서비스와 달리, 학생이 지원할 공고의 일정과 서류를 끝까지 관리하게 한다.</p>
+</blockquote>
+<p>좋은 가치 제안 문장은 다음 질문에 모두 답한다. 대상이 좁은가(전문대학 2학년). 업무와 불편이 구체적인가(흩어진 공고, 마감일, 자기소개서). 방법이 구현할 수 있는 기능인가(요약, 일정, 피드백은 9~10장에서 만든다). 차별점이 비교표와 포지셔닝 맵에 근거하는가(정보 제공 중심 서비스와의 차이). “AI로 취업을 혁신한다” 같은 문장은 넷 가운데 어느 질문에도 답하지 않는다.</p>
+<ul>
+<li><span class="check-badge">확인 21</span> 가치제안.md에 고객 업무가 기능, 사회, 감정의 세 종류로 하나 이상씩 있고, 「확인 근거」 칸이 비어 있는 항목이 5절 「5장에서 확인할 것」에 옮겨져 있다. 4절의 가치 제안 문장은 문형의 여섯 자리(대상, 업무, 불편, 방법, 이득, 대안과 차별점)를 모두 채운다.</li>
+</ul>
+</section>
+<section id="가치-맵에서-요구사항-후보로" class="level3">
+<h3 class="anchored" data-anchor-id="가치-맵에서-요구사항-후보로">7-5. 가치 맵에서 요구사항 후보로</h3>
+<p>가치 맵의 불편 해소와 이득 창출은 6장에서 요구사항의 후보가 된다. 예를 들어 불편 P2(마감일을 놓친다)를 해소하는 “지원하기로 한 공고의 마감일을 일정에 넣고 남은 날을 보여 준다”는, 6장에서 다음과 같은 요구사항 문장으로 바뀐다.</p>
+<pre class="text"><code>REQ-후보: 사용자가 공고를 「지원 예정」으로 표시하면, 시스템은 그 공고의 마감일을 지원 일정에 추가하고 마감까지 남은 날 수를 표시한다.
+근거: 가치제안.md P2 → 2-2 불편 해소 1행 (확인 근거: 5장 인터뷰에서 확인 예정)</code></pre>
+<p>이 문장의 형식(조건과 시스템의 반응)은 6장에서 EARS 문형으로 다시 다룬다. 이 장에서 기억할 것은 근거 줄이다. 요구사항 하나하나가 가치 제안의 어느 항목에서 왔는지, 그 항목이 무엇으로 확인되었는지가 이어져 있어야 한다. 근거가 「확인 예정」인 요구는 5장의 결과에 따라 바뀌거나 빠질 수 있다. 4장의 산출물이 6장의 추적표(요구사항과 근거를 잇는 표)의 출발점이 되는 까닭이다.</p>
+<hr>
+</section>
+</section>
+<section id="ai를-활용한-조사" class="level2">
+<h2 class="anchored" data-anchor-id="ai를-활용한-조사">8. AI를 활용한 조사</h2>
+<section id="claude-code의-웹-도구" class="level3">
+<h3 class="anchored" data-anchor-id="claude-code의-웹-도구">8-1. Claude Code의 웹 도구</h3>
+<p>Claude Code는 웹을 다루는 내장 도구 두 개를 가진다. 조사를 맡기기 전에 두 도구가 무엇을 하고 무엇을 하지 않는지 알아야 한다. 아래는 공식 도구 설명서의 내용이다(2026-11-14 확인, Claude Code 2.1.296) [C1].</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>항목</th>
+<th>웹 검색 (WebSearch)</th>
+<th>웹 페이지 읽기 (WebFetch)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>하는 일</td>
+<td>검색어로 검색해 결과의 제목과 주소를 돌려준다</td>
+<td>주소 하나의 페이지를 받아, 지시(프롬프트)에 따라 내용을 뽑는다</td>
+</tr>
+<tr class="even">
+<td>하지 않는 일</td>
+<td>결과 페이지를 열어 읽지 않는다. 읽으려면 WebFetch를 이어 쓴다</td>
+<td>원문 전체를 Claude에게 넘기지 않는다. 별도의 모델 호출이 뽑은 결과만 넘긴다</td>
+</tr>
+<tr class="odd">
+<td>범위 조절</td>
+<td>포함할 도메인(<code>allowed_domains</code>) 또는 뺄 도메인(<code>blocked_domains</code>)을 정할 수 있다. 둘을 한 번에 쓰지는 못한다</td>
+<td>한 번에 페이지 내용의 10만 자까지 읽는다. 더 긴 페이지는 이어서 읽는다</td>
+</tr>
+<tr class="even">
+<td>그 밖의 동작</td>
+<td>한 번의 호출이 안에서 최대 8번 검색할 수 있다. 대화형 세션 하나에 200회의 한도가 있다</td>
+<td>응답을 15분 동안 캐시한다. 다른 호스트로 넘겨주는(redirect) 주소는 따라가지 않고 새 주소를 알려 준다</td>
+</tr>
+<tr class="odd">
+<td>허용</td>
+<td>쓰기 전에 묻는다. 규칙은 도구 이름만으로 쓴다</td>
+<td>쓰기 전에 묻는다. 규칙은 <code>WebFetch(domain:example.com)</code>처럼 도메인으로 쓴다 [C2]</td>
+</tr>
+</tbody>
+</table>
+<p>조사에서 가장 중요한 줄은 WebFetch의 “하지 않는 일”이다. 설명서는 WebFetch가 설계상 손실이 있다고 밝힌다. 뽑기 지시가 Claude에게 무엇이 전달될지를 정하므로, “그 페이지에 그런 내용이 없다”는 결과는 지시가 그것을 묻지 않았다는 뜻일 수도 있다 [C1]. 같은 설명서는 가공하지 않은 페이지가 필요하면 Bash에서 <code>curl</code>을 쓰라고 한다 [C1].</p>
+<p>이 성질은 두 방향의 실수를 낳는다. 하나는 원문에 있는 수치를 AI가 “찾지 못했다”고 하는 경우다. 다른 하나는 원문의 여러 수치가 요약되는 과정에서 대상이나 기준 시점이 떨어져 나가는 경우다. 두 경우 모두 학습자가 원문을 직접 열어야 바로잡힌다.</p>
+<p>허용 질문에 「Yes, and don’t ask again」을 고르면 그 도메인의 허용 규칙이 저장소의 <code>.claude/settings.local.json</code>에 저장되고, 이후 같은 저장소에서는 묻지 않는다 [C2]. 이 파일은 개인 설정이므로 커밋하지 않는다. 2장에서 만든 <code>.gitignore</code>나 Claude Code가 설정하는 전역 제외 목록에 이 파일이 들어 있는지 확인한다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> check-ignore <span class="at">-v</span> .claude/settings.local.json <span class="kw">||</span> <span class="bu">echo</span> <span class="st">"제외 목록에 없음"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>/home/아이디/.config/git/ignore:1:**/.claude/settings.local.json   .claude/settings.local.json</code></pre>
+<p>출력의 앞부분(어느 제외 파일의 몇째 줄인가)은 학습자마다 다르다. Claude Code는 이 파일을 처음 쓸 때 전역 제외 파일에 <code>**/.claude/settings.local.json</code>을 더한다 [C4]. 아직 웹 도구를 허용한 적이 없어 파일이 만들어지지 않았으면 「제외 목록에 없음」이 나올 수 있다. 그때는 <code>.gitignore</code>에 한 줄을 더한다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-qxF</span> <span class="st">'.claude/settings.local.json'</span> .gitignore <span class="kw">||</span> <span class="bu">echo</span> <span class="st">'.claude/settings.local.json'</span> <span class="op">&gt;&gt;</span> .gitignore</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> check-ignore <span class="at">-v</span> .claude/settings.local.json</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>.gitignore:4:.claude/settings.local.json    .claude/settings.local.json</code></pre>
+<ul>
+<li><span class="check-badge">확인 22</span> <code>git check-ignore -v .claude/settings.local.json</code>이 제외 규칙 한 줄을 출력한다(출력이 없으면 아직 제외되지 않은 것이다).</li>
+</ul>
+</section>
+<section id="조사-프롬프트-설계" class="level3">
+<h3 class="anchored" data-anchor-id="조사-프롬프트-설계">8-2. 조사 프롬프트 설계</h3>
+<p>AI에게 조사를 맡기는 프롬프트는 일반 질문과 다르다. 답의 내용보다 답의 근거를 받는 것이 목적이기 때문이다. Anthropic의 환각 줄이기 안내는 기본 방법으로 셋을 든다. 모르면 모른다고 답해도 된다고 허락하기, 긴 문서에서 먼저 원문 인용을 뽑게 하기, 주장마다 인용과 출처를 달게 하고 뒷받침하는 인용을 찾지 못한 주장은 거두게 하기다 [C3]. 조사 프롬프트는 이 셋을 규칙으로 넣는다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>요소</th>
+<th>넣는 문장</th>
+<th>까닭</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>조사 질문</td>
+<td>「Q1: …」</td>
+<td>무엇을 찾는지 좁힌다</td>
+</tr>
+<tr class="even">
+<td>자료의 제한</td>
+<td>“공공 기관의 원문만 쓴다. 언론 기사, 블로그는 쓰지 않는다”</td>
+<td>2절의 자료 위계를 지시로 바꾼다</td>
+</tr>
+<tr class="odd">
+<td>기록 항목</td>
+<td>“값, 단위, 기준 시점, 대상(분모), 표 이름과 쪽, 주소, 확인 날짜”</td>
+<td>3절의 네 가지와 출처 일곱 칸을 받는다</td>
+</tr>
+<tr class="even">
+<td>원문 인용</td>
+<td>“원문에서 그 수치가 나오는 문장을 짧게 그대로 옮긴다”</td>
+<td>대조할 때 찾을 글자를 받는다</td>
+</tr>
+<tr class="odd">
+<td>모를 때</td>
+<td>“확인하지 못했으면 수치를 쓰지 말고 ’찾지 못함’이라고 적는다”</td>
+<td>빈칸을 그럴듯한 수치로 채우지 못하게 한다</td>
+</tr>
+<tr class="even">
+<td>결과의 위치</td>
+<td>“4-1절 표와 10절 출처 표의 형식으로 써 넣는다. 다른 절은 고치지 않는다”</td>
+<td>양식을 유지하고, 학습자가 쓴 부분을 보호한다</td>
+</tr>
+</tbody>
+</table>
+<p>나쁜 프롬프트와 견주어 본다.</p>
+<pre class="text"><code>전문대학생 취업 관련 시장 조사를 해서 시장조사.md에 정리해 줘.</code></pre>
+<p>이 프롬프트는 자료의 종류, 기록할 항목, 모를 때의 행동을 정하지 않았다. AI는 기사와 블로그에서 찾은 수치, 기억에서 꺼낸 수치를 섞어 문장으로 정리할 수 있다. 결과가 그럴듯할수록 오류를 찾기 어렵다. 키트의 <code>조사프롬프트_견본.md</code>의 P2가 위 표의 요소를 모두 넣은 프롬프트다. 10절에서 그대로 쓴다.</p>
+</section>
+<section id="ai-조사의-실패-유형" class="level3">
+<h3 class="anchored" data-anchor-id="ai-조사의-실패-유형">8-3. AI 조사의 실패 유형</h3>
+<p>AI의 조사 초안에서 자주 나오는 오류를 유형으로 정리한다. 유형을 알면 무엇을 확인할지가 정해진다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>유형</th>
+<th>모습</th>
+<th>찾는 법</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>출처 없는 수치</td>
+<td>“시장 규모는 약 5,000억 원”</td>
+<td>점검기의 <code>scan</code>이 기호 없는 수치를 찾는다</td>
+</tr>
+<tr class="even">
+<td>지어낸 링크</td>
+<td>그럴듯한 기관의 주소인데 열리지 않는다</td>
+<td>링크 점검에서 404 등이 나온다</td>
+</tr>
+<tr class="odd">
+<td>열리지만 내용이 없는 링크</td>
+<td>주소는 열리는데(200) 그 표나 수치가 없다</td>
+<td>주소를 직접 열어 본다. 상태 코드로는 찾지 못한다</td>
+</tr>
+<tr class="even">
+<td>기준 연도 혼동</td>
+<td>2025년 값을 2026년 값으로 쓴다</td>
+<td>원문 표에서 연도 행을 확인한다</td>
+</tr>
+<tr class="odd">
+<td>분모 혼동</td>
+<td>졸업자로 나눈 비율을 취업률이라 쓴다</td>
+<td>원문의 정의를 읽고 재계산한다</td>
+</tr>
+<tr class="even">
+<td>정의 혼동</td>
+<td>재적학생을 재학생이라 쓴다</td>
+<td>표의 주석을 읽는다</td>
+</tr>
+<tr class="odd">
+<td>대상 바꿔치기</td>
+<td>미취업자 중의 비율을 졸업자 중의 비율로 쓴다</td>
+<td>표의 대상을 문장과 맞추어 본다</td>
+</tr>
+<tr class="even">
+<td>2차 인용</td>
+<td>기사를 출처로 적어, 기사가 반올림하거나 줄인 값을 옮긴다</td>
+<td>출처 칸에 기관의 원문이 있는지 본다</td>
+</tr>
+</tbody>
+</table>
+<p>열리지만 내용이 없는 링크는 실제로 확인할 수 있다. 2026-11-14에 존재하지 않는 표 코드를 넣은 KOSIS 주소를 열자 HTTP 상태 코드는 200이었고, 페이지는 “통계표 정보가 없습니다.”라는 알림을 띄웠다. 링크 점검이 200을 내도 그 페이지에 수치가 있다는 보장은 없다. 상태 코드는 서버가 응답했다는 뜻일 뿐이다.</p>
+</section>
+<section id="출처-대조-절차" class="level3">
+<h3 class="anchored" data-anchor-id="출처-대조-절차">8-4. 출처 대조 절차</h3>
+<p>대조는 수치 하나마다 다음 다섯 단계를 거친다.</p>
+<ol type="1">
+<li><strong>주소가 열리는가.</strong> 링크 점검의 상태 코드를 적는다. 200이 아니면 그 출처는 쓸 수 없다.</li>
+<li><strong>원문에 그 수치가 있는가.</strong> 원문을 직접 열어 수치로 찾는다(<code>Ctrl+F</code>). 찾지 못하면 「확인 불가」다.</li>
+<li><strong>표 이름과 기준 시점이 같은가.</strong> 보고에 적은 기준 시점과 원문 표의 연도·조사 시점을 맞춘다.</li>
+<li><strong>단위와 대상(분모)이 같은가.</strong> 보고의 문장이 원문 표의 대상과 정의를 그대로 따르는지 본다. 비율이면 재계산한다.</li>
+<li><strong>판정과 조치.</strong> 판정은 셋 중 하나다. 「일치」는 그대로 둔다. 「불일치」는 원문대로 고친다. 「확인 불가」는 지우거나, 1차 자료로 확인할 질문으로 넘긴다.</li>
+</ol>
+<p>판정 결과는 <code>ch04/출처대조.md</code>에 표로 남긴다. 기록을 남기는 까닭은 두 가지다. 다른 사람(팀원, 교수, 미래의 자신)이 대조를 다시 하지 않고도 어떤 수치를 어떻게 확인했는지 알 수 있다. 그리고 AI가 어떤 유형의 오류를 냈는지가 쌓여, 다음 프롬프트에 어떤 규칙을 더할지 알 수 있다.</p>
+<p>대조의 일부는 도구로 빠르게 할 수 있다. 키트의 두 도구다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> ~/kits/Service_04주차/도구/check_ch04.py scan ch04/시장조사.md</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> ~/kits/Service_04주차/도구/링크점검.sh ch04/시장조사.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>scan</code>은 단위가 붙은 수치(%, 명, 개월, 원 등) 가운데 <code>[S번호]</code>나 <code>[가정 A번호]</code>가 없는 것을 찾고, 출처 표에 주소와 확인 날짜가 있는지 본다. <code>링크점검.sh</code>는 문서 안의 주소마다 상태 코드를 찍는다. 두 도구는 1단계와 형식만 대신한다. 2~5단계는 사람이 원문을 열어서 한다.</p>
+<p>AI에게 자기 초안을 다시 점검하게 하는 방법도 있다. Anthropic의 안내가 말하는 “인용으로 검증하기”를 프롬프트로 바꾼 것이 키트의 P4다 [C3]. P4는 수치마다 원문의 뒷받침 문장을 다시 찾게 하고, 찾지 못한 수치에 <code>[근거 못 찾음]</code>을 붙이게 한다. 이 점검도 AI가 하는 일이므로 사람의 대조를 대신하지는 않는다. 다만 사람이 먼저 볼 수치의 순서를 정하는 데 쓸모가 있다.</p>
+</section>
+<section id="연습-오류를-넣은-초안의-대조" class="level3">
+<h3 class="anchored" data-anchor-id="연습-오류를-넣은-초안의-대조">8-5. 연습: 오류를 넣은 초안의 대조</h3>
+<p>키트의 <code>시연/AI초안_예시.md</code>는 교재가 만든 연습 재료다. AI 조사 초안에서 자주 나오는 오류를 여섯 군데 일부러 넣었다. 출처 표에는 실제로 있는 자료와 없는 자료가 섞여 있다. 이 초안으로 대조 절차를 한 번 연습한다.</p>
+<p>먼저 점검기를 돌린다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> ~/kits/Service_04주차/도구/check_ch04.py scan ~/kits/Service_04주차/시연/AI초안_예시.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>[미통과] 출처 없는 수치 - 출처가 붙은 수치 5개
+    7행: 출처·가정 기호가 없는 수치 5,000억 원</code></pre>
+<p>점검기가 잡은 것은 하나다. 나머지 다섯 문장은 출처 기호가 붙어 있으므로 형식 검사를 통과한다. 다음으로 링크를 점검한다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> ~/kits/Service_04주차/도구/링크점검.sh ~/kits/Service_04주차/시연/AI초안_예시.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>200 https://eiec.kdi.re.kr/policy/materialView.do?num=275490
+200 https://eiec.kdi.re.kr/policy/materialView.do?num=284575
+200 https://eiec.kdi.re.kr/policy/materialView.do?num=285801
+200 https://kosis.kr/statHtml/statHtml.do?orgId=101&amp;tblId=DT_1ZZ9999
+404 https://www.keis.or.kr/2026/college_jobapp_survey.pdf</code></pre>
+<p>404가 하나 나왔다. 그러나 남은 오류는 링크 점검으로도 보이지 않는다. 200이 나온 KOSIS 주소를 브라우저로 열어 보고, 나머지 수치는 원문 PDF를 열어 3절의 네 가지(단위, 기준 시점, 대상, 주석)로 대조한다. 여섯 오류를 다음 표의 형식으로 정리한다. 이 연습의 기록은 제출하지 않는다. 종이나 메모에 적어도 된다.</p>
+<pre class="text"><code>문장 1: 「초안의 문장」
+  유형: 「8-3절의 유형」   찾은 방법: 「점검기 / 링크 점검 / 원문 열기 / 재계산」
+  원문의 값: 「」          판정: 「일치·불일치·확인 불가」</code></pre>
+<ul>
+<li><span class="check-badge">확인 23</span> <code>AI초안_예시.md</code>의 여섯 문장 모두에 오류의 유형과 판정을 적었다. 점검기가 잡은 것이 하나, 링크 점검이 잡은 것이 하나, 원문을 열어야 잡히는 것이 넷임을 확인하였다.</li>
+<li><span class="check-badge">확인 24</span> 200이 나온 KOSIS 주소(<code>tblId=DT_1ZZ9999</code>)를 브라우저로 열었을 때 “통계표 정보가 없습니다.”라는 알림이 뜬다.</li>
+</ul>
+</section>
+<section id="같은-프롬프트를-두-번" class="level3">
+<h3 class="anchored" data-anchor-id="같은-프롬프트를-두-번">8-6. 같은 프롬프트를 두 번</h3>
+<p>Anthropic의 안내는 고급 기법의 하나로 같은 프롬프트를 여러 번 실행해 결과를 비교하는 방법을 든다. 결과끼리 일관되지 않은 곳이 환각의 신호일 수 있다는 것이다 [C3]. 조사에 적용하면, 같은 조사 프롬프트를 새 대화에서 한 번 더 실행하고 두 결과에서 달라진 수치를 먼저 대조한다.</p>
+<p>같은 프롬프트를 되풀이해 실행하는 일은 사용량과 시간이 실행 횟수만큼 든다. 이 과목에서는 실제 모델을 반복해 부르는 단계를 교수 시연으로 한다. 교수가 수업 전에 P2를 두 번 실행하고, 그 과정을 수업에서 화면으로 보이며, 두 실행의 결과를 키트의 <code>시연/P2_1회.md</code>와 <code>시연/P2_2회.md</code>로 배포한다. 교수의 기록이 없으면 같은 이름의 교재 예시 기록이 들어 있다. 학습자는 P2를 10-3절에서 한 번만 실행하고, 두 번 실행의 비교는 배포된 기록으로 한다.</p>
+<p>교수 시연은 Git의 스테이징으로 두 결과를 견준다. 첫 결과를 스테이징해 두고, 두 번째 결과가 작업 폴더에 쓰이면 <code>git diff</code>가 두 결과의 차이만 보여 준다.</p>
+<div class="code-label where-prof">
+<span>교수 화면</span>
+</div>
+<pre class="text"><code>1. 시연용 저장소에서 P2를 보낸 뒤:  git add ch04/시장조사.md
+2. Claude Code에서 /clear 로 대화를 비우고 같은 P2를 다시 보낸다
+3. 두 결과의 차이:                   git diff ch04/시장조사.md
+4. 첫 결과로 돌아갈 때:              git restore ch04/시장조사.md</code></pre>
+<p>학습자는 배포된 두 기록을 <code>git diff --no-index</code>로 견준다. <code>--no-index</code>는 저장소 밖의 두 파일을 비교하고, <code>--word-diff</code>는 바뀐 낱말만 <code>[-지운 것-]{+더한 것+}</code>으로 보인다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/kits/Service_04주차/시연</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff <span class="at">--no-index</span> <span class="at">--word-diff</span> P2_1회.md P2_2회.md <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-E</span> <span class="st">'\[-|\{\+'</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code># (연습 재료) P2 두 번 실행의 기록: [-1회차-]{+2회차+}
+- 실행: [-1회차-]{+2회차+} (새 대화에서 키트의 P2를 Q1·Q2로 보냄)
+| 전문대학 수 | [-126개교-]{+134개교+} | 2026-04-01 | [S1] |
+| 첫 취업 평균 소요기간 (첫 일자리가 임금근로자인 청년) | [-11.2개월-]{+11.3개월+} | 2026년 5월 | [S3] |
+- [S1] "전문대학 [-126개교"-]{+134개교"+}
+- [S3] "첫 취업 평균 소요기간은 [-11.2개월"-]{+11.3개월"+}</code></pre>
+<p>위 출력은 교재 예시 기록의 결과다. 교수의 기록이면 다른 줄이 나온다. 차이가 있으면 <code>git diff</code>는 끝 코드 1로 끝나며, 이것은 오류가 아니다. 차이가 없거나 문장 표현만 다르면 두 실행이 같은 원문에 기댔을 가능성이 높다. 수치나 주소가 다르면 그 행을 대조의 맨 앞에 둔다. 둘 중 하나가 틀렸거나, 둘 다 틀렸다. 어느 결과를 남길지는 원문 대조로 정한다. 예시 기록에서는 3-4절의 표대로 1회차의 두 값(2026-04-01 기준 126개교, 2026년 5월 11.2개월)이 원문과 맞고, 2회차는 기준 시점이 다른 값을 섞었다.</p>
+<p>두 결과가 같다는 것이 맞다는 증거는 아니다. 같은 틀린 기사를 두 번 읽으면 같은 틀린 수치가 두 번 나온다. 예시 기록의 「졸업자 중 미취업 기간 1년 이상 48.6%」는 두 실행 모두 같지만 대상을 바꾼 문장이다(3-4절, 분모는 미취업자). 차이가 보이지 않는 행도 대조에서 빼지 않는다. 두 번 실행은 대조의 순서를 정하는 도구다.</p>
+<ul>
+<li><span class="check-badge">확인 25</span> 배포된 두 기록에서 달라진 수치를 찾아, 출처대조.md 머리에 “두 번 실행(교수 시연 기록): 달라진 수치 N개”를 한 줄로 적었다. 내 초안(10-3절)에 같은 항목이 있으면 그 행을 대조의 맨 앞에 둔다.</li>
+</ul>
+</section>
+<section id="웹-도구가-막힐-때" class="level3">
+<h3 class="anchored" data-anchor-id="웹-도구가-막힐-때">8-7. 웹 도구가 막힐 때</h3>
+<p>웹 페이지 읽기 도구로 읽지 못하는 페이지가 있다. 자동 요청을 막는 사이트, 내용을 자바스크립트로 그리는 페이지(KOSIS의 통계표 화면이 그렇다), 로그인이 필요한 페이지다. 이때는 두 길이 있다.</p>
+<p>첫째는 학습자가 브라우저로 열어 읽는 것이다. 수치 대조는 어차피 사람이 하므로, 수치가 든 페이지라면 이 길이 가장 확실하다.</p>
+<p>둘째는 원문 파일을 받아 Claude Code에 파일로 읽히는 것이다. 보도자료 PDF처럼 내려받을 수 있는 파일에 쓴다. 먼저 <code>curl</code>로 받고, <code>file</code> 명령으로 받은 것이 정말 PDF인지 본다. 다운로드 주소가 로그인 화면이나 오류 페이지로 넘어가면 PDF 대신 HTML이 받아진다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/downloads/ch04</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-sL</span> <span class="at">-o</span> ~/downloads/ch04/보도자료.pdf <span class="st">"「PDF 다운로드 주소」"</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="fu">file</span> ~/downloads/ch04/보도자료.pdf</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>/home/아이디/downloads/ch04/보도자료.pdf: PDF document, version 1.6, 40 page(s)</code></pre>
+<p><code>HTML document</code>가 나오면 다운로드 주소가 틀렸거나 그 사이트가 로그인이나 이전 페이지 정보(Referer)를 요구하는 것이다. 이때는 브라우저로 받는다. 받은 파일은 저장소 밖(<code>~/downloads/</code>)에 둔다. 원문 파일을 저장소에 커밋하지 않는 것은 저장소를 가볍게 두고, 다른 기관의 저작물을 다시 배포하지 않기 위해서다. 출처 표의 주소가 원문을 가리키면 충분하다.</p>
+<p>Claude Code는 파일 읽기 도구로 PDF를 읽는다. 10쪽이 넘는 PDF는 쪽 범위를 정해 한 번에 20쪽까지 읽고, 이때 poppler-utils의 <code>pdftoppm</code>이 필요하다 [C1]. 서버에 없으면 “pdftoppm is not installed” 오류가 난다 [C1]. 그때는 프롬프트로 읽을 쪽을 좁히지 말고 학습자가 PDF에서 해당 쪽을 찾아 수치를 옮긴다.</p>
+<div class="code-label where-claude">
+<span>Claude Code</span>
+</div>
+<pre class="text"><code>~/downloads/ch04/보도자료.pdf의 13~15쪽을 읽고, 「첫 취업 소요기간」과 「미취업 기간」 표의 2026. 5 행을 표 이름, 쪽 번호와 함께 그대로 옮겨라. 해석하지 말고 표의 값만 옮겨라.</code></pre>
+<ul>
+<li><span class="check-badge">확인 26</span> 보도자료 하나를 <code>curl</code>로 받아 <code>file</code> 명령의 출력에 <code>PDF document</code>가 나오는 것을 확인하였다. 받은 파일이 저장소 밖(<code>~/downloads/ch04/</code>)에 있다.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="조사-보고의-구조" class="level2">
+<h2 class="anchored" data-anchor-id="조사-보고의-구조">9. 조사 보고의 구조</h2>
+<p>조사 보고는 읽는 사람이 결론부터 보고, 근거를 따라 내려가고, 의심 가는 수치의 원문까지 찾아갈 수 있게 쓴다. 키트의 양식은 다음 구조를 가진다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>절</th>
+<th>내용</th>
+<th>쓰는 규칙</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1. 요약</td>
+<td>결론 3~5줄</td>
+<td>수치마다 출처 기호를 단다. 요약에만 나오는 수치를 만들지 않는다</td>
+</tr>
+<tr class="even">
+<td>2. 조사 질문</td>
+<td>Q1~Q5와 각 질문이 정하는 것</td>
+<td>1절의 표</td>
+</tr>
+<tr class="odd">
+<td>3. 방법과 자료</td>
+<td>1차·2차 자료, AI를 쓴 곳과 사람이 대조한 것</td>
+<td>AI를 썼다는 사실을 숨기지 않는다</td>
+</tr>
+<tr class="even">
+<td>4. 시장 규모</td>
+<td>공공 통계의 수치 표, TAM·SAM·SOM</td>
+<td>출처 수치, 계산, 가정을 기호로 나눈다</td>
+</tr>
+<tr class="odd">
+<td>5. 경쟁 서비스</td>
+<td>비교표의 요약과 분류</td>
+<td>상세는 비교표 파일</td>
+</tr>
+<tr class="even">
+<td>6. 포지셔닝</td>
+<td>축과 해석</td>
+<td>상세는 포지셔닝 파일</td>
+</tr>
+<tr class="odd">
+<td>7. 가치 제안</td>
+<td>가치 제안 문장</td>
+<td>상세는 가치 제안 파일</td>
+</tr>
+<tr class="even">
+<td>8. 한계와 다음 조사</td>
+<td>답하지 못한 질문, 관찰 범위의 한계</td>
+<td>다음 장(5장)에서 확인할 것을 적는다</td>
+</tr>
+<tr class="odd">
+<td>9. 가정</td>
+<td>가정 표</td>
+<td>근거와 확인 방법을 함께 적는다</td>
+</tr>
+<tr class="even">
+<td>10. 출처</td>
+<td>출처 표</td>
+<td>일곱 칸을 모두 채운다</td>
+</tr>
+</tbody>
+</table>
+<p>이 구조에는 두 가지 원칙이 있다. 하나는 <strong>결론 먼저</strong>다. 보고를 읽는 사람(팀원, 교수, 프로젝트실습Ⅰ의 평가자)은 요약만 읽고 판단하는 일이 많다. 요약이 결론을 말하고, 본문은 그 근거가 된다. 다른 하나는 <strong>한계를 본문에 쓰는 것</strong>이다. 관찰하지 못한 범위와 근거 없는 가정을 숨기면, 읽는 사람은 보고의 모든 수치를 같은 무게로 믿는다. 한계를 밝힌 보고는 어느 부분을 더 조사해야 하는지를 다음 사람에게 넘겨준다.</p>
+<p>문장의 규칙도 정해 둔다.</p>
+<ul>
+<li>수치가 든 문장에는 기준 시점을 넣는다(“2026년 5월 조사에서 …”).</li>
+<li>비율은 대상과 분모를 함께 쓴다(“취업대상자 대비 72.1%”).</li>
+<li>판단에는 근거를 붙인다(“오른쪽 위에 관찰된 서비스가 없다(비교표). 수요가 있는지는 5장에서 확인한다”).</li>
+<li>경쟁 서비스에 대해서는 관찰한 사실만 쓴다. “불편하다”, “뒤처졌다” 같은 평가는 근거가 되는 평가 결과가 없으면 쓰지 않는다.</li>
+</ul>
+<p>요약 한 줄을 두 가지로 써서 견주어 본다.</p>
+<pre class="text"><code>나쁜 요약: 취업 준비생 시장은 매우 크고 성장하고 있으며, AI 기반 서비스의 수요가 높다.</code></pre>
+<pre class="text"><code>좋은 요약: 2026년 4월 1일 기준 전문대학 재적학생은 504,897명이고 [S1], 한 해의 전문대학 졸업자는 139,033명이다(2024년 2월·2023년 8월 졸업) [S2]. 첫 해 도달 목표는 약 300명이다(가정에 기댄 추정) [가정 A2] [가정 A3].</code></pre>
+<p>나쁜 요약의 세 주장(“매우 크다”, “성장하고 있다”, “수요가 높다”)은 어느 것도 이 장의 자료로 뒷받침되지 않는다. 특히 “성장하고 있다”는 시계열 자료가 있어야 쓸 수 있다. 교육기본통계에서 전문대학 재적학생이 전년보다 2.2% 늘었다는 값은 있으나 [T1], 한 해의 증가를 “성장”으로 부르려면 여러 해의 흐름을 보아야 한다. 좋은 요약은 덜 인상적이지만, 문장마다 다시 확인할 수 있다.</p>
+<p>보고는 판을 가진다. 양식 머리의 「판」 줄에 v1, v2처럼 적고, 판을 올릴 때마다 무엇을 바꾸었는지 커밋 메시지에 남긴다. 새 통계가 나와 S2를 바꾸었다면 “시장조사 v2: S2를 2025년 졸업자 취업통계로 갱신”처럼 쓴다. 판의 기록은 Git이 이미 하고 있으므로, 파일 이름에 날짜나 판 번호를 붙여 사본을 여러 개 만들지 않는다. 판별 차이는 <code>git log --oneline -- ch04/시장조사.md</code>와 <code>git diff</code>로 본다.</p>
+<ul>
+<li><span class="check-badge">확인 27</span> 시장조사.md 8절 「한계와 다음 조사」에 5장에서 확인할 질문이 한 줄 이상, 관찰 범위의 한계가 한 줄 이상 있다.</li>
+</ul>
+<hr>
+</section>
+<section id="중심-실습-취업-준비-지원-서비스의-시장-조사-보고" class="level2">
+<h2 class="anchored" data-anchor-id="중심-실습-취업-준비-지원-서비스의-시장-조사-보고">10. 중심 실습: 취업 준비 지원 서비스의 시장 조사 보고</h2>
+<p>공통 사례의 시장 조사 보고를 완성한다. 초안은 Claude Code가 쓰고, 학습자는 질문을 정하고, 모든 수치를 원문과 대조하고, 판단(분류, 축, 가치 제안)을 내린다. 결과는 <code>ch04/</code>의 다섯 파일과 커밋 하나로 남는다.</p>
+<section id="완료-기준" class="level3">
+<h3 class="anchored" data-anchor-id="완료-기준">10-1. 완료 기준</h3>
+<p>먼저 무엇이 되면 끝인지 정한다. 모든 기준은 파일과 명령의 출력으로 확인할 수 있다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>번호</th>
+<th>기준</th>
+<th>확인하는 방법</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><code>ch04/시장조사.md</code>에 출처와 확인 날짜가 붙은 수치가 3개 이상 있다</td>
+<td>점검기 <code>all</code>의 1번 줄이 통과이고 “출처가 붙은 수치 N개”의 N이 3 이상</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>출처 표의 모든 행에 주소와 확인 날짜(YYYY-MM-DD)가 있다</td>
+<td>같은 1번 줄</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><code>ch04/경쟁서비스_비교표.md</code>에 서비스 5개, 기능 10행 이상이 있고 칸이 ○ △ - 이다</td>
+<td>점검기 <code>all</code>의 2번 줄</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td><code>ch04/포지셔닝.md</code>에 mermaid quadrantChart와 점 6개 이상, 점수 규칙이 있다</td>
+<td>점검기 <code>all</code>의 3번 줄</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td><code>ch04/가치제안.md</code>에 캔버스의 여섯 칸과 가치 제안 문장이 있다</td>
+<td>점검기 <code>all</code>의 4번 줄</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td><code>ch04/출처대조.md</code>에 시장조사.md의 출처 기호마다 대조 기록이 있고, 판정이 일치·불일치·확인 불가 가운데 하나다</td>
+<td>점검기 <code>all</code>의 5번 줄</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>출처대조.md의 원문 위치 칸이 사람이 원문을 열어 찾은 쪽 번호나 표 이름으로 채워져 있다</td>
+<td>교수가 무작위로 두 행을 골라 원문과 대조한다</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>다섯 파일이 커밋되어 원격 저장소에 있다</td>
+<td><code>git log --oneline -1 -- ch04</code>와 <code>git status</code>가 깨끗함</td>
+</tr>
+</tbody>
+</table>
+<p>기준 1~6은 점검기가 형식을 본다. 기준 7은 사람이 본다. 점검기가 모두 통과해도 원문을 열지 않고 채운 대조 기록은 기준 7에서 미통과다.</p>
+</section>
+<section id="진행-순서와-막혔을-때" class="level3">
+<h3 class="anchored" data-anchor-id="진행-순서와-막혔을-때">10-2. 진행 순서와 막혔을 때</h3>
+<p>중심 실습은 다음 순서로 한다. 앞 단계의 결과가 뒤 단계의 입력이므로 순서를 바꾸지 않는다.</p>
+<ol type="1">
+<li>공공 통계의 초안(10-3) → 2. 경쟁 서비스의 초안(10-4) → 3. 출처 대조(10-5) → 4. 시장 규모의 추정(10-6) → 5. 포지셔닝과 가치 제안(10-7) → 6. 최종 점검과 커밋(10-8)</li>
+</ol>
+<p>막히는 곳은 대개 셋이다. 첫째, Claude Code의 사용량 한도에 닿거나 웹 도구가 응답하지 않는 경우다. 이때는 AI 초안을 기다리지 않고 3절의 절차로 학습자가 직접 통계표를 찾는다. 완료 기준은 같다. AI가 쓴 초안이 없으면 출처대조.md의 2절(초안에서 지운 것)은 “AI 초안 없음, 직접 조사”라고 적는다. 둘째, 경쟁 서비스의 페이지를 읽지 못하는 경우다. 8-7절대로 브라우저로 직접 연다. 셋째, 점검기가 통과하지 않는 경우다. 점검기의 출력이 고칠 줄을 알려 주므로, 위에서부터 하나씩 고치고 다시 돌린다.</p>
+</section>
+<section id="공공-통계의-초안" class="level3">
+<h3 class="anchored" data-anchor-id="공공-통계의-초안">10-3. 공공 통계의 초안</h3>
+<p>Claude Code에 공공 통계 조사를 맡긴다. 키트의 P2를 쓴다. 조사 질문 자리에는 1절에서 확정한 Q1과 Q2를 넣는다. 웹 검색과 웹 페이지 읽기의 허용 질문이 나오면 도메인을 확인하고 허용한다. 공공 기관이 아닌 도메인(기사, 블로그)을 읽으려 하면 거절해도 된다.</p>
+<div class="code-label where-claude">
+<span>Claude Code</span>
+</div>
+<pre class="text"><code>웹 검색과 웹 페이지 읽기 도구로 다음 조사 질문에 답할 공공 통계를 찾아라.
+- 「Q1: 전문대학 졸업 학년 학생은 한 해에 몇 명인가」
+- 「Q2: 전문대학 졸업자의 취업률과 첫 일자리까지 걸리는 기간」
+규칙:
+1. 자료는 공공 기관의 원문만 쓴다: 국가통계포털 KOSIS, 교육부·한국교육개발원의 교육통계, 고용노동부·한국고용정보원, 국가데이터처의 보도자료. 언론 기사, 블로그, 백과사전은 자료로 쓰지 않는다.
+2. 수치마다 다음을 적는다: 값, 단위, 기준 시점, 대상(분모), 표 이름과 쪽, 원문 주소, 확인 날짜(이 작업을 한 날짜, YYYY-MM-DD), 원문에서 그 수치가 나오는 문장을 짧게 그대로 옮긴 인용.
+3. 원문을 열어 수치를 확인하지 못했으면 그 수치를 쓰지 말고 "찾지 못함"이라고 적는다. 기억이나 추정으로 수치를 채우지 않는다.
+4. 같은 항목에 기준 시점이 다른 값이 여럿 있으면 가장 최근 값을 쓰고, 다른 값은 따로 적는다.
+5. 결과는 ch04/시장조사.md의 4-1절 표와 10절 출처 표의 형식으로 써 넣는다. 다른 절은 고치지 않는다.
+끝나면 찾은 수치와 찾지 못한 질문을 목록으로 보고하라.</code></pre>
+<p>예시 응답의 끝부분이다(실제 화면과 다를 수 있다).</p>
+<pre class="text"><code>찾은 수치: 전문대학 재적학생(2026-04-01), 전문대학 졸업자·취업대상자·취업자·취업률(2024-12-31 기준),
+첫 취업 평균 소요기간(2026년 5월)
+찾지 못함: 「전문대학 2학년」만의 학생 수 (학년별 표는 이번 검색에서 확인하지 못함)</code></pre>
+<p>AI가 일을 마치면 바로 받아들이지 않고, 무엇이 바뀌었는지 <code>git diff</code>로 읽는다. 2장에서 세운 습관이다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff <span class="at">--stat</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff ch04/시장조사.md <span class="kw">|</span> <span class="fu">head</span> <span class="at">-60</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><span class="check-badge">확인 28</span> <code>git diff --stat</code>에 <code>ch04/시장조사.md</code> 한 파일만 바뀌어 있다. 다른 절(2절 조사 질문 등)이 바뀌었으면 그 부분을 <code>git restore -p ch04/시장조사.md</code>로 되돌린다.</li>
+</ul>
+</section>
+<section id="경쟁-서비스의-초안" class="level3">
+<h3 class="anchored" data-anchor-id="경쟁-서비스의-초안">10-4. 경쟁 서비스의 초안</h3>
+<p>키트의 P3로 다섯 서비스의 첫 화면과 메뉴를 관찰하게 한다. P3는 다섯 서비스의 공식 주소를 직접 준다. AI가 검색으로 주소를 찾게 하면 비공식 페이지나 광고 페이지를 읽을 수 있기 때문이다.</p>
+<div class="code-label where-claude">
+<span>Claude Code</span>
+</div>
+<pre class="text"><code>다음 다섯 서비스의 공식 누리집 첫 화면과 전체 메뉴를 웹 페이지 읽기 도구로 읽어라: 「사람인 https://www.saramin.co.kr/zf_user/, 잡코리아 https://www.jobkorea.co.kr/, 링커리어 https://linkareer.com/, 자소설닷컴 https://jasoseol.com/, 고용24 https://www.work24.go.kr/」
+규칙:
+1. 페이지에 글자로 나타난 메뉴와 기능만 쓴다. 페이지에 없는 기능을 상식이나 기억으로 채우지 않는다.
+2. 서비스마다 관찰한 메뉴 이름을 페이지의 표기 그대로 옮긴다.
+3. 기능을 사용자의 업무 단위(공고 찾기, 일정 챙기기, 서류 쓰기 등)로 묶어 10행 이상의 비교표를 만든다.
+4. 칸에는 ○(확인됨), △(일부·조건부), -(확인되지 않음)만 쓴다. "없음"이라고 쓰지 않는다. 첫 화면에서 보이지 않았다는 것은 없다는 뜻이 아니다.
+5. 결과는 ch04/경쟁서비스_비교표.md의 양식(1절 비교표, 2절 근거 표)에 써 넣고, 관찰 날짜는 이 작업을 한 날짜(YYYY-MM-DD)로 적는다.
+읽지 못한 페이지가 있으면 그 사실을 보고하라.</code></pre>
+<p>일부 서비스는 자동으로 페이지를 읽는 요청을 막거나, 화면의 메뉴를 스크립트로 그려 웹 페이지 읽기 도구가 메뉴를 보지 못할 수 있다. AI가 “읽지 못했다”고 보고하면 그 서비스는 학습자가 브라우저로 직접 열어 메뉴를 옮긴다.</p>
+<p>AI의 비교표를 받은 뒤 학습자가 할 일은 셋이다. 서비스마다 브라우저로 첫 화면을 열어, AI가 ○로 적은 기능 가운데 두 개 이상을 골라 화면에서 직접 찾는다. AI가 「-」로 적은 기능 가운데 하나를 골라 정말 첫 화면에 없는지 본다. 비고에 화면의 표기가 남아 있는지 본다.</p>
+<ul>
+<li><span class="check-badge">확인 29</span> 다섯 서비스 각각에 대해 학습자가 화면에서 직접 확인한 기능을 비교표의 비고나 2절 근거 표에 “직접 확인”으로 표시했다(서비스마다 둘 이상). 그 뒤 <code>python3 ~/kits/Service_04주차/도구/check_ch04.py table ch04/경쟁서비스_비교표.md</code>의 첫 줄이 <code>[통과]</code>다.</li>
+</ul>
+</section>
+<section id="출처-대조" class="level3">
+<h3 class="anchored" data-anchor-id="출처-대조">10-5. 출처 대조</h3>
+<p>이 실습의 중심이다. 시장조사.md의 모든 수치를 원문과 대조하고, 결과를 <code>ch04/출처대조.md</code>에 적는다. 8-4절의 다섯 단계를 수치마다 거친다.</p>
+<p>먼저 도구로 형식과 링크를 본다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> ~/kits/Service_04주차/도구/check_ch04.py scan ch04/시장조사.md</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> ~/kits/Service_04주차/도구/링크점검.sh ch04/시장조사.md <span class="kw">|</span> <span class="fu">tee</span> /tmp/links_ch04.txt</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>[통과] 출처 없는 수치 - 출처가 붙은 수치 21개
+200 https://eiec.kdi.re.kr/policy/materialView.do?num=275490
+200 https://eiec.kdi.re.kr/policy/materialView.do?num=284575
+200 https://eiec.kdi.re.kr/policy/materialView.do?num=285801
+200 https://kosis.kr/statHtml/statHtml.do?orgId=101&amp;tblId=DT_1DE9058S</code></pre>
+<p>위 출력은 교재 견본의 결과다. 학습자의 초안은 다른 주소와 다른 수의 수치를 가진다. 이어서 수치마다 원문을 열고 대조표를 채운다. 출처대조.md의 표 한 행은 다음처럼 쓴다.</p>
+<div class="code-label where-server">
+<span>파일: ch04/출처대조.md 의 한 행</span>
+</div>
+<pre class="text"><code>| 5 | 전문대학 취업률 72.1% | S2 | 열림 (200) | 3쪽 학교 유형별 표: 전문대학 2024 72.1 (단위 %) | 일치 | 분모가 취업대상자임을 보고에 밝혔다 |</code></pre>
+<p>「원문에서 찾은 값과 위치」 칸이 이 기록의 핵심이다. 쪽 번호와 표 이름이 있으면 다른 사람이 같은 자리를 바로 찾아갈 수 있다. 이 칸을 AI에게 채우게 하면 대조의 의미가 없어진다. 이 칸은 학습자가 원문을 열고 직접 쓴다.</p>
+<p>불일치나 확인 불가가 나오면 시장조사.md를 고친다. 고친 내용은 대조표의 「조치」 칸에 적는다. 수치를 지웠으면 지운 문장을 대조표 2절 「초안에서 지운 것」에 옮겨 둔다. 무엇을 왜 지웠는지가 남아야 같은 오류를 다음 조사에서 피할 수 있다.</p>
+<p>필요하면 키트의 P4로 AI에게 자기 점검을 먼저 시킨다. P4가 <code>[근거 못 찾음]</code>이나 <code>[불일치]</code>를 붙인 수치부터 대조하면 빠르다. 그러나 P4가 아무것도 붙이지 않았다고 해서 대조를 건너뛰지 않는다.</p>
+<ul>
+<li><span class="check-badge">확인 30</span> 링크 점검 결과에서 200이 아닌 주소가 시장조사.md에 남아 있지 않다. <code>python3 ~/kits/Service_04주차/도구/check_ch04.py audit ch04/시장조사.md ch04/출처대조.md</code>가 <code>[통과]</code>이고, 대조표의 모든 행의 「원문에서 찾은 값과 위치」 칸에 쪽 번호나 표 이름이 있다.</li>
+<li><span class="check-badge">확인 31</span> 대조 중에 판정이 「불일치」나 「확인 불가」인 행이 하나라도 있었다면, 시장조사.md에서 그 수치가 고쳐지거나 지워졌다. 하나도 없었다면 출처대조.md 머리에 “초안의 모든 수치가 원문과 일치하였다”고 적었다.</li>
+</ul>
+</section>
+<section id="시장-규모의-추정-1" class="level3">
+<h3 class="anchored" data-anchor-id="시장-규모의-추정-1">10-6. 시장 규모의 추정</h3>
+<p>4-2절의 방법으로 시장조사.md 4-2절과 9절을 채운다. TAM과 SAM은 대조를 마친 수치로 쓴다. SOM의 가정(협력 학교 수, 채택률, 점유율)은 학습자가 정하고, 가정 표에 근거와 확인 방법을 적는다. 견본의 가정(3개교, 10%, 0.2%)을 그대로 써도 되지만, 바꾸었다면 까닭을 적는다.</p>
+<ul>
+<li><span class="check-badge">확인 32</span> 시장조사.md 4-2절의 SOM 두 값(상향식과 하향식)을 계산한 식이 코드 블록으로 남아 있고, 두 값의 자릿수를 견준 판단이 한 문단 있다.</li>
+</ul>
+</section>
+<section id="포지셔닝과-가치-제안" class="level3">
+<h3 class="anchored" data-anchor-id="포지셔닝과-가치-제안">10-7. 포지셔닝과 가치 제안</h3>
+<p>키트의 P5로 포지셔닝.md를, P6로 가치제안.md를 채운다. P5는 비교표만을 근거로 점수를 계산하게 하고, P6는 근거가 없는 칸을 비워 두게 한다.</p>
+<div class="code-label where-claude">
+<span>Claude Code</span>
+</div>
+<pre class="text"><code>ch04/경쟁서비스_비교표.md의 비교표를 근거로 ch04/포지셔닝.md를 채워라.
+가로축은 「대상의 범위(전 연령·경력 → 전문대학 졸업 학년 전용)」, 세로축은 「지원의 방식(정보 제공 → 실행 지원)」이다.
+1. 세로 점수는 비교표의 「실행 지원 6행: 공고 스크랩·마감 알림, 이력서 작성·관리, 자기소개서 작성 도구, AI 서류·자기소개서 코칭, AI 모의면접, 지원 현황 관리」에서 ○ 1점, △ 0.5점의 합을 6으로 나누어 계산하고 계산식을 남긴다.
+2. 가로 점수는 포지셔닝.md 1절의 점수 규칙에 따라 정하고, 서비스마다 근거가 된 메뉴 이름을 적는다.
+3. 그림은 mermaid quadrantChart로 그리고, 공통 사례의 목표 위치를 점 하나로 더한다.
+비교표에 없는 정보로 점수를 정하지 말라.</code></pre>
+<div class="code-label where-claude">
+<span>Claude Code</span>
+</div>
+<pre class="text"><code>ch04/시장조사.md와 ch04/경쟁서비스_비교표.md를 읽고 ch04/가치제안.md의 양식을 채워라.
+1. 고객 업무는 기능, 사회, 감정의 세 종류를 모두 포함한다.
+2. 「확인 근거」 열에는 두 파일의 출처 기호나 비교표의 행 이름만 쓴다. 근거가 없으면 비워 둔다. 근거를 지어내지 않는다.
+3. 가치 제안 문장은 양식의 문형 하나로 쓴다.
+4. 비어 있는 확인 근거는 5장에서 인터뷰로 확인할 목록으로 5절에 옮긴다.</code></pre>
+<p>받은 결과에서 학습자가 고칠 것은 둘이다. 포지셔닝의 가로 점수는 규칙을 적용한 판단이므로, 서비스마다 근거가 된 메뉴가 비교표에 실제로 있는지 본다. 가치 제안의 「확인 근거」 칸에 적힌 출처 기호가 그 항목을 정말 뒷받침하는지 본다(예: “마감일을 놓친다”에 첫 취업 소요기간 통계를 근거로 단 것은 뒷받침이 아니다). 그리고 좌표에 <code>1.0</code>이 있으면 <code>1</code>로 고친다(6-3절).</p>
+<ul>
+<li><span class="check-badge">확인 33</span> 포지셔닝.md의 점수 표에서 세로 점수 하나를 골라, 비교표의 실행 지원 6행에서 손으로 다시 계산한 값과 같다.</li>
+</ul>
+</section>
+<section id="최종-점검과-커밋" class="level3">
+<h3 class="anchored" data-anchor-id="최종-점검과-커밋">10-8. 최종 점검과 커밋</h3>
+<p>다섯 파일을 모두 채웠으면 점검기를 돌린다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> ~/kits/Service_04주차/도구/check_ch04.py all ch04</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>[통과] 1. 시장조사.md - 출처가 붙은 수치 21개
+[통과] 2. 경쟁서비스_비교표.md - 서비스 5개, 기능 16행
+[통과] 3. 포지셔닝.md - 점 6개
+[통과] 4. 가치제안.md - 칸 7개
+[통과] 5. 출처대조.md - 대조 기록 9행
+결과: 완료 기준 통과</code></pre>
+<p>위 출력은 교재 견본의 결과다. 미통과 항목이 있으면 그 아래 줄이 무엇을 고칠지 알려 준다. 「양식의 「 」 자리가 그대로 남은 줄」은 양식을 고치지 않고 남긴 줄이 있다는 뜻이다. 통과하면 커밋하고 푸시한다. 커밋 메시지에 대조한 수치의 개수를 적어 두면 기록이 된다.</p>
+<div class="code-label where-server">
+<span>서버 터미널</span>
+</div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add ch04/ .gitignore</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">--short</span></span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"4장 시장 조사 보고: 수치 원문 대조 완료, 경쟁 서비스 5개 비교"</span></span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span> <span class="at">-1</span> <span class="at">--</span> ch04</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>M  .gitignore
+A  ch04/가치제안.md
+A  ch04/경쟁서비스_비교표.md
+A  ch04/시장조사.md
+A  ch04/출처대조.md
+A  ch04/포지셔닝.md
+...
+e4f5a6b 4장 시장 조사 보고: 수치 원문 대조 완료, 경쟁 서비스 5개 비교</code></pre>
+<p>파일 이름이 <code>"ch04/\352\260\200..."</code>처럼 숫자로 보이면 Git이 한글 파일 이름을 바이트 값으로 표시하는 설정(<code>core.quotepath</code>)이 켜져 있는 것이다. 파일에는 문제가 없다. 한글로 보려면 <code>git config --global core.quotepath false</code>를 한 번 실행한다.</p>
+<p><code>.gitignore</code>는 8-1절에서 고쳤을 때만 목록에 나온다. 고치지 않았으면 <code>git add</code>에서 빼도 된다. <code>git status --short</code>에 <code>.claude/settings.local.json</code>이 보이면 커밋하지 않는다. 8-1절로 돌아가 제외 규칙을 더한다.</p>
+<ul>
+<li><span class="check-badge">확인 34</span> <code>git status --short</code>가 빈 출력이고, <code>git log --oneline -1 -- ch04</code>에 4장 커밋이 보이며, GitHub 저장소 화면에서 <code>ch04/포지셔닝.md</code>를 열면 사분면 그림이 그려진다.</li>
+</ul>
+</section>
+<section id="같은-절차의-다른-쓰임" class="level3">
+<h3 class="anchored" data-anchor-id="같은-절차의-다른-쓰임">10-9. 같은 절차의 다른 쓰임</h3>
+<p>이 장의 절차(조사 질문 → 공공 통계와 원문 대조 → 화면 관찰과 비교표 → 점수 규칙이 있는 포지셔닝 → 근거 칸이 있는 가치 제안)는 공통 사례에만 쓰는 것이 아니다. 같은 학기 프로젝트실습Ⅰ에서 팀의 주제를 조사할 때 키트의 양식과 점검기를 그대로 쓸 수 있다. 바뀌는 것은 조사 질문과 경쟁 서비스의 목록뿐이다. 점검기의 완료 기준(출처가 붙은 수치 3개 이상, 서비스 5개와 기능 10행, 점 6개, 출처 기호마다 대조 기록)도 그대로 적용된다.</p>
+<p>업무에서도 같다. AI에게 시장 조사나 경쟁 분석을 맡기는 일은 이미 흔하다. 그 결과를 보고서로 내기 전에 수치마다 원문 대조 기록을 남기는 습관은 AI가 바꾸지 못한 개발자의 책임이다. “AI가 찾았다”는 출처가 아니다. 출처는 기관, 표, 기준 시점, 주소, 확인 날짜다.</p>
+<hr>
+</section>
+</section>
+<section id="자주-하는-실수와-해결" class="level2">
+<h2 class="anchored" data-anchor-id="자주-하는-실수와-해결">자주 하는 실수와 해결</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>증상</th>
+<th>원인</th>
+<th>해결</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>점검기가 “출처·가정 기호가 없는 수치”를 많이 낸다</td>
+<td>요약이나 표에 수치를 쓰고 기호를 달지 않았다</td>
+<td>수치가 든 줄마다 <code>[S번호]</code> 또는 <code>[가정 A번호]</code>를 단다. 계산한 값은 문장에 “계산”을 넣는다</td>
+</tr>
+<tr class="even">
+<td>점검기가 “출처 표에 없는 기호”를 낸다</td>
+<td>AI가 본문에 <code>[S5]</code>를 달았는데 출처 표에는 S4까지만 있다</td>
+<td>출처 표에 행을 더하거나, 그 수치를 원문과 대조해 기호를 바로잡는다</td>
+</tr>
+<tr class="odd">
+<td>링크 점검에서 000이 나온다</td>
+<td>서버에 닿지 못했다(주소 오류, 시간 초과, 접속 차단)</td>
+<td>브라우저로 직접 연다. 열리면 대조표에 “브라우저에서 열림”이라고 적는다</td>
+</tr>
+<tr class="even">
+<td>200인데 수치가 없다</td>
+<td>주소는 맞지만 표 코드가 틀렸거나, 게시판의 다른 글이다</td>
+<td>원문을 직접 열어 확인한다. 8-3절의 「열리지만 내용이 없는 링크」다</td>
+</tr>
+<tr class="odd">
+<td>AI가 “그 페이지에는 수치가 없다”고 한다</td>
+<td>웹 페이지 읽기 도구는 지시에 따라 내용을 뽑으므로 손실이 있다 [C1]</td>
+<td>더 구체적인 지시(표 이름, 찾을 수치)로 다시 읽게 하거나, 학습자가 원문을 연다</td>
+</tr>
+<tr class="even">
+<td>같은 항목의 수치가 출처마다 다르다</td>
+<td>기준 시점이나 조사 대상이 다르다</td>
+<td>3-4절. 둘 다 맞을 수 있으므로 기준 시점과 대상을 함께 적고 섞지 않는다</td>
+</tr>
+<tr class="odd">
+<td>포지셔닝 그림이 그려지지 않는다</td>
+<td>좌표에 <code>1.0</code>이나 <code>.5</code>를 썼다</td>
+<td><code>1</code>, <code>0.5</code>로 고친다(6-3절). 점검기의 3번 줄이 해당 점을 알려 준다</td>
+</tr>
+<tr class="even">
+<td>비교표의 칸에 “없음”, “X”, “있음”이 섞였다</td>
+<td>칸의 기호 규칙을 지키지 않았다</td>
+<td>○ △ - 만 쓰고 조건은 비고에 쓴다(5-4절)</td>
+</tr>
+<tr class="odd">
+<td><code>git status</code>에 <code>.claude/settings.local.json</code>이 보인다</td>
+<td>웹 도구 허용 규칙이 저장된 개인 설정 파일이 제외되지 않았다</td>
+<td>8-1절의 명령으로 <code>.gitignore</code>에 더한다. 이미 커밋했으면 <code>git rm --cached .claude/settings.local.json</code> 뒤 다시 커밋한다</td>
+</tr>
+<tr class="even">
+<td><code>git status</code>의 파일 이름이 <code>\352\260...</code>처럼 보인다</td>
+<td>한글 파일 이름을 바이트 값으로 표시하는 Git 설정(<code>core.quotepath</code>)</td>
+<td><code>git config --global core.quotepath false</code></td>
+</tr>
+<tr class="odd">
+<td>Claude Code가 시장조사.md의 다른 절까지 고쳤다</td>
+<td>프롬프트에 고칠 범위를 적지 않았다</td>
+<td><code>git restore -p</code>로 되돌리고, “다른 절은 고치지 않는다”를 넣어 다시 요청한다</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="제출물" class="level2">
+<h2 class="anchored" data-anchor-id="제출물">제출물</h2>
+<p>따로 올리는 것은 없다. 개인 실습 저장소 <code>llm-service-lab</code>의 커밋으로 제출한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>경로</th>
+<th>내용</th>
+<th>완료 기준</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ch04/시장조사.md</code></td>
+<td>조사 보고</td>
+<td>출처와 확인 날짜가 붙은 수치 3개 이상, TAM·SAM·SOM, 가정 표</td>
+</tr>
+<tr class="even">
+<td><code>ch04/경쟁서비스_비교표.md</code></td>
+<td>기능 비교표</td>
+<td>서비스 5개, 기능 10행 이상, 근거 표, 분류</td>
+</tr>
+<tr class="odd">
+<td><code>ch04/포지셔닝.md</code></td>
+<td>포지셔닝 맵</td>
+<td>점수 규칙, 점수 표, quadrantChart 점 6개 이상</td>
+</tr>
+<tr class="even">
+<td><code>ch04/가치제안.md</code></td>
+<td>가치 제안 캔버스와 문장</td>
+<td>여섯 칸, 적합 점검, 가치 제안 문장, 5장에서 확인할 것</td>
+</tr>
+<tr class="odd">
+<td><code>ch04/출처대조.md</code></td>
+<td>출처 대조 기록</td>
+<td>출처 기호마다 대조 행, 원문 위치, 판정</td>
+</tr>
+</tbody>
+</table>
+<p>4장의 보고는 5장의 입력이다. 5장은 가치제안.md의 「5장에서 확인할 것」을 인터뷰 질문으로 바꾼다. 이 장을 끝내지 못한 학습자를 위해, 5장 키트의 <code>기준산출물/ch04/</code>에는 이 장의 교재 견본 보고(위 다섯 파일)가 들어 있다. 이 장에서 본문의 출력으로 보인 「교재 견본」이 그것이다. 자기 보고가 있으면 5장에서도 자기 보고를 쓴다.</p>
+<hr>
+</section>
+<section id="정리" class="level2">
+<h2 class="anchored" data-anchor-id="정리">정리</h2>
+<ul>
+<li>조사는 결정에 필요한 답을 얻는 일이다. 조사 질문마다 “이 질문으로 정하려는 것”을 함께 쓴다.</li>
+<li>1차 자료는 내 질문을 위해 직접 모은 자료, 2차 자료는 다른 목적으로 이미 공표된 자료다. 2차 자료는 정의가 내 질문과 어긋날 수 있다.</li>
+<li>통계표의 수치는 단위, 기준 시점, 대상(분모), 주석을 함께 읽어야 뜻이 정해진다. 비율은 원문의 값으로 재계산해 정의를 확인한다.</li>
+<li>시장 규모는 TAM, SAM, SOM으로 나누고, 하향식과 상향식으로 추정해 견준다. 가정은 기호를 달아 드러낸다.</li>
+<li>경쟁 서비스는 직접 경쟁, 간접 경쟁, 대체재로 나눈다. 화면에서 메뉴를 그대로 옮겨 사용자 업무로 묶는 일이 리버스 엔지니어링의 첫 단계다. 「확인되지 않음」은 「없음」이 아니다.</li>
+<li>포지셔닝 맵은 점수 규칙을 먼저 정하고 그린다. 빈 자리는 기회의 후보일 뿐이다. 가치 제안은 고객 프로필과 가치 맵의 적합을 가설로 세운 것이다.</li>
+<li>AI의 조사 초안은 출처 없는 수치, 지어낸 링크, 열리지만 내용이 없는 링크, 기준 연도·분모·대상의 혼동을 낼 수 있다. 수치마다 원문을 열어 대조하고 기록한다.</li>
+</ul>
+<section id="개념-점검" class="level3">
+<h3 class="anchored" data-anchor-id="개념-점검">개념 점검</h3>
+<ol type="1">
+<li>조사 질문 “학생들은 취업 앱을 좋아하는가”를 결정에 연결된 좋은 질문으로 고쳐 쓰고, 그 질문이 정하는 것을 한 줄로 적어라.</li>
+<li>“전문대학 졸업자 139,033명 가운데 86,850명이 취업했으므로 전문대학 취업률은 62.5%다”라는 문장의 오류를 원문의 정의로 설명하라.</li>
+<li>공통 사례의 TAM, SAM, SOM을 각각 한 줄로 정의하고, SOM을 상향식으로 추정할 때 필요한 가정 두 가지를 들어라.</li>
+<li>비교표의 칸에 「×(없음)」 대신 「-(확인되지 않음)」을 쓰는 까닭을 관찰 범위와 관련지어 설명하라.</li>
+<li>링크 점검에서 상태 코드 200이 나온 출처를 대조표에서 「확인 불가」로 판정해야 하는 경우를 하나 들어라.</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="참고-자료" class="level2">
+<h2 class="anchored" data-anchor-id="참고-자료">참고 자료</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>기호</th>
+<th>자료</th>
+<th>주소</th>
+<th>확인 날짜</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>T1</td>
+<td>교육부·한국교육개발원, 「2026년 교육기본통계 조사 결과 발표」 보도자료(2026-08-26), KDI 경제교육·정보센터 게재본</td>
+<td><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=285801" class="uri">https://eiec.kdi.re.kr/policy/materialView.do?num=285801</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="even">
+<td>T2</td>
+<td>교육부·국가데이터처·한국교육개발원, 「「2024년도 고등교육기관 졸업자 취업통계」 조사 결과 발표」 보도자료(2025-12-30), KDI 경제교육·정보센터 게재본</td>
+<td><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=275490" class="uri">https://eiec.kdi.re.kr/policy/materialView.do?num=275490</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="odd">
+<td>T3</td>
+<td>국가데이터처, 「2026년 5월 경제활동인구조사 청년층 부가조사 결과」 보도자료(2026-07-23), KDI 경제교육·정보센터 게재본</td>
+<td><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=284575" class="uri">https://eiec.kdi.re.kr/policy/materialView.do?num=284575</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="even">
+<td>T4</td>
+<td>KOSIS, 「성별/첫 취업 소요기간 및 평균소요기간 (졸업/중퇴 취업유경험자)」 (노동 &gt; 경제활동인구조사 &gt; 청년층 부가조사)</td>
+<td><a href="https://kosis.kr/statHtml/statHtml.do?orgId=101&amp;tblId=DT_1DE9058S" class="uri">https://kosis.kr/statHtml/statHtml.do?orgId=101&amp;tblId=DT_1DE9058S</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="odd">
+<td>T5</td>
+<td>교육부 보도자료 게시판</td>
+<td><a href="https://www.moe.go.kr/boardCnts/listRenew.do?boardID=294&amp;m=020402&amp;s=moe" class="uri">https://www.moe.go.kr/boardCnts/listRenew.do?boardID=294&amp;m=020402&amp;s=moe</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="even">
+<td>T6</td>
+<td>국가데이터처 연혁(2025-10-01 국가데이터처 출범)</td>
+<td><a href="https://www.mods.go.kr/menu.es?mid=a10604010500" class="uri">https://www.mods.go.kr/menu.es?mid=a10604010500</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="odd">
+<td>M1</td>
+<td>국가통계포털 KOSIS</td>
+<td><a href="https://kosis.kr" class="uri">https://kosis.kr</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="even">
+<td>M2</td>
+<td>고용노동부·한국고용정보원 고용24</td>
+<td><a href="https://www.work24.go.kr/" class="uri">https://www.work24.go.kr/</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="odd">
+<td>M3</td>
+<td>Tim Neusesser, 「Competitive Usability Evaluations: Definition」, Nielsen Norman Group (2024-01-05)</td>
+<td><a href="https://www.nngroup.com/articles/competitive-usability-evaluations/" class="uri">https://www.nngroup.com/articles/competitive-usability-evaluations/</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="even">
+<td>M4</td>
+<td>Strategyzer, 「The Value Proposition Canvas」</td>
+<td><a href="https://www.strategyzer.com/library/the-value-proposition-canvas" class="uri">https://www.strategyzer.com/library/the-value-proposition-canvas</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="odd">
+<td>M5</td>
+<td>Stripe, 「TAM, SAM, and SOM: How to size your market」 (2026-10-28 갱신)</td>
+<td><a href="https://stripe.com/resources/more/tam-sam-and-som" class="uri">https://stripe.com/resources/more/tam-sam-and-som</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="even">
+<td>M6</td>
+<td>Strategyzer, 「Value Proposition Design: Book Summary and Key Takeaways」 (2025-05-28)</td>
+<td><a href="https://www.strategyzer.com/library/value-proposition-design-book-summary" class="uri">https://www.strategyzer.com/library/value-proposition-design-book-summary</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="odd">
+<td>M7</td>
+<td>Mayya Azarova, 「Secondary Research in UX」, Nielsen Norman Group (2022-02-20)</td>
+<td><a href="https://www.nngroup.com/articles/secondary-research-in-ux/" class="uri">https://www.nngroup.com/articles/secondary-research-in-ux/</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="even">
+<td>M8</td>
+<td>Wikipedia, 「Positioning (marketing)」 (개념의 유래와 인식 지도)</td>
+<td><a href="https://en.wikipedia.org/wiki/Positioning_(marketing)" class="uri">https://en.wikipedia.org/wiki/Positioning_(marketing)</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="odd">
+<td>M9</td>
+<td>Geoff Fripp, 「Perceptual Maps Best Practice」, Perceptual Maps 4 Marketing</td>
+<td><a href="https://www.perceptualmaps.com/perceptual-maps-best-practice/" class="uri">https://www.perceptualmaps.com/perceptual-maps-best-practice/</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="even">
+<td>M10</td>
+<td>Mermaid, 「Quadrant Chart」 문법</td>
+<td><a href="https://mermaid.js.org/syntax/quadrantChart.html" class="uri">https://mermaid.js.org/syntax/quadrantChart.html</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="odd">
+<td>C1</td>
+<td>Claude Code 문서, 「Tools reference」 (WebFetch tool behavior, WebSearch tool behavior)</td>
+<td><a href="https://code.claude.com/docs/en/tools-reference" class="uri">https://code.claude.com/docs/en/tools-reference</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="even">
+<td>C2</td>
+<td>Claude Code 문서, 「Configure permissions」 (WebFetch 규칙, <code>/permissions</code>)</td>
+<td><a href="https://code.claude.com/docs/en/permissions" class="uri">https://code.claude.com/docs/en/permissions</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="odd">
+<td>C3</td>
+<td>Claude API 문서, 「Reduce hallucinations」</td>
+<td><a href="https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations" class="uri">https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="even">
+<td>C4</td>
+<td>Claude Code 문서, 「Settings files and precedence」 (<code>.claude/settings.local.json</code>과 전역 제외 목록)</td>
+<td><a href="https://code.claude.com/docs/en/settings" class="uri">https://code.claude.com/docs/en/settings</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="odd">
+<td>G1</td>
+<td>GitHub Docs, 「Creating diagrams」 (Markdown 파일의 mermaid, <code>info</code>로 판 확인)</td>
+<td><a href="https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams" class="uri">https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="even">
+<td>K1</td>
+<td>사람인 (첫 화면과 전체 메뉴)</td>
+<td><a href="https://www.saramin.co.kr/zf_user/" class="uri">https://www.saramin.co.kr/zf_user/</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="odd">
+<td>K2</td>
+<td>잡코리아 (첫 화면)</td>
+<td><a href="https://www.jobkorea.co.kr/" class="uri">https://www.jobkorea.co.kr/</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="even">
+<td>K3</td>
+<td>링커리어 (첫 화면과 전체 메뉴)</td>
+<td><a href="https://linkareer.com/" class="uri">https://linkareer.com/</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="odd">
+<td>K4</td>
+<td>자소설닷컴 (첫 화면)</td>
+<td><a href="https://jasoseol.com/" class="uri">https://jasoseol.com/</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="even">
+<td>K5</td>
+<td>고용24 (첫 화면과 전체 메뉴)</td>
+<td><a href="https://www.work24.go.kr/" class="uri">https://www.work24.go.kr/</a></td>
+<td>2026-11-14</td>
+</tr>
+<tr class="odd">
+<td>K6</td>
+<td>원티드 (첫 화면)</td>
+<td><a href="https://www.wanted.co.kr/" class="uri">https://www.wanted.co.kr/</a></td>
+<td>2026-11-14</td>
+</tr>
+</tbody>
+</table>
+<p>경쟁 서비스(K1~K6)의 메뉴는 2026-11-14에 로그인하지 않은 상태로 관찰한 것이다. 서비스의 화면은 자주 바뀌므로 수업 시점에 다시 관찰한다. 서비스 이름은 사실을 서술하기 위해서만 썼다.</p>
+<hr>
+</section>
+<section id="다음-장-안내" class="level2">
+<h2 class="anchored" data-anchor-id="다음-장-안내">다음 장 안내</h2>
+<p>5장은 「사용자 조사와 페르소나 설계」다. 4장의 가치 제안은 2차 자료와 관찰로 세운 가설이다. 5장은 그 가설을 1차 자료로 확인한다. 수강생끼리 서로를 인터뷰하고(대상 사용자와 같은 집단이다), 기록을 친화도 분석으로 묶어 페르소나 두 명과 문제 정의를 도출한다.</p>
+<p>5장이 4장에서 받는 것은 두 가지다. <code>ch04/가치제안.md</code>의 「5장에서 확인할 것」은 인터뷰 가이드의 질문이 된다. <code>ch04/시장조사.md</code>의 「한계와 다음 조사」 가운데 1차 자료가 필요한 질문(예: 취업 정보 앱의 사용 실태)은 설문 문항이 된다. 4장에서 AI가 만든 수치를 원문과 대조했듯이, 5장에서는 AI가 만든 페르소나의 모든 주장을 인터뷰 기록의 줄 번호와 대조한다. 원문 대조라는 절차는 같고 원문의 종류만 바뀐다.</p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> 맨 위로</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "복사완료!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "복사완료!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../courses/llm-service/book/Service_03주차_학생용.html" class="pagination-link" aria-label="[3주차] 팀 공동 작업: GitHub 기반 협업 흐름">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">[3주차] 팀 공동 작업: GitHub 기반 협업 흐름</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../courses/llm-service/book/Service_05주차_학생용.html" class="pagination-link" aria-label="[5주차] 사용자 조사와 페르소나 설계">
+        <span class="nav-page-text">[5주차] 사용자 조사와 페르소나 설계</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>안중호 교수 강의 교재 · 2026년 2학기판</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

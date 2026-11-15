@@ -1,0 +1,2057 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>[1주차] 데이터 불러오기와 구성 파악 – 안중호 교수 강의 교재</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../courses/aice/book/AICE_02주차_학생용.html" rel="next">
+<link href="../../../courses/aice/book/AICE_00주차_학생용.html" rel="prev">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-dcf116883d0d3758c9131f5ede2fa7e1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">안중호 교수 강의 교재</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="검색"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">커리큘럼</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/semesters/index.html">
+ <span class="dropdown-text">전체 커리큘럼</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../docs/semesters/2026-2/index.html">
+ <span class="dropdown-text">2026년 2학기</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../docs/subjects/llm-ai/index.html">
+ <span class="dropdown-text">교재 · LLM AI 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/subjects/python/index.html">
+ <span class="dropdown-text">교재 · 파이썬 실습</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../courses/index.html">
+ <span class="dropdown-text">2027학년도 교재 (준비 중)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/llm-service/index.html">
+ <span class="dropdown-text">· LLM 서비스 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/office/index.html">
+ <span class="dropdown-text">· 컴퓨터활용</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/adsp/index.html">
+ <span class="dropdown-text">· 빅데이터개론</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/ai-agent/index.html">
+ <span class="dropdown-text">· AI에이전트 기획 및 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/aice/index.html">
+ <span class="dropdown-text">· 비즈니스빅데이터분석</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/about/교수_소개.html"> 
+<span class="menu-text">교수 소개</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../courses/aice/book/AICE_00주차_학생용.html">교재</a></li><li class="breadcrumb-item"><a href="../../../courses/aice/book/AICE_01주차_학생용.html">[1주차] 데이터 불러오기와 구성 파악</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">비즈니스빅데이터분석</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">교재</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_00주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[0주차] 오리엔테이션</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_01주차_학생용.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">[1주차] 데이터 불러오기와 구성 파악</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_02주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[2주차] 데이터 시각화: 분포와 관계</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_03주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[3주차] 결측치·이상치 처리와 열 정리</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_04주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[4주차] 범주형 데이터와 인코딩</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_05주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[5주차] 데이터 분할과 스케일링</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_06주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[6주차] 머신러닝 (1): 회귀 모델과 평가</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_07주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[7주차] 머신러닝 (2): 분류 모델과 평가</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_08주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[8주차] 모델 성능 개선: 교차 검증, 격자 탐색, 변수 중요도</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_09주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[9주차] 딥러닝 (1): 신경망의 구성과 학습</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_10주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[10주차] 딥러닝 (2): 학습 제어와 학습 곡선</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_11주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[11주차] 응시 전략과 답안 규칙</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_부록_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">부록</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">이 장의 차례</h2>
+   
+  <ul>
+  <li><a href="#학습-목표" id="toc-학습-목표" class="nav-link active" data-scroll-target="#학습-목표">학습 목표</a></li>
+  <li><a href="#준비-사항" id="toc-준비-사항" class="nav-link" data-scroll-target="#준비-사항">준비 사항</a>
+  <ul class="collapse">
+  <li><a href="#학기-공통-자료-customers.csv" id="toc-학기-공통-자료-customers.csv" class="nav-link" data-scroll-target="#학기-공통-자료-customers.csv">학기 공통 자료 <code>customers.csv</code></a></li>
+  </ul></li>
+  <li><a href="#라이브러리-불러오기와-설치" id="toc-라이브러리-불러오기와-설치" class="nav-link" data-scroll-target="#라이브러리-불러오기와-설치">1. 라이브러리 불러오기와 설치</a>
+  <ul class="collapse">
+  <li><a href="#import와-별칭" id="toc-import와-별칭" class="nav-link" data-scroll-target="#import와-별칭">1.1 import와 별칭</a></li>
+  <li><a href="#설치-명령과-판-번호-확인" id="toc-설치-명령과-판-번호-확인" class="nav-link" data-scroll-target="#설치-명령과-판-번호-확인">1.2 설치 명령과 판 번호 확인</a></li>
+  </ul></li>
+  <li><a href="#csv-파일의-구조와-읽기" id="toc-csv-파일의-구조와-읽기" class="nav-link" data-scroll-target="#csv-파일의-구조와-읽기">2. CSV 파일의 구조와 읽기</a>
+  <ul class="collapse">
+  <li><a href="#csv-파일의-구조" id="toc-csv-파일의-구조" class="nav-link" data-scroll-target="#csv-파일의-구조">2.1 CSV 파일의 구조</a></li>
+  <li><a href="#경로" id="toc-경로" class="nav-link" data-scroll-target="#경로">2.2 경로</a></li>
+  <li><a href="#read_csv와-주요-인자" id="toc-read_csv와-주요-인자" class="nav-link" data-scroll-target="#read_csv와-주요-인자">2.3 <code>read_csv</code>와 주요 인자</a></li>
+  <li><a href="#앞뒤-행의-확인" id="toc-앞뒤-행의-확인" class="nav-link" data-scroll-target="#앞뒤-행의-확인">2.4 앞뒤 행의 확인</a></li>
+  </ul></li>
+  <li><a href="#자료의-구성과-품질-확인" id="toc-자료의-구성과-품질-확인" class="nav-link" data-scroll-target="#자료의-구성과-품질-확인">3. 자료의 구성과 품질 확인</a>
+  <ul class="collapse">
+  <li><a href="#크기-shape" id="toc-크기-shape" class="nav-link" data-scroll-target="#크기-shape">3.1 크기: <code>shape</code></a></li>
+  <li><a href="#자료형과-결측-info" id="toc-자료형과-결측-info" class="nav-link" data-scroll-target="#자료형과-결측-info">3.2 자료형과 결측: <code>info()</code></a></li>
+  <li><a href="#수치형-열의-요약-통계-describe" id="toc-수치형-열의-요약-통계-describe" class="nav-link" data-scroll-target="#수치형-열의-요약-통계-describe">3.3 수치형 열의 요약 통계: <code>describe()</code></a></li>
+  <li><a href="#범주형-열의-요약-describeexcludenumber" id="toc-범주형-열의-요약-describeexcludenumber" class="nav-link" data-scroll-target="#범주형-열의-요약-describeexcludenumber">3.4 범주형 열의 요약: <code>describe(exclude="number")</code></a></li>
+  <li><a href="#결측치-수-isna.sum" id="toc-결측치-수-isna.sum" class="nav-link" data-scroll-target="#결측치-수-isna.sum">3.5 결측치 수: <code>isna().sum()</code></a></li>
+  <li><a href="#고유값-수-nunique" id="toc-고유값-수-nunique" class="nav-link" data-scroll-target="#고유값-수-nunique">3.6 고유값 수: <code>nunique()</code></a></li>
+  <li><a href="#중복-행-duplicated" id="toc-중복-행-duplicated" class="nav-link" data-scroll-target="#중복-행-duplicated">3.7 중복 행: <code>duplicated()</code></a></li>
+  <li><a href="#품질-점검의-순서" id="toc-품질-점검의-순서" class="nav-link" data-scroll-target="#품질-점검의-순서">3.8 품질 점검의 순서</a></li>
+  </ul></li>
+  <li><a href="#열-선택과-조건에-의한-행-선택" id="toc-열-선택과-조건에-의한-행-선택" class="nav-link" data-scroll-target="#열-선택과-조건에-의한-행-선택">4. 열 선택과 조건에 의한 행 선택</a>
+  <ul class="collapse">
+  <li><a href="#열-선택" id="toc-열-선택" class="nav-link" data-scroll-target="#열-선택">4.1 열 선택</a></li>
+  <li><a href="#조건에-의한-행-선택" id="toc-조건에-의한-행-선택" class="nav-link" data-scroll-target="#조건에-의한-행-선택">4.2 조건에 의한 행 선택</a></li>
+  <li><a href="#and를-쓰면-생기는-오류" id="toc-and를-쓰면-생기는-오류" class="nav-link" data-scroll-target="#and를-쓰면-생기는-오류">4.3 <code>and</code>를 쓰면 생기는 오류</a></li>
+  </ul></li>
+  <li><a href="#빈도-집계-그룹별-집계-정렬" id="toc-빈도-집계-그룹별-집계-정렬" class="nav-link" data-scroll-target="#빈도-집계-그룹별-집계-정렬">5. 빈도 집계, 그룹별 집계, 정렬</a>
+  <ul class="collapse">
+  <li><a href="#빈도-집계-value_counts" id="toc-빈도-집계-value_counts" class="nav-link" data-scroll-target="#빈도-집계-value_counts">5.1 빈도 집계: <code>value_counts()</code></a></li>
+  <li><a href="#그룹별-집계-groupby" id="toc-그룹별-집계-groupby" class="nav-link" data-scroll-target="#그룹별-집계-groupby">5.2 그룹별 집계: <code>groupby()</code></a></li>
+  <li><a href="#정렬과-최댓값의-위치" id="toc-정렬과-최댓값의-위치" class="nav-link" data-scroll-target="#정렬과-최댓값의-위치">5.3 정렬과 최댓값의 위치</a></li>
+  <li><a href="#두-열을-기준으로-한-그룹별-집계" id="toc-두-열을-기준으로-한-그룹별-집계" class="nav-link" data-scroll-target="#두-열을-기준으로-한-그룹별-집계">5.4 두 열을 기준으로 한 그룹별 집계</a></li>
+  <li><a href="#정렬한-결과에서-행-꺼내기" id="toc-정렬한-결과에서-행-꺼내기" class="nav-link" data-scroll-target="#정렬한-결과에서-행-꺼내기">5.5 정렬한 결과에서 행 꺼내기</a></li>
+  </ul></li>
+  <li><a href="#공식-문서의-구성과-검색" id="toc-공식-문서의-구성과-검색" class="nav-link" data-scroll-target="#공식-문서의-구성과-검색">6. 공식 문서의 구성과 검색</a></li>
+  <li><a href="#문항의-형식과-답안-규칙" id="toc-문항의-형식과-답안-규칙" class="nav-link" data-scroll-target="#문항의-형식과-답안-규칙">7. 문항의 형식과 답안 규칙</a>
+  <ul class="collapse">
+  <li><a href="#문항의-네-가지-형식" id="toc-문항의-네-가지-형식" class="nav-link" data-scroll-target="#문항의-네-가지-형식">7.1 문항의 네 가지 형식</a></li>
+  <li><a href="#답안-규칙" id="toc-답안-규칙" class="nav-link" data-scroll-target="#답안-규칙">7.2 답안 규칙</a></li>
+  </ul></li>
+  <li><a href="#중심-실습-공통-자료의-명세표와-물음-5개" id="toc-중심-실습-공통-자료의-명세표와-물음-5개" class="nav-link" data-scroll-target="#중심-실습-공통-자료의-명세표와-물음-5개">8. 중심 실습: 공통 자료의 명세표와 물음 5개</a></li>
+  <li><a href="#시간-제한-문항" id="toc-시간-제한-문항" class="nav-link" data-scroll-target="#시간-제한-문항">9. 시간 제한 문항</a>
+  <ul class="collapse">
+  <li><a href="#문항-1-빈칸-채우기" id="toc-문항-1-빈칸-채우기" class="nav-link" data-scroll-target="#문항-1-빈칸-채우기">문항 1 (빈칸 채우기)</a></li>
+  <li><a href="#문항-2-오류-정정" id="toc-문항-2-오류-정정" class="nav-link" data-scroll-target="#문항-2-오류-정정">문항 2 (오류 정정)</a></li>
+  <li><a href="#문항-3-답-변수" id="toc-문항-3-답-변수" class="nav-link" data-scroll-target="#문항-3-답-변수">문항 3 (답 변수)</a></li>
+  </ul></li>
+  <li><a href="#정리" id="toc-정리" class="nav-link" data-scroll-target="#정리">10. 정리</a></li>
+  <li><a href="#참고-자료" id="toc-참고-자료" class="nav-link" data-scroll-target="#참고-자료">참고 자료</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../courses/aice/book/AICE_00주차_학생용.html">교재</a></li><li class="breadcrumb-item"><a href="../../../courses/aice/book/AICE_01주차_학생용.html">[1주차] 데이터 불러오기와 구성 파악</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">[1주차] 데이터 불러오기와 구성 파악</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<header class="chapter-head">
+<p class="chapter-part">비즈니스빅데이터분석</p>
+<p class="chapter-no"><span class="num">1</span><span class="unit">주차</span></p>
+<p class="chapter-title">데이터 불러오기와 구성 파악</p>
+</header>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>2027학년도 「비즈니스빅데이터분석」의 준비 중인 교재입니다. 편집 상태를 검토하기 위해 미리 공개한 것으로, 수업 전에 내용과 순서가 바뀔 수 있습니다.</p>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>학사 2주차 · 교재 01 · 1부 데이터 분석 · 출제 분야: 데이터 분석 &gt; 필요 라이브러리 설치, 데이터 구성 및 특성 파악, 데이터 품질 점검</p>
+</blockquote>
+<p>AICE Associate의 시험지는 표 데이터 한 건을 받아 라이브러리를 불러오고 파일을 읽는 문항으로 시작한다. 이어지는 문항은 자료의 크기, 자료형, 결측치, 범주별 빈도와 같은 구성을 확인하게 하고, 그 결과를 지정된 변수에 저장하게 한다. 이 단계에서 파일을 읽지 못하거나 변수 이름을 잘못 지정하면 뒤의 모든 문항이 영향을 받는다. 시험지 전체가 첫 문항의 결과 위에 쌓이기 때문이다.</p>
+<p>본 장은 pandas로 CSV 파일을 읽고 자료의 구성과 품질을 코드로 확인하는 방법을 다룬다. 내용 자체는 선수 과목에서 한 번 사용해 본 수준이므로, 본 장의 중점은 새 기능의 학습보다 시험 문항의 형식에 맞추어 답을 산출하고 저장하는 연습에 있다. 본 장에서 작성하는 명세표와 품질 점검의 결과는 3장(결측치·이상치 처리)의 출발점이 된다.</p>
+<hr>
+<section id="학습-목표" class="level2">
+<h2 class="anchored" data-anchor-id="학습-목표">학습 목표</h2>
+<ol type="1">
+<li>데이터 분석에 쓰는 라이브러리를 관용 별칭으로 불러오고, 설치 여부와 판 번호를 확인한다.</li>
+<li>CSV 파일의 구조와 경로를 이해하고, <code>read_csv</code>로 파일을 읽어 앞뒤의 행을 확인한다.</li>
+<li>자료의 크기, 자료형, 요약 통계, 결측치 수, 고유값 수, 중복 행 수를 코드로 확인하고 품질 문제를 찾는다.</li>
+<li>열을 선택하고, 하나 이상의 조건으로 행을 선택한다.</li>
+<li>빈도 집계, 그룹별 집계, 정렬로 물음의 답을 산출하여 지정된 변수에 저장한다.</li>
+<li>모르는 함수의 사용법을 공식 문서에서 찾고, 시험의 답안 규칙에 맞추어 답을 작성한다.</li>
+</ol>
+</section>
+<section id="준비-사항" class="level2">
+<h2 class="anchored" data-anchor-id="준비-사항">준비 사항</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>실습 노트북</td>
+<td><code>AICE_01주차_실습_학생용.ipynb</code></td>
+</tr>
+<tr class="even">
+<td>자료</td>
+<td><code>customers.csv</code>(학기 공통 자료), <code>laptops.csv</code>(시간 제한 문항용). 둘 다 <code>assets/data/AICE_공통/</code>에 있다</td>
+</tr>
+<tr class="odd">
+<td>앞 과목과의 연계</td>
+<td>「파이썬 기초」 3장(점 표기의 메서드 호출), 4장(비교식과 조건문), 12~13장(DataFrame), 「고급프로그래밍」 3~4장(파일과 CSV), 8장(import), 11~12장(표 데이터)</td>
+</tr>
+<tr class="even">
+<td>실습 환경</td>
+<td>접속과 설치는 부록 A를 따른다</td>
+</tr>
+</tbody>
+</table>
+<section id="학기-공통-자료-customers.csv" class="level3">
+<h3 class="anchored" data-anchor-id="학기-공통-자료-customers.csv">학기 공통 자료 <code>customers.csv</code></h3>
+<p>가상의 온라인 쇼핑몰 회원 3,030명의 기록이다. 모든 값은 가상으로 생성하였다. 학기 내내 같은 자료를 사용하며, 앞 장의 결과가 다음 장의 입력이 된다. 시험지가 앞 문항의 결과를 뒤 문항의 대상으로 삼는 방식과 같다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>열</th>
+<th>뜻</th>
+<th>단위·값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>customer_id</code></td>
+<td>회원 번호</td>
+<td>C00001 형식</td>
+</tr>
+<tr class="even">
+<td><code>age</code></td>
+<td>나이</td>
+<td>세</td>
+</tr>
+<tr class="odd">
+<td><code>gender</code></td>
+<td>성별</td>
+<td>F, M</td>
+</tr>
+<tr class="even">
+<td><code>region</code></td>
+<td>거주 지역</td>
+<td>Seoul, Gyeonggi 등</td>
+</tr>
+<tr class="odd">
+<td><code>grade</code></td>
+<td>회원 등급</td>
+<td>Bronze, Silver, Gold, VIP</td>
+</tr>
+<tr class="even">
+<td><code>tenure_months</code></td>
+<td>가입 기간</td>
+<td>개월</td>
+</tr>
+<tr class="odd">
+<td><code>visits_per_month</code></td>
+<td>월평균 방문 수</td>
+<td>회</td>
+</tr>
+<tr class="even">
+<td><code>avg_session_min</code></td>
+<td>방문당 평균 이용 시간</td>
+<td>분</td>
+</tr>
+<tr class="odd">
+<td><code>cart_items</code></td>
+<td>장바구니에 담긴 상품 수</td>
+<td>개</td>
+</tr>
+<tr class="even">
+<td><code>coupon_use_rate</code></td>
+<td>구매 가운데 쿠폰을 사용한 비율</td>
+<td>0~1</td>
+</tr>
+<tr class="odd">
+<td><code>app_user</code></td>
+<td>모바일 앱 사용 여부</td>
+<td>Y, N</td>
+</tr>
+<tr class="even">
+<td><code>payment</code></td>
+<td>주 결제 수단</td>
+<td>Card, Transfer, Mobile, Point</td>
+</tr>
+<tr class="odd">
+<td><code>cs_calls</code></td>
+<td>최근 6개월 고객센터 문의 수</td>
+<td>회</td>
+</tr>
+<tr class="even">
+<td><code>last_login_days</code></td>
+<td>마지막 접속 이후 경과 일수</td>
+<td>일</td>
+</tr>
+<tr class="odd">
+<td><code>marketing_agree</code></td>
+<td>마케팅 수신 동의 여부</td>
+<td>Y, N</td>
+</tr>
+<tr class="even">
+<td><code>annual_spend</code></td>
+<td>연간 구매액 (수치 목표 열)</td>
+<td>만 원</td>
+</tr>
+<tr class="odd">
+<td><code>churn</code></td>
+<td>다음 분기 이탈 여부 (범주 목표 열)</td>
+<td>1 이탈, 0 유지</td>
+</tr>
+</tbody>
+</table>
+<p>목표 열은 둘이다. 6장(회귀)에서는 <code>annual_spend</code>를, 7장(분류)에서는 <code>churn</code>을 예측한다. 자료에는 결측치, 입력 오류로 보이는 값, 표기가 섞인 범주 값, 중복 행이 들어 있다. 이를 찾는 것이 본 장의 일이고, 처리하는 것이 3장과 4장의 일이다.</p>
+<hr>
+</section>
+</section>
+<section id="라이브러리-불러오기와-설치" class="level2">
+<h2 class="anchored" data-anchor-id="라이브러리-불러오기와-설치">1. 라이브러리 불러오기와 설치</h2>
+<section id="import와-별칭" class="level3">
+<h3 class="anchored" data-anchor-id="import와-별칭">1.1 import와 별칭</h3>
+<p>데이터 분석에 쓰는 라이브러리는 관용적인 별칭으로 불러온다. 시험의 첫 문항은 “pandas를 별칭 pd로 불러온다”처럼 별칭까지 지정하는 경우가 많다. 지정된 별칭과 다른 이름을 쓰면 뒤 문항의 코드가 그 이름을 찾지 못하므로, 별칭은 지시를 그대로 따른다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>라이브러리</th>
+<th>관용 별칭</th>
+<th>용도</th>
+<th>본 과목의 장</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>numpy</code></td>
+<td><code>np</code></td>
+<td>배열과 수치 계산</td>
+<td>전 장</td>
+</tr>
+<tr class="even">
+<td><code>pandas</code></td>
+<td><code>pd</code></td>
+<td>표 데이터의 읽기, 선택, 집계, 가공</td>
+<td>1~5장</td>
+</tr>
+<tr class="odd">
+<td><code>matplotlib.pyplot</code></td>
+<td><code>plt</code></td>
+<td>그림, 축, 제목, 범례</td>
+<td>2장, 8장, 10장</td>
+</tr>
+<tr class="even">
+<td><code>seaborn</code></td>
+<td><code>sns</code></td>
+<td>통계 그래프</td>
+<td>2장, 8장</td>
+</tr>
+<tr class="odd">
+<td><code>sklearn</code></td>
+<td>(별칭 없음, 필요한 것만 <code>from</code>으로)</td>
+<td>전처리, 모델, 평가</td>
+<td>4~8장</td>
+</tr>
+<tr class="even">
+<td><code>tensorflow</code></td>
+<td><code>tf</code></td>
+<td>신경망</td>
+<td>9~10장</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"pandas"</span>, pd.__version__)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"numpy"</span>, np.__version__)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"seaborn"</span>, sns.__version__)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>pandas 3.1.1
+numpy 2.5.4
+seaborn 0.13.2</code></pre>
+<p><code>import 모듈 as 별칭</code>은 모듈 전체를 별칭으로 불러온다. 반면 scikit-learn은 필요한 함수와 클래스만 <code>from sklearn.model_selection import train_test_split</code>처럼 불러오는 것이 관례이다. 판 번호는 모듈의 <code>__version__</code> 속성에 있다. 셀의 마지막 줄이 값만 적힌 식이면 노트북은 그 값을 출력한다. 아래 셀은 <code>print</code> 없이 판 번호를 출력한다.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sklearn</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>sklearn.__version__</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>'1.9.1'</code></pre>
+</section>
+<section id="설치-명령과-판-번호-확인" class="level3">
+<h3 class="anchored" data-anchor-id="설치-명령과-판-번호-확인">1.2 설치 명령과 판 번호 확인</h3>
+<p>출제 범위의 첫 항목은 “필요 라이브러리 설치”이다. 주피터 노트북에서는 셀 안에 <code>pip</code> 명령을 적어 라이브러리를 설치한다. 명령 앞의 <code>%</code>는 노트북의 매직 명령 표시로, 현재 노트북이 쓰는 파이썬 환경에 설치하게 한다.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install seaborn</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>상황</th>
+<th>대응</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ModuleNotFoundError: No module named '...'</code></td>
+<td>해당 라이브러리가 설치되지 않은 것이다. <code>%pip install 이름</code>으로 설치한 뒤 커널을 다시 시작하고 import를 다시 실행한다</td>
+</tr>
+<tr class="even">
+<td>설치 이름과 import 이름이 다르다</td>
+<td>scikit-learn은 <code>pip install scikit-learn</code>으로 설치하고 <code>import sklearn</code>으로 불러온다</td>
+</tr>
+<tr class="odd">
+<td>이미 설치되어 있다</td>
+<td><code>Requirement already satisfied</code>가 출력된다. 오류가 아니다</td>
+</tr>
+</tbody>
+</table>
+<p>시험 환경에는 출제 범위의 라이브러리가 설치되어 있는 것이 보통이다. 다만 설치 문항이 나오면 문항 가이드가 지시한 이름과 형식을 그대로 따른다. 수업의 실습 환경에서 무엇이 설치되어 있는지는 부록 A의 확인 셀로 점검한다.</p>
+<hr>
+</section>
+</section>
+<section id="csv-파일의-구조와-읽기" class="level2">
+<h2 class="anchored" data-anchor-id="csv-파일의-구조와-읽기">2. CSV 파일의 구조와 읽기</h2>
+<section id="csv-파일의-구조" class="level3">
+<h3 class="anchored" data-anchor-id="csv-파일의-구조">2.1 CSV 파일의 구조</h3>
+<p>CSV(comma-separated values)는 한 줄이 한 행이고, 쉼표로 열을 구분하는 텍스트 파일이다. 첫 줄은 열 이름(머리글)이다. 아래 셀은 pandas를 쓰지 않고 파일의 앞 세 줄을 그대로 출력한다.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>DATA <span class="op">=</span> <span class="st">"../kit/data/AICE_공통/"</span>   <span class="co"># 자료 폴더의 위치</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(DATA <span class="op">+</span> <span class="st">"customers.csv"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(f.readline().rstrip())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>customer_id,age,gender,region,grade,tenure_months,visits_per_month,avg_session_min,cart_items,coupon_use_rate,app_user,payment,cs_calls,last_login_days,marketing_agree,annual_spend,churn
+C02493,30.0,F,Gyeonggi,VIP,45,18.6,14.0,7,0.16,N,Card,2,16,Y,436.5,0
+C01009,43.0,M,Incheon,Gold,50,13.1,19.3,5,0.06,N,Mobile,1,14,N,282.6,0</code></pre>
+<p>출력에서 세 가지를 확인한다. 첫째, 첫 줄은 17개의 열 이름이다. 둘째, 값이 비어 있는 칸은 쉼표 사이에 아무것도 없다(<code>,,</code>). pandas는 이를 결측치(<code>NaN</code>)로 읽는다. 셋째, 숫자와 글자가 섞여 있으나 파일 안에서는 모두 글자이다. 자료형은 pandas가 읽으면서 열마다 추정한다.</p>
+</section>
+<section id="경로" class="level3">
+<h3 class="anchored" data-anchor-id="경로">2.2 경로</h3>
+<p><code>DATA = "../kit/data/AICE_공통/"</code>의 <code>..</code>은 한 단계 위의 폴더를 뜻한다. 노트북이 있는 폴더(<code>courses/aice/book/</code>)에서 세 단계 올라가 <code>assets/data/AICE_공통/</code>으로 내려간다. 경로를 변수 하나에 저장해 두면 자료 폴더의 위치가 바뀌어도 그 한 줄만 고치면 된다. 시험에서는 파일의 경로가 문항에 주어지므로, 주어진 문자열을 그대로 사용한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>오류 메시지</th>
+<th>원인</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>FileNotFoundError: [Errno 2] No such file or directory</code></td>
+<td>경로나 파일 이름의 오타, 확장자 누락, 현재 폴더의 오해</td>
+</tr>
+<tr class="even">
+<td><code>UnicodeDecodeError: 'utf-8' codec can't decode byte ...</code></td>
+<td>파일의 문자 인코딩이 UTF-8이 아니다. 한글 윈도우에서 저장한 파일은 <code>encoding="cp949"</code>로 읽는다</td>
+</tr>
+<tr class="odd">
+<td><code>ParserError: Error tokenizing data</code></td>
+<td>구분자가 쉼표가 아니거나 행마다 열의 수가 다르다. <code>sep</code> 인자를 확인한다</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="read_csv와-주요-인자" class="level3">
+<h3 class="anchored" data-anchor-id="read_csv와-주요-인자">2.3 <code>read_csv</code>와 주요 인자</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(DATA <span class="op">+</span> <span class="st">"customers.csv"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>  customer_id   age gender    region   grade  tenure_months  visits_per_month  avg_session_min  cart_items  \
+0      C02493  30.0      F  Gyeonggi     VIP             45              18.6             14.0           7   
+1      C01009  43.0      M   Incheon    Gold             50              13.1             19.3           5   
+2      C02351  25.0      M  Gyeonggi  Bronze             46               NaN             15.9           5   
+3      C02285  50.0      M  Gyeonggi    Gold             53               8.9             20.7           3   
+4      C01092  38.0      M  Gyeonggi    Gold             93               4.9             13.0           3   
+
+   coupon_use_rate app_user   payment  cs_calls  last_login_days marketing_agree  annual_spend  churn  
+0             0.16        N      Card         2               16               Y         436.5      0  
+1             0.06        N    Mobile         1               14               N         282.6      0  
+2             0.34        Y  Transfer         0               92               Y         153.1      1  
+3             0.21        N      Card         1               55               Y         305.7      0  
+4             0.39        Y      Card         2               82               Y         243.3      1  </code></pre>
+<p><code>pd.read_csv</code>는 CSV 파일을 읽어 데이터프레임(DataFrame)을 돌려준다. 결과를 변수에 저장하지 않으면 읽은 내용이 남지 않는다. 시험에서는 저장할 변수 이름을 지정하므로(예: <code>df</code>), 그 이름을 그대로 쓴다. 맨 왼쪽의 0, 1, 2, …는 행의 이름인 인덱스로, 파일에 없던 것을 pandas가 붙인 것이다. 열이 많으면 화면의 너비에 맞추어 여러 줄로 나뉘어 출력되고, 줄 끝의 <code>\</code>는 다음 줄로 이어진다는 표시이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>인자</th>
+<th>뜻</th>
+<th>기본값</th>
+<th>쓰는 경우</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>sep</code></td>
+<td>열의 구분자</td>
+<td><code>","</code></td>
+<td>탭으로 구분된 파일은 <code>sep="\t"</code></td>
+</tr>
+<tr class="even">
+<td><code>encoding</code></td>
+<td>문자 인코딩</td>
+<td>UTF-8</td>
+<td>한글 윈도우에서 저장한 파일은 <code>"cp949"</code></td>
+</tr>
+<tr class="odd">
+<td><code>index_col</code></td>
+<td>인덱스로 쓸 열</td>
+<td>없음</td>
+<td>회원 번호를 행 이름으로 쓰려면 <code>index_col="customer_id"</code></td>
+</tr>
+<tr class="even">
+<td><code>usecols</code></td>
+<td>읽을 열의 목록</td>
+<td>모든 열</td>
+<td>필요한 열만 읽을 때</td>
+</tr>
+<tr class="odd">
+<td><code>nrows</code></td>
+<td>읽을 행의 수</td>
+<td>모든 행</td>
+<td>큰 파일의 앞부분만 확인할 때</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="앞뒤-행의-확인" class="level3">
+<h3 class="anchored" data-anchor-id="앞뒤-행의-확인">2.4 앞뒤 행의 확인</h3>
+<p><code>head(n)</code>과 <code>tail(n)</code>은 앞과 뒤의 n행을 보여 준다. n을 생략하면 5행이다. 파일을 읽은 직후에는 앞뒤를 모두 확인한다. 머리글이 제대로 읽혔는지, 마지막 행에 합계 행 같은 잉여 행이 없는지를 보기 위함이다.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df.tail(<span class="dv">3</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>     customer_id   age gender    region   grade  tenure_months  visits_per_month  avg_session_min  \
+3027      C01294  28.0      M     Seoul     VIP             21               5.5             19.3   
+3028      C01105   NaN      M  Gyeonggi  Bronze             37              16.7             17.3   
+3029      C01946  47.0      M   Incheon    Gold            105               9.3             19.7   
+
+      cart_items  coupon_use_rate app_user payment  cs_calls  last_login_days marketing_agree  annual_spend  \
+3027           6             0.39        Y    Card         2               23               Y         388.6   
+3028           5             0.10        Y    Card         3               24               N         169.4   
+3029           2             0.30        N  Mobile         3               41               N         313.6   
+
+      churn  
+3027      0  
+3028      0  
+3029      1  </code></pre>
+<p>마지막 인덱스가 3029이므로 행은 3,030개이다. <code>NaN</code>은 결측치를 뜻한다. 3028번 행의 <code>age</code>가 비어 있다.</p>
+<p>노트북 1부의 연습 1(<code>usecols</code>)과 연습 2(<code>nrows</code>)를 푼다.</p>
+<hr>
+</section>
+</section>
+<section id="자료의-구성과-품질-확인" class="level2">
+<h2 class="anchored" data-anchor-id="자료의-구성과-품질-확인">3. 자료의 구성과 품질 확인</h2>
+<p>출제 범위의 “데이터 구성 및 특성 파악”과 “데이터 품질 점검”은 자료를 가공하기 전에 무엇이 들어 있는지를 확인하는 단계이다. 아래의 일곱 가지 확인을 순서대로 수행하면 자료의 구성과 품질 문제를 빠짐없이 파악할 수 있다.</p>
+<section id="크기-shape" class="level3">
+<h3 class="anchored" data-anchor-id="크기-shape">3.1 크기: <code>shape</code></h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df.shape</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>(3030, 17)</code></pre>
+<p><code>shape</code>는 (행 수, 열 수)의 튜플이다. 괄호를 붙이지 않는 속성이므로 <code>df.shape()</code>라고 쓰면 오류가 난다. 행 수만 필요하면 <code>df.shape[0]</code> 또는 <code>len(df)</code>를 쓴다.</p>
+</section>
+<section id="자료형과-결측-info" class="level3">
+<h3 class="anchored" data-anchor-id="자료형과-결측-info">3.2 자료형과 결측: <code>info()</code></h3>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df.info()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>&lt;class 'pandas.DataFrame'&gt;
+RangeIndex: 3030 entries, 0 to 3029
+Data columns (total 17 columns):
+ #   Column            Non-Null Count  Dtype  
+---  ------            --------------  -----  
+ 0   customer_id       3030 non-null   str    
+ 1   age               2933 non-null   float64
+ 2   gender            2990 non-null   str    
+ 3   region            3030 non-null   str    
+ 4   grade             3030 non-null   str    
+ 5   tenure_months     3030 non-null   int64  
+ 6   visits_per_month  2910 non-null   float64
+ 7   avg_session_min   2969 non-null   float64
+ 8   cart_items        3030 non-null   int64  
+ 9   coupon_use_rate   3030 non-null   float64
+ 10  app_user          3030 non-null   str    
+ 11  payment           3030 non-null   str    
+ 12  cs_calls          3030 non-null   int64  
+ 13  last_login_days   3030 non-null   int64  
+ 14  marketing_agree   3030 non-null   str    
+ 15  annual_spend      3018 non-null   float64
+ 16  churn             3030 non-null   int64  
+dtypes: float64(5), int64(5), str(7)
+memory usage: 402.6 KB</code></pre>
+<p><code>info()</code>는 열마다 결측이 아닌 값의 수(<code>Non-Null Count</code>)와 자료형(<code>Dtype</code>)을 보여 준다. 읽는 방법은 다음과 같다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>확인할 것</th>
+<th>이 출력에서</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>전체 행 수</td>
+<td><code>RangeIndex: 3030 entries</code></td>
+</tr>
+<tr class="even">
+<td>결측치가 있는 열</td>
+<td><code>Non-Null Count</code>가 3030보다 작은 열. <code>age</code>(2933), <code>gender</code>(2990), <code>visits_per_month</code>(2910), <code>avg_session_min</code>(2969), <code>annual_spend</code>(3018)</td>
+</tr>
+<tr class="odd">
+<td>수치형 열</td>
+<td><code>float64</code>(실수), <code>int64</code>(정수)</td>
+</tr>
+<tr class="even">
+<td>문자열 열</td>
+<td><code>str</code>. pandas 2.x에서는 <code>object</code>로 표시된다</td>
+</tr>
+</tbody>
+</table>
+<p>정수 열에 결측치가 하나라도 있으면 pandas는 그 열을 <code>float64</code>로 읽는다. <code>age</code>가 정수인데 <code>float64</code>인 까닭이다. 문자열 열의 자료형 표시는 pandas의 판에 따라 다르다. 본 교재의 출력은 pandas 3.1의 것이며, pandas 3.0부터 문자열 열은 <code>str</code> 자료형으로 읽힌다. 시험 환경의 판이 2.x이면 같은 열이 <code>object</code>로 표시된다. 판에 관계없이 문자열 열을 고르려면 3.4절의 <code>exclude="number"</code>를 쓴다.</p>
+</section>
+<section id="수치형-열의-요약-통계-describe" class="level3">
+<h3 class="anchored" data-anchor-id="수치형-열의-요약-통계-describe">3.3 수치형 열의 요약 통계: <code>describe()</code></h3>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df.describe()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>               age  tenure_months  visits_per_month  avg_session_min   cart_items  coupon_use_rate  \
+count  2933.000000    3030.000000        2910.00000      2969.000000  3030.000000      3030.000000   
+mean     40.306171      60.785149          11.21866        18.557865     4.760066         0.291759   
+std      44.708824      34.363116           5.50831        34.605059     2.550809         0.155874   
+min       0.000000       1.000000           1.00000         1.000000     0.000000         0.000000   
+25%      31.000000      31.000000           7.20000        13.700000     3.000000         0.170000   
+50%      38.000000      61.000000          10.30000        16.700000     4.000000         0.270000   
+75%      46.000000      90.000000          14.30000        19.900000     6.000000         0.400000   
+max     999.000000     120.000000          45.00000       830.700000    15.000000         0.860000   
+
+          cs_calls  last_login_days  annual_spend        churn  
+count  3030.000000      3030.000000   3018.000000  3030.000000  
+mean      1.215842        27.947195    226.820974     0.194389  
+std       1.097258        27.829313     83.166330     0.395795  
+min       0.000000         0.000000    -76.100000     0.000000  
+25%       0.000000         8.000000    170.200000     0.000000  
+50%       1.000000        20.000000    214.200000     0.000000  
+75%       2.000000        39.000000    270.125000     0.000000  
+max       6.000000       189.000000    521.300000     1.000000  </code></pre>
+<p><code>describe()</code>는 수치형 열마다 개수(<code>count</code>), 평균(<code>mean</code>), 표준편차(<code>std</code>), 최솟값(<code>min</code>), 사분위수(<code>25%</code>, <code>50%</code>, <code>75%</code>), 최댓값(<code>max</code>)을 계산한다. <code>count</code>는 결측치를 뺀 개수이다. 품질 점검에서는 최솟값과 최댓값을 먼저 본다.</p>
+<ul>
+<li><code>age</code>의 최솟값은 0, 최댓값은 999이다. 나이로 불가능한 값이므로 입력 오류로 의심한다. 평균(40.3)보다 표준편차(44.7)가 큰 것도 극단값이 섞였다는 신호이다.</li>
+<li><code>avg_session_min</code>의 최댓값은 830.7분이다. 75% 지점이 19.9분이므로 매우 동떨어진 값이다.</li>
+<li><code>annual_spend</code>의 최솟값은 -76.1이다. 구매액은 음수가 될 수 없으므로 오류로 의심한다.</li>
+<li><code>churn</code>의 평균 0.194는 이탈한 회원(1)의 비율이 약 19.4%라는 뜻이다. 0과 1로 된 열의 평균은 1의 비율이다.</li>
+</ul>
+</section>
+<section id="범주형-열의-요약-describeexcludenumber" class="level3">
+<h3 class="anchored" data-anchor-id="범주형-열의-요약-describeexcludenumber">3.4 범주형 열의 요약: <code>describe(exclude="number")</code></h3>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df.describe(exclude<span class="op">=</span><span class="st">"number"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>       customer_id gender region   grade app_user payment marketing_agree
+count         3030   2990   3030    3030     3030    3030            3030
+unique        3000      2     15       4        2       4               2
+top         C01397      F  Seoul  Bronze        Y    Card               Y
+freq             2   1575    896    1259     1870    1482            1737</code></pre>
+<p>수치형이 아닌 열에 <code>describe</code>를 적용하면 개수(<code>count</code>), 고유값의 수(<code>unique</code>), 가장 많은 값(<code>top</code>), 그 빈도(<code>freq</code>)가 나온다. <code>include="object"</code>라고 쓰는 자료도 많으나, pandas 3.0 이후에서는 문자열 열이 <code>object</code>가 아니므로 경고가 출력된다. 판에 관계없이 같은 결과를 얻으려면 <code>exclude="number"</code>(수치형을 뺀 나머지)를 쓴다.</p>
+<p>이 출력에서 두 가지 이상을 찾을 수 있다. 첫째, <code>customer_id</code>는 3,030행인데 고유값이 3,000개이고 <code>C01397</code>이 두 번 나온다. 같은 회원의 행이 중복되었을 수 있다. 둘째, <code>region</code>의 고유값이 15개이다. 실제 지역 수보다 많으므로 표기가 섞였는지 확인해야 한다(5절과 중심 실습).</p>
+</section>
+<section id="결측치-수-isna.sum" class="level3">
+<h3 class="anchored" data-anchor-id="결측치-수-isna.sum">3.5 결측치 수: <code>isna().sum()</code></h3>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>df.isna().<span class="bu">sum</span>()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>customer_id           0
+age                  97
+gender               40
+region                0
+grade                 0
+tenure_months         0
+visits_per_month    120
+avg_session_min      61
+cart_items            0
+coupon_use_rate       0
+app_user              0
+payment               0
+cs_calls              0
+last_login_days       0
+marketing_agree       0
+annual_spend         12
+churn                 0
+dtype: int64</code></pre>
+<p><code>isna()</code>는 각 칸이 결측치이면 <code>True</code>, 아니면 <code>False</code>인 같은 크기의 표를 만든다. 여기에 <code>sum()</code>을 붙이면 <code>True</code>를 1로 세어 열마다 결측치의 수가 된다. 결측치의 비율이 필요하면 <code>df.isna().mean()</code>을 쓴다. 결측치가 가장 많은 열은 <code>visits_per_month</code>(120개)이다. <code>isnull()</code>은 <code>isna()</code>와 같은 함수이다.</p>
+</section>
+<section id="고유값-수-nunique" class="level3">
+<h3 class="anchored" data-anchor-id="고유값-수-nunique">3.6 고유값 수: <code>nunique()</code></h3>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df.nunique()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>customer_id         3000
+age                   55
+gender                 2
+region                15
+grade                  4
+tenure_months        120
+visits_per_month     283
+avg_session_min      265
+cart_items            16
+coupon_use_rate       80
+app_user               2
+payment                4
+cs_calls               7
+last_login_days      146
+marketing_agree        2
+annual_spend        1838
+churn                  2
+dtype: int64</code></pre>
+<p><code>nunique()</code>는 열마다 서로 다른 값의 수를 센다. 결측치는 세지 않는다. 고유값의 수는 열의 성격을 판단하는 단서가 된다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>고유값 수</th>
+<th>판단</th>
+<th>이 자료의 예</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2</td>
+<td>이진 범주. 0/1이나 Y/N으로 인코딩한다</td>
+<td><code>gender</code>, <code>app_user</code>, <code>marketing_agree</code>, <code>churn</code></td>
+</tr>
+<tr class="even">
+<td>수 개에서 수십 개</td>
+<td>범주형 열. 4장에서 인코딩한다</td>
+<td><code>grade</code>(4), <code>payment</code>(4), <code>region</code>(15)</td>
+</tr>
+<tr class="odd">
+<td>행 수와 거의 같다</td>
+<td>식별자. 모델의 입력에서 뺀다</td>
+<td><code>customer_id</code>(3,000)</td>
+</tr>
+<tr class="even">
+<td>많다</td>
+<td>연속형 수치</td>
+<td><code>annual_spend</code>(1,838)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="중복-행-duplicated" class="level3">
+<h3 class="anchored" data-anchor-id="중복-행-duplicated">3.7 중복 행: <code>duplicated()</code></h3>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.duplicated().<span class="bu">sum</span>())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>30</code></pre>
+<p><code>duplicated()</code>는 앞에 나온 행과 모든 열의 값이 같은 행을 <code>True</code>로 표시한다. 기본값 <code>keep="first"</code>는 처음 나온 행을 원본으로 보고 두 번째부터 중복으로 센다. 이 자료에는 완전히 같은 행이 30개 있다. 3.4절에서 <code>customer_id</code>의 고유값이 30개 적었던 것과 수가 같으므로, 같은 회원의 행이 통째로 두 번 기록된 것이다. 특정 열만 기준으로 중복을 보려면 <code>df.duplicated(subset=["customer_id"])</code>처럼 쓴다.</p>
+</section>
+<section id="품질-점검의-순서" class="level3">
+<h3 class="anchored" data-anchor-id="품질-점검의-순서">3.8 품질 점검의 순서</h3>
+<p>3.1~3.7절의 확인을 모으면 다음의 품질 점검 표가 된다. 시험에서 “데이터 품질 점검”으로 묻는 것은 이 표의 한 칸이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>점검 항목</th>
+<th>코드</th>
+<th>이 자료에서 찾은 것</th>
+<th>처리할 장</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>크기</td>
+<td><code>df.shape</code></td>
+<td>3,030행, 17열</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>자료형</td>
+<td><code>df.info()</code>, <code>df.dtypes</code></td>
+<td>문자열 열 7개</td>
+<td>4장</td>
+</tr>
+<tr class="odd">
+<td>결측치</td>
+<td><code>df.isna().sum()</code></td>
+<td>5개 열, 최대 120개</td>
+<td>3장</td>
+</tr>
+<tr class="even">
+<td>범위를 벗어난 값</td>
+<td><code>df.describe()</code></td>
+<td><code>age</code> 0과 999, <code>avg_session_min</code> 830.7, <code>annual_spend</code> 음수</td>
+<td>3장</td>
+</tr>
+<tr class="odd">
+<td>표기 불일치</td>
+<td><code>df["열"].value_counts()</code></td>
+<td><code>region</code>의 고유값 15개</td>
+<td>4장</td>
+</tr>
+<tr class="even">
+<td>중복 행</td>
+<td><code>df.duplicated().sum()</code></td>
+<td>30개</td>
+<td>3장</td>
+</tr>
+<tr class="odd">
+<td>식별자 열</td>
+<td><code>df.nunique()</code></td>
+<td><code>customer_id</code></td>
+<td>3장</td>
+</tr>
+</tbody>
+</table>
+<p>노트북 1부의 연습 3(결측치 비율), 연습 4(최솟값과 최댓값), 연습 5(특정 열 기준의 중복)를 푼다.</p>
+<hr>
+</section>
+</section>
+<section id="열-선택과-조건에-의한-행-선택" class="level2">
+<h2 class="anchored" data-anchor-id="열-선택과-조건에-의한-행-선택">4. 열 선택과 조건에 의한 행 선택</h2>
+<section id="열-선택" class="level3">
+<h3 class="anchored" data-anchor-id="열-선택">4.1 열 선택</h3>
+<p>대괄호 안에 열 이름 하나를 쓰면 그 열이 시리즈(Series)로, 열 이름의 리스트를 쓰면 데이터프레임으로 선택된다. 대괄호가 두 겹인 것은 바깥 대괄호가 선택을, 안쪽 대괄호가 리스트를 뜻하기 때문이다.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"grade"</span>].head(<span class="dv">3</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>0       VIP
+1      Gold
+2    Bronze
+Name: grade, dtype: str</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df[[<span class="st">"customer_id"</span>, <span class="st">"grade"</span>, <span class="st">"annual_spend"</span>]].head(<span class="dv">3</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>  customer_id   grade  annual_spend
+0      C02493     VIP         436.5
+1      C01009    Gold         282.6
+2      C02351  Bronze         153.1</code></pre>
+</section>
+<section id="조건에-의한-행-선택" class="level3">
+<h3 class="anchored" data-anchor-id="조건에-의한-행-선택">4.2 조건에 의한 행 선택</h3>
+<p>비교식 <code>df["grade"] == "VIP"</code>는 행마다 <code>True</code>나 <code>False</code>를 담은 시리즈를 만든다. 이 시리즈를 대괄호에 넣으면 <code>True</code>인 행만 남는다. 이를 불리언 인덱싱(boolean indexing)이라 한다.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>vip <span class="op">=</span> df[df[<span class="st">"grade"</span>] <span class="op">==</span> <span class="st">"VIP"</span>]</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>vip.shape</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>(228, 17)</code></pre>
+<p>조건이 둘 이상이면 각 조건을 괄호로 감싸고 <code>&amp;</code>(그리고), <code>|</code>(또는), <code>~</code>(부정)로 잇는다. 괄호가 필요한 까닭은 <code>&amp;</code>가 <code>==</code>보다 먼저 계산되기 때문이다. 조건을 변수에 먼저 저장하면 코드가 짧아지고 오류를 찾기 쉽다.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>cond <span class="op">=</span> (df[<span class="st">"grade"</span>] <span class="op">==</span> <span class="st">"VIP"</span>) <span class="op">&amp;</span> (df[<span class="st">"churn"</span>] <span class="op">==</span> <span class="dv">1</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(df[cond])</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>26</code></pre>
+<p>VIP 회원 228명 가운데 이탈한 회원은 26명이다. 여러 값 가운데 하나에 해당하는 행은 <code>isin</code>으로 고른다. <code>loc[행 조건, 열 목록]</code>은 행과 열을 한 번에 선택한다.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>df.loc[df[<span class="st">"payment"</span>].isin([<span class="st">"Mobile"</span>, <span class="st">"Point"</span>]), [<span class="st">"customer_id"</span>, <span class="st">"payment"</span>]].head(<span class="dv">3</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>   customer_id payment
+1       C01009  Mobile
+8       C02072   Point
+11      C02914  Mobile</code></pre>
+</section>
+<section id="and를-쓰면-생기는-오류" class="level3">
+<h3 class="anchored" data-anchor-id="and를-쓰면-생기는-오류">4.3 <code>and</code>를 쓰면 생기는 오류</h3>
+<p>파이썬의 <code>and</code>와 <code>or</code>는 값 하나의 참과 거짓을 판단하는 연산자이다. 시리즈 전체에 <code>and</code>를 쓰면 pandas는 3,030개의 참·거짓을 하나로 줄일 방법을 알 수 없어 오류를 낸다. 시험의 오류 정정 문항에서 자주 쓰이는 유형이다.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>df[df[<span class="st">"grade"</span>] <span class="op">==</span> <span class="st">"VIP"</span> <span class="kw">and</span> df[<span class="st">"churn"</span>] <span class="op">==</span> <span class="dv">1</span>]</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>ValueError: The truth value of a Series is ambiguous. Use a.empty, a.item(), a.any() or a.all().</code></pre>
+<p>정정하는 방법은 <code>and</code>를 <code>&amp;</code>로 바꾸고 각 조건을 괄호로 감싸는 것이다. 오류 메시지의 마지막 줄(<code>ValueError: The truth value of a Series is ambiguous</code>)을 읽으면 원인을 짐작할 수 있다. 오류 메시지는 마지막 줄부터 읽는다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>연산</th>
+<th>값 하나</th>
+<th>시리즈</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>그리고</td>
+<td><code>and</code></td>
+<td><code>&amp;</code></td>
+</tr>
+<tr class="even">
+<td>또는</td>
+<td><code>or</code></td>
+<td><code>|</code></td>
+</tr>
+<tr class="odd">
+<td>부정</td>
+<td><code>not</code></td>
+<td><code>~</code></td>
+</tr>
+</tbody>
+</table>
+<p>노트북 1부의 연습 6(두 조건의 결합)과 연습 7(부정 조건)을 푼다.</p>
+<hr>
+</section>
+</section>
+<section id="빈도-집계-그룹별-집계-정렬" class="level2">
+<h2 class="anchored" data-anchor-id="빈도-집계-그룹별-집계-정렬">5. 빈도 집계, 그룹별 집계, 정렬</h2>
+<section id="빈도-집계-value_counts" class="level3">
+<h3 class="anchored" data-anchor-id="빈도-집계-value_counts">5.1 빈도 집계: <code>value_counts()</code></h3>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"grade"</span>].value_counts()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>grade
+Bronze    1259
+Silver     970
+Gold       573
+VIP        228
+Name: count, dtype: int64</code></pre>
+<p><code>value_counts()</code>는 값별 개수를 많은 순서로 정렬하여 돌려준다. 결측치는 기본적으로 세지 않는다(<code>dropna=True</code>). 비율이 필요하면 <code>normalize=True</code>를 쓴다. 출력의 마지막 줄 <code>Name:</code>은 결과 시리즈의 이름으로, 개수이면 <code>count</code>, 비율이면 <code>proportion</code>이다.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"grade"</span>].value_counts(normalize<span class="op">=</span><span class="va">True</span>).<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>grade
+Bronze    0.416
+Silver    0.320
+Gold      0.189
+VIP       0.075
+Name: proportion, dtype: float64</code></pre>
+</section>
+<section id="그룹별-집계-groupby" class="level3">
+<h3 class="anchored" data-anchor-id="그룹별-집계-groupby">5.2 그룹별 집계: <code>groupby()</code></h3>
+<p><code>groupby("기준 열")["값 열"].집계함수()</code>는 기준 열의 값마다 행을 나누고, 값 열에 집계 함수를 적용한다. 결과의 인덱스는 기준 열의 값이며 알파벳 순서로 정렬된다.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">"grade"</span>)[<span class="st">"annual_spend"</span>].mean().<span class="bu">round</span>(<span class="dv">1</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>grade
+Bronze    169.2
+Gold      289.7
+Silver    220.3
+VIP       413.9
+Name: annual_spend, dtype: float64</code></pre>
+<p>집계 함수를 여러 개 적용하려면 <code>agg</code>에 함수 이름의 리스트를 넘긴다. <code>count</code>가 5.1절의 개수와 다른 것은 <code>annual_spend</code>의 결측치를 세지 않기 때문이다(Bronze 1,259명 가운데 5명이 결측).</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">"grade"</span>)[<span class="st">"annual_spend"</span>].agg([<span class="st">"count"</span>, <span class="st">"mean"</span>, <span class="st">"max"</span>]).<span class="bu">round</span>(<span class="dv">1</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>        count   mean    max
+grade                      
+Bronze   1254  169.2  350.5
+Gold      571  289.7  442.9
+Silver    965  220.3  369.3
+VIP       228  413.9  521.3</code></pre>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>집계 함수</th>
+<th>뜻</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>count</code></td>
+<td>결측치를 뺀 개수</td>
+</tr>
+<tr class="even">
+<td><code>size</code></td>
+<td>결측치를 포함한 행 수</td>
+</tr>
+<tr class="odd">
+<td><code>sum</code>, <code>mean</code>, <code>median</code></td>
+<td>합계, 평균, 중앙값</td>
+</tr>
+<tr class="even">
+<td><code>min</code>, <code>max</code></td>
+<td>최솟값, 최댓값</td>
+</tr>
+<tr class="odd">
+<td><code>std</code></td>
+<td>표준편차</td>
+</tr>
+<tr class="even">
+<td><code>nunique</code></td>
+<td>고유값의 수</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="정렬과-최댓값의-위치" class="level3">
+<h3 class="anchored" data-anchor-id="정렬과-최댓값의-위치">5.3 정렬과 최댓값의 위치</h3>
+<p><code>sort_values()</code>는 값을 기준으로 정렬한다. 기본은 오름차순이고 <code>ascending=False</code>이면 내림차순이다. 데이터프레임을 정렬할 때에는 기준 열의 이름을 첫 인자로 준다.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">"grade"</span>)[<span class="st">"churn"</span>].mean().sort_values(ascending<span class="op">=</span><span class="va">False</span>).<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>grade
+Silver    0.227
+Bronze    0.214
+Gold      0.127
+VIP       0.114
+Name: churn, dtype: float64</code></pre>
+<p><code>churn</code>의 평균은 이탈 비율이다. 이탈 비율은 Silver(22.7%)에서 가장 높고 VIP(11.4%)에서 가장 낮다. 이처럼 “가장 높은 그룹의 이름”을 답 변수에 저장해야 하면 <code>idxmax()</code>를 쓴다. <code>idxmax()</code>는 최댓값의 값이 아니라 그 값이 있는 인덱스(여기서는 등급 이름)를 돌려준다. 최솟값의 위치는 <code>idxmin()</code>이다.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">"grade"</span>)[<span class="st">"annual_spend"</span>].mean().idxmax()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>'VIP'</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>df.sort_values(<span class="st">"annual_spend"</span>, ascending<span class="op">=</span><span class="va">False</span>)[[<span class="st">"customer_id"</span>, <span class="st">"grade"</span>, <span class="st">"annual_spend"</span>]].head(<span class="dv">3</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>     customer_id grade  annual_spend
+2130      C02162   VIP         521.3
+478       C01348   VIP         512.6
+1752      C02164   VIP         501.9</code></pre>
+</section>
+<section id="두-열을-기준으로-한-그룹별-집계" class="level3">
+<h3 class="anchored" data-anchor-id="두-열을-기준으로-한-그룹별-집계">5.4 두 열을 기준으로 한 그룹별 집계</h3>
+<p><code>groupby</code>에 열 이름의 리스트를 넘기면 두 열의 값의 조합마다 집계한다. 결과의 인덱스는 두 단계로 구성된다. 아래 출력은 같은 등급 안에서 앱 사용자의 연간 구매액이 앱을 쓰지 않는 회원보다 높다는 것을 보여 준다.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>df.groupby([<span class="st">"grade"</span>, <span class="st">"app_user"</span>])[<span class="st">"annual_spend"</span>].mean().<span class="bu">round</span>(<span class="dv">1</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>grade   app_user
+Bronze  N           151.9
+        Y           180.6
+Gold    N           270.2
+        Y           301.6
+Silver  N           201.7
+        Y           231.2
+VIP     N           394.4
+        Y           425.5
+Name: annual_spend, dtype: float64</code></pre>
+<p>노트북 1부의 연습 8~10을 푼다. 연습 9와 10은 <code>[선택]</code>이다.</p>
+</section>
+<section id="정렬한-결과에서-행-꺼내기" class="level3">
+<h3 class="anchored" data-anchor-id="정렬한-결과에서-행-꺼내기">5.5 정렬한 결과에서 행 꺼내기</h3>
+<p>데이터프레임을 정렬하면 인덱스는 원래의 행 번호를 그대로 유지한다. 정렬한 결과의 첫 행을 <code>iloc[0]</code>으로 꺼내면 정렬 순서의 첫 행이, <code>loc[0]</code>으로 꺼내면 원래 0번이었던 행이 나온다. 정렬한 뒤 위치로 꺼낼 때에는 <code>iloc</code>을 쓴다.</p>
+<hr>
+</section>
+</section>
+<section id="공식-문서의-구성과-검색" class="level2">
+<h2 class="anchored" data-anchor-id="공식-문서의-구성과-검색">6. 공식 문서의 구성과 검색</h2>
+<p>시험은 제한적 오픈북이다. 시험지 안에서 열 수 있는 일곱 곳의 공식 문서(NumPy, pandas, matplotlib, seaborn, scikit-learn, TensorFlow, XGBoost)만 참고할 수 있고, 검색 엔진, 생성형 AI, 개인 노트는 쓸 수 없다. 함수의 인자를 모두 외울 수는 없으므로, 공식 문서에서 필요한 부분을 빨리 찾는 능력이 점수에 직접 영향을 준다.</p>
+<p>pandas의 문서는 크게 두 부분으로 구성된다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>부분</th>
+<th>내용</th>
+<th>쓰는 경우</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>User Guide</td>
+<td>주제별 설명과 예제(입출력, 선택, 결측치, 그룹별 집계 등)</td>
+<td>무엇을 써야 할지 모를 때</td>
+</tr>
+<tr class="even">
+<td>API reference</td>
+<td>함수와 메서드 하나마다 한 쪽. 인자, 반환값, 예제</td>
+<td>함수 이름은 알고 인자를 모를 때</td>
+</tr>
+</tbody>
+</table>
+<p>API reference의 한 쪽은 언제나 같은 순서로 구성된다. 함수의 서명(인자와 기본값), 한 줄 요약, <code>Parameters</code>(인자마다 자료형과 뜻), <code>Returns</code>(돌려주는 값), <code>See also</code>(관련 함수), <code>Examples</code>(예제)이다. 인자의 이름과 기본값을 찾을 때에는 서명과 <code>Parameters</code>를, 사용법이 헷갈릴 때에는 <code>Examples</code>를 먼저 본다. 예를 들어 <code>value_counts</code>의 쪽에서 <code>normalize</code>를 찾으면 “Return proportions rather than frequencies”라는 설명과 기본값 <code>False</code>를 확인할 수 있다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>찾는 것</th>
+<th>pandas 문서에서 찾는 위치</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CSV 읽기의 인자</td>
+<td>API reference &gt; Input/output &gt; <code>pandas.read_csv</code></td>
+</tr>
+<tr class="even">
+<td>결측치 처리</td>
+<td>User Guide &gt; Working with missing data</td>
+</tr>
+<tr class="odd">
+<td>조건에 의한 선택</td>
+<td>User Guide &gt; Indexing and selecting data &gt; Boolean indexing</td>
+</tr>
+<tr class="even">
+<td>그룹별 집계</td>
+<td>User Guide &gt; Group by: split-apply-combine</td>
+</tr>
+<tr class="odd">
+<td>메서드 하나의 인자</td>
+<td>API reference &gt; DataFrame 또는 Series &gt; 메서드 이름</td>
+</tr>
+</tbody>
+</table>
+<p>노트북 안에서는 함수 이름 뒤에 <code>?</code>를 붙여 실행하거나(<code>pd.read_csv?</code>), 괄호 안에 커서를 두고 Shift+Tab을 누르면 같은 설명을 볼 수 있다. 이 설명은 라이브러리에 들어 있는 문서이므로 시험 환경에서도 쓸 수 있는지는 응시 규정을 따른다.</p>
+<hr>
+</section>
+<section id="문항의-형식과-답안-규칙" class="level2">
+<h2 class="anchored" data-anchor-id="문항의-형식과-답안-규칙">7. 문항의 형식과 답안 규칙</h2>
+<section id="문항의-네-가지-형식" class="level3">
+<h3 class="anchored" data-anchor-id="문항의-네-가지-형식">7.1 문항의 네 가지 형식</h3>
+<p>AICE Associate의 공개 샘플 문항에서 확인되는 문항의 형식은 네 가지이다. 본 과목의 연습 문항과 시험 문항도 이 네 형식으로 출제한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>형식</th>
+<th>요구하는 것</th>
+<th>예</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>작성</td>
+<td>가이드의 조건대로 코드를 처음부터 작성한다</td>
+<td>“등급별 연간 구매액의 평균을 구하여 <code>grade_mean</code>에 저장한다”</td>
+</tr>
+<tr class="even">
+<td>빈칸 채우기</td>
+<td>주어진 코드의 빈칸을 채워 실행한다</td>
+<td><code>df.___("grade")["churn"].mean()</code></td>
+</tr>
+<tr class="odd">
+<td>오류 정정</td>
+<td>실행되지 않거나 결과가 틀린 코드를 고친다</td>
+<td>4.3절의 <code>and</code> 오류</td>
+</tr>
+<tr class="even">
+<td>답 변수</td>
+<td>출력이나 그래프에서 읽은 값을 지정된 변수에 저장한다</td>
+<td>“이탈 비율이 가장 높은 등급을 <code>ans</code>에 저장한다”</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="답안-규칙" class="level3">
+<h3 class="anchored" data-anchor-id="답안-규칙">7.2 답안 규칙</h3>
+<p>AICE 수험자 가이드가 정한 응시 중 유의사항을 수업의 규칙으로 삼는다.</p>
+<ol type="1">
+<li><strong>한 문항의 답은 한 셀에 작성한다.</strong> 작업용으로 추가한 셀은 제출 전에 지운다. 여러 셀에 나누어 작성하면 채점되지 않는다.</li>
+<li><strong>변수 이름과 파일 이름은 가이드를 그대로 따른다.</strong> <code>ans1</code>을 <code>Ans1</code>이나 <code>answer1</code>로 쓰면 채점 도구가 찾지 못한다.</li>
+<li><strong>답은 코드로 구하여 저장한다.</strong> 출력에서 읽은 값이라도 가능하면 <code>idxmax()</code>처럼 코드로 구한다. 손으로 옮겨 적으면 오타가 생기고, 앞 단계가 바뀌었을 때 값이 갱신되지 않는다.</li>
+<li><strong>앞 문항의 결과를 덮어쓰지 않는다.</strong> 가이드가 새 변수에 저장하라고 하면 원본 변수를 고치지 않는다. 뒤 문항이 원본을 다시 쓸 수 있다.</li>
+<li><strong>위에서 아래로 실행했을 때 같은 결과가 나와야 한다.</strong> 셀을 이리저리 다시 실행하면 변수의 상태가 화면과 달라진다. 제출 전에 커널을 다시 시작하고 처음부터 실행하여 확인한다.</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="중심-실습-공통-자료의-명세표와-물음-5개" class="level2">
+<h2 class="anchored" data-anchor-id="중심-실습-공통-자료의-명세표와-물음-5개">8. 중심 실습: 공통 자료의 명세표와 물음 5개</h2>
+<p>노트북 <code>AICE_01주차_실습_학생용.ipynb</code>의 2부에서 수행한다. 학기 공통 자료의 구성을 코드로 정리하고, 물음의 답을 지정된 변수에 저장한다.</p>
+<p><strong>준비.</strong> 단계 1의 셀을 실행하여 자료를 <code>df</code>에 읽는다.</p>
+<p><strong>절차.</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>단계</th>
+<th>할 일</th>
+<th>답을 담을 변수</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>자료 읽기</td>
+<td><code>df</code></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>열마다 자료형, 고유값 수, 결측치 수를 담은 명세표 작성</td>
+<td><code>spec</code></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>명세표에서 결측치가 있는 열만 골라 결측치 수의 내림차순으로 정렬</td>
+<td>(출력)</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>물음 5개의 답</td>
+<td><code>ans1</code>~<code>ans5</code></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>자가 채점 셀의 실행</td>
+<td>(출력 <code>통과</code>)</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>값의 해석 두 문장</td>
+<td>(주석)</td>
+</tr>
+</tbody>
+</table>
+<p>단계 2의 명세표는 세 시리즈(<code>df.dtypes</code>, <code>df.nunique()</code>, <code>df.isna().sum()</code>)를 열로 묶은 데이터프레임이다. 세 시리즈 모두 열 이름을 인덱스로 가지므로, 딕셔너리로 묶어 <code>pd.DataFrame</code>에 넘기면 열 이름을 기준으로 맞추어진다.</p>
+<p><strong>물음.</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>변수</th>
+<th>물음</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ans1</code></td>
+<td>자료의 행 수와 열 수(튜플)</td>
+</tr>
+<tr class="even">
+<td><code>ans2</code></td>
+<td>결측치가 가장 많은 열의 이름</td>
+</tr>
+<tr class="odd">
+<td><code>ans3</code></td>
+<td>모든 열의 값이 같은 행(중복 행)의 수</td>
+</tr>
+<tr class="even">
+<td><code>ans4</code></td>
+<td><code>region</code> 열의 고유값 수</td>
+</tr>
+<tr class="odd">
+<td><code>ans5</code></td>
+<td>등급(<code>grade</code>)별 연간 구매액(<code>annual_spend</code>)의 평균이 가장 높은 등급의 이름</td>
+</tr>
+</tbody>
+</table>
+<p><strong>완료 기준.</strong> 자가 채점 셀이 <code>통과</code>를 출력한다. 자가 채점 셀은 <code>spec</code>의 크기와 <code>age</code>의 결측치 수, <code>ans1</code>~<code>ans5</code>의 값을 검사한다.</p>
+<p><strong>값의 해석.</strong> 단계 6에서 다음 두 물음에 한 문장씩 답한다.</p>
+<ol type="1">
+<li><code>ans4</code>의 값은 실제 지역의 수보다 많다. 그 원인은 무엇인가.</li>
+<li><code>age</code> 열의 최댓값은 얼마이며, 그 값을 그대로 분석에 사용하여도 되는가.</li>
+</ol>
+<p><strong>제출물.</strong> 실행을 마친 노트북 파일. 자가 채점 셀의 <code>통과</code>와 단계 6의 두 문장이 있어야 한다.</p>
+<hr>
+</section>
+<section id="시간-제한-문항" class="level2">
+<h2 class="anchored" data-anchor-id="시간-제한-문항">9. 시간 제한 문항</h2>
+<p>제한 시간은 15분이다. 노트북의 3부에서 푼다.</p>
+<p>가상의 중고 노트북 거래 자료 <code>laptops.csv</code>를 사용한다. 공식 문서 사이트만 참고한다. 각 문항의 답은 한 셀에 작성한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>열</th>
+<th>뜻</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>listing_id</code></td>
+<td>거래 번호</td>
+</tr>
+<tr class="even">
+<td><code>brand</code>, <code>cpu</code></td>
+<td>제조사, 처리 장치</td>
+</tr>
+<tr class="odd">
+<td><code>ram_gb</code>, <code>ssd_gb</code>, <code>screen_inch</code></td>
+<td>메모리(GB), 저장 장치(GB), 화면 크기(인치)</td>
+</tr>
+<tr class="even">
+<td><code>age_months</code>, <code>battery_health</code></td>
+<td>사용 기간(개월), 배터리 성능(%)</td>
+</tr>
+<tr class="odd">
+<td><code>condition</code></td>
+<td>외관 등급(A, B, C)</td>
+</tr>
+<tr class="even">
+<td><code>price</code>, <code>sell_speed</code></td>
+<td>거래 가격(만 원), 판매 속도(fast, normal, slow)</td>
+</tr>
+</tbody>
+</table>
+<section id="문항-1-빈칸-채우기" class="level3">
+<h3 class="anchored" data-anchor-id="문항-1-빈칸-채우기">문항 1 (빈칸 채우기)</h3>
+<p>pandas를 <code>pd</code>라는 별칭으로 불러오고, <code>laptops.csv</code>를 읽어 변수 <code>lap</code>에 저장한 뒤 앞의 5행을 출력한다. 빈칸 <code>___</code>을 채운다.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ___ <span class="im">as</span> pd</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>DATA <span class="op">=</span> <span class="st">"../kit/data/AICE_공통/"</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>lap <span class="op">=</span> pd.___(DATA <span class="op">+</span> <span class="st">"laptops.csv"</span>)</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>lap.___()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="문항-2-오류-정정" class="level3">
+<h3 class="anchored" data-anchor-id="문항-2-오류-정정">문항 2 (오류 정정)</h3>
+<p>아래 코드는 제조사가 <code>Apple</code>이고 메모리가 16GB 이상인 거래의 수를 <code>ans_t2</code>에 저장하려 한다. 실행하면 오류가 난다. 오류를 정정하여 실행한다.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>ans_t2 <span class="op">=</span> <span class="bu">len</span>(lap[lap[<span class="st">"brand"</span>] <span class="op">==</span> <span class="st">"Apple"</span> <span class="kw">and</span> lap[<span class="st">"ram_gb"</span>] <span class="op">&gt;=</span> <span class="dv">16</span>])</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ans_t2)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="문항-3-답-변수" class="level3">
+<h3 class="anchored" data-anchor-id="문항-3-답-변수">문항 3 (답 변수)</h3>
+<p>결측치가 있는 열은 몇 개인가. 그 수를 <code>ans_t3</code>에 저장한다. 또 외관 등급(<code>condition</code>)별 거래 가격(<code>price</code>)의 중앙값을 구하여, 중앙값이 가장 높은 등급을 <code>ans_t3b</code>에 저장한다.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 여기에 코드를 작성한다</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="정리" class="level2">
+<h2 class="anchored" data-anchor-id="정리">10. 정리</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>주제</th>
+<th>기억할 것</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>import</td>
+<td>별칭은 지시를 그대로 따른다. <code>pd</code>, <code>np</code>, <code>plt</code>, <code>sns</code></td>
+</tr>
+<tr class="even">
+<td>설치</td>
+<td>노트북에서는 <code>%pip install 이름</code>. scikit-learn은 설치 이름과 import 이름이 다르다</td>
+</tr>
+<tr class="odd">
+<td>읽기</td>
+<td><code>pd.read_csv(경로)</code>의 결과를 지정된 변수에 저장한다. 인코딩 오류는 <code>encoding="cp949"</code></td>
+</tr>
+<tr class="even">
+<td>구성 확인</td>
+<td><code>shape</code>, <code>info()</code>, <code>describe()</code>, <code>describe(exclude="number")</code></td>
+</tr>
+<tr class="odd">
+<td>품질 확인</td>
+<td><code>isna().sum()</code>, <code>nunique()</code>, <code>duplicated().sum()</code>, <code>value_counts()</code></td>
+</tr>
+<tr class="even">
+<td>선택</td>
+<td><code>df["열"]</code>, <code>df[["열1", "열2"]]</code>, <code>df[조건]</code>, <code>df.loc[조건, 열]</code>. 조건은 괄호와 <code>&amp;</code>, <code>|</code>, <code>~</code></td>
+</tr>
+<tr class="odd">
+<td>집계</td>
+<td><code>value_counts(normalize=True)</code>, <code>groupby("기준")["값"].mean()</code>, <code>agg([...])</code></td>
+</tr>
+<tr class="even">
+<td>정렬과 위치</td>
+<td><code>sort_values(ascending=False)</code>, <code>idxmax()</code>는 값이 아니라 인덱스</td>
+</tr>
+<tr class="odd">
+<td>답안</td>
+<td>한 셀, 지정된 변수 이름, 코드로 구한 값, 위에서 아래로 실행</td>
+</tr>
+</tbody>
+</table>
+<p>다음 장에서는 같은 자료의 분포와 관계를 그래프로 확인한다. 본 장에서 <code>describe()</code>로 찾은 이상치가 상자그림에서 어떻게 보이는지를 확인한다.</p>
+<hr>
+</section>
+<section id="참고-자료" class="level2">
+<h2 class="anchored" data-anchor-id="참고-자료">참고 자료</h2>
+<p>확인일은 모두 2026-11-13이다.</p>
+<ul>
+<li>pandas, 10 minutes to pandas. <a href="https://pandas.pydata.org/docs/user_guide/10min.html" class="uri">https://pandas.pydata.org/docs/user_guide/10min.html</a></li>
+<li>pandas, <code>pandas.read_csv</code>. <a href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html" class="uri">https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html</a></li>
+<li>pandas, IO tools (text, CSV, HDF5, …). <a href="https://pandas.pydata.org/docs/user_guide/io.html" class="uri">https://pandas.pydata.org/docs/user_guide/io.html</a></li>
+<li>pandas, <code>DataFrame.info</code>. <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.info.html" class="uri">https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.info.html</a></li>
+<li>pandas, <code>DataFrame.describe</code>. <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.describe.html" class="uri">https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.describe.html</a></li>
+<li>pandas, Working with missing data. <a href="https://pandas.pydata.org/docs/user_guide/missing_data.html" class="uri">https://pandas.pydata.org/docs/user_guide/missing_data.html</a></li>
+<li>pandas, <code>DataFrame.nunique</code>. <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.nunique.html" class="uri">https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.nunique.html</a></li>
+<li>pandas, <code>DataFrame.duplicated</code>. <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.duplicated.html" class="uri">https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.duplicated.html</a></li>
+<li>pandas, Indexing and selecting data. <a href="https://pandas.pydata.org/docs/user_guide/indexing.html" class="uri">https://pandas.pydata.org/docs/user_guide/indexing.html</a></li>
+<li>pandas, <code>Series.isin</code>. <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.isin.html" class="uri">https://pandas.pydata.org/docs/reference/api/pandas.Series.isin.html</a></li>
+<li>pandas, <code>Series.value_counts</code>. <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.value_counts.html" class="uri">https://pandas.pydata.org/docs/reference/api/pandas.Series.value_counts.html</a></li>
+<li>pandas, Group by: split-apply-combine. <a href="https://pandas.pydata.org/docs/user_guide/groupby.html" class="uri">https://pandas.pydata.org/docs/user_guide/groupby.html</a></li>
+<li>pandas, <code>DataFrame.sort_values</code>. <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sort_values.html" class="uri">https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sort_values.html</a></li>
+<li>pandas, <code>Series.idxmax</code>. <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.idxmax.html" class="uri">https://pandas.pydata.org/docs/reference/api/pandas.Series.idxmax.html</a></li>
+<li>pandas, What’s new in 3.0.0 (문자열 자료형의 기본값 변경). <a href="https://pandas.pydata.org/docs/whatsnew/v3.0.0.html" class="uri">https://pandas.pydata.org/docs/whatsnew/v3.0.0.html</a></li>
+<li>pip, <code>pip install</code>. <a href="https://pip.pypa.io/en/stable/cli/pip_install/" class="uri">https://pip.pypa.io/en/stable/cli/pip_install/</a></li>
+<li>AICE, Associate 상세(제한적 오픈북, 응시 환경). <a href="https://aice.study/info/aice/asso" class="uri">https://aice.study/info/aice/asso</a></li>
+<li>AICE, 수험자 가이드(응시 중 유의사항). <a href="https://aice.study/certi/examGuide" class="uri">https://aice.study/certi/examGuide</a></li>
+<li>AICE, 샘플 문항(문항의 형식). <a href="https://aice.study/certi/practice" class="uri">https://aice.study/certi/practice</a></li>
+</ul>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> 맨 위로</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "복사완료!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "복사완료!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../courses/aice/book/AICE_00주차_학생용.html" class="pagination-link" aria-label="[0주차] 오리엔테이션">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">[0주차] 오리엔테이션</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../courses/aice/book/AICE_02주차_학생용.html" class="pagination-link" aria-label="[2주차] 데이터 시각화: 분포와 관계">
+        <span class="nav-page-text">[2주차] 데이터 시각화: 분포와 관계</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>안중호 교수 강의 교재 · 2026년 2학기판</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

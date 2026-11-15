@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>[3주차] 결측치·이상치 처리와 열 정리 – 안중호 교수 강의 교재</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../courses/aice/book/AICE_04주차_학생용.html" rel="next">
+<link href="../../../courses/aice/book/AICE_02주차_학생용.html" rel="prev">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-dcf116883d0d3758c9131f5ede2fa7e1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">안중호 교수 강의 교재</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="검색"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">커리큘럼</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/semesters/index.html">
+ <span class="dropdown-text">전체 커리큘럼</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../docs/semesters/2026-2/index.html">
+ <span class="dropdown-text">2026년 2학기</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../docs/subjects/llm-ai/index.html">
+ <span class="dropdown-text">교재 · LLM AI 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/subjects/python/index.html">
+ <span class="dropdown-text">교재 · 파이썬 실습</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../courses/index.html">
+ <span class="dropdown-text">2027학년도 교재 (준비 중)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/llm-service/index.html">
+ <span class="dropdown-text">· LLM 서비스 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/office/index.html">
+ <span class="dropdown-text">· 컴퓨터활용</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/adsp/index.html">
+ <span class="dropdown-text">· 빅데이터개론</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/ai-agent/index.html">
+ <span class="dropdown-text">· AI에이전트 기획 및 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/aice/index.html">
+ <span class="dropdown-text">· 비즈니스빅데이터분석</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/about/교수_소개.html"> 
+<span class="menu-text">교수 소개</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../courses/aice/book/AICE_00주차_학생용.html">교재</a></li><li class="breadcrumb-item"><a href="../../../courses/aice/book/AICE_03주차_학생용.html">[3주차] 결측치·이상치 처리와 열 정리</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">비즈니스빅데이터분석</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">교재</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_00주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[0주차] 오리엔테이션</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_01주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[1주차] 데이터 불러오기와 구성 파악</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_02주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[2주차] 데이터 시각화: 분포와 관계</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_03주차_학생용.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">[3주차] 결측치·이상치 처리와 열 정리</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_04주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[4주차] 범주형 데이터와 인코딩</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_05주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[5주차] 데이터 분할과 스케일링</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_06주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[6주차] 머신러닝 (1): 회귀 모델과 평가</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_07주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[7주차] 머신러닝 (2): 분류 모델과 평가</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_08주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[8주차] 모델 성능 개선: 교차 검증, 격자 탐색, 변수 중요도</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_09주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[9주차] 딥러닝 (1): 신경망의 구성과 학습</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_10주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[10주차] 딥러닝 (2): 학습 제어와 학습 곡선</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_11주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[11주차] 응시 전략과 답안 규칙</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_부록_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">부록</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">이 장의 차례</h2>
+   
+  <ul>
+  <li><a href="#학습-목표" id="toc-학습-목표" class="nav-link active" data-scroll-target="#학습-목표">학습 목표</a></li>
+  <li><a href="#준비-사항" id="toc-준비-사항" class="nav-link" data-scroll-target="#준비-사항">준비 사항</a></li>
+  <li><a href="#결측치의-집계와-결측-행의-삭제" id="toc-결측치의-집계와-결측-행의-삭제" class="nav-link" data-scroll-target="#결측치의-집계와-결측-행의-삭제">1. 결측치의 집계와 결측 행의 삭제</a>
+  <ul class="collapse">
+  <li><a href="#열별-행별-결측치의-수" id="toc-열별-행별-결측치의-수" class="nav-link" data-scroll-target="#열별-행별-결측치의-수">1.1 열별, 행별 결측치의 수</a></li>
+  <li><a href="#dropna와-주요-인자" id="toc-dropna와-주요-인자" class="nav-link" data-scroll-target="#dropna와-주요-인자">1.2 <code>dropna</code>와 주요 인자</a></li>
+  <li><a href="#어떤-결측-행을-삭제하는가" id="toc-어떤-결측-행을-삭제하는가" class="nav-link" data-scroll-target="#어떤-결측-행을-삭제하는가">1.3 어떤 결측 행을 삭제하는가</a></li>
+  </ul></li>
+  <li><a href="#평균중앙값최빈값에-의한-대체" id="toc-평균중앙값최빈값에-의한-대체" class="nav-link" data-scroll-target="#평균중앙값최빈값에-의한-대체">2. 평균·중앙값·최빈값에 의한 대체</a>
+  <ul class="collapse">
+  <li><a href="#대체값의-선택" id="toc-대체값의-선택" class="nav-link" data-scroll-target="#대체값의-선택">2.1 대체값의 선택</a></li>
+  <li><a href="#수치형-열의-대체" id="toc-수치형-열의-대체" class="nav-link" data-scroll-target="#수치형-열의-대체">2.2 수치형 열의 대체</a></li>
+  <li><a href="#범주형-열의-대체와-mode0" id="toc-범주형-열의-대체와-mode0" class="nav-link" data-scroll-target="#범주형-열의-대체와-mode0">2.3 범주형 열의 대체와 <code>mode()[0]</code></a></li>
+  <li><a href="#여러-열의-한-번-대체" id="toc-여러-열의-한-번-대체" class="nav-link" data-scroll-target="#여러-열의-한-번-대체">2.4 여러 열의 한 번 대체</a></li>
+  </ul></li>
+  <li><a href="#조건에-의한-이상치-제거" id="toc-조건에-의한-이상치-제거" class="nav-link" data-scroll-target="#조건에-의한-이상치-제거">3. 조건에 의한 이상치 제거</a>
+  <ul class="collapse">
+  <li><a href="#업무상-불가능한-값" id="toc-업무상-불가능한-값" class="nav-link" data-scroll-target="#업무상-불가능한-값">3.1 업무상 불가능한 값</a></li>
+  <li><a href="#between과-결측치" id="toc-between과-결측치" class="nav-link" data-scroll-target="#between과-결측치">3.2 <code>between</code>과 결측치</a></li>
+  <li><a href="#조건으로-고르기와-인덱스로-지우기" id="toc-조건으로-고르기와-인덱스로-지우기" class="nav-link" data-scroll-target="#조건으로-고르기와-인덱스로-지우기">3.3 조건으로 고르기와 인덱스로 지우기</a></li>
+  </ul></li>
+  <li><a href="#사분위수-범위에-의한-이상치-제거" id="toc-사분위수-범위에-의한-이상치-제거" class="nav-link" data-scroll-target="#사분위수-범위에-의한-이상치-제거">4. 사분위수 범위에 의한 이상치 제거</a>
+  <ul class="collapse">
+  <li><a href="#경계의-계산" id="toc-경계의-계산" class="nav-link" data-scroll-target="#경계의-계산">4.1 경계의 계산</a></li>
+  <li><a href="#경계-밖의-행-제거" id="toc-경계-밖의-행-제거" class="nav-link" data-scroll-target="#경계-밖의-행-제거">4.2 경계 밖의 행 제거</a></li>
+  <li><a href="#경계는-그-시점의-자료로-정해진다" id="toc-경계는-그-시점의-자료로-정해진다" class="nav-link" data-scroll-target="#경계는-그-시점의-자료로-정해진다">4.3 경계는 그 시점의 자료로 정해진다</a></li>
+  </ul></li>
+  <li><a href="#열-삭제-중복-행-삭제-인덱스-재설정" id="toc-열-삭제-중복-행-삭제-인덱스-재설정" class="nav-link" data-scroll-target="#열-삭제-중복-행-삭제-인덱스-재설정">5. 열 삭제, 중복 행 삭제, 인덱스 재설정</a>
+  <ul class="collapse">
+  <li><a href="#열-삭제-dropcolumns..." id="toc-열-삭제-dropcolumns..." class="nav-link" data-scroll-target="#열-삭제-dropcolumns...">5.1 열 삭제: <code>drop(columns=...)</code></a></li>
+  <li><a href="#중복-행-삭제-drop_duplicates" id="toc-중복-행-삭제-drop_duplicates" class="nav-link" data-scroll-target="#중복-행-삭제-drop_duplicates">5.2 중복 행 삭제: <code>drop_duplicates</code></a></li>
+  <li><a href="#인덱스-재설정-reset_indexdroptrue" id="toc-인덱스-재설정-reset_indexdroptrue" class="nav-link" data-scroll-target="#인덱스-재설정-reset_indexdroptrue">5.3 인덱스 재설정: <code>reset_index(drop=True)</code></a></li>
+  </ul></li>
+  <li><a href="#원본의-보존과-결과의-변수-저장" id="toc-원본의-보존과-결과의-변수-저장" class="nav-link" data-scroll-target="#원본의-보존과-결과의-변수-저장">6. 원본의 보존과 결과의 변수 저장</a>
+  <ul class="collapse">
+  <li><a href="#처리-결과의-재할당" id="toc-처리-결과의-재할당" class="nav-link" data-scroll-target="#처리-결과의-재할당">6.1 처리 결과의 재할당</a></li>
+  <li><a href="#원본의-보존-copy" id="toc-원본의-보존-copy" class="nav-link" data-scroll-target="#원본의-보존-copy">6.2 원본의 보존: <code>copy()</code></a></li>
+  <li><a href="#inplace를-쓰지-않는-이유" id="toc-inplace를-쓰지-않는-이유" class="nav-link" data-scroll-target="#inplace를-쓰지-않는-이유">6.3 <code>inplace</code>를 쓰지 않는 이유</a></li>
+  </ul></li>
+  <li><a href="#중심-실습-정제본-df_clean의-작성" id="toc-중심-실습-정제본-df_clean의-작성" class="nav-link" data-scroll-target="#중심-실습-정제본-df_clean의-작성">7. 중심 실습: 정제본 <code>df_clean</code>의 작성</a></li>
+  <li><a href="#시간-제한-문항" id="toc-시간-제한-문항" class="nav-link" data-scroll-target="#시간-제한-문항">8. 시간 제한 문항</a>
+  <ul class="collapse">
+  <li><a href="#문항-1-빈칸-채우기" id="toc-문항-1-빈칸-채우기" class="nav-link" data-scroll-target="#문항-1-빈칸-채우기">문항 1 (빈칸 채우기)</a></li>
+  <li><a href="#문항-2-오류-정정" id="toc-문항-2-오류-정정" class="nav-link" data-scroll-target="#문항-2-오류-정정">문항 2 (오류 정정)</a></li>
+  <li><a href="#문항-3-답-변수" id="toc-문항-3-답-변수" class="nav-link" data-scroll-target="#문항-3-답-변수">문항 3 (답 변수)</a></li>
+  </ul></li>
+  <li><a href="#정리" id="toc-정리" class="nav-link" data-scroll-target="#정리">9. 정리</a></li>
+  <li><a href="#참고-자료" id="toc-참고-자료" class="nav-link" data-scroll-target="#참고-자료">참고 자료</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../courses/aice/book/AICE_00주차_학생용.html">교재</a></li><li class="breadcrumb-item"><a href="../../../courses/aice/book/AICE_03주차_학생용.html">[3주차] 결측치·이상치 처리와 열 정리</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">[3주차] 결측치·이상치 처리와 열 정리</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<header class="chapter-head">
+<p class="chapter-part">비즈니스빅데이터분석</p>
+<p class="chapter-no"><span class="num">3</span><span class="unit">주차</span></p>
+<p class="chapter-title">결측치·이상치 처리와 열 정리</p>
+</header>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>2027학년도 「비즈니스빅데이터분석」의 준비 중인 교재입니다. 편집 상태를 검토하기 위해 미리 공개한 것으로, 수업 전에 내용과 순서가 바뀔 수 있습니다.</p>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>학사 4주차 · 교재 03 · 2부 데이터 전처리 · 출제 분야: 데이터 전처리 &gt; 결측치/이상치 등 처리</p>
+</blockquote>
+<p>AICE Associate의 데이터 전처리 문항은 앞 문항이 만든 데이터프레임을 받아 가이드가 지정한 처리를 하고, 그 결과를 다시 지정된 변수에 저장하게 한다. 이상치를 조건이나 사분위수 범위로 제거하고, 결측치가 있는 행을 삭제하거나 다른 값으로 대체하며, 필요 없는 열을 삭제하고 인덱스를 다시 매기는 일이 대표적이다. 한 문항의 결과가 다음 문항의 입력이 되므로, 한 단계에서 행 수가 어긋나면 그 뒤의 인코딩, 분할, 모델의 점수가 모두 달라진다.</p>
+<p>본 장은 1장과 2장에서 찾은 품질 문제(중복 행, 결측치, 불가능한 값, 이상치, 식별자 열)를 처리하는 방법을 다룬다. 함수마다 인자의 뜻과 결과의 행 수를 확인하고, 처리 결과를 변수에 다시 저장하는 습관을 익힌다. 중심 실습에서 작성하는 정제본 <code>df_clean</code>(2940행 16열, 결측치 0)은 4장(인코딩)부터 10장까지 모든 장의 출발점이 된다.</p>
+<hr>
+<section id="학습-목표" class="level2">
+<h2 class="anchored" data-anchor-id="학습-목표">학습 목표</h2>
+<ol type="1">
+<li>열별·행별 결측치의 수를 집계하고, <code>dropna</code>의 <code>subset</code>, <code>how</code>, <code>thresh</code> 인자로 삭제할 행을 정한다.</li>
+<li>수치형 열은 평균이나 중앙값으로, 범주형 열은 최빈값으로 결측치를 대체하고, 대체값의 선택 기준을 설명한다.</li>
+<li>업무상 불가능한 값을 조건으로 제거하고, 결측치를 남길지를 조건에 반영한다.</li>
+<li>사분위수 범위(IQR)로 이상치의 경계를 계산하여 경계 밖의 행을 제거한다.</li>
+<li>열을 삭제하고, <code>drop_duplicates</code>의 <code>subset</code>과 <code>keep</code>으로 중복 행을 삭제하며, 인덱스를 재설정한다.</li>
+<li>처리 결과를 변수에 다시 저장하고, 원본을 <code>copy</code>로 보존하며, <code>inplace</code>를 쓰지 않는 이유를 설명한다.</li>
+</ol>
+</section>
+<section id="준비-사항" class="level2">
+<h2 class="anchored" data-anchor-id="준비-사항">준비 사항</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>실습 노트북</td>
+<td><code>AICE_03주차_실습_학생용.ipynb</code></td>
+</tr>
+<tr class="even">
+<td>자료</td>
+<td><code>customers.csv</code>(학기 공통 자료의 원본), <code>laptops.csv</code>(시간 제한 문항용). 둘 다 <code>assets/data/AICE_공통/</code>에 있다</td>
+</tr>
+<tr class="odd">
+<td>앞 장과의 연계</td>
+<td>1장 3.8절의 품질 점검 표, 1장 4절의 조건에 의한 행 선택, 2장 4.2절의 상자그림과 사분위수</td>
+</tr>
+<tr class="even">
+<td>앞 과목과의 연계</td>
+<td>「빅데이터 개론」 5장(결측값과 이상값의 개념), 「고급프로그래밍」 11~12장(표 데이터)</td>
+</tr>
+<tr class="odd">
+<td>실습 환경</td>
+<td>접속과 설치는 부록 A를 따른다</td>
+</tr>
+</tbody>
+</table>
+<p>이 장의 처리 순서는 1장 3.8절의 표를 따른다. 표에서 3장이 맡은 항목은 결측치, 범위를 벗어난 값, 중복 행, 식별자 열이다. 표기 불일치(<code>region</code>)와 문자열 열의 변환은 4장에서 처리한다.</p>
+<hr>
+</section>
+<section id="결측치의-집계와-결측-행의-삭제" class="level2">
+<h2 class="anchored" data-anchor-id="결측치의-집계와-결측-행의-삭제">1. 결측치의 집계와 결측 행의 삭제</h2>
+<section id="열별-행별-결측치의-수" class="level3">
+<h3 class="anchored" data-anchor-id="열별-행별-결측치의-수">1.1 열별, 행별 결측치의 수</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>DATA <span class="op">=</span> <span class="st">"../kit/data/AICE_공통/"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(DATA <span class="op">+</span> <span class="st">"customers.csv"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>df.shape</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>(3030, 17)</code></pre>
+<p>열별 결측치의 수는 1장에서 본 대로 <code>isna().sum()</code>으로 구한다. 결측치가 있는 열만 보려면 결과에서 0보다 큰 값만 고른다.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>na <span class="op">=</span> df.isna().<span class="bu">sum</span>()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>na[na <span class="op">&gt;</span> <span class="dv">0</span>]</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>age                  97
+gender               40
+visits_per_month    120
+avg_session_min      61
+annual_spend         12
+dtype: int64</code></pre>
+<p><code>sum()</code>과 <code>any()</code>에 <code>axis=1</code>을 주면 열 방향이 아니라 행 방향으로 계산한다. <code>isna().any(axis=1)</code>은 결측치가 하나라도 있는 행에서 <code>True</code>이고, <code>isna().sum(axis=1)</code>은 행마다 결측치의 수이다.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.isna().<span class="bu">any</span>(axis<span class="op">=</span><span class="dv">1</span>).<span class="bu">sum</span>())</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.isna().<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>).value_counts())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>319
+0    2711
+1     308
+2      11
+Name: count, dtype: int64</code></pre>
+<p>결측치가 하나라도 있는 행은 319개이다. 결측치가 없는 행이 2,711개, 하나인 행이 308개, 둘인 행이 11개이다. 결측치가 여러 열에 흩어져 있으므로, 결측치가 있는 행을 모두 지우면 전체의 약 10%가 사라진다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><code>axis</code></th>
+<th>계산 방향</th>
+<th><code>isna().sum(axis=...)</code>의 결과</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>0</code> (기본값)</td>
+<td>위에서 아래로, 열마다</td>
+<td>열마다 결측치의 수</td>
+</tr>
+<tr class="even">
+<td><code>1</code></td>
+<td>왼쪽에서 오른쪽으로, 행마다</td>
+<td>행마다 결측치의 수</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="dropna와-주요-인자" class="level3">
+<h3 class="anchored" data-anchor-id="dropna와-주요-인자">1.2 <code>dropna</code>와 주요 인자</h3>
+<p><code>dropna()</code>는 결측치가 있는 행을 삭제한 새 데이터프레임을 돌려준다. 원본은 바뀌지 않는다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>인자</th>
+<th>뜻</th>
+<th>기본값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>subset</code></td>
+<td>결측치를 검사할 열의 목록</td>
+<td>모든 열</td>
+</tr>
+<tr class="even">
+<td><code>how</code></td>
+<td><code>"any"</code>: 검사한 열 가운데 하나라도 결측이면 삭제. <code>"all"</code>: 모두 결측일 때만 삭제</td>
+<td><code>"any"</code></td>
+</tr>
+<tr class="odd">
+<td><code>thresh</code></td>
+<td>결측이 아닌 값이 이 수 이상인 행만 남긴다. <code>how</code>와 함께 쓸 수 없다</td>
+<td>없음</td>
+</tr>
+<tr class="even">
+<td><code>axis</code></td>
+<td><code>1</code>이면 행 대신 결측치가 있는 열을 삭제한다</td>
+<td><code>0</code></td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.dropna().shape)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.dropna(subset<span class="op">=</span>[<span class="st">"annual_spend"</span>]).shape)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.dropna(subset<span class="op">=</span>[<span class="st">"age"</span>, <span class="st">"gender"</span>]).shape)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.dropna(subset<span class="op">=</span>[<span class="st">"age"</span>, <span class="st">"gender"</span>], how<span class="op">=</span><span class="st">"all"</span>).shape)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>(2711, 17)
+(3018, 17)
+(2895, 17)
+(3028, 17)</code></pre>
+<p>인자를 주지 않으면 모든 열을 검사하므로 319행이 삭제되어 2,711행이 남는다. <code>subset=["annual_spend"]</code>는 연간 구매액이 결측인 12행만 삭제한다. <code>age</code>와 <code>gender</code> 가운데 하나라도 결측인 행을 지우면 2,895행이, 둘 다 결측인 행만 지우면 3,028행이 남는다. 둘 다 결측인 행은 2개뿐이다.</p>
+<p><code>thresh</code>는 남길 행의 기준을 “결측이 아닌 값의 수”로 정한다. 이 자료는 17열이므로 <code>thresh=16</code>은 결측치가 하나 이하인 행을 남긴다. 결측치가 둘인 11행이 삭제된다.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.dropna(thresh<span class="op">=</span><span class="dv">16</span>).shape)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>(3019, 17)</code></pre>
+</section>
+<section id="어떤-결측-행을-삭제하는가" class="level3">
+<h3 class="anchored" data-anchor-id="어떤-결측-행을-삭제하는가">1.3 어떤 결측 행을 삭제하는가</h3>
+<p>결측 행의 삭제는 간단하지만 자료를 잃는다. 다음의 기준으로 판단한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>상황</th>
+<th>처리</th>
+<th>이 자료의 예</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>목표 열이 결측이다</td>
+<td>삭제한다. 대체하면 모델이 배울 정답을 지어내는 것이 된다</td>
+<td><code>annual_spend</code> 12행</td>
+</tr>
+<tr class="even">
+<td>입력 열의 결측이 적고 흩어져 있다</td>
+<td>대체한다(2절). 그 행의 다른 열의 정보를 살린다</td>
+<td><code>age</code>, <code>gender</code>, <code>visits_per_month</code>, <code>avg_session_min</code></td>
+</tr>
+<tr class="odd">
+<td>한 열의 대부분이 결측이다</td>
+<td>그 열을 삭제하는 것을 검토한다</td>
+<td>해당 없음</td>
+</tr>
+<tr class="even">
+<td>가이드가 삭제를 지시한다</td>
+<td>지시대로 삭제한다</td>
+<td>시험의 문항</td>
+</tr>
+</tbody>
+</table>
+<p>시험에서는 가이드가 처리 방법을 지정하므로 판단할 여지가 적다. 다만 “결측치가 있는 행을 삭제한다”와 “<code>열</code>이 결측인 행을 삭제한다”는 <code>subset</code>의 유무가 다르고, 결과의 행 수도 다르다. 가이드의 문장에서 대상 열을 정확히 읽는다.</p>
+<p>노트북 1부의 연습 1(행별 결측치의 수)과 연습 2(<code>how</code>)를 푼다.</p>
+<hr>
+</section>
+</section>
+<section id="평균중앙값최빈값에-의한-대체" class="level2">
+<h2 class="anchored" data-anchor-id="평균중앙값최빈값에-의한-대체">2. 평균·중앙값·최빈값에 의한 대체</h2>
+<section id="대체값의-선택" class="level3">
+<h3 class="anchored" data-anchor-id="대체값의-선택">2.1 대체값의 선택</h3>
+<p><code>fillna(값)</code>은 결측치를 주어진 값으로 채운 새 시리즈(또는 데이터프레임)를 돌려준다. 대체값은 열의 성격에 따라 고른다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>열</th>
+<th>대체값</th>
+<th>구하는 코드</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>수치형, 분포가 대칭에 가깝고 극단값이 없다</td>
+<td>평균</td>
+<td><code>df["열"].mean()</code></td>
+</tr>
+<tr class="even">
+<td>수치형, 분포가 치우쳤거나 극단값이 있다</td>
+<td>중앙값</td>
+<td><code>df["열"].median()</code></td>
+</tr>
+<tr class="odd">
+<td>범주형(문자열)</td>
+<td>최빈값</td>
+<td><code>df["열"].mode()[0]</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>mean()</code>과 <code>median()</code>은 결측치를 빼고 계산한다(<code>skipna=True</code>가 기본값). 평균은 극단적인 값에 끌려가지만 중앙값은 그렇지 않다.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(df[<span class="st">"age"</span>].mean(), <span class="dv">2</span>))</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">"age"</span>].median())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>40.31
+38.0</code></pre>
+<p><code>age</code>의 평균은 40.31세이고 중앙값은 38.0세이다. 999세 같은 입력 오류가 평균을 끌어올렸다. 이 때문에 이상치를 먼저 제거하고 대체값을 구하거나, 중앙값을 쓴다. 중심 실습은 이상치를 제거한 뒤에 중앙값으로 대체한다.</p>
+</section>
+<section id="수치형-열의-대체" class="level3">
+<h3 class="anchored" data-anchor-id="수치형-열의-대체">2.2 수치형 열의 대체</h3>
+<p>한 열을 대체한 결과는 그 열에 다시 저장한다. 아래 셀은 원본을 복사한 <code>d</code>에서 <code>age</code>를 대체하므로 원본 <code>df</code>의 결측치는 그대로 남는다.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> df.copy()</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>d[<span class="st">"age"</span>] <span class="op">=</span> d[<span class="st">"age"</span>].fillna(d[<span class="st">"age"</span>].median())</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">"age"</span>].isna().<span class="bu">sum</span>(), d[<span class="st">"age"</span>].isna().<span class="bu">sum</span>())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>97 0</code></pre>
+<p>평균으로 대체하면 그 열의 평균은 바뀌지 않지만, 같은 값이 여러 개 들어가므로 표준편차는 작아진다. 결측치가 많은 열을 한 값으로 대체하면 분포가 그 값에 몰린다는 점을 기억한다(연습 3).</p>
+</section>
+<section id="범주형-열의-대체와-mode0" class="level3">
+<h3 class="anchored" data-anchor-id="범주형-열의-대체와-mode0">2.3 범주형 열의 대체와 <code>mode()[0]</code></h3>
+<p><code>mode()</code>는 최빈값을 하나의 값이 아니라 시리즈로 돌려준다. 가장 많은 값이 둘 이상일 수 있기 때문이다. 값 하나를 꺼내려면 <code>[0]</code>을 붙인다.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">"gender"</span>].mode())</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">"gender"</span>].mode()[<span class="dv">0</span>])</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>0    F
+Name: gender, dtype: str
+F</code></pre>
+<p><code>[0]</code>을 빠뜨리면 오류가 나지 않고 결과만 틀린다. <code>fillna</code>에 시리즈를 주면 같은 인덱스의 값끼리 맞추어 채우기 때문이다. 최빈값 시리즈의 인덱스는 0 하나뿐이므로, 0번 행이 결측일 때에만 그 행이 채워진다.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> df.copy()</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>d[<span class="st">"gender"</span>] <span class="op">=</span> d[<span class="st">"gender"</span>].fillna(d[<span class="st">"gender"</span>].mode())</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d[<span class="st">"gender"</span>].isna().<span class="bu">sum</span>())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>40</code></pre>
+<p><code>gender</code>의 결측치 40개가 하나도 채워지지 않았다. 오류 정정 문항에서 자주 쓰이는 유형이다.</p>
+</section>
+<section id="여러-열의-한-번-대체" class="level3">
+<h3 class="anchored" data-anchor-id="여러-열의-한-번-대체">2.4 여러 열의 한 번 대체</h3>
+<p>데이터프레임의 <code>fillna</code>에 <code>{열 이름: 대체값}</code>의 사전을 주면 여러 열을 열마다 다른 값으로 한 번에 대체한다.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> df.copy()</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> d.fillna({<span class="st">"visits_per_month"</span>: d[<span class="st">"visits_per_month"</span>].median(), <span class="st">"gender"</span>: d[<span class="st">"gender"</span>].mode()[<span class="dv">0</span>]})</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>d[[<span class="st">"visits_per_month"</span>, <span class="st">"gender"</span>]].isna().<span class="bu">sum</span>()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>visits_per_month    0
+gender              0
+dtype: int64</code></pre>
+<p>노트북 1부의 연습 3(평균 대체 전후의 표준편차)과 연습 4(평균과 중앙값, <code>[선택]</code>)를 푼다.</p>
+<hr>
+</section>
+</section>
+<section id="조건에-의한-이상치-제거" class="level2">
+<h2 class="anchored" data-anchor-id="조건에-의한-이상치-제거">3. 조건에 의한 이상치 제거</h2>
+<section id="업무상-불가능한-값" class="level3">
+<h3 class="anchored" data-anchor-id="업무상-불가능한-값">3.1 업무상 불가능한 값</h3>
+<p>이상치는 두 종류로 나누어 다룬다. 하나는 업무상 있을 수 없는 값(나이 0세와 999세, 음수의 구매액)이고, 다른 하나는 가능하지만 다른 값들과 동떨어진 값이다. 앞의 것은 업무의 기준으로 정한 조건으로, 뒤의 것은 4절의 사분위수 범위로 제거한다.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((df[<span class="st">"age"</span>] <span class="op">&lt;</span> <span class="dv">19</span>).<span class="bu">sum</span>(), (df[<span class="st">"age"</span>] <span class="op">&gt;</span> <span class="dv">80</span>).<span class="bu">sum</span>())</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.loc[(df[<span class="st">"age"</span>] <span class="op">&lt;</span> <span class="dv">19</span>) <span class="op">|</span> (df[<span class="st">"age"</span>] <span class="op">&gt;</span> <span class="dv">80</span>), <span class="st">"age"</span>].value_counts())</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((df[<span class="st">"annual_spend"</span>] <span class="op">&lt;=</span> <span class="dv">0</span>).<span class="bu">sum</span>())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>4 6
+age
+999.0    6
+0.0      4
+Name: count, dtype: int64
+5</code></pre>
+<p>19세 미만인 값이 4개, 80세 초과인 값이 6개이며, 모두 0과 999이다. 연간 구매액이 0 이하인 값은 5개이다. 본 교재는 회원의 나이를 19세 이상 80세 이하로 보고, 연간 구매액은 0보다 커야 한다고 정한다.</p>
+</section>
+<section id="between과-결측치" class="level3">
+<h3 class="anchored" data-anchor-id="between과-결측치">3.2 <code>between</code>과 결측치</h3>
+<p><code>Series.between(a, b)</code>는 <code>a &lt;= 값 &lt;= b</code>이면 <code>True</code>이다. 경계값을 포함하는 것이 기본값(<code>inclusive="both"</code>)이다. 결측치는 비교할 수 없으므로 <code>False</code>가 된다.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>cond <span class="op">=</span> df[<span class="st">"age"</span>].between(<span class="dv">19</span>, <span class="dv">80</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cond.<span class="bu">sum</span>(), (<span class="op">~</span>cond).<span class="bu">sum</span>())</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">"age"</span>].isna().<span class="bu">sum</span>())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>2923 107
+97</code></pre>
+<p>조건이 <code>False</code>인 107행에는 불가능한 값 10개와 결측치 97개가 함께 들어 있다. 이 조건으로 행을 고르면 결측치가 있는 행까지 삭제된다. 결측치는 2절의 방법으로 대체할 것이므로 남겨야 한다면, 조건에 <code>| df["age"].isna()</code>를 더한다.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> df[df[<span class="st">"age"</span>].between(<span class="dv">19</span>, <span class="dv">80</span>)]</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> df[(df[<span class="st">"age"</span>].between(<span class="dv">19</span>, <span class="dv">80</span>)) <span class="op">|</span> (df[<span class="st">"age"</span>].isna())]</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(df), <span class="bu">len</span>(a), <span class="bu">len</span>(b))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>3030 2923 3020</code></pre>
+<p>결측을 남기지 않은 <code>a</code>는 2,923행, 결측을 남긴 <code>b</code>는 3,020행이다. 두 결과의 차이 97은 <code>age</code>의 결측치 수와 같다. 가이드가 “범위 밖의 값을 제거한다”고만 하면 결측치를 남기는 것이 원칙이다. 결측치는 범위 밖의 값이 아니기 때문이다.</p>
+</section>
+<section id="조건으로-고르기와-인덱스로-지우기" class="level3">
+<h3 class="anchored" data-anchor-id="조건으로-고르기와-인덱스로-지우기">3.3 조건으로 고르기와 인덱스로 지우기</h3>
+<p>조건에 맞지 않는 행을 제거하는 방법은 두 가지이다. 3.2절처럼 남길 행의 조건으로 고르는 방법과, 지울 행의 인덱스를 구하여 <code>drop(index=...)</code>로 지우는 방법이다.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>bad <span class="op">=</span> df[df[<span class="st">"annual_spend"</span>] <span class="op">&lt;=</span> <span class="dv">0</span>].index</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> df.drop(index<span class="op">=</span>bad)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(bad.tolist())</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(df), <span class="bu">len</span>(d))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>[87, 763, 925, 1422, 2842]
+3030 3025</code></pre>
+<p>두 방법의 결과는 같다. 조건으로 고르는 방법은 “무엇을 남기는가”를, <code>drop</code>은 “무엇을 지우는가”를 코드에 드러낸다. 가이드가 “~인 행을 삭제한다”고 하면 <code>drop</code>을, “~인 행만 남긴다”고 하면 조건 선택을 쓰면 읽기 쉽다. 어느 방법이든 처리 전후의 행 수를 출력하여 삭제된 수가 예상과 같은지 확인한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>실수</th>
+<th>결과</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>조건에 <code>and</code>, <code>or</code>를 쓴다</td>
+<td><code>ValueError: The truth value of a Series is ambiguous</code> (1장 4.3절)</td>
+</tr>
+<tr class="even">
+<td>조건마다 괄호를 빠뜨린다</td>
+<td><code>&amp;</code>가 비교보다 먼저 계산되어 <code>TypeError</code>나 틀린 결과</td>
+</tr>
+<tr class="odd">
+<td><code>df[df["annual_spend"] &gt;= 0]</code>로 쓴다</td>
+<td>0인 값이 남는다. 가이드의 “0보다 큰”과 “0 이상”을 구분한다</td>
+</tr>
+</tbody>
+</table>
+<p>노트북 1부의 연습 5(300분 이상의 제거)와 연습 6(두 조건의 결합)을 푼다.</p>
+<hr>
+</section>
+</section>
+<section id="사분위수-범위에-의한-이상치-제거" class="level2">
+<h2 class="anchored" data-anchor-id="사분위수-범위에-의한-이상치-제거">4. 사분위수 범위에 의한 이상치 제거</h2>
+<section id="경계의-계산" class="level3">
+<h3 class="anchored" data-anchor-id="경계의-계산">4.1 경계의 계산</h3>
+<p>2장의 상자그림에서 수염 밖에 점으로 표시된 값은 다음 경계를 벗어난 값이다.</p>
+<ul>
+<li>아래쪽 경계 = Q1 - 1.5 × IQR</li>
+<li>위쪽 경계 = Q3 + 1.5 × IQR</li>
+<li>IQR = Q3 - Q1</li>
+</ul>
+<p><code>quantile(q)</code>는 0과 1 사이의 비율 q에 해당하는 분위수를 돌려준다. 제1사분위수는 <code>quantile(0.25)</code>, 제3사분위수는 <code>quantile(0.75)</code>이다. 결측치는 빼고 계산한다.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>q1 <span class="op">=</span> df[<span class="st">"visits_per_month"</span>].quantile(<span class="fl">0.25</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>q3 <span class="op">=</span> df[<span class="st">"visits_per_month"</span>].quantile(<span class="fl">0.75</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>iqr <span class="op">=</span> q3 <span class="op">-</span> q1</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>lower <span class="op">=</span> q1 <span class="op">-</span> <span class="fl">1.5</span> <span class="op">*</span> iqr</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>upper <span class="op">=</span> q3 <span class="op">+</span> <span class="fl">1.5</span> <span class="op">*</span> iqr</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(q1, q3, <span class="bu">round</span>(iqr, <span class="dv">2</span>))</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(lower, <span class="dv">2</span>), <span class="bu">round</span>(upper, <span class="dv">2</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>7.2 14.3 7.1
+-3.45 24.95</code></pre>
+<p><code>visits_per_month</code>의 Q1은 7.2회, Q3은 14.3회, IQR은 7.1회이다. 아래쪽 경계는 -3.45, 위쪽 경계는 24.95이다. 방문 수는 음수가 될 수 없으므로 아래쪽 경계 밖의 값은 없다. 경계값을 출력할 때 <code>round</code>를 쓰는 것은 소수의 계산 오차로 끝자리가 길게 표시되는 것을 막기 위함이다. 비교에는 반올림하지 않은 값을 쓴다.</p>
+</section>
+<section id="경계-밖의-행-제거" class="level3">
+<h3 class="anchored" data-anchor-id="경계-밖의-행-제거">4.2 경계 밖의 행 제거</h3>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> df[<span class="st">"visits_per_month"</span>]</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((s <span class="op">&lt;</span> lower).<span class="bu">sum</span>(), (s <span class="op">&gt;</span> upper).<span class="bu">sum</span>())</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> df[(s.between(lower, upper)) <span class="op">|</span> (s.isna())]</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(df), <span class="bu">len</span>(d))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>0 63
+3030 2967</code></pre>
+<p>위쪽 경계를 넘는 63행이 제거되어 2,967행이 남는다. 3.2절과 마찬가지로 <code>between</code>은 결측치를 <code>False</code>로 판정하므로, 결측치를 남기려면 <code>| s.isna()</code>를 더한다. 경계값과 같은 값은 남는다(<code>between</code>의 기본값).</p>
+<p>제거 전후의 상자그림을 나란히 그리면 처리의 효과를 확인할 수 있다. <code>sharey=True</code>는 두 칸의 y축 범위를 같게 맞춘다.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="fl">3.5</span>), sharey<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>sns.boxplot(data<span class="op">=</span>df, y<span class="op">=</span><span class="st">"visits_per_month"</span>, ax<span class="op">=</span>axes[<span class="dv">0</span>])</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>sns.boxplot(data<span class="op">=</span>d, y<span class="op">=</span><span class="st">"visits_per_month"</span>, ax<span class="op">=</span>axes[<span class="dv">1</span>])</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">"Before IQR filter"</span>)</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">"After IQR filter"</span>)</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../kit/images/AICE_03_4_4.png" class="img-fluid figure-img"></p>
+<figcaption>IQR 제거 전후의 상자그림</figcaption>
+</figure>
+</div>
+<p>제거 후에도 상자그림에 점이 몇 개 보일 수 있다. 행을 지운 뒤의 자료로 사분위수를 다시 계산하면 경계가 조금 안쪽으로 옮겨지기 때문이다. IQR에 의한 제거는 가이드가 지시한 횟수(대개 한 번)만 적용한다.</p>
+<p><code>quantile</code>에 비율의 리스트를 주면 여러 분위수를 한 번에 구한다.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"avg_session_min"</span>].quantile([<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>])</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>0.25    13.7
+0.50    16.7
+0.75    19.9
+Name: avg_session_min, dtype: float64</code></pre>
+</section>
+<section id="경계는-그-시점의-자료로-정해진다" class="level3">
+<h3 class="anchored" data-anchor-id="경계는-그-시점의-자료로-정해진다">4.3 경계는 그 시점의 자료로 정해진다</h3>
+<p>사분위수는 계산하는 시점의 자료에 따라 달라진다. 2장 4.2절에서 원본으로 계산한 <code>avg_session_min</code>의 경계는 4.4와 29.2였다. 중복 행과 불가능한 값을 먼저 제거한 뒤에 계산하면 Q1과 Q3이 달라져 경계도 달라진다. 그래서 IQR에 의한 제거는 가이드가 정한 순서에서 정확히 그 단계의 자료로 계산해야 한다. 중심 실습의 단계 5에서 이를 확인한다.</p>
+<p>IQR에 의한 제거는 업무의 판단 없이 분포만으로 경계를 정한다. 따라서 실제로 가능한 값도 제거될 수 있다. 1.5 대신 3을 쓰면 극단적인 값만 제거된다(연습 8). 시험에서는 가이드가 배수와 대상 열을 지정한다.</p>
+<p>노트북 1부의 연습 7(다른 열의 IQR)과 연습 8(3×IQR, <code>[선택]</code>)을 푼다.</p>
+<hr>
+</section>
+</section>
+<section id="열-삭제-중복-행-삭제-인덱스-재설정" class="level2">
+<h2 class="anchored" data-anchor-id="열-삭제-중복-행-삭제-인덱스-재설정">5. 열 삭제, 중복 행 삭제, 인덱스 재설정</h2>
+<section id="열-삭제-dropcolumns..." class="level3">
+<h3 class="anchored" data-anchor-id="열-삭제-dropcolumns...">5.1 열 삭제: <code>drop(columns=...)</code></h3>
+<p><code>drop(columns=[열, ...])</code>은 지정한 열을 뺀 새 데이터프레임을 돌려준다. <code>customer_id</code> 같은 식별자는 회원마다 값이 다르므로 모델이 배울 규칙이 없다. 1장 3.6절에서 고유값의 수로 식별자를 찾았다.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> df.drop(columns<span class="op">=</span>[<span class="st">"customer_id"</span>])</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.shape, d.shape)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>(3030, 17) (3030, 16)</code></pre>
+<p><code>drop("customer_id", axis=1)</code>로 써도 같다. <code>axis=1</code>을 빠뜨리면 pandas는 <code>customer_id</code>를 행의 인덱스에서 찾다가 <code>KeyError</code>를 낸다. <code>columns=</code>로 쓰면 방향을 혼동할 일이 없다. 없는 열 이름을 주어도 <code>KeyError</code>가 난다.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>df.drop(columns<span class="op">=</span>[<span class="st">"customer"</span>])</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>KeyError: "['customer'] not found in axis"</code></pre>
+</section>
+<section id="중복-행-삭제-drop_duplicates" class="level3">
+<h3 class="anchored" data-anchor-id="중복-행-삭제-drop_duplicates">5.2 중복 행 삭제: <code>drop_duplicates</code></h3>
+<p><code>drop_duplicates()</code>는 1장의 <code>duplicated()</code>가 <code>True</code>로 표시한 행을 삭제한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>인자</th>
+<th>뜻</th>
+<th>기본값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>subset</code></td>
+<td>중복을 판단할 열의 목록</td>
+<td>모든 열</td>
+</tr>
+<tr class="even">
+<td><code>keep</code></td>
+<td><code>"first"</code>: 처음 나온 행을 남긴다. <code>"last"</code>: 마지막 행을 남긴다. <code>False</code>: 중복된 행을 모두 삭제한다</td>
+<td><code>"first"</code></td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.drop_duplicates().shape)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.drop_duplicates(subset<span class="op">=</span>[<span class="st">"customer_id"</span>]).shape)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.drop_duplicates(subset<span class="op">=</span>[<span class="st">"customer_id"</span>], keep<span class="op">=</span><span class="st">"last"</span>).shape)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.drop_duplicates(keep<span class="op">=</span><span class="va">False</span>).shape)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>(3000, 17)
+(3000, 17)
+(3000, 17)
+(2970, 17)</code></pre>
+<p>모든 열을 기준으로 하든 <code>customer_id</code>만을 기준으로 하든 3,000행이 남는다. 이 자료의 중복 30개는 행 전체가 통째로 두 번 기록된 것이기 때문이다(1장 3.7절). <code>keep="last"</code>도 남는 행의 수는 같고 남는 행의 위치만 다르다. <code>keep=False</code>는 원본까지 지우므로 60행이 삭제되어 2,970행이 남는다. 중복의 원본은 정상인 기록이므로 <code>keep=False</code>는 쓰지 않는다.</p>
+</section>
+<section id="인덱스-재설정-reset_indexdroptrue" class="level3">
+<h3 class="anchored" data-anchor-id="인덱스-재설정-reset_indexdroptrue">5.3 인덱스 재설정: <code>reset_index(drop=True)</code></h3>
+<p>행을 삭제해도 남은 행의 인덱스는 원래 번호를 유지한다. 그래서 행을 지운 뒤의 인덱스는 중간이 비어 있고 마지막 번호가 행 수보다 크다.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> df.drop_duplicates().dropna(subset<span class="op">=</span>[<span class="st">"annual_spend"</span>])</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d.index[<span class="op">-</span><span class="dv">3</span>:].tolist())</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d.reset_index().columns[:<span class="dv">2</span>].tolist())</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> d.reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d.index[<span class="op">-</span><span class="dv">3</span>:].tolist())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>[3027, 3028, 3029]
+['index', 'customer_id']
+[2985, 2986, 2987]</code></pre>
+<p>중복과 결측 행을 지운 뒤 2,988행이 남았지만 마지막 인덱스는 3029이다. <code>reset_index()</code>는 인덱스를 0부터 다시 매기는데, 기본값(<code>drop=False</code>)에서는 이전 인덱스를 <code>index</code>라는 열로 데이터프레임에 넣는다. 이 열이 남으면 모델의 입력에 섞이므로 <code>drop=True</code>로 버린다. 재설정한 뒤의 마지막 인덱스는 2987이다.</p>
+<p>인덱스가 비어 있으면 1장 5.5절의 <code>loc</code>과 <code>iloc</code>의 차이가 드러나고, 5장 이후에 다른 데이터프레임과 열을 이어 붙일 때 인덱스가 맞지 않는 문제가 생긴다. 행을 지우는 처리를 마치면 인덱스를 재설정한다.</p>
+<p>노트북 1부의 연습 9(두 열의 삭제)와 연습 10(<code>keep="last"</code>)을 푼다.</p>
+<hr>
+</section>
+</section>
+<section id="원본의-보존과-결과의-변수-저장" class="level2">
+<h2 class="anchored" data-anchor-id="원본의-보존과-결과의-변수-저장">6. 원본의 보존과 결과의 변수 저장</h2>
+<section id="처리-결과의-재할당" class="level3">
+<h3 class="anchored" data-anchor-id="처리-결과의-재할당">6.1 처리 결과의 재할당</h3>
+<p>이 장에서 다룬 <code>dropna</code>, <code>fillna</code>, <code>drop</code>, <code>drop_duplicates</code>, <code>reset_index</code>는 모두 처리한 <strong>새 객체를 돌려줄 뿐 원래의 데이터프레임을 바꾸지 않는다.</strong> 결과를 변수에 저장하지 않으면 처리는 화면에만 나타나고 사라진다.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> df.copy()</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>d.dropna(subset<span class="op">=</span>[<span class="st">"annual_spend"</span>])</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d.shape)</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> d.dropna(subset<span class="op">=</span>[<span class="st">"annual_spend"</span>])</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d.shape)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>(3030, 17)
+(3018, 17)</code></pre>
+<p>첫 줄의 <code>d.dropna(...)</code>는 결과를 저장하지 않았으므로 <code>d</code>는 3,030행 그대로이다. <code>d = d.dropna(...)</code>처럼 같은 이름에 다시 저장해야 반영된다. 이 실수는 오류가 나지 않고 값만 틀리게 하므로 찾기 어렵다. 처리한 뒤마다 <code>shape</code>를 출력하여 행 수가 바뀌었는지 확인한다.</p>
+</section>
+<section id="원본의-보존-copy" class="level3">
+<h3 class="anchored" data-anchor-id="원본의-보존-copy">6.2 원본의 보존: <code>copy()</code></h3>
+<p><code>d = df</code>는 데이터프레임을 복사하지 않는다. 같은 데이터프레임에 이름을 하나 더 붙일 뿐이다. 따라서 <code>d</code>의 열을 바꾸면 <code>df</code>도 바뀐다. 원본과 독립된 데이터프레임이 필요하면 <code>df.copy()</code>를 쓴다.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> df.copy()</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>alias <span class="op">=</span> base</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>alias[<span class="st">"flag"</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(alias <span class="kw">is</span> base, <span class="st">"flag"</span> <span class="kw">in</span> base.columns)</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>copied <span class="op">=</span> base.copy()</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>copied[<span class="st">"flag2"</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(copied <span class="kw">is</span> base, <span class="st">"flag2"</span> <span class="kw">in</span> base.columns)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>True True
+False False</code></pre>
+<p><code>alias is base</code>가 <code>True</code>이므로 두 이름은 같은 객체를 가리키고, <code>alias</code>에 더한 열이 <code>base</code>에도 생겼다. <code>copied</code>는 다른 객체이므로 <code>copied</code>에 더한 열은 <code>base</code>에 생기지 않는다. 시험의 가이드가 “원본을 유지하고 새 변수에 저장한다”고 하면 <code>새 변수 = 원본.copy()</code>로 시작한다. 앞 문항의 결과를 뒤 문항이 다시 쓸 수 있기 때문이다(1장 7.2절 규칙 4).</p>
+<p>pandas 3.0부터는 Copy-on-Write가 기본 동작이다. 조건으로 고른 결과(<code>df[조건]</code>)나 열 하나(<code>df["열"]</code>)를 바꾸어도 원본에는 영향을 주지 않는다. 다만 <code>d = df</code>처럼 이름만 붙인 경우는 같은 객체이므로 위와 같이 원본이 바뀐다.</p>
+</section>
+<section id="inplace를-쓰지-않는-이유" class="level3">
+<h3 class="anchored" data-anchor-id="inplace를-쓰지-않는-이유">6.3 <code>inplace</code>를 쓰지 않는 이유</h3>
+<p>많은 메서드에 <code>inplace=True</code> 인자가 있다. 이 인자를 주면 새 객체를 돌려주는 대신 그 데이터프레임을 바꾸고 <code>None</code>을 돌려준다.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> df.copy()</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> d.dropna(subset<span class="op">=</span>[<span class="st">"annual_spend"</span>], inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d.shape)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>None
+(3018, 17)</code></pre>
+<p>본 교재는 <code>inplace</code>를 쓰지 않고 결과를 변수에 다시 저장한다. 이유는 세 가지이다.</p>
+<p>첫째, 재할당과 섞어 쓰면 변수가 <code>None</code>이 된다. 아래 셀은 <code>inplace=True</code>의 반환값 <code>None</code>을 <code>d</code>에 저장하여 다음 줄에서 오류가 난다.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> df.copy()</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> d.dropna(subset<span class="op">=</span>[<span class="st">"annual_spend"</span>], inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>d.shape</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>AttributeError: 'NoneType' object has no attribute 'shape'</code></pre>
+<p>둘째, 열 하나를 골라 <code>inplace</code>로 바꾸는 코드(<code>df["열"].fillna(값, inplace=True)</code>)는 pandas 3.0부터 원본을 바꾸지 못한다. 고른 열이 원본과 분리된 객체이기 때문이다. 이전 판의 자료에 흔한 코드이므로 주의한다.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> df.copy()</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>d[<span class="st">"age"</span>].fillna(d[<span class="st">"age"</span>].median(), inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d[<span class="st">"age"</span>].isna().<span class="bu">sum</span>())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>97</code></pre>
+<p>결측치 97개가 그대로이다. 실행할 때 연쇄 할당(chained assignment)으로는 원본이 바뀌지 않는다는 경고가 출력되지만 오류는 나지 않는다.</p>
+<p>셋째, pandas 3.1.0(2026-10-22)은 <code>dropna</code>, <code>drop_duplicates</code>, <code>reset_index</code> 등 실제로는 제자리에서 동작하지 않는 메서드의 <code>inplace</code> 인자를 폐지 예정으로 정하였다. 이 판에서 <code>inplace=True</code>를 쓰면 경고(<code>Pandas4Warning</code>)가 출력되며, 이후의 판에서 인자가 삭제될 예정이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>쓰는 방식</th>
+<th>쓰지 않는 방식</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>df = df.dropna(subset=["annual_spend"])</code></td>
+<td><code>df.dropna(subset=["annual_spend"], inplace=True)</code></td>
+</tr>
+<tr class="even">
+<td><code>df["age"] = df["age"].fillna(df["age"].median())</code></td>
+<td><code>df["age"].fillna(df["age"].median(), inplace=True)</code></td>
+</tr>
+<tr class="odd">
+<td><code>df_new = df.copy()</code> 뒤에 <code>df_new</code>를 처리</td>
+<td><code>df_new = df</code> 뒤에 <code>df_new</code>를 처리</td>
+</tr>
+</tbody>
+</table>
+<p>노트북 1부의 연습 11(원본의 보존)을 푼다.</p>
+<hr>
+</section>
+</section>
+<section id="중심-실습-정제본-df_clean의-작성" class="level2">
+<h2 class="anchored" data-anchor-id="중심-실습-정제본-df_clean의-작성">7. 중심 실습: 정제본 <code>df_clean</code>의 작성</h2>
+<p>노트북 <code>AICE_03주차_실습_학생용.ipynb</code>의 2부에서 수행한다. 학기 공통 자료의 원본을 가이드의 순서대로 정제하여 정제본 <code>df_clean</code>을 작성하고, 단계마다 남은 행 수를 답 변수에 저장한다.</p>
+<p><strong>준비.</strong> 단계 1의 셀을 실행하여 자료를 <code>df</code>에 읽는다.</p>
+<p><strong>절차.</strong> 단계마다 결과를 <code>df</code>에 다시 저장한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>단계</th>
+<th>할 일</th>
+<th>답을 담을 변수</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>자료 읽기</td>
+<td><code>df</code></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>중복 행 삭제(모든 열 기준), <code>customer_id</code> 열 삭제</td>
+<td><code>n_step1</code></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><code>annual_spend</code>가 결측인 행 삭제</td>
+<td><code>n_step2</code></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td><code>age</code>가 19~80인 행만 남기기(결측은 남긴다), <code>annual_spend</code>가 0보다 큰 행만 남기기</td>
+<td><code>n_step3</code></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td><code>avg_session_min</code>의 IQR 경계 계산(Q1 - 1.5×IQR, Q3 + 1.5×IQR), 경계 안의 행과 결측 행 남기기</td>
+<td><code>lower</code>, <code>upper</code>, <code>n_step4</code></td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td><code>age</code>, <code>visits_per_month</code>, <code>avg_session_min</code>은 중앙값으로, <code>gender</code>는 최빈값으로 대체. 인덱스 재설정(<code>drop=True</code>)</td>
+<td><code>df_clean</code></td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>자가 채점 셀의 실행과 해석 두 문장</td>
+<td>(출력 <code>통과</code>, 주석)</td>
+</tr>
+</tbody>
+</table>
+<p>순서에는 이유가 있다. 중복 행을 먼저 지워야 같은 회원이 두 번 세어지지 않는다. 불가능한 값을 먼저 지워야 사분위수와 중앙값이 오류 값에 끌려가지 않는다. 결측치의 대체는 행의 삭제를 모두 마친 뒤에 해야 대체값이 최종 자료의 중앙값이 된다. 인덱스의 재설정은 맨 마지막에 한 번 한다.</p>
+<p><strong>완료 기준.</strong> 자가 채점 셀이 <code>통과</code>를 출력한다. 자가 채점 셀은 다음을 검사한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>검사 항목</th>
+<th>기준 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>단계별 행 수 <code>(n_step1, n_step2, n_step3, n_step4)</code></td>
+<td><code>(3000, 2988, 2973, 2940)</code></td>
+</tr>
+<tr class="even">
+<td>단계 5의 경계 <code>(lower, upper)</code>(소수 둘째 자리)</td>
+<td><code>(4.15, 29.35)</code></td>
+</tr>
+<tr class="odd">
+<td><code>df_clean</code>의 크기와 결측치의 수</td>
+<td><code>(2940, 16)</code>, 0</td>
+</tr>
+<tr class="even">
+<td><code>customer_id</code> 열과 인덱스</td>
+<td>열이 없고, 마지막 인덱스가 2939</td>
+</tr>
+</tbody>
+</table>
+<p><strong>값의 해석.</strong> 단계 7에서 다음 두 물음에 한 문장씩 답한다.</p>
+<ol type="1">
+<li>단계 5의 경계를 원본(단계 1의 <code>df</code>)에서 계산하면 값이 달라진다. 그 까닭은 무엇인가.</li>
+<li><code>annual_spend</code>의 결측은 삭제하고 <code>age</code>의 결측은 대체하였다. 두 처리를 달리한 까닭은 무엇인가.</li>
+</ol>
+<p><strong>제출물.</strong> 실행을 마친 노트북 파일. 자가 채점 셀의 <code>통과</code>와 단계 7의 두 문장이 있어야 한다.</p>
+<hr>
+</section>
+<section id="시간-제한-문항" class="level2">
+<h2 class="anchored" data-anchor-id="시간-제한-문항">8. 시간 제한 문항</h2>
+<p>제한 시간은 15분이다. 노트북의 3부에서 푼다.</p>
+<p>가상의 중고 노트북 거래 자료 <code>laptops.csv</code>를 사용한다. 가격(<code>price</code>, 만 원)에는 999 이상으로 잘못 입력된 값이 있고, <code>battery_health</code>(배터리 성능, %)와 <code>condition</code>(외관 등급)에는 결측치가 있다. 공식 문서 사이트만 참고한다. 각 문항의 답은 한 셀에 작성한다. 아래 셀을 먼저 실행한다.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>DATA <span class="op">=</span> <span class="st">"../kit/data/AICE_공통/"</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>lap <span class="op">=</span> pd.read_csv(DATA <span class="op">+</span> <span class="st">"laptops.csv"</span>)</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lap.shape)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="문항-1-빈칸-채우기" class="level3">
+<h3 class="anchored" data-anchor-id="문항-1-빈칸-채우기">문항 1 (빈칸 채우기)</h3>
+<p>가격(<code>price</code>)의 사분위수 범위로 경계를 계산하고, 경계 안의 행만 남겨 <code>lap_iqr</code>에 저장한다. 빈칸 <code>___</code>을 채운다.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>q1 <span class="op">=</span> lap[<span class="st">"price"</span>].___(<span class="fl">0.25</span>)</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>q3 <span class="op">=</span> lap[<span class="st">"price"</span>].quantile(___)</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>iqr <span class="op">=</span> ___</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>lower <span class="op">=</span> q1 <span class="op">-</span> <span class="fl">1.5</span> <span class="op">*</span> iqr</span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>upper <span class="op">=</span> q3 <span class="op">+</span> <span class="fl">1.5</span> <span class="op">*</span> iqr</span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>lap_iqr <span class="op">=</span> lap[lap[<span class="st">"price"</span>].between(lower, upper)]</span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lower, upper, lap_iqr.shape)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="문항-2-오류-정정" class="level3">
+<h3 class="anchored" data-anchor-id="문항-2-오류-정정">문항 2 (오류 정정)</h3>
+<p>아래 코드는 가격이 999 이상인 행을 제거하고, 이어서 <code>battery_health</code>가 결측인 행을 삭제한 뒤 남은 행 수를 <code>ans_t2</code>에 저장하려 한다. 코드는 실행되지만 처리 결과가 반영되지 않아 값이 틀리다. 코드를 정정한다.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>lap2 <span class="op">=</span> lap.copy()</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>lap2[lap2[<span class="st">"price"</span>] <span class="op">&lt;</span> <span class="dv">999</span>]</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>lap2.dropna(subset<span class="op">=</span>[<span class="st">"battery_health"</span>])</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>ans_t2 <span class="op">=</span> <span class="bu">len</span>(lap2)</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ans_t2)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="문항-3-답-변수" class="level3">
+<h3 class="anchored" data-anchor-id="문항-3-답-변수">문항 3 (답 변수)</h3>
+<p>원본 <code>lap</code>을 복사한 <code>lap3</code>을 다음 순서로 처리한다. (1) 가격이 999 이상인 행을 제거한다. (2) <code>battery_health</code>의 결측치를 (1)의 결과에서 구한 중앙값으로 대체한다. (3) <code>condition</code>이 결측인 행을 삭제한다. (4) 인덱스를 0부터 다시 매긴다. 처리 후의 행 수를 <code>ans_t3</code>에, (2)에서 쓴 중앙값을 <code>ans_t3b</code>에 저장한다.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 여기에 코드를 작성한다</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="정리" class="level2">
+<h2 class="anchored" data-anchor-id="정리">9. 정리</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>주제</th>
+<th>기억할 것</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>결측치의 집계</td>
+<td>열별 <code>isna().sum()</code>, 행별 <code>isna().sum(axis=1)</code>, 결측 행의 수 <code>isna().any(axis=1).sum()</code></td>
+</tr>
+<tr class="even">
+<td>결측 행의 삭제</td>
+<td><code>dropna(subset=[열])</code>. <code>how="any"</code>(기본값)와 <code>"all"</code>, <code>thresh</code>는 남길 값의 수</td>
+</tr>
+<tr class="odd">
+<td>대체</td>
+<td>수치형은 <code>mean()</code>·<code>median()</code>, 범주형은 <code>mode()[0]</code>. 결과를 그 열에 다시 저장한다</td>
+</tr>
+<tr class="even">
+<td>조건에 의한 제거</td>
+<td><code>between(a, b)</code>는 경계를 포함하고 결측을 <code>False</code>로 판정한다. 결측을 남기려면 <code>| isna()</code></td>
+</tr>
+<tr class="odd">
+<td>IQR</td>
+<td><code>q1 = quantile(0.25)</code>, <code>q3 = quantile(0.75)</code>, 경계 <code>q1 - 1.5*iqr</code>, <code>q3 + 1.5*iqr</code>. 그 단계의 자료로 계산한다</td>
+</tr>
+<tr class="even">
+<td>열과 중복</td>
+<td><code>drop(columns=[...])</code>, <code>drop_duplicates(subset=..., keep="first")</code></td>
+</tr>
+<tr class="odd">
+<td>인덱스</td>
+<td>행을 지운 뒤 <code>reset_index(drop=True)</code></td>
+</tr>
+<tr class="even">
+<td>재할당과 복사</td>
+<td><code>df = df.처리()</code>, 원본 보존은 <code>df.copy()</code>. <code>inplace</code>를 쓰지 않는다</td>
+</tr>
+<tr class="odd">
+<td>처리 순서</td>
+<td>중복 → 식별자 열 → 목표 열의 결측 → 불가능한 값 → IQR → 대체 → 인덱스 재설정</td>
+</tr>
+</tbody>
+</table>
+<p>다음 장에서는 정제본의 범주형 열(<code>region</code>, <code>grade</code>, <code>payment</code> 등)의 표기를 정리하고, 라벨 인코딩과 원핫 인코딩으로 모든 열을 수치로 바꾼다.</p>
+<hr>
+</section>
+<section id="참고-자료" class="level2">
+<h2 class="anchored" data-anchor-id="참고-자료">참고 자료</h2>
+<p>확인일은 2026-11-13이다. 표시한 항목은 2026-11-14에 확인하였다.</p>
+<ul>
+<li>pandas, Working with missing data. <a href="https://pandas.pydata.org/docs/user_guide/missing_data.html" class="uri">https://pandas.pydata.org/docs/user_guide/missing_data.html</a></li>
+<li>pandas, <code>DataFrame.dropna</code>. <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.dropna.html" class="uri">https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.dropna.html</a></li>
+<li>pandas, <code>DataFrame.fillna</code>. <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.fillna.html" class="uri">https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.fillna.html</a></li>
+<li>pandas, <code>Series.mode</code> (2026-11-14 확인). <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.mode.html" class="uri">https://pandas.pydata.org/docs/reference/api/pandas.Series.mode.html</a></li>
+<li>pandas, Indexing and selecting data. <a href="https://pandas.pydata.org/docs/user_guide/indexing.html" class="uri">https://pandas.pydata.org/docs/user_guide/indexing.html</a></li>
+<li>pandas, <code>Series.between</code> (2026-11-14 확인). <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.between.html" class="uri">https://pandas.pydata.org/docs/reference/api/pandas.Series.between.html</a></li>
+<li>pandas, <code>DataFrame.quantile</code>. <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.quantile.html" class="uri">https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.quantile.html</a></li>
+<li>pandas, <code>DataFrame.drop</code>. <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.drop.html" class="uri">https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.drop.html</a></li>
+<li>pandas, <code>DataFrame.drop_duplicates</code>. <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.drop_duplicates.html" class="uri">https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.drop_duplicates.html</a></li>
+<li>pandas, <code>DataFrame.reset_index</code>. <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.reset_index.html" class="uri">https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.reset_index.html</a></li>
+<li>pandas, <code>DataFrame.copy</code> (2026-11-14 확인). <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.copy.html" class="uri">https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.copy.html</a></li>
+<li>pandas, Migration Guides: Copy-on-Write (2026-11-14 확인). <a href="https://pandas.pydata.org/docs/user_guide/migration.html" class="uri">https://pandas.pydata.org/docs/user_guide/migration.html</a></li>
+<li>pandas, What’s new in 3.1.0: Deprecated inplace keyword for various methods (2026-11-14 확인). <a href="https://pandas.pydata.org/docs/whatsnew/v3.1.0.html" class="uri">https://pandas.pydata.org/docs/whatsnew/v3.1.0.html</a></li>
+</ul>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> 맨 위로</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "복사완료!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "복사완료!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../courses/aice/book/AICE_02주차_학생용.html" class="pagination-link" aria-label="[2주차] 데이터 시각화: 분포와 관계">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">[2주차] 데이터 시각화: 분포와 관계</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../courses/aice/book/AICE_04주차_학생용.html" class="pagination-link" aria-label="[4주차] 범주형 데이터와 인코딩">
+        <span class="nav-page-text">[4주차] 범주형 데이터와 인코딩</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>안중호 교수 강의 교재 · 2026년 2학기판</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

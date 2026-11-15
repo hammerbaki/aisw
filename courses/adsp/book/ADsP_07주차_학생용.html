@@ -1,0 +1,3189 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>[7주차] 상관 분석과 회귀 분석 – 안중호 교수 강의 교재</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../courses/adsp/book/ADsP_08주차_학생용.html" rel="next">
+<link href="../../../courses/adsp/book/ADsP_06주차_학생용.html" rel="prev">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-dcf116883d0d3758c9131f5ede2fa7e1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">안중호 교수 강의 교재</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="검색"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">커리큘럼</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/semesters/index.html">
+ <span class="dropdown-text">전체 커리큘럼</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../docs/semesters/2026-2/index.html">
+ <span class="dropdown-text">2026년 2학기</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../docs/subjects/llm-ai/index.html">
+ <span class="dropdown-text">교재 · LLM AI 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/subjects/python/index.html">
+ <span class="dropdown-text">교재 · 파이썬 실습</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../courses/index.html">
+ <span class="dropdown-text">2027학년도 교재 (준비 중)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/llm-service/index.html">
+ <span class="dropdown-text">· LLM 서비스 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/office/index.html">
+ <span class="dropdown-text">· 컴퓨터활용</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/adsp/index.html">
+ <span class="dropdown-text">· 빅데이터개론</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/ai-agent/index.html">
+ <span class="dropdown-text">· AI에이전트 기획 및 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/aice/index.html">
+ <span class="dropdown-text">· 비즈니스빅데이터분석</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/about/교수_소개.html"> 
+<span class="menu-text">교수 소개</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../courses/adsp/book/ADsP_01주차_학생용.html">교재</a></li><li class="breadcrumb-item"><a href="../../../courses/adsp/book/ADsP_07주차_학생용.html">[7주차] 상관 분석과 회귀 분석</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">빅데이터개론</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">교재</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_01주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[1주차] 데이터 이해: 데이터, 빅데이터, 데이터 사이언스</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_02주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[2주차] 분석 기획과 방법론</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_03주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[3주차] 분석 마스터 플랜과 거버넌스</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_04주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[4주차] 표 데이터와 데이터 마트</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_05주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[5주차] 결측값·이상값과 기술 통계</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_06주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[6주차] 통계학 개론: 표본, 분포, 추정, 검정</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_07주차_학생용.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">[7주차] 상관 분석과 회귀 분석</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_08주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[8주차] 다차원 척도법과 주성분 분석</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_09주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[9주차] 시계열 분석</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_10주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[10주차] 분류 분석 (1): 데이터 분할, 로지스틱 회귀, 의사결정나무</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_11주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[11주차] 분류 분석 (2): 앙상블, 인공신경망, 모형 평가</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_12주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[12주차] 군집 분석과 연관 분석</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_13주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[13주차] R 코드와 출력의 해석</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_부록_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">부록</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">이 장의 차례</h2>
+   
+  <ul>
+  <li><a href="#학습-목표" id="toc-학습-목표" class="nav-link active" data-scroll-target="#학습-목표">학습 목표</a></li>
+  <li><a href="#준비-사항" id="toc-준비-사항" class="nav-link" data-scroll-target="#준비-사항">준비 사항</a></li>
+  <li><a href="#상관-분석" id="toc-상관-분석" class="nav-link" data-scroll-target="#상관-분석">1. 상관 분석</a>
+  <ul class="collapse">
+  <li><a href="#산점도와-상관-계수" id="toc-산점도와-상관-계수" class="nav-link" data-scroll-target="#산점도와-상관-계수">1.1 산점도와 상관 계수</a></li>
+  <li><a href="#상관-계수의-성질" id="toc-상관-계수의-성질" class="nav-link" data-scroll-target="#상관-계수의-성질">1.2 상관 계수의 성질</a></li>
+  <li><a href="#피어슨-상관-계수와-스피어만-상관-계수" id="toc-피어슨-상관-계수와-스피어만-상관-계수" class="nav-link" data-scroll-target="#피어슨-상관-계수와-스피어만-상관-계수">1.3 피어슨 상관 계수와 스피어만 상관 계수</a></li>
+  <li><a href="#상관-계수의-검정" id="toc-상관-계수의-검정" class="nav-link" data-scroll-target="#상관-계수의-검정">1.4 상관 계수의 검정</a></li>
+  <li><a href="#해석할-때의-주의" id="toc-해석할-때의-주의" class="nav-link" data-scroll-target="#해석할-때의-주의">1.5 해석할 때의 주의</a></li>
+  <li><a href="#따라-하기" id="toc-따라-하기" class="nav-link" data-scroll-target="#따라-하기">따라 하기</a></li>
+  </ul></li>
+  <li><a href="#단순-회귀-분석" id="toc-단순-회귀-분석" class="nav-link" data-scroll-target="#단순-회귀-분석">2. 단순 회귀 분석</a>
+  <ul class="collapse">
+  <li><a href="#회귀-모형과-최소제곱법" id="toc-회귀-모형과-최소제곱법" class="nav-link" data-scroll-target="#회귀-모형과-최소제곱법">2.1 회귀 모형과 최소제곱법</a></li>
+  <li><a href="#결과표의-구성" id="toc-결과표의-구성" class="nav-link" data-scroll-target="#결과표의-구성">2.2 결과표의 구성</a></li>
+  <li><a href="#결과표에서-확인하는-순서" id="toc-결과표에서-확인하는-순서" class="nav-link" data-scroll-target="#결과표에서-확인하는-순서">2.3 결과표에서 확인하는 순서</a></li>
+  <li><a href="#따라-하기-1" id="toc-따라-하기-1" class="nav-link" data-scroll-target="#따라-하기-1">따라 하기</a></li>
+  </ul></li>
+  <li><a href="#다중-회귀-분석" id="toc-다중-회귀-분석" class="nav-link" data-scroll-target="#다중-회귀-분석">3. 다중 회귀 분석</a>
+  <ul class="collapse">
+  <li><a href="#다중-회귀-모형과-계수의-해석" id="toc-다중-회귀-모형과-계수의-해석" class="nav-link" data-scroll-target="#다중-회귀-모형과-계수의-해석">3.1 다중 회귀 모형과 계수의 해석</a></li>
+  <li><a href="#수정된-결정-계수" id="toc-수정된-결정-계수" class="nav-link" data-scroll-target="#수정된-결정-계수">3.2 수정된 결정 계수</a></li>
+  <li><a href="#분산분석표" id="toc-분산분석표" class="nav-link" data-scroll-target="#분산분석표">3.3 분산분석표</a></li>
+  <li><a href="#회귀-모형의-가정과-잔차-진단" id="toc-회귀-모형의-가정과-잔차-진단" class="nav-link" data-scroll-target="#회귀-모형의-가정과-잔차-진단">3.4 회귀 모형의 가정과 잔차 진단</a></li>
+  <li><a href="#다중공선성" id="toc-다중공선성" class="nav-link" data-scroll-target="#다중공선성">3.5 다중공선성</a></li>
+  <li><a href="#변수-선택-방법" id="toc-변수-선택-방법" class="nav-link" data-scroll-target="#변수-선택-방법">3.6 변수 선택 방법</a></li>
+  <li><a href="#따라-하기-2" id="toc-따라-하기-2" class="nav-link" data-scroll-target="#따라-하기-2">따라 하기</a></li>
+  </ul></li>
+  <li><a href="#중심-실습-파이썬과-r의-회귀-결과표-대조" id="toc-중심-실습-파이썬과-r의-회귀-결과표-대조" class="nav-link" data-scroll-target="#중심-실습-파이썬과-r의-회귀-결과표-대조">4. 중심 실습: 파이썬과 R의 회귀 결과표 대조</a>
+  <ul class="collapse">
+  <li><a href="#준비" id="toc-준비" class="nav-link" data-scroll-target="#준비">준비</a></li>
+  <li><a href="#절차" id="toc-절차" class="nav-link" data-scroll-target="#절차">절차</a></li>
+  <li><a href="#값을-바꾸어-보기" id="toc-값을-바꾸어-보기" class="nav-link" data-scroll-target="#값을-바꾸어-보기">값을 바꾸어 보기</a></li>
+  <li><a href="#완료-기준" id="toc-완료-기준" class="nav-link" data-scroll-target="#완료-기준">완료 기준</a></li>
+  <li><a href="#제출물" id="toc-제출물" class="nav-link" data-scroll-target="#제출물">제출물</a></li>
+  </ul></li>
+  <li><a href="#r-출력-해석" id="toc-r-출력-해석" class="nav-link" data-scroll-target="#r-출력-해석">5. R 출력 해석</a>
+  <ul class="collapse">
+  <li><a href="#파이썬과-r의-대응표" id="toc-파이썬과-r의-대응표" class="nav-link" data-scroll-target="#파이썬과-r의-대응표">5.1 파이썬과 R의 대응표</a></li>
+  <li><a href="#같은-일을-하는-r-코드" id="toc-같은-일을-하는-r-코드" class="nav-link" data-scroll-target="#같은-일을-하는-r-코드">5.2 같은 일을 하는 R 코드</a></li>
+  <li><a href="#출력의-해석-1-summarylm" id="toc-출력의-해석-1-summarylm" class="nav-link" data-scroll-target="#출력의-해석-1-summarylm">5.3 출력의 해석 (1): <code>summary(lm())</code></a></li>
+  <li><a href="#출력의-해석-2-anova와-confint" id="toc-출력의-해석-2-anova와-confint" class="nav-link" data-scroll-target="#출력의-해석-2-anova와-confint">5.4 출력의 해석 (2): <code>anova()</code>와 <code>confint()</code></a></li>
+  <li><a href="#출력의-해석-3-cor와-cor.test" id="toc-출력의-해석-3-cor와-cor.test" class="nav-link" data-scroll-target="#출력의-해석-3-cor와-cor.test">5.5 출력의 해석 (3): <code>cor()</code>와 <code>cor.test()</code></a></li>
+  <li><a href="#출력의-해석-4-step" id="toc-출력의-해석-4-step" class="nav-link" data-scroll-target="#출력의-해석-4-step">5.6 출력의 해석 (4): <code>step()</code></a></li>
+  <li><a href="#출력의-해석-5-잔차의-정규성과-세-변수-모형" id="toc-출력의-해석-5-잔차의-정규성과-세-변수-모형" class="nav-link" data-scroll-target="#출력의-해석-5-잔차의-정규성과-세-변수-모형">5.7 출력의 해석 (5): 잔차의 정규성과 세 변수 모형</a></li>
+  </ul></li>
+  <li><a href="#자주-하는-실수와-오해" id="toc-자주-하는-실수와-오해" class="nav-link" data-scroll-target="#자주-하는-실수와-오해">6. 자주 하는 실수와 오해</a></li>
+  <li><a href="#정리" id="toc-정리" class="nav-link" data-scroll-target="#정리">7. 정리</a></li>
+  <li><a href="#참고-자료" id="toc-참고-자료" class="nav-link" data-scroll-target="#참고-자료">8. 참고 자료</a></li>
+  <li><a href="#주간-문항-세트-07" id="toc-주간-문항-세트-07" class="nav-link" data-scroll-target="#주간-문항-세트-07">주간 문항 세트 07</a>
+  <ul class="collapse">
+  <li><a href="#정답" id="toc-정답" class="nav-link" data-scroll-target="#정답">정답</a></li>
+  <li><a href="#풀이" id="toc-풀이" class="nav-link" data-scroll-target="#풀이">풀이</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../courses/adsp/book/ADsP_01주차_학생용.html">교재</a></li><li class="breadcrumb-item"><a href="../../../courses/adsp/book/ADsP_07주차_학생용.html">[7주차] 상관 분석과 회귀 분석</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">[7주차] 상관 분석과 회귀 분석</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<header class="chapter-head">
+<p class="chapter-part">빅데이터개론</p>
+<p class="chapter-no"><span class="num">7</span><span class="unit">주차</span></p>
+<p class="chapter-title">상관 분석과 회귀 분석</p>
+</header>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>2027학년도 「빅데이터개론」의 준비 중인 교재입니다. 편집 상태를 검토하기 위해 미리 공개한 것으로, 수업 전에 내용과 순서가 바뀔 수 있습니다.</p>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>학사 9주차 · 교재 07 · 3부 데이터 분석 · ADsP 3과목 데이터분석 &gt; 통계분석 (기초 통계분석, 다변량 분석 가운데 상관 분석)</p>
+</blockquote>
+<p>두 변수가 함께 변하는 정도를 수로 나타내는 것이 상관 분석이고, 한 변수를 다른 변수들의 식으로 설명하는 것이 회귀 분석이다. ADsP 3과목에서 출력 해석 문항이 가장 꾸준히 나오는 주제가 회귀 분석이다. 시험은 회귀 분석을 실행하는 코드를 묻지 않고, 결과표의 어느 숫자가 무엇을 뜻하는지를 묻는다. 이 장은 결과표를 읽는 순서와 숫자 사이의 관계를 익힌다.</p>
+<p>교재 06의 가설 검정(귀무 가설, 유의 확률, 유의수준, t 분포와 F 분포)을 전제로 한다. 분석은 파이썬으로 실행하고, 장의 끝에서 같은 분석을 R로 실행한 출력을 읽는다. 두 출력의 숫자는 같고, 배치와 이름만 다르다.</p>
+<hr>
+<section id="학습-목표" class="level2">
+<h2 class="anchored" data-anchor-id="학습-목표">학습 목표</h2>
+<ol type="1">
+<li>산점도와 상관 계수로 두 변수의 관계를 설명하고, 피어슨 상관 계수와 스피어만 상관 계수를 구분하며, 상관 계수의 검정 결과를 읽는다.</li>
+<li>최소제곱법의 뜻을 말하고, 회귀 분석 결과표에서 모형의 유의성(F 통계량), 계수의 유의성(t 값과 유의 확률), 설명력(결정 계수)을 찾아 해석한다.</li>
+<li>분산분석표의 제곱합, 자유도, 평균 제곱, F 값과 결정 계수, 수정된 결정 계수 사이의 관계를 계산으로 확인한다.</li>
+<li>회귀 모형의 가정을 잔차로 진단하고, 다중공선성을 분산팽창요인(VIF)으로 판단하며, 변수 선택 방법의 절차와 결과를 구분한다.</li>
+<li>파이썬과 R의 회귀 결과표에서 같은 값을 짝짓고, R의 <code>summary(lm())</code>, <code>anova()</code>, <code>cor.test()</code>, <code>step()</code> 출력을 읽는다.</li>
+</ol>
+</section>
+<section id="준비-사항" class="level2">
+<h2 class="anchored" data-anchor-id="준비-사항">준비 사항</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>실습 노트북</td>
+<td><code>ADsP_07주차_실습_학생용.ipynb</code>. 「따라 하기 1~3」과 「중심 실습」의 절로 되어 있다</td>
+</tr>
+<tr class="even">
+<td>자료</td>
+<td><code>mtcars.csv</code>. 자동차 32종의 연비와 제원을 적은 표다. 자료 폴더의 위치는 노트북 첫 코드 셀의 <code>DATA</code>에 적혀 있다</td>
+</tr>
+<tr class="odd">
+<td>앞 장과의 연계</td>
+<td>교재 06의 가설 검정(귀무 가설, 유의 확률, 유의수준), t 분포와 F 분포, 신뢰 구간을 전제로 한다. 교재 05의 분산과 표준편차, 교재 06의 표준화를 쓴다. 리스트와 <code>for</code> 반복문은 「파이썬 기초」에서 배운 그대로 쓴다</td>
+</tr>
+<tr class="even">
+<td>실습 환경</td>
+<td>접속과 자료를 받는 방법은 부록 A에 있다</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="상관-분석" class="level2">
+<h2 class="anchored" data-anchor-id="상관-분석">1. 상관 분석</h2>
+<section id="산점도와-상관-계수" class="level3">
+<h3 class="anchored" data-anchor-id="산점도와-상관-계수">1.1 산점도와 상관 계수</h3>
+<p>이 장에서 쓰는 자료는 <code>mtcars</code>다. 자동차 32종의 연비와 제원을 적은 표이고, 주로 다음 열을 쓴다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>열</th>
+<th>뜻</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>mpg</code></td>
+<td>연비. 갤런당 달리는 마일 수이며 클수록 연료를 덜 쓴다</td>
+</tr>
+<tr class="even">
+<td><code>wt</code></td>
+<td>무게. 1,000파운드 단위다</td>
+</tr>
+<tr class="odd">
+<td><code>hp</code></td>
+<td>마력</td>
+</tr>
+<tr class="even">
+<td><code>qsec</code></td>
+<td>1/4마일을 달리는 데 걸리는 시간(초). 작을수록 빠른 차다</td>
+</tr>
+<tr class="odd">
+<td><code>drat</code></td>
+<td>뒤 차축의 기어비</td>
+</tr>
+<tr class="even">
+<td><code>cyl</code>, <code>disp</code></td>
+<td>기통 수, 배기량</td>
+</tr>
+</tbody>
+</table>
+<p>두 변수의 관계를 볼 때에는 먼저 산점도를 그린다. 한 변수가 커질 때 다른 변수가 작아지는 관계를 음의 상관이라 하고, 함께 커지는 관계를 양의 상관이라 한다. 상관 계수는 이 관계의 방향과 강도를 하나의 수로 요약한 것이다. 여러 변수의 상관 계수를 한꺼번에 구한 표를 상관행렬이라 한다.</p>
+</section>
+<section id="상관-계수의-성질" class="level3">
+<h3 class="anchored" data-anchor-id="상관-계수의-성질">1.2 상관 계수의 성질</h3>
+<p>상관 계수 r의 성질은 다음과 같다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>성질</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>범위</td>
+<td>-1 이상 1 이하다</td>
+</tr>
+<tr class="even">
+<td>부호</td>
+<td>양수이면 양의 상관, 음수이면 음의 상관이다</td>
+</tr>
+<tr class="odd">
+<td>크기</td>
+<td>절댓값이 1에 가까울수록 점들이 직선에 가깝게 모인다. 0에 가까울수록 선형 관계가 약하다</td>
+</tr>
+<tr class="even">
+<td>단위</td>
+<td>단위가 없다. 측정 단위를 바꾸어도(파운드를 킬로그램으로) 값이 변하지 않는다</td>
+</tr>
+<tr class="odd">
+<td>대칭</td>
+<td>x와 y를 바꾸어도 값이 같다</td>
+</tr>
+</tbody>
+</table>
+<p>상관 계수는 두 변수의 공분산을 각 변수의 표준편차의 곱으로 나눈 값이다.</p>
+<blockquote class="blockquote">
+<p>상관 계수 = (x와 y의 공분산) ÷ (x의 표준편차 × y의 표준편차)</p>
+</blockquote>
+<p>공분산은 두 변수의 편차를 곱하여 평균한 값이며 단위의 영향을 받는다. 표준편차로 나누어 단위를 없앤 것이 상관 계수다.</p>
+</section>
+<section id="피어슨-상관-계수와-스피어만-상관-계수" class="level3">
+<h3 class="anchored" data-anchor-id="피어슨-상관-계수와-스피어만-상관-계수">1.3 피어슨 상관 계수와 스피어만 상관 계수</h3>
+<p>상관 계수에는 여러 종류가 있다. 시험에서는 다음 둘의 구분을 묻는다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>구분</th>
+<th>피어슨 상관 계수</th>
+<th>스피어만 상관 계수</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>계산에 쓰는 것</td>
+<td>값 자체</td>
+<td>값의 순위. 순위로 바꾼 뒤 피어슨 상관 계수를 구한 것과 같다</td>
+</tr>
+<tr class="even">
+<td>대상 척도</td>
+<td>등간 척도, 비율 척도(연속형 자료)</td>
+<td>서열 척도. 연속형 자료에도 쓸 수 있다</td>
+</tr>
+<tr class="odd">
+<td>측정하는 관계</td>
+<td>선형 관계</td>
+<td>순위의 일치 정도. 곡선이더라도 한 방향으로 늘거나 주는 관계를 잡는다</td>
+</tr>
+<tr class="even">
+<td>성격</td>
+<td>모수적 방법. 이상값의 영향을 크게 받는다</td>
+<td>비모수적 방법(교재 06의 4.6절). 이상값의 영향을 덜 받는다</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="상관-계수의-검정" class="level3">
+<h3 class="anchored" data-anchor-id="상관-계수의-검정">1.4 상관 계수의 검정</h3>
+<p>표본에서 구한 상관 계수가 0이 아니더라도, 모집단의 상관 계수가 0인데 우연히 그렇게 나왔을 수 있다. 상관 계수의 검정은 이것을 판단한다.</p>
+<ul>
+<li>귀무 가설: 모집단의 상관 계수는 0이다.</li>
+<li>대립 가설: 모집단의 상관 계수는 0이 아니다.</li>
+</ul>
+<p>검정 통계량은 자유도 n - 2인 t 분포를 따른다.</p>
+<blockquote class="blockquote">
+<p>t = r × √(n - 2) ÷ √(1 - r²)</p>
+</blockquote>
+<p>표본이 크면 약한 상관도 유의하게 나온다. 유의하다는 것은 “0이 아니다”라는 뜻이지 “강하다”라는 뜻이 아니다.</p>
+</section>
+<section id="해석할-때의-주의" class="level3">
+<h3 class="anchored" data-anchor-id="해석할-때의-주의">1.5 해석할 때의 주의</h3>
+<ol type="1">
+<li><strong>상관은 인과가 아니다.</strong> 상관 계수가 크다는 것은 두 변수가 함께 변한다는 뜻일 뿐이고, 한 변수가 다른 변수의 원인이라는 뜻이 아니다. 두 변수에 함께 영향을 주는 제3의 변수가 있을 수 있다.</li>
+<li><strong>상관 계수가 0이어도 관계가 없다고 할 수 없다.</strong> 피어슨 상관 계수는 선형 관계만 잰다. 두 변수가 포물선 모양으로 관계되어 있으면 상관 계수는 0에 가깝게 나온다.</li>
+<li><strong>이상값 하나가 값을 크게 바꿀 수 있다.</strong> 그러므로 상관 계수를 구하기 전에 산점도를 먼저 본다.</li>
+</ol>
+</section>
+<section id="따라-하기" class="level3">
+<h3 class="anchored" data-anchor-id="따라-하기">따라 하기</h3>
+<p>노트북의 「따라 하기 1. 상관 분석」 셀을 위에서부터 실행한다. 첫 셀은 자료를 읽고 앞의 다섯 행을 보인다. 다음 셀은 무게와 연비의 산점도를 그린다.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../kit/images/ADsP_07_scatter.png" class="img-fluid figure-img"></p>
+<figcaption>무게(wt)와 연비(mpg)의 산점도</figcaption>
+</figure>
+</div>
+<p>점들이 오른쪽 아래로 내려가는 띠를 이룬다. 무게가 큰 차일수록 연비가 낮다는 뜻이다. 다음 셀은 네 변수의 상관행렬을 구한다.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> [<span class="st">"mpg"</span>, <span class="st">"wt"</span>, <span class="st">"hp"</span>, <span class="st">"qsec"</span>]</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cars[cols].corr().<span class="bu">round</span>(<span class="dv">3</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>        mpg     wt     hp   qsec
+mpg   1.000 -0.868 -0.776  0.419
+wt   -0.868  1.000  0.659 -0.175
+hp   -0.776  0.659  1.000 -0.708
+qsec  0.419 -0.175 -0.708  1.000</code></pre>
+<ul>
+<li><span class="check-badge">확인 1</span> 상관행렬에서 <code>mpg</code>와 <code>wt</code>의 상관 계수가 -0.868, <code>hp</code>와 <code>qsec</code>의 상관 계수가 -0.708로 나왔다.</li>
+</ul>
+<p>상관행렬은 다음과 같이 읽는다.</p>
+<ul>
+<li>대각선의 값은 모두 1이다. 자기 자신과의 상관이기 때문이다.</li>
+<li>대각선을 기준으로 위와 아래가 같다. <code>mpg</code>와 <code>wt</code>의 상관은 <code>wt</code>와 <code>mpg</code>의 상관과 같다.</li>
+<li><code>mpg</code>와 <code>wt</code>의 상관 계수는 -0.868이다. 부호가 음이므로 음의 상관이고, 절댓값이 1에 가까우므로 관계가 강하다.</li>
+<li><code>wt</code>와 <code>qsec</code>의 상관 계수는 -0.175다. 절댓값이 0에 가까우므로 선형 관계가 약하다.</li>
+<li>독립 변수의 후보끼리의 상관도 본다. <code>hp</code>와 <code>qsec</code>의 -0.708은 3.5절의 다중공선성과 중심 실습에서 다시 쓴다.</li>
+</ul>
+<p>다음 두 셀은 공분산에서 상관 계수를 계산하고, 무게의 단위를 킬로그램으로 바꾸어 본다(1,000파운드는 약 453.6킬로그램).</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>cov <span class="op">=</span> cars[<span class="st">"mpg"</span>].cov(cars[<span class="st">"wt"</span>])</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> cov <span class="op">/</span> (cars[<span class="st">"mpg"</span>].std() <span class="op">*</span> cars[<span class="st">"wt"</span>].std())</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"공분산:"</span>, <span class="bu">round</span>(cov, <span class="dv">4</span>))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"공분산 ÷ (표준편차 × 표준편차):"</span>, <span class="bu">round</span>(r, <span class="dv">4</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>공분산: -5.1167
+공분산 ÷ (표준편차 × 표준편차): -0.8677
+공분산(kg): -2320.9282
+상관 계수(kg): -0.8677</code></pre>
+<ul>
+<li><span class="check-badge">확인 2</span> 공분산이 파운드 단위에서 -5.1167, 킬로그램 단위에서 -2320.9282로 크게 달라졌고, 상관 계수는 두 단위에서 모두 -0.8677로 같았다.</li>
+</ul>
+<p>공분산은 무게의 단위를 바꾼 만큼(453.6배) 커졌다. 그래서 공분산의 크기만으로는 관계의 강도를 말할 수 없다. 상관 계수는 단위에 관계없이 같다.</p>
+<p>다음 셀들은 스피어만 상관 계수를 구한다. <code>method="spearman"</code>을 넣으면 된다.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cars[cols].corr(method<span class="op">=</span><span class="st">"spearman"</span>).<span class="bu">round</span>(<span class="dv">3</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>        mpg     wt     hp   qsec
+mpg   1.000 -0.886 -0.895  0.467
+wt   -0.886  1.000  0.775 -0.225
+hp   -0.895  0.775  1.000 -0.667
+qsec  0.467 -0.225 -0.667  1.000</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ranks <span class="op">=</span> cars[cols].rank()                  <span class="co"># 열마다 작은 값부터 1, 2, 3, ... 순위를 매긴다</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ranks.head())</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"순위의 피어슨 상관 계수(mpg, hp):"</span>, <span class="bu">round</span>(ranks[<span class="st">"mpg"</span>].corr(ranks[<span class="st">"hp"</span>]), <span class="dv">3</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>    mpg    wt    hp  qsec
+0  19.5   9.0  13.0   6.0
+1  19.5  12.0  13.0  10.5
+2  24.5   7.0   7.0  23.0
+3  21.5  16.0  13.0  26.0
+4  15.0  19.0  21.0  10.5
+순위의 피어슨 상관 계수(mpg, hp): -0.895</code></pre>
+<ul>
+<li><span class="check-badge">확인 3</span> <code>mpg</code>와 <code>hp</code>의 상관 계수가 피어슨으로 -0.776, 스피어만으로 -0.895였고, 순위로 바꾼 값의 피어슨 상관 계수도 -0.895로 나왔다.</li>
+</ul>
+<p><code>rank()</code>는 값이 같으면 순위의 평균을 준다(첫 두 차는 연비가 같아 둘 다 19.5위).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../kit/images/ADsP_07_hp.png" class="img-fluid figure-img"></p>
+<figcaption>마력(hp)과 연비(mpg)의 산점도</figcaption>
+</figure>
+</div>
+<p>마력이 커질수록 연비가 낮아지는 방향은 뚜렷하지만 모양이 휘어 있다. 이런 관계에서는 순위로 계산한 값의 절댓값이 더 크게 나온다.</p>
+<p>다음 세 셀은 상관 계수를 검정한다.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>r, p <span class="op">=</span> stats.pearsonr(cars[<span class="st">"mpg"</span>], cars[<span class="st">"wt"</span>])</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(r, <span class="dv">3</span>), p)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>-0.868 1.293958701350513e-10</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">len</span>(cars)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> r <span class="op">*</span> np.sqrt(n <span class="op">-</span> <span class="dv">2</span>) <span class="op">/</span> np.sqrt(<span class="dv">1</span> <span class="op">-</span> r <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"t ="</span>, <span class="bu">round</span>(t, <span class="dv">3</span>), <span class="st">" 자유도 ="</span>, n <span class="op">-</span> <span class="dv">2</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>t = -9.559  자유도 = 30
+-0.895 5.085969430924425e-12</code></pre>
+<p>마지막 줄은 <code>stats.spearmanr()</code>로 구한 <code>mpg</code>와 <code>hp</code>의 스피어만 상관 계수와 그 유의 확률이다.</p>
+<ul>
+<li><span class="check-badge">확인 4</span> 피어슨 상관 계수의 유의 확률이 1.293958701350513e-10으로 나왔고, 1.4절의 식으로 계산한 t 값이 -9.559, 자유도가 30이었다.</li>
+</ul>
+<p>유의 확률의 <code>e-10</code>은 10의 -10제곱을 곱한다는 표기다. 1.29e-10은 0.000000000129이므로 유의수준 0.05보다 훨씬 작다. 귀무 가설을 기각하고, 연비와 무게 사이에 상관이 있다고 판단한다. t 값 -9.559는 2절의 단순 회귀에서 다시 나온다.</p>
+<p>마지막 셀은 x가 -5부터 5까지이고 y가 x의 제곱인 자료의 상관 계수를 구한다. 리스트와 <code>for</code> 반복문으로 y를 만든다.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="op">-</span><span class="dv">5</span>, <span class="dv">6</span>))                     <span class="co"># -5부터 5까지</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> []</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> v <span class="kw">in</span> x:</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    y.append(v <span class="op">**</span> <span class="dv">2</span>)                       <span class="co"># y는 x의 제곱이다</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"상관 계수:"</span>, <span class="bu">round</span>(np.corrcoef(x, y)[<span class="dv">0</span>, <span class="dv">1</span>], <span class="dv">4</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>[-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5]
+[25, 16, 9, 4, 1, 0, 1, 4, 9, 16, 25]
+상관 계수: 0.0</code></pre>
+<ul>
+<li><span class="check-badge">확인 5</span> y가 x로 완전히 정해지는 자료인데 상관 계수가 0.0으로 나왔다.</li>
+</ul>
+<p>x를 알면 y를 정확히 알 수 있으므로 두 변수에는 분명한 관계가 있다. 그러나 왼쪽 절반은 음의 관계, 오른쪽 절반은 양의 관계여서 선형 관계를 재는 피어슨 상관 계수는 0이 된다. 1.5절의 둘째 주의다.</p>
+<hr>
+</section>
+</section>
+<section id="단순-회귀-분석" class="level2">
+<h2 class="anchored" data-anchor-id="단순-회귀-분석">2. 단순 회귀 분석</h2>
+<section id="회귀-모형과-최소제곱법" class="level3">
+<h3 class="anchored" data-anchor-id="회귀-모형과-최소제곱법">2.1 회귀 모형과 최소제곱법</h3>
+<p>회귀 분석은 한 변수의 값을 다른 변수의 식으로 설명한다. 설명되는 쪽을 종속 변수(반응 변수), 설명하는 쪽을 독립 변수(설명 변수)라 한다. 독립 변수가 하나이면 단순 회귀, 둘 이상이면 다중 회귀다.</p>
+<p>단순 회귀 모형은 다음과 같다.</p>
+<blockquote class="blockquote">
+<p>종속 변수 = 절편 + 기울기 × 독립 변수 + 오차</p>
+</blockquote>
+<p>절편과 기울기를 회귀 계수라 한다. 관측값과 직선이 예측한 값의 차이를 잔차라 한다. 회귀 계수는 최소제곱법으로 정한다. 최소제곱법은 잔차의 제곱을 모두 더한 값(잔차 제곱합)이 가장 작아지는 직선을 고른다. 단순 회귀에서는 그 계수를 다음 식으로 바로 구할 수 있다.</p>
+<blockquote class="blockquote">
+<p>기울기 = (x와 y의 공분산) ÷ (x의 분산), 절편 = (y의 평균) - 기울기 × (x의 평균)</p>
+</blockquote>
+<p>절편의 식에서 알 수 있듯이 회귀 직선은 언제나 두 평균의 점(x의 평균, y의 평균)을 지난다. 최소제곱법으로 구한 잔차는 더하면 0이 된다.</p>
+</section>
+<section id="결과표의-구성" class="level3">
+<h3 class="anchored" data-anchor-id="결과표의-구성">2.2 결과표의 구성</h3>
+<p>statsmodels의 결과표는 세 덩어리로 되어 있다. 위 덩어리는 모형 전체에 관한 값이고, 가운데 덩어리는 계수 하나하나에 관한 값이며, 아래 덩어리는 잔차를 진단하는 값이다. 시험이 묻는 것은 위와 가운데다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>덩어리</th>
+<th>항목</th>
+<th>뜻</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>위</td>
+<td><code>No. Observations</code></td>
+<td>관측값의 수</td>
+</tr>
+<tr class="even">
+<td>위</td>
+<td><code>Df Model</code></td>
+<td>모형의 자유도. 독립 변수의 수다</td>
+</tr>
+<tr class="odd">
+<td>위</td>
+<td><code>Df Residuals</code></td>
+<td>잔차의 자유도. 관측값의 수에서 추정한 계수의 수(절편 포함)를 뺀 값이다</td>
+</tr>
+<tr class="even">
+<td>위</td>
+<td><code>R-squared</code></td>
+<td>결정 계수. 종속 변수의 변동 가운데 모형이 설명하는 비율이다</td>
+</tr>
+<tr class="odd">
+<td>위</td>
+<td><code>Adj. R-squared</code></td>
+<td>수정된 결정 계수(3.2절)</td>
+</tr>
+<tr class="even">
+<td>위</td>
+<td><code>F-statistic</code>, <code>Prob (F-statistic)</code></td>
+<td>모형 전체의 유의성을 검정하는 F 통계량과 그 유의 확률</td>
+</tr>
+<tr class="odd">
+<td>가운데</td>
+<td><code>coef</code></td>
+<td>회귀 계수의 추정값</td>
+</tr>
+<tr class="even">
+<td>가운데</td>
+<td><code>std err</code></td>
+<td>계수의 표준 오차. 추정값이 표본에 따라 흔들리는 정도다</td>
+</tr>
+<tr class="odd">
+<td>가운데</td>
+<td><code>t</code></td>
+<td>t 값. 계수를 표준 오차로 나눈 값이다</td>
+</tr>
+<tr class="even">
+<td>가운데</td>
+<td><code>P&gt;|t|</code></td>
+<td>계수의 유의 확률. “이 계수는 0이다”라는 귀무 가설을 검정한다</td>
+</tr>
+<tr class="odd">
+<td>가운데</td>
+<td><code>[0.025  0.975]</code></td>
+<td>계수의 95% 신뢰 구간</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="결과표에서-확인하는-순서" class="level3">
+<h3 class="anchored" data-anchor-id="결과표에서-확인하는-순서">2.3 결과표에서 확인하는 순서</h3>
+<p>결과표는 다음 순서로 읽는다. 문항도 이 셋 가운데 하나를 묻는다.</p>
+<ol type="1">
+<li><strong>모형이 통계적으로 유의한가.</strong> F 통계량의 유의 확률을 본다. 귀무 가설은 “모든 기울기가 0이다”다.</li>
+<li><strong>계수가 유의한가.</strong> 계수마다 t 값의 유의 확률을 본다. 귀무 가설은 “이 계수는 0이다”다.</li>
+<li><strong>모형의 설명력은 얼마인가.</strong> 결정 계수를 본다.</li>
+</ol>
+<p>단순 회귀에서는 다음 두 관계가 성립한다. 계산 문항에 쓰인다.</p>
+<ul>
+<li>결정 계수는 상관 계수의 제곱이다.</li>
+<li>F 통계량은 기울기의 t 값의 제곱이다. 그러므로 모형의 유의 확률과 기울기의 유의 확률이 같다.</li>
+</ul>
+</section>
+<section id="따라-하기-1" class="level3">
+<h3 class="anchored" data-anchor-id="따라-하기-1">따라 하기</h3>
+<p>노트북의 「따라 하기 2. 단순 회귀 분석」 셀을 실행한다. 연비(<code>mpg</code>)를 무게(<code>wt</code>) 하나로 설명하는 모형을 만든다. <code>"mpg ~ wt"</code>는 물결표의 왼쪽이 종속 변수, 오른쪽이 독립 변수라는 뜻의 식이다.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="op">=</span> smf.ols(<span class="st">"mpg ~ wt"</span>, data<span class="op">=</span>cars).fit()</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model1.summary())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                    mpg   R-squared:                       0.753
+Model:                            OLS   Adj. R-squared:                  0.745
+Method:                 Least Squares   F-statistic:                     91.38
+Date:                Sat, 14 Nov 2026   Prob (F-statistic):           1.29e-10
+Time:                        10:40:41   Log-Likelihood:                -80.015
+No. Observations:                  32   AIC:                             164.0
+Df Residuals:                      30   BIC:                             167.0
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept     37.2851      1.878     19.858      0.000      33.450      41.120
+wt            -5.3445      0.559     -9.559      0.000      -6.486      -4.203
+==============================================================================
+Omnibus:                        2.988   Durbin-Watson:                   1.252
+Prob(Omnibus):                  0.225   Jarque-Bera (JB):                2.399
+Skew:                           0.668   Prob(JB):                        0.301
+Kurtosis:                       2.877   Cond. No.                         12.7
+==============================================================================
+...</code></pre>
+<ul>
+<li><span class="check-badge">확인 6</span> 결정 계수가 0.753, F 통계량이 91.38, <code>wt</code>의 계수가 -5.3445로 나왔다.</li>
+</ul>
+<p>2.3절의 순서로 읽는다.</p>
+<ol type="1">
+<li>F 통계량의 유의 확률이 1.29e-10으로 0.05보다 작으므로 모형은 유의하다.</li>
+<li><code>wt</code>의 유의 확률이 0.000(소수 셋째 자리까지 0이라는 표시다)으로 0.05보다 작으므로 무게의 계수는 유의하다.</li>
+<li>결정 계수가 0.753이므로 연비 변동의 75.3%를 이 모형이 설명한다.</li>
+</ol>
+<p>잔차의 자유도 30은 관측값 32에서 추정한 계수 2개(절편과 기울기)를 뺀 값이다. 이 표에서 얻는 회귀식은 다음과 같다.</p>
+<blockquote class="blockquote">
+<p>연비 = 37.2851 - 5.3445 × 무게</p>
+</blockquote>
+<p>기울기 -5.3445는 무게가 1(1,000파운드) 늘 때 연비가 평균 5.3445만큼 줄어든다는 뜻이다. 절편 37.2851은 무게가 0일 때의 예측값이어서 실제 의미는 없고, 직선의 높이를 정하는 값으로 본다.</p>
+<p>다음 셀은 결과표의 값을 하나씩 꺼낸다. <code>params</code>는 계수, <code>bse</code>는 표준 오차, <code>tvalues</code>는 t 값이다.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model1.params.<span class="bu">round</span>(<span class="dv">4</span>))              <span class="co"># 회귀 계수</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model1.bse.<span class="bu">round</span>(<span class="dv">4</span>))                 <span class="co"># 계수의 표준 오차</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model1.tvalues.<span class="bu">round</span>(<span class="dv">3</span>))             <span class="co"># t 값</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"계수 ÷ 표준 오차:"</span>, <span class="bu">round</span>(model1.params[<span class="st">"wt"</span>] <span class="op">/</span> model1.bse[<span class="st">"wt"</span>], <span class="dv">3</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>Intercept    37.2851
+wt           -5.3445
+dtype: float64
+Intercept    1.8776
+wt           0.5591
+dtype: float64
+Intercept    19.858
+wt           -9.559
+dtype: float64
+계수 ÷ 표준 오차: -9.559</code></pre>
+<ul>
+<li><span class="check-badge">확인 7</span> <code>wt</code>의 표준 오차가 0.5591로 나왔고, 계수 ÷ 표준 오차가 t 값과 같은 -9.559였다.</li>
+</ul>
+<p>t 값은 교재 06의 t-검정과 같은 꼴로, 추정값이 귀무 가설의 값 0에서 표준 오차의 몇 배만큼 떨어져 있는가를 나타낸다.</p>
+<p>다음 셀은 2.1절의 식으로 계수를 직접 계산한다.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>slope <span class="op">=</span> cars[<span class="st">"wt"</span>].cov(cars[<span class="st">"mpg"</span>]) <span class="op">/</span> cars[<span class="st">"wt"</span>].var()</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>intercept <span class="op">=</span> cars[<span class="st">"mpg"</span>].mean() <span class="op">-</span> slope <span class="op">*</span> cars[<span class="st">"wt"</span>].mean()</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"기울기:"</span>, <span class="bu">round</span>(slope, <span class="dv">4</span>))</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"절편:"</span>, <span class="bu">round</span>(intercept, <span class="dv">4</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>기울기: -5.3445
+절편: 37.2851</code></pre>
+<ul>
+<li><span class="check-badge">확인 8</span> 공분산과 분산으로 계산한 기울기 -5.3445와 절편 37.2851이 결과표의 <code>coef</code>와 같았다.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../kit/images/ADsP_07_fit.png" class="img-fluid figure-img"></p>
+<figcaption>무게와 연비의 산점도와 최소제곱 직선</figcaption>
+</figure>
+</div>
+<p>다음 셀은 잔차를 본다.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model1.resid.head().<span class="bu">round</span>(<span class="dv">4</span>))</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"잔차의 합:"</span>, <span class="bu">round</span>(model1.resid.<span class="bu">sum</span>(), <span class="dv">6</span>))</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"잔차 제곱합:"</span>, <span class="bu">round</span>((model1.resid <span class="op">**</span> <span class="dv">2</span>).<span class="bu">sum</span>(), <span class="dv">4</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>0   -2.2826
+1   -0.9198
+2   -2.0860
+3    1.2973
+4   -0.2001
+dtype: float64
+잔차의 합: -0.0
+잔차 제곱합: 278.3219</code></pre>
+<ul>
+<li><span class="check-badge">확인 9</span> 잔차의 합이 0(<code>-0.0</code>)이고 잔차 제곱합이 278.3219로 나왔다.</li>
+</ul>
+<p>첫 차의 잔차 -2.2826은 실제 연비가 예측보다 2.2826 낮다는 뜻이다. <code>-0.0</code>은 아주 작은 계산 오차에 음의 부호가 붙은 0이다.</p>
+<p>마지막 셀은 2.3절의 두 관계를 확인한다.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>r_wt <span class="op">=</span> cars[<span class="st">"mpg"</span>].corr(cars[<span class="st">"wt"</span>])</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"상관 계수의 제곱:"</span>, <span class="bu">round</span>(r_wt <span class="op">**</span> <span class="dv">2</span>, <span class="dv">4</span>), <span class="st">" 결정 계수:"</span>, <span class="bu">round</span>(model1.rsquared, <span class="dv">4</span>))</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"기울기 t 값의 제곱:"</span>, <span class="bu">round</span>(model1.tvalues[<span class="st">"wt"</span>] <span class="op">**</span> <span class="dv">2</span>, <span class="dv">2</span>), <span class="st">" F 통계량:"</span>, <span class="bu">round</span>(model1.fvalue, <span class="dv">2</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>상관 계수의 제곱: 0.7528  결정 계수: 0.7528
+기울기 t 값의 제곱: 91.38  F 통계량: 91.38</code></pre>
+<ul>
+<li><span class="check-badge">확인 10</span> 상관 계수의 제곱과 결정 계수가 0.7528로 같고, t 값의 제곱과 F 통계량이 91.38로 같았다.</li>
+</ul>
+<p>따라 하기 1의 상관 계수 검정에서 나온 t 값 -9.559와 유의 확률 1.29e-10도 이 모형의 기울기의 t 값, 유의 확률과 같다. 독립 변수가 하나일 때 상관 계수의 검정, 기울기의 검정, 모형의 F 검정은 모두 같은 검정이다.</p>
+<hr>
+</section>
+</section>
+<section id="다중-회귀-분석" class="level2">
+<h2 class="anchored" data-anchor-id="다중-회귀-분석">3. 다중 회귀 분석</h2>
+<section id="다중-회귀-모형과-계수의-해석" class="level3">
+<h3 class="anchored" data-anchor-id="다중-회귀-모형과-계수의-해석">3.1 다중 회귀 모형과 계수의 해석</h3>
+<p>독립 변수가 둘 이상인 회귀 모형이 다중 회귀 모형이다. 이 장에서는 무게(<code>wt</code>)에 마력(<code>hp</code>)을 더한 모형을 쓴다. 결과표를 읽는 순서는 단순 회귀와 같다.</p>
+<p>다중 회귀에서 계수는 <strong>다른 독립 변수의 값이 같을 때</strong> 그 변수가 1 늘면 종속 변수가 평균 얼마나 변하는가를 뜻한다. 단순 회귀의 계수와 다중 회귀의 같은 변수의 계수는 대개 다르다. 독립 변수끼리 상관이 있으면, 단순 회귀에서는 빠진 변수의 몫까지 들어 있던 계수가 다중 회귀에서 나뉘기 때문이다.</p>
+<p>계수의 크기는 변수의 단위에 따라 달라지므로 계수의 절댓값으로 변수의 중요도를 견주지 않는다.</p>
+</section>
+<section id="수정된-결정-계수" class="level3">
+<h3 class="anchored" data-anchor-id="수정된-결정-계수">3.2 수정된 결정 계수</h3>
+<p>결정 계수는 독립 변수를 더하면 그 변수가 쓸모없더라도 줄어들지 않는다. 그래서 변수의 수가 다른 모형을 결정 계수로 견주면 변수가 많은 모형이 언제나 유리하다. 수정된 결정 계수는 변수의 수만큼 벌점을 주어 이 문제를 줄인 값이다.</p>
+<blockquote class="blockquote">
+<p>수정된 결정 계수 = 1 - (1 - 결정 계수) × (n - 1) ÷ (n - 독립 변수의 수 - 1)</p>
+</blockquote>
+<ul>
+<li>수정된 결정 계수는 결정 계수보다 크지 않다.</li>
+<li>쓸모없는 변수를 더하면 결정 계수는 조금 오르지만 수정된 결정 계수는 내려갈 수 있다.</li>
+<li>독립 변수의 수가 다른 모형을 견줄 때에는 수정된 결정 계수를 쓴다.</li>
+</ul>
+</section>
+<section id="분산분석표" class="level3">
+<h3 class="anchored" data-anchor-id="분산분석표">3.3 분산분석표</h3>
+<p>회귀 분석의 F 통계량은 분산분석표에서 나온다. 종속 변수의 전체 변동을 모형이 설명한 부분과 설명하지 못한 부분으로 나눈 표다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>이름</th>
+<th>기호</th>
+<th>뜻</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>총 제곱합</td>
+<td>SST</td>
+<td>관측값이 평균에서 떨어진 정도의 제곱합. 전체 변동이다</td>
+</tr>
+<tr class="even">
+<td>회귀 제곱합</td>
+<td>SSR</td>
+<td>예측값이 평균에서 떨어진 정도의 제곱합. 모형이 설명한 변동이다</td>
+</tr>
+<tr class="odd">
+<td>잔차 제곱합</td>
+<td>SSE</td>
+<td>관측값이 예측값에서 떨어진 정도의 제곱합. 설명하지 못한 변동이다</td>
+</tr>
+</tbody>
+</table>
+<p>세 값 사이에는 SST = SSR + SSE가 성립한다. 분산분석표의 빈칸을 채우는 문항은 다음 관계로 푼다.</p>
+<ul>
+<li>평균 제곱 = 제곱합 ÷ 자유도</li>
+<li>F = 회귀의 평균 제곱(MSR) ÷ 잔차의 평균 제곱(MSE)</li>
+<li>회귀의 자유도 = 독립 변수의 수, 잔차의 자유도 = 관측값의 수 - 독립 변수의 수 - 1, 전체의 자유도 = 관측값의 수 - 1</li>
+<li>결정 계수 = SSR ÷ SST = 1 - SSE ÷ SST</li>
+</ul>
+<p>F 통계량은 자유도가 (회귀의 자유도, 잔차의 자유도)인 F 분포를 따른다. 교재 06에서 본 대로 F 분포는 0 이상의 값만 가지므로 기각역은 오른쪽 꼬리다.</p>
+</section>
+<section id="회귀-모형의-가정과-잔차-진단" class="level3">
+<h3 class="anchored" data-anchor-id="회귀-모형의-가정과-잔차-진단">3.4 회귀 모형의 가정과 잔차 진단</h3>
+<p>회귀 분석의 검정 결과는 다음 가정이 성립할 때 믿을 수 있다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>가정</th>
+<th>내용</th>
+<th>확인하는 방법</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>선형성</td>
+<td>독립 변수와 종속 변수의 관계가 선형이다</td>
+<td>산점도, 잔차 그림</td>
+</tr>
+<tr class="even">
+<td>독립성</td>
+<td>잔차가 독립 변수와 관계가 없다</td>
+<td>잔차 그림</td>
+</tr>
+<tr class="odd">
+<td>등분산성</td>
+<td>독립 변수의 값이 달라져도 잔차의 흩어진 정도가 일정하다</td>
+<td>잔차 그림</td>
+</tr>
+<tr class="even">
+<td>비상관성</td>
+<td>잔차끼리 상관이 없다</td>
+<td>더빈-왓슨 통계량</td>
+</tr>
+<tr class="odd">
+<td>정상성(정규성)</td>
+<td>잔차가 정규 분포를 따른다</td>
+<td>정규 Q-Q 그림, 샤피로-윌크 검정</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>진단 도구</th>
+<th>읽는 법</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>잔차 그림</td>
+<td>가로축에 예측값, 세로축에 잔차를 놓은 산점도다. 가정이 성립하면 점들이 0을 중심으로 무늬 없이 고르게 흩어진다. 곡선 모양이면 선형성이, 나팔 모양이면 등분산성이 의심된다</td>
+</tr>
+<tr class="even">
+<td>정규 Q-Q 그림</td>
+<td>잔차를 크기 순으로 늘어놓고 정규 분포의 분위수와 짝지은 그림이다. 점들이 직선 위에 놓이면 정규성이 성립한다. 끝에서 직선을 벗어나면 꼬리가 정규 분포와 다르다</td>
+</tr>
+<tr class="odd">
+<td>샤피로-윌크 검정</td>
+<td>귀무 가설은 “잔차는 정규 분포를 따른다”다. 유의 확률이 유의수준보다 작으면 정규성을 기각한다</td>
+</tr>
+<tr class="even">
+<td>더빈-왓슨 통계량</td>
+<td>0에서 4 사이의 값이다. 2에 가까우면 잔차끼리 상관이 없고, 0에 가까우면 양의 자기상관, 4에 가까우면 음의 자기상관이 있다</td>
+</tr>
+</tbody>
+</table>
+<p>샤피로-윌크 검정에서는 귀무 가설이 “가정이 성립한다” 쪽이므로 유의 확률이 클수록 가정에 맞는 결과다.</p>
+</section>
+<section id="다중공선성" class="level3">
+<h3 class="anchored" data-anchor-id="다중공선성">3.5 다중공선성</h3>
+<p>다중공선성은 독립 변수끼리 상관이 강한 상태를 말한다. 독립 변수들이 같은 정보를 나누어 가지므로 다음 문제가 생긴다.</p>
+<ul>
+<li>계수의 표준 오차가 커져서, 실제로는 관계가 있는 변수의 계수가 유의하지 않게 나온다.</li>
+<li>자료가 조금만 바뀌어도 계수의 값과 부호가 크게 바뀐다.</li>
+<li>모형 전체는 유의한데(F 검정) 계수는 유의하지 않은(t 검정) 결과가 나온다.</li>
+</ul>
+<p>진단에는 분산팽창요인(VIF, variance inflation factor)을 쓴다. 독립 변수 하나를 나머지 독립 변수들로 회귀하여 얻은 결정 계수를 R²라 하면 다음과 같다.</p>
+<blockquote class="blockquote">
+<p>VIF = 1 ÷ (1 - R²)</p>
+</blockquote>
+<p>다른 변수들이 그 변수를 잘 설명할수록 R²가 1에 가까워지고 VIF가 커진다. 다른 변수와 상관이 전혀 없으면 VIF는 1이다. VIF는 그 변수의 계수의 분산이 다중공선성 때문에 몇 배로 커졌는가를 나타낸다. 판단의 기준은 경험칙이며 문헌마다 다르다. 흔히 10 이상이면 다중공선성이 심하다고 보고, 4나 5를 넘으면 살펴보아야 한다고 보는 문헌도 있다. ADsP는 10을 기준으로 묻는다.</p>
+<p>대처 방법은 상관이 강한 변수 가운데 하나를 빼거나, 주성분 분석으로 변수를 줄이거나(교재 08), 벌점을 주는 회귀(3.6절)를 쓰는 것이다. 다중공선성은 독립 변수끼리의 문제다. 독립 변수와 종속 변수의 상관이 강한 것은 다중공선성이 아니며 모형에 바람직한 일이다.</p>
+</section>
+<section id="변수-선택-방법" class="level3">
+<h3 class="anchored" data-anchor-id="변수-선택-방법">3.6 변수 선택 방법</h3>
+<p>독립 변수의 후보가 여럿일 때 어느 변수를 모형에 넣을지 정하는 방법이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>방법</th>
+<th>절차</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>전진 선택법</td>
+<td>절편만 있는 모형에서 시작하여, 기준을 가장 많이 개선하는 변수를 하나씩 더한다. 더 넣어도 개선되지 않으면 멈춘다. 한번 넣은 변수는 빼지 않는다</td>
+</tr>
+<tr class="even">
+<td>후진 제거법</td>
+<td>모든 변수를 넣은 모형에서 시작하여, 빼었을 때 기준이 가장 많이 개선되는 변수를 하나씩 뺀다. 더 빼도 개선되지 않으면 멈춘다. 한번 뺀 변수는 다시 넣지 않는다</td>
+</tr>
+<tr class="odd">
+<td>단계별 방법</td>
+<td>전진 선택법처럼 변수를 더하되, 더할 때마다 이미 들어 있는 변수 가운데 뺄 것이 있는지 다시 검토한다</td>
+</tr>
+<tr class="even">
+<td>모든 가능한 조합</td>
+<td>변수의 모든 조합으로 모형을 만들어 가장 좋은 것을 고른다. 후보가 k개이면 2의 k제곱 개의 모형을 견주어야 하므로 변수가 많으면 계산이 많아진다</td>
+</tr>
+</tbody>
+</table>
+<p>모형을 견주는 기준으로는 AIC와 BIC를 쓴다. 둘 다 모형이 자료에 맞는 정도에 계수의 수만큼 벌점을 더한 값이며, <strong>작을수록 좋은 모형</strong>이다. BIC는 관측값의 수가 클수록 벌점이 커서 AIC보다 변수가 적은 모형을 고르는 경향이 있다. R의 <code>step()</code>은 AIC를 기준으로 하며 <code>direction</code>으로 방법(<code>"backward"</code>, <code>"forward"</code>, <code>"both"</code>)을 정한다.</p>
+<p>변수 선택 방법이 다르면 최종 모형이 다를 수 있다. 전진 선택법과 후진 제거법은 한 번에 한 변수만 보고 결정을 되돌리지 않으므로, 모든 조합 가운데 가장 좋은 모형을 찾는다는 보장이 없다.</p>
+<p>변수를 고르는 대신 계수의 크기에 벌점을 주어 계수를 줄이는 방법도 있다. 이 장에서는 이름과 차이만 다룬다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>방법</th>
+<th>벌점</th>
+<th>특징</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>릿지 회귀</td>
+<td>계수의 제곱의 합(L2)</td>
+<td>계수를 0에 가깝게 줄이되 0으로 만들지는 않는다. 다중공선성이 있을 때 계수를 안정시킨다</td>
+</tr>
+<tr class="even">
+<td>라쏘 회귀</td>
+<td>계수의 절댓값의 합(L1)</td>
+<td>일부 계수를 정확히 0으로 만들어 변수 선택의 효과를 낸다</td>
+</tr>
+<tr class="odd">
+<td>엘라스틱넷</td>
+<td>L1과 L2를 함께</td>
+<td>서로 상관이 강한 변수들을 함께 고르는 경향이 있다</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="따라-하기-2" class="level3">
+<h3 class="anchored" data-anchor-id="따라-하기-2">따라 하기</h3>
+<p>노트북의 「따라 하기 3. 다중 회귀 분석」 셀을 실행한다. 첫 셀은 독립 변수에 마력(<code>hp</code>)을 더한 모형을 만든다.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="op">=</span> smf.ols(<span class="st">"mpg ~ wt + hp"</span>, data<span class="op">=</span>cars).fit()</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model2.summary())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                    mpg   R-squared:                       0.827
+Model:                            OLS   Adj. R-squared:                  0.815
+Method:                 Least Squares   F-statistic:                     69.21
+Date:                Sat, 14 Nov 2026   Prob (F-statistic):           9.11e-12
+Time:                        10:40:42   Log-Likelihood:                -74.326
+No. Observations:                  32   AIC:                             154.7
+Df Residuals:                      29   BIC:                             159.0
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept     37.2273      1.599     23.285      0.000      33.957      40.497
+wt            -3.8778      0.633     -6.129      0.000      -5.172      -2.584
+hp            -0.0318      0.009     -3.519      0.001      -0.050      -0.013
+==============================================================================
+Omnibus:                        5.303   Durbin-Watson:                   1.362
+Prob(Omnibus):                  0.071   Jarque-Bera (JB):                4.046
+Skew:                           0.855   Prob(JB):                        0.132
+Kurtosis:                       3.332   Cond. No.                         588.
+==============================================================================
+...</code></pre>
+<ul>
+<li><span class="check-badge">확인 11</span> F 통계량이 69.21(유의 확률 9.11e-12), <code>hp</code>의 유의 확률이 0.001, 결정 계수가 0.827로 나왔다.</li>
+</ul>
+<ol type="1">
+<li>F 통계량은 69.21이고 유의 확률은 9.11e-12다. 모형은 유의하다.</li>
+<li><code>wt</code>의 유의 확률은 0.000, <code>hp</code>의 유의 확률은 0.001이다. 두 계수 모두 유의수준 0.05에서 유의하다.</li>
+<li>결정 계수는 0.827이다. 변수를 하나 더하자 0.753에서 0.827로 올랐다.</li>
+</ol>
+<p>회귀식은 다음과 같다.</p>
+<blockquote class="blockquote">
+<p>연비 = 37.2273 - 3.8778 × 무게 - 0.0318 × 마력</p>
+</blockquote>
+<p>마력이 같은 두 차를 견주면 무게가 1 큰 차의 연비가 평균 3.8778 낮다. 단순 회귀에서 -5.3445였던 무게의 계수가 -3.8778로 바뀐 것은, 무게가 큰 차가 마력도 큰 경향이 있어서(상관 계수 0.659) 단순 회귀에서는 마력의 몫까지 무게의 계수에 들어가 있었기 때문이다.</p>
+<p>다음 두 셀은 예측값과 계수의 신뢰 구간을 구한다. 무게가 3이고 마력이 150인 차의 연비를 예측하면 37.2273 - 3.8778 × 3 - 0.0318 × 150 ≈ 20.83이다.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>new <span class="op">=</span> pd.DataFrame({<span class="st">"wt"</span>: [<span class="fl">3.0</span>], <span class="st">"hp"</span>: [<span class="dv">150</span>]})</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model2.predict(new).<span class="bu">round</span>(<span class="dv">3</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>0    20.828
+dtype: float64
+                 0        1
+Intercept  33.9574  40.4972
+wt         -5.1719  -2.5837
+hp         -0.0502  -0.0133</code></pre>
+<ul>
+<li><span class="check-badge">확인 12</span> 예측값이 20.828로 나왔고, <code>hp</code> 계수의 95% 신뢰 구간이 -0.0502에서 -0.0133까지로 0을 포함하지 않았다.</li>
+</ul>
+<p>계수의 신뢰 구간이 0을 포함하지 않는 것과 그 계수가 유의수준 0.05에서 유의한 것은 같은 결론이다. 교재 06에서 평균의 차이에 대한 신뢰 구간과 t-검정의 관계와 같다.</p>
+<p>다음 두 셀은 수정된 결정 계수를 다룬다. 첫 셀은 3.2절의 식으로 계산한다.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">int</span>(model2.nobs)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="bu">int</span>(model2.df_model)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>adj <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> (<span class="dv">1</span> <span class="op">-</span> model2.rsquared) <span class="op">*</span> (n <span class="op">-</span> <span class="dv">1</span>) <span class="op">/</span> (n <span class="op">-</span> k <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"n ="</span>, n, <span class="st">" 독립 변수의 수 ="</span>, k)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"계산한 값:"</span>, <span class="bu">round</span>(adj, <span class="dv">4</span>), <span class="st">" 결과표의 값:"</span>, <span class="bu">round</span>(model2.rsquared_adj, <span class="dv">4</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>n = 32  독립 변수의 수 = 2
+계산한 값: 0.8148  결과표의 값: 0.8148</code></pre>
+<p>둘째 셀은 연비와 아무 관계가 없는 난수 열(<code>noise</code>)을 만들어 독립 변수로 더한다.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">1</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>cars2 <span class="op">=</span> cars.copy()</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>cars2[<span class="st">"noise"</span>] <span class="op">=</span> rng.normal(size<span class="op">=</span><span class="bu">len</span>(cars2))</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>model_noise <span class="op">=</span> smf.ols(<span class="st">"mpg ~ wt + hp + noise"</span>, data<span class="op">=</span>cars2).fit()</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"결정 계수:"</span>, <span class="bu">round</span>(model2.rsquared, <span class="dv">4</span>), <span class="st">"→"</span>, <span class="bu">round</span>(model_noise.rsquared, <span class="dv">4</span>))</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"수정된 결정 계수:"</span>, <span class="bu">round</span>(model2.rsquared_adj, <span class="dv">4</span>), <span class="st">"→"</span>, <span class="bu">round</span>(model_noise.rsquared_adj, <span class="dv">4</span>))</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"noise의 유의 확률:"</span>, <span class="bu">round</span>(model_noise.pvalues[<span class="st">"noise"</span>], <span class="dv">3</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>결정 계수: 0.8268 → 0.8319
+수정된 결정 계수: 0.8148 → 0.8139
+noise의 유의 확률: 0.364</code></pre>
+<ul>
+<li><span class="check-badge">확인 13</span> 난수 열을 더하자 결정 계수는 0.8268에서 0.8319로 올랐고, 수정된 결정 계수는 0.8148에서 0.8139로 내려갔다.</li>
+</ul>
+<p>난수 열은 유의하지 않은데(유의 확률 0.364) 결정 계수는 올랐다. 수정된 결정 계수는 벌점 때문에 내려가서 쓸모없는 변수를 걸러 낸다.</p>
+<p>다음 셀들은 분산분석표를 만들고 3.3절의 관계를 계산으로 확인한다.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(anova_lm(model2).<span class="bu">round</span>(<span class="dv">4</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>            df    sum_sq   mean_sq         F  PR(&gt;F)
+wt         1.0  847.7252  847.7252  126.0411  0.0000
+hp         1.0   83.2742   83.2742   12.3813  0.0015
+Residual  29.0  195.0478    6.7258       NaN     NaN</code></pre>
+<p>이 표는 회귀 제곱합을 변수별로 나누어 보여 준다. 위에서부터 차례로 변수를 넣을 때 늘어난 회귀 제곱합이다. 그래서 변수의 순서를 바꾸면 각 줄의 값이 달라진다. 다음 셀은 정의대로 제곱합을 계산한다.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> cars[<span class="st">"mpg"</span>]</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>sst <span class="op">=</span> ((y <span class="op">-</span> y.mean()) <span class="op">**</span> <span class="dv">2</span>).<span class="bu">sum</span>()          <span class="co"># 총 제곱합</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>sse <span class="op">=</span> (model2.resid <span class="op">**</span> <span class="dv">2</span>).<span class="bu">sum</span>()            <span class="co"># 잔차 제곱합</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>ssr <span class="op">=</span> sst <span class="op">-</span> sse                            <span class="co"># 회귀 제곱합</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"SST:"</span>, <span class="bu">round</span>(sst, <span class="dv">4</span>), <span class="st">" SSR:"</span>, <span class="bu">round</span>(ssr, <span class="dv">4</span>), <span class="st">" SSE:"</span>, <span class="bu">round</span>(sse, <span class="dv">4</span>))</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"결정 계수 = SSR ÷ SST:"</span>, <span class="bu">round</span>(ssr <span class="op">/</span> sst, <span class="dv">4</span>))</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>msr <span class="op">=</span> ssr <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>mse <span class="op">=</span> sse <span class="op">/</span> <span class="dv">29</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"MSR:"</span>, <span class="bu">round</span>(msr, <span class="dv">4</span>), <span class="st">" MSE:"</span>, <span class="bu">round</span>(mse, <span class="dv">4</span>), <span class="st">" F:"</span>, <span class="bu">round</span>(msr <span class="op">/</span> mse, <span class="dv">2</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>SST: 1126.0472  SSR: 930.9994  SSE: 195.0478
+결정 계수 = SSR ÷ SST: 0.8268
+MSR: 465.4997  MSE: 6.7258  F: 69.21</code></pre>
+<ul>
+<li><span class="check-badge">확인 14</span> SSR이 930.9994로 분산분석표의 두 줄(847.7252 + 83.2742)의 합과 같고, MSR ÷ MSE가 결과표의 F 통계량과 같은 69.21로 나왔다.</li>
+</ul>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>계산</th>
+<th>값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SSR = 847.7252 + 83.2742</td>
+<td>930.9994</td>
+</tr>
+<tr class="even">
+<td>SST = SSR + SSE = 930.9994 + 195.0478</td>
+<td>1126.0472</td>
+</tr>
+<tr class="odd">
+<td>결정 계수 = SSR ÷ SST</td>
+<td>0.8268</td>
+</tr>
+<tr class="even">
+<td>MSR = SSR ÷ 2</td>
+<td>465.4997</td>
+</tr>
+<tr class="odd">
+<td>MSE = SSE ÷ 29</td>
+<td>6.7258</td>
+</tr>
+<tr class="even">
+<td>F = MSR ÷ MSE</td>
+<td>69.21</td>
+</tr>
+</tbody>
+</table>
+<p>다음 두 셀은 statsmodels의 이름과 F 분포의 값을 본다.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(model2.ess, <span class="dv">4</span>), <span class="bu">round</span>(model2.ssr, <span class="dv">4</span>), <span class="bu">round</span>(model2.centered_tss, <span class="dv">4</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>930.9994 195.0478 1126.0472</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(stats.f.ppf(<span class="fl">0.95</span>, <span class="dv">2</span>, <span class="dv">29</span>), <span class="dv">4</span>))</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(stats.f.sf(model2.fvalue, <span class="dv">2</span>, <span class="dv">29</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>3.3277
+9.109054385221893e-12</code></pre>
+<ul>
+<li><span class="check-badge">확인 15</span> statsmodels의 <code>ssr</code>이 195.0478로 잔차 제곱합이었고, F 분포(자유도 2, 29)의 오른쪽 5% 자리가 3.3277로 나왔다.</li>
+</ul>
+<p>statsmodels는 회귀 제곱합을 <code>ess</code>(explained sum of squares), 잔차 제곱합을 <code>ssr</code>(sum of squared residuals)로 부른다. 이 교재의 SSR(회귀 제곱합)과 약자가 같으나 뜻이 반대다. 약자보다 값으로 확인한다. F 통계량 69.21은 임계값 3.3277보다 훨씬 크므로 기각역에 들어간다. <code>stats.f.sf()</code>로 구한 유의 확률 9.109e-12는 결과표의 <code>Prob (F-statistic)</code>과 같다.</p>
+<p>다음 네 셀은 잔차를 진단한다. 잔차 그림과 정규 Q-Q 그림을 그리고, 샤피로-윌크 검정과 더빈-왓슨 통계량을 구한다.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../kit/images/ADsP_07_resid.png" class="img-fluid figure-img"></p>
+<figcaption>예측값과 잔차의 산점도</figcaption>
+</figure>
+</div>
+<p>잔차 그림은 가운데가 낮고 양쪽이 높은 모양이 조금 보인다. 연비와 무게·마력의 관계가 직선보다 약간 휘어 있다는 표시다. 따라 하기 1의 <code>hp</code> 산점도에서 본 휘어짐과 같은 현상이다.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../kit/images/ADsP_07_qq.png" class="img-fluid figure-img"></p>
+<figcaption>잔차의 정규 Q-Q 그림</figcaption>
+</figure>
+</div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>sw <span class="op">=</span> stats.shapiro(model2.resid)           <span class="co"># 샤피로-윌크 검정. 귀무 가설은 "잔차가 정규 분포를 따른다"</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"W ="</span>, <span class="bu">round</span>(sw.statistic, <span class="dv">4</span>), <span class="st">" 유의 확률 ="</span>, <span class="bu">round</span>(sw.pvalue, <span class="dv">4</span>))</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"더빈-왓슨 ="</span>, <span class="bu">round</span>(durbin_watson(model2.resid), <span class="dv">3</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>W = 0.9279  유의 확률 = 0.0343
+더빈-왓슨 = 1.362</code></pre>
+<ul>
+<li><span class="check-badge">확인 16</span> 샤피로-윌크 검정의 유의 확률이 0.0343, 더빈-왓슨 통계량이 1.362로 나왔다. Q-Q 그림에서 오른쪽 위의 점 셋이 직선 위로 벗어났다.</li>
+</ul>
+<p>유의 확률 0.0343 &lt; 0.05이므로 “잔차가 정규 분포를 따른다”는 귀무 가설을 기각한다. 예측보다 연비가 훨씬 높은 차 몇 대가 오른쪽 꼬리를 길게 만들었다. 더빈-왓슨 1.362는 결과표 아래 덩어리의 값과 같으며, 시간 순서가 없는 이 자료에서는 자기상관을 따질 필요가 적다. 진단 결과는 이 모형의 유의 확률을 조심해서 읽어야 한다는 신호다.</p>
+<p>다음 셀들은 다중공선성을 진단한다. 첫 셀은 독립 변수 후보 넷의 상관행렬이다.</p>
+<pre class="text"><code>         wt     hp   qsec   drat
+wt    1.000  0.659 -0.175 -0.712
+hp    0.659  1.000 -0.708 -0.449
+qsec -0.175 -0.708  1.000  0.091
+drat -0.712 -0.449  0.091  1.000</code></pre>
+<p>다음 셀은 <code>hp</code>의 VIF를 정의대로 계산한다. <code>hp</code>를 나머지 두 변수(<code>wt</code>, <code>qsec</code>)로 설명하는 보조 회귀의 결정 계수를 구한다.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>aux <span class="op">=</span> smf.ols(<span class="st">"hp ~ wt + qsec"</span>, data<span class="op">=</span>cars).fit()      <span class="co"># hp를 나머지 두 변수로 설명한다</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"결정 계수:"</span>, <span class="bu">round</span>(aux.rsquared, <span class="dv">4</span>))</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"hp의 VIF:"</span>, <span class="bu">round</span>(<span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> aux.rsquared), <span class="dv">3</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>결정 계수: 0.7968
+hp의 VIF: 4.922</code></pre>
+<p>다음 셀은 statsmodels의 <code>variance_inflation_factor()</code>로 세 변수의 VIF를 한꺼번에 구한다. 이 함수에는 절편 열을 붙인 자료를 넣어야 한다. <code>sm.add_constant()</code>가 맨 앞에 절편 열(<code>const</code>)을 붙이므로 변수의 번호는 1부터 센다.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"wt"</span>, <span class="st">"hp"</span>, <span class="st">"qsec"</span>]</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> sm.add_constant(cars[names])           <span class="co"># 절편 열(const)을 맨 앞에 붙인다</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(names)):</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(names[i], <span class="bu">round</span>(variance_inflation_factor(X.values, i <span class="op">+</span> <span class="dv">1</span>), <span class="dv">3</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>wt 2.53
+hp 4.922
+qsec 2.874</code></pre>
+<ul>
+<li><span class="check-badge">확인 17</span> 보조 회귀의 결정 계수 0.7968로 계산한 <code>hp</code>의 VIF가 4.922였고, <code>variance_inflation_factor()</code>로 구한 값과 같았다.</li>
+</ul>
+<p><code>hp</code>의 변동 가운데 79.68%를 <code>wt</code>와 <code>qsec</code>가 설명하므로, <code>hp</code>의 계수의 분산은 상관이 없을 때의 약 4.9배다.</p>
+<p>다음 셀은 서로 관계가 깊은 기통 수, 배기량, 마력, 무게를 함께 넣은 모형이다.</p>
+<pre class="text"><code>cyl 6.738
+disp 10.373
+hp 3.406
+wt 4.848
+Intercept    0.0000
+cyl          0.0589
+disp         0.3314
+hp           0.1024
+wt           0.0008
+dtype: float64
+F 통계량의 유의 확률: 1.0610851706671853e-10</code></pre>
+<ul>
+<li><span class="check-badge">확인 18</span> <code>disp</code>의 VIF가 10.373으로 10을 넘었고, F 통계량의 유의 확률은 1.06e-10인데 <code>cyl</code>, <code>disp</code>, <code>hp</code>의 유의 확률이 모두 0.05보다 컸다.</li>
+</ul>
+<p>배기량이 큰 차는 기통 수가 많고 무겁다. 네 변수가 같은 정보를 나누어 가지므로 모형 전체는 유의한데 계수 셋이 유의하지 않다(3.5절의 셋째 문제). 이것을 “배기량은 연비와 관계가 없다”로 읽으면 잘못이다.</p>
+<p>마지막 네 셀은 변수 선택을 반복문으로 따라 한다. 후보는 <code>wt</code>, <code>hp</code>, <code>qsec</code>, <code>drat</code>의 넷이다. 첫 셀은 후진 제거법의 첫 단계다. 네 변수를 모두 넣은 모형에서 하나씩 뺀 모형의 AIC를 구한다. 안쪽 반복문은 빼는 변수를 뺀 나머지 변수의 리스트(<code>rest</code>)를 만들고, <code>" + ".join(rest)</code>가 그 리스트를 <code>+</code>로 이어 식을 만든다.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>cands <span class="op">=</span> [<span class="st">"wt"</span>, <span class="st">"hp"</span>, <span class="st">"qsec"</span>, <span class="st">"drat"</span>]</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>full <span class="op">=</span> smf.ols(<span class="st">"mpg ~ wt + hp + qsec + drat"</span>, data<span class="op">=</span>cars).fit()</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"빼지 않음"</span>, <span class="bu">round</span>(full.aic, <span class="dv">3</span>))</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> v <span class="kw">in</span> cands:</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>    rest <span class="op">=</span> []</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> c <span class="kw">in</span> cands:</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> c <span class="op">!=</span> v:</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>            rest.append(c)</span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> <span class="st">"mpg ~ "</span> <span class="op">+</span> <span class="st">" + "</span>.join(rest)</span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"-"</span>, v, <span class="bu">round</span>(smf.ols(f, data<span class="op">=</span>cars).fit().aic, <span class="dv">3</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>빼지 않음 155.017
+- wt 169.122
+- hp 154.703
+- qsec 154.731
+- drat 155.143
+빼지 않음 154.703
+- wt 182.053
+- qsec 164.968
+- drat 154.72</code></pre>
+<p>아래 다섯 줄은 다음 셀의 출력이다. <code>hp</code>를 뺀 모형(<code>mpg ~ wt + qsec + drat</code>)에서 다시 하나씩 뺀다.</p>
+<ul>
+<li><span class="check-badge">확인 19</span> 첫 단계에서 AIC가 가장 작은 줄이 <code>- hp</code>(154.703)였고, 둘째 단계에서는 <code>빼지 않음</code>(154.703)보다 작은 줄이 없었다.</li>
+</ul>
+<p>첫 단계에서 <code>hp</code>를 빼면 AIC가 155.017에서 154.703으로 작아지므로 <code>hp</code>를 뺀다. 둘째 단계에서는 무엇을 빼도 AIC가 154.703보다 커지므로 멈춘다. 후진 제거법의 최종 모형은 <code>mpg ~ wt + qsec + drat</code>다.</p>
+<p>다음 셀은 전진 선택법의 첫 단계다. 절편만 있는 모형에 변수를 하나씩 넣는다.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"넣지 않음"</span>, <span class="bu">round</span>(smf.ols(<span class="st">"mpg ~ 1"</span>, data<span class="op">=</span>cars).fit().aic, <span class="dv">3</span>))</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> v <span class="kw">in</span> cands:</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"+"</span>, v, <span class="bu">round</span>(smf.ols(<span class="st">"mpg ~ "</span> <span class="op">+</span> v, data<span class="op">=</span>cars).fit().aic, <span class="dv">3</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>넣지 않음 206.756
++ wt 164.029
++ hp 179.239
++ qsec 202.588
++ drat 188.8
+90.812
+90.812</code></pre>
+<p>마지막 두 줄은 마지막 셀의 출력이다. 파이썬 AIC와 R의 <code>step()</code>이 적는 AIC(5.6절)의 차이, 그리고 n × (log(2π) + 1)을 계산한 값이다.</p>
+<ul>
+<li><span class="check-badge">확인 20</span> 전진 선택법의 첫 단계에서 AIC가 가장 작은 변수가 <code>wt</code>(164.029)였고, 파이썬과 R의 AIC의 차이가 90.812로 n × (log(2π) + 1)과 같았다.</li>
+</ul>
+<p>전진 선택법을 끝까지 실행한 결과는 5.6절의 R 출력에 있으며 최종 모형은 <code>mpg ~ wt + hp</code>다. 같은 후보에서 두 방법이 다른 모형을 골랐다(3.6절). AIC의 값은 계산식의 상수에 따라 프로그램마다 다르지만, 차이가 상수이므로 같은 프로그램 안에서 견주는 데에는 영향이 없다.</p>
+<hr>
+</section>
+</section>
+<section id="중심-실습-파이썬과-r의-회귀-결과표-대조" class="level2">
+<h2 class="anchored" data-anchor-id="중심-실습-파이썬과-r의-회귀-결과표-대조">4. 중심 실습: 파이썬과 R의 회귀 결과표 대조</h2>
+<p>같은 자료로 같은 모형(<code>mpg ~ wt + hp</code>)을 파이썬과 R에서 적합한 결과표 두 장을 놓고, 같은 값이 두 표의 어디에 있는지 짝짓는다. 시험의 출력은 R의 것이므로, 파이썬 결과표에서 익힌 값을 R의 표에서 다시 찾을 수 있어야 한다. 이어서 독립 변수를 하나 더한 모형에서 다중공선성을 진단하고 한 문장으로 설명한다.</p>
+<section id="준비" class="level3">
+<h3 class="anchored" data-anchor-id="준비">준비</h3>
+<ol type="1">
+<li>실습 노트북에서 「따라 하기 1~3」의 셀이 실행되어 있는지 확인한다. 중심 실습은 그 셀들이 만든 <code>cars</code>와 <code>model2</code>를 쓴다.</li>
+<li>이 교재 5.3절의 <code>summary(lm())</code> 출력(R)을 화면의 다른 쪽에 띄워 둔다.</li>
+<li>「중심 실습」의 셀을 위에서부터 차례로 실행하면서 아래의 단계를 따른다.</li>
+</ol>
+</section>
+<section id="절차" class="level3">
+<h3 class="anchored" data-anchor-id="절차">절차</h3>
+<section id="단계-1.-결과표" class="level4">
+<h4 class="anchored" data-anchor-id="단계-1.-결과표">단계 1. 결과표</h4>
+<ol type="1">
+<li>「단계 1」의 셀을 실행한다. <code>formula = "mpg ~ wt + hp"</code>인 채로 둔다.</li>
+<li>결과표의 위 덩어리와 가운데 덩어리가 따라 하기 3의 결과표와 같은지 확인한다.</li>
+</ol>
+<ul>
+<li><span class="check-badge">확인 21</span> 결과표의 <code>R-squared</code>가 0.827, <code>F-statistic</code>이 69.21, <code>Df Residuals</code>가 29로 따라 하기 3과 같았다.</li>
+</ul>
+</section>
+<section id="단계-2.-계수의-짝짓기" class="level4">
+<h4 class="anchored" data-anchor-id="단계-2.-계수의-짝짓기">단계 2. 계수의 짝짓기</h4>
+<ol type="1">
+<li>「단계 2~3」의 첫 셀을 실행한다. 계수, 표준 오차, t 값, 유의 확률을 결과표보다 긴 자리까지 꺼낸다.</li>
+<li>아래 짝짓기 표의 1~4번을 채운다. 첫 줄은 예시다.</li>
+</ol>
+<pre class="text"><code>회귀 계수
+ Intercept    37.22727
+wt           -3.87783
+hp           -0.03177
+dtype: float64
+표준 오차
+ Intercept    1.59879
+wt           0.63273
+hp           0.00903
+dtype: float64
+...
+유의 확률
+ Intercept    0.00000
+wt           0.00000
+hp           0.00145
+dtype: float64</code></pre>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>번호</th>
+<th>읽을 값</th>
+<th>파이썬 표의 이름</th>
+<th>R 표의 이름</th>
+<th>값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><code>wt</code>의 회귀 계수</td>
+<td><code>coef</code></td>
+<td><code>Estimate</code></td>
+<td>-3.87783</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><code>wt</code> 계수의 표준 오차</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><code>wt</code> 계수의 t 값</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td><code>hp</code> 계수의 유의 확률</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>결정 계수</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>수정된 결정 계수</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>F 통계량</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>F 통계량의 유의 확률</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>잔차의 자유도</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>잔차의 표준 오차</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>관측값의 수</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><span class="check-badge">확인 22</span> 파이썬에서 꺼낸 <code>hp</code>의 유의 확률이 0.00145로, R 출력의 <code>Pr(&gt;|t|)</code> 열의 <code>0.00145</code>와 같았다.</li>
+</ul>
+<p>결과표에는 <code>hp</code>의 유의 확률이 0.001로 적혀 있지만 값을 꺼내면 R과 같은 0.00145다. 결과표마다 적는 자릿수가 다를 뿐 값은 같다.</p>
+</section>
+<section id="단계-3.-모형-전체의-값과-한쪽에만-있는-값" class="level4">
+<h4 class="anchored" data-anchor-id="단계-3.-모형-전체의-값과-한쪽에만-있는-값">단계 3. 모형 전체의 값과 한쪽에만 있는 값</h4>
+<ol type="1">
+<li>「단계 2~3」의 둘째 셀을 실행한다.</li>
+<li>짝짓기 표의 5~11번을 채운다. 한쪽 표에 없는 값은 “없음”이라고 쓰고, 다른 값에서 계산하는 방법을 적는다.</li>
+</ol>
+<pre class="text"><code>결정 계수: 0.8268
+수정된 결정 계수: 0.8148
+F 통계량: 69.21  유의 확률: 9.109054385221893e-12
+잔차의 자유도: 29.0  관측값의 수: 32.0
+잔차 표준 오차(MSE의 제곱근): 2.593</code></pre>
+<p>10번과 11번은 한쪽 표에만 있다. 10번(잔차 표준 오차)은 R의 <code>Residual standard error</code>에 있고, 파이썬 결과표에는 없다. 분산분석표의 잔차 평균 제곱(MSE) 6.7258에 제곱근을 씌우면 얻는다. 11번(관측값의 수)은 파이썬의 <code>No. Observations</code>에 있고, R의 출력에는 없다. 잔차의 자유도에 추정한 계수의 수를 더하면 얻는다.</p>
+<ul>
+<li><span class="check-badge">확인 23</span> MSE의 제곱근이 2.593으로 R의 <code>Residual standard error: 2.593</code>과 같았고, 관측값의 수 32가 잔차의 자유도 29에 계수의 수 3을 더한 값과 같았다.</li>
+</ul>
+</section>
+<section id="단계-4.-독립-변수를-셋으로-늘린-모형" class="level4">
+<h4 class="anchored" data-anchor-id="단계-4.-독립-변수를-셋으로-늘린-모형">단계 4. 독립 변수를 셋으로 늘린 모형</h4>
+<ol type="1">
+<li>「단계 4」의 셀을 실행한다. <code>mpg ~ wt + hp + qsec</code>의 결과표가 나온다.</li>
+<li>2.3절의 순서로 읽는다. 모형은 유의한가, 유의하지 않은 계수는 어느 것인가.</li>
+<li>따라 하기 1의 결과에서 <code>hp</code>와 <code>qsec</code>는 각각 연비와 상관이 있었다는 점을 확인한다.</li>
+</ol>
+<pre class="text"><code>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                    mpg   R-squared:                       0.835
+Model:                            OLS   Adj. R-squared:                  0.817
+Method:                 Least Squares   F-statistic:                     47.15
+...
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept     27.6105      8.420      3.279      0.003      10.363      44.858
+wt            -4.3588      0.753     -5.791      0.000      -5.901      -2.817
+hp            -0.0178      0.015     -1.190      0.244      -0.049       0.013
+qsec           0.5108      0.439      1.163      0.255      -0.389       1.411
+==============================================================================
+...</code></pre>
+<ul>
+<li><span class="check-badge">확인 24</span> F 통계량이 47.15로 모형은 유의한데, <code>hp</code>(0.244)와 <code>qsec</code>(0.255)의 유의 확률이 0.05보다 컸다.</li>
+</ul>
+<p>수정된 결정 계수는 0.815에서 0.817로 거의 그대로이고, <code>hp</code>의 신뢰 구간(-0.049에서 0.013까지)이 0을 포함한다. 두 변수 모형에서 유의하던 <code>hp</code>가 <code>qsec</code>를 더하자 유의하지 않게 되었다.</p>
+</section>
+<section id="단계-5.-다중공선성의-근거와-해석-문장" class="level4">
+<h4 class="anchored" data-anchor-id="단계-5.-다중공선성의-근거와-해석-문장">단계 5. 다중공선성의 근거와 해석 문장</h4>
+<ol type="1">
+<li>「단계 5」의 셀을 실행한다. <code>hp</code>와 <code>qsec</code>의 상관 계수, 두 변수의 VIF, <code>hp</code>의 표준 오차가 어떻게 바뀌었는지가 나온다.</li>
+<li>이 값으로 단계 4의 결과를 3.5절의 용어로 설명하는 문장 한 개를 쓴다.</li>
+</ol>
+<pre class="text"><code>hp와 qsec의 상관 계수: -0.708
+hp의 VIF: 4.922
+qsec의 VIF: 2.874
+hp의 표준 오차: 0.00903 → 0.01498</code></pre>
+<p>예: “<code>hp</code>와 <code>qsec</code>의 상관 계수가 -0.708로 강하여 다중공선성이 생겼고, <code>hp</code>의 표준 오차가 0.00903에서 0.01498로 커져 두 계수 모두 유의하지 않게 되었다(<code>hp</code>의 VIF 4.922).”</p>
+<ul>
+<li><span class="check-badge">확인 25</span> 해석 문장에 상관 계수(-0.708), 표준 오차의 변화 또는 VIF의 값, “다중공선성”이라는 용어가 들어 있다.</li>
+</ul>
+<p>마력이 큰 차는 1/4마일을 빨리 달린다(<code>qsec</code>가 작다). 두 변수가 같은 정보를 나누어 가지므로 계수의 표준 오차가 커진다. VIF 4.922는 10에 못 미치지만, 표본이 32개로 작은 이 자료에서는 그 정도로도 계수가 유의하지 않게 되었다.</p>
+</section>
+</section>
+<section id="값을-바꾸어-보기" class="level3">
+<h3 class="anchored" data-anchor-id="값을-바꾸어-보기">값을 바꾸어 보기</h3>
+<p>「단계 1」의 <code>formula</code> 줄에서 식을 바꾸어 단계 1과 단계 2~3의 셀을 다시 실행하고 물음에 답한다.</p>
+<ol type="1">
+<li>식을 <code>"mpg ~ wt + qsec"</code>로 바꾼다. 결정 계수와 수정된 결정 계수는 각각 얼마인가. <code>qsec</code>의 계수는 유의수준 0.05에서 유의한가. <code>mpg ~ wt + hp</code>와 견주어 어느 모형의 수정된 결정 계수가 큰가.</li>
+<li>식을 <code>"mpg ~ hp + qsec"</code>로 바꾼다. <code>qsec</code>의 계수는 유의한가. 1번의 결과와 다른 까닭을 따라 하기 1의 상관행렬에서 <code>wt</code>와 <code>qsec</code>, <code>hp</code>와 <code>qsec</code>의 상관 계수로 설명한다.</li>
+<li>물음에 답한 뒤 식을 <code>"mpg ~ wt + hp"</code>로 되돌리고 셀을 다시 실행한다.</li>
+</ol>
+</section>
+<section id="완료-기준" class="level3">
+<h3 class="anchored" data-anchor-id="완료-기준">완료 기준</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>번호</th>
+<th>점검 항목</th>
+<th>점검 방법</th>
+<th>기준 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>결과표</td>
+<td>단계 1의 출력</td>
+<td><code>R-squared</code> 0.827, <code>F-statistic</code> 69.21</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>짝짓기 표의 이름</td>
+<td>짝짓기 표의 파이썬 열과 R 열</td>
+<td>11줄 가운데 9줄 이상이 맞음</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>짝짓기 표의 값</td>
+<td>짝짓기 표의 값 열</td>
+<td>2번 0.63273, 3번 -6.129, 4번 0.00145, 9번 29</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>한쪽에만 있는 값</td>
+<td>짝짓기 표의 10번과 11번</td>
+<td>2.593(MSE 6.7258의 제곱근), 32(29 + 3). 계산 방법이 적혀 있음</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>세 변수 모형</td>
+<td>단계 4의 출력</td>
+<td><code>hp</code> 0.244, <code>qsec</code> 0.255로 유의하지 않음</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>되돌린 상태</td>
+<td>노트북 단계 1의 셀</td>
+<td><code>formula = "mpg ~ wt + hp"</code></td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>해석 문장</td>
+<td>제출한 문장</td>
+<td>상관 계수 -0.708과 “다중공선성”이 들어 있음</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="제출물" class="level3">
+<h3 class="anchored" data-anchor-id="제출물">제출물</h3>
+<ul>
+<li>실습 노트북. 모든 셀을 실행하고 <code>formula = "mpg ~ wt + hp"</code>로 되돌린 상태로 낸다.</li>
+<li>짝짓기 표(빈칸을 채운 것)와 해석 문장 한 개(단계 5).</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="r-출력-해석" class="level2">
+<h2 class="anchored" data-anchor-id="r-출력-해석">5. R 출력 해석</h2>
+<p>같은 분석을 R로 실행한 코드와 출력이다. R을 실행하지 않고 읽는다. 시험의 회귀 분석 출력 문항은 5.3절의 출력과 같은 모양으로 나온다.</p>
+<section id="파이썬과-r의-대응표" class="level3">
+<h3 class="anchored" data-anchor-id="파이썬과-r의-대응표">5.1 파이썬과 R의 대응표</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>하는 일</th>
+<th>파이썬</th>
+<th>R</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>상관행렬</td>
+<td><code>cars[cols].corr()</code></td>
+<td><code>cor(x)</code></td>
+</tr>
+<tr class="even">
+<td>스피어만 상관 계수</td>
+<td><code>corr(method="spearman")</code></td>
+<td><code>cor(x, method = "spearman")</code></td>
+</tr>
+<tr class="odd">
+<td>상관 계수의 검정</td>
+<td><code>stats.pearsonr(a, b)</code>, <code>stats.spearmanr(a, b)</code></td>
+<td><code>cor.test(a, b)</code>, <code>cor.test(a, b, method = "spearman")</code></td>
+</tr>
+<tr class="even">
+<td>회귀 모형 적합</td>
+<td><code>smf.ols("mpg ~ wt + hp", data=cars).fit()</code></td>
+<td><code>lm(mpg ~ wt + hp, data = mtcars)</code></td>
+</tr>
+<tr class="odd">
+<td>결과표</td>
+<td><code>model.summary()</code></td>
+<td><code>summary(model)</code></td>
+</tr>
+<tr class="even">
+<td>계수의 신뢰 구간</td>
+<td><code>model.conf_int()</code></td>
+<td><code>confint(model)</code></td>
+</tr>
+<tr class="odd">
+<td>분산분석표</td>
+<td><code>anova_lm(model)</code></td>
+<td><code>anova(model)</code></td>
+</tr>
+<tr class="even">
+<td>예측</td>
+<td><code>model.predict(new)</code></td>
+<td><code>predict(model, new)</code></td>
+</tr>
+<tr class="odd">
+<td>잔차</td>
+<td><code>model.resid</code></td>
+<td><code>resid(model)</code></td>
+</tr>
+<tr class="even">
+<td>잔차의 정규성 검정</td>
+<td><code>stats.shapiro(model.resid)</code></td>
+<td><code>shapiro.test(resid(model))</code></td>
+</tr>
+<tr class="odd">
+<td>분산팽창요인</td>
+<td><code>variance_inflation_factor(X, i)</code></td>
+<td>기본 패키지에 없다. 보조 회귀의 결정 계수로 <code>1 / (1 - r2)</code>를 계산한다</td>
+</tr>
+<tr class="even">
+<td>변수 선택</td>
+<td>기본 함수가 없다. 반복문으로 AIC를 견준다</td>
+<td><code>step(model, direction = "backward")</code>, <code>step(m0, scope = ~ ..., direction = "forward")</code></td>
+</tr>
+</tbody>
+</table>
+<p>R에서 <code>mtcars</code>는 따로 읽어 오지 않아도 쓸 수 있는 내장 자료다. <code>mtcars$mpg</code>는 파이썬의 <code>cars["mpg"]</code>에 해당한다. <code>mpg ~ 1</code>은 절편만 있는 모형이다.</p>
+</section>
+<section id="같은-일을-하는-r-코드" class="level3">
+<h3 class="anchored" data-anchor-id="같은-일을-하는-r-코드">5.2 같은 일을 하는 R 코드</h3>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> mtcars[, <span class="fu">c</span>(<span class="st">"mpg"</span>, <span class="st">"wt"</span>, <span class="st">"hp"</span>, <span class="st">"qsec"</span>)]   <span class="co"># 네 열만 고른다. &lt;- 는 대입이다</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">cor</span>(x), <span class="dv">3</span>)                               <span class="co"># 상관행렬을 소수 셋째 자리까지</span></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(mtcars<span class="sc">$</span>mpg, mtcars<span class="sc">$</span>wt)                <span class="co"># 상관 계수의 검정 (피어슨)</span></span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(mtcars<span class="sc">$</span>mpg, mtcars<span class="sc">$</span>hp, <span class="at">method =</span> <span class="st">"spearman"</span>, <span class="at">exact =</span> <span class="cn">FALSE</span>)   <span class="co"># 스피어만</span></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> wt <span class="sc">+</span> hp, <span class="at">data =</span> mtcars)         <span class="co"># 다중 회귀 모형을 적합한다</span></span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)                                    <span class="co"># 결과표</span></span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(m2)                                    <span class="co"># 계수의 95% 신뢰 구간</span></span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m2)                                      <span class="co"># 분산분석표</span></span>
+<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(m2, <span class="fu">data.frame</span>(<span class="at">wt =</span> <span class="dv">3</span>, <span class="at">hp =</span> <span class="dv">150</span>))      <span class="co"># 새 자료의 예측값</span></span>
+<span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(<span class="fu">resid</span>(m2))                        <span class="co"># 잔차의 정규성 검정</span></span>
+<span id="cb57-12"><a href="#cb57-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-13"><a href="#cb57-13" aria-hidden="true" tabindex="-1"></a>r2 <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">lm</span>(hp <span class="sc">~</span> wt <span class="sc">+</span> qsec, <span class="at">data =</span> mtcars))<span class="sc">$</span>r.squared   <span class="co"># 보조 회귀의 결정 계수</span></span>
+<span id="cb57-14"><a href="#cb57-14" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> r2)                                   <span class="co"># hp의 VIF</span></span>
+<span id="cb57-15"><a href="#cb57-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-16"><a href="#cb57-16" aria-hidden="true" tabindex="-1"></a>m4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> wt <span class="sc">+</span> hp <span class="sc">+</span> qsec <span class="sc">+</span> drat, <span class="at">data =</span> mtcars)   <span class="co"># 변수 넷을 넣은 모형</span></span>
+<span id="cb57-17"><a href="#cb57-17" aria-hidden="true" tabindex="-1"></a><span class="fu">step</span>(m4, <span class="at">direction =</span> <span class="st">"backward"</span>)               <span class="co"># 후진 제거법</span></span>
+<span id="cb57-18"><a href="#cb57-18" aria-hidden="true" tabindex="-1"></a>m0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> mtcars)               <span class="co"># 절편만 있는 모형</span></span>
+<span id="cb57-19"><a href="#cb57-19" aria-hidden="true" tabindex="-1"></a><span class="fu">step</span>(m0, <span class="at">scope =</span> <span class="sc">~</span> wt <span class="sc">+</span> hp <span class="sc">+</span> qsec <span class="sc">+</span> drat, <span class="at">direction =</span> <span class="st">"forward"</span>)   <span class="co"># 전진 선택법</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>summary(...)$r.squared</code>는 결과표에서 결정 계수 하나만 꺼낸다. <code>scope</code>는 전진 선택법에서 넣을 수 있는 변수의 후보를 적는다.</p>
+</section>
+<section id="출력의-해석-1-summarylm" class="level3">
+<h3 class="anchored" data-anchor-id="출력의-해석-1-summarylm">5.3 출력의 해석 (1): <code>summary(lm())</code></h3>
+<pre class="text"><code>Call:
+lm(formula = mpg ~ wt + hp, data = mtcars)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-3.941 -1.600 -0.182  1.050  5.854 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 37.22727    1.59879  23.285  &lt; 2e-16 ***
+wt          -3.87783    0.63273  -6.129 1.12e-06 ***
+hp          -0.03177    0.00903  -3.519  0.00145 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.593 on 29 degrees of freedom
+Multiple R-squared:  0.8268,    Adjusted R-squared:  0.8148 
+F-statistic: 69.21 on 2 and 29 DF,  p-value: 9.109e-12</code></pre>
+<p>출력은 위에서부터 네 부분이다.</p>
+<ol type="1">
+<li><strong><code>Call</code></strong>: 실행한 식이다. 물결표의 왼쪽이 종속 변수, 오른쪽이 독립 변수다. 문항이 “종속 변수는 무엇인가”, “독립 변수는 몇 개인가”를 물으면 여기서 답한다.</li>
+<li><strong><code>Residuals</code></strong>: 잔차의 최솟값, 제1사분위수, 중앙값, 제3사분위수, 최댓값이다. 중앙값이 0에 가깝고 양쪽이 비슷한 크기이면 잔차가 한쪽으로 치우치지 않았다고 본다. 이 출력은 최댓값(5.854)이 최솟값의 절댓값(3.941)보다 커서 오른쪽 꼬리가 조금 길다. 따라 하기 3의 Q-Q 그림과 같은 내용이다.</li>
+<li><strong><code>Coefficients</code></strong>: 계수의 표다. 열은 왼쪽부터 추정값(<code>Estimate</code>), 표준 오차(<code>Std. Error</code>), t 값(<code>t value</code>), 유의 확률(<code>Pr(&gt;|t|)</code>)이다. <code>(Intercept)</code>가 절편이다.</li>
+<li><strong>맨 아래 세 줄</strong>: 모형 전체에 관한 값이다.</li>
+</ol>
+<p>시험이 묻는 값은 다음 자리에 있다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>묻는 것</th>
+<th>출력에서 읽는 자리</th>
+<th>이 출력의 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>회귀식</td>
+<td><code>Estimate</code> 열</td>
+<td>mpg = 37.22727 - 3.87783 × wt - 0.03177 × hp</td>
+</tr>
+<tr class="even">
+<td>계수가 유의한가</td>
+<td><code>Pr(&gt;|t|)</code> 열과 별표</td>
+<td><code>wt</code>와 <code>hp</code> 모두 0.05보다 작다</td>
+</tr>
+<tr class="odd">
+<td>t 값의 계산</td>
+<td><code>Estimate</code> ÷ <code>Std. Error</code></td>
+<td>-3.87783 ÷ 0.63273 ≈ -6.129</td>
+</tr>
+<tr class="even">
+<td>모형이 유의한가</td>
+<td>마지막 줄의 <code>p-value</code></td>
+<td>9.109e-12. 유의하다</td>
+</tr>
+<tr class="odd">
+<td>설명력</td>
+<td><code>Multiple R-squared</code></td>
+<td>0.8268</td>
+</tr>
+<tr class="even">
+<td>변수 수가 다른 모형과 견줄 때의 설명력</td>
+<td><code>Adjusted R-squared</code></td>
+<td>0.8148</td>
+</tr>
+<tr class="odd">
+<td>잔차의 자유도</td>
+<td><code>on 29 degrees of freedom</code></td>
+<td>29</td>
+</tr>
+<tr class="even">
+<td>관측값의 수</td>
+<td>잔차의 자유도 + 계수의 수</td>
+<td>29 + 3 = 32</td>
+</tr>
+<tr class="odd">
+<td>독립 변수의 수</td>
+<td><code>F-statistic: ... on 2 and 29 DF</code>의 앞 숫자</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>잔차 표준 오차</td>
+<td><code>Residual standard error</code></td>
+<td>2.593. MSE의 제곱근이며 종속 변수의 단위(mpg)다</td>
+</tr>
+<tr class="odd">
+<td>예측값</td>
+<td>회귀식에 값을 넣는다</td>
+<td>wt = 3, hp = 150이면 약 20.83</td>
+</tr>
+</tbody>
+</table>
+<p>별표는 유의 확률의 구간을 나타내는 표시다. <code>Signif. codes</code> 줄이 그 뜻을 적은 범례다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>표시</th>
+<th>유의 확률</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>***</code></td>
+<td>0.001보다 작다</td>
+</tr>
+<tr class="even">
+<td><code>**</code></td>
+<td>0.001 이상 0.01 미만</td>
+</tr>
+<tr class="odd">
+<td><code>*</code></td>
+<td>0.01 이상 0.05 미만</td>
+</tr>
+<tr class="even">
+<td><code>.</code></td>
+<td>0.05 이상 0.1 미만</td>
+</tr>
+<tr class="odd">
+<td>표시 없음</td>
+<td>0.1 이상</td>
+</tr>
+</tbody>
+</table>
+<p>별표가 하나 이상이면 유의수준 0.05에서 유의하다. 점(<code>.</code>)은 유의수준 0.05에서는 유의하지 않고 0.1에서는 유의하다는 뜻이므로 별표와 구별한다. <code>&lt; 2e-16</code>은 유의 확률이 2 × 10⁻¹⁶보다 작다는 표기다. 절편의 유의 확률은 “절편이 0이다”를 검정한 것이며 모형의 유의성과 관계가 없다.</p>
+</section>
+<section id="출력의-해석-2-anova와-confint" class="level3">
+<h3 class="anchored" data-anchor-id="출력의-해석-2-anova와-confint">5.4 출력의 해석 (2): <code>anova()</code>와 <code>confint()</code></h3>
+<pre class="text"><code>Analysis of Variance Table
+
+Response: mpg
+          Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+wt         1 847.73  847.73 126.041 4.488e-12 ***
+hp         1  83.27   83.27  12.381  0.001451 ** 
+Residuals 29 195.05    6.73                      
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+<p>열은 왼쪽부터 자유도(<code>Df</code>), 제곱합(<code>Sum Sq</code>), 평균 제곱(<code>Mean Sq</code>), F 값(<code>F value</code>), 유의 확률(<code>Pr(&gt;F)</code>)이다. <code>Residuals</code> 줄이 잔차다. 따라 하기 3의 파이썬 출력과 같은 숫자이고 소수 자릿수만 다르다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>묻는 것</th>
+<th>계산</th>
+<th>값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>평균 제곱</td>
+<td>제곱합 ÷ 자유도</td>
+<td>195.05 ÷ 29 ≈ 6.73</td>
+</tr>
+<tr class="even">
+<td>각 줄의 F 값</td>
+<td>그 줄의 평균 제곱 ÷ 잔차의 평균 제곱</td>
+<td>83.27 ÷ 6.73 ≈ 12.38</td>
+</tr>
+<tr class="odd">
+<td>회귀 제곱합(SSR)</td>
+<td>변수 줄의 제곱합을 더한다</td>
+<td>847.73 + 83.27 = 931.00</td>
+</tr>
+<tr class="even">
+<td>총 제곱합(SST)</td>
+<td>모든 줄의 제곱합을 더한다</td>
+<td>931.00 + 195.05 = 1126.05</td>
+</tr>
+<tr class="odd">
+<td>결정 계수</td>
+<td>SSR ÷ SST</td>
+<td>931.00 ÷ 1126.05 ≈ 0.827</td>
+</tr>
+<tr class="even">
+<td>관측값의 수</td>
+<td>자유도를 모두 더하고 1을 더한다</td>
+<td>1 + 1 + 29 + 1 = 32</td>
+</tr>
+</tbody>
+</table>
+<p>R의 <code>anova()</code>는 모형 전체의 F 줄을 따로 적지 않는다. 모형 전체의 F 통계량은 <code>summary()</code>의 마지막 줄에서 읽거나 위처럼 계산한다. 각 줄의 F 값(126.041, 12.381)은 모형 전체의 F 값(69.21)과 다르다.</p>
+<p><code>confint(m2)</code>의 출력이다.</p>
+<pre class="text"><code>                  2.5 %      97.5 %
+(Intercept) 33.95738245 40.49715778
+wt          -5.17191604 -2.58374544
+hp          -0.05024078 -0.01330512</code></pre>
+<p>열의 <code>2.5 %</code>와 <code>97.5 %</code>가 95% 신뢰 구간의 아래 끝과 위 끝이다. 파이썬 결과표의 <code>[0.025  0.975]</code> 열과 같다. 세 구간 모두 0을 포함하지 않으므로 세 계수 모두 유의수준 0.05에서 유의하다.</p>
+</section>
+<section id="출력의-해석-3-cor와-cor.test" class="level3">
+<h3 class="anchored" data-anchor-id="출력의-해석-3-cor와-cor.test">5.5 출력의 해석 (3): <code>cor()</code>와 <code>cor.test()</code></h3>
+<pre class="text"><code>        mpg     wt     hp   qsec
+mpg   1.000 -0.868 -0.776  0.419
+wt   -0.868  1.000  0.659 -0.175
+hp   -0.776  0.659  1.000 -0.708
+qsec  0.419 -0.175 -0.708  1.000</code></pre>
+<p>따라 하기 1의 파이썬 출력과 같다. 다음은 상관 계수의 검정이다.</p>
+<pre class="text"><code>    Pearson's product-moment correlation
+
+data:  mtcars$mpg and mtcars$wt
+t = -9.559, df = 30, p-value = 1.294e-10
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.9338264 -0.7440872
+sample estimates:
+       cor 
+-0.8676594 </code></pre>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>묻는 것</th>
+<th>읽는 자리</th>
+<th>값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>상관 계수</td>
+<td><code>sample estimates</code>의 <code>cor</code></td>
+<td>-0.8676594</td>
+</tr>
+<tr class="even">
+<td>검정 통계량과 자유도</td>
+<td><code>t</code>, <code>df</code>. 자유도는 n - 2다</td>
+<td>-9.559, 30</td>
+</tr>
+<tr class="odd">
+<td>유의한가</td>
+<td><code>p-value</code></td>
+<td>1.294e-10. 유의하다</td>
+</tr>
+<tr class="even">
+<td>대립 가설</td>
+<td><code>alternative hypothesis</code></td>
+<td>모집단의 상관 계수가 0이 아니다</td>
+</tr>
+<tr class="odd">
+<td>95% 신뢰 구간</td>
+<td><code>95 percent confidence interval</code></td>
+<td>-0.934에서 -0.744. 0을 포함하지 않는다</td>
+</tr>
+<tr class="even">
+<td>관측값의 수</td>
+<td>자유도 + 2</td>
+<td>32</td>
+</tr>
+</tbody>
+</table>
+<p>t 값 -9.559와 유의 확률은 따라 하기 2의 단순 회귀에서 <code>wt</code> 계수의 t 값, 유의 확률과 같다. 다음은 스피어만 상관 계수의 검정이다.</p>
+<pre class="text"><code>    Spearman's rank correlation rho
+
+data:  mtcars$mpg and mtcars$hp
+S = 10337, p-value = 5.086e-12
+alternative hypothesis: true rho is not equal to 0
+sample estimates:
+       rho 
+-0.8946646 </code></pre>
+<p>첫 줄의 <code>Spearman's rank correlation rho</code>로 스피어만 상관 계수의 검정임을 안다. 상관 계수는 <code>rho</code>의 줄에서 읽는다(-0.8946646). 검정 통계량은 <code>t</code>가 아니라 순위의 차이로 계산한 <code>S</code>이고, 신뢰 구간은 적히지 않는다. 유의 확률 5.086e-12는 파이썬 <code>stats.spearmanr()</code>의 값과 같다.</p>
+</section>
+<section id="출력의-해석-4-step" class="level3">
+<h3 class="anchored" data-anchor-id="출력의-해석-4-step">5.6 출력의 해석 (4): <code>step()</code></h3>
+<p>독립 변수 넷(<code>wt</code>, <code>hp</code>, <code>qsec</code>, <code>drat</code>)을 넣은 모형에서 후진 제거법을 실행한 출력이다.</p>
+<pre class="text"><code>Start:  AIC=64.21
+mpg ~ wt + hp + qsec + drat
+
+       Df Sum of Sq    RSS    AIC
+- hp    1     9.418 183.52 63.891
+- qsec  1     9.578 183.68 63.919
+&lt;none&gt;              174.10 64.205
+- drat  1    11.956 186.06 64.331
+- wt    1   113.882 287.99 78.310
+
+Step:  AIC=63.89
+mpg ~ wt + qsec + drat
+
+       Df Sum of Sq    RSS    AIC
+&lt;none&gt;              183.52 63.891
+- drat  1    11.942 195.46 63.908
+- qsec  1    85.720 269.24 74.156
+- wt    1   275.686 459.21 91.241</code></pre>
+<p>읽는 법은 다음과 같다.</p>
+<ol type="1">
+<li><code>Start</code> 아래의 식이 출발 모형이고, 그 AIC는 64.21이다.</li>
+<li>표의 각 줄은 그 변수를 빼었을 때의 결과다. <code>- hp</code>는 <code>hp</code>를 뺀 모형이고 그 AIC는 63.891이다. <code>&lt;none&gt;</code>은 아무것도 빼지 않은 지금의 모형이다. 줄은 AIC가 작은 순서로 놓인다.</li>
+<li><code>RSS</code>는 잔차 제곱합, <code>Sum of Sq</code>는 그 변수를 빼었을 때 늘어나는 잔차 제곱합이다. <code>hp</code>를 빼면 잔차 제곱합이 174.10에서 183.52로 9.418만큼 는다.</li>
+<li>첫 표에서 AIC가 가장 작은 줄은 <code>- hp</code>(63.891)이고, 지금 모형(64.205)보다 작다. 그러므로 <code>hp</code>를 뺀다.</li>
+<li><code>Step</code> 아래가 다음 단계다. 이번에는 <code>&lt;none&gt;</code>의 AIC가 가장 작다. 무엇을 빼어도 나아지지 않으므로 여기서 멈춘다.</li>
+<li>최종 모형은 <code>mpg ~ wt + qsec + drat</code>다.</li>
+</ol>
+<p>같은 후보로 전진 선택법을 실행한 출력이다.</p>
+<pre class="text"><code>Start:  AIC=115.94
+mpg ~ 1
+
+       Df Sum of Sq     RSS     AIC
++ wt    1    847.73  278.32  73.217
++ hp    1    678.37  447.67  88.427
++ drat  1    522.48  603.57  97.988
++ qsec  1    197.39  928.66 111.776
+&lt;none&gt;              1126.05 115.943
+
+Step:  AIC=73.22
+mpg ~ wt
+
+       Df Sum of Sq    RSS    AIC
++ hp    1    83.274 195.05 63.840
++ qsec  1    82.858 195.46 63.908
+&lt;none&gt;              278.32 73.217
++ drat  1     9.081 269.24 74.156
+
+Step:  AIC=63.84
+mpg ~ wt + hp
+
+       Df Sum of Sq    RSS    AIC
+&lt;none&gt;              195.05 63.840
++ drat  1   11.3659 183.68 63.919
++ qsec  1    8.9885 186.06 64.331</code></pre>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>묻는 것</th>
+<th>읽는 자리</th>
+<th>이 출력의 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>어느 방법인가</td>
+<td>줄 앞의 기호. <code>-</code>는 빼는 것(후진), <code>+</code>는 넣는 것(전진)</td>
+<td><code>+</code>이므로 전진 선택법</td>
+</tr>
+<tr class="even">
+<td>출발 모형</td>
+<td>첫 <code>Start</code> 아래의 식</td>
+<td><code>mpg ~ 1</code>(절편만 있는 모형)</td>
+</tr>
+<tr class="odd">
+<td>첫 단계에서 넣은 변수</td>
+<td>첫 표에서 AIC가 가장 작은 <code>+</code> 줄</td>
+<td><code>wt</code>(73.217)</td>
+</tr>
+<tr class="even">
+<td>멈춘 까닭</td>
+<td>마지막 표에서 <code>&lt;none&gt;</code>이 맨 위에 있다</td>
+<td>더 넣어도 AIC가 63.840보다 작아지지 않는다</td>
+</tr>
+<tr class="odd">
+<td>최종 모형</td>
+<td>마지막 <code>Step</code> 아래의 식</td>
+<td><code>mpg ~ wt + hp</code></td>
+</tr>
+</tbody>
+</table>
+<p>첫 표의 <code>+ wt</code> 줄의 <code>RSS</code> 278.32는 따라 하기 2의 단순 회귀 잔차 제곱합(278.3219)과 같다. 후진 제거법과 전진 선택법이 다른 최종 모형을 골랐다. <code>step()</code>의 AIC가 파이썬의 AIC와 다른 것은 따라 하기 3에서 확인한 상수(90.812)의 차이다.</p>
+</section>
+<section id="출력의-해석-5-잔차의-정규성과-세-변수-모형" class="level3">
+<h3 class="anchored" data-anchor-id="출력의-해석-5-잔차의-정규성과-세-변수-모형">5.7 출력의 해석 (5): 잔차의 정규성과 세 변수 모형</h3>
+<p><code>shapiro.test(resid(m2))</code>의 출력이다.</p>
+<pre class="text"><code>    Shapiro-Wilk normality test
+
+data:  resid(m2)
+W = 0.92792, p-value = 0.03427</code></pre>
+<p>귀무 가설은 “잔차는 정규 분포를 따른다”다. 유의 확률 0.03427이 0.05보다 작으므로 정규성을 기각한다. 파이썬의 결과(W 0.9279, 유의 확률 0.0343)와 같다.</p>
+<p><code>summary(lm(mpg ~ wt + hp + qsec, data = mtcars))</code>의 계수와 마지막 세 줄이다.</p>
+<pre class="text"><code>Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 27.61053    8.41993   3.279  0.00278 ** 
+wt          -4.35880    0.75270  -5.791 3.22e-06 ***
+hp          -0.01782    0.01498  -1.190  0.24418    
+qsec         0.51083    0.43922   1.163  0.25463    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.578 on 28 degrees of freedom
+Multiple R-squared:  0.8348,    Adjusted R-squared:  0.8171 
+F-statistic: 47.15 on 3 and 28 DF,  p-value: 4.506e-11</code></pre>
+<pre class="text"><code>r.squared       vif 
+    0.797     4.922 </code></pre>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>묻는 것</th>
+<th>읽는 자리</th>
+<th>이 출력의 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>별표가 없는 변수</td>
+<td><code>Pr(&gt;|t|)</code> 열의 오른쪽</td>
+<td><code>hp</code>, <code>qsec</code>. 유의수준 0.1에서도 유의하지 않다</td>
+</tr>
+<tr class="even">
+<td>모형은 유의한가</td>
+<td>마지막 줄의 <code>p-value</code></td>
+<td>4.506e-11. 유의하다</td>
+</tr>
+<tr class="odd">
+<td>다중공선성의 신호</td>
+<td>모형은 유의한데 계수가 유의하지 않음, 표준 오차의 증가</td>
+<td><code>hp</code>의 <code>Std. Error</code>가 0.00903(두 변수 모형)에서 0.01498로 커졌다</td>
+</tr>
+<tr class="even">
+<td><code>hp</code>의 VIF</td>
+<td>보조 회귀의 결정 계수로 계산한 값</td>
+<td>0.797로 계산한 4.922</td>
+</tr>
+</tbody>
+</table>
+<p>R의 기본 패키지에는 VIF를 구하는 함수가 없다.</p>
+<hr>
+</section>
+</section>
+<section id="자주-하는-실수와-오해" class="level2">
+<h2 class="anchored" data-anchor-id="자주-하는-실수와-오해">6. 자주 하는 실수와 오해</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>증상 또는 오해</th>
+<th>원인</th>
+<th>바로잡기</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>상관 계수 0.9를 “90%를 설명한다”로 읽는다</td>
+<td>상관 계수와 결정 계수를 혼동하였다</td>
+<td>설명 비율은 결정 계수다. 단순 회귀에서는 상관 계수의 제곱(0.81)이다(2.3절)</td>
+</tr>
+<tr class="even">
+<td>유의 확률이 작을수록 계수가 크다고 생각한다</td>
+<td>유의 확률과 효과의 크기를 혼동하였다</td>
+<td>유의 확률은 “0이 아니다”의 근거의 강도다. <code>hp</code>의 계수는 -0.0318로 작지만 유의하다. 단위가 다르기 때문이다</td>
+</tr>
+<tr class="odd">
+<td>절편의 유의 확률을 모형의 유의 확률로 읽는다</td>
+<td>계수표의 첫 줄을 모형 전체의 줄로 보았다</td>
+<td>모형의 유의 확률은 F 통계량의 줄(R은 마지막 줄의 <code>p-value</code>)에 있다</td>
+</tr>
+<tr class="even">
+<td>결정 계수가 높아졌으니 변수를 더한 모형이 낫다고 한다</td>
+<td>결정 계수는 변수를 더하면 내려가지 않는다</td>
+<td>수정된 결정 계수로 견준다. 난수 열을 더해도 결정 계수는 올랐다(따라 하기 3)</td>
+</tr>
+<tr class="odd">
+<td>statsmodels의 <code>ssr</code>을 회귀 제곱합으로 쓴다</td>
+<td>statsmodels의 이름과 교재의 약자가 다르다</td>
+<td>statsmodels의 <code>ssr</code>은 잔차 제곱합(195.0478), <code>ess</code>가 회귀 제곱합(930.9994)이다</td>
+</tr>
+<tr class="even">
+<td><code>variance_inflation_factor()</code>의 값이 교재와 다르게 크게 나온다</td>
+<td>절편 열을 붙이지 않은 자료를 넣었다</td>
+<td><code>sm.add_constant()</code>로 절편 열을 붙이고 변수의 번호를 1부터 센다(따라 하기 3)</td>
+</tr>
+<tr class="odd">
+<td>독립 변수와 종속 변수의 상관이 강하면 다중공선성이라고 생각한다</td>
+<td>다중공선성의 대상을 혼동하였다</td>
+<td>다중공선성은 독립 변수끼리의 상관이다. 종속 변수와의 상관이 강한 것은 바람직하다(3.5절)</td>
+</tr>
+<tr class="even">
+<td>계수가 유의하지 않으니 그 변수는 연비와 관계가 없다고 쓴다</td>
+<td>다중공선성으로 표준 오차가 커진 것을 놓쳤다</td>
+<td>단독으로는 강한 관계가 있을 수 있다. 상관행렬과 VIF를 함께 본다(따라 하기 3의 <code>disp</code>)</td>
+</tr>
+<tr class="odd">
+<td>샤피로-윌크 검정의 유의 확률이 작으니 가정이 잘 맞는다고 읽는다</td>
+<td>귀무 가설의 방향을 확인하지 않았다</td>
+<td>귀무 가설이 “정규 분포를 따른다”이므로 유의 확률이 작으면 정규성을 기각한다(3.4절)</td>
+</tr>
+<tr class="even">
+<td><code>step()</code> 출력에서 AIC가 큰 변수를 뺀다고 읽는다</td>
+<td>각 줄의 뜻을 오해하였다</td>
+<td>각 줄은 “그 변수를 뺀(넣은) 모형”의 AIC다. 가장 작은 줄을 택하고, <code>&lt;none&gt;</code>이 가장 작으면 멈춘다(5.6절)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="정리" class="level2">
+<h2 class="anchored" data-anchor-id="정리">7. 정리</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>주제</th>
+<th>기억할 것</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>상관 계수</td>
+<td>-1에서 1 사이. 부호는 방향, 절댓값은 선형 관계의 강도. 공분산 ÷ (표준편차 × 표준편차)이며 단위가 없다</td>
+</tr>
+<tr class="even">
+<td>피어슨과 스피어만</td>
+<td>피어슨은 값으로 계산하고 선형 관계를 잰다. 스피어만은 순위로 계산하고 서열 척도에 쓰며 이상값에 덜 민감하다</td>
+</tr>
+<tr class="odd">
+<td>상관 계수의 검정</td>
+<td>귀무 가설은 “모집단의 상관 계수는 0이다”. t 분포(자유도 n - 2). 단순 회귀의 기울기 검정과 같다</td>
+</tr>
+<tr class="even">
+<td>상관과 인과</td>
+<td>상관이 있다고 인과가 있는 것은 아니다. 상관 계수 0이 관계 없음을 뜻하지도 않는다</td>
+</tr>
+<tr class="odd">
+<td>최소제곱법</td>
+<td>잔차 제곱합을 가장 작게 하는 계수. 기울기 = 공분산 ÷ x의 분산. 잔차의 합은 0이다</td>
+</tr>
+<tr class="even">
+<td>결과표를 읽는 순서</td>
+<td>F의 유의 확률(모형) → t의 유의 확률(계수) → 결정 계수(설명력)</td>
+</tr>
+<tr class="odd">
+<td>계수의 해석</td>
+<td>다른 변수가 같을 때, 그 변수가 1 늘면 종속 변수가 평균 계수만큼 변한다. t 값 = 계수 ÷ 표준 오차</td>
+</tr>
+<tr class="even">
+<td>결정 계수</td>
+<td>SSR ÷ SST = 1 - SSE ÷ SST. 단순 회귀에서는 상관 계수의 제곱. 단순 회귀에서 F = t²</td>
+</tr>
+<tr class="odd">
+<td>수정된 결정 계수</td>
+<td>1 - (1 - 결정 계수) × (n - 1) ÷ (n - k - 1). 변수의 수가 다른 모형을 견줄 때 쓴다</td>
+</tr>
+<tr class="even">
+<td>분산분석표</td>
+<td>SST = SSR + SSE, 평균 제곱 = 제곱합 ÷ 자유도, F = MSR ÷ MSE. 자유도는 k, n - k - 1, n - 1</td>
+</tr>
+<tr class="odd">
+<td>가정과 진단</td>
+<td>선형성, 독립성, 등분산성(잔차 그림), 비상관성(더빈-왓슨, 2 근처), 정상성(Q-Q 그림, 샤피로-윌크)</td>
+</tr>
+<tr class="even">
+<td>다중공선성</td>
+<td>독립 변수끼리 상관이 강한 상태. 표준 오차가 커지고 계수가 불안정해진다. VIF = 1 ÷ (1 - R²), 10 이상이면 심하다</td>
+</tr>
+<tr class="odd">
+<td>변수 선택</td>
+<td>전진 선택, 후진 제거, 단계별, 모든 조합. AIC와 BIC는 작을수록 좋다. 방법에 따라 최종 모형이 다를 수 있다</td>
+</tr>
+<tr class="even">
+<td>벌점 회귀</td>
+<td>라쏘(L1, 계수를 0으로 만들 수 있다), 릿지(L2, 0에 가깝게 줄인다), 엘라스틱넷(둘 다)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="참고-자료" class="level2">
+<h2 class="anchored" data-anchor-id="참고-자료">8. 참고 자료</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>자료</th>
+<th>주소</th>
+<th>확인일</th>
+<th>쓴 곳</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>데이터자격검정, 데이터분석 준전문가 소개(출제 범위)</td>
+<td><a href="https://www.dataq.or.kr/www/sub/a_06.do" class="uri">https://www.dataq.or.kr/www/sub/a_06.do</a></td>
+<td>2026-11-13</td>
+<td>장의 범위와 문항의 꼬리표</td>
+</tr>
+<tr class="even">
+<td>statsmodels, Linear Regression</td>
+<td><a href="https://www.statsmodels.org/stable/regression.html" class="uri">https://www.statsmodels.org/stable/regression.html</a></td>
+<td>2026-11-14</td>
+<td>2.2절, 따라 하기 2·3</td>
+</tr>
+<tr class="odd">
+<td>statsmodels API, <code>variance_inflation_factor</code></td>
+<td><a href="https://www.statsmodels.org/stable/generated/statsmodels.stats.outliers_influence.variance_inflation_factor.html" class="uri">https://www.statsmodels.org/stable/generated/statsmodels.stats.outliers_influence.variance_inflation_factor.html</a></td>
+<td>2026-11-14</td>
+<td>3.5절, 따라 하기 3</td>
+</tr>
+<tr class="even">
+<td>statsmodels API, <code>durbin_watson</code></td>
+<td><a href="https://www.statsmodels.org/stable/generated/statsmodels.stats.stattools.durbin_watson.html" class="uri">https://www.statsmodels.org/stable/generated/statsmodels.stats.stattools.durbin_watson.html</a></td>
+<td>2026-11-14</td>
+<td>3.4절</td>
+</tr>
+<tr class="odd">
+<td>Penn State STAT 501, 12.4 Detecting Multicollinearity Using Variance Inflation Factors</td>
+<td><a href="https://online.stat.psu.edu/stat501/lesson/12/12.4" class="uri">https://online.stat.psu.edu/stat501/lesson/12/12.4</a></td>
+<td>2026-11-14</td>
+<td>3.5절</td>
+</tr>
+<tr class="even">
+<td>scikit-learn User Guide, Linear Models</td>
+<td><a href="https://scikit-learn.org/stable/modules/linear_model.html" class="uri">https://scikit-learn.org/stable/modules/linear_model.html</a></td>
+<td>2026-11-14</td>
+<td>3.6절</td>
+</tr>
+<tr class="odd">
+<td>R Manual, Choose a model by AIC in a Stepwise Algorithm(<code>step</code>)</td>
+<td><a href="https://stat.ethz.ch/R-manual/R-devel/library/stats/html/step.html" class="uri">https://stat.ethz.ch/R-manual/R-devel/library/stats/html/step.html</a></td>
+<td>2026-11-14</td>
+<td>3.6절, 5.6절</td>
+</tr>
+<tr class="even">
+<td>R Manual, Summarizing Linear Model Fits(<code>summary.lm</code>)</td>
+<td><a href="https://stat.ethz.ch/R-manual/R-devel/library/stats/html/summary.lm.html" class="uri">https://stat.ethz.ch/R-manual/R-devel/library/stats/html/summary.lm.html</a></td>
+<td>2026-11-14</td>
+<td>5.3절</td>
+</tr>
+<tr class="odd">
+<td>SciPy API, <code>scipy.stats.shapiro</code>, <code>scipy.stats.pearsonr</code>, <code>scipy.stats.spearmanr</code></td>
+<td><a href="https://docs.scipy.org/doc/scipy/reference/stats.html" class="uri">https://docs.scipy.org/doc/scipy/reference/stats.html</a></td>
+<td>2026-11-14</td>
+<td>1.4절, 3.4절, 따라 하기 1·3</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="주간-문항-세트-07" class="level2">
+<h2 class="anchored" data-anchor-id="주간-문항-세트-07">주간 문항 세트 07</h2>
+<p>20문항이다. 1~10번은 수업에서 풀고 11~20번은 과제로 푼다. 1~15번은 이 장의 문항이고 16~20번은 앞 장의 복습이다. 실전의 문항당 시간으로는 36분이 걸린다. 정답과 풀이는 세트 뒤에 있다.</p>
+<p><strong>문항 1.</strong> 피어슨 상관 계수에 대한 설명으로 가장 적절하지 않은 것은?</p>
+<ul>
+<li>① -1 이상 1 이하의 값을 가진다.</li>
+<li>② 두 변수의 측정 단위를 바꾸어도 값이 변하지 않는다.</li>
+<li>③ 값이 0이면 두 변수 사이에 어떤 관계도 없다.</li>
+<li>④ 두 변수의 공분산을 각 변수의 표준편차의 곱으로 나눈 값이다.</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; 통계분석 &gt; 기초 통계분석</code> <code>유형: 옳지 않은 것 고르기</code> <code>장: 7</code></p>
+<p><strong>문항 2.</strong> 고객 만족도(매우 불만, 불만, 보통, 만족, 매우 만족)와 회원 등급(일반, 우수, 최우수) 사이의 관련성을 하나의 수로 나타내려고 한다. 가장 적절한 것은?</p>
+<ul>
+<li>① 피어슨 상관 계수</li>
+<li>② 스피어만 상관 계수</li>
+<li>③ 결정 계수</li>
+<li>④ 분산팽창요인</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; 통계분석 &gt; 기초 통계분석</code> <code>유형: 사례 판단</code> <code>장: 7</code></p>
+<p><strong>문항 3.</strong> 다음은 나무 31그루의 둘레(<code>Girth</code>), 높이(<code>Height</code>), 부피(<code>Volume</code>)의 상관행렬을 R로 구한 출력이다. 이에 대한 설명으로 가장 적절한 것은?</p>
+<pre class="text"><code>       Girth Height Volume
+Girth  1.000  0.519  0.967
+Height 0.519  1.000  0.598
+Volume 0.967  0.598  1.000</code></pre>
+<ul>
+<li>① 세 변수의 쌍 가운데 선형 관계가 가장 강한 것은 높이와 부피다.</li>
+<li>② 둘레와 높이는 음의 상관 관계에 있다.</li>
+<li>③ 둘레가 큰 나무일수록 부피가 큰 경향이 있다.</li>
+<li>④ 둘레가 부피의 원인이라는 것을 이 출력으로 확인할 수 있다.</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; 통계분석 &gt; 다변량 분석</code> <code>유형: 출력 해석</code> <code>장: 7</code></p>
+<p><strong>문항 4.</strong> 어느 도시의 월별 자료에서 빙과류 판매량과 냉방기 수리 접수 건수의 상관 계수가 0.9로 나타났다. 이 결과의 해석으로 가장 적절한 것은?</p>
+<ul>
+<li>① 빙과류 판매를 줄이면 냉방기 고장이 줄어든다.</li>
+<li>② 두 변수는 함께 늘고 주는 경향이 있으나, 기온과 같은 제3의 변수가 둘 다에 영향을 주었을 수 있다.</li>
+<li>③ 상관 계수가 1이 아니므로 두 변수는 관계가 없다.</li>
+<li>④ 냉방기 수리 건수의 변동 가운데 90%를 빙과류 판매량이 설명한다.</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; 통계분석 &gt; 기초 통계분석</code> <code>유형: 사례 판단</code> <code>장: 7</code></p>
+<p><strong>문항 5.</strong> 회귀 분석에서 회귀 계수를 추정하는 최소제곱법에 대한 설명으로 가장 적절한 것은?</p>
+<ul>
+<li>① 잔차의 합이 최대가 되도록 계수를 정한다.</li>
+<li>② 잔차의 제곱합이 최소가 되도록 계수를 정한다.</li>
+<li>③ 독립 변수의 분산이 최소가 되도록 계수를 정한다.</li>
+<li>④ 결정 계수가 0이 되도록 계수를 정한다.</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; 통계분석 &gt; 기초 통계분석</code> <code>유형: 용어 구분</code> <code>장: 7</code></p>
+<p><strong>문항 6.</strong> 어떤 회귀 모형에서 총 제곱합(SST)이 200이고 잔차 제곱합(SSE)이 50이다. 이 모형의 결정 계수는?</p>
+<ul>
+<li>① 0.25</li>
+<li>② 0.50</li>
+<li>③ 0.75</li>
+<li>④ 4.00</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; 통계분석 &gt; 기초 통계분석</code> <code>유형: 계산</code> <code>장: 7</code></p>
+<p><strong>문항 7.</strong> 독립 변수가 하나인 단순 회귀 분석에서 독립 변수와 종속 변수의 상관 계수가 -0.8이었다. 이 모형의 결정 계수는?</p>
+<ul>
+<li>① -0.80</li>
+<li>② -0.64</li>
+<li>③ 0.64</li>
+<li>④ 0.80</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; 통계분석 &gt; 기초 통계분석</code> <code>유형: 계산</code> <code>장: 7</code></p>
+<p><strong>문항 8.</strong> 잔차 그림에서 예측값이 커질수록 잔차가 위아래로 점점 넓게 퍼지는 나팔 모양이 나타났다. 어긋난 것으로 의심되는 회귀 모형의 가정은?</p>
+<ul>
+<li>① 선형성</li>
+<li>② 등분산성</li>
+<li>③ 정상성(정규성)</li>
+<li>④ 비상관성</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; 통계분석 &gt; 기초 통계분석</code> <code>유형: 사례 판단</code> <code>장: 7</code></p>
+<p><strong>문항 9.</strong> 다음은 나무의 부피(<code>Volume</code>)를 둘레(<code>Girth</code>)와 높이(<code>Height</code>)로 설명하는 회귀 분석을 R로 실행한 출력이다. 이에 대한 설명으로 가장 적절하지 않은 것은?</p>
+<pre class="text"><code>Call:
+lm(formula = Volume ~ Girth + Height, data = trees)
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -57.9877     8.6382  -6.713 2.75e-07 ***
+Girth         4.7082     0.2643  17.816  &lt; 2e-16 ***
+Height        0.3393     0.1302   2.607   0.0145 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 3.882 on 28 degrees of freedom
+Multiple R-squared:  0.948, Adjusted R-squared:  0.9442 
+F-statistic:   255 on 2 and 28 DF,  p-value: &lt; 2.2e-16</code></pre>
+<ul>
+<li>① 유의수준 0.05에서 회귀 모형은 통계적으로 유의하다.</li>
+<li>② 높이의 회귀 계수는 유의수준 0.05에서 유의하다.</li>
+<li>③ 이 모형은 부피의 변동 가운데 약 94.8%를 설명한다.</li>
+<li>④ 높이가 같을 때 둘레가 1 늘면 부피는 평균 0.3393 늘어난다.</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; 통계분석 &gt; 기초 통계분석</code> <code>유형: 출력 해석</code> <code>장: 7</code></p>
+<p><strong>문항 10.</strong> 다음은 자동차의 속도(<code>speed</code>)로 제동 거리(<code>dist</code>)를 설명하는 회귀 분석을 R로 실행한 출력이다. 속도가 20일 때 제동 거리의 예측값으로 가장 가까운 것은?</p>
+<pre class="text"><code>Call:
+lm(formula = dist ~ speed, data = cars)
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -17.5791     6.7584  -2.601   0.0123 *  
+speed         3.9324     0.4155   9.464 1.49e-12 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 15.38 on 48 degrees of freedom
+Multiple R-squared:  0.6511,    Adjusted R-squared:  0.6438 
+F-statistic: 89.57 on 1 and 48 DF,  p-value: 1.49e-12</code></pre>
+<ul>
+<li>① 43.5</li>
+<li>② 61.1</li>
+<li>③ 78.6</li>
+<li>④ 96.2</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; 통계분석 &gt; 기초 통계분석</code> <code>유형: 출력 해석</code> <code>장: 7</code></p>
+<p><strong>문항 11.</strong> 문항 10의 출력에 대한 설명으로 가장 적절하지 않은 것은?</p>
+<ul>
+<li>① 분석에 쓰인 관측값은 50개다.</li>
+<li>② 독립 변수는 <code>speed</code> 하나다.</li>
+<li>③ 속도와 제동 거리의 상관 계수는 약 0.65다.</li>
+<li>④ 기울기의 유의 확률과 모형의 유의 확률이 같다.</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; 통계분석 &gt; 기초 통계분석</code> <code>유형: 출력 해석</code> <code>장: 7</code></p>
+<p><strong>문항 12.</strong> 수정된 결정 계수에 대한 설명으로 가장 적절한 것은?</p>
+<ul>
+<li>① 독립 변수를 더하면 언제나 커진다.</li>
+<li>② 결정 계수보다 언제나 크다.</li>
+<li>③ 독립 변수의 수가 다른 회귀 모형의 설명력을 견줄 때 쓴다.</li>
+<li>④ 잔차가 정규 분포를 따르는지 검정하는 통계량이다.</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; 통계분석 &gt; 기초 통계분석</code> <code>유형: 용어 구분</code> <code>장: 7</code></p>
+<p><strong>문항 13.</strong> 다중공선성에 대한 설명으로 가장 적절하지 않은 것은?</p>
+<ul>
+<li>① 독립 변수 사이에 강한 상관 관계가 있을 때 생긴다.</li>
+<li>② 회귀 계수의 표준 오차가 커져 계수의 추정이 불안정해진다.</li>
+<li>③ 분산팽창요인(VIF)으로 진단하며, 흔히 10 이상이면 심하다고 본다.</li>
+<li>④ 독립 변수와 종속 변수의 상관이 강할수록 심해진다.</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; 통계분석 &gt; 기초 통계분석</code> <code>유형: 옳지 않은 것 고르기</code> <code>장: 7</code></p>
+<p><strong>문항 14.</strong> 모든 독립 변수를 넣은 모형에서 출발하여, 모형에 가장 적게 기여하는 변수를 하나씩 빼 나가는 변수 선택 방법은?</p>
+<ul>
+<li>① 전진 선택법</li>
+<li>② 후진 제거법</li>
+<li>③ 단계별 방법</li>
+<li>④ 라쏘 회귀</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; 통계분석 &gt; 기초 통계분석</code> <code>유형: 용어 구분</code> <code>장: 7</code></p>
+<p><strong>문항 15.</strong> 관측값 33개로 독립 변수가 둘인 회귀 모형을 적합하여 다음 분산분석표를 얻었다. (가)에 들어갈 F 값은?</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>요인</th>
+<th>자유도</th>
+<th>제곱합</th>
+<th>평균 제곱</th>
+<th>F 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>회귀</td>
+<td>2</td>
+<td>120</td>
+<td>60</td>
+<td>(가)</td>
+</tr>
+<tr class="even">
+<td>잔차</td>
+<td>30</td>
+<td>180</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>합계</td>
+<td>32</td>
+<td>300</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>① 0.67</li>
+<li>② 2</li>
+<li>③ 6</li>
+<li>④ 10</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; 통계분석 &gt; 기초 통계분석</code> <code>유형: 계산</code> <code>장: 7</code></p>
+<p><strong>문항 16.</strong> DIKW 피라미드에서 ’지식’에 해당하는 것으로 가장 적절한 것은?</p>
+<ul>
+<li>① 3월 한 달 동안 1호점의 방문 고객은 4,200명이고 2호점의 방문 고객은 2,900명이다.</li>
+<li>② 3월에는 1호점의 방문 고객이 2호점보다 많았다.</li>
+<li>③ 방문 고객이 더 많은 1호점에 4월 판촉 인력을 더 배치하기로 한다.</li>
+<li>④ 1호점은 다른 달에도, 다른 행사에서도 2호점보다 고객 반응이 좋을 것이라고 판단한다.</li>
+</ul>
+<p><code>범위: 데이터 이해 &gt; 데이터의 이해 &gt; 데이터와 정보</code> <code>유형: 사례 판단</code> <code>장: 1</code></p>
+<p><strong>문항 17.</strong> CRISP-DM 분석 방법론의 단계를 순서대로 나열한 것은?</p>
+<ul>
+<li>① 업무 이해 → 데이터 이해 → 데이터 준비 → 모델링 → 평가 → 전개</li>
+<li>② 데이터 이해 → 업무 이해 → 데이터 준비 → 모델링 → 전개 → 평가</li>
+<li>③ 업무 이해 → 데이터 준비 → 데이터 이해 → 평가 → 모델링 → 전개</li>
+<li>④ 데이터 준비 → 데이터 이해 → 업무 이해 → 모델링 → 평가 → 전개</li>
+</ul>
+<p><code>범위: 데이터분석 기획 &gt; 데이터분석 기획의 이해 &gt; 분석 방법론</code> <code>유형: 용어 구분</code> <code>장: 2</code></p>
+<p><strong>문항 18.</strong> 분석 과제의 우선순위를 시급성과 난이도로 평가할 때, 가장 먼저 추진하는 과제는?</p>
+<ul>
+<li>① 시급성이 현재이고 난이도가 쉬운 과제</li>
+<li>② 시급성이 현재이고 난이도가 어려운 과제</li>
+<li>③ 시급성이 미래이고 난이도가 쉬운 과제</li>
+<li>④ 시급성이 미래이고 난이도가 어려운 과제</li>
+</ul>
+<p><code>범위: 데이터분석 기획 &gt; 분석 마스터 플랜 &gt; 마스터 플랜 수립</code> <code>유형: 용어 구분</code> <code>장: 3</code></p>
+<p><strong>문항 19.</strong> 어떤 자료의 제1사분위수가 20이고 제3사분위수가 40이다. 제1사분위수에서 사분위수 범위의 1.5배를 뺀 값보다 작거나, 제3사분위수에 사분위수 범위의 1.5배를 더한 값보다 큰 값을 이상값으로 판정한다. 다음 중 이상값은?</p>
+<ul>
+<li>① -5</li>
+<li>② 12</li>
+<li>③ 65</li>
+<li>④ 75</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; R기초와 데이터 마트 &gt; 결측값 처리와 이상값 검색</code> <code>유형: 계산</code> <code>장: 5</code></p>
+<p><strong>문항 20.</strong> 가설 검정에서 제1종 오류에 대한 설명으로 가장 적절한 것은?</p>
+<ul>
+<li>① 귀무 가설이 참인데 귀무 가설을 기각하는 오류</li>
+<li>② 귀무 가설이 거짓인데 귀무 가설을 기각하지 않는 오류</li>
+<li>③ 대립 가설이 참인데 대립 가설을 채택하지 않는 오류</li>
+<li>④ 표본의 크기가 작아서 생기는 표본 추출 오차</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; 통계분석 &gt; 통계학 개론</code> <code>유형: 용어 구분</code> <code>장: 6</code></p>
+<section id="정답" class="level3">
+<h3 class="anchored" data-anchor-id="정답">정답</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>문항</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>정답</td>
+<td>③</td>
+<td>②</td>
+<td>③</td>
+<td>②</td>
+<td>②</td>
+<td>③</td>
+<td>③</td>
+<td>②</td>
+<td>④</td>
+<td>②</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>문항</th>
+<th>11</th>
+<th>12</th>
+<th>13</th>
+<th>14</th>
+<th>15</th>
+<th>16</th>
+<th>17</th>
+<th>18</th>
+<th>19</th>
+<th>20</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>정답</td>
+<td>③</td>
+<td>③</td>
+<td>④</td>
+<td>②</td>
+<td>④</td>
+<td>③</td>
+<td>①</td>
+<td>①</td>
+<td>④</td>
+<td>①</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="풀이" class="level3">
+<h3 class="anchored" data-anchor-id="풀이">풀이</h3>
+<ol type="1">
+<li><strong>③.</strong> 피어슨 상관 계수는 선형 관계만 잰다. 두 변수가 곡선 모양으로 관계되어 있으면 상관 계수가 0에 가까워도 관계가 있을 수 있다. 따라 하기 1에서 y = x²인 자료의 상관 계수가 0.0이었다. (1.5절)</li>
+<li><strong>②.</strong> 두 변수 모두 순서만 있는 서열 척도다. 순위로 계산하는 스피어만 상관 계수가 맞다. (1.3절)</li>
+<li><strong>③.</strong> 둘레와 부피의 상관 계수가 0.967로 가장 크고 양수다. ①은 높이와 부피가 0.598로 둘레와 부피보다 약하다. ②는 0.519로 양의 상관이다. ④는 상관행렬로 인과를 확인할 수 없다. (1.5절, 5.5절)</li>
+<li><strong>②.</strong> 상관은 인과가 아니다. ④는 상관 계수와 결정 계수를 혼동한 것이다. 상관 계수 0.9를 제곱한 0.81이 설명 비율에 해당한다. (1.5절, 2.3절)</li>
+<li><strong>②.</strong> 최소제곱법은 잔차 제곱합을 가장 작게 하는 계수를 고른다. (2.1절)</li>
+<li><strong>③.</strong> 결정 계수 = 1 - SSE ÷ SST = 1 - 50 ÷ 200 = 0.75. (3.3절)</li>
+<li><strong>③.</strong> 단순 회귀에서 결정 계수는 상관 계수의 제곱이다. (-0.8)² = 0.64. 결정 계수는 음수가 되지 않는다. (2.3절)</li>
+<li><strong>②.</strong> 잔차의 흩어진 정도가 예측값에 따라 달라지면 등분산성이 어긋난 것이다. (3.4절)</li>
+<li><strong>④.</strong> 둘레의 계수는 4.7082다. 0.3393은 높이의 계수다. ①은 마지막 줄의 유의 확률이 2.2e-16보다 작다. ②는 높이의 유의 확률이 0.0145로 0.05보다 작다. ③은 <code>Multiple R-squared</code>가 0.948이다. (3.1절, 5.3절)</li>
+<li><strong>②.</strong> -17.5791 + 3.9324 × 20 = 61.0689. (5.3절)</li>
+<li><strong>③.</strong> 단순 회귀에서 결정 계수 0.6511은 상관 계수의 제곱이다. 상관 계수는 그 제곱근인 약 0.81이다. ①은 잔차의 자유도 48에 계수의 수 2를 더한다. ④는 둘 다 1.49e-12다. (2.3절, 5.3절)</li>
+<li><strong>③.</strong> 수정된 결정 계수는 변수의 수에 벌점을 준 값이다. 쓸모없는 변수를 더하면 내려갈 수 있고, 결정 계수보다 크지 않다. (3.2절)</li>
+<li><strong>④.</strong> 다중공선성은 독립 변수끼리의 상관 때문에 생긴다. 독립 변수와 종속 변수의 상관이 강한 것은 모형에 바람직한 일이다. (3.5절)</li>
+<li><strong>②.</strong> 전체 모형에서 출발하여 변수를 빼 나가는 방법은 후진 제거법이다. (3.6절)</li>
+<li><strong>④.</strong> 잔차의 평균 제곱 = 180 ÷ 30 = 6. F = 60 ÷ 6 = 10. (3.3절)</li>
+<li><strong>③.</strong> ①은 가공하지 않은 사실인 데이터, ②는 데이터를 견주어 의미를 얻은 정보다. ③은 정보를 근거로 무엇을 할지 정한 것이므로 지식이다. ④는 지식을 다른 상황으로 넓혀 판단한 것이므로 지혜다. (교재 01의 1.5절)</li>
+<li><strong>①.</strong> CRISP-DM은 업무 이해, 데이터 이해, 데이터 준비, 모델링, 평가, 전개의 여섯 단계다. (교재 02의 2.4절)</li>
+<li><strong>①.</strong> 시급성이 현재이고 난이도가 쉬운 과제(Ⅲ사분면)를 가장 먼저 추진한다. (교재 03의 1.5절)</li>
+<li><strong>④.</strong> 사분위수 범위 = 40 - 20 = 20. 하한 = 20 - 30 = -10, 상한 = 40 + 30 = 70. 75만 범위 밖이다. (교재 05의 4.2절)</li>
+<li><strong>①.</strong> 제1종 오류는 참인 귀무 가설을 기각하는 오류다. ②가 제2종 오류다. (교재 06의 4.2절)</li>
+</ol>
+
+
+</section>
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> 맨 위로</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "복사완료!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "복사완료!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../courses/adsp/book/ADsP_06주차_학생용.html" class="pagination-link" aria-label="[6주차] 통계학 개론: 표본, 분포, 추정, 검정">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">[6주차] 통계학 개론: 표본, 분포, 추정, 검정</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../courses/adsp/book/ADsP_08주차_학생용.html" class="pagination-link" aria-label="[8주차] 다차원 척도법과 주성분 분석">
+        <span class="nav-page-text">[8주차] 다차원 척도법과 주성분 분석</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>안중호 교수 강의 교재 · 2026년 2학기판</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

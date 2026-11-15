@@ -1,0 +1,1813 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>[7주차] 머신러닝 (2): 분류 모델과 평가 – 안중호 교수 강의 교재</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../courses/aice/book/AICE_08주차_학생용.html" rel="next">
+<link href="../../../courses/aice/book/AICE_06주차_학생용.html" rel="prev">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-dcf116883d0d3758c9131f5ede2fa7e1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">안중호 교수 강의 교재</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="검색"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">커리큘럼</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/semesters/index.html">
+ <span class="dropdown-text">전체 커리큘럼</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../docs/semesters/2026-2/index.html">
+ <span class="dropdown-text">2026년 2학기</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../docs/subjects/llm-ai/index.html">
+ <span class="dropdown-text">교재 · LLM AI 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/subjects/python/index.html">
+ <span class="dropdown-text">교재 · 파이썬 실습</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../courses/index.html">
+ <span class="dropdown-text">2027학년도 교재 (준비 중)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/llm-service/index.html">
+ <span class="dropdown-text">· LLM 서비스 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/office/index.html">
+ <span class="dropdown-text">· 컴퓨터활용</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/adsp/index.html">
+ <span class="dropdown-text">· 빅데이터개론</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/ai-agent/index.html">
+ <span class="dropdown-text">· AI에이전트 기획 및 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/aice/index.html">
+ <span class="dropdown-text">· 비즈니스빅데이터분석</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/about/교수_소개.html"> 
+<span class="menu-text">교수 소개</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../courses/aice/book/AICE_00주차_학생용.html">교재</a></li><li class="breadcrumb-item"><a href="../../../courses/aice/book/AICE_07주차_학생용.html">[7주차] 머신러닝 (2): 분류 모델과 평가</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">비즈니스빅데이터분석</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">교재</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_00주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[0주차] 오리엔테이션</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_01주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[1주차] 데이터 불러오기와 구성 파악</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_02주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[2주차] 데이터 시각화: 분포와 관계</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_03주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[3주차] 결측치·이상치 처리와 열 정리</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_04주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[4주차] 범주형 데이터와 인코딩</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_05주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[5주차] 데이터 분할과 스케일링</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_06주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[6주차] 머신러닝 (1): 회귀 모델과 평가</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_07주차_학생용.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">[7주차] 머신러닝 (2): 분류 모델과 평가</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_08주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[8주차] 모델 성능 개선: 교차 검증, 격자 탐색, 변수 중요도</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_09주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[9주차] 딥러닝 (1): 신경망의 구성과 학습</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_10주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[10주차] 딥러닝 (2): 학습 제어와 학습 곡선</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_11주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[11주차] 응시 전략과 답안 규칙</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_부록_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">부록</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">이 장의 차례</h2>
+   
+  <ul>
+  <li><a href="#학습-목표" id="toc-학습-목표" class="nav-link active" data-scroll-target="#학습-목표">학습 목표</a></li>
+  <li><a href="#준비-사항" id="toc-준비-사항" class="nav-link" data-scroll-target="#준비-사항">준비 사항</a></li>
+  <li><a href="#층화-분할과-스케일링의-재수행" id="toc-층화-분할과-스케일링의-재수행" class="nav-link" data-scroll-target="#층화-분할과-스케일링의-재수행">1. 층화 분할과 스케일링의 재수행</a>
+  <ul class="collapse">
+  <li><a href="#목표-열의-분포" id="toc-목표-열의-분포" class="nav-link" data-scroll-target="#목표-열의-분포">1.1 목표 열의 분포</a></li>
+  <li><a href="#층화-분할" id="toc-층화-분할" class="nav-link" data-scroll-target="#층화-분할">1.2 층화 분할</a></li>
+  </ul></li>
+  <li><a href="#로지스틱-회귀" id="toc-로지스틱-회귀" class="nav-link" data-scroll-target="#로지스틱-회귀">2. 로지스틱 회귀</a>
+  <ul class="collapse">
+  <li><a href="#모형과-학습" id="toc-모형과-학습" class="nav-link" data-scroll-target="#모형과-학습">2.1 모형과 학습</a></li>
+  <li><a href="#predict_proba" id="toc-predict_proba" class="nav-link" data-scroll-target="#predict_proba">2.2 <code>predict_proba</code></a></li>
+  <li><a href="#max_iter" id="toc-max_iter" class="nav-link" data-scroll-target="#max_iter">2.3 <code>max_iter</code></a></li>
+  </ul></li>
+  <li><a href="#의사결정나무와-랜덤-포레스트" id="toc-의사결정나무와-랜덤-포레스트" class="nav-link" data-scroll-target="#의사결정나무와-랜덤-포레스트">3. 의사결정나무와 랜덤 포레스트</a>
+  <ul class="collapse">
+  <li><a href="#의사결정나무-분류" id="toc-의사결정나무-분류" class="nav-link" data-scroll-target="#의사결정나무-분류">3.1 의사결정나무 분류</a></li>
+  <li><a href="#랜덤-포레스트-분류" id="toc-랜덤-포레스트-분류" class="nav-link" data-scroll-target="#랜덤-포레스트-분류">3.2 랜덤 포레스트 분류</a></li>
+  </ul></li>
+  <li><a href="#xgboost" id="toc-xgboost" class="nav-link" data-scroll-target="#xgboost">4. XGBoost</a>
+  <ul class="collapse">
+  <li><a href="#부스팅과-scikit-learn-방식의-인터페이스" id="toc-부스팅과-scikit-learn-방식의-인터페이스" class="nav-link" data-scroll-target="#부스팅과-scikit-learn-방식의-인터페이스">4.1 부스팅과 scikit-learn 방식의 인터페이스</a></li>
+  <li><a href="#주요-인자" id="toc-주요-인자" class="nav-link" data-scroll-target="#주요-인자">4.2 주요 인자</a></li>
+  </ul></li>
+  <li><a href="#분류-지표" id="toc-분류-지표" class="nav-link" data-scroll-target="#분류-지표">5. 분류 지표</a>
+  <ul class="collapse">
+  <li><a href="#네-가지-지표" id="toc-네-가지-지표" class="nav-link" data-scroll-target="#네-가지-지표">5.1 네 가지 지표</a></li>
+  <li><a href="#인자의-순서" id="toc-인자의-순서" class="nav-link" data-scroll-target="#인자의-순서">5.2 인자의 순서</a></li>
+  <li><a href="#지표-비교표" id="toc-지표-비교표" class="nav-link" data-scroll-target="#지표-비교표">5.3 지표 비교표</a></li>
+  <li><a href="#확률을-넣는-오류" id="toc-확률을-넣는-오류" class="nav-link" data-scroll-target="#확률을-넣는-오류">5.4 확률을 넣는 오류</a></li>
+  </ul></li>
+  <li><a href="#오분류표와-분류-보고서" id="toc-오분류표와-분류-보고서" class="nav-link" data-scroll-target="#오분류표와-분류-보고서">6. 오분류표와 분류 보고서</a>
+  <ul class="collapse">
+  <li><a href="#오분류표" id="toc-오분류표" class="nav-link" data-scroll-target="#오분류표">6.1 오분류표</a></li>
+  <li><a href="#분류-보고서" id="toc-분류-보고서" class="nav-link" data-scroll-target="#분류-보고서">6.2 분류 보고서</a></li>
+  </ul></li>
+  <li><a href="#범주-불균형과-정확도의-한계" id="toc-범주-불균형과-정확도의-한계" class="nav-link" data-scroll-target="#범주-불균형과-정확도의-한계">7. 범주 불균형과 정확도의 한계</a>
+  <ul class="collapse">
+  <li><a href="#기준-모델" id="toc-기준-모델" class="nav-link" data-scroll-target="#기준-모델">7.1 기준 모델</a></li>
+  <li><a href="#class_weight" id="toc-class_weight" class="nav-link" data-scroll-target="#class_weight">7.2 <code>class_weight</code></a></li>
+  <li><a href="#임계값" id="toc-임계값" class="nav-link" data-scroll-target="#임계값">7.3 임계값</a></li>
+  </ul></li>
+  <li><a href="#중심-실습-분류-모델-3종의-지표-비교표" id="toc-중심-실습-분류-모델-3종의-지표-비교표" class="nav-link" data-scroll-target="#중심-실습-분류-모델-3종의-지표-비교표">8. 중심 실습: 분류 모델 3종의 지표 비교표</a></li>
+  <li><a href="#시간-제한-문항" id="toc-시간-제한-문항" class="nav-link" data-scroll-target="#시간-제한-문항">9. 시간 제한 문항</a>
+  <ul class="collapse">
+  <li><a href="#문항-1-빈칸-채우기" id="toc-문항-1-빈칸-채우기" class="nav-link" data-scroll-target="#문항-1-빈칸-채우기">문항 1 (빈칸 채우기)</a></li>
+  <li><a href="#문항-2-오류-정정" id="toc-문항-2-오류-정정" class="nav-link" data-scroll-target="#문항-2-오류-정정">문항 2 (오류 정정)</a></li>
+  <li><a href="#문항-3-답-변수" id="toc-문항-3-답-변수" class="nav-link" data-scroll-target="#문항-3-답-변수">문항 3 (답 변수)</a></li>
+  </ul></li>
+  <li><a href="#정리" id="toc-정리" class="nav-link" data-scroll-target="#정리">10. 정리</a></li>
+  <li><a href="#참고-자료" id="toc-참고-자료" class="nav-link" data-scroll-target="#참고-자료">참고 자료</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../courses/aice/book/AICE_00주차_학생용.html">교재</a></li><li class="breadcrumb-item"><a href="../../../courses/aice/book/AICE_07주차_학생용.html">[7주차] 머신러닝 (2): 분류 모델과 평가</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">[7주차] 머신러닝 (2): 분류 모델과 평가</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<header class="chapter-head">
+<p class="chapter-part">비즈니스빅데이터분석</p>
+<p class="chapter-no"><span class="num">7</span><span class="unit">주차</span></p>
+<p class="chapter-title">머신러닝 (2): 분류 모델과 평가</p>
+</header>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>2027학년도 「비즈니스빅데이터분석」의 준비 중인 교재입니다. 편집 상태를 검토하기 위해 미리 공개한 것으로, 수업 전에 내용과 순서가 바뀔 수 있습니다.</p>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>학사 9주차 · 교재 07 · 3부 AI 모델링 · 출제 분야: AI 모델링 &gt; 머신러닝 모델 학습, 모델 성능 평가 및 시뮬레이션</p>
+</blockquote>
+<p>AICE Associate의 분류 문항은 회귀 문항과 같은 형식으로 출제된다. 가이드가 모델과 하이퍼파라미터를 지정하고, 수험자는 그 설정으로 모델을 학습시킨 뒤 검증용 데이터의 지표를 산출하여 더 나은 모델을 고른다. 달라지는 것은 지표이다. 분류에서는 정확도 외에 정밀도, 재현율, F1, 오분류표를 읽을 수 있어야 하며, 목표 범주의 비율이 한쪽으로 치우친 자료에서는 정확도가 높아도 쓸모없는 모델이 있다는 점을 알아야 한다.</p>
+<p>본 장은 공통 자료의 이탈 여부(<code>churn</code>)를 목표로 층화 분할을 다시 수행하고, 분류 모델 네 가지(로지스틱 회귀, 의사결정나무, 랜덤 포레스트, XGBoost)를 6장과 같은 생성·학습·예측의 형식으로 다룬다. 이어서 분류 지표 네 가지, 오분류표와 분류 보고서, 범주 불균형의 문제와 <code>class_weight</code> 인자를 설명한다. 본 장에서 학습시킨 랜덤 포레스트는 8장에서 격자 탐색과 변수 중요도의 대상이 된다.</p>
+<hr>
+<section id="학습-목표" class="level2">
+<h2 class="anchored" data-anchor-id="학습-목표">학습 목표</h2>
+<ol type="1">
+<li>범주형 목표 열에 대하여 층화 분할과 스케일링을 수행하고, 범주의 비율이 유지되었는지 확인한다.</li>
+<li>로지스틱 회귀, 의사결정나무, 랜덤 포레스트, XGBoost 분류 모델을 지정된 하이퍼파라미터로 같은 형식에 따라 학습시킨다.</li>
+<li><code>predict</code>와 <code>predict_proba</code>의 출력을 구분하고, 확률과 임계값으로 예측 범주가 정해지는 과정을 설명한다.</li>
+<li>정확도, 정밀도, 재현율, F1을 산출하여 모델의 지표 비교표를 작성하고, 지표에 따라 더 나은 모델의 이름을 답 변수에 저장한다.</li>
+<li>오분류표의 행과 열을 읽고 분류 보고서의 각 값을 해석한다.</li>
+<li>범주가 불균형한 자료에서 정확도만으로 판단하면 안 되는 이유를 기준 모델로 설명하고, <code>class_weight</code>의 효과를 확인한다.</li>
+</ol>
+</section>
+<section id="준비-사항" class="level2">
+<h2 class="anchored" data-anchor-id="준비-사항">준비 사항</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>실습 노트북</td>
+<td><code>AICE_07주차_실습_학생용.ipynb</code></td>
+</tr>
+<tr class="even">
+<td>자료</td>
+<td><code>customers.csv</code>(학기 공통 자료), <code>loans.csv</code>(시간 제한 문항용)</td>
+</tr>
+<tr class="odd">
+<td>앞 장과의 연계</td>
+<td>3장의 정제본 <code>df_clean</code>, 4장의 인코딩본 <code>df_enc</code>, 5장의 층화 분할(5.3절), 6장의 생성·학습·예측 형식과 하이퍼파라미터</td>
+</tr>
+<tr class="even">
+<td>앞 과목과의 연계</td>
+<td>「빅데이터 개론」 10~11장(분류 모델의 기본 실행, 지표의 수작업 계산)</td>
+</tr>
+<tr class="odd">
+<td>실습 환경</td>
+<td>접속과 설치는 부록 A를 따른다. 4절은 <code>xgboost</code>가 필요하다</td>
+</tr>
+</tbody>
+</table>
+<p>노트북 1부와 2부의 첫 코드 셀은 3장과 4장의 처리를 그대로 다시 실행하여 인코딩본을 만든다. 출력은 <code>df_enc</code>의 크기이다.</p>
+<pre class="text"><code>(2940, 26)</code></pre>
+<p>6장과 달리 회귀용 분할은 다시 실행하지 않는다. 분류 문제는 목표 열이 다르므로 분할을 처음부터 다시 수행한다(1절).</p>
+<hr>
+</section>
+<section id="층화-분할과-스케일링의-재수행" class="level2">
+<h2 class="anchored" data-anchor-id="층화-분할과-스케일링의-재수행">1. 층화 분할과 스케일링의 재수행</h2>
+<section id="목표-열의-분포" class="level3">
+<h3 class="anchored" data-anchor-id="목표-열의-분포">1.1 목표 열의 분포</h3>
+<p>공통 자료에는 목표 열이 둘이다. 6장에서는 <code>annual_spend</code>로 분할하였고, 본 장에서는 <code>churn</code>으로 다시 분할한다. 먼저 목표 열의 범주별 개수와 비율을 확인한다.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df_enc.drop(columns<span class="op">=</span>[<span class="st">"annual_spend"</span>, <span class="st">"churn"</span>])</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df_enc[<span class="st">"churn"</span>]</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y.value_counts())</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(y.mean(), <span class="dv">3</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>churn
+0    2367
+1     573
+Name: count, dtype: int64
+0.195</code></pre>
+<p>2,940명 가운데 이탈한 회원(1)은 573명이고 비율은 0.195(약 19.5%)이다. 0과 1로 된 열의 평균은 1의 비율이다. 이처럼 한 범주가 다른 범주보다 훨씬 적은 자료를 범주가 불균형한 자료라 한다. 이 비율은 7절에서 정확도의 한계를 설명하는 근거가 된다.</p>
+<p>입력 <code>X</code>에서 <code>annual_spend</code>도 제외한다. <code>annual_spend</code>는 6장의 목표 열이고, 표준 처리 과정은 회귀와 분류의 입력을 같은 24개 열로 맞추기로 정하였다. 시험에서는 가이드가 입력에서 뺄 열을 지정한다.</p>
+</section>
+<section id="층화-분할" class="level3">
+<h3 class="anchored" data-anchor-id="층화-분할">1.2 층화 분할</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>X_train, X_valid, y_train, y_valid <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>, stratify<span class="op">=</span>y)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>X_train_s <span class="op">=</span> scaler.fit_transform(X_train)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>X_valid_s <span class="op">=</span> scaler.transform(X_valid)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_train_s.shape, X_valid_s.shape)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(y_train.mean(), <span class="dv">3</span>), <span class="bu">round</span>(y_valid.mean(), <span class="dv">3</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>(2352, 24) (588, 24)
+0.195 0.196</code></pre>
+<p><code>stratify=y</code>는 분할한 두 덩어리에서 <code>y</code>의 범주 비율이 원래 자료와 같게 유지되도록 행을 나눈다. 훈련용 0.195, 검증용 0.196으로 원래 비율(0.195)과 거의 같다. 스케일링은 5장과 같이 훈련용 데이터로 적합시키고 검증용 데이터에는 변환만 적용한다.</p>
+<p>층화하지 않고 같은 시드로 나누면 다음과 같다.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>X_tr2, X_va2, y_tr2, y_va2 <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(y_tr2.mean(), <span class="dv">3</span>), <span class="bu">round</span>(y_va2.mean(), <span class="dv">3</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>0.196 0.192</code></pre>
+<p>이 자료에서는 검증용 비율이 0.192로 조금 낮아지는 정도이다. 그러나 이탈 회원이 적은 자료에서는 분할에 따라 검증용 데이터의 이탈 회원 수가 크게 달라질 수 있고, 그만큼 지표가 흔들린다. 분류 문제의 가이드는 대개 층화 조건을 지정한다. 층화 조건을 빠뜨리면 오류 없이 다른 행으로 분할되어 이후의 모든 지표가 기준 값과 달라진다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>인자</th>
+<th>분류에서의 값</th>
+<th>빠뜨리면</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>test_size</code></td>
+<td>가이드의 비율(예: 0.2)</td>
+<td>기본값 0.25로 분할된다</td>
+</tr>
+<tr class="even">
+<td><code>random_state</code></td>
+<td>가이드의 시드(예: 42)</td>
+<td>실행마다 다른 행으로 분할된다</td>
+</tr>
+<tr class="odd">
+<td><code>stratify</code></td>
+<td>목표 열 <code>y</code></td>
+<td>범주 비율이 유지되지 않는다. 오류는 나지 않는다</td>
+</tr>
+</tbody>
+</table>
+<p>노트북 1부의 연습 1을 푼다.</p>
+<hr>
+</section>
+</section>
+<section id="로지스틱-회귀" class="level2">
+<h2 class="anchored" data-anchor-id="로지스틱-회귀">2. 로지스틱 회귀</h2>
+<section id="모형과-학습" class="level3">
+<h3 class="anchored" data-anchor-id="모형과-학습">2.1 모형과 학습</h3>
+<p>로지스틱 회귀(<code>LogisticRegression</code>)는 이름과 달리 분류 모델이다. 입력의 가중합(선형 회귀와 같은 꼴)을 0과 1 사이의 값으로 바꾸어 범주 1의 확률로 해석한다. 이 확률이 0.5 이상이면 1, 미만이면 0으로 예측한다.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>log_model <span class="op">=</span> LogisticRegression(max_iter<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>log_model.fit(X_train_s, y_train)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>pred_log <span class="op">=</span> log_model.predict(X_valid_s)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pred_log[:<span class="dv">10</span>])</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>[1 1 0 0 0 0 0 0 0 0]</code></pre>
+<p>생성·학습·예측의 형식은 6장과 같다. 예측값은 실수가 아니라 범주(0 또는 1)이다.</p>
+</section>
+<section id="predict_proba" class="level3">
+<h3 class="anchored" data-anchor-id="predict_proba">2.2 <code>predict_proba</code></h3>
+<p><code>predict_proba</code>는 범주마다의 확률을 돌려준다. 결과는 (행 수, 범주 수) 모양의 배열이고, 열의 순서는 <code>classes_</code> 속성의 순서이다.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>proba_log <span class="op">=</span> log_model.predict_proba(X_valid_s)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(log_model.classes_)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>proba_log[:<span class="dv">5</span>].<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>[0 1]
+array([[0.443, 0.557],
+       [0.432, 0.568],
+       [0.932, 0.068],
+       [0.99 , 0.01 ],
+       [0.922, 0.078]])</code></pre>
+<p><code>classes_</code>가 <code>[0 1]</code>이므로 첫째 열은 유지(0)의 확률, 둘째 열은 이탈(1)의 확률이다. 각 행의 두 값을 더하면 1이다. 첫 회원의 이탈 확률은 0.557이므로 1로 예측되었고, 셋째 회원은 0.068이므로 0으로 예측되었다. 이탈 확률만 필요하면 둘째 열을 <code>proba_log[:, 1]</code>로 꺼낸다.</p>
+<p><code>predict</code>의 결과는 둘째 열이 0.5 이상인지로 정한 것과 같다.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pred_05 <span class="op">=</span> (proba_log[:, <span class="dv">1</span>] <span class="op">&gt;=</span> <span class="fl">0.5</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((pred_05 <span class="op">==</span> pred_log).<span class="bu">all</span>())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>True</code></pre>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>메서드</th>
+<th>결과</th>
+<th>모양</th>
+<th>지표 함수에 넣는가</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>predict(X)</code></td>
+<td>예측 범주(0, 1)</td>
+<td>(행 수,)</td>
+<td>넣는다</td>
+</tr>
+<tr class="even">
+<td><code>predict_proba(X)</code></td>
+<td>범주별 확률</td>
+<td>(행 수, 범주 수)</td>
+<td>넣지 않는다(5.4절)</td>
+</tr>
+<tr class="odd">
+<td><code>predict_proba(X)[:, 1]</code></td>
+<td>범주 1의 확률</td>
+<td>(행 수,)</td>
+<td>임계값을 정해 범주로 바꾼 뒤 넣는다(7.3절)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="max_iter" class="level3">
+<h3 class="anchored" data-anchor-id="max_iter">2.3 <code>max_iter</code></h3>
+<p>로지스틱 회귀의 계수는 반복 계산으로 조금씩 고쳐 가며 찾는다. <code>max_iter</code>는 반복의 최대 횟수이고 기본값은 100이다. 학습이 끝난 모델의 <code>n_iter_</code>에 실제 반복 횟수가 저장된다.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(LogisticRegression().fit(X_train_s, y_train).n_iter_)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>[9]</code></pre>
+<p>스케일링한 입력에서는 9번 만에 계산이 수렴하였다. 스케일링하지 않은 입력에서는 열마다 값의 크기가 크게 달라 수렴이 느리다. 연습 3에서 확인하듯이 기본 설정으로는 100번을 모두 쓰고도 수렴하지 못하며, 이때 scikit-learn은 <code>ConvergenceWarning</code>을 출력한다. 경고는 오류가 아니어서 결과가 나오지만, 계수가 다 정해지지 않은 상태이므로 지표가 기준 값과 다를 수 있다. 이 경고가 나오면 입력이 스케일링되었는지 확인하고, 가이드에 따라 <code>max_iter</code>를 늘린다. 본 교재는 시험 문항의 관례에 따라 <code>max_iter=1000</code>을 지정한다.</p>
+<p>노트북 1부의 연습 2(확률에 의한 선택)와 연습 3(<code>max_iter</code>)을 푼다.</p>
+<hr>
+</section>
+</section>
+<section id="의사결정나무와-랜덤-포레스트" class="level2">
+<h2 class="anchored" data-anchor-id="의사결정나무와-랜덤-포레스트">3. 의사결정나무와 랜덤 포레스트</h2>
+<section id="의사결정나무-분류" class="level3">
+<h3 class="anchored" data-anchor-id="의사결정나무-분류">3.1 의사결정나무 분류</h3>
+<p>의사결정나무 분류(<code>DecisionTreeClassifier</code>)는 6장의 회귀 나무와 같은 방식으로 데이터를 나눈다. 차이는 두 가지이다. 분기를 고르는 기준이 제곱 오차가 아니라 불순도(한 무리 안에 범주가 섞인 정도)이고, 잎의 예측값이 평균이 아니라 잎에 속한 훈련용 행의 범주 비율이다.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> DecisionTreeClassifier</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>tree_model <span class="op">=</span> DecisionTreeClassifier(max_depth<span class="op">=</span><span class="dv">5</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>tree_model.fit(X_train_s, y_train)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>pred_tree <span class="op">=</span> tree_model.predict(X_valid_s)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>tree_model.predict_proba(X_valid_s)[:<span class="dv">5</span>].<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>array([[0.578, 0.422],
+       [0.578, 0.422],
+       [0.948, 0.052],
+       [0.976, 0.024],
+       [0.786, 0.214]])</code></pre>
+<p>나무의 <code>predict_proba</code>는 그 행이 도착한 잎의 범주 비율이다. 첫째와 둘째 회원은 같은 잎(이탈 비율 0.422)에 도착하였다. 확률이 0.5보다 작으므로 둘 다 0으로 예측된다. 로지스틱 회귀는 같은 두 회원을 1로 예측하였다(2.2절). 모델에 따라 경계에 가까운 회원의 예측이 갈린다.</p>
+<p>불순도의 기준은 <code>criterion</code> 인자로 정한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><code>criterion</code></th>
+<th>뜻</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>"gini"</code> (기본값)</td>
+<td>지니 불순도. 무작위로 고른 두 행의 범주가 다를 확률에 해당한다</td>
+</tr>
+<tr class="even">
+<td><code>"entropy"</code>, <code>"log_loss"</code></td>
+<td>엔트로피. 범주가 고르게 섞일수록 크다</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>tree_ent <span class="op">=</span> DecisionTreeClassifier(criterion<span class="op">=</span><span class="st">"entropy"</span>, max_depth<span class="op">=</span><span class="dv">5</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>tree_ent.fit(X_train_s, y_train)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>pred_ent <span class="op">=</span> tree_ent.predict(X_valid_s)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((pred_ent <span class="op">!=</span> pred_tree).<span class="bu">sum</span>())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>51</code></pre>
+<p>같은 깊이에서 기준만 바꾸어도 검증용 588행 가운데 51행의 예측이 달라졌다. 가이드가 <code>criterion</code>을 지정하면 그대로 따라야 같은 지표가 나온다. 지정하지 않으면 기본값 <code>"gini"</code>를 쓴다. <code>max_depth</code>, <code>min_samples_split</code>, <code>random_state</code>의 뜻은 6장과 같다.</p>
+</section>
+<section id="랜덤-포레스트-분류" class="level3">
+<h3 class="anchored" data-anchor-id="랜덤-포레스트-분류">3.2 랜덤 포레스트 분류</h3>
+<p>랜덤 포레스트 분류(<code>RandomForestClassifier</code>)는 여러 나무의 확률을 평균하여 확률로 쓰고, 그 확률이 가장 큰 범주를 예측한다.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>rf_model <span class="op">=</span> RandomForestClassifier(n_estimators<span class="op">=</span><span class="dv">100</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>rf_model.fit(X_train_s, y_train)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>pred_rf <span class="op">=</span> rf_model.predict(X_valid_s)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>rf_model.predict_proba(X_valid_s)[:<span class="dv">5</span>].<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>array([[0.56, 0.44],
+       [0.7 , 0.3 ],
+       [0.86, 0.14],
+       [0.97, 0.03],
+       [0.88, 0.12]])</code></pre>
+<p>나무 100그루의 평균이므로 확률이 0.01 단위로 나온다. 분류의 랜덤 포레스트는 회귀와 달리 분기마다 입력 열의 일부(기본값은 열 수의 제곱근, <code>max_features="sqrt"</code>)만 후보로 쓴다. 나무들을 서로 더 다르게 만들기 위함이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>모델</th>
+<th>주요 인자와 기본값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>LogisticRegression</code></td>
+<td><code>max_iter=100</code>, <code>class_weight=None</code></td>
+</tr>
+<tr class="even">
+<td><code>DecisionTreeClassifier</code></td>
+<td><code>criterion="gini"</code>, <code>max_depth=None</code>, <code>min_samples_split=2</code>, <code>random_state=None</code>, <code>class_weight=None</code></td>
+</tr>
+<tr class="odd">
+<td><code>RandomForestClassifier</code></td>
+<td><code>n_estimators=100</code>, <code>criterion="gini"</code>, <code>max_depth=None</code>, <code>max_features="sqrt"</code>, <code>random_state=None</code>, <code>class_weight=None</code></td>
+</tr>
+</tbody>
+</table>
+<p>노트북 1부의 연습 4를 푼다.</p>
+<hr>
+</section>
+</section>
+<section id="xgboost" class="level2">
+<h2 class="anchored" data-anchor-id="xgboost">4. XGBoost</h2>
+<section id="부스팅과-scikit-learn-방식의-인터페이스" class="level3">
+<h3 class="anchored" data-anchor-id="부스팅과-scikit-learn-방식의-인터페이스">4.1 부스팅과 scikit-learn 방식의 인터페이스</h3>
+<p>XGBoost는 나무를 하나씩 차례로 더해 가는 부스팅(boosting) 모델이다. 랜덤 포레스트가 나무들을 서로 독립적으로 학습시켜 평균하는 것과 달리, 부스팅은 앞의 나무들이 틀린 부분을 다음 나무가 보완하도록 학습시킨다. XGBoost는 scikit-learn과 같은 형식으로 쓸 수 있는 클래스(<code>XGBClassifier</code>, <code>XGBRegressor</code>)를 제공하며, 시험의 허용 사이트 목록에도 이 방식의 문서가 포함되어 있다.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> xgboost <span class="im">import</span> XGBClassifier</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>xgb_model <span class="op">=</span> XGBClassifier(n_estimators<span class="op">=</span><span class="dv">100</span>, learning_rate<span class="op">=</span><span class="fl">0.1</span>, max_depth<span class="op">=</span><span class="dv">3</span>, random_state<span class="op">=</span><span class="dv">42</span>, n_jobs<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>xgb_model.fit(X_train_s, y_train)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>pred_xgb <span class="op">=</span> xgb_model.predict(X_valid_s)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pred_xgb[:<span class="dv">10</span>])</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>[0 0 0 0 0 0 0 0 0 0]</code></pre>
+<p>생성·학습·예측의 형식은 scikit-learn의 모델과 같다. 클래스를 <code>xgboost</code> 패키지에서 불러온다는 점만 다르다. 첫 10명은 모두 0으로 예측되었다. 확률을 보면 그 이유를 알 수 있다.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>xgb_model.predict_proba(X_valid_s)[:<span class="dv">5</span>].<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>array([[0.509, 0.491],
+       [0.515, 0.485],
+       [0.941, 0.059],
+       [0.977, 0.023],
+       [0.899, 0.101]], dtype=float32)</code></pre>
+<p>첫째와 둘째 회원의 이탈 확률은 0.491, 0.485로 0.5에 조금 못 미친다. 로지스틱 회귀(2.2절)는 같은 두 회원에게 0.5보다 큰 확률을 주었다. 출력 끝의 <code>dtype=float32</code>는 XGBoost가 확률을 단정밀도 실수로 계산한다는 표시이다.</p>
+</section>
+<section id="주요-인자" class="level3">
+<h3 class="anchored" data-anchor-id="주요-인자">4.2 주요 인자</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>인자</th>
+<th>뜻</th>
+<th>기본값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>n_estimators</code></td>
+<td>차례로 더하는 나무의 수</td>
+<td>Python API 문서에 값이 적혀 있지 않다. 가이드가 지정한 값을 쓴다</td>
+</tr>
+<tr class="even">
+<td><code>learning_rate</code></td>
+<td>나무 하나가 예측에 더하는 몫을 줄이는 비율. XGBoost의 <code>eta</code>와 같다</td>
+<td>0.3(학습 매개변수 문서의 <code>eta</code>)</td>
+</tr>
+<tr class="odd">
+<td><code>max_depth</code></td>
+<td>나무 하나의 최대 깊이</td>
+<td>6(학습 매개변수 문서)</td>
+</tr>
+<tr class="even">
+<td><code>random_state</code></td>
+<td>난수 시드</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>n_jobs</code></td>
+<td>학습에 쓰는 스레드의 수</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><code>get_params()</code>로 기본값을 확인하면 <code>None</code>이 나온다.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>params <span class="op">=</span> XGBClassifier().get_params()</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(params[<span class="st">"n_estimators"</span>], params[<span class="st">"learning_rate"</span>], params[<span class="st">"max_depth"</span>])</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>None None None</code></pre>
+<p><code>None</code>은 “값을 지정하지 않았으므로 XGBoost 내부의 기본값을 쓴다”는 뜻이다. scikit-learn의 모델처럼 기본값이 <code>get_params()</code>에 드러나지 않으므로, 기본값이 필요하면 XGBoost의 학습 매개변수 문서에서 찾는다.</p>
+<p><code>learning_rate</code>를 작게 하면 나무 하나의 영향이 줄어 더 많은 나무가 필요하다. 그래서 <code>learning_rate</code>와 <code>n_estimators</code>는 함께 정한다. 본 장은 <code>n_estimators=100</code>, <code>learning_rate=0.1</code>, <code>max_depth=3</code>을 썼다. <code>n_jobs=1</code>은 공식 문서가 경고하는 스레드 경합(여러 작업이 같은 코어를 두고 다투어 학습이 크게 느려지는 현상)을 피하기 위한 설정이다. 여러 학생이 같은 실습 서버에서 동시에 학습시키는 수업 환경을 고려하였다. 시험에서는 가이드가 지정한 인자만 쓴다.</p>
+<p>노트북 1부의 연습 7(<code>[선택]</code>, 학습률의 변경)은 5절의 지표를 배운 뒤 푼다.</p>
+<hr>
+</section>
+</section>
+<section id="분류-지표" class="level2">
+<h2 class="anchored" data-anchor-id="분류-지표">5. 분류 지표</h2>
+<section id="네-가지-지표" class="level3">
+<h3 class="anchored" data-anchor-id="네-가지-지표">5.1 네 가지 지표</h3>
+<p>이탈(1)을 찾아야 할 범주(양성)로 보면, 검증용 회원은 실제 범주와 예측 범주에 따라 넷으로 나뉜다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>예측 0</th>
+<th>예측 1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>실제 0</strong></td>
+<td>TN(참 음성): 유지를 유지로</td>
+<td>FP(거짓 양성): 유지를 이탈로</td>
+</tr>
+<tr class="even">
+<td><strong>실제 1</strong></td>
+<td>FN(거짓 음성): 이탈을 유지로</td>
+<td>TP(참 양성): 이탈을 이탈로</td>
+</tr>
+</tbody>
+</table>
+<p>네 지표는 이 네 수로 계산한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>지표</th>
+<th>계산</th>
+<th>묻는 것</th>
+<th>함수</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>정확도</td>
+<td>(TP + TN) / 전체</td>
+<td>전체 가운데 맞힌 비율</td>
+<td><code>accuracy_score</code></td>
+</tr>
+<tr class="even">
+<td>정밀도</td>
+<td>TP / (TP + FP)</td>
+<td>이탈로 예측한 회원 가운데 실제 이탈의 비율</td>
+<td><code>precision_score</code></td>
+</tr>
+<tr class="odd">
+<td>재현율</td>
+<td>TP / (TP + FN)</td>
+<td>실제 이탈 회원 가운데 이탈로 찾아낸 비율</td>
+<td><code>recall_score</code></td>
+</tr>
+<tr class="even">
+<td>F1</td>
+<td>2 × 정밀도 × 재현율 / (정밀도 + 재현율)</td>
+<td>정밀도와 재현율의 조화 평균</td>
+<td><code>f1_score</code></td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score, precision_score, recall_score, f1_score</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"정확도"</span>, <span class="bu">round</span>(accuracy_score(y_valid, pred_log), <span class="dv">3</span>))</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"정밀도"</span>, <span class="bu">round</span>(precision_score(y_valid, pred_log), <span class="dv">3</span>))</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"재현율"</span>, <span class="bu">round</span>(recall_score(y_valid, pred_log), <span class="dv">3</span>))</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"F1    "</span>, <span class="bu">round</span>(f1_score(y_valid, pred_log), <span class="dv">3</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>정확도 0.857
+정밀도 0.701
+재현율 0.47
+F1     0.562</code></pre>
+<p>로지스틱 회귀는 전체의 85.7%를 맞혔다. 이탈로 예측한 회원의 70.1%가 실제로 이탈하였고(정밀도), 실제 이탈 회원의 47.0%를 찾아냈다(재현율). F1은 두 값의 조화 평균 0.562이다. 조화 평균은 두 값 가운데 작은 쪽에 가깝게 나오므로, 정밀도와 재현율 가운데 하나만 높은 모델은 F1이 낮다.</p>
+<p>정밀도, 재현율, F1은 기본적으로 범주 1(<code>pos_label=1</code>)을 양성으로 보고 계산한다. 이진 분류에서 목표 열이 0과 1이면 따로 지정할 필요가 없다.</p>
+</section>
+<section id="인자의-순서" class="level3">
+<h3 class="anchored" data-anchor-id="인자의-순서">5.2 인자의 순서</h3>
+<p>분류 지표 함수도 <code>(실제 값, 예측값)</code>의 순서로 인자를 받는다. 순서를 바꾸면 정밀도와 재현율이 서로 바뀐다. 정밀도의 분모(예측 1의 수)와 재현율의 분모(실제 1의 수)가 자리를 바꾸기 때문이다.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(precision_score(pred_log, y_valid), <span class="dv">3</span>))</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(recall_score(y_valid, pred_log), <span class="dv">3</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>0.47
+0.47</code></pre>
+<p>순서를 바꾼 정밀도가 재현율(0.47)과 같다. 오류 없이 틀린 값이 나오므로, 지표 함수는 언제나 <code>y_valid</code>를 먼저 쓴다. 정확도와 F1은 순서를 바꾸어도 값이 같다.</p>
+</section>
+<section id="지표-비교표" class="level3">
+<h3 class="anchored" data-anchor-id="지표-비교표">5.3 지표 비교표</h3>
+<p>세 모델의 지표를 한 표에 모은다. 인덱스에 모델의 클래스 이름을 둔다.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"accuracy"</span>: [accuracy_score(y_valid, pred_log), accuracy_score(y_valid, pred_tree), accuracy_score(y_valid, pred_rf)],</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"precision"</span>: [precision_score(y_valid, pred_log), precision_score(y_valid, pred_tree), precision_score(y_valid, pred_rf)],</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"recall"</span>: [recall_score(y_valid, pred_log), recall_score(y_valid, pred_tree), recall_score(y_valid, pred_rf)],</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"f1"</span>: [f1_score(y_valid, pred_log), f1_score(y_valid, pred_tree), f1_score(y_valid, pred_rf)],</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>}, index<span class="op">=</span>[<span class="st">"LogisticRegression"</span>, <span class="st">"DecisionTreeClassifier"</span>, <span class="st">"RandomForestClassifier"</span>])</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>scores.<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>                        accuracy  precision  recall     f1
+LogisticRegression         0.857      0.701   0.470  0.562
+DecisionTreeClassifier     0.813      0.534   0.339  0.415
+RandomForestClassifier     0.835      0.714   0.261  0.382</code></pre>
+<p>XGBoost가 설치된 환경에서는 같은 표에 행을 하나 더한다. <code>loc[새 인덱스] = 값의 리스트</code>는 데이터프레임의 끝에 행을 추가한다.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>scores.loc[<span class="st">"XGBClassifier"</span>] <span class="op">=</span> [accuracy_score(y_valid, pred_xgb), precision_score(y_valid, pred_xgb),</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>                               recall_score(y_valid, pred_xgb), f1_score(y_valid, pred_xgb)]</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>scores.<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>                        accuracy  precision  recall     f1
+LogisticRegression         0.857      0.701   0.470  0.562
+DecisionTreeClassifier     0.813      0.534   0.339  0.415
+RandomForestClassifier     0.835      0.714   0.261  0.382
+XGBClassifier              0.837      0.646   0.365  0.467</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(scores[<span class="st">"f1"</span>].idxmax())</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(scores[<span class="st">"accuracy"</span>].idxmax())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>LogisticRegression
+LogisticRegression</code></pre>
+<p>이 표에서 다음을 읽는다.</p>
+<ul>
+<li>정확도와 F1이 모두 가장 높은 모델은 로지스틱 회귀(0.857, 0.562)이다. 6장의 회귀와 마찬가지로 이 자료의 이탈 여부가 입력의 가중합에 가까운 규칙으로 생성되었기 때문으로 보인다.</li>
+<li>랜덤 포레스트는 정확도(0.835)가 의사결정나무(0.813)보다 높지만 F1(0.382)은 더 낮다. 정밀도(0.714)는 가장 높으나 재현율(0.261)이 가장 낮다. 이탈로 예측하는 회원이 적어서, 예측한 것은 잘 맞히지만 실제 이탈 회원의 대부분을 놓친다.</li>
+<li>XGBoost(F1 0.467)는 랜덤 포레스트보다 재현율이 높고 로지스틱 회귀보다는 낮다.</li>
+<li>어느 지표로 고르는가에 따라 답이 달라질 수 있다. 정확도와 F1의 1위는 이 표에서는 같지만 언제나 같지는 않다. 가이드가 지정한 지표로 고르고, 이름은 <code>idxmax()</code>로 구한다.</li>
+</ul>
+</section>
+<section id="확률을-넣는-오류" class="level3">
+<h3 class="anchored" data-anchor-id="확률을-넣는-오류">5.4 확률을 넣는 오류</h3>
+<p>지표 함수에는 예측 범주(<code>predict</code>의 결과)를 넣는다. 확률(<code>predict_proba</code>의 결과)을 넣으면 오류가 난다.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>f1_score(y_valid, proba_log)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>ValueError: Classification metrics can't handle a mix of binary and continuous-multioutput targets</code></pre>
+<p>메시지의 <code>binary</code>는 실제 값(0과 1), <code>continuous-multioutput</code>은 확률의 두 열을 가리킨다. 두 종류를 비교할 수 없다는 뜻이다. <code>predict_proba</code>를 <code>predict</code>로 바꾸어 정정한다. 둘째 열만 넣어도(<code>proba_log[:, 1]</code>) <code>continuous</code> 목표라는 같은 종류의 오류가 난다.</p>
+<p>노트북 1부의 연습 5(F1의 직접 계산), 연습 6(재현율로 고르기), 연습 7(<code>[선택]</code>)을 푼다.</p>
+<hr>
+</section>
+</section>
+<section id="오분류표와-분류-보고서" class="level2">
+<h2 class="anchored" data-anchor-id="오분류표와-분류-보고서">6. 오분류표와 분류 보고서</h2>
+<section id="오분류표" class="level3">
+<h3 class="anchored" data-anchor-id="오분류표">6.1 오분류표</h3>
+<p>오분류표(혼동 행렬, confusion matrix)는 5.1절의 네 수를 표로 나타낸 것이다. <code>confusion_matrix(실제 값, 예측값)</code>으로 구한다.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix, classification_report</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>cm <span class="op">=</span> confusion_matrix(y_valid, pred_log)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>cm</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>array([[450,  23],
+       [ 61,  54]])</code></pre>
+<p><strong>scikit-learn의 오분류표는 행이 실제 범주, 열이 예측 범주이다.</strong> 행과 열의 순서는 범주의 정렬 순서(0, 1)이다. 따라서 이진 분류의 오분류표는 다음 위치에 네 수가 놓인다. 교재나 다른 도구에 따라 행과 열을 반대로 그리는 경우가 있으므로, scikit-learn의 출력을 읽을 때에는 이 방향을 기억한다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>열 0: 예측 0</th>
+<th>열 1: 예측 1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>행 0: 실제 0</strong></td>
+<td><code>cm[0, 0]</code> TN</td>
+<td><code>cm[0, 1]</code> FP</td>
+</tr>
+<tr class="even">
+<td><strong>행 1: 실제 1</strong></td>
+<td><code>cm[1, 0]</code> FN</td>
+<td><code>cm[1, 1]</code> TP</td>
+</tr>
+</tbody>
+</table>
+<p>행과 열에 이름을 붙이면 혼동이 줄어든다.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(cm, index<span class="op">=</span>[<span class="st">"actual_0"</span>, <span class="st">"actual_1"</span>], columns<span class="op">=</span>[<span class="st">"pred_0"</span>, <span class="st">"pred_1"</span>])</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>          pred_0  pred_1
+actual_0     450      23
+actual_1      61      54</code></pre>
+<p>실제 유지 473명 가운데 450명을 유지로, 23명을 이탈로 예측하였다. 실제 이탈 115명 가운데 61명을 놓치고(FN) 54명을 찾아냈다(TP). <code>ravel()</code>로 배열을 펼치면 TN, FP, FN, TP의 순서로 꺼낼 수 있고, 이 네 수로 정밀도와 재현율을 다시 계산하면 5.1절과 같다.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>tn, fp, fn, tp <span class="op">=</span> cm.ravel()</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tn, fp, fn, tp)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(tp <span class="op">/</span> (tp <span class="op">+</span> fp), <span class="dv">3</span>), <span class="bu">round</span>(tp <span class="op">/</span> (tp <span class="op">+</span> fn), <span class="dv">3</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>450 23 61 54
+0.701 0.47</code></pre>
+</section>
+<section id="분류-보고서" class="level3">
+<h3 class="anchored" data-anchor-id="분류-보고서">6.2 분류 보고서</h3>
+<p><code>classification_report</code>는 범주마다의 정밀도, 재현율, F1과 개수를 한 번에 문자열로 만든다. 문자열이므로 <code>print</code>로 출력한다.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_valid, pred_log))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>              precision    recall  f1-score   support
+
+           0       0.88      0.95      0.91       473
+           1       0.70      0.47      0.56       115
+
+    accuracy                           0.86       588
+   macro avg       0.79      0.71      0.74       588
+weighted avg       0.85      0.86      0.85       588</code></pre>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>행과 열</th>
+<th>뜻</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>0</code>, <code>1</code> 행</td>
+<td>그 범주를 양성으로 보았을 때의 정밀도, 재현율, F1. <code>1</code> 행의 값이 5.1절의 값이다</td>
+</tr>
+<tr class="even">
+<td><code>support</code></td>
+<td>검증용 데이터에서 그 범주의 실제 개수(473, 115)</td>
+</tr>
+<tr class="odd">
+<td><code>accuracy</code></td>
+<td>정확도. 범주와 관계없는 값이어서 한 칸만 있다</td>
+</tr>
+<tr class="even">
+<td><code>macro avg</code></td>
+<td>두 범주의 값을 단순 평균한 것. 작은 범주도 같은 무게로 반영된다</td>
+</tr>
+<tr class="odd">
+<td><code>weighted avg</code></td>
+<td><code>support</code>로 가중 평균한 것. 큰 범주(0)의 값에 가깝다</td>
+</tr>
+</tbody>
+</table>
+<p>기본 출력은 소수 둘째 자리이다. <code>digits</code>로 자릿수를, <code>target_names</code>로 범주의 이름을 지정한다.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_valid, pred_log, target_names<span class="op">=</span>[<span class="st">"stay"</span>, <span class="st">"churn"</span>], digits<span class="op">=</span><span class="dv">3</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>              precision    recall  f1-score   support
+
+        stay      0.881     0.951     0.915       473
+       churn      0.701     0.470     0.562       115
+
+    accuracy                          0.857       588
+   macro avg      0.791     0.710     0.739       588
+weighted avg      0.846     0.857     0.846       588</code></pre>
+<p>유지(<code>stay</code>) 범주의 재현율은 0.951로 높고, 이탈(<code>churn</code>) 범주의 재현율은 0.470으로 낮다. 모델이 다수 범주는 잘 맞히고 소수 범주는 절반 넘게 놓친다는 것이 한눈에 보인다. <code>weighted avg</code>의 F1(0.846)만 보면 좋은 모델처럼 보이지만, 그 값은 다수 범주의 성적에 끌려 올라간 것이다.</p>
+<p>노트북 1부의 연습 8(오분류표에서 값 꺼내기)과 연습 9(<code>[선택]</code>, 보고서를 딕셔너리로)를 푼다.</p>
+<hr>
+</section>
+</section>
+<section id="범주-불균형과-정확도의-한계" class="level2">
+<h2 class="anchored" data-anchor-id="범주-불균형과-정확도의-한계">7. 범주 불균형과 정확도의 한계</h2>
+<section id="기준-모델" class="level3">
+<h3 class="anchored" data-anchor-id="기준-모델">7.1 기준 모델</h3>
+<p>검증용 데이터의 이탈 비율은 0.196이다. 그렇다면 아무것도 배우지 않고 “모든 회원이 유지(0)한다”고 예측하는 모델의 정확도는 1 - 0.196, 약 0.80이다.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> np.zeros(<span class="bu">len</span>(y_valid), dtype<span class="op">=</span><span class="bu">int</span>)</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"정확도"</span>, <span class="bu">round</span>(accuracy_score(y_valid, base), <span class="dv">3</span>))</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"재현율"</span>, <span class="bu">round</span>(recall_score(y_valid, base), <span class="dv">3</span>))</span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"정밀도"</span>, <span class="bu">round</span>(precision_score(y_valid, base, zero_division<span class="op">=</span><span class="dv">0</span>), <span class="dv">3</span>))</span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"F1    "</span>, <span class="bu">round</span>(f1_score(y_valid, base, zero_division<span class="op">=</span><span class="dv">0</span>), <span class="dv">3</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>정확도 0.804
+재현율 0.0
+정밀도 0.0
+F1     0.0</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>confusion_matrix(y_valid, base)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>array([[473,   0],
+       [115,   0]])</code></pre>
+<p>이 기준 모델은 정확도가 0.804이면서 이탈 회원을 한 명도 찾지 못한다(재현율 0). 이탈로 예측한 회원이 없으므로 정밀도는 분모가 0이 되어 정의되지 않는다. <code>zero_division=0</code>은 이때 경고 대신 0을 돌려주게 하는 인자이다.</p>
+<p>5.3절의 세 모델의 정확도(0.813~0.857)는 이 기준보다 약 1~5%포인트 높을 뿐이다. 범주가 불균형한 자료에서 정확도는 다수 범주를 맞히는 것만으로 높게 나오므로, 정확도만으로는 모델이 소수 범주를 찾아내는지 알 수 없다. 이탈 방지가 목적인 업무에서는 이탈 회원을 찾는 능력(재현율)과, 찾았다고 한 회원이 실제로 이탈하는지(정밀도)를 함께 보아야 한다. F1은 그 둘을 한 값으로 요약한다. 정확도를 보고할 때에는 기준 모델의 정확도를 함께 적는다.</p>
+</section>
+<section id="class_weight" class="level3">
+<h3 class="anchored" data-anchor-id="class_weight">7.2 <code>class_weight</code></h3>
+<p><code>class_weight="balanced"</code>는 학습할 때 범주마다 무게를 달리 주어, 적은 범주의 행이 틀릴 때 더 큰 벌점을 받게 한다. 무게는 <code>전체 행 수 / (범주 수 × 그 범주의 행 수)</code>로 정해지므로, 이 자료의 훈련용 데이터에서 이탈 회원 한 명은 유지 회원 한 명의 약 4.1배의 무게를 갖는다. 로지스틱 회귀, 의사결정나무, 랜덤 포레스트가 모두 이 인자를 받는다.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>log_bal <span class="op">=</span> LogisticRegression(max_iter<span class="op">=</span><span class="dv">1000</span>, class_weight<span class="op">=</span><span class="st">"balanced"</span>)</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>log_bal.fit(X_train_s, y_train)</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>rf_bal <span class="op">=</span> RandomForestClassifier(n_estimators<span class="op">=</span><span class="dv">100</span>, random_state<span class="op">=</span><span class="dv">42</span>, class_weight<span class="op">=</span><span class="st">"balanced"</span>)</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>rf_bal.fit(X_train_s, y_train)</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>pred_log_bal <span class="op">=</span> log_bal.predict(X_valid_s)</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>pred_rf_bal <span class="op">=</span> rf_bal.predict(X_valid_s)</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>scores_bal <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"accuracy"</span>: [accuracy_score(y_valid, pred_log_bal), accuracy_score(y_valid, pred_rf_bal)],</span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"precision"</span>: [precision_score(y_valid, pred_log_bal), precision_score(y_valid, pred_rf_bal)],</span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"recall"</span>: [recall_score(y_valid, pred_log_bal), recall_score(y_valid, pred_rf_bal)],</span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"f1"</span>: [f1_score(y_valid, pred_log_bal), f1_score(y_valid, pred_rf_bal)],</span>
+<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a>}, index<span class="op">=</span>[<span class="st">"LogisticRegression_bal"</span>, <span class="st">"RandomForestClassifier_bal"</span>])</span>
+<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a>scores_bal.<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>                            accuracy  precision  recall     f1
+LogisticRegression_bal         0.760      0.436   0.765  0.555
+RandomForestClassifier_bal     0.844      0.612   0.548  0.578</code></pre>
+<p>5.3절과 비교하면 다음과 같다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>모델</th>
+<th>재현율 (가중치 없음 → balanced)</th>
+<th>정밀도</th>
+<th>F1</th>
+<th>정확도</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>로지스틱 회귀</td>
+<td>0.470 → 0.765</td>
+<td>0.701 → 0.436</td>
+<td>0.562 → 0.555</td>
+<td>0.857 → 0.760</td>
+</tr>
+<tr class="even">
+<td>랜덤 포레스트</td>
+<td>0.261 → 0.548</td>
+<td>0.714 → 0.612</td>
+<td>0.382 → 0.578</td>
+<td>0.835 → 0.844</td>
+</tr>
+</tbody>
+</table>
+<p>무게를 주면 모델이 이탈로 예측하는 회원이 늘어 재현율이 크게 오르고 정밀도는 내려간다. 로지스틱 회귀는 정확도가 0.760으로 기준 모델(0.804)보다 낮아졌지만 실제 이탈 회원의 76.5%를 찾아낸다. 업무의 목적이 이탈 회원을 놓치지 않는 것이라면 정확도가 낮아진 이 모델이 더 쓸모 있을 수 있다. 어느 모델이 나은가는 지표의 선택에 달려 있다는 점을 다시 확인할 수 있다.</p>
+</section>
+<section id="임계값" class="level3">
+<h3 class="anchored" data-anchor-id="임계값">7.3 임계값</h3>
+<p><code>predict</code>는 확률 0.5를 기준으로 범주를 정한다. 확률을 직접 받아 기준을 낮추면 같은 모델로도 재현율을 올릴 수 있다.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>pred_03 <span class="op">=</span> (proba_log[:, <span class="dv">1</span>] <span class="op">&gt;=</span> <span class="fl">0.3</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"재현율"</span>, <span class="bu">round</span>(recall_score(y_valid, pred_03), <span class="dv">3</span>))</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"정밀도"</span>, <span class="bu">round</span>(precision_score(y_valid, pred_03), <span class="dv">3</span>))</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"F1    "</span>, <span class="bu">round</span>(f1_score(y_valid, pred_03), <span class="dv">3</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>재현율 0.696
+정밀도 0.552
+F1     0.615</code></pre>
+<p>임계값을 0.3으로 낮추자 재현율이 0.470에서 0.696으로 오르고 정밀도는 0.701에서 0.552로 내려갔다. F1은 0.615로 기본 임계값일 때보다 높다. 임계값을 바꾸는 것은 모델을 다시 학습시키는 것이 아니라 확률을 범주로 바꾸는 규칙만 바꾸는 것이다. 시험에서는 가이드가 임계값을 지정하지 않는 한 <code>predict</code>의 결과를 쓴다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>방법</th>
+<th>하는 일</th>
+<th>재현율</th>
+<th>정밀도</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>class_weight="balanced"</code></td>
+<td>학습할 때 소수 범주에 무게</td>
+<td>오른다</td>
+<td>내려간다</td>
+</tr>
+<tr class="even">
+<td>임계값을 낮춘다</td>
+<td>학습한 확률을 범주로 바꾸는 기준을 낮춘다</td>
+<td>오른다</td>
+<td>내려간다</td>
+</tr>
+<tr class="odd">
+<td>층화 분할</td>
+<td>분할 후에도 범주 비율을 유지</td>
+<td>(평가를 안정시킨다)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>노트북 1부의 연습 10을 푼다.</p>
+<hr>
+</section>
+</section>
+<section id="중심-실습-분류-모델-3종의-지표-비교표" class="level2">
+<h2 class="anchored" data-anchor-id="중심-실습-분류-모델-3종의-지표-비교표">8. 중심 실습: 분류 모델 3종의 지표 비교표</h2>
+<p>노트북 <code>AICE_07주차_실습_학생용.ipynb</code>의 2부에서 수행한다. 이탈 여부를 예측하는 분류 모델 3종을 가이드의 설정으로 학습시키고, 지표 비교표 한 장과 F1이 가장 높은 모델의 이름을 답 변수에 저장한다. 분류용 분할(단계 2)도 직접 작성한다.</p>
+<p><strong>준비.</strong> 단계 1의 셀을 실행하여 인코딩본 <code>df_enc</code>를 만든다. 출력이 <code>(2940, 26)</code>인지 확인한다.</p>
+<p><strong>절차.</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>단계</th>
+<th>할 일</th>
+<th>답을 담을 변수</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>3~4장의 처리 재현</td>
+<td><code>df_enc</code></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>분류용 층화 분할(0.2, 시드 42)과 스케일링</td>
+<td><code>X_train_s</code>, <code>X_valid_s</code>, <code>y_train</code>, <code>y_valid</code></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>로지스틱 회귀(최대 반복 1000), 의사결정나무(최대 깊이 5, 시드 42), 랜덤 포레스트(나무 100, 시드 42)의 학습과 예측</td>
+<td><code>pred_log</code>, <code>pred_tree</code>, <code>pred_rf</code></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>지표 비교표(<code>accuracy</code>, <code>precision</code>, <code>recall</code>, <code>f1</code>)</td>
+<td><code>scores</code></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>F1이 가장 높은 모델의 이름, 기준 모델의 정확도</td>
+<td><code>best_f1</code>, <code>acc_base</code></td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>자가 채점 셀의 실행</td>
+<td>(출력 <code>통과</code>)</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>값의 해석 두 문장</td>
+<td>(주석)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>완료 기준.</strong> 자가 채점 셀이 <code>통과</code>를 출력한다. 자가 채점 셀은 검증용 입력의 크기, 검증용 이탈 비율(층화 여부), 비교표의 열 이름과 세 모델의 지표 12개(소수 셋째 자리), <code>best_f1</code>, <code>acc_base</code>를 검사한다.</p>
+<p><strong>값의 해석.</strong> 단계 7에서 다음 두 물음에 한 문장씩 답한다.</p>
+<ol type="1">
+<li>정확도가 가장 높은 모델과 F1이 가장 높은 모델이 같은가. 기준 모델의 정확도와 비교하여, 이 자료에서 정확도만으로 모델을 고르면 안 되는 이유를 쓴다.</li>
+<li>랜덤 포레스트의 재현율이 뜻하는 바를 업무의 말로 쓴다.</li>
+</ol>
+<p><strong>제출물.</strong> 실행을 마친 노트북 파일. 자가 채점 셀의 <code>통과</code>와 단계 7의 두 문장이 있어야 한다.</p>
+<hr>
+</section>
+<section id="시간-제한-문항" class="level2">
+<h2 class="anchored" data-anchor-id="시간-제한-문항">9. 시간 제한 문항</h2>
+<p>제한 시간은 15분이다. 노트북의 3부에서 푼다.</p>
+<p>가상의 소액 대출 자료 <code>loans.csv</code>로 연체 여부(<code>default</code>, 1 연체)를 예측한다. 아래의 준비 셀은 결측치 대체, 인코딩, 층화 분할, 스케일링을 미리 수행한다. 먼저 실행한 뒤 문항을 푼다. 공식 문서 사이트만 참고한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>열</th>
+<th>뜻</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>age</code>, <code>income</code>, <code>loan_amount</code>, <code>term_months</code></td>
+<td>나이, 월 소득(만 원), 대출 금액(만 원), 대출 기간(개월)</td>
+</tr>
+<tr class="even">
+<td><code>credit_score</code>, <code>past_delay</code></td>
+<td>신용 점수, 과거 연체 횟수</td>
+</tr>
+<tr class="odd">
+<td><code>employment</code>, <code>home</code></td>
+<td>고용 형태(salaried, self, none), 주거 형태(own, rent, family)</td>
+</tr>
+<tr class="even">
+<td><code>default</code></td>
+<td>연체 여부(1 연체, 0 정상)</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> DecisionTreeClassifier</span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier</span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>DATA <span class="op">=</span> <span class="st">"../kit/data/AICE_공통/"</span></span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>loans <span class="op">=</span> pd.read_csv(DATA <span class="op">+</span> <span class="st">"loans.csv"</span>)</span>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a>loans[<span class="st">"credit_score"</span>] <span class="op">=</span> loans[<span class="st">"credit_score"</span>].fillna(loans[<span class="st">"credit_score"</span>].median())</span>
+<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a>loans[<span class="st">"home"</span>] <span class="op">=</span> loans[<span class="st">"home"</span>].fillna(loans[<span class="st">"home"</span>].mode()[<span class="dv">0</span>])</span>
+<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a>loans <span class="op">=</span> loans.drop(columns<span class="op">=</span>[<span class="st">"loan_id"</span>])</span>
+<span id="cb58-13"><a href="#cb58-13" aria-hidden="true" tabindex="-1"></a>loans <span class="op">=</span> pd.get_dummies(loans, columns<span class="op">=</span>[<span class="st">"employment"</span>, <span class="st">"home"</span>], dtype<span class="op">=</span><span class="bu">int</span>)</span>
+<span id="cb58-14"><a href="#cb58-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-15"><a href="#cb58-15" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> loans.drop(columns<span class="op">=</span>[<span class="st">"default"</span>])</span>
+<span id="cb58-16"><a href="#cb58-16" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> loans[<span class="st">"default"</span>]</span>
+<span id="cb58-17"><a href="#cb58-17" aria-hidden="true" tabindex="-1"></a>X_train, X_valid, y_train, y_valid <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>, stratify<span class="op">=</span>y)</span>
+<span id="cb58-18"><a href="#cb58-18" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
+<span id="cb58-19"><a href="#cb58-19" aria-hidden="true" tabindex="-1"></a>X_train_s <span class="op">=</span> scaler.fit_transform(X_train)</span>
+<span id="cb58-20"><a href="#cb58-20" aria-hidden="true" tabindex="-1"></a>X_valid_s <span class="op">=</span> scaler.transform(X_valid)</span>
+<span id="cb58-21"><a href="#cb58-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_train_s.shape, X_valid_s.shape, <span class="bu">round</span>(y_valid.mean(), <span class="dv">3</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="문항-1-빈칸-채우기" class="level3">
+<h3 class="anchored" data-anchor-id="문항-1-빈칸-채우기">문항 1 (빈칸 채우기)</h3>
+<p>최대 깊이 5, 난수 시드 42의 의사결정나무 분류 모델 <code>tree_t</code>의 검증용 정밀도와 재현율을 소수 셋째 자리로 출력한다. 빈칸 <code>___</code>을 알맞은 지표 함수의 이름으로 채운다.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> ___, ___</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>tree_t <span class="op">=</span> DecisionTreeClassifier(max_depth<span class="op">=</span><span class="dv">5</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>tree_t.fit(X_train_s, y_train)</span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>pred_tree_t <span class="op">=</span> tree_t.predict(X_valid_s)</span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"정밀도"</span>, <span class="bu">round</span>(___(y_valid, pred_tree_t), <span class="dv">3</span>))</span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"재현율"</span>, <span class="bu">round</span>(___(y_valid, pred_tree_t), <span class="dv">3</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="문항-2-오류-정정" class="level3">
+<h3 class="anchored" data-anchor-id="문항-2-오류-정정">문항 2 (오류 정정)</h3>
+<p>아래 코드는 최대 반복 1000의 로지스틱 회귀 모델 <code>log_t</code>의 검증용 F1을 <code>ans_t2</code>에 저장하려 한다. 실행하면 오류가 난다. 오류를 정정하여 실행한다.</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> f1_score</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>log_t <span class="op">=</span> LogisticRegression(max_iter<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>log_t.fit(X_train_s, y_train)</span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>pred_log_t <span class="op">=</span> log_t.predict_proba(X_valid_s)</span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>ans_t2 <span class="op">=</span> f1_score(y_valid, pred_log_t)</span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(ans_t2, <span class="dv">3</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="문항-3-답-변수" class="level3">
+<h3 class="anchored" data-anchor-id="문항-3-답-변수">문항 3 (답 변수)</h3>
+<p>나무의 수 100, 난수 시드 42의 랜덤 포레스트 분류 모델 <code>rf_t</code>를 학습시킨다. 문항 1의 <code>tree_t</code>, 문항 2의 <code>log_t</code>, <code>rf_t</code> 가운데 검증용 F1이 가장 높은 모델의 클래스 이름(<code>"DecisionTreeClassifier"</code>, <code>"LogisticRegression"</code>, <code>"RandomForestClassifier"</code> 가운데 하나)을 <code>ans_t3</code>에 저장한다.</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 여기에 코드를 작성한다</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>ans_t3 <span class="op">=</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="정리" class="level2">
+<h2 class="anchored" data-anchor-id="정리">10. 정리</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>주제</th>
+<th>기억할 것</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>분류용 분할</td>
+<td><code>train_test_split(X, y, test_size=…, random_state=…, stratify=y)</code>. 층화 조건을 빠뜨려도 오류가 나지 않는다</td>
+</tr>
+<tr class="even">
+<td>로지스틱 회귀</td>
+<td><code>LogisticRegression(max_iter=1000)</code>. 수렴 경고가 나오면 스케일링과 <code>max_iter</code>를 확인한다</td>
+</tr>
+<tr class="odd">
+<td>확률</td>
+<td><code>predict_proba(X)</code>는 (행 수, 범주 수). 열의 순서는 <code>classes_</code>. 범주 1의 확률은 <code>[:, 1]</code></td>
+</tr>
+<tr class="even">
+<td>나무와 숲</td>
+<td><code>DecisionTreeClassifier(criterion=…, max_depth=…)</code>, <code>RandomForestClassifier(n_estimators=…)</code></td>
+</tr>
+<tr class="odd">
+<td>XGBoost</td>
+<td><code>from xgboost import XGBClassifier</code>. <code>n_estimators</code>, <code>learning_rate</code>, <code>max_depth</code>. 형식은 scikit-learn과 같다</td>
+</tr>
+<tr class="even">
+<td>지표</td>
+<td><code>accuracy_score</code>, <code>precision_score</code>, <code>recall_score</code>, <code>f1_score</code>. 인자는 <code>(y_valid, predict의 결과)</code></td>
+</tr>
+<tr class="odd">
+<td>오분류표</td>
+<td><code>confusion_matrix(y_valid, pred)</code>. 행이 실제, 열이 예측. <code>cm[1, 0]</code>은 놓친 양성(FN)</td>
+</tr>
+<tr class="even">
+<td>분류 보고서</td>
+<td><code>print(classification_report(y_valid, pred))</code>. <code>support</code>는 실제 개수</td>
+</tr>
+<tr class="odd">
+<td>불균형</td>
+<td>모두 다수 범주로 예측하는 기준 모델의 정확도와 비교한다. 재현율과 F1을 함께 본다. <code>class_weight="balanced"</code></td>
+</tr>
+</tbody>
+</table>
+<p>다음 장에서는 본 장의 랜덤 포레스트에 교차 검증과 격자 탐색을 적용하여 하이퍼파라미터를 고르고, 변수 중요도를 표와 그래프로 나타낸다.</p>
+<hr>
+</section>
+<section id="참고-자료" class="level2">
+<h2 class="anchored" data-anchor-id="참고-자료">참고 자료</h2>
+<p>공식 문서의 확인일은 2026-11-13이다. 표시한 항목은 2026-11-14에 추가로 확인하였다.</p>
+<ul>
+<li>scikit-learn, <code>sklearn.model_selection.train_test_split</code>. <a href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html" class="uri">https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html</a></li>
+<li>scikit-learn, Preprocessing data. <a href="https://scikit-learn.org/stable/modules/preprocessing.html" class="uri">https://scikit-learn.org/stable/modules/preprocessing.html</a></li>
+<li>scikit-learn, <code>sklearn.linear_model.LogisticRegression</code>. <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html" class="uri">https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html</a></li>
+<li>scikit-learn, <code>sklearn.tree.DecisionTreeClassifier</code>. <a href="https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html" class="uri">https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html</a></li>
+<li>scikit-learn, <code>sklearn.ensemble.RandomForestClassifier</code>(<code>class_weight</code>의 <code>"balanced"</code> 계산식). <a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html" class="uri">https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html</a></li>
+<li>scikit-learn, Decision Trees. <a href="https://scikit-learn.org/stable/modules/tree.html" class="uri">https://scikit-learn.org/stable/modules/tree.html</a></li>
+<li>scikit-learn, Ensembles. <a href="https://scikit-learn.org/stable/modules/ensemble.html" class="uri">https://scikit-learn.org/stable/modules/ensemble.html</a></li>
+<li>scikit-learn, Metrics and scoring. <a href="https://scikit-learn.org/stable/modules/model_evaluation.html" class="uri">https://scikit-learn.org/stable/modules/model_evaluation.html</a></li>
+<li>scikit-learn, <code>sklearn.metrics.confusion_matrix</code>(행이 실제, 열이 예측, 2026-11-14 확인). <a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.confusion_matrix.html" class="uri">https://scikit-learn.org/stable/modules/generated/sklearn.metrics.confusion_matrix.html</a></li>
+<li>scikit-learn, <code>sklearn.metrics.classification_report</code>(<code>digits</code>, <code>target_names</code>, <code>output_dict</code>, 2026-11-14 확인). <a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html" class="uri">https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html</a></li>
+<li>scikit-learn, <code>sklearn.metrics.precision_score</code>(<code>pos_label</code>, <code>zero_division</code>, 2026-11-14 확인). <a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_score.html" class="uri">https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_score.html</a></li>
+<li>XGBoost, Using the Scikit-Learn Estimator Interface. <a href="https://xgboost.readthedocs.io/en/stable/python/sklearn_estimator.html" class="uri">https://xgboost.readthedocs.io/en/stable/python/sklearn_estimator.html</a></li>
+<li>XGBoost, Python API Reference(<code>XGBClassifier</code>의 <code>n_estimators</code>, <code>learning_rate</code>, <code>max_depth</code>, <code>n_jobs</code>). <a href="https://xgboost.readthedocs.io/en/stable/python/python_api.html" class="uri">https://xgboost.readthedocs.io/en/stable/python/python_api.html</a></li>
+<li>XGBoost, XGBoost Parameters(<code>eta</code>와 <code>max_depth</code>의 기본값, 2026-11-14 확인). <a href="https://xgboost.readthedocs.io/en/stable/parameter.html" class="uri">https://xgboost.readthedocs.io/en/stable/parameter.html</a></li>
+</ul>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> 맨 위로</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "복사완료!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "복사완료!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../courses/aice/book/AICE_06주차_학생용.html" class="pagination-link" aria-label="[6주차] 머신러닝 (1): 회귀 모델과 평가">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">[6주차] 머신러닝 (1): 회귀 모델과 평가</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../courses/aice/book/AICE_08주차_학생용.html" class="pagination-link" aria-label="[8주차] 모델 성능 개선: 교차 검증, 격자 탐색, 변수 중요도">
+        <span class="nav-page-text">[8주차] 모델 성능 개선: 교차 검증, 격자 탐색, 변수 중요도</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>안중호 교수 강의 교재 · 2026년 2학기판</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

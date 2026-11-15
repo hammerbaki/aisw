@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>[5주차] 데이터 분할과 스케일링 – 안중호 교수 강의 교재</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../courses/aice/book/AICE_06주차_학생용.html" rel="next">
+<link href="../../../courses/aice/book/AICE_04주차_학생용.html" rel="prev">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-dcf116883d0d3758c9131f5ede2fa7e1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">안중호 교수 강의 교재</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="검색"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">커리큘럼</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/semesters/index.html">
+ <span class="dropdown-text">전체 커리큘럼</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../docs/semesters/2026-2/index.html">
+ <span class="dropdown-text">2026년 2학기</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../docs/subjects/llm-ai/index.html">
+ <span class="dropdown-text">교재 · LLM AI 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/subjects/python/index.html">
+ <span class="dropdown-text">교재 · 파이썬 실습</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../courses/index.html">
+ <span class="dropdown-text">2027학년도 교재 (준비 중)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/llm-service/index.html">
+ <span class="dropdown-text">· LLM 서비스 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/office/index.html">
+ <span class="dropdown-text">· 컴퓨터활용</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/adsp/index.html">
+ <span class="dropdown-text">· 빅데이터개론</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/ai-agent/index.html">
+ <span class="dropdown-text">· AI에이전트 기획 및 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/aice/index.html">
+ <span class="dropdown-text">· 비즈니스빅데이터분석</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/about/교수_소개.html"> 
+<span class="menu-text">교수 소개</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../courses/aice/book/AICE_00주차_학생용.html">교재</a></li><li class="breadcrumb-item"><a href="../../../courses/aice/book/AICE_05주차_학생용.html">[5주차] 데이터 분할과 스케일링</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">비즈니스빅데이터분석</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">교재</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_00주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[0주차] 오리엔테이션</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_01주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[1주차] 데이터 불러오기와 구성 파악</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_02주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[2주차] 데이터 시각화: 분포와 관계</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_03주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[3주차] 결측치·이상치 처리와 열 정리</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_04주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[4주차] 범주형 데이터와 인코딩</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_05주차_학생용.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">[5주차] 데이터 분할과 스케일링</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_06주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[6주차] 머신러닝 (1): 회귀 모델과 평가</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_07주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[7주차] 머신러닝 (2): 분류 모델과 평가</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_08주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[8주차] 모델 성능 개선: 교차 검증, 격자 탐색, 변수 중요도</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_09주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[9주차] 딥러닝 (1): 신경망의 구성과 학습</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_10주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[10주차] 딥러닝 (2): 학습 제어와 학습 곡선</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_11주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[11주차] 응시 전략과 답안 규칙</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/aice/book/AICE_부록_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">부록</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">이 장의 차례</h2>
+   
+  <ul>
+  <li><a href="#학습-목표" id="toc-학습-목표" class="nav-link active" data-scroll-target="#학습-목표">학습 목표</a></li>
+  <li><a href="#준비-사항" id="toc-준비-사항" class="nav-link" data-scroll-target="#준비-사항">준비 사항</a></li>
+  <li><a href="#입력과-목표의-분리" id="toc-입력과-목표의-분리" class="nav-link" data-scroll-target="#입력과-목표의-분리">1. 입력과 목표의 분리</a>
+  <ul class="collapse">
+  <li><a href="#x와-y" id="toc-x와-y" class="nav-link" data-scroll-target="#x와-y">1.1 <code>X</code>와 <code>y</code></a></li>
+  <li><a href="#데이터프레임과-시리즈" id="toc-데이터프레임과-시리즈" class="nav-link" data-scroll-target="#데이터프레임과-시리즈">1.2 데이터프레임과 시리즈</a></li>
+  </ul></li>
+  <li><a href="#분할-함수의-인자와-반환-순서" id="toc-분할-함수의-인자와-반환-순서" class="nav-link" data-scroll-target="#분할-함수의-인자와-반환-순서">2. 분할 함수의 인자와 반환 순서</a>
+  <ul class="collapse">
+  <li><a href="#train_test_split" id="toc-train_test_split" class="nav-link" data-scroll-target="#train_test_split">2.1 <code>train_test_split</code></a></li>
+  <li><a href="#주요-인자" id="toc-주요-인자" class="nav-link" data-scroll-target="#주요-인자">2.2 주요 인자</a></li>
+  <li><a href="#반환-순서" id="toc-반환-순서" class="nav-link" data-scroll-target="#반환-순서">2.3 반환 순서</a></li>
+  </ul></li>
+  <li><a href="#층화-분할" id="toc-층화-분할" class="nav-link" data-scroll-target="#층화-분할">3. 층화 분할</a>
+  <ul class="collapse">
+  <li><a href="#범주-비율이-흔들리는-문제" id="toc-범주-비율이-흔들리는-문제" class="nav-link" data-scroll-target="#범주-비율이-흔들리는-문제">3.1 범주 비율이 흔들리는 문제</a></li>
+  <li><a href="#stratify" id="toc-stratify" class="nav-link" data-scroll-target="#stratify">3.2 <code>stratify</code></a></li>
+  <li><a href="#층화가-필요한-경우와-쓸-수-없는-경우" id="toc-층화가-필요한-경우와-쓸-수-없는-경우" class="nav-link" data-scroll-target="#층화가-필요한-경우와-쓸-수-없는-경우">3.3 층화가 필요한 경우와 쓸 수 없는 경우</a></li>
+  </ul></li>
+  <li><a href="#표준화-최소최대-정규화-로버스트-스케일링" id="toc-표준화-최소최대-정규화-로버스트-스케일링" class="nav-link" data-scroll-target="#표준화-최소최대-정규화-로버스트-스케일링">4. 표준화, 최소·최대 정규화, 로버스트 스케일링</a>
+  <ul class="collapse">
+  <li><a href="#세-가지-계산-방식" id="toc-세-가지-계산-방식" class="nav-link" data-scroll-target="#세-가지-계산-방식">4.1 세 가지 계산 방식</a></li>
+  <li><a href="#이상치에-대한-민감도" id="toc-이상치에-대한-민감도" class="nav-link" data-scroll-target="#이상치에-대한-민감도">4.2 이상치에 대한 민감도</a></li>
+  <li><a href="#공통-자료의-표준화" id="toc-공통-자료의-표준화" class="nav-link" data-scroll-target="#공통-자료의-표준화">4.3 공통 자료의 표준화</a></li>
+  <li><a href="#열-이름-되살리기" id="toc-열-이름-되살리기" class="nav-link" data-scroll-target="#열-이름-되살리기">4.4 열 이름 되살리기</a></li>
+  <li><a href="#최소최대-정규화와-검증용-데이터의-범위" id="toc-최소최대-정규화와-검증용-데이터의-범위" class="nav-link" data-scroll-target="#최소최대-정규화와-검증용-데이터의-범위">4.5 최소·최대 정규화와 검증용 데이터의 범위</a></li>
+  </ul></li>
+  <li><a href="#적합과-변환의-구분" id="toc-적합과-변환의-구분" class="nav-link" data-scroll-target="#적합과-변환의-구분">5. 적합과 변환의 구분</a>
+  <ul class="collapse">
+  <li><a href="#fit이-배우는-것" id="toc-fit이-배우는-것" class="nav-link" data-scroll-target="#fit이-배우는-것">5.1 <code>fit</code>이 배우는 것</a></li>
+  <li><a href="#표준편차의-두-가지-계산" id="toc-표준편차의-두-가지-계산" class="nav-link" data-scroll-target="#표준편차의-두-가지-계산">5.2 표준편차의 두 가지 계산</a></li>
+  <li><a href="#검증용-데이터의-변환" id="toc-검증용-데이터의-변환" class="nav-link" data-scroll-target="#검증용-데이터의-변환">5.3 검증용 데이터의 변환</a></li>
+  </ul></li>
+  <li><a href="#정보-누출" id="toc-정보-누출" class="nav-link" data-scroll-target="#정보-누출">6. 정보 누출</a>
+  <ul class="collapse">
+  <li><a href="#검증용-데이터로-적합시키는-코드" id="toc-검증용-데이터로-적합시키는-코드" class="nav-link" data-scroll-target="#검증용-데이터로-적합시키는-코드">6.1 검증용 데이터로 적합시키는 코드</a></li>
+  <li><a href="#왜-문제인가" id="toc-왜-문제인가" class="nav-link" data-scroll-target="#왜-문제인가">6.2 왜 문제인가</a></li>
+  </ul></li>
+  <li><a href="#중심-실습-회귀용-훈련검증-데이터의-작성과-스케일링" id="toc-중심-실습-회귀용-훈련검증-데이터의-작성과-스케일링" class="nav-link" data-scroll-target="#중심-실습-회귀용-훈련검증-데이터의-작성과-스케일링">7. 중심 실습: 회귀용 훈련·검증 데이터의 작성과 스케일링</a></li>
+  <li><a href="#시간-제한-문항" id="toc-시간-제한-문항" class="nav-link" data-scroll-target="#시간-제한-문항">8. 시간 제한 문항</a>
+  <ul class="collapse">
+  <li><a href="#문항-1-빈칸-채우기" id="toc-문항-1-빈칸-채우기" class="nav-link" data-scroll-target="#문항-1-빈칸-채우기">문항 1 (빈칸 채우기)</a></li>
+  <li><a href="#문항-2-오류-정정" id="toc-문항-2-오류-정정" class="nav-link" data-scroll-target="#문항-2-오류-정정">문항 2 (오류 정정)</a></li>
+  <li><a href="#문항-3-답-변수" id="toc-문항-3-답-변수" class="nav-link" data-scroll-target="#문항-3-답-변수">문항 3 (답 변수)</a></li>
+  </ul></li>
+  <li><a href="#정리" id="toc-정리" class="nav-link" data-scroll-target="#정리">9. 정리</a></li>
+  <li><a href="#참고-자료" id="toc-참고-자료" class="nav-link" data-scroll-target="#참고-자료">참고 자료</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../courses/aice/book/AICE_00주차_학생용.html">교재</a></li><li class="breadcrumb-item"><a href="../../../courses/aice/book/AICE_05주차_학생용.html">[5주차] 데이터 분할과 스케일링</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">[5주차] 데이터 분할과 스케일링</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<header class="chapter-head">
+<p class="chapter-part">비즈니스빅데이터분석</p>
+<p class="chapter-no"><span class="num">5</span><span class="unit">주차</span></p>
+<p class="chapter-title">데이터 분할과 스케일링</p>
+</header>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>2027학년도 「비즈니스빅데이터분석」의 준비 중인 교재입니다. 편집 상태를 검토하기 위해 미리 공개한 것으로, 수업 전에 내용과 순서가 바뀔 수 있습니다.</p>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>학사 6주차 · 교재 05 · 2부 데이터 전처리 · 출제 분야: 데이터 전처리 &gt; Train/Test 데이터셋 분할, 데이터 스케일링</p>
+</blockquote>
+<p>모델의 성능은 학습에 쓰지 않은 데이터로 재야 한다. 학습에 쓴 데이터로 재면 모델이 답을 외웠는지 규칙을 배웠는지를 구별할 수 없기 때문이다. 그래서 모델링 전에 데이터를 훈련용과 검증용으로 나눈다. 또 열마다 단위와 범위가 다르면(나이는 수십, 가입 기간은 백 단위) 거리나 계수를 쓰는 모델이 큰 값의 열에 끌려가므로, 열의 범위를 맞추는 스케일링을 한다. 시험지의 전처리 문항은 이 두 일을 “목표 열을 분리하고, 검증용 20%, 난수 시드 42로 분할하라”, “훈련용 데이터로 적합시킨 스케일러로 변환하라”와 같은 가이드로 묻는다.</p>
+<p>본 장은 입력과 목표의 분리, <code>train_test_split</code>의 인자와 반환 순서, 층화 분할, 세 가지 스케일러의 계산과 차이, 적합과 변환의 구분, 정보 누출을 다룬다. 중심 실습에서는 4장의 인코딩본 <code>df_enc</code>에서 연간 구매액을 예측하는 문제의 훈련용·검증용 데이터 네 덩어리를 만들고 표준화한다. 그 결과는 6장(회귀 모델)의 입력이 된다. 이탈 여부를 예측하는 분류 문제의 분할은 7장의 첫 절에서 같은 절차로 다시 한다.</p>
+<hr>
+<section id="학습-목표" class="level2">
+<h2 class="anchored" data-anchor-id="학습-목표">학습 목표</h2>
+<ol type="1">
+<li>데이터프레임에서 목표 열을 분리하여 입력 <code>X</code>와 목표 <code>y</code>를 만들고, 두 변수의 형태(데이터프레임과 시리즈)를 구분한다.</li>
+<li><code>train_test_split</code>의 <code>test_size</code>, <code>random_state</code>, <code>shuffle</code> 인자를 지정하여 분할하고, 반환되는 네 덩어리의 순서를 지킨다.</li>
+<li>범주형 목표에서 층화 분할(<code>stratify</code>)이 필요한 까닭을 설명하고, 분할 후의 범주 비율을 <code>value_counts(normalize=True)</code>로 확인한다.</li>
+<li>표준화, 최소·최대 정규화, 로버스트 스케일링의 계산 방식을 설명하고, 이상치에 대한 민감도를 비교한다.</li>
+<li><code>fit</code>, <code>transform</code>, <code>fit_transform</code>의 역할을 구분하여, 스케일러를 훈련용 데이터로만 적합시키고 검증용 데이터에는 변환만 적용한다.</li>
+<li>검증용 데이터로 적합시키는 코드가 왜 정보 누출인지 설명하고, 그런 코드를 찾아 정정한다.</li>
+</ol>
+</section>
+<section id="준비-사항" class="level2">
+<h2 class="anchored" data-anchor-id="준비-사항">준비 사항</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>실습 노트북</td>
+<td><code>AICE_05주차_실습_학생용.ipynb</code></td>
+</tr>
+<tr class="even">
+<td>자료</td>
+<td><code>customers.csv</code>(학기 공통 자료. 노트북이 3~4장의 처리 과정으로 인코딩본을 다시 만든다), <code>laptops.csv</code>(시간 제한 문항용)</td>
+</tr>
+<tr class="odd">
+<td>앞 장과의 연계</td>
+<td>3장 3.4절(사분위수 범위), 4장의 인코딩본 <code>df_enc</code>(2940행, 26열, 문자열 열 0)</td>
+</tr>
+<tr class="even">
+<td>앞 과목과의 연계</td>
+<td>「빅데이터 개론」 10장(분할을 한 번 수행해 봄), 「파이썬 기초」 8장(이름을 지정하는 호출), 8·11장(튜플과 여러 값 받기)</td>
+</tr>
+<tr class="odd">
+<td>실습 환경</td>
+<td>접속과 설치는 부록 A를 따른다</td>
+</tr>
+</tbody>
+</table>
+<p>본 장의 예제는 모두 4장의 인코딩본 <code>df_enc</code>를 사용한다. 노트북 1부의 첫 셀이 3~4장의 처리 과정을 다시 실행하여 <code>df_enc</code>를 만든다. <code>df_enc</code>의 열은 입력 24개와 목표 2개(<code>annual_spend</code>, <code>churn</code>)이다.</p>
+<hr>
+</section>
+<section id="입력과-목표의-분리" class="level2">
+<h2 class="anchored" data-anchor-id="입력과-목표의-분리">1. 입력과 목표의 분리</h2>
+<section id="x와-y" class="level3">
+<h3 class="anchored" data-anchor-id="x와-y">1.1 <code>X</code>와 <code>y</code></h3>
+<p>scikit-learn의 모델과 분할 함수는 입력과 목표를 따로 받는다. 관례상 입력은 대문자 <code>X</code>, 목표는 소문자 <code>y</code>로 쓴다. 입력은 여러 열이므로 행렬(대문자), 목표는 한 열이므로 벡터(소문자)라는 수학의 표기에서 온 관례이다.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df_enc.drop(columns<span class="op">=</span>[<span class="st">"annual_spend"</span>, <span class="st">"churn"</span>])</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df_enc[<span class="st">"annual_spend"</span>]</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X.shape, y.shape)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>(2940, 24) (2940,)</code></pre>
+<p>입력은 <code>drop</code>으로 목표 열을 뺀 나머지이고, 목표는 목표 열 하나를 고른 것이다. 공통 자료에는 목표 열이 둘이다. 연간 구매액을 예측할 때에는 <code>churn</code>도 입력에서 뺀다. 다음 분기의 이탈 여부는 예측하는 시점에 알 수 없는 미래의 정보이기 때문이다. 반대로 이탈 여부를 예측할 때(7장)에는 <code>annual_spend</code>를 뺀다. 목표 열 하나를 입력에 남겨 두면 모델이 그 열에서 답을 그대로 읽어 성능이 실제보다 높게 나온다.</p>
+</section>
+<section id="데이터프레임과-시리즈" class="level3">
+<h3 class="anchored" data-anchor-id="데이터프레임과-시리즈">1.2 데이터프레임과 시리즈</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(X).<span class="va">__name__</span>, <span class="bu">type</span>(y).<span class="va">__name__</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_enc[[<span class="st">"annual_spend"</span>]].shape)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>DataFrame Series
+(2940, 1)</code></pre>
+<p><code>X</code>는 데이터프레임이고 크기는 (2940, 24)이다. <code>y</code>는 시리즈이고 크기는 (2940,)이다. 쉼표 뒤가 빈 것은 1차원이라는 뜻이다. 대괄호를 두 겹으로 써서 <code>df_enc[["annual_spend"]]</code>로 고르면 열 하나짜리 데이터프레임 (2940, 1)이 된다. scikit-learn의 모델은 목표를 1차원으로 받는 것이 표준이며, 2차원 목표를 주면 경고를 내는 모델이 있다. 목표는 대괄호 한 겹으로 고른다.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>X.columns</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>Index(['age', 'gender', 'grade', 'tenure_months', 'visits_per_month', 'avg_session_min', 'cart_items',
+       'coupon_use_rate', 'app_user', 'cs_calls', 'last_login_days', 'marketing_agree', 'region_Busan',
+       'region_Daegu', 'region_Daejeon', 'region_Gwangju', 'region_Gyeonggi', 'region_Incheon',
+       'region_Other', 'region_Seoul', 'payment_Card', 'payment_Mobile', 'payment_Point',
+       'payment_Transfer'],
+      dtype='str')</code></pre>
+<p>입력의 24개 열에 두 목표 열이 없는 것을 확인한다. 원핫 열(<code>region_…</code>, <code>payment_…</code>)과 <code>map</code>으로 바꾼 열(<code>gender</code>, <code>grade</code> 등)이 모두 숫자이므로 그대로 모델에 넣을 수 있다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>쓰는 방식</th>
+<th>같은 뜻의 다른 표기</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>df.drop(columns=["a", "b"])</code></td>
+<td><code>df.drop(["a", "b"], axis=1)</code></td>
+</tr>
+<tr class="even">
+<td><code>df["a"]</code> (시리즈)</td>
+<td><code>df.a</code> (열 이름에 공백이 없을 때만)</td>
+</tr>
+</tbody>
+</table>
+<p>노트북 1부의 연습 1(<code>axis</code> 인자)과 연습 2(분류용 목표)를 푼다.</p>
+<hr>
+</section>
+</section>
+<section id="분할-함수의-인자와-반환-순서" class="level2">
+<h2 class="anchored" data-anchor-id="분할-함수의-인자와-반환-순서">2. 분할 함수의 인자와 반환 순서</h2>
+<section id="train_test_split" class="level3">
+<h3 class="anchored" data-anchor-id="train_test_split">2.1 <code>train_test_split</code></h3>
+<p><code>train_test_split</code>은 <code>sklearn.model_selection</code>에 있다. 입력과 목표를 주면 행을 무작위로 섞은 뒤 정해진 비율로 나눈다.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>X_train, X_valid, y_train, y_valid <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_train.shape, X_valid.shape, y_train.shape, y_valid.shape)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>(2352, 24) (588, 24) (2352,) (588,)</code></pre>
+<p>검증용 데이터의 비율이 20%이므로 2940행 가운데 588행이 검증용, 2352행이 훈련용이 되었다. 입력과 목표는 같은 행끼리 짝을 지어 나뉜다. 아래 출력처럼 <code>X_train</code>과 <code>y_train</code>의 인덱스는 같은 순서이다.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_train.index[:<span class="dv">5</span>].tolist())</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y_train.index[:<span class="dv">5</span>].tolist())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>[456, 462, 2174, 2669, 381]
+[456, 462, 2174, 2669, 381]</code></pre>
+<p>인덱스가 0, 1, 2의 순서가 아닌 것은 행이 섞였기 때문이다. 원래의 행 번호(인덱스)는 그대로 유지된다. 인덱스를 다시 매기지 않아도 입력과 목표의 짝은 맞는다.</p>
+</section>
+<section id="주요-인자" class="level3">
+<h3 class="anchored" data-anchor-id="주요-인자">2.2 주요 인자</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>인자</th>
+<th>뜻</th>
+<th>기본값</th>
+<th>비고</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>test_size</code></td>
+<td>검증용의 크기. 실수이면 비율, 정수이면 행의 수</td>
+<td><code>None</code>(<code>train_size</code>도 없으면 0.25)</td>
+<td>가이드의 값을 그대로 쓴다</td>
+</tr>
+<tr class="even">
+<td><code>train_size</code></td>
+<td>훈련용의 크기</td>
+<td><code>None</code>(나머지)</td>
+<td>둘 중 하나만 주는 것이 보통이다</td>
+</tr>
+<tr class="odd">
+<td><code>random_state</code></td>
+<td>섞는 순서를 정하는 난수 시드</td>
+<td><code>None</code>(실행할 때마다 다르다)</td>
+<td>결과를 재현하려면 반드시 준다</td>
+</tr>
+<tr class="even">
+<td><code>shuffle</code></td>
+<td>나누기 전에 섞을지</td>
+<td><code>True</code></td>
+<td><code>False</code>이면 앞부분이 훈련용, 뒷부분이 검증용</td>
+</tr>
+<tr class="odd">
+<td><code>stratify</code></td>
+<td>층화의 기준이 될 범주</td>
+<td><code>None</code></td>
+<td>3절</td>
+</tr>
+</tbody>
+</table>
+<p><code>random_state</code>를 주지 않으면 실행할 때마다 다른 행이 검증용에 들어가고, 모델의 점수도 매번 달라진다. 시험의 채점은 가이드의 시드로 나온 값을 기준으로 하므로 시드를 빠뜨리면 정답과 다른 값이 나온다. 아래 셀은 시드만 다르게 하여 두 번 분할한 결과의 검증용 인덱스이다.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(a).<span class="va">__name__</span>, <span class="bu">len</span>(a))</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a[<span class="dv">1</span>].index[:<span class="dv">5</span>].tolist())</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b[<span class="dv">1</span>].index[:<span class="dv">5</span>].tolist())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>list 4
+[2313, 650, 2350, 177, 2089]
+[704, 2482, 410, 2608, 2594]</code></pre>
+<p>반환값은 길이 4의 리스트이다. 시드 42와 시드 0은 서로 다른 행을 고른다. 같은 시드로 다시 분할하면 언제나 같은 행이 나온다(연습 5). 시드의 숫자 자체에는 뜻이 없다. 42는 관례로 많이 쓰는 값일 뿐이다.</p>
+<p><code>test_size</code>를 생략하면 기본값 0.25가 적용된다.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>_, X_v25, _, _ <span class="op">=</span> train_test_split(X, y, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_v25.shape)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>(735, 24)</code></pre>
+<p>2940 × 0.25 = 735행이 검증용이 되었다. 가이드가 비율을 정하였는데 이 인자를 빠뜨리면 크기가 달라진다. <code>shuffle=False</code>이면 섞지 않고 뒷부분을 검증용으로 자른다.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>_, X_vs, _, _ <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, shuffle<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_vs.index[:<span class="dv">3</span>].tolist(), X_vs.index[<span class="op">-</span><span class="dv">1</span>])</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>[2352, 2353, 2354] 2939</code></pre>
+<p>검증용이 2352번부터 2939번까지의 마지막 588행이 되었다. 시간 순서로 쌓인 자료(매출의 일별 기록 등)에서 과거로 학습하고 미래로 검증할 때 쓰는 방식이다. 이 자료처럼 행의 순서에 뜻이 없으면 섞어서 나눈다.</p>
+</section>
+<section id="반환-순서" class="level3">
+<h3 class="anchored" data-anchor-id="반환-순서">2.3 반환 순서</h3>
+<p>반환되는 네 덩어리의 순서는 <strong>입력의 훈련용, 입력의 검증용, 목표의 훈련용, 목표의 검증용</strong>이다. 인자로 준 배열마다 “훈련용, 검증용”의 짝이 차례로 나온다고 기억한다. 순서를 틀리게 받으면 오류 없이 엉뚱한 변수에 저장된다.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>X_train_w, y_train_w, X_valid_w, y_valid_w <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_train_w.shape, y_train_w.shape)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>(2352, 24) (588, 24)</code></pre>
+<p><code>y_train_w</code>라고 이름 붙인 변수에 588행 24열의 입력이 들어갔다. 이 상태로 모델을 학습시키면 그때에야 행 수가 맞지 않는다는 오류가 난다. 분할 직후에 네 덩어리의 <code>shape</code>를 출력하여 확인하는 습관을 들인다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>확인할 것</th>
+<th>이 분할의 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>입력의 열 수가 같은가</td>
+<td><code>X_train</code>, <code>X_valid</code> 모두 24</td>
+</tr>
+<tr class="even">
+<td>짝의 행 수가 같은가</td>
+<td><code>X_train</code>과 <code>y_train</code> 2352, <code>X_valid</code>와 <code>y_valid</code> 588</td>
+</tr>
+<tr class="odd">
+<td>목표가 1차원인가</td>
+<td><code>(2352,)</code>, <code>(588,)</code></td>
+</tr>
+</tbody>
+</table>
+<p>노트북 1부의 연습 3~5를 푼다. 연습 5는 <code>[선택]</code>이다.</p>
+<hr>
+</section>
+</section>
+<section id="층화-분할" class="level2">
+<h2 class="anchored" data-anchor-id="층화-분할">3. 층화 분할</h2>
+<section id="범주-비율이-흔들리는-문제" class="level3">
+<h3 class="anchored" data-anchor-id="범주-비율이-흔들리는-문제">3.1 범주 비율이 흔들리는 문제</h3>
+<p>이탈 여부(<code>churn</code>)를 목표로 하면 이탈 회원의 비율이 19.5%이다.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>yc <span class="op">=</span> df_enc[<span class="st">"churn"</span>]</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>yc.value_counts(normalize<span class="op">=</span><span class="va">True</span>).<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>churn
+0    0.805
+1    0.195
+Name: proportion, dtype: float64</code></pre>
+<p>무작위로 나누면 검증용 데이터의 이탈 비율이 우연에 따라 전체 비율에서 벗어난다. 아래 셀은 시드 다섯 개로 층화 없이 나눈 경우(가운데 값)와 층화하여 나눈 경우(오른쪽 값)의 검증용 이탈 비율이다.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> seed <span class="kw">in</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]:</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    _, _, _, va <span class="op">=</span> train_test_split(X, yc, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span>seed)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    _, _, _, vs <span class="op">=</span> train_test_split(X, yc, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span>seed, stratify<span class="op">=</span>yc)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(seed, <span class="bu">round</span>(va.mean(), <span class="dv">3</span>), <span class="bu">round</span>(vs.mean(), <span class="dv">3</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>0 0.187 0.196
+1 0.182 0.196
+2 0.19 0.196
+3 0.18 0.196
+4 0.194 0.196</code></pre>
+<p>층화하지 않으면 시드에 따라 0.18에서 0.194까지 움직인다. 층화하면 언제나 0.196이다. 가장 큰 차이(시드 3의 0.18과 0.196)는 검증용 588명 가운데 이탈 회원 약 9명에 해당한다. 소수 범주가 적을수록 이 흔들림이 커져서, 같은 모델이라도 시드에 따라 재현율 같은 지표가 크게 달라진다(7장).</p>
+</section>
+<section id="stratify" class="level3">
+<h3 class="anchored" data-anchor-id="stratify">3.2 <code>stratify</code></h3>
+<p><code>stratify</code>에 범주를 담은 시리즈(보통 목표 <code>y</code>)를 주면, 범주마다 따로 같은 비율로 나누어 훈련용과 검증용의 범주 비율을 전체와 같게 맞춘다. 이를 층화 분할이라 한다.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>Xc_train, Xc_valid, yc_train, yc_valid <span class="op">=</span> train_test_split(X, yc, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>, stratify<span class="op">=</span>yc)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(yc_train.value_counts(normalize<span class="op">=</span><span class="va">True</span>).<span class="bu">round</span>(<span class="dv">3</span>))</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(yc_valid.value_counts(normalize<span class="op">=</span><span class="va">True</span>).<span class="bu">round</span>(<span class="dv">3</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>churn
+0    0.805
+1    0.195
+Name: proportion, dtype: float64
+churn
+0    0.804
+1    0.196
+Name: proportion, dtype: float64</code></pre>
+<p>훈련용은 0.805와 0.195, 검증용은 0.804와 0.196으로 전체(0.805, 0.195)와 거의 같다. 정확히 같지 않은 것은 행 수가 정수이기 때문이다. <code>value_counts(normalize=True)</code>는 개수 대신 비율을 돌려주므로 분할 후의 확인에 쓴다. 7장의 분류용 분할은 이 셀과 같은 인자(<code>test_size=0.2</code>, <code>random_state=42</code>, <code>stratify=y</code>)를 쓴다.</p>
+</section>
+<section id="층화가-필요한-경우와-쓸-수-없는-경우" class="level3">
+<h3 class="anchored" data-anchor-id="층화가-필요한-경우와-쓸-수-없는-경우">3.3 층화가 필요한 경우와 쓸 수 없는 경우</h3>
+<p>층화는 목표가 범주일 때 쓴다. 범주의 비율이 한쪽으로 치우친 이진 분류(이탈, 부도, 불량), 범주가 셋 이상인 다중 분류가 대표적이다. 가이드가 층화를 지정하면 반드시 <code>stratify=y</code>를 넣는다. 회귀의 목표처럼 값의 종류가 많은 연속형 열로는 층화할 수 없다. 범주 하나에 적어도 두 행이 있어야 훈련용과 검증용에 나눌 수 있기 때문이다.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>vc <span class="op">=</span> y.value_counts()</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y.nunique(), (vc <span class="op">==</span> <span class="dv">1</span>).<span class="bu">sum</span>())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>1819 1081</code></pre>
+<p>연간 구매액은 1,819가지 값을 가지며 그 가운데 1,081가지는 한 번씩만 나온다. 이 값으로 층화하면 오류가 난다. 아래 셀은 오류 메시지의 첫 문장만 출력한 것이다. 실제 메시지는 한 번만 나오는 값을 모두 나열하므로 매우 길다.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>, stratify<span class="op">=</span>y)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">ValueError</span> <span class="im">as</span> e:</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">type</span>(e).<span class="va">__name__</span> <span class="op">+</span> <span class="st">": "</span> <span class="op">+</span> <span class="bu">str</span>(e).split(<span class="st">". "</span>)[<span class="dv">0</span>])</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>ValueError: The least populated classes in y have only 1 member, which is too few</code></pre>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>목표</th>
+<th>층화</th>
+<th>본 과목의 예</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>연속형 수치(회귀)</td>
+<td>하지 않는다</td>
+<td><code>annual_spend</code>(5장), <code>price</code></td>
+</tr>
+<tr class="even">
+<td>이진 범주(분류)</td>
+<td>한다</td>
+<td><code>churn</code>(7장), <code>default</code></td>
+</tr>
+<tr class="odd">
+<td>다중 범주(분류)</td>
+<td>한다</td>
+<td><code>sell_speed</code>(9장)</td>
+</tr>
+</tbody>
+</table>
+<p>노트북 1부의 연습 6(층화 분할)과 연습 7(검증용의 이탈 회원 수)을 푼다.</p>
+<hr>
+</section>
+</section>
+<section id="표준화-최소최대-정규화-로버스트-스케일링" class="level2">
+<h2 class="anchored" data-anchor-id="표준화-최소최대-정규화-로버스트-스케일링">4. 표준화, 최소·최대 정규화, 로버스트 스케일링</h2>
+<section id="세-가지-계산-방식" class="level3">
+<h3 class="anchored" data-anchor-id="세-가지-계산-방식">4.1 세 가지 계산 방식</h3>
+<p>scikit-learn의 스케일러 세 가지는 열마다 기준값 하나를 빼고 크기 하나로 나눈다. 무엇을 빼고 무엇으로 나누는지가 다르다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>스케일러</th>
+<th>계산</th>
+<th>결과의 범위</th>
+<th>본 교재의 용어</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>StandardScaler</code></td>
+<td>(값 - 평균) / 표준편차</td>
+<td>평균 0, 표준편차 1. 범위는 정해지지 않는다</td>
+<td>표준화</td>
+</tr>
+<tr class="even">
+<td><code>MinMaxScaler</code></td>
+<td>(값 - 최솟값) / (최댓값 - 최솟값)</td>
+<td>0~1</td>
+<td>정규화(최소·최대 정규화)</td>
+</tr>
+<tr class="odd">
+<td><code>RobustScaler</code></td>
+<td>(값 - 중앙값) / 사분위수 범위(IQR)</td>
+<td>중앙값 0. 범위는 정해지지 않는다</td>
+<td>로버스트 스케일링</td>
+</tr>
+</tbody>
+</table>
+<p>값 다섯 개(1, 2, 3, 4, 100)에 세 스케일러를 적용하여 비교한다. 100은 이상치이다. 스케일러는 2차원 입력을 받으므로 열 하나짜리 데이터프레임 <code>demo</code>를 만들어 넘겼고, 결과의 첫 열을 <code>[:, 0]</code>으로 꺼냈다.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> MinMaxScaler, RobustScaler, StandardScaler</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>demo <span class="op">=</span> pd.DataFrame({<span class="st">"x"</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">100</span>]})</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"x"</span>: demo[<span class="st">"x"</span>],</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"standard"</span>: StandardScaler().fit_transform(demo)[:, <span class="dv">0</span>],</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"minmax"</span>: MinMaxScaler().fit_transform(demo)[:, <span class="dv">0</span>],</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"robust"</span>: RobustScaler().fit_transform(demo)[:, <span class="dv">0</span>],</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>res.<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>     x  standard  minmax  robust
+0    1    -0.538    0.00    -1.0
+1    2    -0.513    0.01    -0.5
+2    3    -0.487    0.02     0.0
+3    4    -0.461    0.03     0.5
+4  100     1.999    1.00    48.5</code></pre>
+<p>손으로 계산하여 출력과 맞추어 본다.</p>
+<ul>
+<li>표준화: 평균은 (1 + 2 + 3 + 4 + 100) / 5 = 22이다. 표준편차는 약 39.0이다. 1은 (1 - 22) / 39.0 ≈ -0.538이 된다.</li>
+<li>최소·최대 정규화: 최솟값 1, 최댓값 100이다. 2는 (2 - 1) / 99 ≈ 0.01이 된다.</li>
+<li>로버스트 스케일링: 중앙값 3, 제1사분위수 2, 제3사분위수 4이므로 IQR은 2이다. 1은 (1 - 3) / 2 = -1이 된다.</li>
+</ul>
+</section>
+<section id="이상치에-대한-민감도" class="level3">
+<h3 class="anchored" data-anchor-id="이상치에-대한-민감도">4.2 이상치에 대한 민감도</h3>
+<p>출력에서 이상치가 아닌 네 값(1, 2, 3, 4)이 어떻게 변하였는지 비교한다.</p>
+<ul>
+<li>최소·최대 정규화에서는 0, 0.01, 0.02, 0.03이 되었다. 최댓값이 이상치(100)이므로 나머지 값이 0 근처에 몰렸다. 이상치에 가장 민감하다.</li>
+<li>표준화에서는 -0.538에서 -0.461 사이에 몰렸다. 평균과 표준편차가 모두 이상치에 끌려갔기 때문이다.</li>
+<li>로버스트 스케일링에서는 -1, -0.5, 0, 0.5로 원래 간격이 유지되었고, 이상치만 48.5로 멀리 떨어졌다. 중앙값과 사분위수는 이상치의 영향을 거의 받지 않기 때문이다.</li>
+</ul>
+<p>이상치를 지우지 않고 모델에 넣어야 하는 경우에는 로버스트 스케일링이 알맞다. 공통 자료는 3장에서 이상치를 제거하였으므로 표준화를 쓴다. 신경망(9장)처럼 입력의 범위가 0~1이기를 기대하는 경우에는 최소·최대 정규화를 쓰기도 한다. 시험에서는 가이드가 스케일러를 지정한다.</p>
+</section>
+<section id="공통-자료의-표준화" class="level3">
+<h3 class="anchored" data-anchor-id="공통-자료의-표준화">4.3 공통 자료의 표준화</h3>
+<p>스케일링 전의 열은 단위와 범위가 제각각이다.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> [<span class="st">"age"</span>, <span class="st">"tenure_months"</span>, <span class="st">"last_login_days"</span>]</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>X_train[cols].describe().<span class="bu">round</span>(<span class="dv">2</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>           age  tenure_months  last_login_days
+count  2352.00        2352.00          2352.00
+mean     38.34          60.79            28.08
+std      10.37          34.46            28.05
+min      19.00           1.00             0.00
+25%      31.00          31.00             8.00
+50%      38.00          61.00            20.00
+75%      45.00          90.00            39.00
+max      73.00         120.00           189.00</code></pre>
+<p><code>age</code>는 19~73, <code>tenure_months</code>는 1~120, <code>last_login_days</code>는 0~189에 걸쳐 있다. 표준화하면 모든 열이 평균 0, 표준편차 1의 같은 척도가 된다.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>X_train_s <span class="op">=</span> scaler.fit_transform(X_train)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>X_valid_s <span class="op">=</span> scaler.transform(X_valid)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(X_train_s).<span class="va">__name__</span>, X_train_s.shape, X_valid_s.shape)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>X_train_s[:<span class="dv">3</span>, :<span class="dv">4</span>].<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>ndarray (2352, 24) (588, 24)
+array([[-0.998, -0.926,  0.073, -1.329],
+       [-0.323,  1.08 ,  2.169,  0.964],
+       [-1.095,  1.08 ,  0.073,  0.935]])</code></pre>
+<p><strong>결과는 넘파이 배열(<code>ndarray</code>)이다.</strong> 데이터프레임이 아니므로 열 이름과 인덱스가 없고, <code>X_train_s["age"]</code>처럼 열 이름으로 고를 수 없다. 배열은 <code>[행, 열]</code>의 위치로 고른다. 위의 <code>X_train_s[:3, :4]</code>는 앞의 3행과 앞의 4열(<code>age</code>, <code>gender</code>, <code>grade</code>, <code>tenure_months</code>)이다. 0과 1이던 <code>gender</code>도 -0.926과 1.08로 바뀌었다. <code>StandardScaler</code>는 원핫 열과 이진 열을 포함한 모든 열을 표준화한다.</p>
+<p>표준화가 제대로 되었는지는 넘파이로 열별 평균과 표준편차를 구하여 확인한다. <code>axis=0</code>은 열마다(위에서 아래로) 계산하라는 뜻이다.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.<span class="bu">abs</span>(X_train_s.mean(axis<span class="op">=</span><span class="dv">0</span>)).<span class="bu">max</span>())</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_train_s.std(axis<span class="op">=</span><span class="dv">0</span>).<span class="bu">min</span>().<span class="bu">round</span>(<span class="dv">6</span>), X_train_s.std(axis<span class="op">=</span><span class="dv">0</span>).<span class="bu">max</span>().<span class="bu">round</span>(<span class="dv">6</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>1.7446361815538174e-16
+1.0 1.0</code></pre>
+<p>열별 평균의 절댓값 가운데 가장 큰 값이 1.7446361815538174e-16, 즉 1.7 × 10의 -16제곱이다. 컴퓨터의 실수 계산에서 생기는 아주 작은 오차일 뿐 사실상 0이다. 그래서 평균을 <code>== 0</code>으로 비교하지 않고 <code>np.allclose(값, 0)</code>(허용 오차 안에서 같은지)로 확인한다. 표준편차는 모든 열에서 1이다.</p>
+</section>
+<section id="열-이름-되살리기" class="level3">
+<h3 class="anchored" data-anchor-id="열-이름-되살리기">4.4 열 이름 되살리기</h3>
+<p>배열을 다시 데이터프레임으로 바꾸려면 <code>pd.DataFrame</code>에 열 이름을 함께 준다. 행 이름도 맞추려면 <code>index=X_train.index</code>를 준다.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>X_train_sdf <span class="op">=</span> pd.DataFrame(X_train_s, columns<span class="op">=</span>X_train.columns, index<span class="op">=</span>X_train.index)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>X_train_sdf[cols].head(<span class="dv">3</span>).<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>        age  tenure_months  last_login_days
+456  -0.998         -1.329            0.068
+462  -0.323          0.964           -0.859
+2174 -1.095          0.935           -0.288</code></pre>
+<p>인덱스 456번 회원의 <code>age</code>가 -0.998이다. 이 회원은 훈련용 회원의 평균 나이보다 표준편차 약 하나만큼 젊다는 뜻이다. 열 이름이 필요한 일(변수 중요도의 표, 8장)이 있으면 이렇게 되돌리거나 <code>X_train.columns</code>를 따로 쓴다.</p>
+</section>
+<section id="최소최대-정규화와-검증용-데이터의-범위" class="level3">
+<h3 class="anchored" data-anchor-id="최소최대-정규화와-검증용-데이터의-범위">4.5 최소·최대 정규화와 검증용 데이터의 범위</h3>
+<div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>mm <span class="op">=</span> MinMaxScaler()</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>X_train_m <span class="op">=</span> mm.fit_transform(X_train)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>X_valid_m <span class="op">=</span> mm.transform(X_valid)</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_train_m.<span class="bu">min</span>(), X_train_m.<span class="bu">max</span>().<span class="bu">round</span>(<span class="dv">3</span>))</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_valid_m.<span class="bu">min</span>().<span class="bu">round</span>(<span class="dv">3</span>), X_valid_m.<span class="bu">max</span>().<span class="bu">round</span>(<span class="dv">3</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>0.0 1.0
+0.0 1.268</code></pre>
+<p>훈련용 결과는 정확히 0~1이다. 검증용 결과의 최댓값은 1.268로 1을 넘는다. 훈련용 데이터의 최댓값보다 큰 값이 검증용 데이터에 있었기 때문이다. 이것은 잘못이 아니다. 스케일러는 훈련용 데이터에서 배운 최솟값과 최댓값을 기준으로 삼으며, 새 데이터가 그 범위를 벗어나면 0~1을 벗어난 값이 나온다. 이 점은 6절의 정보 누출을 판별하는 단서가 된다.</p>
+<p>노트북 1부의 연습 8(<code>MinMaxScaler</code>)과 연습 9(<code>RobustScaler</code>)를 푼다.</p>
+<hr>
+</section>
+</section>
+<section id="적합과-변환의-구분" class="level2">
+<h2 class="anchored" data-anchor-id="적합과-변환의-구분">5. 적합과 변환의 구분</h2>
+<section id="fit이-배우는-것" class="level3">
+<h3 class="anchored" data-anchor-id="fit이-배우는-것">5.1 <code>fit</code>이 배우는 것</h3>
+<p>scikit-learn의 스케일러는 두 단계로 동작한다. <code>fit</code>은 데이터에서 변환에 필요한 값(평균과 표준편차 등)을 계산하여 객체 안에 저장한다. <code>transform</code>은 저장한 값으로 데이터를 변환한다. <code>fit_transform</code>은 같은 데이터에 두 단계를 한 번에 적용한다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>메서드</th>
+<th>하는 일</th>
+<th>쓰는 데이터</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>fit(X)</code></td>
+<td>기준값을 계산하여 저장한다</td>
+<td>훈련용</td>
+</tr>
+<tr class="even">
+<td><code>transform(X)</code></td>
+<td>저장한 기준값으로 변환한다</td>
+<td>훈련용과 검증용</td>
+</tr>
+<tr class="odd">
+<td><code>fit_transform(X)</code></td>
+<td><code>fit</code> 후 같은 데이터를 <code>transform</code></td>
+<td>훈련용만</td>
+</tr>
+</tbody>
+</table>
+<p><code>fit</code>이 저장한 값은 이름 끝에 밑줄(<code>_</code>)이 붙은 속성으로 확인한다. <code>StandardScaler</code>는 <code>mean_</code>(열별 평균)과 <code>scale_</code>(열별 표준편차)을 저장한다.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(scaler.mean_[:<span class="dv">3</span>].<span class="bu">round</span>(<span class="dv">3</span>))</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_train[[<span class="st">"age"</span>, <span class="st">"gender"</span>, <span class="st">"grade"</span>]].mean().<span class="bu">round</span>(<span class="dv">3</span>).tolist())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>[38.344  0.462  0.93 ]
+[38.344, 0.462, 0.93]</code></pre>
+<p><code>scaler.mean_</code>의 앞 세 값(<code>age</code>, <code>gender</code>, <code>grade</code>의 평균)이 <code>X_train</code>에서 pandas로 구한 평균과 같다. 스케일러가 훈련용 데이터의 평균을 배웠다는 증거이다.</p>
+</section>
+<section id="표준편차의-두-가지-계산" class="level3">
+<h3 class="anchored" data-anchor-id="표준편차의-두-가지-계산">5.2 표준편차의 두 가지 계산</h3>
+<div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(scaler.scale_[:<span class="dv">3</span>].<span class="bu">round</span>(<span class="dv">3</span>))</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_train[[<span class="st">"age"</span>, <span class="st">"gender"</span>, <span class="st">"grade"</span>]].std(ddof<span class="op">=</span><span class="dv">0</span>).<span class="bu">round</span>(<span class="dv">3</span>).tolist())</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_train[[<span class="st">"age"</span>, <span class="st">"gender"</span>, <span class="st">"grade"</span>]].std().<span class="bu">round</span>(<span class="dv">3</span>).tolist())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>[10.364  0.499  0.955]
+[10.364, 0.499, 0.955]
+[10.367, 0.499, 0.955]</code></pre>
+<p><code>scale_</code>의 <code>age</code> 값은 10.364이고, pandas의 <code>std()</code>는 10.367이다. pandas의 <code>std()</code>는 편차 제곱의 합을 n - 1로 나누고(<code>ddof=1</code>), <code>StandardScaler</code>와 넘파이의 <code>std()</code>는 n으로 나눈다(<code>ddof=0</code>). <code>std(ddof=0)</code>로 맞추면 같은 값이 된다. 스케일링한 결과의 표준편차를 확인할 때 넘파이의 <code>std</code>를 쓰는 까닭이다. pandas로 구하면 1이 아니라 1.0002 같은 값이 나온다.</p>
+</section>
+<section id="검증용-데이터의-변환" class="level3">
+<h3 class="anchored" data-anchor-id="검증용-데이터의-변환">5.3 검증용 데이터의 변환</h3>
+<div class="sourceCode" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_valid_s.mean(axis<span class="op">=</span><span class="dv">0</span>)[:<span class="dv">4</span>].<span class="bu">round</span>(<span class="dv">3</span>))</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_valid_s.std(axis<span class="op">=</span><span class="dv">0</span>)[:<span class="dv">4</span>].<span class="bu">round</span>(<span class="dv">3</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>[ 0.016  0.056 -0.024  0.005]
+[1.042 1.003 0.966 0.984]</code></pre>
+<p>검증용 데이터를 변환한 결과는 평균이 정확히 0이 아니고(0.016, 0.056, …), 표준편차도 정확히 1이 아니다(1.042, 1.003, …). 훈련용 데이터의 평균과 표준편차로 변환하였기 때문이다. 검증용 회원은 훈련용 회원과 다른 사람들이므로 이것이 정상이다. <strong>검증용 결과의 평균이 정확히 0이면 오히려 잘못을 의심한다.</strong></p>
+<p><code>fit</code>과 <code>transform</code>을 따로 써도 <code>fit_transform</code>과 결과가 같다.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>s2 <span class="op">=</span> StandardScaler()</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>s2.fit(X_train)</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.allclose(s2.transform(X_train), X_train_s))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>True</code></pre>
+<p><code>fit</code>하지 않은 스케일러로 <code>transform</code>하면 오류가 난다. 스케일러가 아직 기준값을 모르기 때문이다.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>StandardScaler().transform(X_valid)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>NotFittedError: This StandardScaler instance is not fitted yet. Call 'fit' with appropriate arguments before using this estimator.</code></pre>
+<p>이 원칙(훈련용으로 <code>fit</code>, 양쪽에 <code>transform</code>)은 스케일러에만 해당하지 않는다. 4장의 <code>LabelEncoder</code>, 6장 이후의 모델도 같은 형식(<code>fit</code>으로 배우고 <code>transform</code>이나 <code>predict</code>로 적용)을 따른다.</p>
+<p>노트북 1부의 연습 10(<code>mean_</code>과 열 이름)과 연습 11(<code>[선택]</code>, <code>inverse_transform</code>)을 푼다.</p>
+<hr>
+</section>
+</section>
+<section id="정보-누출" class="level2">
+<h2 class="anchored" data-anchor-id="정보-누출">6. 정보 누출</h2>
+<section id="검증용-데이터로-적합시키는-코드" class="level3">
+<h3 class="anchored" data-anchor-id="검증용-데이터로-적합시키는-코드">6.1 검증용 데이터로 적합시키는 코드</h3>
+<p>정보 누출(data leakage)은 평가에 써야 할 데이터의 정보가 학습이나 전처리 과정에 섞여 들어가는 것이다. 가장 흔한 형태는 검증용 데이터에 <code>fit_transform</code>을 쓰는 것이다. 아래 셀은 실행은 되지만 잘못된 코드이다.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>bad <span class="op">=</span> StandardScaler()</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>X_train_b <span class="op">=</span> bad.fit_transform(X_train)</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>X_valid_b <span class="op">=</span> bad.fit_transform(X_valid)</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.<span class="bu">abs</span>(X_valid_b.mean(axis<span class="op">=</span><span class="dv">0</span>)).<span class="bu">max</span>())</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_valid_s[:<span class="dv">2</span>, :<span class="dv">3</span>].<span class="bu">round</span>(<span class="dv">3</span>))</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_valid_b[:<span class="dv">2</span>, :<span class="dv">3</span>].<span class="bu">round</span>(<span class="dv">3</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>1.5860328923216522e-16
+[[-1.384 -0.926  2.169]
+ [-0.419  1.08  -0.974]]
+[[-1.343 -0.98   2.271]
+ [-0.417  1.021 -0.983]]</code></pre>
+<p>첫 줄은 검증용 결과의 열별 평균의 최대 절댓값이다. 1.5860328923216522e-16으로 사실상 0이다. 검증용 데이터 자신의 평균으로 다시 적합하였기 때문이다. 둘째와 셋째 출력은 같은 검증용 회원 두 명의 앞 세 열을 올바른 방법(<code>X_valid_s</code>)과 잘못된 방법(<code>X_valid_b</code>)으로 변환한 값이다. 같은 사람의 같은 나이가 -1.384와 -1.343으로 다르게 변환되었다.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(scaler.mean_[:<span class="dv">3</span>].<span class="bu">round</span>(<span class="dv">3</span>))</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(bad.mean_[:<span class="dv">3</span>].<span class="bu">round</span>(<span class="dv">3</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>[38.344  0.462  0.93 ]
+[38.509  0.49   0.906]</code></pre>
+<p><code>bad</code>의 <code>mean_</code>은 검증용 데이터의 평균(나이 38.509)으로 바뀌었다. 훈련용 데이터는 평균 38.344를 기준으로, 검증용 데이터는 38.509를 기준으로 변환된 셈이다. 같은 값이 두 데이터에서 서로 다른 숫자가 되므로, 모델이 훈련에서 배운 규칙을 검증용 데이터에 똑같이 적용할 수 없다.</p>
+</section>
+<section id="왜-문제인가" class="level3">
+<h3 class="anchored" data-anchor-id="왜-문제인가">6.2 왜 문제인가</h3>
+<p>검증용 데이터는 “아직 보지 못한 미래의 고객”을 대신한다. 실제로 모델을 쓸 때 새 고객은 한 명씩 들어오므로, 새 고객의 평균이나 최댓값을 미리 알 수 없다. 검증용 데이터로 적합시키면 미래의 정보를 미리 쓴 것이 되어, 검증 점수가 실제로 모델을 썼을 때의 성능을 대표하지 못한다. 이 자료에서는 평균의 차이가 작아 점수의 차이도 작지만, 검증용 데이터가 작거나 분포가 다르면 차이가 커진다.</p>
+<p>같은 이유로 다음도 정보 누출이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>잘못된 순서</th>
+<th>문제</th>
+<th>올바른 순서</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>검증용 데이터에 <code>fit_transform</code></td>
+<td>검증용의 평균·표준편차가 기준이 된다</td>
+<td>검증용에는 <code>transform</code>만</td>
+</tr>
+<tr class="even">
+<td>전체 <code>X</code>로 <code>fit</code>한 뒤 분할</td>
+<td>검증용 행이 기준값 계산에 들어간다</td>
+<td>분할 후 훈련용으로 <code>fit</code></td>
+</tr>
+<tr class="odd">
+<td>입력에 목표 열을 남김(1.1절)</td>
+<td>모델이 답을 입력에서 읽는다</td>
+<td>목표 열을 모두 <code>drop</code></td>
+</tr>
+<tr class="even">
+<td>전체 데이터의 평균으로 결측치를 채운 뒤 분할</td>
+<td>검증용 값이 대체값에 들어간다</td>
+<td>원칙상 훈련용의 값으로 채운다</td>
+</tr>
+</tbody>
+</table>
+<p>마지막 행에 대하여 덧붙인다. 본 과목의 표준 처리 과정(3장)은 분할 전에 전체 데이터의 중앙값으로 결측치를 채운다. 시험의 문항이 분할 전에 결측치 처리를 지시하는 순서를 따른 것이다. 엄밀하게는 이것도 작은 정보 누출이다. 시험에서는 가이드의 순서를 따르고, 스케일러의 적합만은 반드시 훈련용 데이터로 한다.</p>
+<p>노트북 1부의 연습 12(<code>[선택]</code>)를 푼다.</p>
+<hr>
+</section>
+</section>
+<section id="중심-실습-회귀용-훈련검증-데이터의-작성과-스케일링" class="level2">
+<h2 class="anchored" data-anchor-id="중심-실습-회귀용-훈련검증-데이터의-작성과-스케일링">7. 중심 실습: 회귀용 훈련·검증 데이터의 작성과 스케일링</h2>
+<p>노트북 <code>AICE_05주차_실습_학생용.ipynb</code>의 2부에서 수행한다. 인코딩본 <code>df_enc</code>에서 연간 구매액(<code>annual_spend</code>)을 예측하는 문제의 훈련용·검증용 데이터를 만들고 표준화한다. 일부러 틀리게 쓴 정규화 코드를 정정하는 단계가 있다.</p>
+<p><strong>준비.</strong> 단계 1의 셀을 실행하여 3~4장의 처리 과정으로 <code>df_enc</code>를 만든다. 출력은 <code>(2940, 26)</code>이어야 한다. 단계 1의 셀은 <code>train_test_split</code>과 <code>StandardScaler</code>도 불러온다.</p>
+<p><strong>절차.</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>단계</th>
+<th>할 일</th>
+<th>결과를 담을 변수</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>자료 읽기와 3~4장의 처리 과정</td>
+<td><code>df_enc</code></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>두 목표 열을 뺀 입력과 <code>annual_spend</code> 목표의 분리</td>
+<td><code>X</code>, <code>y</code></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>검증용 20%, 난수 시드 42로 분할</td>
+<td><code>X_train</code>, <code>X_valid</code>, <code>y_train</code>, <code>y_valid</code></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td><code>StandardScaler</code>를 훈련용 입력으로 적합시켜 양쪽을 변환</td>
+<td><code>scaler</code>, <code>X_train_s</code>, <code>X_valid_s</code></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>정보 누출이 있는 <code>MinMaxScaler</code> 코드의 정정</td>
+<td><code>mm</code>, <code>X_train_m</code>, <code>X_valid_m</code></td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>데이터프레임으로 되돌리기, 답 변수 4개와 자가 채점</td>
+<td><code>X_train_sdf</code>, <code>ans1</code>~<code>ans4</code></td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>값의 해석 두 문장</td>
+<td>(주석)</td>
+</tr>
+</tbody>
+</table>
+<p>단계 5의 코드는 실행은 되지만 정보 누출이 있다. 출력되는 검증용 결과의 최솟값과 최댓값이 무엇을 뜻하는지 4.5절을 참고하여 판단한다.</p>
+<p><strong>물음.</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>변수</th>
+<th>물음</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ans1</code></td>
+<td>검증용 데이터의 행 수</td>
+</tr>
+<tr class="even">
+<td><code>ans2</code></td>
+<td><code>X_train_s</code>의 열별 평균 가운데 절댓값이 가장 큰 값(실수 하나)</td>
+</tr>
+<tr class="odd">
+<td><code>ans3</code></td>
+<td><code>X_train_s</code>의 열별 표준편차(넘파이의 <code>std</code>)를 소수 셋째 자리까지 반올림한 값들 가운데 서로 다른 값의 리스트</td>
+</tr>
+<tr class="even">
+<td><code>ans4</code></td>
+<td><code>X_valid_s</code>의 열별 평균 가운데 절댓값이 가장 큰 열의 이름</td>
+</tr>
+</tbody>
+</table>
+<p><strong>완료 기준.</strong> 자가 채점 셀이 <code>통과</code>를 출력한다. 자가 채점 셀은 다음을 검사한다.</p>
+<ul>
+<li>네 덩어리의 크기: <code>X_train</code> (2352, 24), <code>X_valid</code> (588, 24), <code>y_train</code> (2352,), <code>y_valid</code> (588,)</li>
+<li>입력에 두 목표 열이 없는지, 분할의 난수 시드가 42인지(훈련용 데이터의 첫 세 행 번호)</li>
+<li><code>X_train_s</code>의 열별 평균이 0에 가깝고 표준편차가 1에 가까운지(넘파이의 <code>mean</code>, <code>std</code>와 <code>np.allclose</code>)</li>
+<li><code>scaler</code>가 훈련용 데이터로 적합되었는지, <code>X_valid_s</code>의 평균이 정확히 0이 아닌지</li>
+<li><code>mm</code>이 훈련용 데이터로 적합되었는지, <code>X_train_sdf</code>의 열 이름, <code>ans1</code>~<code>ans4</code>의 값</li>
+</ul>
+<p><strong>값의 해석.</strong> 단계 7에서 다음 두 물음에 한 문장씩 답한다.</p>
+<ol type="1">
+<li><code>X_valid_s</code>의 열별 평균은 0이 아니다. 이것이 잘못이 아닌 까닭은 무엇인가.</li>
+<li>단계 5의 정정 전 코드에서 검증용 결과의 최솟값과 최댓값이 정확히 0과 1이 된 까닭은 무엇이며, 그것이 왜 문제인가.</li>
+</ol>
+<p><strong>제출물.</strong> 실행을 마친 노트북 파일. 자가 채점 셀의 <code>통과</code>와 단계 7의 두 문장이 있어야 한다.</p>
+<hr>
+</section>
+<section id="시간-제한-문항" class="level2">
+<h2 class="anchored" data-anchor-id="시간-제한-문항">8. 시간 제한 문항</h2>
+<p>제한 시간은 15분이다. 노트북의 3부에서 푼다.</p>
+<p>가상의 중고 노트북 거래 자료 <code>laptops.csv</code>를 사용한다. 공식 문서 사이트만 참고한다. 각 문항의 답은 한 셀에 작성한다. 먼저 아래의 공통 셀을 실행한다. 공통 셀은 결측치가 있는 행과 가격의 입력 오류(999 이상)를 지우고, 범주형 입력 열을 원핫 인코딩한 뒤, 판매 속도(<code>sell_speed</code>)를 목표 <code>y</code>로, 두 목표 열을 뺀 나머지를 입력 <code>X</code>로 나눈다. 문항 2는 문항 1의 결과를 사용한다.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>DATA <span class="op">=</span> <span class="st">"../kit/data/AICE_공통/"</span></span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>lap <span class="op">=</span> pd.read_csv(DATA <span class="op">+</span> <span class="st">"laptops.csv"</span>)</span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>lap <span class="op">=</span> lap.dropna()</span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>lap <span class="op">=</span> lap[lap[<span class="st">"price"</span>] <span class="op">&lt;</span> <span class="dv">999</span>]</span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>lap <span class="op">=</span> pd.get_dummies(lap.drop(columns<span class="op">=</span>[<span class="st">"listing_id"</span>]), columns<span class="op">=</span>[<span class="st">"brand"</span>, <span class="st">"cpu"</span>, <span class="st">"condition"</span>], dtype<span class="op">=</span><span class="bu">int</span>)</span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> lap.drop(columns<span class="op">=</span>[<span class="st">"price"</span>, <span class="st">"sell_speed"</span>])</span>
+<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> lap[<span class="st">"sell_speed"</span>]</span>
+<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X.shape, y.shape)</span>
+<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y.value_counts(normalize<span class="op">=</span><span class="va">True</span>).<span class="bu">round</span>(<span class="dv">3</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="문항-1-빈칸-채우기" class="level3">
+<h3 class="anchored" data-anchor-id="문항-1-빈칸-채우기">문항 1 (빈칸 채우기)</h3>
+<p><code>X</code>, <code>y</code>를 훈련용과 검증용으로 나눈다. 검증용 데이터의 비율은 25%, 난수 시드는 42이며, 판매 속도의 범주 비율이 두 덩어리에서 같도록 층화한다. 빈칸 <code>___</code>을 채운다.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>X_train, X_valid, y_train, y_valid <span class="op">=</span> train_test_split(X, y, ___<span class="op">=</span><span class="fl">0.25</span>, ___<span class="op">=</span><span class="dv">42</span>, ___<span class="op">=</span>y)</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y_train.value_counts(normalize<span class="op">=</span><span class="va">True</span>).<span class="bu">round</span>(<span class="dv">3</span>))</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y_valid.value_counts(normalize<span class="op">=</span><span class="va">True</span>).<span class="bu">round</span>(<span class="dv">3</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="문항-2-오류-정정" class="level3">
+<h3 class="anchored" data-anchor-id="문항-2-오류-정정">문항 2 (오류 정정)</h3>
+<p>아래 코드는 문항 1의 결과를 표준화하여 <code>X_train_s</code>, <code>X_valid_s</code>를 만든다. 실행은 되지만 잘못된 코드이다. 잘못된 곳을 정정하여 실행한다. 마지막 줄은 <code>X_train_s</code>의 열별 평균이 모두 0에 가까운지를 출력하며, 정정한 뒤에는 <code>True</code>가 출력되어야 한다.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>scaler.fit(X_valid)</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>X_train_s <span class="op">=</span> scaler.transform(X_train)</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>X_valid_s <span class="op">=</span> scaler.transform(X_valid)</span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">abs</span>(X_train_s.mean(axis<span class="op">=</span><span class="dv">0</span>)).<span class="bu">max</span>() <span class="op">&lt;</span> <span class="fl">1e-10</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="문항-3-답-변수" class="level3">
+<h3 class="anchored" data-anchor-id="문항-3-답-변수">문항 3 (답 변수)</h3>
+<p><code>X</code>, <code>y</code>를 검증용 데이터의 비율 30%, 난수 시드 0, 판매 속도로 층화하는 조건으로 다시 분할한다. 검증용 데이터의 행 수를 <code>ans_t3</code>에, 검증용 데이터 가운데 판매 속도가 <code>slow</code>인 거래의 수를 <code>ans_t3b</code>에 저장한다. 두 값 모두 코드로 구한다.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 여기에 코드를 작성한다</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="정리" class="level2">
+<h2 class="anchored" data-anchor-id="정리">9. 정리</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>주제</th>
+<th>기억할 것</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>입력과 목표</td>
+<td><code>X = df.drop(columns=[목표 열들])</code>, <code>y = df["목표 열"]</code>. 다른 목표 열도 입력에서 뺀다</td>
+</tr>
+<tr class="even">
+<td>분할</td>
+<td><code>train_test_split(X, y, test_size=0.2, random_state=42)</code>. 인자는 이름으로 쓴다</td>
+</tr>
+<tr class="odd">
+<td>반환 순서</td>
+<td><code>X_train, X_valid, y_train, y_valid</code>. 분할 직후 네 덩어리의 <code>shape</code>를 확인한다</td>
+</tr>
+<tr class="even">
+<td>기본값</td>
+<td><code>test_size</code>를 생략하면 0.25, <code>shuffle=True</code>, <code>random_state=None</code></td>
+</tr>
+<tr class="odd">
+<td>층화</td>
+<td>범주형 목표에 <code>stratify=y</code>. 확인은 <code>value_counts(normalize=True)</code>. 연속형 목표로는 할 수 없다</td>
+</tr>
+<tr class="even">
+<td>스케일러</td>
+<td>표준화 (값 - 평균) / 표준편차, 정규화 (값 - 최솟값) / (최댓값 - 최솟값), 로버스트 (값 - 중앙값) / IQR</td>
+</tr>
+<tr class="odd">
+<td>이상치</td>
+<td>정규화가 가장 민감하고 로버스트 스케일링이 가장 덜 민감하다</td>
+</tr>
+<tr class="even">
+<td>적합과 변환</td>
+<td>훈련용에 <code>fit_transform</code>, 검증용에 <code>transform</code>. 배운 값은 <code>mean_</code>, <code>scale_</code></td>
+</tr>
+<tr class="odd">
+<td>결과의 형태</td>
+<td>넘파이 배열. 열 이름은 <code>pd.DataFrame(X_train_s, columns=X_train.columns)</code>로 되살린다</td>
+</tr>
+<tr class="even">
+<td>확인</td>
+<td>넘파이의 <code>mean(axis=0)</code>, <code>std(axis=0)</code>와 <code>np.allclose</code>. 검증용 평균은 0이 아닌 것이 정상이다</td>
+</tr>
+<tr class="odd">
+<td>정보 누출</td>
+<td>검증용으로 <code>fit</code>하지 않는다. 분할한 뒤에 적합한다</td>
+</tr>
+</tbody>
+</table>
+<p>다음 장에서는 이 장에서 만든 <code>X_train_s</code>, <code>y_train</code>으로 회귀 모델을 학습시키고, <code>X_valid_s</code>, <code>y_valid</code>로 평가한다.</p>
+<hr>
+</section>
+<section id="참고-자료" class="level2">
+<h2 class="anchored" data-anchor-id="참고-자료">참고 자료</h2>
+<p>확인일은 표시가 없으면 2026-11-13이다.</p>
+<ul>
+<li>pandas, <code>DataFrame.drop</code>. <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.drop.html" class="uri">https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.drop.html</a></li>
+<li>pandas, <code>Series.value_counts</code>. <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.value_counts.html" class="uri">https://pandas.pydata.org/docs/reference/api/pandas.Series.value_counts.html</a></li>
+<li>scikit-learn, <code>train_test_split</code>. <a href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html" class="uri">https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html</a></li>
+<li>scikit-learn, Cross-validation(층화의 개념). <a href="https://scikit-learn.org/stable/modules/cross_validation.html" class="uri">https://scikit-learn.org/stable/modules/cross_validation.html</a></li>
+<li>scikit-learn, Preprocessing data. <a href="https://scikit-learn.org/stable/modules/preprocessing.html" class="uri">https://scikit-learn.org/stable/modules/preprocessing.html</a></li>
+<li>scikit-learn, <code>StandardScaler</code>. <a href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html" class="uri">https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html</a></li>
+<li>scikit-learn, <code>MinMaxScaler</code> (2026-11-14 확인). <a href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.MinMaxScaler.html" class="uri">https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.MinMaxScaler.html</a></li>
+<li>scikit-learn, <code>RobustScaler</code> (2026-11-14 확인). <a href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.RobustScaler.html" class="uri">https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.RobustScaler.html</a></li>
+<li>scikit-learn, Common pitfalls and recommended practices(정보 누출). <a href="https://scikit-learn.org/stable/common_pitfalls.html" class="uri">https://scikit-learn.org/stable/common_pitfalls.html</a></li>
+<li>scikit-learn, Getting Started(<code>fit</code>과 <code>transform</code>). <a href="https://scikit-learn.org/stable/getting_started.html" class="uri">https://scikit-learn.org/stable/getting_started.html</a></li>
+<li>NumPy, <code>numpy.mean</code> (2026-11-14 확인). <a href="https://numpy.org/doc/stable/reference/generated/numpy.mean.html" class="uri">https://numpy.org/doc/stable/reference/generated/numpy.mean.html</a></li>
+<li>NumPy, <code>numpy.std</code>(<code>ddof</code> 인자, 2026-11-14 확인). <a href="https://numpy.org/doc/stable/reference/generated/numpy.std.html" class="uri">https://numpy.org/doc/stable/reference/generated/numpy.std.html</a></li>
+<li>NumPy, <code>numpy.allclose</code> (2026-11-14 확인). <a href="https://numpy.org/doc/stable/reference/generated/numpy.allclose.html" class="uri">https://numpy.org/doc/stable/reference/generated/numpy.allclose.html</a></li>
+</ul>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> 맨 위로</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "복사완료!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "복사완료!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../courses/aice/book/AICE_04주차_학생용.html" class="pagination-link" aria-label="[4주차] 범주형 데이터와 인코딩">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">[4주차] 범주형 데이터와 인코딩</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../courses/aice/book/AICE_06주차_학생용.html" class="pagination-link" aria-label="[6주차] 머신러닝 (1): 회귀 모델과 평가">
+        <span class="nav-page-text">[6주차] 머신러닝 (1): 회귀 모델과 평가</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>안중호 교수 강의 교재 · 2026년 2학기판</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

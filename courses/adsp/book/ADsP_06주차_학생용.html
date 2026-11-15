@@ -1,0 +1,3277 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>[6주차] 통계학 개론: 표본, 분포, 추정, 검정 – 안중호 교수 강의 교재</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../courses/adsp/book/ADsP_07주차_학생용.html" rel="next">
+<link href="../../../courses/adsp/book/ADsP_05주차_학생용.html" rel="prev">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-dcf116883d0d3758c9131f5ede2fa7e1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">안중호 교수 강의 교재</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="검색"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">커리큘럼</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/semesters/index.html">
+ <span class="dropdown-text">전체 커리큘럼</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../docs/semesters/2026-2/index.html">
+ <span class="dropdown-text">2026년 2학기</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../docs/subjects/llm-ai/index.html">
+ <span class="dropdown-text">교재 · LLM AI 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/subjects/python/index.html">
+ <span class="dropdown-text">교재 · 파이썬 실습</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../courses/index.html">
+ <span class="dropdown-text">2027학년도 교재 (준비 중)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/llm-service/index.html">
+ <span class="dropdown-text">· LLM 서비스 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/office/index.html">
+ <span class="dropdown-text">· 컴퓨터활용</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/adsp/index.html">
+ <span class="dropdown-text">· 빅데이터개론</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/ai-agent/index.html">
+ <span class="dropdown-text">· AI에이전트 기획 및 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/aice/index.html">
+ <span class="dropdown-text">· 비즈니스빅데이터분석</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/about/교수_소개.html"> 
+<span class="menu-text">교수 소개</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../courses/adsp/book/ADsP_01주차_학생용.html">교재</a></li><li class="breadcrumb-item"><a href="../../../courses/adsp/book/ADsP_06주차_학생용.html">[6주차] 통계학 개론: 표본, 분포, 추정, 검정</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">빅데이터개론</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">교재</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_01주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[1주차] 데이터 이해: 데이터, 빅데이터, 데이터 사이언스</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_02주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[2주차] 분석 기획과 방법론</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_03주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[3주차] 분석 마스터 플랜과 거버넌스</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_04주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[4주차] 표 데이터와 데이터 마트</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_05주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[5주차] 결측값·이상값과 기술 통계</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_06주차_학생용.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">[6주차] 통계학 개론: 표본, 분포, 추정, 검정</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_07주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[7주차] 상관 분석과 회귀 분석</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_08주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[8주차] 다차원 척도법과 주성분 분석</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_09주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[9주차] 시계열 분석</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_10주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[10주차] 분류 분석 (1): 데이터 분할, 로지스틱 회귀, 의사결정나무</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_11주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[11주차] 분류 분석 (2): 앙상블, 인공신경망, 모형 평가</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_12주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[12주차] 군집 분석과 연관 분석</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_13주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[13주차] R 코드와 출력의 해석</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_부록_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">부록</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">이 장의 차례</h2>
+   
+  <ul>
+  <li><a href="#학습-목표" id="toc-학습-목표" class="nav-link active" data-scroll-target="#학습-목표">학습 목표</a></li>
+  <li><a href="#준비-사항" id="toc-준비-사항" class="nav-link" data-scroll-target="#준비-사항">준비 사항</a></li>
+  <li><a href="#모집단과-표본" id="toc-모집단과-표본" class="nav-link" data-scroll-target="#모집단과-표본">1. 모집단과 표본</a>
+  <ul class="collapse">
+  <li><a href="#모집단-표본-모수-통계량" id="toc-모집단-표본-모수-통계량" class="nav-link" data-scroll-target="#모집단-표본-모수-통계량">1.1 모집단, 표본, 모수, 통계량</a></li>
+  <li><a href="#표본-추출-방법" id="toc-표본-추출-방법" class="nav-link" data-scroll-target="#표본-추출-방법">1.2 표본 추출 방법</a></li>
+  <li><a href="#표본-오차와-비표본-오차" id="toc-표본-오차와-비표본-오차" class="nav-link" data-scroll-target="#표본-오차와-비표본-오차">1.3 표본 오차와 비표본 오차</a></li>
+  <li><a href="#측정-척도" id="toc-측정-척도" class="nav-link" data-scroll-target="#측정-척도">1.4 측정 척도</a></li>
+  <li><a href="#따라-하기" id="toc-따라-하기" class="nav-link" data-scroll-target="#따라-하기">따라 하기</a></li>
+  </ul></li>
+  <li><a href="#확률-분포" id="toc-확률-분포" class="nav-link" data-scroll-target="#확률-분포">2. 확률 분포</a>
+  <ul class="collapse">
+  <li><a href="#확률-변수와-확률-분포" id="toc-확률-변수와-확률-분포" class="nav-link" data-scroll-target="#확률-변수와-확률-분포">2.1 확률 변수와 확률 분포</a></li>
+  <li><a href="#기댓값과-분산" id="toc-기댓값과-분산" class="nav-link" data-scroll-target="#기댓값과-분산">2.2 기댓값과 분산</a></li>
+  <li><a href="#이산-확률-분포" id="toc-이산-확률-분포" class="nav-link" data-scroll-target="#이산-확률-분포">2.3 이산 확률 분포</a></li>
+  <li><a href="#연속-확률-분포" id="toc-연속-확률-분포" class="nav-link" data-scroll-target="#연속-확률-분포">2.4 연속 확률 분포</a></li>
+  <li><a href="#따라-하기-1" id="toc-따라-하기-1" class="nav-link" data-scroll-target="#따라-하기-1">따라 하기</a></li>
+  </ul></li>
+  <li><a href="#표본-분포와-추정" id="toc-표본-분포와-추정" class="nav-link" data-scroll-target="#표본-분포와-추정">3. 표본 분포와 추정</a>
+  <ul class="collapse">
+  <li><a href="#표본-평균의-분포" id="toc-표본-평균의-분포" class="nav-link" data-scroll-target="#표본-평균의-분포">3.1 표본 평균의 분포</a></li>
+  <li><a href="#중심극한정리" id="toc-중심극한정리" class="nav-link" data-scroll-target="#중심극한정리">3.2 중심극한정리</a></li>
+  <li><a href="#점-추정과-좋은-추정량의-조건" id="toc-점-추정과-좋은-추정량의-조건" class="nav-link" data-scroll-target="#점-추정과-좋은-추정량의-조건">3.3 점 추정과 좋은 추정량의 조건</a></li>
+  <li><a href="#구간-추정" id="toc-구간-추정" class="nav-link" data-scroll-target="#구간-추정">3.4 구간 추정</a></li>
+  <li><a href="#신뢰수준의-뜻" id="toc-신뢰수준의-뜻" class="nav-link" data-scroll-target="#신뢰수준의-뜻">3.5 신뢰수준의 뜻</a></li>
+  <li><a href="#따라-하기-2" id="toc-따라-하기-2" class="nav-link" data-scroll-target="#따라-하기-2">따라 하기</a></li>
+  </ul></li>
+  <li><a href="#가설-검정" id="toc-가설-검정" class="nav-link" data-scroll-target="#가설-검정">4. 가설 검정</a>
+  <ul class="collapse">
+  <li><a href="#가설과-검정의-절차" id="toc-가설과-검정의-절차" class="nav-link" data-scroll-target="#가설과-검정의-절차">4.1 가설과 검정의 절차</a></li>
+  <li><a href="#제1종-오류와-제2종-오류" id="toc-제1종-오류와-제2종-오류" class="nav-link" data-scroll-target="#제1종-오류와-제2종-오류">4.2 제1종 오류와 제2종 오류</a></li>
+  <li><a href="#유의수준과-유의-확률" id="toc-유의수준과-유의-확률" class="nav-link" data-scroll-target="#유의수준과-유의-확률">4.3 유의수준과 유의 확률</a></li>
+  <li><a href="#양측-검정과-단측-검정" id="toc-양측-검정과-단측-검정" class="nav-link" data-scroll-target="#양측-검정과-단측-검정">4.4 양측 검정과 단측 검정</a></li>
+  <li><a href="#t-검정" id="toc-t-검정" class="nav-link" data-scroll-target="#t-검정">4.5 t-검정</a></li>
+  <li><a href="#모수-검정과-비모수-검정" id="toc-모수-검정과-비모수-검정" class="nav-link" data-scroll-target="#모수-검정과-비모수-검정">4.6 모수 검정과 비모수 검정</a></li>
+  <li><a href="#따라-하기-3" id="toc-따라-하기-3" class="nav-link" data-scroll-target="#따라-하기-3">따라 하기</a></li>
+  </ul></li>
+  <li><a href="#중심-실습-표본-평균의-분포와-t-검정" id="toc-중심-실습-표본-평균의-분포와-t-검정" class="nav-link" data-scroll-target="#중심-실습-표본-평균의-분포와-t-검정">5. 중심 실습: 표본 평균의 분포와 t-검정</a>
+  <ul class="collapse">
+  <li><a href="#준비" id="toc-준비" class="nav-link" data-scroll-target="#준비">준비</a></li>
+  <li><a href="#절차" id="toc-절차" class="nav-link" data-scroll-target="#절차">절차</a></li>
+  <li><a href="#값을-바꾸어-보기" id="toc-값을-바꾸어-보기" class="nav-link" data-scroll-target="#값을-바꾸어-보기">값을 바꾸어 보기</a></li>
+  <li><a href="#완료-기준" id="toc-완료-기준" class="nav-link" data-scroll-target="#완료-기준">완료 기준</a></li>
+  <li><a href="#제출물" id="toc-제출물" class="nav-link" data-scroll-target="#제출물">제출물</a></li>
+  </ul></li>
+  <li><a href="#r-출력-해석" id="toc-r-출력-해석" class="nav-link" data-scroll-target="#r-출력-해석">6. R 출력 해석</a>
+  <ul class="collapse">
+  <li><a href="#파이썬과-r의-대응표" id="toc-파이썬과-r의-대응표" class="nav-link" data-scroll-target="#파이썬과-r의-대응표">6.1 파이썬과 R의 대응표</a></li>
+  <li><a href="#같은-일을-하는-r-코드" id="toc-같은-일을-하는-r-코드" class="nav-link" data-scroll-target="#같은-일을-하는-r-코드">6.2 같은 일을 하는 R 코드</a></li>
+  <li><a href="#출력의-해석-1-독립-표본-t-검정" id="toc-출력의-해석-1-독립-표본-t-검정" class="nav-link" data-scroll-target="#출력의-해석-1-독립-표본-t-검정">6.3 출력의 해석 (1): 독립 표본 t-검정</a></li>
+  <li><a href="#출력의-해석-2-등분산을-가정한-검정과-등분산-검정" id="toc-출력의-해석-2-등분산을-가정한-검정과-등분산-검정" class="nav-link" data-scroll-target="#출력의-해석-2-등분산을-가정한-검정과-등분산-검정">6.4 출력의 해석 (2): 등분산을 가정한 검정과 등분산 검정</a></li>
+  <li><a href="#출력의-해석-3-일표본-t-검정과-대응-표본-t-검정" id="toc-출력의-해석-3-일표본-t-검정과-대응-표본-t-검정" class="nav-link" data-scroll-target="#출력의-해석-3-일표본-t-검정과-대응-표본-t-검정">6.5 출력의 해석 (3): 일표본 t-검정과 대응 표본 t-검정</a></li>
+  <li><a href="#출력의-해석-4-비모수-검정" id="toc-출력의-해석-4-비모수-검정" class="nav-link" data-scroll-target="#출력의-해석-4-비모수-검정">6.6 출력의 해석 (4): 비모수 검정</a></li>
+  </ul></li>
+  <li><a href="#자주-하는-실수와-오해" id="toc-자주-하는-실수와-오해" class="nav-link" data-scroll-target="#자주-하는-실수와-오해">7. 자주 하는 실수와 오해</a></li>
+  <li><a href="#정리" id="toc-정리" class="nav-link" data-scroll-target="#정리">8. 정리</a></li>
+  <li><a href="#참고-자료" id="toc-참고-자료" class="nav-link" data-scroll-target="#참고-자료">9. 참고 자료</a></li>
+  <li><a href="#주간-문항-세트-06" id="toc-주간-문항-세트-06" class="nav-link" data-scroll-target="#주간-문항-세트-06">주간 문항 세트 06</a>
+  <ul class="collapse">
+  <li><a href="#정답" id="toc-정답" class="nav-link" data-scroll-target="#정답">정답</a></li>
+  <li><a href="#풀이" id="toc-풀이" class="nav-link" data-scroll-target="#풀이">풀이</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../courses/adsp/book/ADsP_01주차_학생용.html">교재</a></li><li class="breadcrumb-item"><a href="../../../courses/adsp/book/ADsP_06주차_학생용.html">[6주차] 통계학 개론: 표본, 분포, 추정, 검정</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">[6주차] 통계학 개론: 표본, 분포, 추정, 검정</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<header class="chapter-head">
+<p class="chapter-part">빅데이터개론</p>
+<p class="chapter-no"><span class="num">6</span><span class="unit">주차</span></p>
+<p class="chapter-title">통계학 개론: 표본, 분포, 추정, 검정</p>
+</header>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>2027학년도 「빅데이터개론」의 준비 중인 교재입니다. 편집 상태를 검토하기 위해 미리 공개한 것으로, 수업 전에 내용과 순서가 바뀔 수 있습니다.</p>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>학사 7주차 · 교재 06 · 3부 데이터 분석 · ADsP 3과목 데이터분석 &gt; 통계분석 (통계학 개론, 기초 통계분석 가운데 검정)</p>
+</blockquote>
+<p>통계 분석은 모집단의 일부인 표본을 조사하여 모집단에 대해 판단하는 일이다. 이 장은 그 판단의 틀을 다룬다. 표본을 뽑는 방법, 자료를 재는 척도, 확률 분포, 표본에서 모집단의 값을 어림하는 추정, 주장이 맞는지 판단하는 가설 검정의 순서로 나간다. 시험은 이 범위에서 용어의 구분과 사례의 판단을 주로 묻고, t-검정은 R 출력을 읽는 문항으로도 나온다.</p>
+<p>교재 05에서 다룬 평균, 표준편차, 왜도, 히스토그램, 상자그림을 전제로 한다. 이 장에서 익히는 가설 검정의 용어(귀무 가설, 유의 확률, 유의수준)는 교재 07부터 모든 결과표를 읽는 데 쓰인다. 다음 주(학사 8주차)는 중간시험이며 범위는 교재 01~06이다.</p>
+<hr>
+<section id="학습-목표" class="level2">
+<h2 class="anchored" data-anchor-id="학습-목표">학습 목표</h2>
+<ol type="1">
+<li>모집단과 표본, 모수와 통계량을 구분하고, 확률 표본 추출 방법 넷과 측정 척도 넷을 사례에 짝짓는다.</li>
+<li>이산 확률 분포와 연속 확률 분포의 종류를 구분하고, 기댓값과 분산을 계산한다.</li>
+<li>표본의 크기에 따라 표본 평균의 분포가 어떻게 달라지는지 설명하고, 신뢰 구간과 신뢰수준의 뜻을 바르게 읽는다.</li>
+<li>가설 검정의 절차를 말하고, 제1종 오류와 제2종 오류, 유의수준과 유의 확률, 양측 검정과 단측 검정을 구분한다.</li>
+<li>t-검정의 세 종류와 비모수 검정을 사례에 맞게 고르고, 파이썬과 R의 검정 출력에서 t 값, 자유도, 유의 확률, 신뢰 구간을 읽는다.</li>
+</ol>
+</section>
+<section id="준비-사항" class="level2">
+<h2 class="anchored" data-anchor-id="준비-사항">준비 사항</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>실습 노트북</td>
+<td><code>ADsP_06주차_실습_학생용.ipynb</code>. 「따라 하기 1~4」와 「중심 실습」의 절로 되어 있다</td>
+</tr>
+<tr class="even">
+<td>자료</td>
+<td><code>transactions.csv</code>(가상 상점의 거래 428건. <code>금액</code> 열을 쓴다), <code>customers.csv</code>(고객 60명의 지역), <code>mtcars.csv</code>(자동차 32종의 연비와 제원), <code>sleep.csv</code>(10명의 수면 시간 자료). 자료 폴더의 위치는 노트북 첫 코드 셀의 <code>DATA</code>에 적혀 있다</td>
+</tr>
+<tr class="odd">
+<td>앞 장과의 연계</td>
+<td>교재 05의 기술 통계(평균, 중앙값, 표준편차, 왜도)와 그림(히스토그램, 상자그림), 교재 04의 그룹별 집계를 전제로 한다. 리스트와 <code>for</code> 반복문, <code>if</code> 조건문은 「파이썬 기초」에서 배운 그대로 쓴다</td>
+</tr>
+<tr class="even">
+<td>실습 환경</td>
+<td>접속과 자료를 받는 방법은 부록 A에 있다</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="모집단과-표본" class="level2">
+<h2 class="anchored" data-anchor-id="모집단과-표본">1. 모집단과 표본</h2>
+<section id="모집단-표본-모수-통계량" class="level3">
+<h3 class="anchored" data-anchor-id="모집단-표본-모수-통계량">1.1 모집단, 표본, 모수, 통계량</h3>
+<p>알고자 하는 대상 전체를 모집단이라 하고, 모집단에서 뽑아 실제로 조사한 일부를 표본이라 한다. 모집단 전체를 조사하는 것이 전수 조사이고, 표본만 조사하는 것이 표본 조사다. 전수 조사는 비용과 시간이 많이 들고, 조사하면 대상이 망가지는 경우(제품의 수명 검사)에는 할 수 없다. 그래서 대부분의 분석은 표본으로 한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>용어</th>
+<th>뜻</th>
+<th>예</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>모집단</td>
+<td>알고자 하는 대상 전체</td>
+<td>어느 상점의 한 해 거래 전체</td>
+</tr>
+<tr class="even">
+<td>표본</td>
+<td>모집단에서 뽑아 조사한 일부</td>
+<td>그 가운데 뽑은 거래 30건</td>
+</tr>
+<tr class="odd">
+<td>모수</td>
+<td>모집단의 특성을 나타내는 값. 모평균, 모분산, 모비율</td>
+<td>거래 전체의 평균 금액</td>
+</tr>
+<tr class="even">
+<td>통계량</td>
+<td>표본에서 계산한 값. 표본 평균, 표본 분산, 표본 비율</td>
+<td>뽑은 30건의 평균 금액</td>
+</tr>
+</tbody>
+</table>
+<p>모수는 정해져 있는 하나의 값이지만 보통은 알 수 없다. 통계량은 표본을 뽑을 때마다 달라진다. 통계 분석은 통계량으로 모수를 어림하는 일이다.</p>
+<p>따라 하기에서는 가상 상점의 거래 428건 전체를 모집단으로 삼아, 모집단을 아는 상황에서 표본이 모집단을 얼마나 잘 대신하는지 확인한다.</p>
+</section>
+<section id="표본-추출-방법" class="level3">
+<h3 class="anchored" data-anchor-id="표본-추출-방법">1.2 표본 추출 방법</h3>
+<p>표본이 모집단을 잘 대표하려면 뽑는 과정에 조사자의 뜻이 끼어들지 않아야 한다. 모집단의 각 원소가 뽑힐 확률을 알 수 있게 뽑는 방법을 확률 표본 추출이라 하며, 다음 넷이 있다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>방법</th>
+<th>절차</th>
+<th>예</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>단순 임의 추출</td>
+<td>모집단의 모든 원소에 번호를 매기고, 각 원소가 뽑힐 확률이 같도록 임의로 뽑는다</td>
+<td>거래 428건에서 난수로 30건을 뽑는다</td>
+</tr>
+<tr class="even">
+<td>계통 추출</td>
+<td>원소에 번호를 매겨 차례로 늘어놓고, 첫 구간에서 하나를 임의로 뽑은 뒤 일정한 간격으로 뽑는다</td>
+<td>생산 순서대로 50번째마다 제품 하나를 검사한다</td>
+</tr>
+<tr class="odd">
+<td>층화 추출</td>
+<td>모집단을 성질이 비슷한 원소끼리 묶은 층으로 나누고, 모든 층에서 각각 임의로 뽑는다</td>
+<td>고객을 연령대별로 나누고 연령대마다 10명씩 뽑는다</td>
+</tr>
+<tr class="even">
+<td>집락 추출</td>
+<td>모집단을 여러 집락(군집)으로 나누고, 집락 몇 개를 임의로 뽑아 뽑힌 집락의 원소를 조사한다</td>
+<td>지점 40곳 가운데 5곳을 뽑아 그 지점의 고객 전원을 조사한다</td>
+</tr>
+</tbody>
+</table>
+<p>층화 추출과 집락 추출은 모집단을 먼저 나눈다는 점이 같아 혼동하기 쉽다. 차이는 다음과 같다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>구분</th>
+<th>층화 추출</th>
+<th>집락 추출</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>나누는 기준</td>
+<td>층 안의 원소는 서로 비슷하고, 층과 층은 서로 다르게 나눈다</td>
+<td>집락 안에는 여러 성질의 원소가 섞여 있고, 집락과 집락은 서로 비슷하다</td>
+</tr>
+<tr class="even">
+<td>뽑는 방식</td>
+<td>모든 층에서 조금씩 뽑는다</td>
+<td>일부 집락만 뽑고, 뽑힌 집락을 조사한다</td>
+</tr>
+<tr class="odd">
+<td>목적</td>
+<td>층마다 빠짐없이 대표되게 하여 추정의 정밀도를 높인다</td>
+<td>조사 대상을 한곳에 모아 비용과 시간을 줄인다</td>
+</tr>
+</tbody>
+</table>
+<p>한번 뽑은 원소를 되돌려 놓고 다시 뽑는 것을 복원 추출, 되돌려 놓지 않는 것을 비복원 추출이라 한다. 조사자가 편한 대로 대상을 고르는 방법(편의 추출 등)은 비확률 표본 추출이며, 표본이 모집단을 대표한다고 보기 어렵다.</p>
+</section>
+<section id="표본-오차와-비표본-오차" class="level3">
+<h3 class="anchored" data-anchor-id="표본-오차와-비표본-오차">1.3 표본 오차와 비표본 오차</h3>
+<p>표본으로 구한 값은 모수와 차이가 난다. 차이의 원인은 둘로 나눈다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>구분</th>
+<th>표본 오차</th>
+<th>비표본 오차</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>원인</td>
+<td>모집단의 일부만 조사하기 때문에 생긴다</td>
+<td>조사를 수행하는 과정에서 생긴다. 측정 도구의 잘못, 무응답, 거짓 응답, 입력 실수 등이다</td>
+</tr>
+<tr class="even">
+<td>표본의 크기를 키우면</td>
+<td>줄어든다</td>
+<td>줄지 않는다. 조사 규모가 커지면 오히려 늘 수 있다</td>
+</tr>
+<tr class="odd">
+<td>전수 조사에서</td>
+<td>생기지 않는다</td>
+<td>생긴다</td>
+</tr>
+</tbody>
+</table>
+<p>표본을 뽑는 방법이 잘못되어 모집단의 일부가 뽑힐 가능성이 다른 부분보다 낮아지는 것을 표본 편의라 한다. 인터넷 설문으로만 조사하면 인터넷을 쓰지 않는 사람이 빠지는 것이 그 예다. 표본 편의는 확률 표본 추출로 줄인다.</p>
+</section>
+<section id="측정-척도" class="level3">
+<h3 class="anchored" data-anchor-id="측정-척도">1.4 측정 척도</h3>
+<p>자료를 재는 기준을 척도라 한다. 척도에 따라 쓸 수 있는 연산과 통계 기법이 달라지므로, 분석에 앞서 변수의 척도를 확인한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>척도</th>
+<th>뜻</th>
+<th>쓸 수 있는 연산</th>
+<th>예 (학기 공통 자료)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>명목 척도</td>
+<td>대상을 구분하는 이름이다. 순서가 없다</td>
+<td>같다, 다르다</td>
+<td><code>결제수단</code>, <code>품목군</code>, <code>지역</code>, <code>고객ID</code></td>
+</tr>
+<tr class="even">
+<td>서열 척도</td>
+<td>순서가 있다. 간격은 일정하지 않다</td>
+<td>위의 것, 크기 비교</td>
+<td><code>연령대</code>(20대, 30대, …), 만족도 5단계</td>
+</tr>
+<tr class="odd">
+<td>등간 척도</td>
+<td>간격이 일정하다. 절대적인 0이 없다</td>
+<td>위의 것, 덧셈과 뺄셈</td>
+<td><code>거래일</code>(날짜), 섭씨 온도</td>
+</tr>
+<tr class="even">
+<td>비율 척도</td>
+<td>간격이 일정하고 절대적인 0이 있다</td>
+<td>위의 것, 곱셈과 나눗셈</td>
+<td><code>수량</code>, <code>금액</code>, 무게</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>명목 척도와 서열 척도의 자료를 질적 자료(범주형 자료), 등간 척도와 비율 척도의 자료를 양적 자료(수치형 자료)라 한다.</li>
+<li>절대적인 0은 “없음”을 뜻하는 0이다. 금액 0원은 금액이 없다는 뜻이므로 20만 원은 10만 원의 두 배라고 말할 수 있다. 섭씨 0도는 온도가 없다는 뜻이 아니므로 20도가 10도의 두 배라고 말할 수 없다.</li>
+<li>숫자로 적혀 있다고 양적 자료인 것은 아니다. 우편번호나 등번호는 숫자이지만 명목 척도다.</li>
+<li>대표값도 척도를 따른다. 명목 척도에는 최빈값, 서열 척도에는 중앙값과 최빈값을 쓰고, 평균은 등간 척도와 비율 척도에 쓴다.</li>
+</ul>
+</section>
+<section id="따라-하기" class="level3">
+<h3 class="anchored" data-anchor-id="따라-하기">따라 하기</h3>
+<p>노트북의 「따라 하기 1. 모집단과 표본」 셀을 위에서부터 실행한다. 첫 셀은 거래 자료를 읽고 금액의 요약을 낸다.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>sales <span class="op">=</span> pd.read_csv(DATA <span class="op">+</span> <span class="st">"transactions.csv"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>amount <span class="op">=</span> sales[<span class="st">"금액"</span>]</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(amount))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(amount.describe().<span class="bu">round</span>(<span class="dv">1</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>428
+count       428.0
+mean      79104.2
+std       61154.7
+min        7500.0
+25%       32800.0
+50%       57600.0
+75%      111950.0
+max      246400.0
+Name: 금액, dtype: float64</code></pre>
+<p>다음 두 셀은 금액의 히스토그램을 그리고 모수를 구한다.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> amount.mean()                 <span class="co"># 모집단의 평균 (모수)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> amount.std(ddof<span class="op">=</span><span class="dv">0</span>)         <span class="co"># 모집단의 표준편차 (모수). ddof=0은 428로 나눈다는 뜻이다</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"모평균:"</span>, <span class="bu">round</span>(mu, <span class="dv">1</span>))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"모표준편차:"</span>, <span class="bu">round</span>(sigma, <span class="dv">1</span>))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"중앙값:"</span>, amount.median())</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"왜도:"</span>, <span class="bu">round</span>(stats.skew(amount), <span class="dv">3</span>))</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"왜도(pandas):"</span>, <span class="bu">round</span>(amount.skew(), <span class="dv">3</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>모평균: 79104.2
+모표준편차: 61083.2
+중앙값: 57600.0
+왜도: 1.06
+왜도(pandas): 1.064</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../kit/images/ADsP_06_population.png" class="img-fluid figure-img"></p>
+<figcaption>거래 금액(amount)의 히스토그램</figcaption>
+</figure>
+</div>
+<ul>
+<li><span class="check-badge">확인 1</span> 모평균이 79104.2, 모표준편차가 61083.2, 중앙값이 57600.0으로 나왔다. <code>describe()</code>의 <code>std</code>(61154.7)는 모표준편차와 다르다.</li>
+</ul>
+<p>금액은 오른쪽으로 꼬리가 길고 평균이 중앙값보다 크다(교재 05). <code>describe()</code>의 <code>std</code>는 n - 1(427)로 나눈 표본 표준편차이고, 모표준편차는 428건 전체를 모집단으로 보아 n으로 나눈다. 왜도가 1.06과 1.064로 다른 것도 같은 종류의 차이다. <code>stats.skew()</code>는 보정하지 않은 왜도를, pandas의 <code>.skew()</code>는 표본의 크기로 보정한 왜도를 낸다.</p>
+<p>이 모집단에서 거래 30건을 임의로 뽑아 평균을 구한다.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">2027</span>)          <span class="co"># 난수 생성기. 괄호 안의 수가 시드다</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>sample <span class="op">=</span> rng.choice(amount, size<span class="op">=</span><span class="dv">30</span>)       <span class="co"># 금액에서 30개를 임의로 뽑는다 (복원 추출)</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sample[:<span class="dv">10</span>])</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"표본 평균:"</span>, <span class="bu">round</span>(sample.mean(), <span class="dv">1</span>))</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"모평균:"</span>, <span class="bu">round</span>(mu, <span class="dv">1</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>[215700  11700  19200 146500  38400 107900  34800  94000 213300  79600]
+표본 평균: 82593.3
+모평균: 79104.2</code></pre>
+<ul>
+<li><span class="check-badge">확인 2</span> 표본 평균이 82593.3으로 모평균 79104.2와 달랐다.</li>
+</ul>
+<p>표본 평균은 통계량이고 모평균은 모수다. 시드는 난수의 출발점을 정하는 수이며, 시드를 고정하면 실행할 때마다 같은 표본이 뽑힌다.</p>
+<p>다음 네 셀은 1.2절의 네 방법으로 표본을 뽑는다. 단순 임의 추출은 행 번호 30개를 비복원 추출로(<code>replace=False</code>), 계통 추출은 0~13에서 정한 시작 위치부터 14행마다(<code>iloc[start::k]</code>), 층화 추출은 품목군마다 6건씩 뽑는다. 집락 추출은 고객의 지역 다섯 곳 가운데 두 곳을 뽑아 그 지역의 거래를 모두 조사한다.</p>
+<pre class="text"><code>단순 임의 추출: 30 건, 평균 66596.7
+시작 위치: 8
+계통 추출: 30 건, 평균 72633.3
+품목군
+가전    6
+도서    6
+생활    6
+식품    6
+의류    6
+Name: count, dtype: int64
+층화 추출: 30 건, 평균 91043.3
+지역: ['경기', '광주', '대전', '부산', '서울']
+뽑힌 지역: ['경기' '대전']
+집락 추출: 143 건, 평균 74988.1</code></pre>
+<ul>
+<li><span class="check-badge">확인 3</span> 층화 추출의 표본에 다섯 품목군이 6건씩 들어 있고, 집락 추출의 표본은 뽑힌 두 지역(경기, 대전)의 거래 143건이었다.</li>
+</ul>
+<p>네 표본의 평균은 모두 모평균과 다르다. 이 차이가 표본 오차다. 집락 추출은 뽑힌 집락의 원소를 모두 조사하므로 표본의 크기가 뽑힌 집락에 따라 달라진다.</p>
+<p>마지막 셀은 열마다 자료형을 보인다.</p>
+<pre class="text"><code>거래ID      str
+고객ID      str
+거래일       str
+품목군       str
+수량      int64
+금액      int64
+결제수단      str
+dtype: object</code></pre>
+<ul>
+<li><span class="check-badge">확인 4</span> <code>수량</code>과 <code>금액</code>은 <code>int64</code>, 나머지 다섯 열은 <code>str</code>로 나왔다.</li>
+</ul>
+<p>자료형은 저장하는 방식이고 척도는 값이 뜻하는 바다. <code>거래일</code>은 글자로 저장된 등간 척도이고, 고객 번호가 <code>1001</code>처럼 정수로 저장되었더라도 척도는 명목 척도다.</p>
+<hr>
+</section>
+</section>
+<section id="확률-분포" class="level2">
+<h2 class="anchored" data-anchor-id="확률-분포">2. 확률 분포</h2>
+<section id="확률-변수와-확률-분포" class="level3">
+<h3 class="anchored" data-anchor-id="확률-변수와-확률-분포">2.1 확률 변수와 확률 분포</h3>
+<p>확률 변수는 우연에 따라 값이 정해지는 변수다. 동전을 두 번 던져 앞면이 나온 횟수, 표본으로 뽑힌 거래의 금액이 확률 변수다. 확률 변수가 어떤 값을 어떤 확률로 갖는지를 나타낸 것이 확률 분포다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>구분</th>
+<th>이산 확률 변수</th>
+<th>연속 확률 변수</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>값</td>
+<td>하나씩 셀 수 있다(0, 1, 2, …)</td>
+<td>구간 안의 모든 실수</td>
+</tr>
+<tr class="even">
+<td>확률을 나타내는 함수</td>
+<td>확률 질량 함수. 값 하나하나에 확률을 준다</td>
+<td>확률 밀도 함수. 곡선 아래의 넓이가 확률이다</td>
+</tr>
+<tr class="odd">
+<td>한 값의 확률</td>
+<td>0보다 클 수 있다</td>
+<td>0이다. 확률은 구간에 대해서만 구한다</td>
+</tr>
+<tr class="even">
+<td>예</td>
+<td>불량품의 개수, 방문 횟수</td>
+<td>무게, 시간, 금액</td>
+</tr>
+</tbody>
+</table>
+<p>어느 분포든 모든 확률을 더하면(연속이면 곡선 아래의 전체 넓이가) 1이다.</p>
+</section>
+<section id="기댓값과-분산" class="level3">
+<h3 class="anchored" data-anchor-id="기댓값과-분산">2.2 기댓값과 분산</h3>
+<p>기댓값은 확률 변수가 갖는 값을 확률로 가중하여 평균한 값이다. 같은 시행을 한없이 되풀이할 때 평균적으로 얻는 값이며, 확률 분포의 중심을 나타낸다.</p>
+<blockquote class="blockquote">
+<p>기댓값 = (값 × 그 값의 확률)을 모두 더한 것</p>
+</blockquote>
+<p>분산은 확률 변수의 값이 기댓값에서 떨어진 정도를 나타낸다. 편차(값 - 기댓값)의 제곱을 확률로 가중하여 평균한 값이다. 표준편차는 분산의 제곱근이다.</p>
+<blockquote class="blockquote">
+<p>분산 = ((값 - 기댓값)² × 그 값의 확률)을 모두 더한 것</p>
+</blockquote>
+<p>동전을 두 번 던져 앞면이 나온 횟수를 X라 하면 분포는 다음과 같다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>X의 값</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>확률</td>
+<td>0.25</td>
+<td>0.5</td>
+<td>0.25</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>기댓값 = 0 × 0.25 + 1 × 0.5 + 2 × 0.25 = 1</li>
+<li>분산 = (0 - 1)² × 0.25 + (1 - 1)² × 0.5 + (2 - 1)² × 0.25 = 0.5</li>
+</ul>
+<p>확률 변수에 상수를 곱하고 더했을 때의 성질은 다음과 같다. a와 b는 상수다.</p>
+<ul>
+<li>aX + b의 기댓값 = a × (X의 기댓값) + b</li>
+<li>aX + b의 분산 = a² × (X의 분산). 상수를 더하는 것은 분산을 바꾸지 않는다.</li>
+</ul>
+</section>
+<section id="이산-확률-분포" class="level3">
+<h3 class="anchored" data-anchor-id="이산-확률-분포">2.3 이산 확률 분포</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>분포</th>
+<th>무엇의 분포인가</th>
+<th>평균과 분산</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>베르누이 분포</td>
+<td>결과가 성공과 실패 둘뿐인 시행을 한 번 했을 때의 성공 여부(1 또는 0). 성공 확률은 p다</td>
+<td>평균 p, 분산 p(1 - p)</td>
+</tr>
+<tr class="even">
+<td>이항 분포</td>
+<td>성공 확률이 p인 베르누이 시행을 독립적으로 n번 했을 때의 성공 횟수</td>
+<td>평균 np, 분산 np(1 - p)</td>
+</tr>
+<tr class="odd">
+<td>기하 분포</td>
+<td>성공 확률이 p인 베르누이 시행을 되풀이할 때, 첫 성공이 나올 때까지의 시행 횟수</td>
+<td>평균 1 ÷ p</td>
+</tr>
+<tr class="even">
+<td>포아송 분포</td>
+<td>정해진 시간이나 공간 안에서 사건이 일어나는 횟수. 단위 시간의 평균 발생 횟수가 모수다</td>
+<td>평균과 분산이 같다</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="연속-확률-분포" class="level3">
+<h3 class="anchored" data-anchor-id="연속-확률-분포">2.4 연속 확률 분포</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>분포</th>
+<th>특징</th>
+<th>쓰이는 곳</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>균등 분포</td>
+<td>구간 안의 모든 값이 같은 밀도를 가진다</td>
+<td>난수</td>
+</tr>
+<tr class="even">
+<td>정규 분포</td>
+<td>평균을 중심으로 좌우가 대칭인 종 모양이다. 평균과 표준편차 두 모수로 정해진다. 평균이 0이고 표준편차가 1인 것을 표준 정규 분포라 한다</td>
+<td>측정값의 분포, 표본 평균의 분포</td>
+</tr>
+<tr class="odd">
+<td>지수 분포</td>
+<td>사건이 일어날 때까지 걸리는 시간의 분포다. 오른쪽으로 꼬리가 길다</td>
+<td>대기 시간, 고장까지의 시간</td>
+</tr>
+<tr class="even">
+<td>t 분포</td>
+<td>0을 중심으로 대칭이며 표준 정규 분포보다 꼬리가 두껍다. 자유도가 커질수록 표준 정규 분포에 가까워진다</td>
+<td>모표준편차를 모를 때 평균의 추정과 검정</td>
+</tr>
+<tr class="odd">
+<td>카이제곱 분포</td>
+<td>0 이상의 값만 가지며 오른쪽으로 꼬리가 길다. 자유도 하나로 정해진다</td>
+<td>분산의 추정과 검정, 범주형 자료의 적합도 검정과 독립성 검정</td>
+</tr>
+<tr class="even">
+<td>F 분포</td>
+<td>0 이상의 값만 가지며 오른쪽으로 꼬리가 길다. 자유도 둘로 정해진다</td>
+<td>두 집단의 분산 비교, 분산분석, 회귀 모형의 유의성 검정</td>
+</tr>
+</tbody>
+</table>
+<p>포아송 분포와 지수 분포는 짝을 이룬다. 한 시간 동안 들어오는 주문의 수는 포아송 분포로, 주문과 주문 사이의 시간은 지수 분포로 나타낸다. 한 시간에 평균 2건이 들어오면 주문 사이의 평균 시간은 1 ÷ 2 = 0.5시간이다.</p>
+<p>값에서 평균을 빼고 표준편차로 나누는 것을 표준화라 한다. 정규 분포를 따르는 변수를 표준화하면 표준 정규 분포를 따른다. 그래서 평균과 표준편차가 무엇이든 정규 분포의 확률은 표준 정규 분포 하나로 구할 수 있다.</p>
+</section>
+<section id="따라-하기-1" class="level3">
+<h3 class="anchored" data-anchor-id="따라-하기-1">따라 하기</h3>
+<p>노트북의 「따라 하기 2. 확률 분포」 셀을 실행한다. <code>scipy.stats</code>에는 2.3절과 2.4절의 분포가 들어 있다. 함수의 이름은 다음과 같다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>함수</th>
+<th>하는 일</th>
+<th>쓰는 분포</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>pmf(값, 모수)</code></td>
+<td>그 값을 가질 확률</td>
+<td>이산 분포(<code>binom</code>, <code>poisson</code>, <code>geom</code>)</td>
+</tr>
+<tr class="even">
+<td><code>pdf(값, 모수)</code></td>
+<td>그 값에서의 확률 밀도(곡선의 높이)</td>
+<td>연속 분포(<code>norm</code>, <code>t</code>, <code>chi2</code>, <code>f</code>, <code>expon</code>)</td>
+</tr>
+<tr class="odd">
+<td><code>cdf(값, 모수)</code></td>
+<td>그 값 이하일 확률(누적 확률)</td>
+<td>모든 분포</td>
+</tr>
+<tr class="even">
+<td><code>ppf(누적 확률, 모수)</code></td>
+<td>누적 확률이 그 값이 되는 자리. <code>cdf</code>의 반대다</td>
+<td>모든 분포</td>
+</tr>
+<tr class="odd">
+<td><code>mean(모수)</code>, <code>var(모수)</code></td>
+<td>분포의 평균과 분산</td>
+<td>모든 분포</td>
+</tr>
+</tbody>
+</table>
+<p>첫 셀은 2.2절의 동전 예에서 기댓값과 분산을 반복문으로 계산한다. 값과 확률을 리스트에 담고, 값 × 확률을 하나씩 더한다.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>]                         <span class="co"># X가 가질 수 있는 값</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>probs <span class="op">=</span> [<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.25</span>]                  <span class="co"># 각 값의 확률</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>ev <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    ev <span class="op">=</span> ev <span class="op">+</span> values[i] <span class="op">*</span> probs[i]         <span class="co"># 값 × 확률을 더한다</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>var <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    var <span class="op">=</span> var <span class="op">+</span> (values[i] <span class="op">-</span> ev) <span class="op">**</span> <span class="dv">2</span> <span class="op">*</span> probs[i]   <span class="co"># (값 - 기댓값)² × 확률을 더한다</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"기댓값:"</span>, ev)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"분산:"</span>, var)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"이항 분포 B(2, 0.5)의 평균과 분산:"</span>, stats.binom.mean(<span class="dv">2</span>, <span class="fl">0.5</span>), stats.binom.var(<span class="dv">2</span>, <span class="fl">0.5</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>기댓값: 1.0
+분산: 0.5
+이항 분포 B(2, 0.5)의 평균과 분산: 1.0 0.5</code></pre>
+<ul>
+<li><span class="check-badge">확인 5</span> 반복문으로 계산한 기댓값 1.0과 분산 0.5가 이항 분포 B(2, 0.5)의 평균, 분산과 같았다.</li>
+</ul>
+<p>동전을 두 번 던진 앞면의 수는 이항 분포 B(2, 0.5)를 따르므로 평균 np = 1, 분산 np(1 - p) = 0.5다.</p>
+<p>다음 셀들은 이산 분포의 확률과 평균을 구한다.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 이항 분포: 성공 확률이 0.5인 시행을 10번 할 때 성공이 정확히 3번일 확률</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(stats.binom.pmf(<span class="dv">3</span>, <span class="dv">10</span>, <span class="fl">0.5</span>), <span class="dv">4</span>))</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 포아송 분포: 한 시간에 평균 2건이 일어나는 사건이 한 시간에 한 건도 일어나지 않을 확률</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(stats.poisson.pmf(<span class="dv">0</span>, <span class="dv">2</span>), <span class="dv">4</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>0.1172
+0.1353</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">11</span>))                        <span class="co"># 성공 횟수 0부터 10까지</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> stats.binom.pmf(k, <span class="dv">10</span>, <span class="fl">0.5</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(p.<span class="bu">round</span>(<span class="dv">4</span>))</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"확률의 합:"</span>, <span class="bu">round</span>(p.<span class="bu">sum</span>(), <span class="dv">4</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>[0.001  0.0098 0.0439 0.1172 0.2051 0.2461 0.2051 0.1172 0.0439 0.0098
+ 0.001 ]
+확률의 합: 1.0</code></pre>
+<p>그다음 셀은 세 분포의 평균과 분산을 <code>mean()</code>과 <code>var()</code>로 구한다.</p>
+<pre class="text"><code>이항 B(10, 0.5)  평균 5.0  분산 2.5
+포아송(평균 2)   평균 2.0  분산 2.0
+기하(p = 0.2)    평균 5.0</code></pre>
+<ul>
+<li><span class="check-badge">확인 6</span> B(10, 0.5)에서 성공이 3번일 확률이 0.1172이고, 11개 확률의 합이 1.0이며, 포아송 분포(평균 2)의 평균과 분산이 모두 2.0으로 나왔다.</li>
+</ul>
+<p>이항 분포의 확률은 성공 5번에서 가장 크고(0.2461) 좌우가 대칭이다. 한 시간에 평균 2건의 주문이 들어오는 상점에서 한 시간 동안 주문이 없을 확률은 0.1353이다. 기하 분포의 평균은 1 ÷ 0.2 = 5다.</p>
+<p>다음 셀은 정규 분포와 t 분포의 누적 확률과 분위수를 구한다.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 표준 정규 분포에서 평균의 양쪽 1, 2, 3 표준편차 안에 들 확률</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(stats.norm.cdf(<span class="dv">1</span>) <span class="op">-</span> stats.norm.cdf(<span class="op">-</span><span class="dv">1</span>), <span class="dv">4</span>))</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(stats.norm.cdf(<span class="dv">2</span>) <span class="op">-</span> stats.norm.cdf(<span class="op">-</span><span class="dv">2</span>), <span class="dv">4</span>))</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(stats.norm.cdf(<span class="dv">3</span>) <span class="op">-</span> stats.norm.cdf(<span class="op">-</span><span class="dv">3</span>), <span class="dv">4</span>))</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 가운데 95%를 남기는 값: 표준 정규 분포, 자유도 31인 t 분포, 자유도 5인 t 분포</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(stats.norm.ppf(<span class="fl">0.975</span>), <span class="dv">4</span>))</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(stats.t.ppf(<span class="fl">0.975</span>, <span class="dv">31</span>), <span class="dv">4</span>))</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(stats.t.ppf(<span class="fl">0.975</span>, <span class="dv">5</span>), <span class="dv">4</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>0.6827
+0.9545
+0.9973
+1.96
+2.0395
+2.5706</code></pre>
+<ul>
+<li><span class="check-badge">확인 7</span> 표준 정규 분포에서 가운데 95%를 남기는 값이 1.96, 자유도 31인 t 분포에서 2.0395, 자유도 5인 t 분포에서 2.5706으로 나왔다.</li>
+</ul>
+<p>정규 분포에서는 평균의 양쪽 1, 2, 3 표준편차 안에 약 68%, 95%, 99.7%가 들어 있다. 가운데 95%를 남기면 양쪽 꼬리에 2.5%씩 남으므로 <code>ppf(0.975)</code>로 구한다. t 분포는 꼬리가 두꺼워 같은 95%를 남기려면 1.96보다 멀리 가야 하고, 자유도가 커질수록 1.96에 가까워진다.</p>
+<p>다음 셀은 표준화를 확인한다. 평균 100, 표준편차 15인 정규 분포에서 110 이하일 확률을 바로 구한 것과, 110을 표준화한 값으로 표준 정규 분포에서 구한 것이 같다.</p>
+<pre class="text"><code>0.7475
+0.6667 0.7475</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../kit/images/ADsP_06_tdist.png" class="img-fluid figure-img"></p>
+<figcaption>표준 정규 분포와 t 분포의 확률 밀도 함수</figcaption>
+</figure>
+</div>
+<p>자유도 3인 t 분포는 가운데가 낮고 양쪽 꼬리가 두껍다. 자유도 30인 t 분포는 표준 정규 분포와 거의 겹친다.</p>
+<p>마지막 셀은 이 장과 다음 장에서 쓰는 분포의 값을 구한다.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 오른쪽 꼬리 5%를 남기는 값: 카이제곱 분포(자유도 1), F 분포(자유도 2와 29)</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(stats.chi2.ppf(<span class="fl">0.95</span>, <span class="dv">1</span>), <span class="dv">4</span>))</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(stats.f.ppf(<span class="fl">0.95</span>, <span class="dv">2</span>, <span class="dv">29</span>), <span class="dv">4</span>))</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 지수 분포: 사건이 한 시간에 평균 2건 일어날 때 사건 사이의 평균 시간(시간 단위)</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(stats.expon.mean(scale<span class="op">=</span><span class="dv">1</span> <span class="op">/</span> <span class="dv">2</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>3.8415
+3.3277
+0.5</code></pre>
+<ul>
+<li><span class="check-badge">확인 8</span> 표준화한 값 0.6667에서의 누적 확률이 0.7475로 바로 구한 값과 같고, 자유도 2와 29인 F 분포의 오른쪽 5% 자리가 3.3277로 나왔다.</li>
+</ul>
+<p>카이제곱 분포와 F 분포는 0 이상의 값만 가지므로 기각역이 오른쪽 꼬리에 있다. 자유도 2와 29인 F 분포는 교재 07의 회귀 모형 검정에 쓰인다.</p>
+<hr>
+</section>
+</section>
+<section id="표본-분포와-추정" class="level2">
+<h2 class="anchored" data-anchor-id="표본-분포와-추정">3. 표본 분포와 추정</h2>
+<section id="표본-평균의-분포" class="level3">
+<h3 class="anchored" data-anchor-id="표본-평균의-분포">3.1 표본 평균의 분포</h3>
+<p>표본을 뽑을 때마다 표본 평균이 달라지므로 표본 평균도 확률 변수이고 분포를 가진다. 통계량의 분포를 표본 분포라 한다. 따라 하기에서 표본을 1,000번 뽑아 확인하는 표본 평균의 분포는 다음과 같다.</p>
+<ol type="1">
+<li><strong>표본 평균의 분포의 중심은 모평균이다.</strong></li>
+<li><strong>표본 평균은 원자료보다 좁게 퍼진다.</strong> 그 표준편차는 모표준편차를 n의 제곱근으로 나눈 값에 가깝다.</li>
+<li><strong>모양이 대칭에 가까운 종 모양이다.</strong> 모집단이 오른쪽으로 치우쳐 있어도 그렇다.</li>
+</ol>
+<p>표본 평균의 표준편차를 표준 오차라 한다.</p>
+<blockquote class="blockquote">
+<p>표본 평균의 표준 오차 = 모표준편차 ÷ √n</p>
+</blockquote>
+<p>표준편차는 자료 하나하나가 흩어진 정도이고, 표준 오차는 통계량(표본 평균)이 표본에 따라 흔들리는 정도다. 모표준편차를 모를 때에는 표본 표준편차를 대신 넣어 계산한다.</p>
+</section>
+<section id="중심극한정리" class="level3">
+<h3 class="anchored" data-anchor-id="중심극한정리">3.2 중심극한정리</h3>
+<p>표본의 크기를 바꾸어 같은 일을 하면 다음이 드러난다.</p>
+<blockquote class="blockquote">
+<p>모집단의 분포가 어떤 모양이든, 표본의 크기가 충분히 크면 표본 평균의 분포는 정규 분포에 가까워진다. 그 평균은 모평균이고 표준편차는 모표준편차 ÷ √n이다.</p>
+</blockquote>
+<p>이것이 중심극한정리다. 흔히 n이 30 이상이면 충분히 크다고 본다. 모집단이 정규 분포이면 n이 작아도 표본 평균은 정규 분포를 따른다. 중심극한정리는 표본 평균의 분포에 대한 정리다. 표본을 크게 뽑는다고 모집단이나 표본 자료 자체의 분포가 정규 분포로 바뀌는 것은 아니다.</p>
+</section>
+<section id="점-추정과-좋은-추정량의-조건" class="level3">
+<h3 class="anchored" data-anchor-id="점-추정과-좋은-추정량의-조건">3.3 점 추정과 좋은 추정량의 조건</h3>
+<p>표본으로 모수를 어림하는 것을 추정이라 한다. 모수를 하나의 값으로 어림하는 것이 점 추정이다. 모평균은 표본 평균으로, 모분산은 표본 분산으로, 모비율은 표본 비율로 추정한다. 추정에 쓰는 통계량을 추정량이라 한다.</p>
+<p>좋은 추정량의 조건으로 흔히 다음 넷을 든다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>조건</th>
+<th>뜻</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>불편성</td>
+<td>추정량의 기댓값이 모수와 같다. 표본을 여러 번 뽑아 추정하면 평균적으로 모수를 맞힌다</td>
+</tr>
+<tr class="even">
+<td>효율성</td>
+<td>불편 추정량 가운데 분산이 작다. 추정값이 표본에 따라 덜 흔들린다</td>
+</tr>
+<tr class="odd">
+<td>일치성</td>
+<td>표본의 크기가 커질수록 추정량이 모수에 가까워진다</td>
+</tr>
+<tr class="even">
+<td>충족성</td>
+<td>추정량이 표본에 든 모수에 관한 정보를 빠짐없이 쓴다</td>
+</tr>
+</tbody>
+</table>
+<p>따라 하기의 결과에 견주면, 표본 평균 1,000개의 평균이 모평균 가까이에 있는 것이 불편성이고, n이 커질수록 표본 평균이 모평균 둘레에 좁게 모이는 것이 일치성이다. 표본 분산을 구할 때 n이 아니라 n - 1로 나누는 것은 그렇게 해야 표본 분산이 모분산의 불편 추정량이 되기 때문이다. n으로 나눈 분산은 평균적으로 모분산보다 작게 나온다.</p>
+</section>
+<section id="구간-추정" class="level3">
+<h3 class="anchored" data-anchor-id="구간-추정">3.4 구간 추정</h3>
+<p>점 추정은 값 하나만 내므로 그 값이 얼마나 믿을 만한지 알 수 없다. 구간 추정은 모수가 들어 있을 것으로 보는 구간을 낸다. 이 구간을 신뢰 구간이라 하고, 구간을 만드는 방법이 모수를 맞히는 비율을 신뢰수준이라 한다. 신뢰수준은 흔히 90%, 95%, 99%를 쓴다.</p>
+<blockquote class="blockquote">
+<p>모평균의 신뢰 구간 = 표본 평균 ± (분포에서 읽은 값) × 표준 오차</p>
+</blockquote>
+<p>모표준편차를 모르면 표본 표준편차로 표준 오차를 구하고, 분포는 자유도가 n - 1인 t 분포를 쓴다. 신뢰 구간의 길이는 다음에 따라 달라진다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>바뀌는 것</th>
+<th>신뢰 구간의 길이</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>신뢰수준을 높인다(95%에서 99%로)</td>
+<td>길어진다. 분포에서 읽는 값이 커지기 때문이다</td>
+</tr>
+<tr class="even">
+<td>표본의 크기를 키운다</td>
+<td>짧아진다. 표준 오차가 줄기 때문이다</td>
+</tr>
+<tr class="odd">
+<td>자료의 표준편차가 크다</td>
+<td>길어진다</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="신뢰수준의-뜻" class="level3">
+<h3 class="anchored" data-anchor-id="신뢰수준의-뜻">3.5 신뢰수준의 뜻</h3>
+<blockquote class="blockquote">
+<p>신뢰수준 95%는, 같은 방법으로 표본을 뽑아 신뢰 구간을 만드는 일을 여러 번 되풀이할 때 그 구간들 가운데 약 95%가 모수를 포함한다는 뜻이다.</p>
+</blockquote>
+<p>실제 분석에서는 표본을 한 번만 뽑으므로 구간도 하나다. 그 구간이 모수를 품었는지는 알 수 없다. 신뢰 구간을 잘못 읽은 예는 다음과 같다. 예의 구간은 따라 하기에서 구하는 <code>mtcars</code> 연비의 95% 신뢰 구간(17.9177에서 22.2636까지)이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>잘못 읽은 문장</th>
+<th>틀린 까닭</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>모평균이 이 구간 안에 있을 확률이 95%다</td>
+<td>모평균은 정해진 값이다. 이미 구한 구간은 모평균을 품었거나 품지 못했거나 둘 중 하나다. 95%는 구간을 만드는 방법이 맞히는 비율이다</td>
+</tr>
+<tr class="even">
+<td>자동차의 95%는 연비가 이 구간 안에 있다</td>
+<td>신뢰 구간은 자료 하나하나의 범위가 아니라 모평균에 대한 구간이다</td>
+</tr>
+<tr class="odd">
+<td>표본을 다시 뽑으면 표본 평균이 이 구간 안에 있을 확률이 95%다</td>
+<td>신뢰 구간은 다음 표본의 평균이 아니라 모수를 겨냥한다</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="따라-하기-2" class="level3">
+<h3 class="anchored" data-anchor-id="따라-하기-2">따라 하기</h3>
+<p>노트북의 「따라 하기 3. 표본 분포와 추정」 셀을 실행한다. 첫 셀은 크기 30인 표본을 1,000번 뽑는다.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">2027</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>means <span class="op">=</span> rng.choice(amount, size<span class="op">=</span>(<span class="dv">1000</span>, <span class="dv">30</span>)).mean(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(means.shape)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(means[:<span class="dv">5</span>].<span class="bu">round</span>(<span class="dv">1</span>))</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"표본 평균 1,000개의 평균:"</span>, <span class="bu">round</span>(means.mean(), <span class="dv">1</span>))</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"표본 평균 1,000개의 표준편차:"</span>, <span class="bu">round</span>(means.std(), <span class="dv">1</span>))</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"모표준편차 ÷ 루트 n:"</span>, <span class="bu">round</span>(sigma <span class="op">/</span> np.sqrt(<span class="dv">30</span>), <span class="dv">1</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>(1000,)
+[82593.3 85880.  82620.  91016.7 63433.3]
+표본 평균 1,000개의 평균: 79739.8
+표본 평균 1,000개의 표준편차: 11160.6
+모표준편차 ÷ 루트 n: 11152.2</code></pre>
+<p>둘째 줄을 두 부분으로 나누어 읽는다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>부분</th>
+<th>하는 일</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>rng.choice(amount, size=(1000, 30))</code></td>
+<td>금액에서 값을 1,000 × 30개 뽑아 1,000행 30열의 표로 놓는다. 한 행이 크기 30인 표본 하나다</td>
+</tr>
+<tr class="even">
+<td><code>.mean(axis=1)</code></td>
+<td>행마다 평균을 구한다. <code>axis=1</code>은 한 행 안에서 가로 방향으로 계산하라는 뜻이다. 결과는 표본 평균 1,000개다</td>
+</tr>
+</tbody>
+</table>
+<p>다음 셀은 같은 일을 「파이썬 기초」의 <code>for</code> 반복문과 리스트로 한다. 표본 하나를 뽑아 평균을 리스트에 넣는 일을 1,000번 되풀이한다.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">2027</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>means_loop <span class="op">=</span> []</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    one <span class="op">=</span> rng.choice(amount, size<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    means_loop.append(one.mean())</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(means_loop))</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.<span class="bu">round</span>(means_loop[:<span class="dv">5</span>], <span class="dv">1</span>))</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"앞 셀의 결과와 같은가:"</span>, np.allclose(means, means_loop))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>1000
+[82593.3 85880.  82620.  91016.7 63433.3]
+앞 셀의 결과와 같은가: True</code></pre>
+<ul>
+<li><span class="check-badge">확인 9</span> 표본 평균 1,000개의 평균이 79739.8, 표준편차가 11160.6으로 나왔고, 반복문으로 구한 결과와 같은가를 묻는 줄에 <code>True</code>가 나왔다.</li>
+</ul>
+<p>같은 시드에서 같은 순서로 뽑았으므로 두 방법의 결과가 같다. 표본 평균의 표준편차 11160.6은 모표준편차 ÷ √30(11152.2)과 거의 같고 금액의 표준편차보다 훨씬 작다.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../kit/images/ADsP_06_means.png" class="img-fluid figure-img"></p>
+<figcaption>크기 30인 표본의 평균 1,000개의 히스토그램. 세로선은 모평균이다</figcaption>
+</figure>
+</div>
+<p>다음 셀은 표본의 크기 n을 5, 30, 100으로 바꾸어 같은 일을 한다. 세 경우 모두 같은 시드에서 시작한다.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">2027</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>means5 <span class="op">=</span> rng.choice(amount, size<span class="op">=</span>(<span class="dv">1000</span>, <span class="dv">5</span>)).mean(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">2027</span>)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>means30 <span class="op">=</span> rng.choice(amount, size<span class="op">=</span>(<span class="dv">1000</span>, <span class="dv">30</span>)).mean(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">2027</span>)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>means100 <span class="op">=</span> rng.choice(amount, size<span class="op">=</span>(<span class="dv">1000</span>, <span class="dv">100</span>)).mean(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"n=5   평균"</span>, <span class="bu">round</span>(means5.mean(), <span class="dv">1</span>), <span class="st">" 표준편차"</span>, <span class="bu">round</span>(means5.std(), <span class="dv">1</span>), <span class="st">" 왜도"</span>, <span class="bu">round</span>(stats.skew(means5), <span class="dv">3</span>))</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"n=30  평균"</span>, <span class="bu">round</span>(means30.mean(), <span class="dv">1</span>), <span class="st">" 표준편차"</span>, <span class="bu">round</span>(means30.std(), <span class="dv">1</span>), <span class="st">" 왜도"</span>, <span class="bu">round</span>(stats.skew(means30), <span class="dv">3</span>))</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"n=100 평균"</span>, <span class="bu">round</span>(means100.mean(), <span class="dv">1</span>), <span class="st">" 표준편차"</span>, <span class="bu">round</span>(means100.std(), <span class="dv">1</span>), <span class="st">" 왜도"</span>, <span class="bu">round</span>(stats.skew(means100), <span class="dv">3</span>))</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"모표준편차 ÷ 루트 n:"</span>, <span class="bu">round</span>(sigma <span class="op">/</span> np.sqrt(<span class="dv">5</span>), <span class="dv">1</span>), <span class="bu">round</span>(sigma <span class="op">/</span> np.sqrt(<span class="dv">30</span>), <span class="dv">1</span>), <span class="bu">round</span>(sigma <span class="op">/</span> np.sqrt(<span class="dv">100</span>), <span class="dv">1</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>n=5   평균 78203.6  표준편차 26146.9  왜도 0.464
+n=30  평균 79739.8  표준편차 11160.6  왜도 0.242
+n=100 평균 79429.1  표준편차 6139.5  왜도 0.114
+모표준편차 ÷ 루트 n: 27317.2 11152.2 6108.3</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../kit/images/ADsP_06_clt.png" class="img-fluid figure-img"></p>
+<figcaption>표본의 크기가 5, 30, 100일 때 표본 평균 1,000개의 히스토그램</figcaption>
+</figure>
+</div>
+<ul>
+<li><span class="check-badge">확인 10</span> n이 5, 30, 100으로 커질 때 표본 평균의 표준편차가 26146.9, 11160.6, 6139.5로, 왜도가 0.464, 0.242, 0.114로 줄었다.</li>
+</ul>
+<p>세 경우 모두 중심은 모평균 가까이에 있고, 표준편차는 모표준편차 ÷ √n(27317.2, 11152.2, 6108.3)을 따라 줄어든다. n이 네 배가 되면 표준 오차는 절반이 된다. 모집단의 왜도는 1.06이었으나 n이 100일 때 표본 평균의 왜도는 0.114다.</p>
+<p>다음 셀은 3.3절의 불편성을 확인한다. 크기 5인 표본 1,000개에서 표본 분산을 n으로 나눈 것과 n - 1로 나눈 것을 각각 구하여 평균을 낸다. 금액의 분산은 값이 매우 크므로 100만으로 나누어 적었다.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">2027</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>small <span class="op">=</span> rng.choice(amount, size<span class="op">=</span>(<span class="dv">1000</span>, <span class="dv">5</span>))</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>v_n <span class="op">=</span> small.var(axis<span class="op">=</span><span class="dv">1</span>, ddof<span class="op">=</span><span class="dv">0</span>)            <span class="co"># n으로 나눈 분산</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>v_n1 <span class="op">=</span> small.var(axis<span class="op">=</span><span class="dv">1</span>, ddof<span class="op">=</span><span class="dv">1</span>)           <span class="co"># n - 1로 나눈 분산</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"모분산:"</span>, <span class="bu">round</span>(sigma <span class="op">**</span> <span class="dv">2</span> <span class="op">/</span> <span class="fl">1e6</span>, <span class="dv">1</span>))</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"n으로 나눈 표본 분산의 평균:"</span>, <span class="bu">round</span>(v_n.mean() <span class="op">/</span> <span class="fl">1e6</span>, <span class="dv">1</span>))</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"n - 1로 나눈 표본 분산의 평균:"</span>, <span class="bu">round</span>(v_n1.mean() <span class="op">/</span> <span class="fl">1e6</span>, <span class="dv">1</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>모분산: 3731.2
+n으로 나눈 표본 분산의 평균: 2973.2
+n - 1로 나눈 표본 분산의 평균: 3716.5</code></pre>
+<ul>
+<li><span class="check-badge">확인 11</span> 모분산 3731.2에 대하여 n으로 나눈 표본 분산의 평균은 2973.2, n - 1로 나눈 표본 분산의 평균은 3716.5로 나왔다.</li>
+</ul>
+<p>n으로 나눈 분산은 평균적으로 모분산보다 약 20% 작다. 표본 평균에서 떨어진 정도를 재므로 흩어짐을 작게 재기 때문이며, n - 1로 나누면 이 치우침이 없어진다.</p>
+<p>다음 셀은 <code>mtcars</code>의 자동차 32종을 표본으로 보고 연비(<code>mpg</code>)의 모평균에 대한 95% 신뢰 구간을 구한다.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>cars <span class="op">=</span> pd.read_csv(DATA <span class="op">+</span> <span class="st">"mtcars.csv"</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>mpg <span class="op">=</span> cars[<span class="st">"mpg"</span>]</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>xbar <span class="op">=</span> mpg.mean()                          <span class="co"># 표본 평균</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>se <span class="op">=</span> mpg.std() <span class="op">/</span> np.sqrt(<span class="bu">len</span>(mpg))         <span class="co"># 표준 오차 = 표본 표준편차 ÷ 루트 n</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>t975 <span class="op">=</span> stats.t.ppf(<span class="fl">0.975</span>, <span class="bu">len</span>(mpg) <span class="op">-</span> <span class="dv">1</span>)    <span class="co"># 자유도 31인 t 분포에서 가운데 95%를 남기는 값</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"표본 평균:"</span>, <span class="bu">round</span>(xbar, <span class="dv">4</span>))</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"표준 오차:"</span>, <span class="bu">round</span>(se, <span class="dv">4</span>))</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"95% 신뢰 구간:"</span>, <span class="bu">round</span>(xbar <span class="op">-</span> t975 <span class="op">*</span> se, <span class="dv">4</span>), <span class="bu">round</span>(xbar <span class="op">+</span> t975 <span class="op">*</span> se, <span class="dv">4</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>표본 평균: 20.0906
+표준 오차: 1.0654
+95% 신뢰 구간: 17.9177 22.2636</code></pre>
+<p>이 구간은 20.0906 ± 2.0395 × 1.0654다. 2.0395는 따라 하기 2에서 구한 자유도 31인 t 분포의 값이다. 다음 셀은 <code>stats.t.interval()</code>로 신뢰수준을 바꾸어 가며 같은 구간을 구한다.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> level <span class="kw">in</span> [<span class="fl">0.90</span>, <span class="fl">0.95</span>, <span class="fl">0.99</span>]:</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    low, high <span class="op">=</span> stats.t.interval(level, <span class="bu">len</span>(mpg) <span class="op">-</span> <span class="dv">1</span>, loc<span class="op">=</span>xbar, scale<span class="op">=</span>se)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(level, <span class="bu">round</span>(low, <span class="dv">4</span>), <span class="bu">round</span>(high, <span class="dv">4</span>), <span class="st">"길이"</span>, <span class="bu">round</span>(high <span class="op">-</span> low, <span class="dv">4</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>0.9 18.2842 21.8971 길이 3.6129
+0.95 17.9177 22.2636 길이 4.3459
+0.99 17.1671 23.0142 길이 5.8471</code></pre>
+<ul>
+<li><span class="check-badge">확인 12</span> 95% 신뢰 구간이 17.9177에서 22.2636까지로 나왔고, 구간의 길이가 신뢰수준 90%, 95%, 99%에서 3.6129, 4.3459, 5.8471로 길어졌다.</li>
+</ul>
+<p>다음 셀은 신뢰수준의 뜻(3.5절)을 확인한다. 금액에서 크기 50인 표본을 100번 뽑아 표본마다 95% 신뢰 구간을 만들고, 구간 100개 가운데 몇 개가 모평균 79104.2를 품는지 센다.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">2027</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>samples <span class="op">=</span> rng.choice(amount, size<span class="op">=</span>(<span class="dv">100</span>, <span class="dv">50</span>))             <span class="co"># 표본 100개 (한 행이 크기 50인 표본 하나)</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> samples.mean(axis<span class="op">=</span><span class="dv">1</span>)                                 <span class="co"># 표본마다의 평균</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>half <span class="op">=</span> stats.t.ppf(<span class="fl">0.975</span>, <span class="dv">49</span>) <span class="op">*</span> samples.std(axis<span class="op">=</span><span class="dv">1</span>, ddof<span class="op">=</span><span class="dv">1</span>) <span class="op">/</span> np.sqrt(<span class="dv">50</span>)   <span class="co"># 구간의 반쪽 길이</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>hit <span class="op">=</span> (m <span class="op">-</span> half <span class="op">&lt;=</span> mu) <span class="op">&amp;</span> (mu <span class="op">&lt;=</span> m <span class="op">+</span> half)                <span class="co"># 구간이 모평균을 품으면 True</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"모평균을 품은 구간의 수:"</span>, hit.<span class="bu">sum</span>())</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"품지 못한 구간의 수:"</span>, <span class="dv">100</span> <span class="op">-</span> hit.<span class="bu">sum</span>())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>모평균을 품은 구간의 수: 96
+품지 못한 구간의 수: 4</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../kit/images/ADsP_06_ci.png" class="img-fluid figure-img"></p>
+<figcaption>표본 100개에서 구한 95% 신뢰 구간. 세로선은 모평균이고, 붉은 구간은 모평균을 품지 못한 구간이다</figcaption>
+</figure>
+</div>
+<ul>
+<li><span class="check-badge">확인 13</span> 신뢰 구간 100개 가운데 96개가 모평균을 품었고 4개가 품지 못하였다.</li>
+</ul>
+<p>가로 막대 하나가 표본 하나의 신뢰 구간이다. 구간은 표본마다 움직이고 모평균은 움직이지 않는다. 표본을 뽑는 횟수를 늘릴수록 품은 구간의 비율은 95% 근처로 모인다.</p>
+<ul>
+<li><span class="check-badge">확인 14</span> 그림에서 붉은 가로 막대 4개가 모두 검은 세로선(모평균 79104.2)에 닿지 않고, 회색 막대 96개는 세로선을 가로지른다.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="가설-검정" class="level2">
+<h2 class="anchored" data-anchor-id="가설-검정">4. 가설 검정</h2>
+<section id="가설과-검정의-절차" class="level3">
+<h3 class="anchored" data-anchor-id="가설과-검정의-절차">4.1 가설과 검정의 절차</h3>
+<p>가설 검정은 모집단에 대한 주장이 맞는지를 표본으로 판단하는 절차다. 가설은 둘을 세운다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>가설</th>
+<th>뜻</th>
+<th>예</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>귀무 가설</td>
+<td>차이가 없다, 효과가 없다, 지금까지 알려진 것과 같다는 가설이다. 등호가 들어간다</td>
+<td>자동 변속기 차와 수동 변속기 차의 평균 연비는 같다</td>
+</tr>
+<tr class="even">
+<td>대립 가설</td>
+<td>귀무 가설과 맞서는 가설이다. 분석자가 표본으로 뒷받침하려는 주장이다</td>
+<td>두 집단의 평균 연비는 같지 않다</td>
+</tr>
+</tbody>
+</table>
+<p>검정은 귀무 가설이 참이라고 놓고 시작한다. 그렇게 놓았을 때 지금의 표본과 같은 결과가 나오기 어렵다면 귀무 가설을 버리고(기각하고) 대립 가설을 택한다. 절차는 다음과 같다.</p>
+<ol type="1">
+<li>귀무 가설과 대립 가설을 세운다.</li>
+<li>유의수준을 정한다. 흔히 0.05를 쓴다.</li>
+<li>표본에서 검정 통계량을 계산한다. 검정 통계량은 표본이 귀무 가설에서 얼마나 벗어났는지를 나타내는 값이다(t 값, F 값 등).</li>
+<li>검정 통계량의 유의 확률을 구한다.</li>
+<li>유의 확률이 유의수준보다 작으면 귀무 가설을 기각한다. 그렇지 않으면 기각하지 못한다.</li>
+</ol>
+<p>유의수준은 자료를 보기 전에 정한다. 결과를 본 뒤에 유의수준을 바꾸면 원하는 결론에 맞추게 된다.</p>
+</section>
+<section id="제1종-오류와-제2종-오류" class="level3">
+<h3 class="anchored" data-anchor-id="제1종-오류와-제2종-오류">4.2 제1종 오류와 제2종 오류</h3>
+<p>검정은 표본으로 판단하므로 틀릴 수 있다. 틀리는 경우는 둘이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>판정 &nbsp;실제</th>
+<th>귀무 가설이 참이다</th>
+<th>귀무 가설이 거짓이다</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>귀무 가설을 기각하지 않는다</td>
+<td>옳은 판정</td>
+<td><strong>제2종 오류</strong> (확률 β)</td>
+</tr>
+<tr class="even">
+<td>귀무 가설을 기각한다</td>
+<td><strong>제1종 오류</strong> (확률 α)</td>
+<td>옳은 판정 (확률 1 - β, 검정력)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>제1종 오류는 참인 귀무 가설을 기각하는 오류다. 효과가 없는 약을 효과가 있다고 판정하는 경우다.</li>
+<li>제2종 오류는 거짓인 귀무 가설을 기각하지 못하는 오류다. 효과가 있는 약을 효과가 없다고 판정하는 경우다.</li>
+<li>검정력은 거짓인 귀무 가설을 기각할 확률이다. 1에서 제2종 오류의 확률을 뺀 값이다.</li>
+<li>표본의 크기가 같을 때 제1종 오류의 확률을 줄이면 제2종 오류의 확률이 커진다. 기각의 기준을 엄격하게 잡을수록 거짓인 귀무 가설도 기각하기 어려워지기 때문이다. 두 확률을 함께 줄이려면 표본의 크기를 키운다.</li>
+</ul>
+</section>
+<section id="유의수준과-유의-확률" class="level3">
+<h3 class="anchored" data-anchor-id="유의수준과-유의-확률">4.3 유의수준과 유의 확률</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>용어</th>
+<th>뜻</th>
+<th>누가 정하는가</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>유의수준</td>
+<td>제1종 오류를 범할 확률의 허용 한계다. α로 적는다</td>
+<td>분석자가 검정 전에 정한다. 0.05, 0.01 등</td>
+</tr>
+<tr class="even">
+<td>유의 확률(p-value)</td>
+<td>귀무 가설이 참일 때, 검정 통계량이 표본에서 얻은 값만큼 또는 그보다 더 극단적으로 나올 확률이다</td>
+<td>표본에서 계산된다</td>
+</tr>
+</tbody>
+</table>
+<p>판정의 규칙은 하나다.</p>
+<blockquote class="blockquote">
+<p>유의 확률 &lt; 유의수준이면 귀무 가설을 기각한다. 유의 확률 ≥ 유의수준이면 귀무 가설을 기각하지 못한다.</p>
+</blockquote>
+<p>유의 확률이 작다는 것은 귀무 가설이 참이라면 좀처럼 나오지 않을 결과가 나왔다는 뜻이다. 그래서 귀무 가설을 의심한다. 유의수준에 해당하는 검정 통계량의 경계값을 임계값이라 하고, 임계값 바깥의 영역을 기각역이라 한다. 검정 통계량이 기각역에 들어가는 것과 유의 확률이 유의수준보다 작은 것은 같은 말이다.</p>
+<p>유의 확률을 읽을 때 주의할 점은 다음과 같다.</p>
+<ol type="1">
+<li><strong>유의 확률은 귀무 가설이 참일 확률이 아니다.</strong> 귀무 가설이 참이라고 놓고 계산한, 자료에 관한 확률이다.</li>
+<li><strong>귀무 가설을 기각하지 못한 것은 귀무 가설이 참이라고 증명한 것이 아니다.</strong> 기각할 만한 근거가 표본에 없었다는 뜻이다. 그래서 “채택한다”보다 “기각하지 못한다”라고 쓴다.</li>
+<li><strong>유의 확률은 차이의 크기가 아니다.</strong> 표본이 크면 작은 차이도 유의 확률이 작게 나온다.</li>
+</ol>
+</section>
+<section id="양측-검정과-단측-검정" class="level3">
+<h3 class="anchored" data-anchor-id="양측-검정과-단측-검정">4.4 양측 검정과 단측 검정</h3>
+<p>대립 가설의 방향에 따라 검정이 나뉜다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>검정</th>
+<th>대립 가설</th>
+<th>기각역</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>양측 검정</td>
+<td>모수가 어떤 값과 같지 않다</td>
+<td>분포의 양쪽 꼬리. 유의수준을 반씩 나눈다</td>
+</tr>
+<tr class="even">
+<td>단측 검정(오른쪽)</td>
+<td>모수가 어떤 값보다 크다</td>
+<td>오른쪽 꼬리</td>
+</tr>
+<tr class="odd">
+<td>단측 검정(왼쪽)</td>
+<td>모수가 어떤 값보다 작다</td>
+<td>왼쪽 꼬리</td>
+</tr>
+</tbody>
+</table>
+<p>차이가 어느 방향이든 있기만 하면 되는 경우에는 양측 검정을, 한 방향의 차이만 관심이 있는 경우(새 공정의 불량률이 더 낮은가)에는 단측 검정을 쓴다. 검정 통계량이 대립 가설의 방향으로 나왔을 때, 단측 검정의 유의 확률은 양측 검정의 유의 확률의 절반이다. 그래서 같은 자료라도 양측 검정에서는 기각하지 못하고 단측 검정에서는 기각하는 경우가 생긴다. 어느 검정을 쓸지는 자료를 보기 전에 정한다.</p>
+</section>
+<section id="t-검정" class="level3">
+<h3 class="anchored" data-anchor-id="t-검정">4.5 t-검정</h3>
+<p>t-검정은 평균에 관한 가설을 t 분포로 검정하는 방법이다. 검정 통계량의 꼴은 다음과 같다.</p>
+<blockquote class="blockquote">
+<p>t = (표본에서 구한 값 - 귀무 가설의 값) ÷ 표준 오차</p>
+</blockquote>
+<p>자료의 구조에 따라 세 종류가 있다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>종류</th>
+<th>쓰는 경우</th>
+<th>귀무 가설</th>
+<th>자유도</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>일표본 t-검정</td>
+<td>한 집단의 평균을 정해진 값과 견준다</td>
+<td>모평균은 그 값과 같다</td>
+<td>n - 1</td>
+</tr>
+<tr class="even">
+<td>대응 표본 t-검정</td>
+<td>같은 대상을 두 번 재어 견준다(교육 전과 후, 왼쪽과 오른쪽)</td>
+<td>두 측정값의 차이의 모평균은 0이다</td>
+<td>쌍의 수 - 1</td>
+</tr>
+<tr class="odd">
+<td>독립 표본 t-검정</td>
+<td>서로 다른 두 집단의 평균을 견준다</td>
+<td>두 집단의 모평균은 같다</td>
+<td>등분산을 가정하면 두 표본 크기의 합 - 2</td>
+</tr>
+</tbody>
+</table>
+<p>t-검정은 모집단이 정규 분포를 따른다고 가정한다. 표본이 크면 중심극한정리에 따라 이 가정에서 조금 벗어나도 쓸 수 있다.</p>
+<p>독립 표본 t-검정에는 두 가지가 있다. 두 집단의 모분산이 같다고 가정하는 검정은 두 표본의 분산을 하나로 합쳐 쓰고 자유도가 두 표본 크기의 합 - 2다. 등분산을 가정하지 않는 검정이 웰치의 t-검정이며 자유도가 소수로 나온다. 두 집단의 분산이 같은지는 두 표본 분산의 비를 F 분포로 검정하는 등분산 검정(F 검정)으로 확인한다. 이 검정의 귀무 가설은 “두 모분산은 같다”이고, 검정 통계량은 두 표본 분산의 비다.</p>
+<p>파이썬의 <code>stats.ttest_ind()</code>는 등분산 가정이 기본값이어서 웰치의 검정은 <code>equal_var=False</code>로 지정한다. R의 <code>t.test()</code>는 웰치의 검정이 기본값이다(<code>var.equal = FALSE</code>).</p>
+</section>
+<section id="모수-검정과-비모수-검정" class="level3">
+<h3 class="anchored" data-anchor-id="모수-검정과-비모수-검정">4.6 모수 검정과 비모수 검정</h3>
+<p>t-검정처럼 모집단의 분포를 가정하고(정규 분포 등) 모수에 대한 가설을 검정하는 방법을 모수 검정이라 한다. 모집단의 분포를 가정하지 않는 방법이 비모수 검정이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>구분</th>
+<th>모수 검정</th>
+<th>비모수 검정</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>모집단의 분포</td>
+<td>정규 분포 등을 가정한다</td>
+<td>가정하지 않는다</td>
+</tr>
+<tr class="even">
+<td>가설</td>
+<td>모수(모평균, 모분산)에 대한 가설이다</td>
+<td>“분포의 모양이 같다”, “중앙값이 같다”처럼 분포에 대한 가설이다</td>
+</tr>
+<tr class="odd">
+<td>계산에 쓰는 것</td>
+<td>값 자체(표본 평균, 표본 표준편차)</td>
+<td>값의 순위나 부호</td>
+</tr>
+<tr class="even">
+<td>쓰는 경우</td>
+<td>등간 척도·비율 척도의 자료이고 가정이 성립할 때</td>
+<td>표본이 작아 정규성을 확인하기 어려울 때, 서열 척도의 자료일 때, 이상값이 있을 때</td>
+</tr>
+<tr class="odd">
+<td>검정력</td>
+<td>가정이 성립하면 더 높다</td>
+<td>모수 검정의 가정이 성립하는 자료에서는 더 낮다</td>
+</tr>
+</tbody>
+</table>
+<p>비모수 검정의 이름과 쓰임은 다음과 같다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>비모수 검정</th>
+<th>쓰임</th>
+<th>대응하는 모수 검정</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>부호 검정</td>
+<td>차이의 부호(+, -)만으로 중앙값이나 짝지은 두 측정값의 차이를 검정한다</td>
+<td>일표본 t-검정, 대응 표본 t-검정</td>
+</tr>
+<tr class="even">
+<td>윌콕슨의 부호 순위 검정</td>
+<td>차이의 부호와 크기의 순위를 함께 써서 검정한다</td>
+<td>일표본 t-검정, 대응 표본 t-검정</td>
+</tr>
+<tr class="odd">
+<td>윌콕슨의 순위합 검정</td>
+<td>두 집단을 합쳐 순위를 매기고 집단별 순위의 합으로 두 집단을 견준다</td>
+<td>독립 표본 t-검정</td>
+</tr>
+<tr class="even">
+<td>만-위트니 U 검정</td>
+<td>윌콕슨의 순위합 검정과 같은 결론을 내는 검정이다</td>
+<td>독립 표본 t-검정</td>
+</tr>
+<tr class="odd">
+<td>런 검정</td>
+<td>두 종류의 값이 늘어선 순서가 무작위인지 검정한다. 같은 값이 이어진 덩어리(런)의 수를 쓴다</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>스피어만 순위 상관 계수</td>
+<td>두 변수의 순위로 상관을 잰다(교재 07)</td>
+<td>피어슨 상관 계수</td>
+</tr>
+</tbody>
+</table>
+<p>R의 <code>wilcox.test()</code>는 짝지은 자료에 부호 순위 검정을, 독립인 두 표본에 순위합 검정(만-위트니 검정)을 한다. 런 검정은 statsmodels의 <code>runstest_1samp()</code>에 있다.</p>
+</section>
+<section id="따라-하기-3" class="level3">
+<h3 class="anchored" data-anchor-id="따라-하기-3">따라 하기</h3>
+<p>노트북의 「따라 하기 4. 가설 검정」 셀을 실행한다.</p>
+<p><strong>일표본 t-검정.</strong> 자동차 32종의 연비로 “모평균은 20이다”라는 귀무 가설을 검정한다.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>res1 <span class="op">=</span> stats.ttest_1samp(mpg, <span class="dv">20</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>ci1 <span class="op">=</span> res1.confidence_interval(<span class="fl">0.95</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"t ="</span>, <span class="bu">round</span>(res1.statistic, <span class="dv">4</span>))</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"자유도 ="</span>, res1.df)</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"유의 확률 ="</span>, <span class="bu">round</span>(res1.pvalue, <span class="dv">4</span>))</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"모평균의 95% 신뢰 구간:"</span>, <span class="bu">round</span>(ci1.low, <span class="dv">4</span>), <span class="bu">round</span>(ci1.high, <span class="dv">4</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>t = 0.0851
+자유도 = 31
+유의 확률 = 0.9328
+모평균의 95% 신뢰 구간: 17.9177 22.2636</code></pre>
+<ul>
+<li><span class="check-badge">확인 15</span> t 값이 0.0851, 자유도가 31, 유의 확률이 0.9328로 나왔고, 신뢰 구간이 따라 하기 3에서 구한 구간과 같았다.</li>
+</ul>
+<p>t 값은 (20.0906 - 20) ÷ 1.0654 ≈ 0.085다. 유의 확률 0.9328이 0.05보다 크므로 귀무 가설을 기각하지 못한다. 95% 신뢰 구간이 20을 포함하는 것과 같은 결론이다.</p>
+<p><strong>양측 검정과 단측 검정.</strong> 귀무 가설의 값을 18로 바꾸고, 대립 가설을 “18이 아니다”(양측)와 “18보다 크다”(단측)로 각각 둔다. 단측 검정은 <code>alternative="greater"</code>로 지정한다.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>two <span class="op">=</span> stats.ttest_1samp(mpg, <span class="dv">18</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>one <span class="op">=</span> stats.ttest_1samp(mpg, <span class="dv">18</span>, alternative<span class="op">=</span><span class="st">"greater"</span>)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"t ="</span>, <span class="bu">round</span>(two.statistic, <span class="dv">4</span>))</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"양측 검정의 유의 확률 ="</span>, <span class="bu">round</span>(two.pvalue, <span class="dv">4</span>))</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"단측 검정의 유의 확률 ="</span>, <span class="bu">round</span>(one.pvalue, <span class="dv">4</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>t = 1.9622
+양측 검정의 유의 확률 = 0.0588
+단측 검정의 유의 확률 = 0.0294</code></pre>
+<ul>
+<li><span class="check-badge">확인 16</span> 같은 t 값 1.9622에서 양측 검정의 유의 확률이 0.0588, 단측 검정의 유의 확률이 0.0294로 절반이 되었다.</li>
+</ul>
+<p>유의수준 0.05에서 양측 검정은 기각하지 못하고 단측 검정은 기각한다. 결과를 보고 단측 검정으로 바꾸는 것은 유의수준을 두 배로 올리는 것과 같으므로, 방향은 자료를 보기 전에 정한다.</p>
+<p><strong>대응 표본 t-검정.</strong> <code>sleep</code>은 10명에게 수면제 두 종류를 차례로 주고 늘어난 수면 시간(<code>extra</code>)을 잰 자료다. 같은 사람을 두 번 재었으므로 두 값이 짝을 이룬다.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>sleep <span class="op">=</span> pd.read_csv(DATA <span class="op">+</span> <span class="st">"sleep.csv"</span>)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>drug1 <span class="op">=</span> sleep[sleep[<span class="st">"group"</span>] <span class="op">==</span> <span class="dv">1</span>][<span class="st">"extra"</span>]</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>drug2 <span class="op">=</span> sleep[sleep[<span class="st">"group"</span>] <span class="op">==</span> <span class="dv">2</span>][<span class="st">"extra"</span>]</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(drug1.values)</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(drug2.values)</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"차이의 평균:"</span>, <span class="bu">round</span>(drug1.mean() <span class="op">-</span> drug2.mean(), <span class="dv">2</span>))</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>res2 <span class="op">=</span> stats.ttest_rel(drug1, drug2)</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"t ="</span>, <span class="bu">round</span>(res2.statistic, <span class="dv">4</span>))</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"자유도 ="</span>, res2.df)</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"유의 확률 ="</span>, <span class="bu">round</span>(res2.pvalue, <span class="dv">6</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>[ 0.7 -1.6 -0.2 -1.2 -0.1  3.4  3.7  0.8  0.   2. ]
+[ 1.9  0.8  1.1  0.1 -0.1  4.4  5.5  1.6  4.6  3.4]
+차이의 평균: -1.58
+t = -4.0621
+자유도 = 9
+유의 확률 = 0.002833</code></pre>
+<p>다음 셀은 사람마다의 차이 10개로 일표본 t-검정을 한다.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>diff <span class="op">=</span> drug1.values <span class="op">-</span> drug2.values</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(diff.<span class="bu">round</span>(<span class="dv">1</span>))</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>res2b <span class="op">=</span> stats.ttest_1samp(diff, <span class="dv">0</span>)</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"t ="</span>, <span class="bu">round</span>(res2b.statistic, <span class="dv">4</span>), <span class="st">" 유의 확률 ="</span>, <span class="bu">round</span>(res2b.pvalue, <span class="dv">6</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>[-1.2 -2.4 -1.3 -1.3  0.  -1.  -1.8 -0.8 -4.6 -1.4]
+t = -4.0621  유의 확률 = 0.002833</code></pre>
+<ul>
+<li><span class="check-badge">확인 17</span> 대응 표본 t-검정과 차이 10개의 일표본 t-검정이 모두 t = -4.0621, 유의 확률 0.002833으로 같았다.</li>
+</ul>
+<p>자유도는 쌍의 수 10에서 1을 뺀 9다. 유의 확률 0.002833이 0.05보다 작으므로 귀무 가설을 기각하고, 두 수면제의 효과에 차이가 있다고 판단한다.</p>
+<p><strong>독립 표본 t-검정.</strong> <code>mtcars</code>의 <code>am</code>은 변속기의 종류다(0 자동, 1 수동). 자동 변속기 차 19종과 수동 변속기 차 13종은 서로 다른 차이므로 독립인 두 집단이다.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>auto <span class="op">=</span> cars[cars[<span class="st">"am"</span>] <span class="op">==</span> <span class="dv">0</span>][<span class="st">"mpg"</span>]        <span class="co"># 자동 변속기 차의 연비</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>manual <span class="op">=</span> cars[cars[<span class="st">"am"</span>] <span class="op">==</span> <span class="dv">1</span>][<span class="st">"mpg"</span>]      <span class="co"># 수동 변속기 차의 연비</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cars.groupby(<span class="st">"am"</span>)[<span class="st">"mpg"</span>].agg([<span class="st">"count"</span>, <span class="st">"mean"</span>, <span class="st">"std"</span>]).<span class="bu">round</span>(<span class="dv">4</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>    count     mean     std
+am                        
+0      19  17.1474  3.8340
+1      13  24.3923  6.1665</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../kit/images/ADsP_06_box.png" class="img-fluid figure-img"></p>
+<figcaption>변속기 종류(am)에 따른 연비(mpg)의 상자그림</figcaption>
+</figure>
+</div>
+<p>수동 변속기 차의 평균 연비가 7.2449만큼 높다. 이 차이가 표본을 뽑을 때의 우연으로 생길 수 있는 크기인지를 검정한다.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>res3 <span class="op">=</span> stats.ttest_ind(auto, manual, equal_var<span class="op">=</span><span class="va">False</span>)    <span class="co"># equal_var=False는 웰치의 t-검정이다</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>ci <span class="op">=</span> res3.confidence_interval(<span class="fl">0.95</span>)</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"t ="</span>, <span class="bu">round</span>(res3.statistic, <span class="dv">4</span>))</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"자유도 ="</span>, <span class="bu">round</span>(res3.df, <span class="dv">3</span>))</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"유의 확률 ="</span>, <span class="bu">round</span>(res3.pvalue, <span class="dv">6</span>))</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"평균 차이의 95% 신뢰 구간:"</span>, <span class="bu">round</span>(ci.low, <span class="dv">4</span>), <span class="bu">round</span>(ci.high, <span class="dv">4</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>t = -3.7671
+자유도 = 18.332
+유의 확률 = 0.001374
+평균 차이의 95% 신뢰 구간: -11.2802 -3.2097</code></pre>
+<p>다음 두 셀은 등분산을 가정한 검정과 등분산 검정이다.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>res4 <span class="op">=</span> stats.ttest_ind(auto, manual)       <span class="co"># 등분산을 가정한 검정 (scipy의 기본값)</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"t ="</span>, <span class="bu">round</span>(res4.statistic, <span class="dv">4</span>))</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"자유도 ="</span>, res4.df)</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"유의 확률 ="</span>, <span class="bu">round</span>(res4.pvalue, <span class="dv">6</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>t = -4.1061
+자유도 = 30.0
+유의 확률 = 0.000285</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> auto.var() <span class="op">/</span> manual.var()</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>p_f <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> <span class="bu">min</span>(stats.f.cdf(f, <span class="dv">18</span>, <span class="dv">12</span>), stats.f.sf(f, <span class="dv">18</span>, <span class="dv">12</span>))    <span class="co"># 양측 검정의 유의 확률</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"분산의 비 F ="</span>, <span class="bu">round</span>(f, <span class="dv">4</span>))</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"유의 확률 ="</span>, <span class="bu">round</span>(p_f, <span class="dv">4</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>분산의 비 F = 0.3866
+유의 확률 = 0.0669</code></pre>
+<ul>
+<li><p><span class="check-badge">확인 18</span> 웰치의 t-검정에서 t = -3.7671, 자유도 18.332, 유의 확률 0.001374가 나왔고, 등분산을 가정한 검정에서는 자유도가 30.0, 등분산 검정의 유의 확률이 0.0669로 나왔다.</p></li>
+<li><p>t 값은 평균의 차이(자동 - 수동 = -7.2449)를 그 표준 오차로 나눈 값이다. 앞에 적은 집단(자동)의 평균이 작아서 부호가 음이다.</p></li>
+<li><p>신뢰 구간은 두 모평균의 차이(자동 - 수동)에 대한 것이며 0을 포함하지 않는다. 유의 확률 0.001374가 0.05보다 작으므로 귀무 가설을 기각하고, 변속기 종류에 따라 평균 연비에 차이가 있다고 판단한다. 양측 검정에서 “95% 신뢰 구간이 0을 포함하지 않는다”와 “유의수준 0.05에서 귀무 가설을 기각한다”는 같은 결론이다.</p></li>
+<li><p>등분산을 가정한 검정의 자유도 30은 19 + 13 - 2다. 표준 오차를 구하는 방법이 달라 t 값과 유의 확률이 조금 다르나 결론은 같다.</p></li>
+<li><p>등분산 검정의 F는 두 표본 분산의 비(3.8340² ÷ 6.1665² ≈ 0.387)다. 유의 확률 0.0669 &gt; 0.05이므로 “두 모분산은 같다”를 기각하지 못한다. 다만 표본이 작아 검정력이 낮으므로 웰치의 검정을 쓰는 편이 안전하다.</p></li>
+</ul>
+<p>이 결과로 변속기의 종류가 연비 차이의 원인이라고 말할 수는 없다. 수동 변속기 차가 대체로 가볍다는 것과 같은 다른 변수가 끼어 있을 수 있다. 여러 변수를 함께 넣어 보는 방법은 교재 07에서 다룬다.</p>
+<p><strong>비모수 검정.</strong> 마지막 세 셀은 같은 자료를 비모수 검정으로 검정한다.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"음수인 차이:"</span>, (diff <span class="op">&lt;</span> <span class="dv">0</span>).<span class="bu">sum</span>(), <span class="st">" 양수인 차이:"</span>, (diff <span class="op">&gt;</span> <span class="dv">0</span>).<span class="bu">sum</span>(), <span class="st">" 0인 차이:"</span>, (diff <span class="op">==</span> <span class="dv">0</span>).<span class="bu">sum</span>())</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"유의 확률 ="</span>, <span class="bu">round</span>(stats.binomtest(<span class="dv">9</span>, <span class="dv">9</span>, <span class="fl">0.5</span>).pvalue, <span class="dv">6</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>음수인 차이: 9  양수인 차이: 0  0인 차이: 1
+유의 확률 = 0.003906
+통계량 = 0.0  유의 확률 = 0.009091
+U = 42.0  유의 확률 = 0.001871</code></pre>
+<p>첫 셀은 부호 검정이다. 차이가 0인 한 사람을 빼면 9명 모두 둘째 수면제에서 더 많이 잤다. 효과가 같다면 부호가 +와 -일 확률이 각각 0.5이므로 이항 분포로 유의 확률을 구한다. 둘째 셀은 <code>stats.wilcoxon()</code>, 셋째 셀은 <code>stats.mannwhitneyu()</code>다.</p>
+<ul>
+<li><span class="check-badge">확인 19</span> 부호 검정의 유의 확률이 0.003906, 윌콕슨의 부호 순위 검정의 유의 확률이 0.009091, 만-위트니 U 검정의 유의 확률이 0.001871로 나왔다.</li>
+</ul>
+<p>세 검정 모두 t-검정과 결론이 같다. t-검정의 유의 확률(0.002833)이 부호 순위 검정(0.009091)보다 작은 것은 값의 크기에 든 정보까지 쓰기 때문이다.</p>
+<hr>
+</section>
+</section>
+<section id="중심-실습-표본-평균의-분포와-t-검정" class="level2">
+<h2 class="anchored" data-anchor-id="중심-실습-표본-평균의-분포와-t-검정">5. 중심 실습: 표본 평균의 분포와 t-검정</h2>
+<p>모집단에서 표본을 여러 번 뽑아 표본의 크기에 따른 표본 평균의 분포를 확인하고, 두 집단의 평균을 t-검정으로 견주어 결과를 한 문장으로 쓴다.</p>
+<section id="준비" class="level3">
+<h3 class="anchored" data-anchor-id="준비">준비</h3>
+<ol type="1">
+<li>실습 노트북에서 「따라 하기 1~4」의 셀이 실행되어 있는지 확인한다. 중심 실습은 그 셀들이 만든 <code>amount</code>, <code>mu</code>, <code>sigma</code>, <code>cars</code>를 쓴다.</li>
+<li>「중심 실습」의 셀을 위에서부터 차례로 실행하면서 아래의 단계를 따른다. 코드는 완성되어 있다. <code># 바꾸어 볼 값</code>이라고 적힌 줄만 고친다.</li>
+</ol>
+</section>
+<section id="절차" class="level3">
+<h3 class="anchored" data-anchor-id="절차">절차</h3>
+<section id="단계-1.-노트북의-실행" class="level4">
+<h4 class="anchored" data-anchor-id="단계-1.-노트북의-실행">단계 1. 노트북의 실행</h4>
+<ol type="1">
+<li>노트북의 메뉴에서 모든 셀을 처음부터 다시 실행한다.</li>
+<li>오류 없이 끝까지 실행되었는지 확인한다.</li>
+</ol>
+<ul>
+<li><span class="check-badge">확인 20</span> 마지막 셀이 <code>유의 확률이 유의수준 0.05 보다 작으므로 귀무 가설을 기각한다</code>를 출력하였다.</li>
+</ul>
+</section>
+<section id="단계-2.-표본의-크기에-따른-표" class="level4">
+<h4 class="anchored" data-anchor-id="단계-2.-표본의-크기에-따른-표">단계 2. 표본의 크기에 따른 표</h4>
+<ol type="1">
+<li>「단계 2」의 셀을 실행한다. 크기 10, 30, 120인 표본을 각각 1,000번 뽑아 한 줄씩 적는 <code>for</code> 반복문이다.</li>
+<li>출력을 아래 표에 옮긴다.</li>
+</ol>
+<div class="sourceCode" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"n   표본 평균들의 평균  표본 평균들의 표준편차  모표준편차÷루트n"</span>)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> [<span class="dv">10</span>, <span class="dv">30</span>, <span class="dv">120</span>]:</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>    rng <span class="op">=</span> np.random.default_rng(<span class="dv">2027</span>)</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>    ms <span class="op">=</span> rng.choice(amount, size<span class="op">=</span>(<span class="dv">1000</span>, n)).mean(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(n, <span class="bu">round</span>(ms.mean(), <span class="dv">1</span>), <span class="bu">round</span>(ms.std(), <span class="dv">1</span>), <span class="bu">round</span>(sigma <span class="op">/</span> np.sqrt(n), <span class="dv">1</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>n   표본 평균들의 평균  표본 평균들의 표준편차  모표준편차÷루트n
+10 78551.0 18663.3 19316.2
+30 79739.8 11160.6 11152.2
+120 79378.2 5639.6 5576.1</code></pre>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>n</th>
+<th>표본 평균 1,000개의 평균</th>
+<th>표본 평균 1,000개의 표준편차</th>
+<th>모표준편차 ÷ √n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>10</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>30</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>120</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><span class="check-badge">확인 21</span> n = 30의 줄이 따라 하기 3의 출력(79739.8, 11160.6, 11152.2)과 같고, n = 120일 때 표본 평균의 표준편차가 5639.6으로 나왔다.</li>
+</ul>
+</section>
+<section id="단계-3.-표준-오차의-계산과-히스토그램" class="level4">
+<h4 class="anchored" data-anchor-id="단계-3.-표준-오차의-계산과-히스토그램">단계 3. 표준 오차의 계산과 히스토그램</h4>
+<ol type="1">
+<li>단계 2의 표에서 n이 30에서 120으로 네 배가 될 때 표본 평균의 표준편차가 몇 배가 되는지 계산한다.</li>
+<li>그 결과를 표준 오차의 식(3.1절)으로 설명한다.</li>
+<li>「단계 3」의 셀에서 <code>n = 30</code>을 10과 120으로 바꾸어 히스토그램을 그리고, 가로축의 범위와 모양(좌우 대칭인 정도)을 견준다. 가로축의 범위는 셋 모두 같게 고정되어 있다.</li>
+<li><code>n = 30</code>으로 되돌린다.</li>
+</ol>
+<ul>
+<li><span class="check-badge">확인 22</span> 5639.6 ÷ 11160.6 ≈ 0.51로 표준편차가 약 절반이 되었고, n이 120인 히스토그램이 n이 10인 것보다 좁고 좌우 대칭에 가까웠다.</li>
+</ul>
+</section>
+<section id="단계-4.-독립-표본-t-검정" class="level4">
+<h4 class="anchored" data-anchor-id="단계-4.-독립-표본-t-검정">단계 4. 독립 표본 t-검정</h4>
+<ol type="1">
+<li>「단계 4」의 두 셀을 실행한다. <code>col = "mpg"</code>, <code>alpha = 0.05</code>인 채로 둔다.</li>
+<li>출력을 아래 표의 가운데 열에 옮긴다.</li>
+<li>마지막 줄의 판정이 유의 확률과 유의수준을 견준 결과와 맞는지 확인한다.</li>
+</ol>
+<div class="sourceCode" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> stats.ttest_ind(a0, a1, equal_var<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>ci <span class="op">=</span> res.confidence_interval(<span class="fl">0.95</span>)</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"t ="</span>, <span class="bu">round</span>(res.statistic, <span class="dv">4</span>))</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"자유도 ="</span>, <span class="bu">round</span>(res.df, <span class="dv">3</span>))</span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"유의 확률 ="</span>, <span class="bu">round</span>(res.pvalue, <span class="dv">6</span>))</span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"평균 차이의 95% 신뢰 구간:"</span>, <span class="bu">round</span>(ci.low, <span class="dv">4</span>), <span class="bu">round</span>(ci.high, <span class="dv">4</span>))</span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> res.pvalue <span class="op">&lt;</span> alpha:</span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"유의 확률이 유의수준"</span>, alpha, <span class="st">"보다 작으므로 귀무 가설을 기각한다"</span>)</span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"유의 확률이 유의수준"</span>, alpha, <span class="st">"이상이므로 귀무 가설을 기각하지 못한다"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>t = -3.7671
+자유도 = 18.332
+유의 확률 = 0.001374
+평균 차이의 95% 신뢰 구간: -11.2802 -3.2097
+유의 확률이 유의수준 0.05 보다 작으므로 귀무 가설을 기각한다</code></pre>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>읽을 값</th>
+<th><code>mpg</code></th>
+<th><code>hp</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>자동 변속기 차의 평균</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>수동 변속기 차의 평균</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>t 값</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>자유도</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>유의 확률</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>평균 차이의 95% 신뢰 구간</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>판정 (유의수준 0.05)</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><span class="check-badge">확인 23</span> 가운데 열에 17.1474, 24.3923, -3.7671, 18.332, 0.001374, -11.2802에서 -3.2097까지, “기각한다”를 적었다.</li>
+</ul>
+</section>
+<section id="단계-5.-해석-문장의-작성" class="level4">
+<h4 class="anchored" data-anchor-id="단계-5.-해석-문장의-작성">단계 5. 해석 문장의 작성</h4>
+<ol type="1">
+<li>단계 4의 결과로 해석 문장 한 개를 쓴다.</li>
+<li>문장에 귀무 가설, 유의 확률, 유의수준, 결론을 모두 넣는다. “증명되었다”처럼 단정하지 않는다.</li>
+</ol>
+<p>예: “변속기 종류에 따른 평균 연비가 같다는 귀무 가설은 유의 확률이 0.001374로 유의수준 0.05보다 작아 기각되며, 자동 변속기 차와 수동 변속기 차의 평균 연비에 차이가 있다고 판단한다.”</p>
+<ul>
+<li><span class="check-badge">확인 24</span> 해석 문장에 귀무 가설(두 집단의 평균 연비가 같다), 유의 확률(0.001374), 유의수준(0.05), 결론(기각한다)이 모두 들어 있다.</li>
+</ul>
+</section>
+</section>
+<section id="값을-바꾸어-보기" class="level3">
+<h3 class="anchored" data-anchor-id="값을-바꾸어-보기">값을 바꾸어 보기</h3>
+<p>「단계 4」의 첫 셀에서 값을 바꾸어 다시 실행하고 물음에 답한다.</p>
+<ol type="1">
+<li><code>alpha = 0.05</code>를 <code>alpha = 0.001</code>로 바꾼다. 판정은 어떻게 되는가. 같은 자료라도 결론이 달라지는 까닭을 4.3절의 규칙으로 설명한다.</li>
+<li><code>alpha</code>를 0.05로 되돌리고 <code>col = "mpg"</code>를 <code>col = "hp"</code>로 바꾼다. 단계 4의 표의 오른쪽 열을 채운다. 유의수준 0.05에서 귀무 가설을 기각하는가.</li>
+<li>두 결과에서 “95% 신뢰 구간이 0을 포함하는가”와 “유의수준 0.05에서 귀무 가설을 기각하는가”가 어떻게 짝을 이루는지 쓴다.</li>
+<li>물음에 답한 뒤 <code>col = "mpg"</code>, <code>alpha = 0.05</code>로 되돌리고 셀을 다시 실행한다.</li>
+</ol>
+</section>
+<section id="완료-기준" class="level3">
+<h3 class="anchored" data-anchor-id="완료-기준">완료 기준</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>번호</th>
+<th>점검 항목</th>
+<th>점검 방법</th>
+<th>기준 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>노트북의 실행</td>
+<td>마지막 셀의 출력</td>
+<td>오류 없이 “기각한다”가 출력됨</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>표본의 크기에 따른 표</td>
+<td>단계 2의 표</td>
+<td>n = 10, 30, 120의 표준편차 18663.3, 11160.6, 5639.6</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>표준 오차의 해석</td>
+<td>단계 3의 계산과 설명</td>
+<td>약 0.5배(절반). √4 = 2로 나누어진다는 설명</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>독립 표본 t-검정의 표</td>
+<td>단계 4의 표의 가운데 열</td>
+<td>t -3.7671, 자유도 18.332, 유의 확률 0.001374</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>값을 바꾼 결과</td>
+<td>단계 4의 표의 오른쪽 열</td>
+<td><code>hp</code>의 유의 확률이 0.05보다 크고 신뢰 구간이 0을 포함함</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>되돌린 상태</td>
+<td>노트북 단계 4의 셀</td>
+<td><code>col = "mpg"</code>, <code>alpha = 0.05</code></td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>해석 문장</td>
+<td>제출한 문장</td>
+<td>귀무 가설, 0.001374, 0.05, 기각의 네 요소</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="제출물" class="level3">
+<h3 class="anchored" data-anchor-id="제출물">제출물</h3>
+<ul>
+<li>실습 노트북. 모든 셀을 실행하고 <code>col = "mpg"</code>, <code>alpha = 0.05</code>로 되돌린 상태로 낸다.</li>
+<li>단계 2와 단계 4의 표, 해석 문장 한 개(단계 5).</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="r-출력-해석" class="level2">
+<h2 class="anchored" data-anchor-id="r-출력-해석">6. R 출력 해석</h2>
+<p>같은 분석을 R로 실행한 코드와 출력이다. R을 실행하지 않고 읽는다. R 출력을 읽는 t-검정 문항은 이 절의 출력과 같은 모양이다.</p>
+<section id="파이썬과-r의-대응표" class="level3">
+<h3 class="anchored" data-anchor-id="파이썬과-r의-대응표">6.1 파이썬과 R의 대응표</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>하는 일</th>
+<th>파이썬</th>
+<th>R</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>이항 분포, 포아송 분포의 확률</td>
+<td><code>stats.binom.pmf(3, 10, 0.5)</code>, <code>stats.poisson.pmf(0, 2)</code></td>
+<td><code>dbinom(3, 10, 0.5)</code>, <code>dpois(0, 2)</code></td>
+</tr>
+<tr class="even">
+<td>정규 분포의 누적 확률, 분위수</td>
+<td><code>stats.norm.cdf(x)</code>, <code>stats.norm.ppf(p)</code></td>
+<td><code>pnorm(x)</code>, <code>qnorm(p)</code></td>
+</tr>
+<tr class="odd">
+<td>t 분포의 분위수</td>
+<td><code>stats.t.ppf(p, df)</code></td>
+<td><code>qt(p, df)</code></td>
+</tr>
+<tr class="even">
+<td>독립 표본 t-검정(웰치)</td>
+<td><code>stats.ttest_ind(a, b, equal_var=False)</code></td>
+<td><code>t.test(mpg ~ am, data = mtcars)</code></td>
+</tr>
+<tr class="odd">
+<td>독립 표본 t-검정(등분산 가정)</td>
+<td><code>stats.ttest_ind(a, b)</code></td>
+<td><code>t.test(mpg ~ am, data = mtcars, var.equal = TRUE)</code></td>
+</tr>
+<tr class="even">
+<td>등분산 검정(F 검정)</td>
+<td>분산의 비와 <code>stats.f.cdf()</code></td>
+<td><code>var.test(mpg ~ am, data = mtcars)</code></td>
+</tr>
+<tr class="odd">
+<td>일표본 t-검정</td>
+<td><code>stats.ttest_1samp(x, 20)</code></td>
+<td><code>t.test(x, mu = 20)</code></td>
+</tr>
+<tr class="even">
+<td>대응 표본 t-검정</td>
+<td><code>stats.ttest_rel(a, b)</code></td>
+<td><code>t.test(a, b, paired = TRUE)</code> 또는 <code>t.test(Pair(a, b) ~ 1)</code></td>
+</tr>
+<tr class="odd">
+<td>단측 검정</td>
+<td><code>alternative="greater"</code> 또는 <code>"less"</code></td>
+<td><code>alternative = "greater"</code> 또는 <code>"less"</code></td>
+</tr>
+<tr class="even">
+<td>윌콕슨의 부호 순위 검정</td>
+<td><code>stats.wilcoxon(a, b)</code></td>
+<td><code>wilcox.test(a, b, paired = TRUE)</code></td>
+</tr>
+<tr class="odd">
+<td>윌콕슨의 순위합 검정(만-위트니)</td>
+<td><code>stats.mannwhitneyu(a, b)</code></td>
+<td><code>wilcox.test(mpg ~ am, data = mtcars)</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>mpg ~ am</code>은 “<code>mpg</code>를 <code>am</code>의 값에 따라 나누어 견준다”는 뜻의 식이다. 물결표의 왼쪽이 견줄 값, 오른쪽이 집단을 나누는 변수다. R에서 <code>mtcars</code>와 <code>sleep</code>은 따로 읽어 오지 않아도 쓸 수 있는 내장 자료다.</p>
+<p>예전 자료에는 <code>t.test(extra ~ group, data = sleep, paired = TRUE)</code>처럼 식과 <code>paired = TRUE</code>를 함께 쓴 코드가 있다. R 4.3.0부터는 이렇게 쓰면 오류가 난다. 짝지은 검정은 두 벡터에 <code>paired = TRUE</code>를 쓰거나 <code>Pair(x1, x2) ~ 1</code>의 식으로 쓴다.</p>
+</section>
+<section id="같은-일을-하는-r-코드" class="level3">
+<h3 class="anchored" data-anchor-id="같은-일을-하는-r-코드">6.2 같은 일을 하는 R 코드</h3>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(mpg <span class="sc">~</span> am, <span class="at">data =</span> mtcars)                      <span class="co"># 독립 표본 t-검정 (웰치)</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(mpg <span class="sc">~</span> am, <span class="at">data =</span> mtcars, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)    <span class="co"># 등분산을 가정한 독립 표본 t-검정</span></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(mpg <span class="sc">~</span> am, <span class="at">data =</span> mtcars)                    <span class="co"># 등분산 검정 (F 검정)</span></span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(mtcars<span class="sc">$</span>mpg, <span class="at">mu =</span> <span class="dv">20</span>)                          <span class="co"># 일표본 t-검정. 귀무 가설의 값은 mu에 적는다</span></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(mtcars<span class="sc">$</span>mpg, <span class="at">mu =</span> <span class="dv">18</span>, <span class="at">alternative =</span> <span class="st">"greater"</span>)                       <span class="co"># 단측 검정</span></span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(sleep, <span class="fu">t.test</span>(extra[group <span class="sc">==</span> <span class="dv">1</span>], extra[group <span class="sc">==</span> <span class="dv">2</span>], <span class="at">paired =</span> <span class="cn">TRUE</span>))   <span class="co"># 대응 표본 t-검정</span></span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(sleep, <span class="fu">wilcox.test</span>(extra[group <span class="sc">==</span> <span class="dv">1</span>], extra[group <span class="sc">==</span> <span class="dv">2</span>], <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">exact =</span> <span class="cn">FALSE</span>))   <span class="co"># 부호 순위 검정</span></span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(mpg <span class="sc">~</span> am, <span class="at">data =</span> mtcars, <span class="at">exact =</span> <span class="cn">FALSE</span>)                        <span class="co"># 순위합 검정</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>mtcars$mpg</code>는 <code>mtcars</code>의 <code>mpg</code> 열이고, <code>extra[group == 1]</code>은 <code>group</code>이 1인 행의 <code>extra</code> 값이다. <code>with(sleep, ...)</code>은 괄호 안에서 <code>sleep</code>의 열 이름을 바로 쓰게 한다. <code>exact = FALSE</code>는 정규 근사로 유의 확률을 구하라는 뜻이다. 동점이나 0인 차이가 있으면 R은 어차피 정규 근사를 쓰며 경고를 내므로 미리 지정하였다.</p>
+</section>
+<section id="출력의-해석-1-독립-표본-t-검정" class="level3">
+<h3 class="anchored" data-anchor-id="출력의-해석-1-독립-표본-t-검정">6.3 출력의 해석 (1): 독립 표본 t-검정</h3>
+<p><code>t.test(mpg ~ am, data = mtcars)</code>의 출력이다.</p>
+<pre class="text"><code>    Welch Two Sample t-test
+
+data:  mpg by am
+t = -3.7671, df = 18.332, p-value = 0.001374
+alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
+95 percent confidence interval:
+ -11.280194  -3.209684
+sample estimates:
+mean in group 0 mean in group 1 
+       17.14737        24.39231 </code></pre>
+<p>위에서부터 한 줄씩 읽는다. 시험이 묻는 값은 모두 이 여덟 자리 가운데 하나에 있다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>묻는 것</th>
+<th>읽는 자리</th>
+<th>이 출력의 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>어떤 검정인가</td>
+<td>첫 줄. <code>Two Sample</code>은 두 표본의 평균을 견주는 독립 표본 t-검정, <code>Welch</code>는 등분산을 가정하지 않았다는 뜻이다</td>
+<td>등분산을 가정하지 않은 독립 표본 t-검정</td>
+</tr>
+<tr class="even">
+<td>무엇을 무엇으로 나누었는가</td>
+<td><code>data:</code> 줄</td>
+<td><code>mpg</code>를 <code>am</code>으로 나누었다</td>
+</tr>
+<tr class="odd">
+<td>검정 통계량</td>
+<td><code>t</code>. group 0의 평균에서 group 1의 평균을 뺀 차이를 표준 오차로 나눈 값이다</td>
+<td>-3.7671</td>
+</tr>
+<tr class="even">
+<td>자유도</td>
+<td><code>df</code>. 웰치의 검정에서는 정수가 아니다</td>
+<td>18.332</td>
+</tr>
+<tr class="odd">
+<td>판정</td>
+<td><code>p-value</code>를 유의수준과 견준다</td>
+<td>0.001374 &lt; 0.05이므로 기각한다</td>
+</tr>
+<tr class="even">
+<td>대립 가설과 검정의 방향</td>
+<td><code>alternative hypothesis</code>. 끝이 <code>not equal to</code>이면 양측 검정, <code>greater than</code>이나 <code>less than</code>이면 단측 검정이다. 귀무 가설은 출력에 적히지 않으며 대립 가설의 반대다</td>
+<td>대립 가설은 “두 모평균의 차이는 0이 아니다”(양측), 귀무 가설은 “차이는 0이다”</td>
+</tr>
+<tr class="odd">
+<td>신뢰 구간</td>
+<td><code>95 percent confidence interval</code> 아래 줄. 두 모평균의 차이(group 0 - group 1)에 대한 구간이다. 0을 포함하는지 본다</td>
+<td>-11.280194에서 -3.209684까지. 0을 포함하지 않는다</td>
+</tr>
+<tr class="even">
+<td>집단별 표본 평균</td>
+<td><code>sample estimates</code></td>
+<td>17.14737과 24.39231. 차이는 -7.24494</td>
+</tr>
+</tbody>
+</table>
+<p>파이썬의 결과(따라 하기 4)와 값이 같고, 적는 자릿수만 다르다.</p>
+</section>
+<section id="출력의-해석-2-등분산을-가정한-검정과-등분산-검정" class="level3">
+<h3 class="anchored" data-anchor-id="출력의-해석-2-등분산을-가정한-검정과-등분산-검정">6.4 출력의 해석 (2): 등분산을 가정한 검정과 등분산 검정</h3>
+<p><code>var.equal = TRUE</code>를 넣으면 등분산을 가정한 독립 표본 t-검정이 된다.</p>
+<pre class="text"><code>    Two Sample t-test
+
+data:  mpg by am
+t = -4.1061, df = 30, p-value = 0.000285
+...
+95 percent confidence interval:
+ -10.84837  -3.64151
+...</code></pre>
+<p>6.3절의 출력과 다른 곳은 셋이다.</p>
+<ul>
+<li>첫 줄에 <code>Welch</code>가 없다. 등분산을 가정한 검정이라는 표시다.</li>
+<li>자유도가 정수 30(19 + 13 - 2)이다. 표본 전체의 크기를 물으면 30 + 2 = 32로 답한다.</li>
+<li>표준 오차를 구하는 방법이 달라 t 값, 유의 확률, 신뢰 구간이 조금 다르다.</li>
+</ul>
+<p>등분산 검정 <code>var.test(mpg ~ am, data = mtcars)</code>의 출력이다.</p>
+<pre class="text"><code>    F test to compare two variances
+
+data:  mpg by am
+F = 0.38656, num df = 18, denom df = 12, p-value = 0.06691
+alternative hypothesis: true ratio of variances is not equal to 1
+95 percent confidence interval:
+ 0.1243721 1.0703429
+sample estimates:
+ratio of variances 
+         0.3865615 </code></pre>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>묻는 것</th>
+<th>읽는 자리</th>
+<th>이 출력의 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>검정 통계량</td>
+<td><code>F</code>. group 0의 분산 ÷ group 1의 분산</td>
+<td>0.38656</td>
+</tr>
+<tr class="even">
+<td>자유도</td>
+<td><code>num df</code>(분자), <code>denom df</code>(분모). 각 집단의 표본 크기 - 1</td>
+<td>18과 12</td>
+</tr>
+<tr class="odd">
+<td>판정</td>
+<td><code>p-value</code></td>
+<td>0.06691 &gt; 0.05이므로 “두 모분산은 같다”를 기각하지 못한다</td>
+</tr>
+<tr class="even">
+<td>귀무 가설</td>
+<td>대립 가설 <code>ratio of variances is not equal to 1</code>의 반대</td>
+<td>두 모분산의 비는 1이다</td>
+</tr>
+<tr class="odd">
+<td>신뢰 구간</td>
+<td>분산의 비에 대한 구간. 1을 포함하는지 본다</td>
+<td>0.1243721에서 1.0703429까지. 1을 포함한다</td>
+</tr>
+</tbody>
+</table>
+<p>분산의 비에 대한 구간은 1을 포함하는지를 본다. 비가 1이면 두 분산이 같다는 뜻이다.</p>
+</section>
+<section id="출력의-해석-3-일표본-t-검정과-대응-표본-t-검정" class="level3">
+<h3 class="anchored" data-anchor-id="출력의-해석-3-일표본-t-검정과-대응-표본-t-검정">6.5 출력의 해석 (3): 일표본 t-검정과 대응 표본 t-검정</h3>
+<p><code>t.test(mtcars$mpg, mu = 20)</code>의 출력이다.</p>
+<pre class="text"><code>    One Sample t-test
+
+data:  mtcars$mpg
+t = 0.08506, df = 31, p-value = 0.9328
+alternative hypothesis: true mean is not equal to 20
+95 percent confidence interval:
+ 17.91768 22.26357
+sample estimates:
+mean of x 
+ 20.09062 </code></pre>
+<ul>
+<li>이름이 <code>One Sample t-test</code>다. 대립 가설은 “모평균은 20이 아니다”이고, 귀무 가설의 값 20은 대립 가설의 줄에서 읽는다.</li>
+<li>자유도 31에 1을 더한 32가 표본의 크기다.</li>
+<li>유의 확률이 0.9328이므로 귀무 가설을 기각하지 못한다.</li>
+<li>신뢰 구간은 모평균에 대한 것이며 20을 포함한다.</li>
+</ul>
+<p>단측 검정 <code>t.test(mtcars$mpg, mu = 18, alternative = "greater")</code>의 출력이다.</p>
+<pre class="text"><code>    One Sample t-test
+
+data:  mtcars$mpg
+t = 1.9622, df = 31, p-value = 0.02938
+alternative hypothesis: true mean is greater than 18
+95 percent confidence interval:
+ 18.28418      Inf
+sample estimates:
+mean of x 
+ 20.09062 </code></pre>
+<ul>
+<li>대립 가설의 줄이 <code>greater than 18</code>이므로 오른쪽 단측 검정이다.</li>
+<li>신뢰 구간의 위쪽 끝이 <code>Inf</code>(무한대)다. 단측 검정에서는 신뢰 구간도 한쪽만 막힌다. 아래쪽 끝 18.28418이 18보다 크므로 기각하는 것과 맞는다.</li>
+</ul>
+<p>대응 표본 t-검정의 출력이다.</p>
+<pre class="text"><code>    Paired t-test
+
+data:  extra[group == 1] and extra[group == 2]
+t = -4.0621, df = 9, p-value = 0.002833
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+ -2.4598858 -0.7001142
+sample estimates:
+mean difference 
+          -1.58 </code></pre>
+<ul>
+<li>이름이 <code>Paired t-test</code>다. 대립 가설은 “차이의 모평균은 0이 아니다”다.</li>
+<li>자유도 9에 1을 더한 10이 쌍의 수다. 측정값은 20개이지만 검정에 쓰는 것은 차이 10개다.</li>
+<li><code>sample estimates</code>에는 집단별 평균이 아니라 차이의 평균(-1.58)이 적힌다. 신뢰 구간도 차이의 모평균에 대한 것이다.</li>
+</ul>
+</section>
+<section id="출력의-해석-4-비모수-검정" class="level3">
+<h3 class="anchored" data-anchor-id="출력의-해석-4-비모수-검정">6.6 출력의 해석 (4): 비모수 검정</h3>
+<p>윌콕슨의 부호 순위 검정과 순위합 검정의 출력이다.</p>
+<pre class="text"><code>    Wilcoxon signed rank test with continuity correction
+
+data:  extra[group == 1] and extra[group == 2]
+V = 0, p-value = 0.009091
+alternative hypothesis: true location shift is not equal to 0</code></pre>
+<pre class="text"><code>    Wilcoxon rank sum test with continuity correction
+
+data:  mpg by am
+W = 42, p-value = 0.001871
+alternative hypothesis: true location shift is not equal to 0</code></pre>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>묻는 것</th>
+<th>읽는 자리</th>
+<th>이 출력의 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>어떤 검정인가</td>
+<td>첫 줄. <code>signed rank</code>는 부호 순위 검정(짝지은 자료), <code>rank sum</code>은 순위합 검정(독립인 두 집단)이다</td>
+<td>위는 부호 순위 검정, 아래는 순위합 검정</td>
+</tr>
+<tr class="even">
+<td>검정 통계량</td>
+<td>부호 순위 검정은 <code>V</code>(양수인 차이의 순위합), 순위합 검정은 <code>W</code></td>
+<td><code>V</code> = 0, <code>W</code> = 42</td>
+</tr>
+<tr class="odd">
+<td>판정</td>
+<td><code>p-value</code></td>
+<td>0.009091과 0.001871. 둘 다 0.05보다 작아 기각한다</td>
+</tr>
+<tr class="even">
+<td>무엇에 대한 가설인가</td>
+<td><code>location shift</code>(위치의 이동). 평균이 아니라 분포의 위치를 견준다</td>
+<td>두 분포의 위치가 같지 않다</td>
+</tr>
+</tbody>
+</table>
+<p>비모수 검정의 출력에는 <code>t</code>, <code>df</code>, <code>sample estimates</code>가 없다. 모수(평균)를 추정하지 않기 때문이다. <code>with continuity correction</code>은 정규 근사에 보정을 했다는 표시다. 두 출력의 값은 파이썬의 결과와 같다.</p>
+</section>
+</section>
+<section id="자주-하는-실수와-오해" class="level2">
+<h2 class="anchored" data-anchor-id="자주-하는-실수와-오해">7. 자주 하는 실수와 오해</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>증상 또는 오해</th>
+<th>원인</th>
+<th>바로잡기</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>모표준편차를 <code>amount.std()</code>로 구하여 61154.7을 얻는다</td>
+<td>pandas의 <code>.std()</code>는 n - 1로 나누는 표본 표준편차다</td>
+<td>모집단 전체의 표준편차는 <code>ddof=0</code>으로 n으로 나눈다(따라 하기 1)</td>
+</tr>
+<tr class="even">
+<td>왜도가 교재 05의 방식(pandas)과 이 장(<code>stats.skew</code>)에서 1.064와 1.06으로 다르다</td>
+<td><code>stats.skew()</code>의 기본값은 보정하지 않은 왜도이고 pandas는 표본의 크기로 보정한다</td>
+<td>같은 함수로 견준다. <code>stats.skew(x, bias=False)</code>는 pandas와 같은 값을 낸다</td>
+</tr>
+<tr class="odd">
+<td>95% 신뢰 구간을 “모평균이 구간 안에 있을 확률이 95%”로 읽는다</td>
+<td>움직이는 것이 모수라고 생각하였다</td>
+<td>움직이는 것은 구간이다. 신뢰수준은 방법이 맞히는 비율이다(3.5절)</td>
+</tr>
+<tr class="even">
+<td>유의 확률을 귀무 가설이 참일 확률로 읽는다</td>
+<td>조건과 결과를 바꾸었다</td>
+<td>귀무 가설이 참이라고 놓고 계산한, 표본 결과에 관한 확률이다(4.3절)</td>
+</tr>
+<tr class="odd">
+<td>파이썬과 R의 독립 표본 t-검정 결과가 다르게 나온다</td>
+<td>scipy의 <code>ttest_ind()</code>는 등분산 가정이, R의 <code>t.test()</code>는 웰치의 검정이 기본값이다</td>
+<td>파이썬에 <code>equal_var=False</code>를 넣는다. 출력 첫 줄의 <code>Welch</code>와 소수인 자유도로 구별한다</td>
+</tr>
+<tr class="even">
+<td><code>AttributeError</code>가 나며 검정 결과에 <code>.df</code>나 <code>.confidence_interval()</code>이 없다고 나온다</td>
+<td>실습 환경의 scipy가 옛 판이다. 일표본·대응 표본은 1.10.0부터, 독립 표본은 1.11.0부터 이 기능이 있다</td>
+<td>교수에게 알린다. 교재의 출력은 scipy 1.18에서 얻었다</td>
+</tr>
+<tr class="odd">
+<td>R에서 <code>t.test(extra ~ group, data = sleep, paired = TRUE)</code>가 오류를 낸다</td>
+<td>R 4.3.0부터 식과 <code>paired</code>를 함께 쓸 수 없다</td>
+<td>두 벡터를 넣고 <code>paired = TRUE</code>를 쓰거나 <code>Pair(x1, x2) ~ 1</code>의 꼴로 쓴다(6.1절)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="정리" class="level2">
+<h2 class="anchored" data-anchor-id="정리">8. 정리</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>주제</th>
+<th>기억할 것</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>모수와 통계량</td>
+<td>모수는 모집단의 값(정해져 있으나 모른다), 통계량은 표본에서 계산한 값(표본마다 달라진다)</td>
+</tr>
+<tr class="even">
+<td>표본 추출 방법</td>
+<td>단순 임의, 계통(일정 간격), 층화(모든 층에서 뽑는다. 층 안은 비슷하다), 집락(일부 집락만 뽑는다. 집락 안은 섞여 있다)</td>
+</tr>
+<tr class="odd">
+<td>표본 오차와 비표본 오차</td>
+<td>표본 오차는 일부만 조사해서 생기고 표본이 크면 준다. 비표본 오차는 조사 과정에서 생기고 전수 조사에도 있다</td>
+</tr>
+<tr class="even">
+<td>측정 척도</td>
+<td>명목(구분), 서열(순서), 등간(간격, 덧셈과 뺄셈), 비율(절대적인 0, 곱셈과 나눗셈). 자료형과 척도는 다르다</td>
+</tr>
+<tr class="odd">
+<td>이산 분포</td>
+<td>베르누이(한 번의 성공 여부), 이항(n번 가운데 성공 횟수, 평균 np), 기하(첫 성공까지의 횟수), 포아송(단위 시간의 발생 횟수, 평균 = 분산)</td>
+</tr>
+<tr class="even">
+<td>연속 분포</td>
+<td>균등, 정규, 지수(대기 시간), t(평균의 검정), 카이제곱(분산, 범주형 자료), F(분산의 비, 분산분석)</td>
+</tr>
+<tr class="odd">
+<td>중심극한정리</td>
+<td>모집단의 모양과 관계없이 n이 크면 표본 평균의 분포는 정규 분포에 가까워진다. 표준 오차 = 모표준편차 ÷ √n</td>
+</tr>
+<tr class="even">
+<td>좋은 추정량</td>
+<td>불편성(기댓값이 모수), 효율성(분산이 작다), 일치성(n이 크면 모수에 가까워진다), 충족성(정보를 다 쓴다). 표본 분산은 n - 1로 나누어야 불편이다</td>
+</tr>
+<tr class="odd">
+<td>신뢰 구간</td>
+<td>신뢰수준 95%는 같은 방법으로 구간을 여러 번 만들면 약 95%가 모수를 포함한다는 뜻이다. 신뢰수준을 높이면 길어지고, 표본이 크면 짧아진다</td>
+</tr>
+<tr class="even">
+<td>오류</td>
+<td>제1종 오류는 참인 귀무 가설을 기각. 제2종 오류는 거짓인 귀무 가설을 기각하지 못함. 검정력 = 1 - β</td>
+</tr>
+<tr class="odd">
+<td>판정</td>
+<td>유의 확률 &lt; 유의수준이면 귀무 가설을 기각한다. 유의 확률은 귀무 가설이 참일 확률이 아니다</td>
+</tr>
+<tr class="even">
+<td>t-검정</td>
+<td>일표본(한 집단과 정해진 값), 대응 표본(같은 대상을 두 번. 차이의 일표본 검정), 독립 표본(서로 다른 두 집단. 웰치는 등분산을 가정하지 않는다)</td>
+</tr>
+<tr class="odd">
+<td>비모수 검정</td>
+<td>분포를 가정하지 않고 순위나 부호를 쓴다. 부호 검정, 윌콕슨의 부호 순위 검정과 순위합 검정, 만-위트니 U 검정, 런 검정</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="참고-자료" class="level2">
+<h2 class="anchored" data-anchor-id="참고-자료">9. 참고 자료</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>자료</th>
+<th>주소</th>
+<th>확인일</th>
+<th>쓴 곳</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>데이터자격검정, 데이터분석 준전문가 소개(출제 범위)</td>
+<td><a href="https://www.dataq.or.kr/www/sub/a_06.do" class="uri">https://www.dataq.or.kr/www/sub/a_06.do</a></td>
+<td>2026-11-13</td>
+<td>장의 범위와 문항의 꼬리표</td>
+</tr>
+<tr class="even">
+<td>OpenStax, Introductory Statistics 2e, 1.2 Data, Sampling, and Variation in Data and Sampling (CC BY 4.0)</td>
+<td><a href="https://openstax.org/books/introductory-statistics-2e/pages/1-2-data-sampling-and-variation-in-data-and-sampling" class="uri">https://openstax.org/books/introductory-statistics-2e/pages/1-2-data-sampling-and-variation-in-data-and-sampling</a></td>
+<td>2026-11-14</td>
+<td>1.2절, 1.3절</td>
+</tr>
+<tr class="odd">
+<td>OpenStax, Introductory Statistics 2e, 1.3 Frequency, Frequency Tables, and Levels of Measurement (CC BY 4.0)</td>
+<td><a href="https://openstax.org/books/introductory-statistics-2e/pages/1-3-frequency-frequency-tables-and-levels-of-measurement" class="uri">https://openstax.org/books/introductory-statistics-2e/pages/1-3-frequency-frequency-tables-and-levels-of-measurement</a></td>
+<td>2026-11-14</td>
+<td>1.4절</td>
+</tr>
+<tr class="even">
+<td>SciPy API, <code>scipy.stats.ttest_ind</code></td>
+<td><a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_ind.html" class="uri">https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_ind.html</a></td>
+<td>2026-11-14</td>
+<td>4.5절, 7절</td>
+</tr>
+<tr class="odd">
+<td>SciPy API, <code>scipy.stats.ttest_1samp</code>, <code>scipy.stats.ttest_rel</code></td>
+<td><a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_1samp.html" class="uri">https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_1samp.html</a></td>
+<td>2026-11-14</td>
+<td>7절, 따라 하기 4</td>
+</tr>
+<tr class="even">
+<td>SciPy API, <code>scipy.stats.skew</code></td>
+<td><a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.skew.html" class="uri">https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.skew.html</a></td>
+<td>2026-11-14</td>
+<td>따라 하기 1, 7절</td>
+</tr>
+<tr class="odd">
+<td>pandas API, <code>pandas.Series.skew</code></td>
+<td><a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.skew.html" class="uri">https://pandas.pydata.org/docs/reference/api/pandas.Series.skew.html</a></td>
+<td>2026-11-14</td>
+<td>따라 하기 1</td>
+</tr>
+<tr class="even">
+<td>SciPy Reference, Statistical functions(<code>scipy.stats</code>)</td>
+<td><a href="https://docs.scipy.org/doc/scipy/reference/stats.html" class="uri">https://docs.scipy.org/doc/scipy/reference/stats.html</a></td>
+<td>2026-11-14</td>
+<td>4.6절</td>
+</tr>
+<tr class="odd">
+<td>statsmodels API, <code>sign_test</code>, <code>runstest_1samp</code></td>
+<td><a href="https://www.statsmodels.org/stable/generated/statsmodels.stats.descriptivestats.sign_test.html" class="uri">https://www.statsmodels.org/stable/generated/statsmodels.stats.descriptivestats.sign_test.html</a></td>
+<td>2026-11-14</td>
+<td>4.6절</td>
+</tr>
+<tr class="even">
+<td>R Manual, Student’s t-Test(<code>t.test</code>)</td>
+<td><a href="https://stat.ethz.ch/R-manual/R-devel/library/stats/html/t.test.html" class="uri">https://stat.ethz.ch/R-manual/R-devel/library/stats/html/t.test.html</a></td>
+<td>2026-11-14</td>
+<td>4.5절, 6.1절</td>
+</tr>
+<tr class="odd">
+<td>R Manual, Wilcoxon Rank Sum and Signed Rank Tests(<code>wilcox.test</code>)</td>
+<td><a href="https://stat.ethz.ch/R-manual/R-devel/library/stats/html/wilcox.test.html" class="uri">https://stat.ethz.ch/R-manual/R-devel/library/stats/html/wilcox.test.html</a></td>
+<td>2026-11-14</td>
+<td>4.6절, 6.6절</td>
+</tr>
+<tr class="even">
+<td>R NEWS, CHANGES IN R 4.3.0</td>
+<td><a href="https://cran.r-project.org/doc/manuals/r-release/NEWS.html" class="uri">https://cran.r-project.org/doc/manuals/r-release/NEWS.html</a></td>
+<td>2026-11-14</td>
+<td>6.1절, 7절</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="주간-문항-세트-06" class="level2">
+<h2 class="anchored" data-anchor-id="주간-문항-세트-06">주간 문항 세트 06</h2>
+<p>20문항이다. 1~10번은 수업에서 풀고 11~20번은 과제로 푼다. 1~15번은 이 장의 문항이고 16~20번은 앞 장의 복습이다. 실전의 문항당 시간으로는 36분이 걸린다. 정답과 풀이는 세트 뒤에 있다.</p>
+<p><strong>문항 1.</strong> 어느 공장이 생산 순서대로 번호를 매긴 제품 2,000개 가운데 100개를 검사하려고 한다. 1번부터 20번 사이에서 하나를 임의로 고르고, 그 뒤로는 20번째마다 하나씩 뽑았다. 이 표본 추출 방법은?</p>
+<ul>
+<li>① 단순 임의 추출</li>
+<li>② 계통 추출</li>
+<li>③ 층화 추출</li>
+<li>④ 집락 추출</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; 통계분석 &gt; 통계학 개론</code> <code>유형: 사례 판단</code> <code>장: 6</code></p>
+<p><strong>문항 2.</strong> 표본 추출과 오차에 대한 설명으로 가장 적절하지 않은 것은?</p>
+<ul>
+<li>① 층화 추출은 성질이 비슷한 원소끼리 층으로 묶고 모든 층에서 표본을 뽑는다.</li>
+<li>② 집락 추출은 집락 가운데 일부를 임의로 뽑아 뽑힌 집락의 원소를 조사한다.</li>
+<li>③ 표본 오차는 표본의 크기를 키우면 줄어든다.</li>
+<li>④ 비표본 오차는 전수 조사에서는 생기지 않는다.</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; 통계분석 &gt; 통계학 개론</code> <code>유형: 옳지 않은 것 고르기</code> <code>장: 6</code></p>
+<p><strong>문항 3.</strong> 어느 상점의 자료에 있는 변수와 측정 척도를 짝지은 것으로 가장 적절하지 않은 것은?</p>
+<ul>
+<li>① 결제 수단(카드, 현금, 간편결제) - 명목 척도</li>
+<li>② 회원 등급(일반, 우수, 최우수) - 서열 척도</li>
+<li>③ 고객 번호(1001, 1002, 1003, …) - 등간 척도</li>
+<li>④ 거래 금액(원) - 비율 척도</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; 통계분석 &gt; 통계학 개론</code> <code>유형: 옳지 않은 것 고르기</code> <code>장: 6</code></p>
+<p><strong>문항 4.</strong> 어느 서비스 센터에 한 시간 동안 접수되는 고장 신고의 건수를 확률 변수로 놓으려고 한다. 이 확률 변수의 분포로 가장 적절한 것은?</p>
+<ul>
+<li>① 포아송 분포</li>
+<li>② 지수 분포</li>
+<li>③ 균등 분포</li>
+<li>④ 베르누이 분포</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; 통계분석 &gt; 통계학 개론</code> <code>유형: 사례 판단</code> <code>장: 6</code></p>
+<p><strong>문항 5.</strong> 확률 변수 X가 0, 1, 2의 값을 각각 0.5, 0.3, 0.2의 확률로 가진다. X의 기댓값은?</p>
+<ul>
+<li>① 0.5</li>
+<li>② 0.7</li>
+<li>③ 1.0</li>
+<li>④ 1.5</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; 통계분석 &gt; 통계학 개론</code> <code>유형: 계산</code> <code>장: 6</code></p>
+<p><strong>문항 6.</strong> 중심극한정리와 표본 평균의 분포에 대한 설명으로 가장 적절하지 않은 것은?</p>
+<ul>
+<li>① 모집단이 정규 분포를 따르지 않아도 표본의 크기가 충분히 크면 표본 평균의 분포는 정규 분포에 가까워진다.</li>
+<li>② 표본 평균의 분포의 평균은 모평균과 같다.</li>
+<li>③ 표본의 크기가 커질수록 표본 평균의 표준편차는 작아진다.</li>
+<li>④ 표본의 크기가 커질수록 모집단의 분포가 정규 분포에 가까워진다.</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; 통계분석 &gt; 통계학 개론</code> <code>유형: 옳지 않은 것 고르기</code> <code>장: 6</code></p>
+<p><strong>문항 7.</strong> 어느 표본에서 모평균의 95% 신뢰 구간을 구하였더니 48에서 52까지였다. 이 결과의 해석으로 가장 적절한 것은?</p>
+<ul>
+<li>① 표본에 든 자료의 95%가 48과 52 사이에 있다.</li>
+<li>② 표본을 다시 뽑으면 표본 평균이 48과 52 사이에 있을 확률이 95%다.</li>
+<li>③ 같은 방법으로 표본을 뽑아 구간을 만드는 일을 여러 번 되풀이하면, 그 구간들 가운데 약 95%가 모평균을 포함한다.</li>
+<li>④ 신뢰수준을 99%로 높이면 구간은 48에서 52까지보다 짧아진다.</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; 통계분석 &gt; 통계학 개론</code> <code>유형: 사례 판단</code> <code>장: 6</code></p>
+<p><strong>문항 8.</strong> 어느 공장의 출하 검사에서 귀무 가설을 “이 제품 묶음은 정상이다”로 놓고 검정한다. 실제로는 불량인 묶음을 정상으로 판정하여 출하하였다면, 이 잘못은 무엇에 해당하는가?</p>
+<ul>
+<li>① 제1종 오류</li>
+<li>② 제2종 오류</li>
+<li>③ 표본 오차</li>
+<li>④ 검정력</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; 통계분석 &gt; 통계학 개론</code> <code>유형: 사례 판단</code> <code>장: 6</code></p>
+<p><strong>문항 9.</strong> 다음은 기니피그 60마리의 치아 길이(<code>len</code>)를 비타민 C를 준 방법(<code>supp</code>: <code>OJ</code>, <code>VC</code>)에 따라 견준 R 출력이다. 이에 대한 설명으로 가장 적절하지 않은 것은?</p>
+<pre class="text"><code>    Welch Two Sample t-test
+
+data:  len by supp
+t = 1.9153, df = 55.309, p-value = 0.06063
+alternative hypothesis: true difference in means between group OJ and group VC is not equal to 0
+95 percent confidence interval:
+ -0.1710156  7.5710156
+sample estimates:
+mean in group OJ mean in group VC 
+        20.66333         16.96333 </code></pre>
+<ul>
+<li>① 두 집단의 분산이 같다고 가정하지 않은 독립 표본 t-검정이다.</li>
+<li>② <code>OJ</code> 집단의 표본 평균이 <code>VC</code> 집단의 표본 평균보다 3.7 크다.</li>
+<li>③ 유의수준 0.05에서 두 집단의 모평균이 같다는 귀무 가설을 기각한다.</li>
+<li>④ 두 모평균의 차이에 대한 95% 신뢰 구간은 0을 포함한다.</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; 통계분석 &gt; 기초 통계분석</code> <code>유형: 출력 해석</code> <code>장: 6</code></p>
+<p><strong>문항 10.</strong> 문항 9의 검정에서 유의수준을 0.10으로 정하였다. 판정과 그 이유로 가장 적절한 것은?</p>
+<ul>
+<li>① 유의 확률이 유의수준보다 작으므로 귀무 가설을 기각한다.</li>
+<li>② 유의 확률이 유의수준보다 크므로 귀무 가설을 기각하지 못한다.</li>
+<li>③ t 값이 유의수준보다 크므로 귀무 가설을 기각하지 못한다.</li>
+<li>④ 자유도가 정수가 아니므로 판정할 수 없다.</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; 통계분석 &gt; 기초 통계분석</code> <code>유형: 출력 해석</code> <code>장: 6</code></p>
+<p><strong>문항 11.</strong> 모표준편차가 30인 모집단에서 크기 36인 표본을 뽑았다. 표본 평균의 표준 오차는?</p>
+<ul>
+<li>① 0.5</li>
+<li>② 1.2</li>
+<li>③ 5</li>
+<li>④ 30</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; 통계분석 &gt; 통계학 개론</code> <code>유형: 계산</code> <code>장: 6</code></p>
+<p><strong>문항 12.</strong> 좋은 추정량의 조건 가운데 “추정량의 기댓값이 추정하려는 모수와 같다”는 성질은?</p>
+<ul>
+<li>① 불편성</li>
+<li>② 효율성</li>
+<li>③ 일치성</li>
+<li>④ 충족성</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; 통계분석 &gt; 통계학 개론</code> <code>유형: 용어 구분</code> <code>장: 6</code></p>
+<p><strong>문항 13.</strong> 가설 검정에 대한 설명으로 가장 적절하지 않은 것은?</p>
+<ul>
+<li>① 유의수준은 제1종 오류를 범할 확률의 허용 한계다.</li>
+<li>② 유의 확률이 유의수준보다 작으면 귀무 가설을 기각한다.</li>
+<li>③ 유의 확률은 귀무 가설이 참일 확률이다.</li>
+<li>④ 검정력은 귀무 가설이 거짓일 때 귀무 가설을 기각할 확률이다.</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; 통계분석 &gt; 통계학 개론</code> <code>유형: 옳지 않은 것 고르기</code> <code>장: 6</code></p>
+<p><strong>문항 14.</strong> 다음은 나무 31그루의 높이(<code>Height</code>)를 검정한 R 출력이다. 이에 대한 설명으로 가장 적절한 것은?</p>
+<pre class="text"><code>    One Sample t-test
+
+data:  trees$Height
+t = 3.4952, df = 30, p-value = 0.0007478
+alternative hypothesis: true mean is greater than 72
+95 percent confidence interval:
+ 74.05764      Inf
+sample estimates:
+mean of x 
+       76 </code></pre>
+<ul>
+<li>① 두 집단의 평균을 견주는 독립 표본 t-검정이다.</li>
+<li>② 대립 가설은 “모평균은 72가 아니다”이며 양측 검정이다.</li>
+<li>③ 표본 평균은 72다.</li>
+<li>④ 유의수준 0.05에서 귀무 가설을 기각하고, 모평균이 72보다 크다고 판단한다.</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; 통계분석 &gt; 기초 통계분석</code> <code>유형: 출력 해석</code> <code>장: 6</code></p>
+<p><strong>문항 15.</strong> 비모수 검정에 대한 설명으로 가장 적절하지 않은 것은?</p>
+<ul>
+<li>① 모집단이 정규 분포를 따를 때에는 같은 자료에 대한 모수 검정보다 검정력이 높다.</li>
+<li>② 모집단의 분포에 대한 가정을 두지 않는다.</li>
+<li>③ 값 자체보다 값의 순위나 부호를 써서 검정한다.</li>
+<li>④ 부호 검정, 윌콕슨의 순위합 검정, 런 검정이 이에 속한다.</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; 통계분석 &gt; 통계학 개론</code> <code>유형: 옳지 않은 것 고르기</code> <code>장: 6</code></p>
+<p><strong>문항 16.</strong> 다음 가운데 정량 데이터에 해당하는 것으로 가장 적절한 것은?</p>
+<ul>
+<li>① 고객이 남긴 불만 사항의 문장</li>
+<li>② 직원과 나눈 면담의 기록</li>
+<li>③ 매장의 시간대별 결제 건수</li>
+<li>④ 제품을 써 본 소감을 적은 게시글</li>
+</ul>
+<p><code>범위: 데이터 이해 &gt; 데이터의 이해 &gt; 데이터와 정보</code> <code>유형: 사례 판단</code> <code>장: 1</code></p>
+<p><strong>문항 17.</strong> 분석의 대상은 무엇인지 알고 있으나 분석하는 방법을 알지 못하는 경우의 분석 주제 유형은?</p>
+<ul>
+<li>① 최적화</li>
+<li>② 솔루션</li>
+<li>③ 통찰</li>
+<li>④ 발견</li>
+</ul>
+<p><code>범위: 데이터분석 기획 &gt; 데이터분석 기획의 이해 &gt; 분석 기획 방향성 도출</code> <code>유형: 용어 구분</code> <code>장: 2</code></p>
+<p><strong>문항 18.</strong> 분석 과제의 우선순위를 투자 대비 효과의 관점에서 볼 때, 4V 가운데 비즈니스 효과(Return)의 요소에 해당하는 것은?</p>
+<ul>
+<li>① 크기(Volume)</li>
+<li>② 다양성(Variety)</li>
+<li>③ 속도(Velocity)</li>
+<li>④ 가치(Value)</li>
+</ul>
+<p><code>범위: 데이터분석 기획 &gt; 분석 마스터 플랜 &gt; 마스터 플랜 수립</code> <code>유형: 용어 구분</code> <code>장: 3</code></p>
+<p><strong>문항 19.</strong> 지역 4곳을 행으로, 월 6개를 열로 놓고 칸마다 매출을 적은 넓은 표가 있다. 지역을 식별 변수(<code>id_vars</code>)로 두고 <code>melt</code>로 긴 표로 바꾸면 긴 표의 행 수는?</p>
+<ul>
+<li>① 4</li>
+<li>② 6</li>
+<li>③ 10</li>
+<li>④ 24</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; R기초와 데이터 마트 &gt; 데이터 마트</code> <code>유형: 계산</code> <code>장: 4</code></p>
+<p><strong>문항 20.</strong> 어느 상점의 거래 금액은 대부분 낮은 금액에 몰려 있고 오른쪽으로 꼬리가 긴 분포를 이룬다. 이 자료에 대한 설명으로 가장 적절한 것은?</p>
+<ul>
+<li>① 왜도가 음수다.</li>
+<li>② 평균이 중앙값보다 작다.</li>
+<li>③ 평균이 중앙값보다 크다.</li>
+<li>④ 평균과 중앙값이 같다.</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; 통계분석 &gt; 기초 통계분석</code> <code>유형: 사례 판단</code> <code>장: 5</code></p>
+<section id="정답" class="level3">
+<h3 class="anchored" data-anchor-id="정답">정답</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>문항</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>정답</td>
+<td>②</td>
+<td>④</td>
+<td>③</td>
+<td>①</td>
+<td>②</td>
+<td>④</td>
+<td>③</td>
+<td>②</td>
+<td>③</td>
+<td>①</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>문항</th>
+<th>11</th>
+<th>12</th>
+<th>13</th>
+<th>14</th>
+<th>15</th>
+<th>16</th>
+<th>17</th>
+<th>18</th>
+<th>19</th>
+<th>20</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>정답</td>
+<td>③</td>
+<td>①</td>
+<td>③</td>
+<td>④</td>
+<td>①</td>
+<td>③</td>
+<td>②</td>
+<td>④</td>
+<td>④</td>
+<td>③</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="풀이" class="level3">
+<h3 class="anchored" data-anchor-id="풀이">풀이</h3>
+<ol type="1">
+<li><strong>②.</strong> 번호순으로 늘어놓고 첫 구간에서 하나를 임의로 뽑은 뒤 일정한 간격(20)으로 뽑았으므로 계통 추출이다. 2,000 ÷ 20 = 100개가 뽑힌다. (1.2절)</li>
+<li><strong>④.</strong> 비표본 오차는 측정, 응답, 입력 과정에서 생기므로 전수 조사에서도 생긴다. 전수 조사에서 생기지 않는 것은 표본 오차다. ①과 ②는 층화 추출과 집락 추출의 바른 설명이다. (1.2절, 1.3절)</li>
+<li><strong>③.</strong> 고객 번호는 고객을 구분하는 이름일 뿐이고 번호의 크기나 간격에 뜻이 없으므로 명목 척도다. 숫자로 적혀 있다고 양적 자료인 것은 아니다. (1.4절)</li>
+<li><strong>①.</strong> 정해진 시간 안에 사건이 일어나는 횟수는 포아송 분포로 나타낸다. ②의 지수 분포는 신고와 신고 사이의 시간처럼 사건이 일어날 때까지 걸리는 시간의 분포다. (2.3절, 2.4절)</li>
+<li><strong>②.</strong> 기댓값 = 0 × 0.5 + 1 × 0.3 + 2 × 0.2 = 0 + 0.3 + 0.4 = 0.7. (2.2절)</li>
+<li><strong>④.</strong> 중심극한정리는 표본 평균의 분포에 대한 정리다. 표본을 크게 뽑아도 모집단의 분포는 바뀌지 않는다. (3.2절)</li>
+<li><strong>③.</strong> 신뢰수준은 구간을 만드는 방법이 모수를 포함하는 비율이다. ①은 자료의 범위와 혼동한 것이고, ②는 신뢰 구간이 다음 표본의 평균을 겨냥한다고 본 것이다. ④는 반대다. 신뢰수준을 높이면 구간이 길어진다. (3.4절, 3.5절)</li>
+<li><strong>②.</strong> 귀무 가설(“정상이다”)이 거짓인데 기각하지 못하였으므로 제2종 오류다. 정상인 묶음을 불량으로 판정하는 것이 제1종 오류다. (4.2절)</li>
+<li><strong>③.</strong> 유의 확률 0.06063이 유의수준 0.05보다 크므로 귀무 가설을 기각하지 못한다. ①은 첫 줄의 <code>Welch</code>에서 읽는다. ②는 20.66333 - 16.96333 = 3.7이다. ④는 구간이 -0.1710156에서 7.5710156까지여서 0을 포함하며, 기각하지 못한다는 결론과 맞는다. (6.3절)</li>
+<li><strong>①.</strong> 유의 확률 0.06063이 유의수준 0.10보다 작으므로 귀무 가설을 기각한다. 같은 자료라도 유의수준에 따라 판정이 달라진다. ③은 t 값과 유의수준을 견준 것이어서 틀렸다. 유의수준과 견주는 값은 유의 확률이다. (4.3절)</li>
+<li><strong>③.</strong> 표준 오차 = 모표준편차 ÷ √n = 30 ÷ √36 = 30 ÷ 6 = 5. (3.1절)</li>
+<li><strong>①.</strong> 추정량의 기댓값이 모수와 같은 성질은 불편성이다. 효율성은 분산이 작은 것, 일치성은 표본이 커질수록 모수에 가까워지는 것이다. (3.3절)</li>
+<li><strong>③.</strong> 유의 확률은 귀무 가설이 참이라고 놓았을 때 표본의 결과만큼 또는 그보다 극단적인 결과가 나올 확률이다. 귀무 가설이 참일 확률이 아니다. (4.3절)</li>
+<li><strong>④.</strong> 유의 확률 0.0007478이 0.05보다 작으므로 귀무 가설을 기각한다. 대립 가설이 <code>greater than 72</code>이므로 모평균이 72보다 크다고 판단한다. ①은 이름이 <code>One Sample t-test</code>이므로 일표본 t-검정이다. ②는 <code>greater than</code>이므로 단측 검정이다. ③은 표본 평균이 76이고, 72는 귀무 가설의 값이다. (6.3절, 6.5절)</li>
+<li><strong>①.</strong> 모수 검정의 가정이 성립하는 자료에서는 모수 검정의 검정력이 더 높다. 비모수 검정은 가정이 적은 대신 값의 크기에 든 정보를 덜 쓴다. (4.6절)</li>
+<li><strong>③.</strong> 결제 건수는 수치로 적힌 정량 데이터다. ①, ②, ④는 언어와 문자로 적힌 정성 데이터이며, 형태가 일정하지 않아 저장·검색·분석에 비용이 많이 든다. (교재 01의 1.2절)</li>
+<li><strong>②.</strong> 분석의 대상과 방법을 모두 알면 최적화, 대상은 알고 방법을 모르면 솔루션, 대상은 모르고 방법을 알면 통찰, 둘 다 모르면 발견이다. (교재 02의 1.2절)</li>
+<li><strong>④.</strong> 크기, 다양성, 속도는 투자 비용(Investment)의 요소이고, 가치는 비즈니스 효과(Return)의 요소다. (교재 03의 1.3절)</li>
+<li><strong>④.</strong> 긴 표의 행 수는 넓은 표의 행 수에 펼쳐져 있던 열의 수를 곱한 값이다. 4 × 6 = 24. (교재 04의 4.3절)</li>
+<li><strong>③.</strong> 오른쪽으로 꼬리가 긴 분포는 왜도가 양수이고, 큰 값들이 평균을 끌어올려 평균이 중앙값보다 크다. 이 장의 거래 금액도 평균 79104.2, 중앙값 57600.0이었다. (교재 05의 2.4절)</li>
+</ol>
+
+
+</section>
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> 맨 위로</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "복사완료!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "복사완료!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../courses/adsp/book/ADsP_05주차_학생용.html" class="pagination-link" aria-label="[5주차] 결측값·이상값과 기술 통계">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">[5주차] 결측값·이상값과 기술 통계</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../courses/adsp/book/ADsP_07주차_학생용.html" class="pagination-link" aria-label="[7주차] 상관 분석과 회귀 분석">
+        <span class="nav-page-text">[7주차] 상관 분석과 회귀 분석</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>안중호 교수 강의 교재 · 2026년 2학기판</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

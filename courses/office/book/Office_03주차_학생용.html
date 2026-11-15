@@ -1,0 +1,2498 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>[3주차] 수식과 셀 참조 – 안중호 교수 강의 교재</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../courses/office/book/Office_04주차_학생용.html" rel="next">
+<link href="../../../courses/office/book/Office_02주차_학생용.html" rel="prev">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-dcf116883d0d3758c9131f5ede2fa7e1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({
+    startOnLoad: true,
+    securityLevel: "loose",
+    theme: "neutral",
+    fontFamily: '"Pretendard Variable", Pretendard, "Malgun Gothic", sans-serif'
+  });
+</script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">안중호 교수 강의 교재</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="검색"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">커리큘럼</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/semesters/index.html">
+ <span class="dropdown-text">전체 커리큘럼</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../docs/semesters/2026-2/index.html">
+ <span class="dropdown-text">2026년 2학기</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../docs/subjects/llm-ai/index.html">
+ <span class="dropdown-text">교재 · LLM AI 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/subjects/python/index.html">
+ <span class="dropdown-text">교재 · 파이썬 실습</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../courses/index.html">
+ <span class="dropdown-text">2027학년도 교재 (준비 중)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/llm-service/index.html">
+ <span class="dropdown-text">· LLM 서비스 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/office/index.html">
+ <span class="dropdown-text">· 컴퓨터활용</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/adsp/index.html">
+ <span class="dropdown-text">· 빅데이터개론</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/ai-agent/index.html">
+ <span class="dropdown-text">· AI에이전트 기획 및 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/aice/index.html">
+ <span class="dropdown-text">· 비즈니스빅데이터분석</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/about/교수_소개.html"> 
+<span class="menu-text">교수 소개</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../courses/office/book/Office_01주차_학생용.html">교재</a></li><li class="breadcrumb-item"><a href="../../../courses/office/book/Office_03주차_학생용.html">[3주차] 수식과 셀 참조</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/office/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">컴퓨터활용</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">교재</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/office/book/Office_01주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[1주차] 파일 관리와 데이터 입력</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/office/book/Office_02주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[2주차] 셀 서식과 인쇄 설정</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/office/book/Office_03주차_학생용.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">[3주차] 수식과 셀 참조</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/office/book/Office_04주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[4주차] 기본 함수</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/office/book/Office_05주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[5주차] 정렬, 필터, 차트</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/office/book/Office_06주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[6주차] 피벗 테이블</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/office/book/Office_07주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[7주차] 엑셀 자료를 활용한 슬라이드 작성</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/office/book/Office_08주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[8주차] 파이썬 실행 환경과 엑셀 파일 읽기</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/office/book/Office_09주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[9주차] 데이터 집계의 자동화</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/office/book/Office_10주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[10주차] 다중 파일의 일괄 처리</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/office/book/Office_11주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[11주차] 생성형 AI를 활용한 엑셀 작업</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/office/book/Office_12주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[12주차] 생성형 AI를 활용한 파이썬 코드 작성</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/office/book/Office_13주차_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[13주차] 액세스 입문: 테이블과 쿼리</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/office/book/Office_부록_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">부록</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">이 장의 차례</h2>
+   
+  <ul>
+  <li><a href="#학습-목표" id="toc-학습-목표" class="nav-link active" data-scroll-target="#학습-목표">학습 목표</a></li>
+  <li><a href="#준비-사항" id="toc-준비-사항" class="nav-link" data-scroll-target="#준비-사항">준비 사항</a></li>
+  <li><a href="#수식의-구조" id="toc-수식의-구조" class="nav-link" data-scroll-target="#수식의-구조">1. 수식의 구조</a>
+  <ul class="collapse">
+  <li><a href="#수식의-구성-요소" id="toc-수식의-구성-요소" class="nav-link" data-scroll-target="#수식의-구성-요소">1-1. 수식의 구성 요소</a></li>
+  <li><a href="#연산자의-우선순위" id="toc-연산자의-우선순위" class="nav-link" data-scroll-target="#연산자의-우선순위">1-2. 연산자의 우선순위</a></li>
+  <li><a href="#셀-참조의-원칙" id="toc-셀-참조의-원칙" class="nav-link" data-scroll-target="#셀-참조의-원칙">1-3. 셀 참조의 원칙</a></li>
+  <li><a href="#수식의-입력과-편집" id="toc-수식의-입력과-편집" class="nav-link" data-scroll-target="#수식의-입력과-편집">1-4. 수식의 입력과 편집</a></li>
+  <li><a href="#따라-하기" id="toc-따라-하기" class="nav-link" data-scroll-target="#따라-하기">따라 하기</a></li>
+  </ul></li>
+  <li><a href="#수식의-복사와-상대-참조" id="toc-수식의-복사와-상대-참조" class="nav-link" data-scroll-target="#수식의-복사와-상대-참조">2. 수식의 복사와 상대 참조</a>
+  <ul class="collapse">
+  <li><a href="#수식을-복사하는-방법" id="toc-수식을-복사하는-방법" class="nav-link" data-scroll-target="#수식을-복사하는-방법">2-1. 수식을 복사하는 방법</a></li>
+  <li><a href="#상대-참조" id="toc-상대-참조" class="nav-link" data-scroll-target="#상대-참조">2-2. 상대 참조</a></li>
+  <li><a href="#복사-방향과-주소의-변화" id="toc-복사-방향과-주소의-변화" class="nav-link" data-scroll-target="#복사-방향과-주소의-변화">2-3. 복사 방향과 주소의 변화</a></li>
+  <li><a href="#복사한-수식의-확인" id="toc-복사한-수식의-확인" class="nav-link" data-scroll-target="#복사한-수식의-확인">2-4. 복사한 수식의 확인</a></li>
+  <li><a href="#따라-하기-1" id="toc-따라-하기-1" class="nav-link" data-scroll-target="#따라-하기-1">따라 하기</a></li>
+  </ul></li>
+  <li><a href="#자동-합계" id="toc-자동-합계" class="nav-link" data-scroll-target="#자동-합계">3. 자동 합계</a>
+  <ul class="collapse">
+  <li><a href="#자동-합계-단추" id="toc-자동-합계-단추" class="nav-link" data-scroll-target="#자동-합계-단추">3-1. 자동 합계 단추</a></li>
+  <li><a href="#합계-범위의-확인과-수정" id="toc-합계-범위의-확인과-수정" class="nav-link" data-scroll-target="#합계-범위의-확인과-수정">3-2. 합계 범위의 확인과 수정</a></li>
+  <li><a href="#합계의-검산" id="toc-합계의-검산" class="nav-link" data-scroll-target="#합계의-검산">3-3. 합계의 검산</a></li>
+  <li><a href="#따라-하기-2" id="toc-따라-하기-2" class="nav-link" data-scroll-target="#따라-하기-2">따라 하기</a></li>
+  </ul></li>
+  <li><a href="#절대-참조" id="toc-절대-참조" class="nav-link" data-scroll-target="#절대-참조">4. 절대 참조</a>
+  <ul class="collapse">
+  <li><a href="#상대-참조로-해결되지-않는-경우" id="toc-상대-참조로-해결되지-않는-경우" class="nav-link" data-scroll-target="#상대-참조로-해결되지-않는-경우">4-1. 상대 참조로 해결되지 않는 경우</a></li>
+  <li><a href="#절대-참조의-지정" id="toc-절대-참조의-지정" class="nav-link" data-scroll-target="#절대-참조의-지정">4-2. 절대 참조의 지정</a></li>
+  <li><a href="#절대-참조의-판별-기준" id="toc-절대-참조의-판별-기준" class="nav-link" data-scroll-target="#절대-참조의-판별-기준">4-3. 절대 참조의 판별 기준</a></li>
+  <li><a href="#백분율-표시-형식" id="toc-백분율-표시-형식" class="nav-link" data-scroll-target="#백분율-표시-형식">4-4. 백분율 표시 형식</a></li>
+  <li><a href="#따라-하기-3" id="toc-따라-하기-3" class="nav-link" data-scroll-target="#따라-하기-3">따라 하기</a></li>
+  </ul></li>
+  <li><a href="#수식의-점검과-오류-값" id="toc-수식의-점검과-오류-값" class="nav-link" data-scroll-target="#수식의-점검과-오류-값">5. 수식의 점검과 오류 값</a>
+  <ul class="collapse">
+  <li><a href="#자동-재계산" id="toc-자동-재계산" class="nav-link" data-scroll-target="#자동-재계산">5-1. 자동 재계산</a></li>
+  <li><a href="#수식-표시" id="toc-수식-표시" class="nav-link" data-scroll-target="#수식-표시">5-2. 수식 표시</a></li>
+  <li><a href="#오류-값의-종류" id="toc-오류-값의-종류" class="nav-link" data-scroll-target="#오류-값의-종류">5-3. 오류 값의 종류</a></li>
+  <li><a href="#내용-지우기와-셀-삭제의-차이" id="toc-내용-지우기와-셀-삭제의-차이" class="nav-link" data-scroll-target="#내용-지우기와-셀-삭제의-차이">5-4. 내용 지우기와 셀 삭제의 차이</a></li>
+  <li><a href="#오류의-전파와-원인의-탐색" id="toc-오류의-전파와-원인의-탐색" class="nav-link" data-scroll-target="#오류의-전파와-원인의-탐색">5-5. 오류의 전파와 원인의 탐색</a></li>
+  <li><a href="#따라-하기-4" id="toc-따라-하기-4" class="nav-link" data-scroll-target="#따라-하기-4">따라 하기</a></li>
+  </ul></li>
+  <li><a href="#핵심-실습-금액과-구성비의-산출" id="toc-핵심-실습-금액과-구성비의-산출" class="nav-link" data-scroll-target="#핵심-실습-금액과-구성비의-산출">6. 핵심 실습: 금액과 구성비의 산출</a>
+  <ul class="collapse">
+  <li><a href="#절차" id="toc-절차" class="nav-link" data-scroll-target="#절차">절차</a></li>
+  <li><a href="#완료-기준" id="toc-완료-기준" class="nav-link" data-scroll-target="#완료-기준">완료 기준</a></li>
+  <li><a href="#제출" id="toc-제출" class="nav-link" data-scroll-target="#제출">제출</a></li>
+  </ul></li>
+  <li><a href="#빈번한-오류와-해결" id="toc-빈번한-오류와-해결" class="nav-link" data-scroll-target="#빈번한-오류와-해결">빈번한 오류와 해결</a></li>
+  <li><a href="#심화-실습" id="toc-심화-실습" class="nav-link" data-scroll-target="#심화-실습">심화 실습</a></li>
+  <li><a href="#연습-문제" id="toc-연습-문제" class="nav-link" data-scroll-target="#연습-문제">연습 문제</a></li>
+  <li><a href="#개념-점검" id="toc-개념-점검" class="nav-link" data-scroll-target="#개념-점검">개념 점검</a></li>
+  <li><a href="#정리" id="toc-정리" class="nav-link" data-scroll-target="#정리">정리</a></li>
+  <li><a href="#참고-자료" id="toc-참고-자료" class="nav-link" data-scroll-target="#참고-자료">참고 자료</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../courses/office/book/Office_01주차_학생용.html">교재</a></li><li class="breadcrumb-item"><a href="../../../courses/office/book/Office_03주차_학생용.html">[3주차] 수식과 셀 참조</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">[3주차] 수식과 셀 참조</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<header class="chapter-head">
+<p class="chapter-part">컴퓨터활용</p>
+<p class="chapter-no"><span class="num">3</span><span class="unit">주차</span></p>
+<p class="chapter-title">수식과 셀 참조</p>
+</header>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>2027학년도 「컴퓨터활용」의 준비 중인 교재입니다. 편집 상태를 검토하기 위해 미리 공개한 것으로, 수업 전에 내용과 순서가 바뀔 수 있습니다.</p>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>학사 4주차 · 교재 03 · 1부 엑셀</p>
+</blockquote>
+<p>본 장은 엑셀에서 계산을 수행하는 기본 수단인 수식을 다룬다. 1장에서 입력하고 2장에서 서식을 적용한 판매 내역 표에 금액과 구성비의 두 열을 추가하며, 두 열의 값은 직접 입력하지 않고 모두 수식으로 산출한다. 수식을 다른 셀로 복사할 때 셀 주소가 변하는 방식(상대 참조)과 변하지 않도록 고정하는 방식(절대 참조)의 차이를 이해하는 것이 본 장의 핵심이다. 4장 이후의 함수, 차트, 피벗 테이블은 모두 본 장에서 작성하는 금액 열을 입력으로 사용한다.</p>
+<p>수업은 두 개의 통합 문서로 진행한다. 1~5절에서는 절마다 설명에 이어 「따라 하기」를 두어, 교수의 시연을 연습용 통합 문서(2월 자료)에서 따라 수행한다. 6절의 핵심 실습에서는 같은 조작을 본인의 판매 현황 통합 문서(1월 자료)에 적용하여 결과물을 완성하고 제출한다. 각 단계의 끝에 있는 <strong>[확인]</strong>은 그 단계를 마쳤을 때 화면에서 관찰되어야 하는 상태이며, 관찰한 상태가 다르면 다음 단계로 넘어가지 않고 그 단계를 다시 수행한다.</p>
+<section id="학습-목표" class="level2">
+<h2 class="anchored" data-anchor-id="학습-목표">학습 목표</h2>
+<ol type="1">
+<li>수식의 구조(등호, 셀 참조, 연산자)를 설명하고, 연산자의 우선순위와 괄호를 적용하여 사칙 연산의 수식을 작성한다.</li>
+<li>채우기 핸들 또는 복사와 붙여넣기로 수식을 복사하고, 복사된 수식의 셀 주소가 변하는 규칙을 설명한다.</li>
+<li>자동 합계로 열의 합계를 산출하고, 제시된 합계 범위를 확인하여 수정한다.</li>
+<li>절대 참조가 필요한 경우를 판별하고 <code>F4</code> 키로 절대 참조를 지정한다.</li>
+<li>수식 표시 상태와 값의 변경으로 수식을 점검하고, 오류 값(<code>#DIV/0!</code>, <code>#VALUE!</code>, <code>#NAME?</code>, <code>#REF!</code>, <code>####</code>)의 의미를 설명한다.</li>
+</ol>
+</section>
+<section id="준비-사항" class="level2">
+<h2 class="anchored" data-anchor-id="준비-사항">준비 사항</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>선행 결과물</td>
+<td>2장에서 저장한 <code>컴퓨터활용\실습\판매현황_02_학번.xlsx</code>(핵심 실습용)와 <code>판매연습_02_학번.xlsx</code>(따라 하기용)</td>
+</tr>
+<tr class="even">
+<td>표의 상태</td>
+<td>두 파일 모두 <code>A1</code>에 제목, 2행은 빈 행, <code>A3:F3</code>에 머리글이 있고 4행부터 자료가 있다</td>
+</tr>
+<tr class="odd">
+<td>대체 자료</td>
+<td>앞 장의 결과 파일이 없는 수강생은 교수가 제공하는 앞 장의 완성 파일로 시작한다</td>
+</tr>
+</tbody>
+</table>
+<p>두 통합 문서는 자료의 행 수가 다르므로 셀 주소가 한 행씩 다르다. 1~5절의 설명에 제시한 셀 주소와 값은 1월 자료의 것이며, 따라 하기에서는 같은 조작을 2월 자료의 주소에 적용한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>구분</th>
+<th>따라 하기, 연습 문제</th>
+<th>설명, 핵심 실습</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>자료</td>
+<td>2026년 2월 판매 내역(19행)</td>
+<td>2026년 1월 판매 내역(20행)</td>
+</tr>
+<tr class="even">
+<td>본 장에서 저장하는 파일</td>
+<td><code>판매연습_03_학번.xlsx</code></td>
+<td><code>판매현황_03_학번.xlsx</code></td>
+</tr>
+<tr class="odd">
+<td>자료의 범위</td>
+<td><code>A4:F22</code></td>
+<td><code>A4:F23</code></td>
+</tr>
+<tr class="even">
+<td>빈 행</td>
+<td>23행</td>
+<td>24행</td>
+</tr>
+<tr class="odd">
+<td>합계 행</td>
+<td>24행</td>
+<td>25행</td>
+</tr>
+<tr class="even">
+<td>금액의 합계</td>
+<td>8,016,000</td>
+<td>6,479,000</td>
+</tr>
+</tbody>
+</table>
+<p>연습용 통합 문서는 제출하지 않는다. 다만 4장 이후의 따라 하기가 본 장의 연습용 통합 문서를 이어서 사용하므로 <code>실습</code> 폴더에 보관한다.</p>
+<p>프로그램을 여는 방법과 웹용 프로그램의 주소는 부록 A-8에 있다.</p>
+<hr>
+</section>
+<section id="수식의-구조" class="level2">
+<h2 class="anchored" data-anchor-id="수식의-구조">1. 수식의 구조</h2>
+<section id="수식의-구성-요소" class="level3">
+<h3 class="anchored" data-anchor-id="수식의-구성-요소">1-1. 수식의 구성 요소</h3>
+<p>엑셀의 셀에는 값(숫자, 문자, 날짜) 또는 수식을 입력할 수 있다. 수식은 <strong>등호(<code>=</code>)로 시작하는 계산식</strong>이며, 셀에는 계산 결과가 표시되고 수식 자체는 화면 상단의 수식 입력줄에 표시된다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>구성 요소</th>
+<th>설명</th>
+<th>예</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>등호</td>
+<td>수식의 시작을 나타낸다. 등호가 없으면 문자로 처리된다</td>
+<td><code>=</code></td>
+</tr>
+<tr class="even">
+<td>셀 참조</td>
+<td>계산에 사용할 값이 들어 있는 셀의 주소이다</td>
+<td><code>E4</code>, <code>F4</code></td>
+</tr>
+<tr class="odd">
+<td>연산자</td>
+<td>더하기 <code>+</code>, 빼기 <code>-</code>, 곱하기 <code>*</code>, 나누기 <code>/</code></td>
+<td><code>*</code></td>
+</tr>
+<tr class="even">
+<td>상수</td>
+<td>수식에 직접 기재한 값이다</td>
+<td><code>100</code></td>
+</tr>
+</tbody>
+</table>
+<p>곱하기와 나누기의 기호는 수학의 표기(×, ÷)와 다르다. 곱하기는 별표(<code>*</code>), 나누기는 빗금(<code>/</code>)으로 입력한다. 수식 안의 숫자 상수에는 천 단위 쉼표를 넣지 않는다. <code>24,000</code>이 아니라 <code>24000</code>으로 기재한다.</p>
+<blockquote class="blockquote">
+<p>그림 필요: (수식이 입력된 셀을 선택한 화면. 셀에는 계산 결과 720000이, 수식 입력줄에는 <code>=E4*F4</code>가 표시된 모습)</p>
+</blockquote>
+</section>
+<section id="연산자의-우선순위" class="level3">
+<h3 class="anchored" data-anchor-id="연산자의-우선순위">1-2. 연산자의 우선순위</h3>
+<p>하나의 수식에 연산자가 둘 이상 있으면 엑셀은 왼쪽부터 차례로 계산하지 않고 정해진 우선순위에 따라 계산한다. 본 과목에서 사용하는 사칙 연산의 규칙은 다음의 세 가지이다.</p>
+<ol type="1">
+<li>곱하기와 나누기를 더하기와 빼기보다 먼저 계산한다.</li>
+<li>우선순위가 같은 연산자(곱하기와 나누기, 더하기와 빼기)는 왼쪽에 있는 것부터 계산한다.</li>
+<li>괄호로 묶은 부분을 가장 먼저 계산한다.</li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>수식</th>
+<th>계산 순서</th>
+<th>결과</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>=2+3*4</code></td>
+<td>3×4를 먼저 계산한 뒤 2를 더한다</td>
+<td>14</td>
+</tr>
+<tr class="even">
+<td><code>=(2+3)*4</code></td>
+<td>괄호 안의 2+3을 먼저 계산한 뒤 4를 곱한다</td>
+<td>20</td>
+</tr>
+<tr class="odd">
+<td><code>=100/5*2</code></td>
+<td>우선순위가 같으므로 왼쪽의 100÷5를 먼저 계산한 뒤 2를 곱한다</td>
+<td>40</td>
+</tr>
+<tr class="even">
+<td><code>=100/(5*2)</code></td>
+<td>괄호 안의 5×2를 먼저 계산한 뒤 100을 나눈다</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<p>판매 자료에 적용하면 괄호의 유무에 따라 결과가 크게 달라진다. 판매번호 1001의 수량(<code>E4</code>)은 30이고 단가(<code>F4</code>)는 24,000이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>의도한 계산</th>
+<th>수식</th>
+<th>결과</th>
+<th>판정</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>수량을 5개 늘린 경우의 금액</td>
+<td><code>=(E4+5)*F4</code></td>
+<td>840,000</td>
+<td>의도와 일치한다</td>
+</tr>
+<tr class="even">
+<td>위와 같다</td>
+<td><code>=E4+5*F4</code></td>
+<td>120,030</td>
+<td>5×24,000을 먼저 계산하여 수량 30을 더하였다. 오류 표시 없이 잘못된 값이 산출된다</td>
+</tr>
+<tr class="odd">
+<td>금액에서 20,000원을 뺀 값</td>
+<td><code>=E4*F4-20000</code></td>
+<td>700,000</td>
+<td>곱하기가 먼저 계산되므로 괄호가 필요하지 않다</td>
+</tr>
+</tbody>
+</table>
+<p>괄호는 여는 괄호와 닫는 괄호의 수가 같아야 한다. 계산 순서가 확실하지 않은 수식에는 괄호를 넣어 순서를 명시한다. 불필요한 괄호는 결과에 영향을 주지 않는다.</p>
+<p>엑셀에는 사칙 연산자 외에 백분율(<code>%</code>)과 거듭제곱(<code>^</code>)의 연산자가 있으며 두 연산자는 곱하기와 나누기보다 먼저 계산된다. 숫자 뒤에 <code>%</code>를 붙인 <code>10%</code>는 0.1과 같은 값이다.</p>
+</section>
+<section id="셀-참조의-원칙" class="level3">
+<h3 class="anchored" data-anchor-id="셀-참조의-원칙">1-3. 셀 참조의 원칙</h3>
+<p>수식에는 값을 직접 기재하지 않고 <strong>값이 들어 있는 셀의 주소</strong>를 기재한다. 판매번호 1001의 금액은 <code>=30*24000</code>으로도 산출할 수 있으나, 이 수식은 수량이나 단가가 변경되어도 결과가 변하지 않는다. <code>=E4*F4</code>로 작성하면 <code>E4</code>나 <code>F4</code>의 값이 변경될 때 결과가 즉시 다시 계산된다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>수식</th>
+<th>결과</th>
+<th>수량을 31로 변경한 경우</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>=30*24000</code></td>
+<td>720,000</td>
+<td>720,000(변하지 않는다)</td>
+</tr>
+<tr class="even">
+<td><code>=E4*F4</code></td>
+<td>720,000</td>
+<td>744,000(다시 계산된다)</td>
+</tr>
+</tbody>
+</table>
+<p>값을 직접 기재한 수식은 결과만으로는 셀 참조 수식과 구별되지 않는다. 두 수식의 차이는 자료가 변경되었을 때 비로소 드러나며, 그때에는 어느 셀이 갱신되지 않았는지를 찾기 어렵다. 따라서 표의 자료를 사용하는 계산은 처음부터 셀 참조로 작성한다. 세율이나 인상액처럼 표에 없는 값이 필요한 경우에도 그 값을 빈 셀에 입력해 두고 그 셀을 참조한다(4절).</p>
+</section>
+<section id="수식의-입력과-편집" class="level3">
+<h3 class="anchored" data-anchor-id="수식의-입력과-편집">1-4. 수식의 입력과 편집</h3>
+<p>수식을 입력하는 절차는 다음과 같다.</p>
+<ol type="1">
+<li>결과를 표시할 셀을 선택하고 <code>=</code>를 입력한다.</li>
+<li>참조할 셀을 마우스로 선택한다. 셀 주소가 수식에 자동으로 기재된다. 주소를 직접 입력하여도 된다.</li>
+<li>연산자를 입력하고 다음 셀을 선택한다.</li>
+<li><code>Enter</code>를 눌러 입력을 완료한다.</li>
+</ol>
+<p>셀을 마우스로 선택하는 방법은 주소의 오타를 방지한다. 다만 수식을 입력하는 중에는 셀을 누를 때마다 그 셀의 주소가 수식에 기재되므로, 수식을 완성하면 다른 셀을 누르지 않고 반드시 <code>Enter</code>를 눌러 입력을 마친다. 입력을 취소할 때에는 <code>Esc</code>를 누른다.</p>
+<p>이미 입력한 수식을 수정할 때에는 셀을 선택하고 <code>F2</code>를 누르거나 셀을 두 번 누른다. 수식 입력줄을 눌러 수정하여도 된다. 편집 상태가 되면 수식이 참조하는 셀마다 서로 다른 색의 테두리가 시트에 표시되고, 수식 안의 셀 주소도 같은 색으로 표시된다. 이 색을 따라가면 수식이 실제로 어느 셀을 참조하는지를 눈으로 확인할 수 있다. 수정을 마치면 <code>Enter</code>를, 수정하지 않고 나올 때에는 <code>Esc</code>를 누른다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>키</th>
+<th>수식 입력 중의 동작</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Enter</code></td>
+<td>수식을 확정한다</td>
+</tr>
+<tr class="even">
+<td><code>Esc</code></td>
+<td>입력 또는 수정을 취소하고 이전의 내용으로 되돌린다</td>
+</tr>
+<tr class="odd">
+<td><code>F2</code></td>
+<td>선택한 셀을 편집 상태로 전환한다</td>
+</tr>
+<tr class="even">
+<td><code>Ctrl + Z</code></td>
+<td>확정한 직후의 입력을 취소한다</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p>그림 필요: (<code>F2</code>로 편집 상태가 된 금액 셀. 수식 <code>=E4*F4</code>의 <code>E4</code>와 <code>F4</code>가 서로 다른 색으로 표시되고 시트의 <code>E4</code>, <code>F4</code> 셀에 같은 색의 테두리가 표시된 모습)</p>
+</blockquote>
+</section>
+<section id="따라-하기" class="level3">
+<h3 class="anchored" data-anchor-id="따라-하기">따라 하기</h3>
+<p>연습용 통합 문서를 준비하고, 표에서 떨어진 <code>K</code> 열의 빈 셀에서 계산 순서와 셀 참조의 효과를 확인한다. <code>K</code> 열에 입력한 내용은 마지막에 지운다.</p>
+<p>본 장의 [확인]에 기재한 값은 읽기 쉽도록 천 단위 쉼표를 넣어 적었다. 서식을 적용하기 전의 셀에는 792000과 같이 쉼표 없이 표시되거나 참조한 셀의 표시 형식을 따라 표시될 수 있으며, 값이 같으면 일치한 것으로 본다.</p>
+<ol type="1">
+<li><code>컴퓨터활용\실습\판매연습_02_학번.xlsx</code>를 연다.</li>
+<li><code>F12</code>를 눌러 같은 폴더에 <code>판매연습_03_학번.xlsx</code>로 저장한다.</li>
+<li><code>E4:E22</code>를 선택하여 상태 표시줄의 값을 읽는다.</li>
+</ol>
+<ul>
+<li><span class="check-badge">확인 1</span> 제목 표시줄에 <code>판매연습_03_학번.xlsx</code>가 표시되고, 상태 표시줄의 개수가 19, 합계가 532로 표시되었다.</li>
+</ul>
+<ol start="4" type="1">
+<li><code>K4</code>에 <code>=2+3*4</code>, <code>K5</code>에 <code>=(2+3)*4</code>, <code>K6</code>에 <code>=100/5*2</code>, <code>K7</code>에 <code>=100/(5*2)</code>를 입력한다. 수식마다 <code>Enter</code>로 확정한다.</li>
+</ol>
+<ul>
+<li><span class="check-badge">확인 2</span> <code>K4:K7</code>에 14, 20, 40, 10이 차례로 표시되었다.</li>
+</ul>
+<ol start="5" type="1">
+<li><code>K8</code>에 <code>=33*24000</code>을 입력한다. 판매번호 1021의 수량과 단가를 직접 기재한 수식이다.</li>
+<li><code>K9</code>를 선택하고 <code>=</code>를 입력한 뒤 <code>E4</code>를 누르고, <code>*</code>를 입력한 뒤 <code>F4</code>를 누르고 <code>Enter</code>를 누른다.</li>
+<li><code>E4</code>의 값을 34로 변경한다.</li>
+</ol>
+<ul>
+<li><span class="check-badge">확인 3</span> <code>K8</code>의 값은 792,000으로 변하지 않았고 <code>K9</code>의 값은 816,000으로 변하였다. 수식 입력줄에 <code>K8</code>은 <code>=33*24000</code>, <code>K9</code>는 <code>=E4*F4</code>로 표시되었다.</li>
+</ul>
+<ol start="8" type="1">
+<li><code>Ctrl + Z</code>를 눌러 <code>E4</code>를 33으로 되돌린다.</li>
+<li><code>K9</code>를 선택하고 <code>F2</code>를 누른다. 시트의 <code>E4</code>와 <code>F4</code>에 표시되는 색 테두리를 확인한 뒤 <code>Esc</code>를 누른다.</li>
+<li><code>K4:K9</code>를 선택하고 <code>Delete</code>를 누른다.</li>
+</ol>
+<ul>
+<li><span class="check-badge">확인 4</span> 편집 상태에서 <code>E4</code>와 <code>F4</code>에 서로 다른 색의 테두리가 표시되었다. <code>Esc</code>를 누른 뒤 <code>K</code> 열에 남은 내용이 없고 <code>E4</code>의 값이 33이다.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="수식의-복사와-상대-참조" class="level2">
+<h2 class="anchored" data-anchor-id="수식의-복사와-상대-참조">2. 수식의 복사와 상대 참조</h2>
+<section id="수식을-복사하는-방법" class="level3">
+<h3 class="anchored" data-anchor-id="수식을-복사하는-방법">2-1. 수식을 복사하는 방법</h3>
+<p>동일한 계산을 20행에 적용할 때 수식을 20회 입력할 필요는 없다. 첫 행의 수식을 작성한 뒤 나머지 행으로 복사한다. 복사하는 방법은 여러 가지이며, 어느 방법을 사용하여도 복사된 수식은 같다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>방법</th>
+<th>조작</th>
+<th>적합한 경우</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>채우기 핸들을 끈다</td>
+<td>수식이 있는 셀을 선택하고 오른쪽 아래 모서리의 채우기 핸들을 마지막 행까지 끈다</td>
+<td>복사할 범위가 화면 안에 있다</td>
+</tr>
+<tr class="even">
+<td>채우기 핸들을 두 번 누른다</td>
+<td>수식이 있는 셀을 선택하고 채우기 핸들을 두 번 누른다. 인접한 열에 자료가 있는 마지막 행까지 복사된다</td>
+<td>행이 많아 끌기 어렵다</td>
+</tr>
+<tr class="odd">
+<td>복사하여 붙여 넣는다</td>
+<td>수식이 있는 셀에서 <code>Ctrl + C</code>를 누르고, 붙여 넣을 범위를 선택한 뒤 <code>Ctrl + V</code>를 누른다</td>
+<td>떨어져 있는 위치로 복사한다</td>
+</tr>
+<tr class="even">
+<td>아래쪽으로 채운다</td>
+<td>수식이 있는 셀을 맨 위로 하여 범위를 선택하고 <code>Ctrl + D</code>를 누른다</td>
+<td>키보드만으로 조작한다</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>채우기 핸들은 1장에서 판매번호를 입력할 때 사용한 것과 같다. 숫자가 입력된 셀에서는 값이 채워지고, 수식이 입력된 셀에서는 수식이 복사된다.</li>
+<li><code>Ctrl + C</code>를 누르면 복사한 셀의 둘레에 움직이는 점선이 표시된다. 붙여 넣은 뒤 <code>Esc</code>를 누르면 점선이 사라진다.</li>
+<li>복사와 붙여넣기는 수식과 함께 서식도 복사한다. <code>[홈] 탭 → [클립보드] 그룹</code>의 [복사]와 [붙여넣기]가 같은 명령이다.</li>
+<li>채우기 핸들을 두 번 누르는 방법은 인접한 열의 자료가 끝나는 행에서 멈춘다. 인접한 열의 중간에 빈 셀이 있으면 그 앞에서 멈추므로, 복사한 뒤에는 마지막 행까지 복사되었는지를 확인한다.</li>
+</ul>
+</section>
+<section id="상대-참조" class="level3">
+<h3 class="anchored" data-anchor-id="상대-참조">2-2. 상대 참조</h3>
+<p><code>G4</code>의 수식 <code>=E4*F4</code>를 <code>G5</code>로 복사하면 수식은 <code>=E5*F5</code>로 변한다. 복사한 방향으로 한 행 이동하였으므로 수식 안의 셀 주소도 한 행씩 이동한 것이다. 이와 같이 수식의 위치에 따라 함께 이동하는 셀 주소를 <strong>상대 참조</strong>라고 한다. 셀 주소를 <code>E4</code>와 같이 기재하면 상대 참조가 되며, 엑셀에서 새로 작성하는 수식의 참조는 기본적으로 상대 참조이다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>셀</th>
+<th>복사된 수식</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>G4</code></td>
+<td><code>=E4*F4</code></td>
+<td>같은 행의 수량 × 같은 행의 단가</td>
+</tr>
+<tr class="even">
+<td><code>G5</code></td>
+<td><code>=E5*F5</code></td>
+<td>같은 행의 수량 × 같은 행의 단가</td>
+</tr>
+<tr class="odd">
+<td><code>G23</code></td>
+<td><code>=E23*F23</code></td>
+<td>같은 행의 수량 × 같은 행의 단가</td>
+</tr>
+</tbody>
+</table>
+<p>상대 참조의 수식은 “왼쪽으로 두 칸에 있는 셀과 왼쪽으로 한 칸에 있는 셀을 곱한다”와 같이 <strong>수식이 있는 셀을 기준으로 한 상대적 위치</strong>를 기록한 것으로 이해할 수 있다. 행마다 동일한 계산을 반복하는 경우에는 상대 참조가 적합하다.</p>
+<pre class="mermaid">flowchart LR
+    subgraph R4["4행(판매번호 1001)"]
+        E4["E4&lt;br/&gt;수량 30"] --&gt; G4["G4&lt;br/&gt;=E4*F4&lt;br/&gt;720,000"]
+        F4["F4&lt;br/&gt;단가 24,000"] --&gt; G4
+    end
+    subgraph R5["5행(판매번호 1002)"]
+        E5["E5&lt;br/&gt;수량 50"] --&gt; G5["G5&lt;br/&gt;=E5*F5&lt;br/&gt;300,000"]
+        F5["F5&lt;br/&gt;단가 6,000"] --&gt; G5
+    end
+    subgraph R6["6행(판매번호 1003)"]
+        E6["E6&lt;br/&gt;수량 4"] --&gt; G6["G6&lt;br/&gt;=E6*F6&lt;br/&gt;340,000"]
+        F6["F6&lt;br/&gt;단가 85,000"] --&gt; G6
+    end
+</pre>
+<p>그림 1. 상대 참조. 복사된 수식은 모두 “같은 행의 왼쪽 두 칸과 왼쪽 한 칸을 곱한다”는 같은 관계를 기록한다.</p>
+</section>
+<section id="복사-방향과-주소의-변화" class="level3">
+<h3 class="anchored" data-anchor-id="복사-방향과-주소의-변화">2-3. 복사 방향과 주소의 변화</h3>
+<p>상대 참조는 복사한 방향과 거리만큼 이동한다. 아래쪽으로 복사하면 행 번호가, 오른쪽으로 복사하면 열 문자가 변한다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>복사한 위치</th>
+<th><code>=E4*F4</code>가 변한 결과</th>
+<th>변한 부분</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>한 행 아래(<code>G5</code>)</td>
+<td><code>=E5*F5</code></td>
+<td>행 번호가 1 증가한다</td>
+</tr>
+<tr class="even">
+<td>세 행 아래(<code>G7</code>)</td>
+<td><code>=E7*F7</code></td>
+<td>행 번호가 3 증가한다</td>
+</tr>
+<tr class="odd">
+<td>한 열 오른쪽(<code>H4</code>)</td>
+<td><code>=F4*G4</code></td>
+<td>열 문자가 한 칸 이동한다</td>
+</tr>
+</tbody>
+</table>
+<p>판매 내역 표의 금액과 구성비는 모두 아래쪽으로만 복사하므로 본 장에서는 행 번호의 변화만을 다룬다. 수식을 오른쪽으로 복사하면 의도하지 않은 열을 참조하게 된다는 점만 확인해 둔다.</p>
+</section>
+<section id="복사한-수식의-확인" class="level3">
+<h3 class="anchored" data-anchor-id="복사한-수식의-확인">2-4. 복사한 수식의 확인</h3>
+<p>수식을 복사한 뒤에는 결과 값만 보지 않고 수식을 확인한다. 확인 방법은 세 가지이다.</p>
+<ul>
+<li><strong>수식 입력줄.</strong> 복사된 범위의 첫 행, 중간 행, 마지막 행의 셀을 차례로 선택하여 수식 입력줄의 행 번호가 그 셀의 행 번호와 같은지 확인한다.</li>
+<li><strong>편집 상태의 색 테두리.</strong> 셀에서 <code>F2</code>를 누르면 참조하는 셀에 색 테두리가 표시된다. 금액 수식에서는 같은 행의 수량과 단가에 테두리가 표시되어야 한다.</li>
+<li><strong>상태 표시줄.</strong> 복사된 범위를 선택하면 상태 표시줄에 개수와 합계가 표시된다. 개수가 자료의 행 수와 같아야 한다.</li>
+</ul>
+</section>
+<section id="따라-하기-1" class="level3">
+<h3 class="anchored" data-anchor-id="따라-하기-1">따라 하기</h3>
+<p>연습용 통합 문서의 표에 금액 열을 작성한다. 채우기 핸들과 복사·붙여넣기의 두 방법으로 수식을 복사하여 결과가 같음을 확인한다.</p>
+<ol type="1">
+<li><code>G3</code>에 <code>금액</code>을 입력한다.</li>
+<li><code>G4</code>를 선택하고 <code>=</code>를 입력한 뒤 <code>E4</code>를 누르고, <code>*</code>를 입력한 뒤 <code>F4</code>를 누르고 <code>Enter</code>를 누른다.</li>
+</ol>
+<ul>
+<li><span class="check-badge">확인 5</span> <code>G4</code>의 값이 792,000이고 수식 입력줄에 <code>=E4*F4</code>가 표시되었다.</li>
+</ul>
+<ol start="3" type="1">
+<li><code>G4</code>를 선택하고 채우기 핸들을 <code>G22</code>까지 끈다.</li>
+<li><code>G5</code>, <code>G10</code>, <code>G22</code>를 차례로 선택하여 수식 입력줄의 수식을 읽는다.</li>
+</ol>
+<ul>
+<li><span class="check-badge">확인 6</span> 수식이 차례로 <code>=E5*F5</code>, <code>=E10*F10</code>, <code>=E22*F22</code>이고 값은 510,000, 252,000, 816,000이다.</li>
+</ul>
+<ol start="5" type="1">
+<li><code>G5:G22</code>를 선택하고 <code>Delete</code>를 눌러 복사한 수식을 지운다.</li>
+<li><code>G4</code>를 선택하고 <code>Ctrl + C</code>를 누른다.</li>
+<li><code>G5:G22</code>를 선택하고 <code>Ctrl + V</code>를 누른 뒤 <code>Esc</code>를 누른다.</li>
+<li><code>G4:G22</code>를 선택하여 상태 표시줄의 값을 읽는다.</li>
+</ol>
+<ul>
+<li><span class="check-badge">확인 7</span> <code>G22</code>의 수식이 다시 <code>=E22*F22</code>가 되었고, 상태 표시줄의 개수가 19, 합계가 8,016,000이다.</li>
+</ul>
+<ol start="9" type="1">
+<li><code>G10</code>을 선택하고 <code>F2</code>를 누른다. 색 테두리가 표시된 셀을 확인한 뒤 <code>Esc</code>를 누른다.</li>
+<li><code>F3</code>을 선택하고 <code>[홈] 탭 → [클립보드] 그룹 → [서식 복사]</code>를 누른 뒤 <code>G3</code>을 누른다.</li>
+<li><code>F4</code>를 선택하고 [서식 복사]를 누른 뒤 <code>G4:G22</code>를 끈다.</li>
+</ol>
+<ul>
+<li><span class="check-badge">확인 8</span> <code>G10</code>의 편집 상태에서 색 테두리가 <code>E10</code>과 <code>F10</code>에 표시되었다. 서식을 복사한 뒤 <code>G4</code>가 <code>₩792,000</code>으로 표시되고 수식 입력줄에는 <code>=E4*F4</code>가 그대로 표시되었다.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="자동-합계" class="level2">
+<h2 class="anchored" data-anchor-id="자동-합계">3. 자동 합계</h2>
+<section id="자동-합계-단추" class="level3">
+<h3 class="anchored" data-anchor-id="자동-합계-단추">3-1. 자동 합계 단추</h3>
+<p>열의 합계는 <code>[홈] 탭 → [편집] 그룹 → [자동 합계]</code>로 산출한다. 같은 단추가 [수식] 탭에도 있으며 단축키는 <code>Alt + =</code>이다. 자동 합계는 합계를 구하는 함수 <code>SUM</code>을 셀에 입력하는 단추이며, 실행하면 <code>=SUM(G4:G23)</code>과 같은 수식이 작성된다. <code>G4:G23</code>은 <code>G4</code>부터 <code>G23</code>까지의 범위를 의미한다. 함수의 형식은 4장에서 다루며, 본 장에서는 단추로 합계를 산출하는 데 그친다.</p>
+<p>자동 합계는 세 단계로 동작한다.</p>
+<ol type="1">
+<li>합계를 표시할 셀을 선택하고 [자동 합계]를 누른다.</li>
+<li>셀에 <code>=SUM(</code> 형태의 수식이 입력되고, 엑셀이 추정한 합계 범위가 움직이는 점선으로 시트에 표시된다.</li>
+<li>범위가 올바르면 <code>Enter</code>를 눌러 확정한다.</li>
+</ol>
+</section>
+<section id="합계-범위의-확인과-수정" class="level3">
+<h3 class="anchored" data-anchor-id="합계-범위의-확인과-수정">3-2. 합계 범위의 확인과 수정</h3>
+<p>자동 합계는 선택한 셀의 위쪽 또는 왼쪽에 연속하여 있는 숫자를 합계 범위로 추정한다. 추정은 빈 셀에서 끊어지므로, 추정된 범위가 의도와 일치한다고 가정하지 않고 <code>Enter</code>를 누르기 전에 점선의 범위와 수식의 범위를 반드시 읽는다.</p>
+<p>본 과목의 표는 자료와 합계 행의 사이에 빈 행을 하나 둔다. 합계 셀의 바로 위가 빈 셀이므로 자동 합계가 범위를 제시하지 않거나 의도와 다른 범위를 제시할 수 있다. 이 경우에는 점선이 표시된 상태에서 자료의 첫 셀부터 마지막 셀까지 마우스로 끌어 범위를 다시 지정한 뒤 <code>Enter</code>를 누른다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>제시된 범위</th>
+<th>판정</th>
+<th>조치</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>G4:G23</code></td>
+<td>자료 20행과 일치한다</td>
+<td><code>Enter</code>를 누른다</td>
+</tr>
+<tr class="even">
+<td><code>G4:G24</code></td>
+<td>빈 행이 포함되었다. 결과는 같으나 범위가 자료와 일치하지 않는다</td>
+<td><code>G4</code>부터 <code>G23</code>까지 끌어 다시 지정한다</td>
+</tr>
+<tr class="odd">
+<td>범위가 제시되지 않는다</td>
+<td>바로 위의 셀이 비어 있어 추정하지 못하였다</td>
+<td>위와 같다</td>
+</tr>
+</tbody>
+</table>
+<p>빈 행을 두는 이유는 5장의 정렬과 필터가 자료 범위와 합계 행을 구분하게 하기 위한 것이다. 합계 행이 자료에 붙어 있으면 합계 행이 자료와 함께 정렬된다.</p>
+</section>
+<section id="합계의-검산" class="level3">
+<h3 class="anchored" data-anchor-id="합계의-검산">3-3. 합계의 검산</h3>
+<p>합계 수식의 결과는 상태 표시줄의 합계와 대조하여 검산한다. 금액의 범위(<code>G4:G23</code>)를 선택하였을 때 상태 표시줄에 표시되는 합계가 합계 셀의 값과 같아야 한다. 두 값이 다르면 합계 수식의 범위가 자료의 범위와 다른 것이다. 상태 표시줄의 개수가 자료의 행 수보다 작으면 금액 열에 숫자가 아닌 값이나 빈 셀이 있는 것이다.</p>
+</section>
+<section id="따라-하기-2" class="level3">
+<h3 class="anchored" data-anchor-id="따라-하기-2">따라 하기</h3>
+<p>연습용 통합 문서의 금액 열에 합계를 산출한다.</p>
+<ol type="1">
+<li><code>A24</code>에 <code>합계</code>를 입력한다. 23행은 비워 둔다.</li>
+<li><code>G24</code>를 선택하고 <code>[홈] 탭 → [편집] 그룹 → [자동 합계]</code>를 누른다.</li>
+<li>점선으로 표시된 범위가 <code>G4:G22</code>가 아니면 <code>G4</code>부터 <code>G22</code>까지 끌어 다시 지정한다.</li>
+<li><code>Enter</code>를 누른다.</li>
+</ol>
+<ul>
+<li><span class="check-badge">확인 9</span> <code>G24</code>의 값이 8,016,000이고 수식 입력줄에 <code>=SUM(G4:G22)</code>가 표시되었다.</li>
+</ul>
+<ol start="5" type="1">
+<li><code>G22</code>를 선택하고 [서식 복사]를 누른 뒤 <code>G24</code>를 누른다.</li>
+<li><code>G4:G22</code>를 선택하여 상태 표시줄의 합계를 읽는다.</li>
+</ol>
+<ul>
+<li><span class="check-badge">확인 10</span> <code>G24</code>가 <code>₩8,016,000</code>으로 표시되고, 상태 표시줄의 합계가 같은 값이다. 23행에는 입력한 내용이 없다.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="절대-참조" class="level2">
+<h2 class="anchored" data-anchor-id="절대-참조">4. 절대 참조</h2>
+<section id="상대-참조로-해결되지-않는-경우" class="level3">
+<h3 class="anchored" data-anchor-id="상대-참조로-해결되지-않는-경우">4-1. 상대 참조로 해결되지 않는 경우</h3>
+<p>구성비는 각 행의 금액을 금액의 합계로 나눈 값이다. 금액의 합계가 <code>G25</code>에 있다고 할 때, <code>H4</code>에 <code>=G4/G25</code>를 입력하면 첫 행의 구성비는 정확히 산출된다. 그러나 이 수식을 아래로 복사하면 다음과 같은 결과가 발생한다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>셀</th>
+<th>복사된 수식</th>
+<th>결과</th>
+<th>원인</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>H4</code></td>
+<td><code>=G4/G25</code></td>
+<td>0.111</td>
+<td>정상</td>
+</tr>
+<tr class="even">
+<td><code>H5</code></td>
+<td><code>=G5/G26</code></td>
+<td><code>#DIV/0!</code></td>
+<td><code>G26</code>은 빈 셀이므로 0으로 나누게 된다</td>
+</tr>
+<tr class="odd">
+<td><code>H6</code></td>
+<td><code>=G6/G27</code></td>
+<td><code>#DIV/0!</code></td>
+<td>위와 같다</td>
+</tr>
+</tbody>
+</table>
+<p>분자(<code>G4</code>)는 행에 따라 변하여야 하지만 분모(<code>G25</code>)는 모든 행에서 동일한 셀을 가리켜야 한다. 상대 참조만으로는 분모가 함께 이동하므로 오류가 발생한다.</p>
+<blockquote class="blockquote">
+<p>그림 필요: (구성비 열의 첫 행만 값이 표시되고 둘째 행부터 <code>#DIV/0!</code>가 표시된 화면. <code>H5</code>를 선택한 상태에서 수식 입력줄에 <code>=G5/G26</code>이 표시된 모습)</p>
+</blockquote>
+</section>
+<section id="절대-참조의-지정" class="level3">
+<h3 class="anchored" data-anchor-id="절대-참조의-지정">4-2. 절대 참조의 지정</h3>
+<p>복사하여도 변하지 않도록 고정한 셀 주소를 <strong>절대 참조</strong>라고 하며, 열 문자와 행 번호의 앞에 각각 <code>$</code>를 붙여 <code>$G$25</code>와 같이 표기한다. <code>H4</code>의 수식을 <code>=G4/$G$25</code>로 작성하여 복사하면 다음과 같이 분모가 고정된다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>셀</th>
+<th>복사된 수식</th>
+<th>결과</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>H4</code></td>
+<td><code>=G4/$G$25</code></td>
+<td>0.111</td>
+</tr>
+<tr class="even">
+<td><code>H5</code></td>
+<td><code>=G5/$G$25</code></td>
+<td>0.046</td>
+</tr>
+<tr class="odd">
+<td><code>H23</code></td>
+<td><code>=G23/$G$25</code></td>
+<td>0.020</td>
+</tr>
+</tbody>
+</table>
+<p>절대 참조는 <code>F4</code> 키로 지정한다. 지정하는 시점은 두 가지이다.</p>
+<ul>
+<li><strong>수식을 입력하는 중.</strong> 참조할 셀을 마우스로 선택한 직후, 다음 연산자를 입력하기 전에 <code>F4</code>를 누른다. 방금 기재된 셀 주소에 <code>$</code>가 붙는다.</li>
+<li><strong>수식을 입력한 뒤.</strong> 셀에서 <code>F2</code>를 눌러 편집 상태로 전환하고, 수식 안의 해당 셀 주소를 눌러 커서를 둔 뒤 <code>F4</code>를 누른다.</li>
+</ul>
+<p><code>$</code>를 직접 입력하여도 결과는 같다. <code>F4</code>를 거듭 누르면 <code>$</code>가 붙는 위치가 차례로 바뀌므로, 열 문자와 행 번호의 앞에 모두 <code>$</code>가 붙은 상태(<code>$G$25</code>)에서 멈춘다. 일부 노트북에서는 <code>Fn + F4</code>를 눌러야 한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>구분</th>
+<th>표기</th>
+<th>복사하였을 때</th>
+<th>사용하는 경우</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>상대 참조</td>
+<td><code>G4</code></td>
+<td>복사한 방향으로 주소가 이동한다</td>
+<td>행마다 다른 셀을 참조하는 계산</td>
+</tr>
+<tr class="even">
+<td>절대 참조</td>
+<td><code>$G$25</code></td>
+<td>주소가 변하지 않는다</td>
+<td>모든 행이 하나의 셀(합계, 비율, 기준 값)을 참조하는 계산</td>
+</tr>
+</tbody>
+</table>
+<p><code>$</code>를 열 문자나 행 번호의 한쪽에만 붙이는 표기(<code>$G25</code>, <code>G$25</code>)도 존재하나 본 과목에서는 다루지 않는다.</p>
+</section>
+<section id="절대-참조의-판별-기준" class="level3">
+<h3 class="anchored" data-anchor-id="절대-참조의-판별-기준">4-3. 절대 참조의 판별 기준</h3>
+<p>절대 참조가 필요한지는 수식 안의 셀 주소마다 따로 판별한다. 기준은 하나이다. <strong>수식을 복사한 모든 행이 그 주소에서 하나의 같은 셀을 참조하여야 하는가.</strong> 그러하면 절대 참조로, 행마다 다른 셀을 참조하여야 하면 상대 참조로 작성한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>계산</th>
+<th>첫 행의 수식</th>
+<th>셀 주소</th>
+<th>모든 행이 같은 셀을 참조하는가</th>
+<th>참조 방식</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>금액 = 수량 × 단가</td>
+<td><code>=E4*F4</code></td>
+<td><code>E4</code>, <code>F4</code></td>
+<td>아니다. 행마다 자기 행의 수량과 단가를 사용한다</td>
+<td>상대 참조</td>
+</tr>
+<tr class="even">
+<td>구성비 = 금액 ÷ 금액의 합계</td>
+<td><code>=G4/$G$25</code></td>
+<td><code>G4</code></td>
+<td>아니다. 행마다 자기 행의 금액을 사용한다</td>
+<td>상대 참조</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td><code>G25</code></td>
+<td>그렇다. 합계는 하나의 셀에만 있다</td>
+<td>절대 참조</td>
+</tr>
+<tr class="even">
+<td>부가가치세 = 금액 × 세율</td>
+<td><code>=G4*$L$3</code></td>
+<td><code>L3</code></td>
+<td>그렇다. 세율은 하나의 셀에만 있다</td>
+<td>절대 참조</td>
+</tr>
+</tbody>
+</table>
+<p>판별이 어려우면 다음의 순서로 확인한다.</p>
+<ol type="1">
+<li>첫 행의 수식을 상대 참조로 작성한다(<code>=G4/G25</code>).</li>
+<li>둘째 행에 있어야 할 수식을 직접 써 본다(<code>=G5/G25</code>).</li>
+<li>두 수식을 비교하여 변하지 않는 주소(<code>G25</code>)에 <code>$</code>를 붙인다.</li>
+</ol>
+<p>절대 참조를 붙여서는 안 되는 주소에 붙이는 경우도 오류이다. 금액의 수식을 <code>=$E$4*$F$4</code>로 작성하여 복사하면 모든 행이 첫 행의 수량과 단가를 곱하므로 20행의 금액이 모두 720,000이 된다. 이 경우에는 오류 값이 표시되지 않으므로 결과를 기준 값과 대조하여야 발견된다.</p>
+</section>
+<section id="백분율-표시-형식" class="level3">
+<h3 class="anchored" data-anchor-id="백분율-표시-형식">4-4. 백분율 표시 형식</h3>
+<p>구성비는 0.111과 같은 소수로 산출된다. <code>[홈] 탭 → [표시 형식] 그룹 → [백분율 스타일]</code>을 적용하면 11%로 표시되고, <code>[자릿수 늘림]</code>을 한 번 누르면 11.1%로 표시된다. 백분율 스타일의 단축키는 <code>Ctrl + Shift + %</code>이다. 표시 형식은 셀의 값을 변경하지 않고 표시 방법만 변경한다. 셀에 저장된 값은 여전히 0.1111…이다.</p>
+<p>백분율 표시 형식은 저장된 값에 100을 곱한 모습으로 표시한다. 따라서 구성비의 수식에는 100을 곱하지 않는다. <code>=G4/$G$25*100</code>으로 작성하고 백분율 스타일을 적용하면 1111%로 표시된다.</p>
+<p>표시된 값은 반올림된 모습이므로, 표시된 구성비를 손으로 더한 값은 구성비 합계 셀의 값과 다를 수 있다. 1월 자료의 구성비 20개를 소수 첫째 자리까지 표시된 대로 더하면 100.1이 되지만 합계 셀(<code>H25</code>)은 100.0%이다. 엑셀은 표시된 값이 아니라 저장된 값으로 계산하기 때문이며, 합계 셀의 값이 정확한 값이다.</p>
+</section>
+<section id="따라-하기-3" class="level3">
+<h3 class="anchored" data-anchor-id="따라-하기-3">따라 하기</h3>
+<p>연습용 통합 문서의 표에 구성비 열을 작성한다. 상대 참조만으로 작성하였을 때의 오류를 먼저 확인한 뒤 절대 참조로 수정한다.</p>
+<ol type="1">
+<li><code>H3</code>에 <code>구성비</code>를 입력한다.</li>
+<li><code>H4</code>를 선택하고 <code>=</code>를 입력한 뒤 <code>G4</code>를 누르고, <code>/</code>를 입력한 뒤 <code>G24</code>를 누르고 <code>Enter</code>를 누른다.</li>
+<li><code>H4</code>의 채우기 핸들을 <code>H22</code>까지 끈다.</li>
+<li><code>H5</code>를 선택하여 수식 입력줄의 수식을 읽는다.</li>
+</ol>
+<ul>
+<li><span class="check-badge">확인 11</span> <code>H4</code>에는 오류 값이 아닌 숫자가 표시되고 <code>H5:H22</code>에는 <code>#DIV/0!</code>가 표시되었다. <code>H5</code>의 수식은 <code>=G5/G25</code>이다.</li>
+</ul>
+<ol start="5" type="1">
+<li><code>H4</code>를 선택하고 <code>F2</code>를 누른다.</li>
+<li>수식의 <code>G24</code>를 눌러 커서를 두고 <code>F4</code>를 한 번 눌러 <code>$G$24</code>로 변경한 뒤 <code>Enter</code>를 누른다.</li>
+<li><code>H4</code>의 채우기 핸들을 <code>H22</code>까지 다시 끈다.</li>
+<li><code>H5</code>와 <code>H22</code>를 차례로 선택하여 수식을 읽는다.</li>
+</ol>
+<ul>
+<li><span class="check-badge">확인 12</span> <code>H5</code>의 수식은 <code>=G5/$G$24</code>, <code>H22</code>의 수식은 <code>=G22/$G$24</code>이고 <code>#DIV/0!</code>가 표시된 셀이 없다.</li>
+</ul>
+<ol start="9" type="1">
+<li><code>H24</code>를 선택하고 [자동 합계]를 누른 뒤 범위를 <code>H4:H22</code>로 지정하고 <code>Enter</code>를 누른다.</li>
+<li><code>H4:H22</code>를 선택하고 <code>Ctrl</code>을 누른 채 <code>H24</code>를 눌러 함께 선택한다.</li>
+<li><code>[홈] 탭 → [표시 형식] 그룹 → [백분율 스타일]</code>을 누르고 <code>[자릿수 늘림]</code>을 한 번 누른다.</li>
+<li><code>G3</code>을 선택하고 [서식 복사]를 누른 뒤 <code>H3</code>을 누른다. <code>H4:H22</code>를 선택하고 <code>[홈] 탭 → [글꼴] 그룹 → [테두리]</code>의 목록 단추에서 [모든 테두리]를 선택한다.</li>
+<li><code>Ctrl + S</code>로 저장한다.</li>
+</ol>
+<ul>
+<li><span class="check-badge">확인 13</span> <code>H4</code>는 9.9%, <code>H19</code>는 11.4%, <code>H24</code>는 100.0%로 표시되었다. <code>H24</code>의 수식은 <code>=SUM(H4:H22)</code>이다.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="수식의-점검과-오류-값" class="level2">
+<h2 class="anchored" data-anchor-id="수식의-점검과-오류-값">5. 수식의 점검과 오류 값</h2>
+<section id="자동-재계산" class="level3">
+<h3 class="anchored" data-anchor-id="자동-재계산">5-1. 자동 재계산</h3>
+<p>수식은 참조하는 셀의 값이 변경되면 즉시 다시 계산된다. 한 셀의 변경은 그 셀을 참조하는 수식으로, 다시 그 수식을 참조하는 수식으로 이어진다. 1월 자료에서 <code>E4</code>(판매번호 1001의 수량)를 30에서 31로 변경하면 다음의 셀이 차례로 변한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>셀</th>
+<th>내용</th>
+<th>변경 전</th>
+<th>변경 후</th>
+<th>변하는 이유</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>E4</code></td>
+<td>수량</td>
+<td>30</td>
+<td>31</td>
+<td>직접 변경하였다</td>
+</tr>
+<tr class="even">
+<td><code>G4</code></td>
+<td>금액</td>
+<td>720,000</td>
+<td>744,000</td>
+<td><code>E4</code>를 참조한다</td>
+</tr>
+<tr class="odd">
+<td><code>G25</code></td>
+<td>금액의 합계</td>
+<td>6,479,000</td>
+<td>6,503,000</td>
+<td><code>G4</code>를 포함한 범위를 참조한다</td>
+</tr>
+<tr class="even">
+<td><code>H4</code></td>
+<td>구성비</td>
+<td>11.1%</td>
+<td>11.4%</td>
+<td><code>G4</code>와 <code>G25</code>를 참조한다</td>
+</tr>
+<tr class="odd">
+<td><code>H9</code></td>
+<td>구성비</td>
+<td>9.3%</td>
+<td>9.2%</td>
+<td><code>G25</code>를 참조한다. 분모가 커졌으므로 값이 작아진다</td>
+</tr>
+<tr class="even">
+<td><code>H25</code></td>
+<td>구성비의 합계</td>
+<td>100.0%</td>
+<td>100.0%</td>
+<td>구성비의 합은 항상 1이다</td>
+</tr>
+</tbody>
+</table>
+<p>값을 하나 변경하여 관련된 셀이 모두 변하는지를 관찰하는 것은 수식이 올바르게 연결되었는지를 점검하는 가장 간단한 방법이다. 변하여야 할 셀이 변하지 않으면 그 셀에는 수식이 아니라 값이 입력되어 있는 것이다. 점검을 마치면 <code>Ctrl + Z</code>로 원래의 값으로 되돌린다.</p>
+<p>값을 변경하여도 수식의 결과가 전혀 변하지 않으면 계산 방식이 수동으로 설정된 것이다. <code>[파일] 탭 → [옵션] → [수식]</code>의 [계산 옵션]에서 [통합 문서 계산]을 [자동]으로 지정한다.</p>
+</section>
+<section id="수식-표시" class="level3">
+<h3 class="anchored" data-anchor-id="수식-표시">5-2. 수식 표시</h3>
+<p><code>Ctrl + ~</code>를 누르면 시트의 모든 셀이 결과 대신 수식을 표시하는 상태로 전환되고, 다시 누르면 원래의 상태로 되돌아간다. 이 키는 숫자 <code>1</code>의 왼쪽에 있으며 <code>Shift</code>는 누르지 않는다. Microsoft의 지원 문서는 같은 키를 <code>Ctrl</code>과 억음 부호의 조합으로 표기한다. 리본 메뉴에서는 <code>[수식] 탭 → [수식 분석] 그룹 → [수식 표시]</code>를 누른다.</p>
+<p>수식 표시 상태에서는 다음의 세 가지를 점검한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>점검 사항</th>
+<th>정상인 모습</th>
+<th>오류인 모습</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>수식의 사용 여부</td>
+<td>열의 모든 셀이 <code>=</code>로 시작한다</td>
+<td><code>720000</code>과 같이 값이 그대로 표시되는 셀이 있다</td>
+</tr>
+<tr class="even">
+<td>수식의 형태</td>
+<td>한 열의 수식이 행 번호만 다르고 형태가 같다</td>
+<td>일부 행의 수식만 형태가 다르다</td>
+</tr>
+<tr class="odd">
+<td>절대 참조의 위치</td>
+<td>구성비 열의 분모가 모든 행에서 <code>$G$25</code>이다</td>
+<td>분모의 행 번호가 행마다 다르다</td>
+</tr>
+</tbody>
+</table>
+<p>수식 표시 상태에서는 열이 평소보다 넓게 표시되고 날짜가 숫자로 표시된다. 수식을 표시하기 위한 일시적인 모습이며 원래의 상태로 되돌리면 복원된다. 점검을 마치면 반드시 원래의 상태로 되돌린 뒤 저장한다.</p>
+<blockquote class="blockquote">
+<p>그림 필요: (수식 표시 상태의 판매 내역 표. 금액 열에 <code>=E4*F4</code>, <code>=E5*F5</code>가, 구성비 열에 <code>=G4/$G$25</code>, <code>=G5/$G$25</code>가 표시된 모습)</p>
+</blockquote>
+</section>
+<section id="오류-값의-종류" class="level3">
+<h3 class="anchored" data-anchor-id="오류-값의-종류">5-3. 오류 값의 종류</h3>
+<p>수식을 계산할 수 없으면 엑셀은 결과 대신 <code>#</code>으로 시작하는 오류 값을 셀에 표시한다. 오류 값은 원인의 종류를 알려 주므로 그 의미를 읽을 수 있어야 한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>오류 값</th>
+<th>의미</th>
+<th>판매 내역 표에서 발생하는 예</th>
+<th>해결</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>#DIV/0!</code></td>
+<td>0 또는 빈 셀로 나누었다</td>
+<td>구성비의 분모를 절대 참조로 지정하지 않고 복사하였다</td>
+<td>분모를 <code>$G$25</code>로 수정하고 다시 복사한다</td>
+</tr>
+<tr class="even">
+<td><code>#VALUE!</code></td>
+<td>숫자가 필요한 계산에 문자가 사용되었다</td>
+<td>수량에 <code>30개</code>를 입력하였거나 숫자의 뒤에 공백이 있다</td>
+<td>해당 셀을 숫자만으로 다시 입력한다</td>
+</tr>
+<tr class="odd">
+<td><code>#NAME?</code></td>
+<td>수식 안의 글자를 엑셀이 인식하지 못하였다</td>
+<td><code>=E4*단가</code>와 같이 셀 주소 대신 글자를 입력하였다</td>
+<td>글자를 셀 주소로 수정한다</td>
+</tr>
+<tr class="even">
+<td><code>#REF!</code></td>
+<td>수식이 참조하던 셀이 없어졌다</td>
+<td>금액 수식이 참조하는 단가 열을 삭제하였다</td>
+<td><code>Ctrl + Z</code>로 삭제를 취소한다</td>
+</tr>
+<tr class="odd">
+<td><code>####</code></td>
+<td>열의 너비가 값을 표시하기에 부족하다</td>
+<td>금액 열에 통화 형식을 적용하여 표시할 글자가 늘어났다</td>
+<td>열 머리글의 경계선을 두 번 눌러 너비를 맞춘다</td>
+</tr>
+</tbody>
+</table>
+<p><code>####</code>은 계산의 오류가 아니다. 셀의 값은 정상이며 표시할 자리가 부족할 뿐이다. 나머지 네 가지는 수식 또는 수식이 참조하는 셀을 수정하여야 해결된다.</p>
+</section>
+<section id="내용-지우기와-셀-삭제의-차이" class="level3">
+<h3 class="anchored" data-anchor-id="내용-지우기와-셀-삭제의-차이">5-4. 내용 지우기와 셀 삭제의 차이</h3>
+<p>참조하던 셀을 비우는 것과 참조하던 셀을 없애는 것은 결과가 다르다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>조작</th>
+<th>셀의 상태</th>
+<th>그 셀을 참조하는 수식</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>셀을 선택하고 <code>Delete</code>를 누른다</td>
+<td>셀은 남고 내용만 지워진다</td>
+<td>빈 셀을 0으로 간주하여 계산한다. 곱하기의 결과는 0이 되고 오류 값은 표시되지 않는다</td>
+</tr>
+<tr class="even">
+<td>행 머리글이나 열 머리글을 선택하여 [삭제]한다</td>
+<td>셀 자체가 없어지고 뒤의 셀이 당겨진다</td>
+<td>참조할 셀이 없어졌으므로 주소가 <code>#REF!</code>로 바뀐다</td>
+</tr>
+</tbody>
+</table>
+<p>단가 열(<code>F</code>)을 삭제하면 금액 열의 수식은 <code>=E4*#REF!</code>가 된다. 수식에 기록되어 있던 주소 자체가 사라졌으므로, 같은 자리에 단가를 다시 입력하여도 수식은 복구되지 않는다. 삭제 직후에 <code>Ctrl + Z</code>로 취소하는 것이 유일하게 간단한 복구 방법이며, 취소할 수 없으면 수식을 다시 작성하여야 한다.</p>
+<p>반대로 2장에서 다룬 행의 삽입은 수식을 손상시키지 않는다. 엑셀이 수식 안의 주소를 삽입된 행의 수만큼 조정하기 때문이다.</p>
+</section>
+<section id="오류의-전파와-원인의-탐색" class="level3">
+<h3 class="anchored" data-anchor-id="오류의-전파와-원인의-탐색">5-5. 오류의 전파와 원인의 탐색</h3>
+<p>오류 값이 있는 셀을 참조하는 수식은 같은 오류 값을 표시한다. 금액 열의 한 셀이 <code>#VALUE!</code>이면 그 셀을 범위에 포함하는 금액의 합계가 <code>#VALUE!</code>가 되고, 합계를 분모로 사용하는 구성비 20개와 구성비의 합계도 모두 <code>#VALUE!</code>가 된다. 화면에 오류 값이 수십 개 표시되더라도 원인은 한 셀일 수 있다.</p>
+<p>원인은 계산의 흐름을 거슬러 올라가며 찾는다. 판매 내역 표의 계산은 수량·단가 → 금액 → 금액의 합계 → 구성비의 순서로 이어지므로, 다음의 순서로 확인한다.</p>
+<ol type="1">
+<li>금액 열에서 오류 값이 표시된 셀을 찾는다. 한 셀만 오류이면 그 행이 원인이다.</li>
+<li>그 행의 수량과 단가를 확인한다. 왼쪽에 맞추어진 값은 문자로 입력된 것이다.</li>
+<li>원인 셀을 수정하면 합계와 구성비의 오류 값은 함께 사라진다.</li>
+</ol>
+<p>오류 값이 표시되지 않는 오류도 있다. 값을 직접 입력한 셀, 괄호가 빠진 수식, 잘못 지정한 절대 참조, 범위가 어긋난 합계는 모두 정상적인 숫자를 표시한다. 이러한 오류는 수식 표시 상태의 점검과 기준 값의 대조로만 발견된다.</p>
+</section>
+<section id="따라-하기-4" class="level3">
+<h3 class="anchored" data-anchor-id="따라-하기-4">따라 하기</h3>
+<p>연습용 통합 문서에서 수식 표시와 자동 재계산을 확인하고, 오류 값을 의도적으로 발생시킨 뒤 원래의 상태로 되돌린다. 각 단계의 <code>Ctrl + Z</code>를 빠뜨리지 않는다.</p>
+<ol type="1">
+<li><code>Ctrl + ~</code>를 눌러 수식 표시 상태로 전환한다. <code>G4:G22</code>, <code>H4:H22</code>, <code>G24</code>, <code>H24</code>의 수식을 읽는다.</li>
+<li><code>Ctrl + ~</code>를 다시 눌러 원래의 상태로 되돌린다.</li>
+</ol>
+<ul>
+<li><span class="check-badge">확인 14</span> 수식 표시 상태에서 <code>G4:G22</code>의 19개 셀이 <code>=E4*F4</code> 형태의 수식으로, <code>H4:H22</code>의 19개 셀이 <code>=G4/$G$24</code> 형태의 수식으로 표시되었다.</li>
+</ul>
+<ol start="3" type="1">
+<li><code>E4</code>의 값을 34로 변경하고 <code>G4</code>, <code>G24</code>, <code>H4</code>, <code>H5</code>의 값을 읽는다.</li>
+<li><code>Ctrl + Z</code>를 눌러 <code>E4</code>를 33으로 되돌린다.</li>
+</ol>
+<ul>
+<li><span class="check-badge">확인 15</span> 변경한 상태에서 <code>G4</code>는 <code>₩816,000</code>, <code>G24</code>는 <code>₩8,040,000</code>, <code>H4</code>는 10.1%, <code>H5</code>는 6.3%로 표시되었다. 되돌린 뒤 <code>G24</code>는 <code>₩8,016,000</code>, <code>H5</code>는 6.4%이다.</li>
+</ul>
+<ol start="5" type="1">
+<li><code>E5</code>에 <code>6개</code>를 입력하고 <code>G5</code>, <code>G24</code>, <code>H4:H22</code>의 표시를 확인한 뒤 <code>Ctrl + Z</code>를 누른다.</li>
+<li><code>E5</code>를 선택하고 <code>Delete</code>를 누른다. <code>G5</code>와 <code>G24</code>의 값을 읽은 뒤 <code>Ctrl + Z</code>를 누른다.</li>
+</ol>
+<ul>
+<li><span class="check-badge">확인 16</span> <code>6개</code>를 입력한 상태에서 <code>G5</code>, <code>G24</code>, 구성비 열 전체에 <code>#VALUE!</code>가 표시되었다. <code>Delete</code>로 지운 상태에서는 오류 값 없이 <code>G5</code>가 <code>₩0</code>, <code>G24</code>가 <code>₩7,506,000</code>으로 표시되었다.</li>
+</ul>
+<ol start="7" type="1">
+<li><code>Ctrl + S</code>로 저장한다.</li>
+<li>열 머리글 <code>F</code>를 마우스 오른쪽 단추로 눌러 [삭제]를 선택한다. 금액의 첫 셀을 선택하여 수식 입력줄의 수식을 읽는다.</li>
+<li><code>Ctrl + Z</code>를 눌러 삭제를 취소한다. 취소되지 않으면 저장하지 않고 통합 문서를 닫은 뒤 다시 연다.</li>
+</ol>
+<ul>
+<li><span class="check-badge">확인 17</span> 열을 삭제한 상태에서 금액과 구성비의 모든 셀에 <code>#REF!</code>가 표시되고 금액의 첫 셀의 수식이 <code>=E4*#REF!</code>였다. 취소한 뒤 <code>G24</code>는 <code>₩8,016,000</code>, <code>H24</code>는 100.0%이다.</li>
+</ul>
+<ol start="10" type="1">
+<li><code>K4</code>에 <code>=E4*단가</code>를 입력하여 표시되는 오류 값을 확인한 뒤 <code>K4</code>를 선택하고 <code>Delete</code>를 누른다.</li>
+<li>열 머리글 <code>G</code>와 <code>H</code> 사이의 경계선을 왼쪽으로 끌어 <code>G</code> 열을 좁힌 뒤, 같은 경계선을 두 번 누른다.</li>
+<li><code>Ctrl + S</code>로 저장한다.</li>
+</ol>
+<ul>
+<li><span class="check-badge">확인 18</span> <code>K4</code>에 <code>#NAME?</code>가 표시되었다가 지워졌다. <code>G</code> 열을 좁혔을 때 <code>####</code>이 표시되었고 경계선을 두 번 누른 뒤 금액이 다시 표시되었다.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="핵심-실습-금액과-구성비의-산출" class="level2">
+<h2 class="anchored" data-anchor-id="핵심-실습-금액과-구성비의-산출">6. 핵심 실습: 금액과 구성비의 산출</h2>
+<p>본 장의 핵심 실습은 하나이다. 판매 내역 표(1월 자료)에 금액 열과 구성비 열을 추가하고, 두 열의 모든 값을 수식으로 산출한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>결과물</td>
+<td>엑셀 파일 1개</td>
+</tr>
+<tr class="even">
+<td>시작 파일</td>
+<td><code>컴퓨터활용\실습\판매현황_02_학번.xlsx</code></td>
+</tr>
+<tr class="odd">
+<td>저장 파일</td>
+<td><code>컴퓨터활용\실습\판매현황_03_학번.xlsx</code></td>
+</tr>
+<tr class="even">
+<td>추가하는 내용</td>
+<td><code>G3</code> 금액, <code>H3</code> 구성비, <code>G4:G23</code>과 <code>H4:H23</code>의 수식, <code>A25</code> 합계, <code>G25</code>와 <code>H25</code>의 합계</td>
+</tr>
+</tbody>
+</table>
+<section id="절차" class="level3">
+<h3 class="anchored" data-anchor-id="절차">절차</h3>
+<section id="단계-1.-파일의-준비" class="level4">
+<h4 class="anchored" data-anchor-id="단계-1.-파일의-준비">단계 1. 파일의 준비</h4>
+<ol type="1">
+<li><code>컴퓨터활용\실습\판매현황_02_학번.xlsx</code>를 연다.</li>
+<li><code>[파일] 탭 → [다른 이름으로 저장]</code>에서 같은 폴더에 <code>판매현황_03_학번.xlsx</code>로 저장한다.</li>
+</ol>
+<ul>
+<li><span class="check-badge">확인 19</span> 제목 표시줄에 <code>판매현황_03_학번.xlsx</code>가 표시되고, <code>A3:F3</code>에 머리글이, <code>A4:F23</code>에 자료 20행이 있다.</li>
+</ul>
+</section>
+<section id="단계-2.-금액-열의-작성" class="level4">
+<h4 class="anchored" data-anchor-id="단계-2.-금액-열의-작성">단계 2. 금액 열의 작성</h4>
+<ol type="1">
+<li><code>G3</code>에 <code>금액</code>, <code>H3</code>에 <code>구성비</code>를 입력한다.</li>
+<li><code>G4</code>를 선택하고 <code>=</code>를 입력한 뒤 <code>E4</code>를 선택하고, <code>*</code>를 입력한 뒤 <code>F4</code>를 선택하고 <code>Enter</code>를 누른다. 수식 입력줄에 <code>=E4*F4</code>가 표시되고 셀의 값이 720,000인지 확인한다.</li>
+<li><code>G4</code>를 선택하고 채우기 핸들을 두 번 눌러 <code>G23</code>까지 수식을 복사한다.</li>
+<li><code>G10</code>을 선택하여 수식 입력줄의 수식이 <code>=E10*F10</code>인지 확인한다.</li>
+</ol>
+<ul>
+<li><span class="check-badge">확인 20</span> <code>G4</code>의 값이 720,000, <code>G23</code>의 값이 128,000이고 <code>G10</code>의 수식이 <code>=E10*F10</code>이다.</li>
+</ul>
+</section>
+<section id="단계-3.-금액-합계의-산출" class="level4">
+<h4 class="anchored" data-anchor-id="단계-3.-금액-합계의-산출">단계 3. 금액 합계의 산출</h4>
+<ol type="1">
+<li><code>A25</code>에 <code>합계</code>를 입력한다. 24행은 비워 둔다. 자료 범위와 요약 영역을 빈 행으로 분리하여야 5장의 정렬과 필터가 자료 범위를 정확히 인식한다.</li>
+<li><code>G25</code>를 선택하고 <code>[홈] 탭 → [편집] 그룹 → [자동 합계]</code>를 누른다.</li>
+<li>마우스로 <code>G4</code>부터 <code>G23</code>까지 끌어 범위를 지정하고 <code>Enter</code>를 누른다. 수식 입력줄에 <code>=SUM(G4:G23)</code>이 표시되는지 확인한다.</li>
+</ol>
+<ul>
+<li><span class="check-badge">확인 21</span> <code>G25</code>의 값이 6,479,000이고 수식이 <code>=SUM(G4:G23)</code>이다. <code>G4:G23</code>을 선택하였을 때 상태 표시줄의 개수가 20, 합계가 6,479,000이다.</li>
+</ul>
+</section>
+<section id="단계-4.-구성비-열의-작성" class="level4">
+<h4 class="anchored" data-anchor-id="단계-4.-구성비-열의-작성">단계 4. 구성비 열의 작성</h4>
+<ol type="1">
+<li><code>H4</code>를 선택하고 <code>=</code>를 입력한 뒤 <code>G4</code>를 선택하고, <code>/</code>를 입력한 뒤 <code>G25</code>를 선택한다.</li>
+<li><code>G25</code>가 입력된 상태에서 <code>F4</code> 키를 눌러 <code>$G$25</code>로 변경하고 <code>Enter</code>를 누른다. 수식 입력줄의 수식은 <code>=G4/$G$25</code>이다.</li>
+<li><code>H4</code>의 채우기 핸들을 두 번 눌러 <code>H23</code>까지 복사한다.</li>
+<li><code>H25</code>를 선택하고 자동 합계를 실행하여 범위를 <code>H4:H23</code>으로 지정한다.</li>
+</ol>
+<ul>
+<li><span class="check-badge">확인 22</span> <code>H10</code>의 수식이 <code>=G10/$G$25</code>이고 <code>H4:H23</code>에 <code>#DIV/0!</code>가 표시된 셀이 없다. <code>H25</code>의 수식이 <code>=SUM(H4:H23)</code>이다.</li>
+</ul>
+</section>
+<section id="단계-5.-서식의-적용" class="level4">
+<h4 class="anchored" data-anchor-id="단계-5.-서식의-적용">단계 5. 서식의 적용</h4>
+<ol type="1">
+<li><code>F4</code>를 선택하고 <code>[홈] 탭 → [클립보드] 그룹 → [서식 복사]</code>를 누른 뒤 <code>G4:G23</code>을 끌어 단가와 동일한 표시 형식을 적용한다. <code>G25</code>에도 같은 방법으로 적용한다.</li>
+<li><code>H4:H23</code>과 <code>H25</code>를 선택하고 <code>[백분율 스타일]</code>을 적용한 뒤 <code>[자릿수 늘림]</code>을 한 번 누른다.</li>
+<li><code>F3</code>의 서식을 <code>G3:H3</code>에 복사한다. <code>G4:H23</code>에 2장과 동일한 테두리를 적용한다.</li>
+<li>열의 너비가 좁아 <code>####</code>로 표시되는 셀이 있으면 열 머리글의 경계선을 두 번 눌러 너비를 맞춘다.</li>
+</ol>
+<ul>
+<li><span class="check-badge">확인 23</span> <code>G4</code>가 <code>₩720,000</code>, <code>G25</code>가 <code>₩6,479,000</code>, <code>H4</code>가 11.1%, <code>H25</code>가 100.0%로 표시되고 <code>####</code>로 표시된 셀이 없다.</li>
+</ul>
+</section>
+<section id="단계-6.-확인과-저장" class="level4">
+<h4 class="anchored" data-anchor-id="단계-6.-확인과-저장">단계 6. 확인과 저장</h4>
+<ol type="1">
+<li><code>Ctrl + ~</code>를 눌러 수식 표시 상태로 전환한다. <code>G4:G23</code>과 <code>H4:H23</code>의 모든 셀이 <code>=</code>로 시작하는 수식인지 확인한 뒤 <code>Ctrl + ~</code>를 다시 눌러 원래 상태로 되돌린다.</li>
+<li><code>E4</code>의 값을 31로 변경하여 <code>G4</code>, <code>G25</code>, <code>H4</code>의 값이 함께 변하는지 확인한 뒤 <code>Ctrl + Z</code>로 되돌린다.</li>
+<li><code>[파일] 탭 → [인쇄]</code>의 미리 보기에서 표가 한 쪽에 출력되는지 확인한다. 두 쪽으로 나뉘면 2장의 방법으로 한 쪽에 맞춘다.</li>
+<li><code>Ctrl + S</code>로 저장한다.</li>
+</ol>
+<ul>
+<li><span class="check-badge">확인 24</span> 수식 표시 상태에서 값이 그대로 표시된 셀이 없었다. <code>E4</code>를 31로 변경하였을 때 <code>G4</code>가 <code>₩744,000</code>, <code>G25</code>가 <code>₩6,503,000</code>, <code>H4</code>가 11.4%로 변하였고, 되돌린 뒤 <code>G25</code>가 <code>₩6,479,000</code>이다. 미리 보기의 전체 쪽 수가 1이다.</li>
+</ul>
+</section>
+</section>
+<section id="완료-기준" class="level3">
+<h3 class="anchored" data-anchor-id="완료-기준">완료 기준</h3>
+<p>아래의 표에 따라 결과를 점검한다. 모든 항목이 기준 값과 일치하여야 실습이 완료된다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>번호</th>
+<th>점검 항목</th>
+<th>점검 방법</th>
+<th>기준 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>금액 열의 수식</td>
+<td><code>Ctrl + ~</code>로 수식 표시 상태로 전환하여 <code>G4:G23</code>을 확인한다</td>
+<td>20개의 셀이 모두 <code>=E4*F4</code> 형태의 수식이다. 값을 직접 입력한 셀이 없다</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>판매번호 1001의 금액</td>
+<td><code>G4</code>를 확인한다</td>
+<td>720,000</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>판매번호 1015의 금액</td>
+<td><code>G18</code>을 확인한다</td>
+<td>108,000</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>금액의 합계</td>
+<td><code>G25</code>를 확인하고, <code>G4:G23</code>을 선택하여 상태 표시줄의 합계와 대조한다</td>
+<td>6,479,000. 수식은 <code>=SUM(G4:G23)</code>이다</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>구성비 열의 수식</td>
+<td>수식 표시 상태에서 <code>H4:H23</code>을 확인한다</td>
+<td>20개의 셀이 모두 <code>=G4/$G$25</code> 형태의 수식이다</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>판매번호 1001의 구성비</td>
+<td><code>H4</code>를 확인한다</td>
+<td>11.1%</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>구성비의 합계</td>
+<td><code>H25</code>를 확인한다</td>
+<td>100.0%</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>빈 행</td>
+<td>24행을 확인한다</td>
+<td>입력한 내용이 없다</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>출력 형태</td>
+<td><code>[파일] 탭 → [인쇄]</code>의 미리 보기를 확인한다</td>
+<td>1쪽</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>파일의 위치와 이름</td>
+<td>파일 탐색기에서 <code>실습</code> 폴더를 연다</td>
+<td><code>판매현황_03_학번.xlsx</code></td>
+</tr>
+</tbody>
+</table>
+<p>금액의 기준 값은 다음과 같다. 본인의 결과와 대조하여 불일치하는 행이 있으면 해당 행의 수량과 단가의 입력 값을 먼저 점검한다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>판매번호</th>
+<th>금액</th>
+<th>구성비</th>
+<th>판매번호</th>
+<th>금액</th>
+<th>구성비</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1001</td>
+<td>720,000</td>
+<td>11.1%</td>
+<td>1011</td>
+<td>510,000</td>
+<td>7.9%</td>
+</tr>
+<tr class="even">
+<td>1002</td>
+<td>300,000</td>
+<td>4.6%</td>
+<td>1012</td>
+<td>270,000</td>
+<td>4.2%</td>
+</tr>
+<tr class="odd">
+<td>1003</td>
+<td>340,000</td>
+<td>5.2%</td>
+<td>1013</td>
+<td>180,000</td>
+<td>2.8%</td>
+</tr>
+<tr class="even">
+<td>1004</td>
+<td>360,000</td>
+<td>5.6%</td>
+<td>1014</td>
+<td>528,000</td>
+<td>8.1%</td>
+</tr>
+<tr class="odd">
+<td>1005</td>
+<td>680,000</td>
+<td>10.5%</td>
+<td>1015</td>
+<td>108,000</td>
+<td>1.7%</td>
+</tr>
+<tr class="even">
+<td>1006</td>
+<td>600,000</td>
+<td>9.3%</td>
+<td>1016</td>
+<td>240,000</td>
+<td>3.7%</td>
+</tr>
+<tr class="odd">
+<td>1007</td>
+<td>240,000</td>
+<td>3.7%</td>
+<td>1017</td>
+<td>168,000</td>
+<td>2.6%</td>
+</tr>
+<tr class="even">
+<td>1008</td>
+<td>360,000</td>
+<td>5.6%</td>
+<td>1018</td>
+<td>255,000</td>
+<td>3.9%</td>
+</tr>
+<tr class="odd">
+<td>1009</td>
+<td>210,000</td>
+<td>3.2%</td>
+<td>1019</td>
+<td>162,000</td>
+<td>2.5%</td>
+</tr>
+<tr class="even">
+<td>1010</td>
+<td>120,000</td>
+<td>1.9%</td>
+<td>1020</td>
+<td>128,000</td>
+<td>2.0%</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><span class="check-badge">확인 25</span> 완료 기준 표의 열 개 항목이 모두 기준 값과 일치하였다.</li>
+</ul>
+</section>
+<section id="제출" class="level3">
+<h3 class="anchored" data-anchor-id="제출">제출</h3>
+<ol type="1">
+<li><code>Ctrl + S</code>로 저장하고 엑셀을 종료한다.</li>
+<li><code>실습</code> 폴더의 <code>판매현황_03_학번.xlsx</code>를 부록 A에 안내된 경로로 제출한다.</li>
+</ol>
+<ul>
+<li><span class="check-badge">확인 26</span> <code>판매현황_03_학번.xlsx</code>를 제출하였고, <code>실습</code> 폴더에 <code>판매현황_03_학번.xlsx</code>와 <code>판매연습_03_학번.xlsx</code>가 있다.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="빈번한-오류와-해결" class="level2">
+<h2 class="anchored" data-anchor-id="빈번한-오류와-해결">빈번한 오류와 해결</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>증상</th>
+<th>원인</th>
+<th>해결</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>구성비 열의 둘째 행부터 <code>#DIV/0!</code>가 표시된다</td>
+<td>분모를 절대 참조로 지정하지 않아 빈 셀로 나누었다</td>
+<td><code>H4</code>의 수식을 <code>=G4/$G$25</code>로 수정하고 다시 복사한다</td>
+</tr>
+<tr class="even">
+<td>셀에 <code>=E4*F4</code>가 그대로 표시된다</td>
+<td>등호 앞에 공백이 있거나 셀의 표시 형식이 텍스트이다</td>
+<td>표시 형식을 [일반]으로 변경하고 수식을 다시 입력한다. 수식 표시 상태이면 <code>Ctrl + ~</code>를 누른다</td>
+</tr>
+<tr class="odd">
+<td><code>#VALUE!</code>가 표시된다</td>
+<td>참조한 셀에 문자가 들어 있다. 숫자 뒤에 공백이나 “개” 등의 문자를 입력한 경우이다</td>
+<td>해당 행의 수량과 단가를 숫자만으로 다시 입력한다</td>
+</tr>
+<tr class="even">
+<td><code>#NAME?</code>가 표시된다</td>
+<td>수식에 셀 주소가 아닌 글자를 입력하였다. 한글 입력 상태에서 주소를 입력한 경우에도 발생한다</td>
+<td>수식의 글자를 셀 주소로 수정한다. 주소는 마우스로 선택하여 기재한다</td>
+</tr>
+<tr class="odd">
+<td><code>#REF!</code>가 표시된다</td>
+<td>수식이 참조하던 행이나 열을 삭제하였다</td>
+<td><code>Ctrl + Z</code>로 삭제를 취소한다. 취소할 수 없으면 수식을 다시 작성한다</td>
+</tr>
+<tr class="even">
+<td><code>####</code>로 표시된다</td>
+<td>열의 너비가 값보다 좁다</td>
+<td>열 머리글의 경계선을 두 번 누른다</td>
+</tr>
+<tr class="odd">
+<td>금액이 모든 행에서 720,000이다</td>
+<td>금액의 수식에 절대 참조를 지정하였다(<code>=$E$4*$F$4</code>)</td>
+<td><code>G4</code>의 수식을 <code>=E4*F4</code>로 수정하고 다시 복사한다</td>
+</tr>
+<tr class="even">
+<td>수식에 의도하지 않은 셀 주소가 들어갔다</td>
+<td>수식을 입력하는 중에 <code>Enter</code>를 누르지 않고 다른 셀을 눌렀다</td>
+<td><code>Esc</code>로 취소하고 다시 입력한다. 수식은 <code>Enter</code>로 확정한다</td>
+</tr>
+<tr class="odd">
+<td><code>F4</code>를 눌러도 <code>$</code>가 붙지 않는다</td>
+<td>기능 키가 다른 기능에 지정된 노트북이거나, 수식의 셀 주소에 커서가 없다</td>
+<td><code>Fn + F4</code>를 누른다. 편집 상태에서 셀 주소를 눌러 커서를 둔 뒤 누른다</td>
+</tr>
+<tr class="even">
+<td>채우기 핸들을 두 번 눌러도 마지막 행까지 복사되지 않는다</td>
+<td>인접한 열의 중간에 빈 셀이 있다</td>
+<td>채우기 핸들을 마지막 행까지 직접 끈다</td>
+</tr>
+<tr class="odd">
+<td>금액의 합계가 기준 값의 두 배이거나 순환 참조 경고가 표시된다</td>
+<td>합계 범위에 합계 셀 자신이 포함되었다</td>
+<td><code>G25</code>의 수식을 <code>=SUM(G4:G23)</code>으로 수정한다</td>
+</tr>
+<tr class="even">
+<td>금액의 합계가 기준 값과 다르다</td>
+<td>수량이나 단가의 입력 값에 오류가 있다</td>
+<td>위의 기준 값 표와 행별로 대조한다</td>
+</tr>
+<tr class="odd">
+<td>구성비가 1111%와 같이 표시된다</td>
+<td>수식에 100을 곱하고 백분율 스타일을 적용하였다</td>
+<td>수식에서 <code>*100</code>을 제거한다</td>
+</tr>
+<tr class="even">
+<td>구성비가 모두 0%로 표시된다</td>
+<td>백분율 스타일을 적용하지 않고 소수 자릿수를 줄였다</td>
+<td><code>[백분율 스타일]</code>을 적용하고 <code>[자릿수 늘림]</code>을 한 번 누른다</td>
+</tr>
+<tr class="odd">
+<td>구성비의 합계가 100%가 아니다</td>
+<td><code>H25</code>의 합계 범위가 <code>H4:H23</code>이 아니다</td>
+<td>범위를 다시 지정한다</td>
+</tr>
+<tr class="even">
+<td>시트의 열이 넓어지고 날짜가 숫자로 표시된다</td>
+<td>수식 표시 상태이다</td>
+<td><code>Ctrl + ~</code>를 눌러 원래의 상태로 되돌린다</td>
+</tr>
+<tr class="odd">
+<td>값을 변경하여도 금액과 합계가 변하지 않는다</td>
+<td>해당 셀에 수식이 아닌 값이 입력되어 있거나 계산 방식이 수동이다</td>
+<td>수식 표시 상태로 점검하여 수식을 다시 작성한다. 계산 옵션을 [자동]으로 지정한다</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="심화-실습" class="level2">
+<h2 class="anchored" data-anchor-id="심화-실습">심화 실습</h2>
+<p>핵심 실습을 완료한 수강생은 절대 참조를 한 차례 더 적용한다. 본 실습의 결과는 이후의 장에서 사용하지 않으므로 별도의 시트에서 수행한다.</p>
+<ol type="1">
+<li><code>판매현황_03_학번.xlsx</code>의 시트 탭 “판매내역”을 <code>Ctrl</code> 키를 누른 채 오른쪽으로 끌어 시트를 복사하고, 복사된 시트의 이름을 “심화03”으로 변경한다.</li>
+<li>“심화03” 시트의 <code>K3</code>에 <code>부가가치세율</code>, <code>L3</code>에 <code>10%</code>를 입력한다.</li>
+<li><code>I3</code>에 <code>부가가치세</code>를 입력하고, <code>I4</code>에 금액에 세율을 곱하는 수식을 작성하여 <code>I23</code>까지 복사한다. 세율 셀은 절대 참조로 지정한다.</li>
+<li><code>I25</code>에 합계를 산출한다. 기준 값은 647,900이다.</li>
+<li><code>L3</code>의 값을 5%로 변경하여 <code>I</code> 열 전체가 다시 계산되는지 확인한다.</li>
+</ol>
+<hr>
+</section>
+<section id="연습-문제" class="level2">
+<h2 class="anchored" data-anchor-id="연습-문제">연습 문제</h2>
+<p>연습용 통합 문서(<code>판매연습_03_학번.xlsx</code>, 2월 자료)에서 푼다. 절차는 제시하지 않으며, 결과를 기준 값과 대조하여 스스로 판정한다. 연습용 표의 배치를 유지하기 위하여 “판매내역” 시트를 복사한 시트에서 풀이한다. 시트 탭 “판매내역”을 <code>Ctrl</code> 키를 누른 채 오른쪽으로 끌어 복사하고 이름을 “연습03”으로 변경한다. 세 문제 모두 값을 직접 입력하지 않고 수식으로 산출한다.</p>
+<p><strong>문제 1. 수량의 구성비.</strong> 수량의 합계를 <code>E24</code>에 산출하고, 판매 건마다 수량이 수량의 합계에서 차지하는 비율을 <code>I</code> 열에 산출한다. 비율은 백분율로 소수 첫째 자리까지 표시하고 <code>I24</code>에 비율의 합계를 산출한다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>점검 항목</th>
+<th>기준 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>수량의 합계(<code>E24</code>)</td>
+<td>532</td>
+</tr>
+<tr class="even">
+<td>판매번호 1021의 비율(<code>I4</code>)</td>
+<td>6.2%</td>
+</tr>
+<tr class="odd">
+<td>판매번호 1025의 비율(<code>I8</code>)</td>
+<td>9.4%</td>
+</tr>
+<tr class="even">
+<td>비율의 합계(<code>I24</code>)</td>
+<td>100.0%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>문제 2. 단가 인상 시의 금액.</strong> 표 바깥의 빈 셀 하나에 인상액 1000을 입력한다. 모든 품목의 단가가 인상액만큼 오른 경우의 금액(수량 × 인상된 단가)을 <code>J</code> 열에 산출하고 <code>J24</code>에 합계를 산출한다. 수식은 인상액이 입력된 셀을 참조하여야 한다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>점검 항목</th>
+<th>기준 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>판매번호 1021의 금액(<code>J4</code>)</td>
+<td>825,000</td>
+</tr>
+<tr class="even">
+<td>합계(<code>J24</code>)</td>
+<td>8,548,000</td>
+</tr>
+<tr class="odd">
+<td>인상액을 2000으로 변경하였을 때의 합계</td>
+<td>9,080,000</td>
+</tr>
+</tbody>
+</table>
+<p><strong>문제 3. 할인 후의 금액.</strong> 표 바깥의 빈 셀 하나에 할인율 5%를 입력한다. 판매 건마다 금액에서 할인액(금액 × 할인율)을 뺀 값을 <code>K</code> 열에 산출하고 <code>K24</code>에 합계를 산출한다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>점검 항목</th>
+<th>기준 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>판매번호 1021의 할인 후 금액(<code>K4</code>)</td>
+<td>752,400</td>
+</tr>
+<tr class="even">
+<td>합계(<code>K24</code>)</td>
+<td>7,615,200</td>
+</tr>
+<tr class="odd">
+<td>할인율을 10%로 변경하였을 때의 합계</td>
+<td>7,214,400</td>
+</tr>
+</tbody>
+</table>
+<p>풀이를 마치면 “판매내역” 시트를 다시 선택한 뒤 <code>Ctrl + S</code>로 저장한다.</p>
+<hr>
+</section>
+<section id="개념-점검" class="level2">
+<h2 class="anchored" data-anchor-id="개념-점검">개념 점검</h2>
+<ol type="1">
+<li><code>=20+10/5*2</code>의 결과를 구하고 계산 순서를 설명하라.</li>
+<li><code>G4</code>의 수식 <code>=E4*F4</code>를 <code>G12</code>로 복사하였을 때 <code>G12</code>에 들어가는 수식을 쓰고, 그와 같이 변하는 이유를 상대 참조라는 용어를 사용하여 설명하라.</li>
+<li>다음의 세 주소 가운데 절대 참조로 작성하여야 하는 것을 모두 고르고 판별의 근거를 설명하라. (가) 금액 = 수량 × 단가의 수식에서 단가 <code>F4</code>, (나) 구성비 = 금액 ÷ 금액의 합계의 수식에서 합계 <code>G25</code>, (다) 부가가치세 = 금액 × 세율의 수식에서 세율이 입력된 <code>L3</code>.</li>
+<li>다음의 상황에서 표시되는 오류 값을 각각 쓰라. (가) 열의 너비가 값보다 좁다. (나) 빈 셀로 나누었다. (다) 수량 셀에 <code>30개</code>가 입력되어 있다. (라) 수식이 참조하던 열을 삭제하였다. (마) 수식에 셀 주소 대신 <code>단가</code>라는 글자를 입력하였다.</li>
+<li>금액의 합계가 기준 값과 일치하는데도 수식 표시 상태로 금액 열을 점검하여야 하는 이유를 설명하라.</li>
+</ol>
+<hr>
+</section>
+<section id="정리" class="level2">
+<h2 class="anchored" data-anchor-id="정리">정리</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>용어</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>수식</td>
+<td>등호로 시작하는 계산식. 셀에는 결과가, 수식 입력줄에는 수식이 표시된다</td>
+</tr>
+<tr class="even">
+<td>연산자의 우선순위</td>
+<td>곱하기와 나누기를 더하기와 빼기보다 먼저 계산하고, 같은 순위는 왼쪽부터 계산하며, 괄호 안을 가장 먼저 계산하는 규칙</td>
+</tr>
+<tr class="odd">
+<td>셀 참조</td>
+<td>수식에서 값 대신 기재하는 셀의 주소</td>
+</tr>
+<tr class="even">
+<td>상대 참조</td>
+<td>수식을 복사하면 복사한 방향으로 함께 이동하는 셀 주소(<code>G4</code>)</td>
+</tr>
+<tr class="odd">
+<td>절대 참조</td>
+<td>수식을 복사하여도 변하지 않는 셀 주소(<code>$G$25</code>). <code>F4</code> 키로 지정한다</td>
+</tr>
+<tr class="even">
+<td>채우기 핸들</td>
+<td>선택한 셀의 오른쪽 아래 모서리. 끌거나 두 번 눌러 수식을 복사한다</td>
+</tr>
+<tr class="odd">
+<td>자동 합계</td>
+<td>합계 함수를 입력하는 단추. 제시된 범위를 확인한 뒤 확정한다</td>
+</tr>
+<tr class="even">
+<td>자동 재계산</td>
+<td>참조하는 셀의 값이 변경되면 수식의 결과가 즉시 다시 계산되는 동작</td>
+</tr>
+<tr class="odd">
+<td>수식 표시</td>
+<td><code>Ctrl + ~</code>. 결과 대신 수식을 표시하여 수식의 사용 여부와 형태를 점검한다</td>
+</tr>
+<tr class="even">
+<td>오류 값</td>
+<td>수식을 계산할 수 없을 때 표시되는 값(<code>#DIV/0!</code>, <code>#VALUE!</code>, <code>#NAME?</code>, <code>#REF!</code>). <code>####</code>은 열의 너비가 부족하다는 표시이다</td>
+</tr>
+</tbody>
+</table>
+<p>본 장에서 산출한 금액의 합계 6,479,000원은 이후의 모든 장에서 검증의 기준이 되는 <strong>수작업 결과</strong>이다. 4장 「기본 함수」에서는 자동 합계가 입력한 <code>SUM</code>의 형식을 살펴보고, 동일한 형식으로 평균, 최댓값, 최솟값, 개수를 산출한다. 본 장의 절대 참조는 4장에서 기준 금액을 별도의 셀에 두고 참조하는 수식에 다시 사용한다.</p>
+<hr>
+</section>
+<section id="참고-자료" class="level2">
+<h2 class="anchored" data-anchor-id="참고-자료">참고 자료</h2>
+<p>본문의 조작과 용어는 Microsoft 지원 사이트의 한국어 문서를 열어 확인하였다. 확인일은 모두 2026-11-13이다. 리본 메뉴의 그룹 이름은 지원 문서의 표기와 제품 화면의 표기가 다른 경우가 있으며, 그 경우 본문은 2장과 같은 표기([표시 형식] 그룹)를 사용하였다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>문서 제목</th>
+<th>주소</th>
+<th>본문에서 근거로 삼은 내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>수식에서 각 연산이 실행되는 순서</td>
+<td><a href="https://support.microsoft.com/ko-kr/office/수식에서-각-연산이-실행되는-순서-28eaf0d7-7058-4eff-a8ea-0a835fafadb8" class="uri">https://support.microsoft.com/ko-kr/office/수식에서-각-연산이-실행되는-순서-28eaf0d7-7058-4eff-a8ea-0a835fafadb8</a></td>
+<td>연산자의 우선순위, 같은 순위의 계산 방향, 괄호</td>
+</tr>
+<tr class="even">
+<td>셀 참조 만들기 또는 변경</td>
+<td><a href="https://support.microsoft.com/ko-kr/excel/create-or-change-a-cell-reference" class="uri">https://support.microsoft.com/ko-kr/excel/create-or-change-a-cell-reference</a></td>
+<td>마우스 선택에 의한 참조 입력, 편집 상태의 색 표시</td>
+</tr>
+<tr class="odd">
+<td>Excel에서 수식 이동 또는 복사</td>
+<td><a href="https://support.microsoft.com/ko-kr/excel/move-or-copy-a-formula-in-excel" class="uri">https://support.microsoft.com/ko-kr/excel/move-or-copy-a-formula-in-excel</a></td>
+<td>복사와 붙여넣기, 복사에 따른 상대 참조의 변화</td>
+</tr>
+<tr class="even">
+<td>인접한 셀에 수식 채우기</td>
+<td><a href="https://support.microsoft.com/ko-kr/excel/fill-a-formula-down-into-adjacent-cells" class="uri">https://support.microsoft.com/ko-kr/excel/fill-a-formula-down-into-adjacent-cells</a></td>
+<td>채우기 핸들, <code>Ctrl + D</code>, 계산 옵션의 [자동]</td>
+</tr>
+<tr class="odd">
+<td>상대 참조, 절대 참조 및 혼합 참조 간 전환</td>
+<td><a href="https://support.microsoft.com/ko-kr/excel/switch-between-relative-absolute-and-mixed-references" class="uri">https://support.microsoft.com/ko-kr/excel/switch-between-relative-absolute-and-mixed-references</a></td>
+<td>상대 참조와 절대 참조의 정의, <code>F4</code> 키</td>
+</tr>
+<tr class="even">
+<td>Excel에서 자동 합계를 사용하여 숫자의 합계 구하기</td>
+<td><a href="https://support.microsoft.com/ko-kr/excel/use-autosum-to-sum-numbers-in-excel" class="uri">https://support.microsoft.com/ko-kr/excel/use-autosum-to-sum-numbers-in-excel</a></td>
+<td>자동 합계 단추의 위치와 동작</td>
+</tr>
+<tr class="odd">
+<td>Excel에서 숫자를 백분율로 서식 지정</td>
+<td><a href="https://support.microsoft.com/ko-kr/excel/format-numbers-as-percentages-in-excel" class="uri">https://support.microsoft.com/ko-kr/excel/format-numbers-as-percentages-in-excel</a></td>
+<td>백분율 스타일, 값에 100을 곱하여 표시하는 동작, 단축키</td>
+</tr>
+<tr class="even">
+<td>수식 표시 및 인쇄</td>
+<td><a href="https://support.microsoft.com/ko-kr/excel/show-and-print-formulas" class="uri">https://support.microsoft.com/ko-kr/excel/show-and-print-formulas</a></td>
+<td>수식 표시의 단축키와 리본 메뉴의 경로</td>
+</tr>
+<tr class="odd">
+<td>Excel에서 수식 오류 감지</td>
+<td><a href="https://support.microsoft.com/ko-kr/excel/detect-formula-errors-in-excel" class="uri">https://support.microsoft.com/ko-kr/excel/detect-formula-errors-in-excel</a></td>
+<td>오류 값의 종류와 의미</td>
+</tr>
+<tr class="even">
+<td>#DIV/0! 오류를 수정하는 방법</td>
+<td><a href="https://support.microsoft.com/ko-kr/excel/how-to-correct-a-div-0-error" class="uri">https://support.microsoft.com/ko-kr/excel/how-to-correct-a-div-0-error</a></td>
+<td>0 또는 빈 셀로 나눈 경우</td>
+</tr>
+<tr class="odd">
+<td>#VALUE! 오류를 수정하는 방법</td>
+<td><a href="https://support.microsoft.com/ko-kr/excel/how-to-correct-a-value-error" class="uri">https://support.microsoft.com/ko-kr/excel/how-to-correct-a-value-error</a></td>
+<td>문자와 공백이 포함된 셀의 계산</td>
+</tr>
+<tr class="even">
+<td>#NAME? 오류를 수정하는 방법</td>
+<td><a href="https://support.microsoft.com/ko-kr/excel/how-to-correct-a-name-error" class="uri">https://support.microsoft.com/ko-kr/excel/how-to-correct-a-name-error</a></td>
+<td>인식할 수 없는 글자가 수식에 있는 경우</td>
+</tr>
+<tr class="odd">
+<td>#REF! 오류를 수정하는 방법</td>
+<td><a href="https://support.microsoft.com/ko-kr/excel/how-to-correct-a-ref-error" class="uri">https://support.microsoft.com/ko-kr/excel/how-to-correct-a-ref-error</a></td>
+<td>참조하던 열의 삭제, 실행 취소에 의한 복구</td>
+</tr>
+<tr class="even">
+<td>Excel의 바로 가기 키</td>
+<td><a href="https://support.microsoft.com/ko-kr/accessibility/excel/keyboard-shortcuts-in-excel" class="uri">https://support.microsoft.com/ko-kr/accessibility/excel/keyboard-shortcuts-in-excel</a></td>
+<td><code>F2</code>, <code>F4</code>, <code>Alt + =</code>, <code>Ctrl + D</code>, <code>Esc</code>의 동작</td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> 맨 위로</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "복사완료!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "복사완료!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../courses/office/book/Office_02주차_학생용.html" class="pagination-link" aria-label="[2주차] 셀 서식과 인쇄 설정">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">[2주차] 셀 서식과 인쇄 설정</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../courses/office/book/Office_04주차_학생용.html" class="pagination-link" aria-label="[4주차] 기본 함수">
+        <span class="nav-page-text">[4주차] 기본 함수</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>안중호 교수 강의 교재 · 2026년 2학기판</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
