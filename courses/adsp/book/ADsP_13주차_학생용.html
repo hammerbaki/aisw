@@ -378,11 +378,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#자주-하는-실수와-오해" id="toc-자주-하는-실수와-오해" class="nav-link" data-scroll-target="#자주-하는-실수와-오해">9. 자주 하는 실수와 오해</a></li>
   <li><a href="#정리" id="toc-정리" class="nav-link" data-scroll-target="#정리">10. 정리</a></li>
   <li><a href="#참고-자료" id="toc-참고-자료" class="nav-link" data-scroll-target="#참고-자료">11. 참고 자료</a></li>
-  <li><a href="#주간-문항-세트-13" id="toc-주간-문항-세트-13" class="nav-link" data-scroll-target="#주간-문항-세트-13">주간 문항 세트 13</a>
-  <ul class="collapse">
-  <li><a href="#정답" id="toc-정답" class="nav-link" data-scroll-target="#정답">정답</a></li>
-  <li><a href="#풀이" id="toc-풀이" class="nav-link" data-scroll-target="#풀이">풀이</a></li>
-  </ul></li>
+  <li><a href="#주간-문항-세트-13" id="toc-주간-문항-세트-13" class="nav-link" data-scroll-target="#주간-문항-세트-13">주간 문항 세트 13</a></li>
   </ul>
 </nav>
     </div>
@@ -2441,7 +2437,7 @@ node), split, n, loss, yval, (yprob)
 </section>
 <section id="주간-문항-세트-13" class="level2">
 <h2 class="anchored" data-anchor-id="주간-문항-세트-13">주간 문항 세트 13</h2>
-<p>20문항이다. 모두 R 코드와 R 출력을 읽는 문항이고 복습 문항은 없다. 묶음 다섯 개(A~E)에 문항이 넷씩 붙어 있다. 수업에서 20문항을 모두 풀며, 실전의 문항당 시간으로는 36분이 걸린다. 정답과 풀이는 세트 뒤에 있다.</p>
+<p>20문항이다. 모두 R 코드와 R 출력을 읽는 문항이고 복습 문항은 없다. 묶음 다섯 개(A~E)에 문항이 넷씩 붙어 있다. 수업에서 20문항을 모두 풀며, 실전의 문항당 시간으로는 36분이 걸린다. 정답과 풀이는 교수가 수업에서 확인한다.</p>
 <p><strong>묶음 A.</strong> 다음은 스위스 47개 지역의 출산율 지표(<code>Fertility</code>)를 농업 종사자 비율(<code>Agriculture</code>), 징병 검사 최고 등급자 비율(<code>Examination</code>), 초등 과정을 넘는 교육을 받은 비율(<code>Education</code>), 가톨릭 신자 비율(<code>Catholic</code>), 영아 사망률(<code>Infant.Mortality</code>)로 설명하는 회귀 분석을 R로 실행한 출력이다. 이 출력을 보고 문항 1~4에 답한다.</p>
 <pre class="text"><code>Call:
 lm(formula = Fertility ~ Agriculture + Examination + Education + 
@@ -2690,100 +2686,8 @@ actual   0   1
 <li>④ 모형이 1로 예측한 25명 가운데 실제로 저체중인 신생아는 8명이다.</li>
 </ul>
 <p><code>범위: 데이터분석 &gt; 정형 데이터 마이닝 &gt; 분류분석</code> <code>유형: 출력 해석</code> <code>장: 11</code></p>
-<section id="정답" class="level3">
-<h3 class="anchored" data-anchor-id="정답">정답</h3>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>문항</th>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-<th>4</th>
-<th>5</th>
-<th>6</th>
-<th>7</th>
-<th>8</th>
-<th>9</th>
-<th>10</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>정답</td>
-<td>②</td>
-<td>④</td>
-<td>③</td>
-<td>①</td>
-<td>②</td>
-<td>④</td>
-<td>①</td>
-<td>④</td>
-<td>④</td>
-<td>①</td>
-</tr>
-</tbody>
-</table>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>문항</th>
-<th>11</th>
-<th>12</th>
-<th>13</th>
-<th>14</th>
-<th>15</th>
-<th>16</th>
-<th>17</th>
-<th>18</th>
-<th>19</th>
-<th>20</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>정답</td>
-<td>②</td>
-<td>③</td>
-<td>③</td>
-<td>①</td>
-<td>②</td>
-<td>③</td>
-<td>①</td>
-<td>②</td>
-<td>①</td>
-<td>④</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="풀이" class="level3">
-<h3 class="anchored" data-anchor-id="풀이">풀이</h3>
-<ol type="1">
-<li><strong>②.</strong> <code>Examination</code>의 유의 확률은 0.31546으로 0.05보다 크고 별표가 없다. 나머지 세 변수는 별표가 하나 이상이므로 유의수준 0.05에서 유의하다. (3.2절, 7장)</li>
-<li><strong>④.</strong> <code>Multiple R-squared</code>가 0.7067이고 <code>Adjusted R-squared</code>가 0.671이다. 둘을 바꾸어 적었다. ①은 잔차의 자유도 41에 계수의 수 6을 더한 값이다. ②는 <code>on 5 and 41 DF</code>의 앞 숫자다. ③은 마지막 줄의 유의 확률이 5.594e-10이다. (3.2절, 7장)</li>
-<li><strong>③.</strong> <code>Education</code>의 계수는 -0.87094다. 10 높으면 예측값은 -0.87094 × 10 ≈ -8.71만큼 다르다. ②는 1 높을 때의 차이이고, ①은 부호를 반대로 읽은 것이다. (3.2절, 7장)</li>
-<li><strong>①.</strong> 유의 확률 0.00519는 0.01보다 작다. 별표 둘(<code>**</code>)이 0.001 이상 0.01 미만이라는 표시이므로 ②는 틀렸다. ③의 t 값은 추정값을 표준 오차로 나눈 값이다(0.10412 ÷ 0.03526 ≈ 2.953). ④는 계수가 양수이므로 방향이 반대다. (3.2절, 7장)</li>
-<li><strong>②.</strong> -87.51667 + 3.45 × 65 = -87.51667 + 224.25 ≈ 136.73. ④는 절편을 더하지 않은 값이다. (3.1절, 7장)</li>
-<li><strong>④.</strong> 모형 전체의 유의 확률은 마지막 줄의 1.091e-14다. <code>(Intercept)</code> 줄의 유의 확률은 절편이 0인지를 검정한 값이다. ③은 잔차의 자유도 13에 계수의 수 2를 더하면 15다. (3.1절, 7장)</li>
-<li><strong>①.</strong> 독립 변수가 하나인 회귀에서 F 통계량은 기울기의 t 값의 제곱이다. 37.85² ≈ 1433. ②의 결정 계수는 기울기가 아니라 상관 계수의 제곱이다. ③의 기울기의 표준 오차는 0.09114다. ④는 0.9903이 0.991보다 작다. (3.1절, 7장)</li>
-<li><strong>④.</strong> 독립 변수가 하나이므로 상관 계수는 결정 계수 0.991의 제곱근이다. 1보다 작은 양수의 제곱근은 그 수보다 크므로 0.991보다 큰 ④가 답이다. 기울기가 양수이므로 부호는 양이다. ②는 0.991을 제곱한 값이고 ③은 결정 계수를 그대로 읽은 것이다. (3.1절, 7장)</li>
-<li><strong>④.</strong> 4.550은 제1사분위수이므로 그 이하의 관측값은 전체의 4분의 1가량이다. 절반가량이 그 이하에 있는 값은 중앙값 5.155다. ①은 5.530 - 4.550 = 0.98, ②는 5.073이 5.155보다 작다. (4.1절, 5장)</li>
-<li><strong>①.</strong> 사분위수 범위는 0.98이고 그 1.5배는 1.47이다. 하한은 4.550 - 1.47 = 3.08, 상한은 5.530 + 1.47 = 7.00이다. 최솟값 3.590과 최댓값 6.310이 모두 이 범위 안에 있으므로 이상값이 없다. (4.1절, 5장)</li>
-<li><strong>②.</strong> 유의 확률 0.0159는 0.05보다 작으므로 귀무 가설을 기각한다. 0.01보다는 크므로 ③은 틀렸다. ①은 자유도 2에 1을 더한 3개다. ④는 분산분석으로 알 수 있는 것이 적어도 한 집단의 평균이 다르다는 데까지다. 집단 평균의 분산분석은 이 장에서 처음 다루었다. (4.5절)</li>
-<li><strong>③.</strong> 자유도의 합 29는 관측값의 수에서 1을 뺀 값이다. 관측값은 30개다. ①은 3.766 ÷ 2 = 1.883, ②는 1.8832 ÷ 0.3886 ≈ 4.846이다. 평균 제곱과 F 값의 계산은 7장의 회귀 분산분석표와 같다. (3.3절, 4.5절, 7장)</li>
-<li><strong>③.</strong> <code>Cumulative Proportion</code>이 <code>PC2</code>에서 0.6939, <code>PC3</code>에서 0.8149다. 처음으로 0.8을 넘는 것은 <code>PC3</code>이므로 3개다. (5절, 8장)</li>
-<li><strong>①.</strong> 제3주성분 하나의 기여율은 <code>Proportion of Variance</code>의 0.1210, 곧 약 12.1%다. 0.8149는 제3주성분까지의 누적 기여율이다. (5절, 8장)</li>
-<li><strong>②.</strong> 0.5309 + 0.1630 + 0.1210 = 0.8149. ①의 기여율은 표준편차가 아니라 분산(표준편차의 제곱)의 비율이다. ③은 반대다. ④는 기여율을 모두 더하면 1이다. 7은 표준화한 변수 일곱 개의 분산의 합이다. (5절, 8장)</li>
-<li><strong>③.</strong> <code>scale. = TRUE</code>는 변수를 표준화하여 분산을 1로 맞춘 뒤 주성분을 구하라는 설정이다. 변수의 단위와 크기가 다를 때 쓴다. (5절, 8장)</li>
-<li><strong>①.</strong> 유의 확률이 0.05보다 작은 것은 <code>lwt</code>(0.01178)와 <code>ht</code>(0.00834)다. <code>smoke</code>(0.09267)와 <code>ptl</code>(0.05948)에 붙은 점(<code>.</code>)은 0.05 이상 0.1 미만이라는 표시이므로 유의수준 0.05에서는 유의하지 않다. (3.2절, 6.1절, 10장)</li>
-<li><strong>②.</strong> <code>ht</code>의 오즈비는 6.152다. ①은 <code>lwt</code>의 계수가 음수이고 오즈비가 0.983으로 1보다 작으므로 반대다. ③의 1.816831은 확률이 아니라 로그 오즈의 변화다. ④의 오즈비는 계수에 지수를 취한 값이다. (6.1절, 10장)</li>
-<li><strong>①.</strong> 정분류율은 대각선의 합을 전체로 나눈 값이다. 전체는 122 + 8 + 42 + 17 = 189다. ②는 오분류율, ③은 재현율, ④는 정밀도다. (6.2절, 11장)</li>
-<li><strong>④.</strong> 1로 예측한 열의 합은 8 + 17 = 25이고, 그 가운데 실제로 1인 것은 17명이다. 8명은 실제로 0인데 1로 예측한 수다. ③의 재현율은 17 ÷ 59 ≈ 0.29이고 특이도는 122 ÷ 130 ≈ 0.94다. (6.2절, 11장)</li>
-</ol>
 
 
-</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> 맨 위로</a></main> <!-- /main -->

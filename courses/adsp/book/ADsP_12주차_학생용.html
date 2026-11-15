@@ -371,11 +371,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#자주-하는-실수와-오해" id="toc-자주-하는-실수와-오해" class="nav-link" data-scroll-target="#자주-하는-실수와-오해">7. 자주 하는 실수와 오해</a></li>
   <li><a href="#정리" id="toc-정리" class="nav-link" data-scroll-target="#정리">8. 정리</a></li>
   <li><a href="#참고-자료" id="toc-참고-자료" class="nav-link" data-scroll-target="#참고-자료">9. 참고 자료</a></li>
-  <li><a href="#주간-문항-세트-12" id="toc-주간-문항-세트-12" class="nav-link" data-scroll-target="#주간-문항-세트-12">주간 문항 세트 12</a>
-  <ul class="collapse">
-  <li><a href="#정답" id="toc-정답" class="nav-link" data-scroll-target="#정답">정답</a></li>
-  <li><a href="#풀이" id="toc-풀이" class="nav-link" data-scroll-target="#풀이">풀이</a></li>
-  </ul></li>
+  <li><a href="#주간-문항-세트-12" id="toc-주간-문항-세트-12" class="nav-link" data-scroll-target="#주간-문항-세트-12">주간 문항 세트 12</a></li>
   </ul>
 </nav>
     </div>
@@ -2346,7 +2342,7 @@ hclust  1  2  3  4
 </section>
 <section id="주간-문항-세트-12" class="level2">
 <h2 class="anchored" data-anchor-id="주간-문항-세트-12">주간 문항 세트 12</h2>
-<p>20문항이다. 1~10번은 수업에서 풀고 11~20번은 과제로 푼다. 1~15번은 이 장의 문항이고 16~20번은 앞 장의 복습이다. 실전의 문항당 시간으로는 36분이 걸린다. 정답과 풀이는 세트 뒤에 있다.</p>
+<p>20문항이다. 1~10번은 수업에서 풀고 11~20번은 과제로 푼다. 1~15번은 이 장의 문항이고 16~20번은 앞 장의 복습이다. 실전의 문항당 시간으로는 36분이 걸린다. 정답과 풀이는 교수가 수업에서 확인한다.</p>
 <p><strong>문항 1.</strong> 군집 분석에 대한 설명으로 가장 적절하지 않은 것은?</p>
 <ul>
 <li>① 종속 변수가 없는 자료에 쓰는 비지도 학습이다.</li>
@@ -2604,100 +2600,8 @@ Within cluster sum of squares by cluster:
 <li>④ 0.80</li>
 </ul>
 <p><code>범위: 데이터분석 &gt; 정형 데이터 마이닝 &gt; 분류분석</code> <code>유형: 계산</code> <code>장: 11</code></p>
-<section id="정답" class="level3">
-<h3 class="anchored" data-anchor-id="정답">정답</h3>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>문항</th>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-<th>4</th>
-<th>5</th>
-<th>6</th>
-<th>7</th>
-<th>8</th>
-<th>9</th>
-<th>10</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>정답</td>
-<td>④</td>
-<td>②</td>
-<td>①</td>
-<td>③</td>
-<td>③</td>
-<td>④</td>
-<td>①</td>
-<td>③</td>
-<td>④</td>
-<td>②</td>
-</tr>
-</tbody>
-</table>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>문항</th>
-<th>11</th>
-<th>12</th>
-<th>13</th>
-<th>14</th>
-<th>15</th>
-<th>16</th>
-<th>17</th>
-<th>18</th>
-<th>19</th>
-<th>20</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>정답</td>
-<td>③</td>
-<td>②</td>
-<td>①</td>
-<td>④</td>
-<td>②</td>
-<td>①</td>
-<td>①</td>
-<td>④</td>
-<td>②</td>
-<td>④</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="풀이" class="level3">
-<h3 class="anchored" data-anchor-id="풀이">풀이</h3>
-<ol type="1">
-<li><strong>④.</strong> 미리 정해진 범주를 예측하는 것은 분류 분석이다. 군집 분석에는 정해진 범주가 없다. (1.1절)</li>
-<li><strong>②.</strong> 변수별 차이는 6과 8이다. 유클리드 거리는 36 + 64 = 100의 제곱근인 10이고, 맨해튼 거리는 6 + 8 = 14다. ④는 제곱근을 구하지 않은 값이다. (1.3절)</li>
-<li><strong>①.</strong> 두 군집에서 하나씩 고른 쌍의 거리는 A와 C가 7, A와 D가 10, B와 C가 6, B와 D가 9다. 최단 연결법은 가장 작은 값인 6을 쓴다. ②는 평균 연결법의 값 (7 + 10 + 6 + 9) ÷ 4 = 8이고, ④는 최장 연결법의 값이다. (2.2절)</li>
-<li><strong>③.</strong> <code>Duster 360</code>과 <code>Cadillac Fleetwood</code>는 높이 1.774에서 묶인다. 높이 1.5에서는 아직 묶이지 않았으므로 서로 다른 군집이다. ①은 높이 2의 가로선이 세로선 셋과 만난다. ②는 맨 위의 병합에서 갈라지는 한쪽 가지에 두 종만 있다. (2.3절, 6.3절)</li>
-<li><strong>③.</strong> k-평균 군집에서는 중심을 갱신할 때마다 개체를 다시 배정하므로 개체가 군집을 옮길 수 있다. 한번 묶이면 갈라지지 않는 것은 계층적 군집이다. (2.1절, 3.1절)</li>
-<li><strong>④.</strong> 집단 내 제곱합은 차례로 47.35062, 44.08754, 47.45019다. 가장 큰 군집은 3번이고 2번은 가장 작다. ③은 표준화한 자료이므로 중심이 음수(-1.3006301)이면 전체 평균보다 작다는 뜻이다. (6.4절)</li>
-<li><strong>①.</strong> 김밥과 라면이 함께 든 거래는 1번과 3번의 2건이다. 지지도 = 2 ÷ 5 = 0.4. ②는 “김밥 → 라면”의 신뢰도 2 ÷ 4다. (4.2절)</li>
-<li><strong>③.</strong> 라면이 든 거래는 1번, 3번, 5번의 3건이고, 그 가운데 김밥도 든 거래는 2건이다. 신뢰도 = 2 ÷ 3 ≈ 0.67. ②는 방향이 반대인 “김밥 → 라면”의 신뢰도다. (4.2절)</li>
-<li><strong>④.</strong> 신뢰도 = 40 ÷ 80 = 0.5. 생수가 든 거래의 비율 = 50 ÷ 200 = 0.25. 향상도 = 0.5 ÷ 0.25 = 2.0. 1보다 크므로 양의 연관이다. ②의 0.5는 신뢰도이고, 독립인 것은 향상도가 1일 때다. (4.2절)</li>
-<li><strong>②.</strong> 빈발하지 않은 항목 집합을 포함하는 집합은 빈발할 수 없다는 원리로 후보를 줄인다. ①은 Apriori 알고리즘이 피하려는 일이다. ③은 FP-Growth 알고리즘, ④는 순차 패턴 분석이다. (4.3절, 4.4절)</li>
-<li><strong>③.</strong> 마할라노비스 거리는 변수의 분산과 변수 사이의 공분산을 함께 반영한다. 나머지 셋은 변수의 흩어진 정도를 고려하지 않는다. (1.2절)</li>
-<li><strong>②.</strong> 줄어든 양은 차례로 140, 90, 8, 5, 3이다. 군집 수 3을 지나면 줄어드는 양이 갑자기 작아진다. 집단 내 제곱합이 가장 작은 6을 고르는 것이 아니다. (3.4절)</li>
-<li><strong>①.</strong> E 단계는 속할 확률을 계산하고, M 단계는 모수를 다시 추정한다(②). ③은 병합적 계층 군집, ④는 자기조직화 지도의 학습이다. (3.5절)</li>
-<li><strong>④.</strong> 자기조직화 지도는 정답이 없는 비지도 학습이어서 출력과 정답의 오차를 계산하지 않고 역전파를 쓰지 않는다. (3.6절)</li>
-<li><strong>②.</strong> “산 뒤에 산다”는 시간의 순서를 보는 규칙이므로 순차 패턴 분석이다. 누가 언제 샀는지를 알아야 한다. ①은 순서를 보지 않는 연관 분석의 설명이다. (4.4절)</li>
-<li><strong>①.</strong> 새로운 대상이 미리 정해 둔 집단 가운데 어디에 속하는지 가리는 것은 유형 분석이다. 연관 규칙 학습은 함께 나타나는 항목의 관계를 찾고, 유전 알고리즘은 해결안을 섞고 바꾸어 최적의 안을 찾으며, 감정 분석은 글의 긍정과 부정을 가린다. (교재 01의 3.5절)</li>
-<li><strong>①.</strong> 모형의 복잡함과 해석의 쉬움 사이에서 기준을 정하는 것은 분석 복잡도의 관리다. 데이터 크기는 분석할 데이터의 양, 데이터 복잡도는 데이터의 유형과 출처의 다양함, 속도는 결과를 내고 활용하는 속도를 관리한다. (교재 02의 4.1절)</li>
-<li><strong>④.</strong> 데이터 거버넌스의 구성 요소는 원칙, 조직, 프로세스다. ①은 빅데이터의 3V, ②는 CRISP-DM의 단계 일부, ③은 분석 과제의 우선순위를 평가하는 기준에 쓰는 말이다. (교재 03의 3.1절)</li>
-<li><strong>②.</strong> F 통계량의 유의 확률 0.002가 0.05보다 작으므로 모형은 유의하다. x2의 0.004는 0.05보다 작고 x1의 0.310은 크다. ④는 유의 확률의 크기를 영향의 크기로 잘못 읽은 것이다. (교재 07의 2.3절)</li>
-<li><strong>④.</strong> 재현율은 실제 양성 가운데 양성으로 예측한 비율이다. 40 ÷ (40 + 10) = 0.80. ①은 특이도 30 ÷ 50, ②는 정밀도 40 ÷ 60, ③은 정분류율 70 ÷ 100이다. (교재 11의 4.2절)</li>
-</ol>
 
 
-</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> 맨 위로</a></main> <!-- /main -->

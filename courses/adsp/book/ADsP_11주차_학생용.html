@@ -368,11 +368,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#자주-하는-실수와-오해" id="toc-자주-하는-실수와-오해" class="nav-link" data-scroll-target="#자주-하는-실수와-오해">7. 자주 하는 실수와 오해</a></li>
   <li><a href="#정리" id="toc-정리" class="nav-link" data-scroll-target="#정리">8. 정리</a></li>
   <li><a href="#참고-자료" id="toc-참고-자료" class="nav-link" data-scroll-target="#참고-자료">9. 참고 자료</a></li>
-  <li><a href="#주간-문항-세트-11" id="toc-주간-문항-세트-11" class="nav-link" data-scroll-target="#주간-문항-세트-11">주간 문항 세트 11</a>
-  <ul class="collapse">
-  <li><a href="#정답" id="toc-정답" class="nav-link" data-scroll-target="#정답">정답</a></li>
-  <li><a href="#풀이" id="toc-풀이" class="nav-link" data-scroll-target="#풀이">풀이</a></li>
-  </ul></li>
+  <li><a href="#주간-문항-세트-11" id="toc-주간-문항-세트-11" class="nav-link" data-scroll-target="#주간-문항-세트-11">주간 문항 세트 11</a></li>
   </ul>
 </nav>
     </div>
@@ -2018,7 +2014,7 @@ predicted No Yes
 </section>
 <section id="주간-문항-세트-11" class="level2">
 <h2 class="anchored" data-anchor-id="주간-문항-세트-11">주간 문항 세트 11</h2>
-<p>20문항이다. 1~10번은 수업에서 풀고 11~20번은 과제로 푼다. 1~15번은 이 장의 문항이고 16~20번은 앞 장의 복습이다. 실전의 문항당 시간으로는 36분이 걸린다. 정답과 풀이는 세트 뒤에 있다.</p>
+<p>20문항이다. 1~10번은 수업에서 풀고 11~20번은 과제로 푼다. 1~15번은 이 장의 문항이고 16~20번은 앞 장의 복습이다. 실전의 문항당 시간으로는 36분이 걸린다. 정답과 풀이는 교수가 수업에서 확인한다.</p>
 <p><strong>문항 1.</strong> 배깅(bagging)에 대한 설명으로 가장 적절한 것은?</p>
 <ul>
 <li>① 자료를 겹치지 않는 묶음 k개로 나누고, 한 묶음씩 번갈아 검증용으로 쓴다.</li>
@@ -2239,100 +2235,8 @@ actual  0  1
 <li>④ 훈련용 200개, 검증용 50개</li>
 </ul>
 <p><code>범위: 데이터분석 &gt; 정형 데이터 마이닝 &gt; 데이터 마이닝 개요</code> <code>유형: 계산</code> <code>장: 10</code></p>
-<section id="정답" class="level3">
-<h3 class="anchored" data-anchor-id="정답">정답</h3>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>문항</th>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-<th>4</th>
-<th>5</th>
-<th>6</th>
-<th>7</th>
-<th>8</th>
-<th>9</th>
-<th>10</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>정답</td>
-<td>②</td>
-<td>③</td>
-<td>④</td>
-<td>①</td>
-<td>②</td>
-<td>③</td>
-<td>①</td>
-<td>②</td>
-<td>③</td>
-<td>④</td>
-</tr>
-</tbody>
-</table>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>문항</th>
-<th>11</th>
-<th>12</th>
-<th>13</th>
-<th>14</th>
-<th>15</th>
-<th>16</th>
-<th>17</th>
-<th>18</th>
-<th>19</th>
-<th>20</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>정답</td>
-<td>①</td>
-<td>③</td>
-<td>②</td>
-<td>④</td>
-<td>①</td>
-<td>④</td>
-<td>③</td>
-<td>②</td>
-<td>①</td>
-<td>④</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="풀이" class="level3">
-<h3 class="anchored" data-anchor-id="풀이">풀이</h3>
-<ol type="1">
-<li><strong>②.</strong> 배깅은 붓스트랩 표본(복원 추출)마다 모형을 만들어 다수결이나 평균으로 합친다. ①은 k-겹 교차 검증, ③은 가지치기, ④는 주성분 분석이다. (1.2절)</li>
-<li><strong>③.</strong> 두 기법의 설명이 서로 바뀌었다. 모형들을 서로 독립적으로 만드는 것이 배깅이고, 앞 모형이 잘못 분류한 관측값에 큰 가중치를 주어 차례로 만드는 것이 부스팅이다. (1.5절)</li>
-<li><strong>④.</strong> 랜덤 포레스트는 나무가 수백 그루이므로 규칙을 그림 한 장으로 읽을 수 없고 해석이 어렵다. 그 대신 변수 중요도를 본다. (1.4절)</li>
-<li><strong>①.</strong> 소프트맥스 함수의 출력은 범주별 확률이므로 모두 더하면 1이다. (2.2절)</li>
-<li><strong>②.</strong> 인공신경망은 가중치가 많고 서로 얽혀 있어 결과를 해석하기 어렵다. (2.5절)</li>
-<li><strong>③.</strong> 가까운 관측값 k개의 다수결로 분류하는 기법은 k-최근접 이웃이다. 나이브 베이즈는 베이즈 정리로 확률을 계산하고, 서포트 벡터 머신은 마진이 가장 큰 경계를 찾는다. (3절)</li>
-<li><strong>①.</strong> 재현율 = TP ÷ (TP + FN) = 30 ÷ (30 + 20) = 0.60. 분모는 실제 양성의 합인 첫째 행의 합이다. ②는 정밀도 30 ÷ 40, ③은 정분류율 170 ÷ 200, ④는 특이도 140 ÷ 150이다. (4.2절)</li>
-<li><strong>②.</strong> 행이 예측이므로 양성으로 예측한 것의 합은 둘째 행의 합 10 + 40 = 50이다. TP는 예측 양성과 실제 양성이 만나는 40이다. 정밀도 = 40 ÷ 50 = 0.80. ①은 재현율 40 ÷ 60, ③은 정분류율 170 ÷ 200, ④는 특이도 130 ÷ 140이다. (4.2절, 6.4절)</li>
-<li><strong>③.</strong> F1 = 2 × 0.4 × 0.6 ÷ (0.4 + 0.6) = 0.48 ÷ 1.0 = 0.48. ④는 산술 평균이고 ①은 두 값의 곱이다. (4.2절)</li>
-<li><strong>④.</strong> TP 0, FN 20, FP 0, TN 980이다. 정분류율 = 980 ÷ 1,000 = 0.98, 재현율 = 0 ÷ 20 = 0, 특이도 = 980 ÷ 980 = 1이다. 양성이 드문 자료에서는 모두 음성으로 예측해도 정분류율이 높게 나온다. (4.3절)</li>
-<li><strong>①.</strong> 두 축이 바뀌었다. 가로축이 1 - 특이도이고 세로축이 민감도다. (4.4절)</li>
-<li><strong>③.</strong> 첫 등급의 반응률 = 40 ÷ 100 = 0.4, 전체의 구매 비율 = 100 ÷ 1,000 = 0.1. 향상도 = 0.4 ÷ 0.1 = 4. ①은 반응률이다. (4.5절)</li>
-<li><strong>②.</strong> <code>table()</code>의 첫째 인수가 행이므로 행이 실제이고 열이 예측이다. 실제 수동은 둘째 행의 합 2 + 11 = 13대이고, 그 가운데 11대를 수동으로 예측했으므로 재현율은 11/13이다. ①의 12대는 수동으로 예측한 차의 수(둘째 열의 합)다. ③의 정밀도는 11/12다. ④는 1 + 2 = 3대다. (6.4절)</li>
-<li><strong>④.</strong> 행이 예측이고 열이 실제다. 실제 <code>present</code>는 둘째 열의 합 2 + 15 = 17명이고, 그 가운데 <code>present</code>로 예측한 것이 15명이다. 재현율 = 15/17. ②는 정밀도(둘째 행의 합이 분모), ①은 특이도다. (6.4절)</li>
-<li><strong>①.</strong> 재현율은 12/13에서 8/13으로 낮아졌고, 특이도는 15/19에서 18/19로 높아졌다. 수동으로 예측한 차는 16대에서 9대로 줄었다. 정분류율은 27/32에서 26/32로 낮아졌다. (4.3절, 4.4절)</li>
-<li><strong>④.</strong> 같은 내용의 데이터가 중복되어 저장되지 않는 것은 통합된 데이터의 특징이다. 공용 데이터는 여러 사용자가 함께 이용하는 것, 저장된 데이터는 저장 매체에 저장되는 것, 변화되는 데이터는 삽입·삭제·갱신으로 내용이 바뀌는 것이다. (교재 01의 2절)</li>
-<li><strong>③.</strong> 준비도는 높고 성숙도는 낮으므로 도입형이다. 준비도와 성숙도가 모두 낮으면 준비형, 준비도는 낮고 성숙도가 높으면 정착형, 둘 다 높으면 확산형이다. (교재 03의 2절)</li>
-<li><strong>②.</strong> 문제 탐색, 문제 정의, 해결 방안 탐색, 타당성 검토의 순서다. 업무의 문제를 찾아낸 뒤 데이터의 문제로 정의하고, 풀 방법을 찾은 다음 타당성을 검토한다. (교재 02의 3절)</li>
-<li><strong>①.</strong> 빈칸을 확률적으로 채운 자료를 여러 벌 만들고(대치), 벌마다 분석한 뒤(분석), 결과를 하나로 합친다(결합). (교재 05의 3절)</li>
-<li><strong>④.</strong> 자료를 50개씩 다섯 조각으로 나누고, 한 조각을 검증용으로, 나머지 네 조각을 훈련용으로 쓴다. 훈련용은 50 × 4 = 200개, 검증용은 50개다. (교재 10의 2절)</li>
-</ol>
 
 
-</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> 맨 위로</a></main> <!-- /main -->

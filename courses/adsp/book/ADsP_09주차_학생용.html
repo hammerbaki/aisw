@@ -369,11 +369,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#자주-하는-실수와-오해" id="toc-자주-하는-실수와-오해" class="nav-link" data-scroll-target="#자주-하는-실수와-오해">7. 자주 하는 실수와 오해</a></li>
   <li><a href="#정리" id="toc-정리" class="nav-link" data-scroll-target="#정리">8. 정리</a></li>
   <li><a href="#참고-자료" id="toc-참고-자료" class="nav-link" data-scroll-target="#참고-자료">9. 참고 자료</a></li>
-  <li><a href="#주간-문항-세트-09" id="toc-주간-문항-세트-09" class="nav-link" data-scroll-target="#주간-문항-세트-09">주간 문항 세트 09</a>
-  <ul class="collapse">
-  <li><a href="#정답" id="toc-정답" class="nav-link" data-scroll-target="#정답">정답</a></li>
-  <li><a href="#풀이" id="toc-풀이" class="nav-link" data-scroll-target="#풀이">풀이</a></li>
-  </ul></li>
+  <li><a href="#주간-문항-세트-09" id="toc-주간-문항-세트-09" class="nav-link" data-scroll-target="#주간-문항-세트-09">주간 문항 세트 09</a></li>
   </ul>
 </nav>
     </div>
@@ -2046,7 +2042,7 @@ sigma^2 estimated as 0.001348:  log likelihood = 244.7,  aic = -483.4</code></pr
 </section>
 <section id="주간-문항-세트-09" class="level2">
 <h2 class="anchored" data-anchor-id="주간-문항-세트-09">주간 문항 세트 09</h2>
-<p>20문항이다. 1~10번은 수업에서 풀고 11~20번은 과제로 푼다. 1~15번은 이 장의 문항이고 16~20번은 앞 장의 복습이다. 실전의 문항당 시간으로는 36분이 걸린다. 정답과 풀이는 세트 뒤에 있다.</p>
+<p>20문항이다. 1~10번은 수업에서 풀고 11~20번은 과제로 푼다. 1~15번은 이 장의 문항이고 16~20번은 앞 장의 복습이다. 실전의 문항당 시간으로는 36분이 걸린다. 정답과 풀이는 교수가 수업에서 확인한다.</p>
 <p><strong>문항 1.</strong> 시계열의 정상성(약한 의미의 정상성)의 조건으로 가장 적절하지 않은 것은?</p>
 <ul>
 <li>① 평균이 시점에 관계없이 일정하다.</li>
@@ -2233,100 +2229,8 @@ sigma^2 estimated as 19769:  log likelihood = -630.63,  aic = 1267.25</code></pr
 <li>④ 그림의 가로축과 세로축의 방향은 원래 변수의 단위로 정해지므로 뒤집으면 다른 결과가 된다.</li>
 </ul>
 <p><code>범위: 데이터분석 &gt; 통계분석 &gt; 다변량 분석</code> <code>유형: 옳지 않은 것 고르기</code> <code>장: 8</code></p>
-<section id="정답" class="level3">
-<h3 class="anchored" data-anchor-id="정답">정답</h3>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>문항</th>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-<th>4</th>
-<th>5</th>
-<th>6</th>
-<th>7</th>
-<th>8</th>
-<th>9</th>
-<th>10</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>정답</td>
-<td>④</td>
-<td>③</td>
-<td>②</td>
-<td>①</td>
-<td>③</td>
-<td>②</td>
-<td>④</td>
-<td>②</td>
-<td>①</td>
-<td>④</td>
-</tr>
-</tbody>
-</table>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>문항</th>
-<th>11</th>
-<th>12</th>
-<th>13</th>
-<th>14</th>
-<th>15</th>
-<th>16</th>
-<th>17</th>
-<th>18</th>
-<th>19</th>
-<th>20</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>정답</td>
-<td>③</td>
-<td>②</td>
-<td>①</td>
-<td>①</td>
-<td>③</td>
-<td>④</td>
-<td>③</td>
-<td>①</td>
-<td>②</td>
-<td>④</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="풀이" class="level3">
-<h3 class="anchored" data-anchor-id="풀이">풀이</h3>
-<ol type="1">
-<li><strong>④.</strong> 정상 시계열의 공분산은 시점이 아니라 시차에만 의존한다. ④는 이것을 거꾸로 적었다. (1.2절)</li>
-<li><strong>③.</strong> 평균은 일정하고 분산이 일정하지 않은 경우이므로 변환을 한다. 차분(①, ②)은 평균이 일정하지 않을 때 쓴다. 이동평균(④)은 변동을 고르게 하여 흐름을 보는 방법이며 분산을 일정하게 만들지 않는다. (1.3절)</li>
-<li><strong>②.</strong> 계절 차분은 한 주기(4분기) 앞의 값을 뺀다. 13 - 10 = 3, 18 - 14 = 4, 25 - 20 = 5, 14 - 12 = 2. ①은 바로 앞의 값을 뺀 일반 차분이다. ③은 빼는 순서가 거꾸로다. (1.3절, 3.1절)</li>
-<li><strong>①.</strong> 계절 변동의 폭이 수준에 따라 커지면 승법 모형이 맞다. ③의 승법 모형의 계절 성분은 단위가 없는 비율이다. ④는 승법 모형의 설명이다. (2.2절)</li>
-<li><strong>③.</strong> 백색잡음은 평균과 분산이 일정하고 자기상관이 없는 정상 시계열이다. 추세와 계절성이 없다. (1.4절)</li>
-<li><strong>②.</strong> ①의 ACF는 한 시계열의 현재 값과 과거 값 사이의 상관이다. ③의 시차 0의 자기상관은 자기 자신과의 상관이므로 1이다. ④의 추세가 있는 시계열은 ACF가 아주 천천히 줄어든다. (3.2절, 3.3절)</li>
-<li><strong>④.</strong> AR(p) 모형에서 p 시차 뒤에 끊기는 것은 PACF다. ACF는 서서히 줄어든다. (4.1절, 4.2절, 4.4절)</li>
-<li><strong>②.</strong> ARIMA(p, d, q)에서 p = 2, d = 1, q = 0이다. 한 번 차분하면 AR(2)를 따른다. d가 1이므로 차분하기 전에는 정상 시계열이 아니다. (4.3절)</li>
-<li><strong>①.</strong> ACF가 q 시차 뒤에 끊기고 PACF가 서서히 줄어드는 것은 MA(q)다. 시차 2 뒤에 끊겼으므로 MA(2)다. AR(2)라면 PACF가 시차 2 뒤에 끊긴다. (4.4절)</li>
-<li><strong>④.</strong> ACF는 시차 20까지 서서히 낮아진다. PACF는 시차 1과 2의 막대만 파선 밖에 있고 시차 3부터는 모두 파선 안에 있다. PACF가 시차 2 뒤에 끊겼으므로 AR(2)다. 이 그림은 AR(2) 모형에서 난수로 만든 시계열로 그린 것이다. (4.4절, 6.4절)</li>
-<li><strong>③.</strong> <code>ar1</code>의 표준 오차는 <code>s.e.</code> 줄에서 <code>ar1</code> 아래에 있는 0.1161이다. 0.1466은 <code>intercept</code>의 표준 오차다. ①은 <code>order = c(1, 0, 0)</code>에서 p = 1, d = 0, q = 0이다. (6.5절)</li>
-<li><strong>②.</strong> AIC는 작을수록 좋은 모형이다. 세 값 가운데 1267.25가 가장 작다. ③의 로그 가능도는 클수록 좋다. ④는 차분 횟수가 같으므로 오히려 AIC로 견줄 수 있다. (4.5절, 6.5절)</li>
-<li><strong>①.</strong> 되풀이되지만 주기가 고정되어 있지 않고 경기 변동처럼 길게 오르내리는 변동은 순환 성분이다. 주기가 고정되어 있으면 계절 성분이다. (2.1절)</li>
-<li><strong>①.</strong> ACF가 아주 천천히 줄어드는 것은 추세가 있는 비정상 시계열의 모양이다. 차분을 한 뒤에 다시 자기상관 그림을 본다. ④는 끊긴 것이 아니라 서서히 줄어든 것이다. (3.3절, 5절의 단계 4)</li>
-<li><strong>③.</strong> ①의 이동평균법은 기간 안의 값에 같은 가중치를 준다. ②는 이동평균법에 가까운 설명이며 지수평활법은 모든 과거 값을 쓴다. ④는 기간이 길수록 매끄러워지고 최근의 변화에 둔하게 반응한다. (2.4절)</li>
-<li><strong>④.</strong> 삽입, 삭제, 갱신으로 내용이 계속 바뀌면서도 현재의 정확한 상태를 유지하는 것은 변화되는 데이터다. ①의 통합된 데이터는 같은 내용이 중복되어 저장되지 않는 것이고, ③의 공용 데이터는 여러 사용자가 함께 쓰는 것이다. (교재 01의 2절)</li>
-<li><strong>③.</strong> 일부분을 먼저 만들어 보이고 결과를 반영하여 고치는 것은 프로토타입 모델이다. ①의 폭포수 모델은 단계를 순차적으로 진행하고, ②의 나선형 모델은 같은 과정을 반복하며 점증적으로 개발한다. ④는 분석 과제를 발굴하는 방식이다. (교재 02의 2절)</li>
-<li><strong>①.</strong> ②는 집중 구조의 설명이고, ③은 기능 구조의 설명이다. ④의 기능 구조는 전사 관점의 핵심 분석이 어렵고 과거 실적의 분석에 머무를 가능성이 높다. (교재 03의 4절)</li>
-<li><strong>②.</strong> 표본 평균의 표준편차는 모표준편차 ÷ √n = 20 ÷ √100 = 2다. ①은 √n이 아니라 n으로 나눈 값이고, ④는 모표준편차 그대로다. (교재 06의 3절)</li>
-<li><strong>④.</strong> 다차원 척도법은 점 사이의 거리만 지키므로, 그림을 돌리거나 뒤집어도 같은 결과다. 축의 방향과 부호에는 뜻이 없고 축의 뜻은 분석자가 배치를 보고 해석한다. ①, ②, ③은 옳다. (교재 08의 2절)</li>
-</ol>
 
 
-</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> 맨 위로</a></main> <!-- /main -->
