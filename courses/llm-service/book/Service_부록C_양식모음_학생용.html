@@ -473,13 +473,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <blockquote class="blockquote">
-<p>「LLM 서비스 개발」 1~13장의 공통 부록 · 2026-11 기준(키트는 2026-11-14 판)</p>
+<p>「LLM 서비스 개발」 1~13장의 공통 부록 · 2026-11 기준(키트는 2026-11-17 판)</p>
 </blockquote>
 <p>이 부록은 각 장의 실습 키트에 흩어져 있는 양식(<code>*_양식.md</code>)과 템플릿(이슈·풀 리퀘스트 템플릿, 배포 워크플로, 설계 문서의 견본)을 장 순서대로 한곳에 모은 것이다. 이 과목의 1~13장은 공통 사례 「취업 준비 지원 서비스」(jobprep) 위에서 조사, 정의, 설계, 구현, 평가를 한 번씩 거친다. 같은 학기의 프로젝트실습Ⅰ에서는 팀이 자기 주제로 같은 절차를 되풀이한다. 그때 팀원 모두가 같은 형식으로 쓰고, 같은 ID로 문서를 서로 가리키고, 키트의 검사 도구를 그대로 돌릴 수 있도록 하는 것이 이 부록의 목적이다.</p>
 <p>절 번호는 장 번호와 같다. C-4는 4장의 양식, C-13은 13장의 양식이다. 각 양식은 다음 네 가지를 차례로 적는다.</p>
 <ol type="1">
 <li><strong>쓰는 곳.</strong> 어느 장의 어느 절에서 무엇을 만드는 데 쓰는가.</li>
-<li><strong>키트 경로.</strong> 받은 키트(<code>~/kits/</code>, 부록 A-8) 안의 경로. 배포 폴더 <code>$KIT_HOME</code> 아래에도 같은 경로로 있다.</li>
+<li><strong>키트 경로.</strong> 받은 키트(<code>~/kits/</code>, 부록 A-12-3) 안의 경로. 키트 저장소의 클론 <code>~/kits-repo</code> 아래에도 같은 경로로 있다.</li>
 <li><strong>양식 본문.</strong> 키트의 파일을 그대로 옮겼다. 긴 양식이나 공통 사례에만 쓰이는 부분은 핵심 칸만 싣고, 뺀 자리에 「(… 키트 원문 N~M줄 생략 …)」을 남겼다. 생략한 부분은 키트 경로의 원문을 본다. 본문 안의 칸 이름과 안내 문장은 원문 그대로이다.</li>
 <li><strong>프로젝트실습Ⅰ에서 바꿀 곳.</strong> 팀의 주제로 쓸 때 고칠 자리와 그대로 둘 자리.</li>
 </ol>
@@ -914,12 +914,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="c-1.-1장-요구-목록-요청과-비교-기록" class="level2">
 <h2 class="anchored" data-anchor-id="c-1.-1장-요구-목록-요청과-비교-기록">C-1. 1장: 요구 목록 요청과 비교 기록</h2>
-<p>1장 중심 실습(8절)에서 같은 프로그램을 한 줄 요청과 요구 목록 요청으로 각각 만들게 하고, 12개 항목으로 두 결과를 견준다. 두 양식은 이 실험에만 맞추어져 있으므로 프로젝트실습Ⅰ에서 그대로 쓰지 않는다. 가져다 쓸 것은 요구 목록의 짜임과 판정 규칙이다.</p>
+<p>1장 핵심 실습(8절)에서 같은 프로그램을 한 줄 요청과 요구 목록 요청으로 각각 만들게 하고, 12개 항목으로 두 결과를 견준다. 이어서 판정에서 드러난 빈틈 하나를 13번 요구로 더해 (다)로 다시 만들고, 13번이 풀렸는지와 1~12번의 회귀를 확인한다. 두 양식은 이 실험에만 맞추어져 있으므로 프로젝트실습Ⅰ에서 그대로 쓰지 않는다. 가져다 쓸 것은 요구 목록의 짜임과 판정 규칙이다.</p>
 <section id="c-1-1.-요청문-기록" class="level3">
 <h3 class="anchored" data-anchor-id="c-1-1.-요청문-기록">C-1-1. 요청문 기록</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 1장 8-1 「실험의 설계」, 8-2 「준비」. <code>~/llm-service-lab/ch01/요청문.md</code>로 복사해 두 요청문과 실험 조건을 기록한다.</li>
-<li><strong>키트 경로.</strong> <code>Service_01주차/요청문_양식.md</code> (65줄). 아래는 (나) 요구 목록 요청만 싣는다.</li>
+<li><strong>쓰는 곳.</strong> 1장 8-1 「실험의 설계」, 8-2 「준비」, 8-7 「빠진 요구의 보강」. <code>~/llm-service-lab/ch01/요청문.md</code>로 복사해 세 요청문((가), (나), (다))과 실험 조건을 기록한다.</li>
+<li><strong>키트 경로.</strong> <code>Service_01주차/요청문_양식.md</code> (102줄). 아래는 (나) 요구 목록 요청과 (다)의 머리, (다)에서 더한 <code>[보강]</code> 13번만 싣는다. (다)의 블록은 (나)의 블록에 13번 한 줄을 더한 것이다.</li>
 </ul>
 <div class="code-label where-server">
 <span>파일: ~/kits/Service_01주차/요청문_양식.md</span>
@@ -933,7 +933,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="in">채용 공고 마감일 알림 명령줄 프로그램을 dday.py 한 파일로 만들어줘. 아래 요구를 모두 지켜줘.</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="in">[입력]</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="in">1. 실행 형식은 python3 dday.py &lt;CSV 파일 경로&gt; [--today YYYY-MM-DD] 이다. 실행 중에 사용자에게 입력을 묻지 않는다.</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="in">1. 실행 형식은 python dday.py &lt;CSV 파일 경로&gt; [--today YYYY-MM-DD] 이다. 실행 중에 사용자에게 입력을 묻지 않는다.</span></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="in">2. CSV의 첫 줄은 머리글 "회사,공고명,마감일"이고, 마감일은 YYYY-MM-DD 형식이다.</span></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="in">3. --today를 주면 그 날짜를 기준일로 쓰고, 없으면 실행한 날의 날짜를 쓴다.</span></span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="in">4. 엑셀에서 "CSV UTF-8"로 저장한 파일(맨 앞에 BOM이 있고 줄 끝이 CRLF)도 읽는다.</span></span>
@@ -954,7 +954,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="in">다 만들면 실행 방법을 한 줄로 알려줘.</span></span>
 <span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>(… 키트 원문 56~65줄 생략 …)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>(… 키트 원문 56~60줄 생략 …)</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="fu">## (다) 보강한 요구 목록 요청</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>(나)의 결과를 점검한 뒤에 한다(강의안 8-7절). 먼저 <span class="in">`점검자료/공고_모두지남.csv`</span>로 (나) 프로그램이 13번 요구를 지키지 않는다는 것(빠진 요구)을 확인하고, 아래 블록을 <span class="in">`~/llm-service-lab/ch01/다_보강/`</span>에서 새로 시작한 Claude Code에 보낸다. (나)의 블록에 <span class="in">`[보강]`</span>의 13번 한 줄만 더한 것이다. (나) 프로그램을 고쳐 달라고 하지 않고, 고친 요구 목록으로 처음부터 다시 만들게 한다.</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>(… 키트 원문 64~87줄 생략 …)</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">보강</span><span class="co">]</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="ss">13. </span>표시할 공고는 없고 지난 공고만 있으면, 7번의 「지난 공고 N건」 줄과 10번의 문장을 따로 쓰지 않고 「표시할 공고가 없습니다. (지난 공고 N건)」 한 줄만 표준 출력으로 낸다. 공고가 하나도 없는 파일은 10번대로 「표시할 공고가 없습니다.」만 낸다.</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>(… 키트 원문 90~102줄 생략 …)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong>프로젝트실습Ⅰ에서 바꿀 곳.</strong> 요청문 전체는 쓰지 않는다. Claude Code에 기능 하나를 맡길 때 요청을 <code>[입력]</code>, <code>[출력]</code>, <code>[예외]</code>, <code>[제약]</code>의 네 묶음으로 나누고, 묶음마다 번호를 매긴 관찰 가능한 문장으로 쓰는 짜임을 가져다 쓴다. 6장 이후에는 이 문장들이 명세서의 EARS 요구가 되므로, 요청문에 요구 문장을 다시 쓰지 않고 <code>REQ-</code> 번호로 가리킨다(C-6 프로젝트 규칙).</li>
 </ul>
@@ -962,19 +969,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="c-1-2.-비교-기록점검표" class="level3">
 <h3 class="anchored" data-anchor-id="c-1-2.-비교-기록점검표">C-1-2. 비교 기록(점검표)</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 1장 8절의 판정. <code>~/llm-service-lab/ch01/비교.md</code>로 복사해 두 프로그램을 12개 항목으로 판정한다.</li>
-<li><strong>키트 경로.</strong> <code>Service_01주차/점검표_양식.md</code> (66줄). 1부 점검 항목의 첫 두 줄과 3~5부만 싣는다.</li>
+<li><strong>쓰는 곳.</strong> 1장 8-5 「점검 1~12」, 8-7 「빠진 요구의 보강」. <code>~/llm-service-lab/ch01/비교.md</code>로 복사해 두 프로그램을 12개 항목으로 판정하고, 5부에서 13번 요구와 (다)를 판정한다.</li>
+<li><strong>키트 경로.</strong> <code>Service_01주차/점검표_양식.md</code> (89줄). 1부 점검 항목의 첫 두 줄과 3~6부만 싣는다.</li>
 </ul>
 <div class="code-label where-server">
 <span>파일: ~/kits/Service_01주차/점검표_양식.md</span>
 </div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># 비교 기록: 한 줄 요청과 요구 목록 요청 (1장 중심 실습)</span></span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># 비교 기록: 한 줄 요청과 요구 목록 요청 (1장 핵심 실습)</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>(… 키트 원문 2~9줄 생략 …)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1부. 점검 방법 (고치지 않는다)</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 번호 <span class="pp">|</span> 구분 <span class="pp">|</span> 요구 <span class="pp">|</span> 점검 명령 (나_요구목록 기준) <span class="pp">|</span> 통과 기준 <span class="pp">|</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|---|</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 1 <span class="pp">|</span> 입력 <span class="pp">|</span> CSV 경로를 명령줄 인자로 받고, 실행 중 입력을 묻지 않는다 <span class="pp">|</span> <span class="in">`python3 dday.py ../점검자료/공고_기본.csv --today 2027-03-10`</span> <span class="pp">|</span> 묻는 말 없이 공고 목록이 나온다 <span class="pp">|</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 1 <span class="pp">|</span> 입력 <span class="pp">|</span> CSV 경로를 명령줄 인자로 받고, 실행 중 입력을 묻지 않는다 <span class="pp">|</span> <span class="in">`python dday.py ../점검자료/공고_기본.csv --today 2027-03-10`</span> <span class="pp">|</span> 묻는 말 없이 공고 목록이 나온다 <span class="pp">|</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 2 <span class="pp">|</span> 입력 <span class="pp">|</span> <span class="in">`--today`</span>로 기준일을 정한다 <span class="pp">|</span> 위 명령과 <span class="in">`--today 2027-03-01`</span>로 바꾼 명령을 비교 <span class="pp">|</span> 가람소프트가 03-10 기준 D-2, 03-01 기준 D-11 <span class="pp">|</span></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>(… 키트 원문 16~44줄 생략 …)</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## 3부. AI가 스스로 정한 것</span></span>
@@ -994,25 +1001,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>1.</span>
 <span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>2.</span>
 <span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="fu">## 5부. 정리 (세 문장)</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="fu">## 5부. 빠진 요구의 보강: 13번과 (다)의 판정</span></span>
 <span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>두 결과의 가장 큰 차이:</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>(나)에서도 X나 △가 나온 항목과 그 까닭:</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>다음에 요청문을 쓴다면 더할 요구 하나:</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>4부의 빈틈 가운데 하나(지난 공고만 있을 때의 출력)를 13번 요구로 더하고, 고친 요구 목록으로 (다)를 새로 만들어 판정한다. 13번의 점검 방법은 다음과 같다(고치지 않는다).</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 번호 <span class="pp">|</span> 구분 <span class="pp">|</span> 요구 <span class="pp">|</span> 점검 명령 <span class="pp">|</span> 통과 기준 <span class="pp">|</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|---|</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 13 <span class="pp">|</span> 보강 <span class="pp">|</span> 지난 공고만 있으면 한 줄 「표시할 공고가 없습니다. (지난 공고 N건)」 <span class="pp">|</span> <span class="in">`python dday.py ../점검자료/공고_모두지남.csv --today 2027-03-10`</span> <span class="pp">|</span> 출력이 <span class="in">`표시할 공고가 없습니다. (지난 공고 3건)`</span> 한 줄뿐이다 <span class="pp">|</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>**문제의 재현.** (다)를 만들기 전에 (나) 프로그램으로 13번 명령을 실행한 결과이다.</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>(나)의 13번 출력: 「출력 그대로」</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>(나)의 13번 판정: 「 」</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>**(다)의 판정.** 1~12번은 <span class="in">`bash 점검_모아보기.sh 다_보강/dday.py`</span>의 출력으로, 13번은 위 명령으로 판정한다. 1~12번에서 (나)는 <span class="in">`O`</span>였는데 (다)에서 <span class="in">`O`</span>가 아니게 된 항목은 「회귀」 칸에 적는다.</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 번호 <span class="pp">|</span> (다) 판정 <span class="pp">|</span> (다) 근거 <span class="pp">|</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 1~12 <span class="pp">|</span> 「O의 수 /12」 <span class="pp">|</span> 「(나)와 달라진 항목과 그 출력」 <span class="pp">|</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 13 <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>회귀(앞에서 지키던 요구를 다시 만든 판이 어긴 것): 「없음 또는 번호와 근거」</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>(다)에서 AI가 새로 정한 것 하나: 「예: (지난 공고 N건)을 어느 통로로 냈는가」</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="fu">## 6부. 정리 (세 문장)</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>두 결과의 가장 큰 차이:</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>(나)에서도 X나 △가 나온 항목과 그 까닭:</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>(다)가 보여 준 것(13번이 풀렸는가, 회귀가 있었는가)과, 다음에 요청문을 쓴다면 더할 요구 하나:</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li><strong>프로젝트실습Ⅰ에서 바꿀 곳.</strong> 점검 항목은 1장의 <code>dday.py</code>에만 맞는다. 가져다 쓸 것은 판정 기호(<code>O</code>, <code>△</code>, <code>X</code>, <code>-</code>), 「사람이 직접 실행하고 판정한다」는 규칙, 3부 「AI가 스스로 정한 것」과 4부 「요구 목록이 정하지 않은 것」의 두 물음이다. 팀이 Claude Code에 맡긴 결과를 검토할 때 이 두 물음의 답을 풀 리퀘스트의 「AI 도구의 사용」 칸(C-3)이나 명세의 열린 질문(C-6)으로 옮긴다.</li>
+<li><strong>프로젝트실습Ⅰ에서 바꿀 곳.</strong> 점검 항목은 1장의 <code>dday.py</code>에만 맞는다. 가져다 쓸 것은 판정 기호(<code>O</code>, <code>△</code>, <code>X</code>, <code>-</code>), 「사람이 직접 실행하고 판정한다」는 규칙, 3부 「AI가 스스로 정한 것」과 4부 「요구 목록이 정하지 않은 것」의 두 물음, 5부의 「재현 → 요구 보강 → 다시 만들기 → 회귀 확인」 순서이다. 팀이 Claude Code에 맡긴 결과를 검토할 때 두 물음의 답을 풀 리퀘스트의 「AI 도구의 사용」 칸(C-3)이나 명세의 열린 질문(C-6)으로 옮긴다. 빈틈을 찾으면 결과를 고쳐 달라고 하기보다 요구를 먼저 보강하고, 앞의 점검을 다시 돌려 회귀가 없는지 본다.</li>
 </ul>
 <hr>
 </section>
 </section>
 <section id="c-2.-2장-작업기록" class="level2">
 <h2 class="anchored" data-anchor-id="c-2.-2장-작업기록">C-2. 2장: 작업기록</h2>
-<p>2장 중심 실습(12절)에서 Claude Code의 변경을 커밋 단위로 기록하고 되돌리는 과정을 적는 양식이다. 권한 확인, 계획 모드, 체크포인트 실험처럼 2장의 실습 순서에 맞춘 칸이 대부분이므로 프로젝트실습Ⅰ에서는 그대로 쓰지 않는다.</p>
+<p>2장 핵심 실습(12절)에서 Claude Code의 변경을 커밋 단위로 나누어 기록하고 되돌리는 과정을 적는 양식이다. 양식의 절은 핵심 실습의 순서(1 체크포인트 시험, 2 권한 확인, 3 계획, 4 직접 확인, 5 diff, 6 커밋, 7 되돌린 까닭, 8 원격, 9 [선택] 맡긴 커밋의 점검)를 따른다. 2장의 실습 순서에 맞춘 칸이 대부분이므로 프로젝트실습Ⅰ에서는 그대로 쓰지 않는다.</p>
 <section id="c-2-1.-작업기록" class="level3">
 <h3 class="anchored" data-anchor-id="c-2-1.-작업기록">C-2-1. 작업기록</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 2장 0-1에서 <code>~/llm-service-lab/ch02/작업기록.md</code>로 복사하고, 12절 중심 실습을 하면서 채운다. 이 장의 마지막 커밋으로 저장소에 남는다.</li>
-<li><strong>키트 경로.</strong> <code>Service_02주차/작업기록_양식.md</code> (76줄). 6절 「Claude Code에게 맡긴 커밋의 점검」만 싣는다.</li>
+<li><strong>쓰는 곳.</strong> 2장 12-2에서 <code>~/llm-service-lab/ch02/작업기록.md</code>로 복사하고, 12절 핵심 실습을 하면서 채운다. 12-9의 작업기록 커밋으로 저장소에 남는다.</li>
+<li><strong>키트 경로.</strong> <code>Service_02주차/작업기록_양식.md</code> (81줄). 머리, 5절 「git diff로 읽은 변경」, 9절 「[선택] Claude Code에게 맡긴 커밋의 점검」만 싣는다.</li>
 </ul>
 <div class="code-label where-server">
 <span>파일: ~/kits/Service_02주차/작업기록_양식.md</span>
@@ -1021,20 +1051,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>복사해 쓴다: <span class="in">`cp ~/kits/Service_02주차/작업기록_양식.md ~/llm-service-lab/ch02/작업기록.md`</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>빈칸은 실습하면서 채운다. 이 파일은 중심 실습의 마지막 커밋으로 저장소에 남는다. 비밀번호, 토큰, API 키는 적지 않는다.</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>(… 키트 원문 6~55줄 생략 …)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## 6. Claude Code에게 맡긴 커밋의 점검</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>빈칸은 핵심 실습(12절)을 하면서 채운다. 이 파일은 핵심 실습의 마지막 커밋으로 저장소에 남는다. 비밀번호, 토큰, API 키는 적지 않는다.</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>(… 키트 원문 6~36줄 생략 …)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## 5. git diff로 읽은 변경 (12-6)</span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 점검 항목 <span class="pp">|</span> 확인한 명령 <span class="pp">|</span> 결과 <span class="pp">|</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 들어간 파일이 지시한 파일뿐인가 <span class="pp">|</span> <span class="in">`git show --stat HEAD`</span> <span class="pp">|</span> <span class="pp">|</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 비밀 정보가 없는가 <span class="pp">|</span> <span class="in">`git show HEAD`</span> <span class="pp">|</span> <span class="pp">|</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 메시지가 규칙 카드에 맞는가 <span class="pp">|</span> <span class="in">`git log -1`</span> <span class="pp">|</span> <span class="pp">|</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 덧붙은 줄(기여 표시 등)이 있는가 <span class="pp">|</span> <span class="in">`git log -1 --format=%B`</span> <span class="pp">|</span> <span class="pp">|</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>(… 키트 원문 65~76줄 생략 …)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="in">`git diff --stat`</span>과 <span class="in">`git diff 파일`</span>로 읽고 적는다.</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 파일 <span class="pp">|</span> 바뀐 줄(+/-) <span class="pp">|</span> 변경 1·2·3 중 어디에 속하나 <span class="pp">|</span> 지시와 맞는가 <span class="pp">|</span> 지시에 없던 변경 <span class="pp">|</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|---|</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>기존 테스트가 바뀌었거나 실패하였는가(갈래 ① 또는 ②). 고치기 전과 후의 테스트 이름, 그 테스트가 지키던 요구:</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>(… 키트 원문 50~72줄 생략 …)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="fu">## 9. [선택] Claude Code에게 맡긴 커밋의 점검 (12-10)</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 점검 항목 <span class="pp">|</span> 확인한 명령 <span class="pp">|</span> 결과 <span class="pp">|</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 기존 테스트를 고치지 않았는가 <span class="pp">|</span> <span class="in">`git diff ch02/deadline/tests/test_deadline.py`</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 들어간 파일이 지시한 파일뿐인가 <span class="pp">|</span> <span class="in">`git show --stat HEAD`</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 비밀 정보가 없는가 <span class="pp">|</span> <span class="in">`git show HEAD`</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 메시지가 규칙 카드에 맞는가 <span class="pp">|</span> <span class="in">`git log -1`</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 덧붙은 줄(기여 표시 등)이 있는가 <span class="pp">|</span> <span class="in">`git log -1 --format=%B`</span> <span class="pp">|</span> <span class="pp">|</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li><strong>프로젝트실습Ⅰ에서 바꿀 곳.</strong> 6절의 네 점검(들어간 파일, 비밀 정보, 메시지 규칙, 덧붙은 줄)은 팀원이 Claude Code에 커밋을 맡길 때마다 그대로 쓴다. 메시지 규칙은 2장의 규칙 카드 대신 팀 README의 작업 규칙(C-3)과 프로젝트 규칙의 커밋 규칙(C-6)을 기준으로 삼는다. 3절 「git diff로 읽은 변경」의 표는 풀 리퀘스트의 리뷰(C-3 리뷰 점검표)로 대신한다.</li>
+<li><strong>프로젝트실습Ⅰ에서 바꿀 곳.</strong> 9절의 다섯 점검(기존 테스트, 들어간 파일, 비밀 정보, 메시지 규칙, 덧붙은 줄)은 팀원이 Claude Code에 커밋을 맡길 때마다 그대로 쓴다. 기존 테스트의 경로는 팀 저장소의 것으로 바꾼다. 메시지 규칙은 2장의 규칙 카드 대신 팀 README의 작업 규칙(C-3)과 프로젝트 규칙의 커밋 규칙(C-6)을 기준으로 삼는다. 5절 「git diff로 읽은 변경」의 표는 풀 리퀘스트의 리뷰(C-3 리뷰 점검표)로 대신하되, 「지시에 없던 변경」과 「기존 테스트가 바뀌었는가」의 두 물음은 리뷰 때 그대로 묻는다.</li>
 </ul>
 <hr>
 </section>
@@ -1091,13 +1134,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="even">
 <td>리뷰 점검표</td>
 <td><code>Service_03주차/리뷰점검표.md</code></td>
-<td>5-4, 5-7, 9-4</td>
+<td>5-4, 9-2, 9-4</td>
 <td>저장소에 두지 않고 리뷰할 때 옆에 둔다</td>
 </tr>
 <tr class="odd">
 <td>협업 기록</td>
 <td><code>Service_03주차/협업기록_양식.md</code></td>
-<td>9-6</td>
+<td>4-5, 9-6</td>
 <td>수업 전용</td>
 </tr>
 </tbody>
@@ -1286,7 +1329,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <section id="c-3-6.-풀-리퀘스트-리뷰-점검표" class="level3">
 <h3 class="anchored" data-anchor-id="c-3-6.-풀-리퀘스트-리뷰-점검표">C-3-6. 풀 리퀘스트 리뷰 점검표</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 3장 5-4 「좋은 리뷰의 기준」, 5-7 「리뷰 초안의 검토」, 9-4 「충돌 해결과 리뷰」. 리뷰어가 「Files changed」 탭을 열기 전에 옆에 둔다.</li>
+<li><strong>쓰는 곳.</strong> 3장 5-4 「좋은 리뷰의 기준」, 핵심 실습 9-2·9-4의 리뷰어 단계(9-4에서는 Claude Code가 이 점검표로 쓴 리뷰 초안을 사람이 diff와 대조한다). 리뷰어가 「Files changed」 탭을 열기 전에 옆에 둔다.</li>
 <li><strong>키트 경로.</strong> <code>Service_03주차/리뷰점검표.md</code></li>
 </ul>
 <div class="code-label where-server">
@@ -1335,7 +1378,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <section id="c-3-7.-협업-기록" class="level3">
 <h3 class="anchored" data-anchor-id="c-3-7.-협업-기록">C-3-7. 협업 기록</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 3장 0-1에서 개인 실습 저장소의 <code>ch03/협업기록.md</code>로 복사하고, 9-6 「협업기록과 점검」에서 채운다.</li>
+<li><strong>쓰는 곳.</strong> 3장 4-5 「따라 하기: 개인 저장소의 이슈에서 병합까지」에서 개인 실습 저장소의 <code>ch03/협업기록.md</code>로 복사하고, 9-6 「협업기록과 점검」에서 채운다.</li>
 <li><strong>키트 경로.</strong> <code>Service_03주차/협업기록_양식.md</code> (49줄). 머리의 기본 정보만 싣는다. 본문은 1절 풀 리퀘스트, 2절 리뷰, 3절 병합 충돌, 4절 Claude Code의 사용, 5절 연습 저장소의 충돌 해결, 6절 돌아보기이다.</li>
 </ul>
 <div class="code-label where-server">
@@ -1359,7 +1402,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 </section>
 <section id="c-4.-4장-시장-조사-보고" class="level2">
 <h2 class="anchored" data-anchor-id="c-4.-4장-시장-조사-보고">C-4. 4장: 시장 조사 보고</h2>
-<p>4장 중심 실습(10절)은 공공 통계와 경쟁 서비스 다섯 개 이상을 조사해 시장 조사 보고 하나를 만든다. 보고 본문(<code>시장조사.md</code>)이 나머지 네 파일을 요약해 가리키는 구조이다. 4장 0-1에서 다섯 양식을 <code>ch04/</code>로 복사하며, 파일 이름은 <code>_양식</code>을 뺀 이름(<code>시장조사.md</code> 등)으로 한다.</p>
+<p>4장 핵심 실습(10절)은 공공 통계와 경쟁 서비스 다섯 개 이상을 조사해 시장 조사 보고 하나를 만든다. 보고 본문(<code>시장조사.md</code>)이 나머지 네 파일을 요약해 가리키는 구조이다. 4장 0-1에서 다섯 양식을 <code>ch04/</code>로 복사하며, 파일 이름은 <code>_양식</code>을 뺀 이름(<code>시장조사.md</code> 등)으로 한다.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
@@ -1379,31 +1422,31 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <tr class="odd">
 <td>시장 조사 보고</td>
 <td><code>Service_04주차/시장조사_양식.md</code></td>
-<td>1~4절, 9절, 10-3, 10-6</td>
+<td>1~4절, 9절, 10-3, 10-4, 10-6, 10-7</td>
 <td><code>ch04/시장조사.md</code></td>
 </tr>
 <tr class="even">
 <td>경쟁 서비스 비교표</td>
 <td><code>Service_04주차/경쟁서비스_비교표_양식.md</code></td>
-<td>5절, 10-4</td>
+<td>5절, 10-5</td>
 <td><code>ch04/경쟁서비스_비교표.md</code></td>
 </tr>
 <tr class="odd">
 <td>포지셔닝 맵</td>
 <td><code>Service_04주차/포지셔닝_양식.md</code></td>
-<td>6절, 10-7</td>
+<td>6절, 10-8</td>
 <td><code>ch04/포지셔닝.md</code></td>
 </tr>
 <tr class="even">
 <td>가치 제안</td>
 <td><code>Service_04주차/가치제안_양식.md</code></td>
-<td>7절, 10-7</td>
+<td>7절, 10-8</td>
 <td><code>ch04/가치제안.md</code></td>
 </tr>
 <tr class="odd">
 <td>출처 대조 기록</td>
 <td><code>Service_04주차/출처대조_양식.md</code></td>
-<td>8-4, 10-5</td>
+<td>8-4, 10-6</td>
 <td><code>ch04/출처대조.md</code></td>
 </tr>
 <tr class="even">
@@ -1418,7 +1461,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <section id="c-4-1.-시장-조사-보고" class="level3">
 <h3 class="anchored" data-anchor-id="c-4-1.-시장-조사-보고">C-4-1. 시장 조사 보고</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 4장 10절 중심 실습의 본 보고. 2절 조사 질문, 4절 시장 규모(TAM, SAM, SOM), 9절 가정, 10절 출처가 핵심이고, 5~7절은 다른 파일의 요약이다.</li>
+<li><strong>쓰는 곳.</strong> 4장 10절 핵심 실습의 본 보고. 2절 조사 질문, 4절 시장 규모(TAM, SAM, SOM), 9절 가정, 10절 출처가 핵심이고, 5~7절은 다른 파일의 요약이다.</li>
 <li><strong>키트 경로.</strong> <code>Service_04주차/시장조사_양식.md</code> (93줄). 3절 「방법과 자료」, 4-2의 계산 칸, 5~7절(다른 파일의 요약을 옮기는 자리)은 뺐다.</li>
 </ul>
 <div class="code-label where-server">
@@ -1495,7 +1538,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <section id="c-4-2.-경쟁-서비스-기능-비교표" class="level3">
 <h3 class="anchored" data-anchor-id="c-4-2.-경쟁-서비스-기능-비교표">C-4-2. 경쟁 서비스 기능 비교표</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 4장 5절 「경쟁 서비스의 분류와 기능 비교」, 10-4. 서비스 다섯 개 이상, 기능 열 개 이상을 화면에서 직접 관찰해 ○, △, -로 적는다.</li>
+<li><strong>쓰는 곳.</strong> 4장 5절 「경쟁 서비스의 분류와 기능 비교」, 10-5. 서비스 다섯 개 이상, 기능 열 개 이상을 화면에서 직접 관찰해 ○, △, -로 적는다.</li>
 <li><strong>키트 경로.</strong> <code>Service_04주차/경쟁서비스_비교표_양식.md</code></li>
 </ul>
 <div class="code-label where-server">
@@ -1546,7 +1589,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <section id="c-4-3.-포지셔닝-맵" class="level3">
 <h3 class="anchored" data-anchor-id="c-4-3.-포지셔닝-맵">C-4-3. 포지셔닝 맵</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 4장 6절 「포지셔닝 맵」, 10-7. 비교표에서 점수를 정하는 규칙을 먼저 쓰고, 그 점수로 mermaid 사분면 그림을 그린다.</li>
+<li><strong>쓰는 곳.</strong> 4장 6절 「포지셔닝 맵」, 10-8. 비교표에서 점수를 정하는 규칙을 먼저 쓰고, 그 점수로 mermaid 사분면 그림을 그린다.</li>
 <li><strong>키트 경로.</strong> <code>Service_04주차/포지셔닝_양식.md</code></li>
 </ul>
 <div class="code-label where-server">
@@ -1597,7 +1640,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <section id="c-4-4.-가치-제안" class="level3">
 <h3 class="anchored" data-anchor-id="c-4-4.-가치-제안">C-4-4. 가치 제안</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 4장 7절 「가치 제안」, 10-7. Strategyzer의 가치 제안 캔버스로 고객 프로필(업무, 불편, 이득)과 가치 맵을 맞추어 보고 가치 제안 문장 하나를 쓴다. 5장 인터뷰 가이드가 이 파일을 근거로 삼는다.</li>
+<li><strong>쓰는 곳.</strong> 4장 7절 「가치 제안」, 10-8. Strategyzer의 가치 제안 캔버스로 고객 프로필(업무, 불편, 이득)과 가치 맵을 맞추어 보고 가치 제안 문장 하나를 쓴다. 5장 인터뷰 가이드가 이 파일을 근거로 삼는다.</li>
 <li><strong>키트 경로.</strong> <code>Service_04주차/가치제안_양식.md</code> (57줄). 2절 「가치 맵」(제품·서비스, 불편 해소, 이득 창출의 표)은 뺐다.</li>
 </ul>
 <div class="code-label where-server">
@@ -1650,7 +1693,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <section id="c-4-5.-출처-대조-기록" class="level3">
 <h3 class="anchored" data-anchor-id="c-4-5.-출처-대조-기록">C-4-5. 출처 대조 기록</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 4장 8-4 「출처 대조 절차」, 10-5. 시장 조사 보고의 수치마다 원문을 열어 표 이름, 기준 시점, 단위, 분모를 확인하고 일치, 불일치, 확인 불가를 판정한다. AI가 쓴 조사 초안을 사람이 검증한 기록이다.</li>
+<li><strong>쓰는 곳.</strong> 4장 8-4 「출처 대조 절차」, 10-6 「출처 대조와 고치기」. 시장 조사 보고의 수치마다 원문을 열어 표 이름, 기준 시점, 단위, 분모를 확인하고 일치, 불일치, 확인 불가를 판정한다. AI가 쓴 조사 초안을 사람이 검증한 기록이다.</li>
 <li><strong>키트 경로.</strong> <code>Service_04주차/출처대조_양식.md</code></li>
 </ul>
 <div class="code-label where-server">
@@ -1687,7 +1730,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a><span class="in">「링크점검.sh 의 출력을 붙인다」</span></span>
 <span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li><strong>프로젝트실습Ⅰ에서 바꿀 곳.</strong> 「대조한 사람」은 팀원의 GitHub 아이디로 적고, 수치마다 보고를 쓴 사람과 다른 팀원이 대조하는 것을 권한다. 3절의 링크 점검은 <code>bash ~/kits/Service_04주차/도구/링크점검.sh docs/조사/시장조사.md</code>처럼 팀 저장소의 파일 경로를 넘겨 실행한다. 쓰는 법은 4장 10-5를 따른다.</li>
+<li><strong>프로젝트실습Ⅰ에서 바꿀 곳.</strong> 「대조한 사람」은 팀원의 GitHub 아이디로 적고, 수치마다 보고를 쓴 사람과 다른 팀원이 대조하는 것을 권한다. 3절의 링크 점검은 <code>bash ~/kits/Service_04주차/도구/링크점검.sh docs/조사/시장조사.md</code>처럼 팀 저장소의 파일 경로를 넘겨 실행한다. 쓰는 법은 4장 10-6을 따른다.</li>
 </ul>
 </section>
 <section id="c-4-6.-조사-프롬프트-견본" class="level3">
@@ -1720,7 +1763,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 </section>
 <section id="c-5.-5장-사용자-조사와-페르소나" class="level2">
 <h2 class="anchored" data-anchor-id="c-5.-5장-사용자-조사와-페르소나">C-5. 5장: 사용자 조사와 페르소나</h2>
-<p>5장 중심 실습(11절)은 동료 인터뷰 두 건의 기록에서 친화도 분석, 페르소나 두 명, 문제 정의 세 개를 차례로 끌어낸다. 모든 주장 끝에 인터뷰 기록의 줄을 <code>[인터뷰_01:L12]</code> 형식으로 달고, <code>tools/check_trace.py</code>가 그 줄이 실제로 있는지 검사한다. 6장의 명세서가 이 장의 페르소나 ID(<code>PS-1</code>)와 문제 ID(<code>P-01</code>)를 가리킨다.</p>
+<p>5장 핵심 실습(11절)은 동료 인터뷰 두 건의 기록에서 친화도 분석, 페르소나 두 명, 문제 정의 세 개를 차례로 끌어낸다. 모든 주장 끝에 인터뷰 기록의 줄을 <code>[인터뷰_01:L12]</code> 형식으로 달고, <code>tools/check_trace.py</code>가 그 줄이 실제로 있는지 검사한다. 6장의 명세서가 이 장의 페르소나 ID(<code>PS-1</code>)와 문제 ID(<code>P-01</code>)를 가리킨다.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
@@ -1776,20 +1819,20 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <tr class="odd">
 <td>질문 교정 연습</td>
 <td><code>Service_05주차/연습/질문교정_양식.md</code></td>
-<td>3-5</td>
+<td>3-6 [선택]</td>
 <td><code>ch05/질문교정.md</code> (제출하지 않음)</td>
 </tr>
 <tr class="even">
 <td>설문 문항 연습</td>
 <td><code>Service_05주차/연습/설문문항_양식.md</code></td>
-<td>6-5</td>
+<td>6-5 [선택]</td>
 <td><code>ch05/설문문항.md</code> (제출하지 않음)</td>
 </tr>
 </tbody>
 </table>
-<p>5장 공통으로 바꿀 곳: 대상 사용자와 근거 파일의 경로(<code>ch04/</code> → <code>docs/조사/</code>, <code>ch05/</code> → <code>docs/조사/</code>)를 바꾼다. 기록 파일의 이름 <code>인터뷰_NN.md</code>, 인용 형식 <code>[인터뷰_01:L12]</code>, ID <code>PS-1</code>과 <code>P-01</code>은 바꾸지 않는다. 근거 검사는 팀 저장소에서 다음처럼 실행한다(쓰는 법은 5장 10절). 인터뷰 기록의 비식별 검사(5장 4절)도 같은 폴더에 대해 한다.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> ~/kits/Service_05주차/tools/check_trace.py docs/조사/친화도.md docs/조사/페르소나.md docs/조사/문제정의.md <span class="at">--records</span> docs/조사/기록</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> ~/kits/Service_05주차/tools/check_pii.py docs/조사/기록</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>5장 공통으로 바꿀 곳: 대상 사용자와 근거 파일의 경로(<code>ch04/</code> → <code>docs/조사/</code>, <code>ch05/</code> → <code>docs/조사/</code>)를 바꾼다. 기록 파일의 이름 <code>인터뷰_NN.md</code>, 인용 형식 <code>[인터뷰_01:L12]</code>, ID <code>PS-1</code>과 <code>P-01</code>은 바꾸지 않는다. 근거 검사는 가상 환경을 켠 터미널(부록 A-13)의 팀 저장소에서 다음처럼 실행한다(쓰는 법은 5장 10절). 인터뷰 기록의 비식별 검사(5장 4절)도 같은 폴더에 대해 한다.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> ~/kits/Service_05주차/tools/check_trace.py docs/조사/친화도.md docs/조사/페르소나.md docs/조사/문제정의.md <span class="at">--records</span> docs/조사/기록</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> ~/kits/Service_05주차/tools/check_pii.py docs/조사/기록</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="c-5-1.-인터뷰-가이드" class="level3">
 <h3 class="anchored" data-anchor-id="c-5-1.-인터뷰-가이드">C-5-1. 인터뷰 가이드</h3>
 <ul>
@@ -1807,7 +1850,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>판과 날짜: v1, 「날짜」</span>
 <span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>대상: 전문대학 2학년 취업 준비생 (같은 수업의 수강생)</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>형식: 1대1 대면 인터뷰, 12~15분, 녹음하지 않음, 진행자가 요약 기록</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>형식: 1대1 대면 인터뷰, 8~10분, 녹음하지 않음, 진행자가 요약 기록</span>
 <span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>근거로 삼은 앞 장 결과: <span class="in">`ch04/가치제안.md`</span>, <span class="in">`ch04/경쟁서비스_비교표.md`</span></span>
 <span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="fu">## 연구 질문</span></span>
@@ -1819,7 +1862,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>RQ3: 「」</span>
 <span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>(… 키트 원문 20~33줄 생략 …)</span>
-<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a><span class="fu">## 3. 본 질문 (8~10분)</span></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a><span class="fu">## 3. 본 질문 (5~7분, 3~4개)</span></span>
 <span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; 열린 질문으로 쓰고, 가능하면 "가장 최근에 ~했던 때"처럼 과거의 구체적 경험을 묻는다. 후속 질문은 답을 더 깊게 하는 짧은 질문이다.</span></span>
 <span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a></span>
@@ -1850,7 +1893,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <section id="c-5-2.-인터뷰-동의-문구" class="level3">
 <h3 class="anchored" data-anchor-id="c-5-2.-인터뷰-동의-문구">C-5-2. 인터뷰 동의 문구</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 5장 4절 「동의와 비식별화」. 인터뷰를 시작하기 전에 진행자가 소리 내어 읽어 주고 구두 동의를 받는다. 동의를 받지 못하면 인터뷰를 하지 않는다.</li>
+<li><strong>쓰는 곳.</strong> 5장 4-4 「동의 문구 견본 읽기」, 11-1. 인터뷰를 시작하기 전에 진행자가 소리 내어 읽어 주고 구두 동의를 받는다. 동의를 받지 못하면 인터뷰를 하지 않는다.</li>
 <li><strong>키트 경로.</strong> <code>Service_05주차/동의문구_견본.md</code> (36줄). 읽어 주는 문구만 싣는다. 「진행자가 기록에 남길 것」(철회 요청의 처리 포함)과 「이 견본이 따른 근거」(개인정보 보호법 제15조 제2항 등)는 키트 원문에 있다.</li>
 </ul>
 <div class="code-label where-server">
@@ -1867,7 +1910,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**목적.** 수업 실습의 사용자 조사이다. 기록은 수업 산출물(친화도 분석, 페르소나, 문제 정의)을 만드는 데에만 쓴다.</span>
 <span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**적는 것.** 취업 준비 경험에 대한 이야기를 진행자가 요약해 적고, 일부 발언은 들은 그대로 적는다. 이름, 연락처, 학번, 학교 이름, 사는 곳은 적지 않는다. 참여자는 「P01」 같은 번호로만 적는다.</span>
 <span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**녹음.** 녹음과 촬영을 하지 않는다.</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**보관과 기간.** 기록은 진행자의 비공개 실습 저장소에 보관하고, 학기가 끝나면 진행자가 지운다. 기록은 교수가 산출물을 확인할 때 볼 수 있다. 같은 조의 수강생(4명 이내)이 이름 등을 지운 기록을 함께 분석할 수 있으며, 원하지 않으면 진행자만 쓴다.</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**보관과 기간.** 기록은 진행자의 비공개 실습 저장소(GitHub)와 진행자가 쓰는 PC에 보관하고, 학기가 끝나면 진행자가 지운다. 기록은 교수가 산출물을 확인할 때 볼 수 있다. 같은 조의 수강생(4명 이내)이 이름 등을 지운 기록을 함께 분석할 수 있으며, 원하지 않으면 진행자만 쓴다.</span>
 <span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>**AI 도구.** 이름 등을 지운 기록을 AI 코딩 도구(Claude Code)에 넣어 분류와 요약의 초안을 만든다. 이 도구는 외부 회사(Anthropic)의 서비스이다.</span>
 <span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>**거부와 중단.** 참여는 자유이다. 참여하지 않거나, 답하기 싫은 질문을 넘기거나, 중간에 그만두어도 불이익이 없다. 이 실습의 평가와도 관계가 없다.</span>
 <span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>**철회.** 인터뷰가 끝난 뒤에도 기록을 지워 달라고 요청할 수 있다. 진행자는 요청을 받으면 기록과 그 기록을 인용한 부분을 지운다.</span>
@@ -1881,7 +1924,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <li><strong>프로젝트실습Ⅰ에서 바꿀 곳.</strong>
 <ul>
 <li>첫 문단의 「「LLM 서비스 개발」 수업의 실습」을 「프로젝트실습Ⅰ」로, 「취업 준비 지원 서비스」를 팀의 서비스로 바꾼다.</li>
-<li>4항 「보관과 기간」의 「진행자의 비공개 실습 저장소」를 「팀의 비공개 프로젝트 저장소」로 바꾸고, 기록을 볼 수 있는 사람(팀원, 담당 교수)을 사실대로 적는다.</li>
+<li>4항 「보관과 기간」의 「진행자의 비공개 실습 저장소(GitHub)와 진행자가 쓰는 PC」를 「팀의 비공개 프로젝트 저장소와 팀원이 쓰는 PC」로 바꾸고, 기록을 볼 수 있는 사람(팀원, 담당 교수)을 사실대로 적는다.</li>
 <li>5항은 실제로 쓰는 AI 도구만 적는다.</li>
 <li>견본 머리말대로 수업 밖의 사람을 인터뷰할 때는 담당 교수와 먼저 상의한다. 항목은 빼지 않는다.</li>
 </ul></li>
@@ -2096,7 +2139,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <section id="c-5-7.-질문-교정-연습과-설문-문항-연습" class="level3">
 <h3 class="anchored" data-anchor-id="c-5-7.-질문-교정-연습과-설문-문항-연습">C-5-7. 질문 교정 연습과 설문 문항 연습</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 5장 3-5 「질문 교정 연습」, 6-5 「설문 문항 연습」. 문제가 있는 질문과 설문 문항을 고쳐 쓰는 연습지이며 제출하지 않는다.</li>
+<li><strong>쓰는 곳.</strong> 5장 3-6 「질문 교정 연습」, 6-5 「설문 문항 연습」. 둘 다 [선택] 절이다. 문제가 있는 질문과 설문 문항을 고쳐 쓰는 연습지이며 제출하지 않는다.</li>
 <li><strong>키트 경로.</strong> <code>Service_05주차/연습/질문교정_양식.md</code>, <code>Service_05주차/연습/설문문항_양식.md</code>. 머리와 첫 두 문항만 싣는다.</li>
 </ul>
 <div class="code-label where-server">
@@ -2134,7 +2177,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 </section>
 <section id="c-6.-6장-요구사항-명세서와-명세-복원" class="level2">
 <h2 class="anchored" data-anchor-id="c-6.-6장-요구사항-명세서와-명세-복원">C-6. 6장: 요구사항 명세서와 명세 복원</h2>
-<p>6장은 두 중심 실습으로 이루어진다. (가)는 공개된 채용 공고 목록 화면 하나를 관찰해 명세를 복원하고 그 명세만으로 다시 구현해 원본과 견준다(6절). (나)는 4~5장의 조사 결과로 요구사항 명세서 v1을 쓴다(7절). 8절에서 명세를 쓰는 규칙을 프로젝트 규칙 파일(<code>CLAUDE.md</code>)로 옮긴다.</p>
+<p>6장의 핵심 실습(10절)은 두 부분으로 이루어진다. 앞부분(10-3~10-7)은 공개된 채용 공고 목록 화면 하나를 관찰해 명세를 복원하고 그 명세만으로 다시 구현해 원본과 견준 뒤, 찾은 빈틈을 명세로 되돌린다. 뒷부분(10-8~10-13)은 4~5장의 조사 결과로 jobprep의 요구사항 명세서 v1을 쓰고, 앞부분에서 찾은 빈틈을 jobprep에서도 막으며(10-9), 명세를 쓰는 규칙을 프로젝트 규칙 파일(<code>CLAUDE.md</code>)로 옮긴다(10-12). 양식의 짜임은 이론 6~8절에서 설명한다.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
@@ -2154,41 +2197,41 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <tr class="odd">
 <td>요구사항 명세서</td>
 <td><code>Service_06주차/양식/요구사항명세서_양식.md</code></td>
-<td>7절</td>
+<td>7절, 10-8~10-11</td>
 <td><code>jobprep/docs/요구사항명세서.md</code></td>
 </tr>
 <tr class="even">
 <td>추적표</td>
 <td><code>Service_06주차/양식/추적표_양식.md</code></td>
-<td>7절</td>
+<td>7-4, 10-11</td>
 <td><code>jobprep/docs/추적표.md</code></td>
 </tr>
 <tr class="odd">
 <td>프로젝트 규칙</td>
 <td><code>Service_06주차/양식/CLAUDE_양식.md</code></td>
-<td>8-1</td>
+<td>8-1, 10-12</td>
 <td><code>jobprep/CLAUDE.md</code></td>
 </tr>
 <tr class="even">
 <td>명세 복원의 관찰 기록</td>
 <td><code>Service_06주차/복원/관찰기록_양식.md</code></td>
-<td>6-1</td>
+<td>10-3</td>
 <td><code>관찰기록.md</code></td>
 </tr>
 <tr class="odd">
 <td>원본과 재구현의 비교표</td>
 <td><code>Service_06주차/복원/비교표_양식.md</code></td>
-<td>6-1, 6-7</td>
+<td>10-3, 10-5, 10-6, 10-9</td>
 <td><code>비교.md</code></td>
 </tr>
 </tbody>
 </table>
-<p>명세의 검사는 팀 저장소에서 다음처럼 실행한다. 오류가 0건이어야 한다. 요구 문장의 주체를 「시스템」이 아닌 이름으로 쓰면 <code>--system "「주체 이름」"</code>을 더한다.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> ~/kits/Service_06주차/도구/ears_check.py docs/요구사항명세서.md <span class="at">--trace</span> docs/추적표.md <span class="at">--problems</span> docs/조사/문제정의.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>명세의 검사는 가상 환경을 켠 터미널의 팀 저장소에서 다음처럼 실행한다. 오류가 0건이어야 한다. 요구 문장의 주체를 「시스템」이 아닌 이름으로 쓰면 <code>--system "「주체 이름」"</code>을 더한다.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> ~/kits/Service_06주차/도구/ears_check.py docs/요구사항명세서.md <span class="at">--trace</span> docs/추적표.md <span class="at">--problems</span> docs/조사/문제정의.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="c-6-1.-요구사항-명세서" class="level3">
 <h3 class="anchored" data-anchor-id="c-6-1.-요구사항-명세서">C-6-1. 요구사항 명세서</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 6장 7절 「중심 실습 (나): 요구사항 명세서 v1」. 이후 7~13장이 이 파일에 절과 요구를 더해 판을 올린다(앞의 「명세의 판과 태그」 표).</li>
+<li><strong>쓰는 곳.</strong> 6장 7절 「요구사항 명세서의 구성」, 핵심 실습 10-8~10-11. 이후 7~13장이 이 파일에 절과 요구를 더해 판을 올린다(앞의 「명세의 판과 태그」 표).</li>
 <li><strong>키트 경로.</strong> <code>Service_06주차/양식/요구사항명세서_양식.md</code> (76줄). 2절 「개요」(가치 제안, 대상 사용자, 해결할 문제, 범위)와 3절 「용어」는 뺐다.</li>
 </ul>
 <div class="code-label where-server">
@@ -2255,7 +2298,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <section id="c-6-2.-추적표" class="level3">
 <h3 class="anchored" data-anchor-id="c-6-2.-추적표">C-6-2. 추적표</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 6장 7절. 문제 → 페르소나 → 기능 → 요구 → 수용 기준을 한 행에 잇는다. 오른쪽 두 열(설계, 구현·검사)은 7장 이후에 채운다.</li>
+<li><strong>쓰는 곳.</strong> 6장 7-4 「추적표」, 10-11. 문제 → 페르소나 → 기능 → 요구 → 수용 기준을 한 행에 잇는다. 오른쪽 두 열(설계, 구현·검사)은 7장 이후에 채운다.</li>
 <li><strong>키트 경로.</strong> <code>Service_06주차/양식/추적표_양식.md</code></li>
 </ul>
 <div class="code-label where-server">
@@ -2283,7 +2326,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <section id="c-6-3.-프로젝트-규칙claude.md" class="level3">
 <h3 class="anchored" data-anchor-id="c-6-3.-프로젝트-규칙claude.md">C-6-3. 프로젝트 규칙(CLAUDE.md)</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 6장 8-1 「명세에서 프로젝트 규칙 끌어내기」. Claude Code가 작업을 시작할 때마다 읽는 파일에 명세를 다루는 규칙을 적는다. 200줄을 넘기지 않는다.</li>
+<li><strong>쓰는 곳.</strong> 6장 8-1 「명세에서 프로젝트 규칙 끌어내기」, 10-12 「프로젝트 규칙」. Claude Code가 작업을 시작할 때마다 읽는 파일에 명세를 다루는 규칙을 적는다. 200줄을 넘기지 않는다.</li>
 <li><strong>키트 경로.</strong> <code>Service_06주차/양식/CLAUDE_양식.md</code></li>
 </ul>
 <div class="code-label where-server">
@@ -2322,7 +2365,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <section id="c-6-4.-명세-복원의-관찰-기록" class="level3">
 <h3 class="anchored" data-anchor-id="c-6-4.-명세-복원의-관찰-기록">C-6-4. 명세 복원의 관찰 기록</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 6장 6-1 「준비」. Claude Code에 구조 분석을 맡기기 전에 사람이 2분 동안 원본 화면을 보고 적는다. 나중에 AI의 분석과 대조하는 기준이다.</li>
+<li><strong>쓰는 곳.</strong> 6장 10-3 「준비와 관찰 기록」. Claude Code에 구조 분석을 맡기기 전에 사람이 2분 동안 원본 화면을 보고 적는다. 나중에 AI의 분석과 대조하는 기준이다.</li>
 <li><strong>키트 경로.</strong> <code>Service_06주차/복원/관찰기록_양식.md</code></li>
 </ul>
 <div class="code-label where-server">
@@ -2353,7 +2396,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <section id="c-6-5.-원본과-재구현의-비교표" class="level3">
 <h3 class="anchored" data-anchor-id="c-6-5.-원본과-재구현의-비교표">C-6-5. 원본과 재구현의 비교표</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 6장 6-7 「원본과 비교」. 복원한 명세(<code>복원명세.md</code>)만으로 다시 구현한 결과를 원본과 기능별로 견주고, 다른 점의 원인을 다섯 가지로 나눈다.</li>
+<li><strong>쓰는 곳.</strong> 6장 10-6 「원본과 비교」. 복원한 명세(<code>복원명세.md</code>)만으로 다시 구현한 결과를 원본과 기능별로 견주고, 다른 점의 원인을 다섯 가지로 나눈다(원인의 설명은 6-2). 「재구현이 정한 것」에는 10-5에서 재구현을 맡긴 Claude Code의 보고를 붙이고, 「jobprep에 옮긴 것」은 10-9에서 쓴다.</li>
 <li><strong>키트 경로.</strong> <code>Service_06주차/복원/비교표_양식.md</code></li>
 </ul>
 <div class="code-label where-server">
@@ -2381,16 +2424,28 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## 찾은 빈틈과 처리</span></span>
 <span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>「빈틈」 → 「복원명세.md에 더한 REQ 번호, 또는 열린 질문으로 남긴 까닭」</span>
-<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a>2.</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a>2.</span>
+<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## 재구현이 정한 것</span></span>
+<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; 10-5에서 재구현을 맡긴 Claude Code가 보고한 「명세가 정하지 않아 정한 것」 목록을 그대로 붙인다.</span></span>
+<span id="cb33-28"><a href="#cb33-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-29"><a href="#cb33-29" aria-hidden="true" tabindex="-1"></a>-</span>
+<span id="cb33-30"><a href="#cb33-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-31"><a href="#cb33-31" aria-hidden="true" tabindex="-1"></a><span class="fu">## jobprep에 옮긴 것</span></span>
+<span id="cb33-32"><a href="#cb33-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-33"><a href="#cb33-33" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; 10-9에서 쓴다. 위 「찾은 빈틈과 처리」의 ① 항목마다 jobprep 명세서의 REQ ID(이미 있음, 또는 ← 추가), Q ID(열린 질문), 「해당 없음」과 까닭 가운데 하나를 적는다.</span></span>
+<span id="cb33-34"><a href="#cb33-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-35"><a href="#cb33-35" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>「빈틈」 → 「REQ-0xx 또는 Q-0x 또는 해당 없음(까닭)」</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li><strong>프로젝트실습Ⅰ에서 바꿀 곳.</strong> 「기능」 열의 행을 관찰한 화면의 기능으로 바꾼다. 원인 분류 ①~⑤와 「찾은 빈틈과 처리」 절은 그대로 쓴다. 여기서 찾은 빈틈은 팀 명세의 요구나 열린 질문(<code>Q-01</code>)으로 옮길 수 있다.</li>
+<li><strong>프로젝트실습Ⅰ에서 바꿀 곳.</strong> 「기능」 열의 행을 관찰한 화면의 기능으로 바꾼다. 원인 분류 ①~⑤와 「찾은 빈틈과 처리」, 「재구현이 정한 것」 절은 그대로 쓴다. 「jobprep에 옮긴 것」은 「팀 명세에 옮긴 것」으로 읽고, 찾은 빈틈마다 팀 명세의 요구(<code>REQ-</code>)나 열린 질문(<code>Q-01</code>)으로 옮긴 결과를 적는다.</li>
 </ul>
 <hr>
 </section>
 </section>
 <section id="c-7.-7장-사용자-여정과-정보-구조" class="level2">
 <h2 class="anchored" data-anchor-id="c-7.-7장-사용자-여정과-정보-구조">C-7. 7장: 사용자 여정과 정보 구조</h2>
-<p>7장 중심 실습(10절)은 여정 지도, 정보 구조(사이트맵), 핵심 사용자 흐름 두 개를 그리고, 그 결과로 명세서에 「화면 목록」과 「사용자 흐름」 절을 더해 v2.0으로 올린다. 9절에서 설계 문서를 풀 리퀘스트로 올려 리뷰를 받는다. 설계 문서는 <code>jobprep/docs/설계/</code> 아래에 둔다.</p>
+<p>7장 핵심 실습(10절)은 여정 지도, 정보 구조(사이트맵), 핵심 사용자 흐름 두 개를 그리고, 그 결과로 명세서에 「화면 목록」과 「사용자 흐름」 절을 더해 v2.0으로 올린다. 10-9에서 설계 문서를 팀 실습 저장소의 풀 리퀘스트로 올려 리뷰를 받는다(리뷰의 방법은 9절). 설계 문서는 <code>jobprep/docs/설계/</code> 아래에 둔다.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
@@ -2410,46 +2465,46 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <tr class="odd">
 <td>여정 지도</td>
 <td><code>Service_07주차/여정지도_양식.md</code></td>
-<td>2-5, 10-1</td>
+<td>2-5, 10-3</td>
 <td><code>jobprep/docs/설계/여정지도.md</code></td>
 </tr>
 <tr class="even">
 <td>카드 소팅 기록</td>
 <td><code>Service_07주차/카드소팅기록_양식.md</code></td>
-<td>6-2</td>
+<td>6-2 [선택]</td>
 <td><code>ch07/카드소팅/기록_짝.md</code></td>
 </tr>
 <tr class="odd">
 <td>정보 구조 견본</td>
 <td><code>Service_07주차/견본/정보구조_견본.md</code></td>
-<td>5-6, 10절</td>
+<td>5-6, 10-4</td>
 <td><code>jobprep/docs/설계/정보구조.md</code></td>
 </tr>
 <tr class="even">
 <td>사용자 흐름 견본</td>
 <td><code>Service_07주차/견본/사용자흐름_견본.md</code></td>
-<td>7-5, 10절</td>
+<td>7-4, 7-6, 10-5</td>
 <td><code>jobprep/docs/설계/사용자흐름.md</code></td>
 </tr>
 <tr class="odd">
 <td>명세서 v2의 추가 절</td>
 <td><code>Service_07주차/견본/명세서v2_추가절_견본.md</code></td>
-<td>8-4, 10절</td>
+<td>8-4, 10-6</td>
 <td>명세서에 붙인다</td>
 </tr>
 <tr class="even">
 <td>설계 리뷰 점검표</td>
 <td><code>Service_07주차/리뷰점검표_양식.md</code></td>
-<td>9-4</td>
+<td>9-4, 10-9</td>
 <td>리뷰 요약에 붙인다</td>
 </tr>
 </tbody>
 </table>
-<p>설계 문서와 명세의 연결은 팀 저장소에서 <code>python3 ~/kits/Service_07주차/check_design.py docs</code>로 검사한다. 마지막 줄이 <code>결과: 통과</code>이면 된다. 이 도구는 <code>docs/요구사항명세서.md</code>와 <code>docs/설계/정보구조.md</code>, <code>사용자흐름.md</code>, <code>여정지도.md</code>를 이 이름으로 찾는다.</p>
+<p>설계 문서와 명세의 연결은 가상 환경을 켠 터미널의 팀 저장소에서 <code>python ~/kits/Service_07주차/check_design.py docs</code>로 검사한다(7장 8-5, 10-7). 마지막 줄이 <code>결과: 통과</code>이면 된다. 이 도구는 <code>docs/요구사항명세서.md</code>와 <code>docs/설계/정보구조.md</code>, <code>사용자흐름.md</code>, <code>여정지도.md</code>를 이 이름으로 찾는다.</p>
 <section id="c-7-1.-사용자-여정-지도" class="level3">
 <h3 class="anchored" data-anchor-id="c-7-1.-사용자-여정-지도">C-7-1. 사용자 여정 지도</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 7장 2-5 「여정 지도의 작성」, 10-1. 페르소나 한 명이 시나리오 하나를 거치는 현재 여정을 단계별 행동, 생각, 감정, 접점, 불편으로 적고, 마지막 「기회」 행을 요구 ID와 화면 ID로 잇는다.</li>
+<li><strong>쓰는 곳.</strong> 7장 2-5 「여정 지도의 작성」, 10-3 「여정 지도」. 페르소나 한 명이 시나리오 하나를 거치는 현재 여정을 단계별 행동, 생각, 감정, 접점, 불편으로 적고, 마지막 「기회」 행을 요구 ID와 화면 ID로 잇는다.</li>
 <li><strong>키트 경로.</strong> <code>Service_07주차/여정지도_양식.md</code></li>
 </ul>
 <div class="code-label where-server">
@@ -2502,7 +2557,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <section id="c-7-2.-카드-소팅-기록" class="level3">
 <h3 class="anchored" data-anchor-id="c-7-2.-카드-소팅-기록">C-7-2. 카드 소팅 기록</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 7장 6-2 「짝 활동: 개방형 카드 소팅」. 종이 카드 26장(<code>카드목록.md</code>)을 짝이 묶게 하고, 역할을 바꾸어 한 번 더 한 뒤 두 결과를 견준다.</li>
+<li><strong>쓰는 곳.</strong> 7장 6-2 「[선택] 짝 활동: 개방형 카드 소팅」. 종이 카드 26장(<code>카드목록.md</code>)을 짝이 묶게 하고, 역할을 바꾸어 한 번 더 한 뒤 두 결과를 견준다.</li>
 <li><strong>키트 경로.</strong> <code>Service_07주차/카드소팅기록_양식.md</code> (37줄). 「역할을 바꾸어 진행한 결과」는 참가자 1의 표와 같은 구성이므로 뺐다.</li>
 </ul>
 <div class="code-label where-server">
@@ -2547,8 +2602,8 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <section id="c-7-3.-정보-구조-견본" class="level3">
 <h3 class="anchored" data-anchor-id="c-7-3.-정보-구조-견본">C-7-3. 정보 구조 견본</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 7장 5-6 「사이트맵」, 10절. 두 갈래만 채운 사이트맵 골격을 카드 소팅 결과로 채운다. 화면 칸의 레이블은 「SCR-번호 화면 이름」으로 시작한다.</li>
-<li><strong>키트 경로.</strong> <code>Service_07주차/견본/정보구조_견본.md</code> (49줄). 「레이블」, 「검색」, 「트리 테스트」의 표는 뺐다.</li>
+<li><strong>쓰는 곳.</strong> 7장 5-6 「사이트맵」, 10-4 「정보 구조」. 두 갈래만 채운 사이트맵 골격을 카드 소팅 결과(6-2를 한 경우)나 인터뷰 기록의 말로 채운다. 화면 칸의 레이블은 「SCR-번호 화면 이름」으로 시작한다.</li>
+<li><strong>키트 경로.</strong> <code>Service_07주차/견본/정보구조_견본.md</code> (51줄). 「레이블」, 「검색」, 「트리 테스트」의 표는 뺐다.</li>
 </ul>
 <div class="code-label where-server">
 <span>파일: ~/kits/Service_07주차/견본/정보구조_견본.md</span>
@@ -2556,9 +2611,9 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <div class="sourceCode" id="cb36"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># 정보 구조: 취업 준비 지원 서비스 (견본)</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- jobprep/docs/설계/정보구조.md로 복사해 고친다. 아래 사이트맵은 두 갈래만 채운 골격이다.</span></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co">     나머지 갈래는 카드 소팅 결과로 채운다. 화면 칸의 레이블은 반드시 「SCR-번호 화면 이름」으로 시작한다. 다 쓴 뒤 이 주석은 지운다. --&gt;</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co">     나머지 갈래는 카드 소팅 결과(6절 [선택]을 한 경우)나 인터뷰 기록의 말로 채운다. 화면 칸의 레이블은 반드시 「SCR-번호 화면 이름」으로 시작한다. 다 쓴 뒤 이 주석은 지운다. --&gt;</span></span>
 <span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>근거: 카드 소팅 기록 <span class="in">`ch07/카드소팅/기록_짝.md`</span>, 여정 지도의 단계, 명세서 v2의 화면 목록</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>근거: 인터뷰 기록(<span class="in">`ch05/기록/`</span>), 카드 소팅 기록 <span class="in">`ch07/카드소팅/기록_짝.md`</span>(6절 <span class="co">[</span><span class="ot">선택</span><span class="co">]</span>을 한 경우), 여정 지도의 단계, 명세서 v2의 화면 목록</span>
 <span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>조직 체계: 「전역 내비게이션을 무엇으로 나누었는가(과업, 주제, 사용자 집단 등)와 그 까닭」</span>
 <span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## 사이트맵</span></span>
@@ -2586,7 +2641,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <span id="cb36-31"><a href="#cb36-31" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 지역 <span class="pp">|</span> 「」 <span class="pp">|</span> 「」 <span class="pp">|</span></span>
 <span id="cb36-32"><a href="#cb36-32" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 유틸리티 <span class="pp">|</span> 「」 <span class="pp">|</span> 「」 <span class="pp">|</span></span>
 <span id="cb36-33"><a href="#cb36-33" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 맥락 <span class="pp">|</span> 「」 <span class="pp">|</span> 「」 <span class="pp">|</span></span>
-<span id="cb36-34"><a href="#cb36-34" aria-hidden="true" tabindex="-1"></a>(… 키트 원문 34~49줄 생략 …)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb36-34"><a href="#cb36-34" aria-hidden="true" tabindex="-1"></a>(… 키트 원문 34~51줄 생략 …)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong>프로젝트실습Ⅰ에서 바꿀 곳.</strong> 사이트맵의 <code>TOP["jobprep"]</code>, 「공고」 갈래, <code>SCR-01 공고 목록</code>, <code>SCR-02 공고 상세</code>, <code>SCR-08 설정</code>은 공통 사례의 것이므로 지우고 팀의 화면으로 다시 그린다. 화면 칸 레이블의 형식(<code>SCR-01 화면 이름</code>)은 <code>check_design.py</code>가 읽으므로 그대로 지킨다. 키트 원문의 「트리 테스트」 표는 참가자 수(2명)를 늘려 써도 된다.</li>
 </ul>
@@ -2594,7 +2649,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <section id="c-7-4.-사용자-흐름-견본" class="level3">
 <h3 class="anchored" data-anchor-id="c-7-4.-사용자-흐름-견본">C-7-4. 사용자 흐름 견본</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 7장 7-5 「핵심 흐름 두 개」, 10절. FLOW-00의 표기를 본떠 FLOW-01과 FLOW-02를 그리고, 흐름마다 빈 결과, 오류, 권한의 예외를 표로 정리한다.</li>
+<li><strong>쓰는 곳.</strong> 7장 7-6 「핵심 흐름 두 개」, 10-5 「사용자 흐름」. FLOW-00의 표기를 본떠 FLOW-01과 FLOW-02를 그리고, 흐름마다 빈 결과, 오류, 권한의 예외를 표로 정리한다.</li>
 <li><strong>키트 경로.</strong> <code>Service_07주차/견본/사용자흐름_견본.md</code> (71줄). 빈칸인 FLOW-01과 FLOW-02는 FLOW-00과 같은 구성이므로 뺐다.</li>
 </ul>
 <div class="code-label where-server">
@@ -2652,7 +2707,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <section id="c-7-5.-명세서-v2의-추가-절" class="level3">
 <h3 class="anchored" data-anchor-id="c-7-5.-명세서-v2의-추가-절">C-7-5. 명세서 v2의 추가 절</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 7장 8-4 「명세서 v2의 작성」, 10절. 요구사항 명세서의 「열린 질문」 절 앞에 「화면 목록」과 「사용자 흐름」 두 절을 붙이고, 변경 이력에 v2.0 행을 더한다.</li>
+<li><strong>쓰는 곳.</strong> 7장 8-4 「명세서 v2의 작성」, 10-6 「명세서 v2」. 요구사항 명세서의 「열린 질문」 절 앞에 「화면 목록」과 「사용자 흐름」 두 절을 붙이고, 변경 이력에 v2.0 행을 더한다.</li>
 <li><strong>키트 경로.</strong> <code>Service_07주차/견본/명세서v2_추가절_견본.md</code></li>
 </ul>
 <div class="code-label where-server">
@@ -2699,7 +2754,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <section id="c-7-6.-설계-문서-리뷰-점검표" class="level3">
 <h3 class="anchored" data-anchor-id="c-7-6.-설계-문서-리뷰-점검표">C-7-6. 설계 문서 리뷰 점검표</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 7장 9-4 「리뷰 의견 쓰기」. 리뷰어가 설계 문서 풀 리퀘스트의 리뷰 요약(Review changes의 의견 칸)에 이 표를 붙여 판정한다.</li>
+<li><strong>쓰는 곳.</strong> 7장 9-4 「리뷰 의견 쓰기」, 10-9 「풀 리퀘스트와 동료 리뷰」. 리뷰어가 설계 문서 풀 리퀘스트의 리뷰 요약(Review changes의 의견 칸)에 이 표를 붙여 판정한다.</li>
 <li><strong>키트 경로.</strong> <code>Service_07주차/리뷰점검표_양식.md</code></li>
 </ul>
 <div class="code-label where-server">
@@ -2733,7 +2788,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 </section>
 <section id="c-8.-8장-화면-명세와-프로토타입" class="level2">
 <h2 class="anchored" data-anchor-id="c-8.-8장-화면-명세와-프로토타입">C-8. 8장: 화면 명세와 프로토타입</h2>
-<p>8장 중심 실습(10절)은 핵심 화면 네 개의 화면 명세를 쓰고 HTML 프로토타입을 만든 뒤, 명세와 프로토타입을 대조하고 접근성을 점검한다. 화면 명세를 완성하면 요구사항 명세서와 함께 v3.0으로 올리고 태그 <code>spec-v3</code>로 묶는다.</p>
+<p>8장 핵심 실습(10절)은 핵심 화면 네 개의 화면 명세를 쓰고 HTML 프로토타입을 만든 뒤, 명세와 프로토타입을 대조하고 접근성을 점검한다. 화면 명세를 완성하면 요구사항 명세서와 함께 v3.0으로 올리고 태그 <code>spec-v3</code>로 묶는다.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
@@ -2753,13 +2808,13 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <tr class="odd">
 <td>화면 명세</td>
 <td><code>Service_08주차/화면명세_양식.md</code></td>
-<td>8-1, 10-2</td>
+<td>8-1, 10-3, 10-7</td>
 <td><code>jobprep/docs/설계/화면명세.md</code></td>
 </tr>
 <tr class="even">
 <td>접근성 점검</td>
 <td><code>Service_08주차/접근성점검_양식.md</code></td>
-<td>6절, 10-2</td>
+<td>6절, 10-6</td>
 <td><code>jobprep/docs/설계/접근성점검.md</code></td>
 </tr>
 <tr class="odd">
@@ -2773,7 +2828,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <section id="c-8-1.-화면-명세" class="level3">
 <h3 class="anchored" data-anchor-id="c-8-1.-화면-명세">C-8-1. 화면 명세</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 8장 8-1 「화면 명세의 구성」, 10-2. 모든 화면에 공통인 규칙(0절)을 먼저 쓰고, 화면마다 개요, 와이어프레임, 구성 요소, 상태, 상호작용, 접근성 메모, 열린 질문의 일곱 칸을 채운다. 끝에 프로토타입 대조 기록을 둔다.</li>
+<li><strong>쓰는 곳.</strong> 8장 8-1 「화면 명세의 구성」, 10-3 「화면 명세」, 10-7 「대조 기록과 명세서 v3」. 모든 화면에 공통인 규칙(0절)을 먼저 쓰고, 화면마다 개요, 와이어프레임, 구성 요소, 상태, 상호작용, 접근성 메모, 열린 질문의 일곱 칸을 채운다. 끝에 프로토타입 대조 기록을 둔다.</li>
 <li><strong>키트 경로.</strong> <code>Service_08주차/화면명세_양식.md</code> (84줄). 화면별 칸 가운데 2) 와이어프레임, 5) 상호작용, 6) 접근성 메모, 7) 열린 질문은 뺐다.</li>
 </ul>
 <div class="code-label where-server">
@@ -2850,7 +2905,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <section id="c-8-2.-접근성-점검" class="level3">
 <h3 class="anchored" data-anchor-id="c-8-2.-접근성-점검">C-8-2. 접근성 점검</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 8장 6절 「접근성」, 10-2. 키트의 도구 세 개로 자동 점검을 하고, 사람이 키보드만으로 과업을 해 보며 WCAG 2.2 수준 AA의 성공 기준 14개를 화면별로 판정한다.</li>
+<li><strong>쓰는 곳.</strong> 8장 6절 「접근성」, 10-6 「키보드 점검과 실패 고치기」. 키트의 도구 세 개로 자동 점검을 하고, 사람이 키보드만으로 과업을 해 보며 WCAG 2.2 수준 AA의 성공 기준 14개를 화면별로 판정한다.</li>
 <li><strong>키트 경로.</strong> <code>Service_08주차/접근성점검_양식.md</code> (47줄). 3절 「발견한 문제와 조치」와 4절 「점검하지 못한 것」은 뺐다.</li>
 </ul>
 <div class="code-label where-server">
@@ -2902,7 +2957,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <section id="c-8-3.-디자인-토큰-견본" class="level3">
 <h3 class="anchored" data-anchor-id="c-8-3.-디자인-토큰-견본">C-8-3. 디자인 토큰 견본</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 8장 3-5 「디자인토큰.md 견본 읽기」, 10-2. 색, 글꼴, 간격 같은 디자인 값을 표 한 줄에 토큰 하나로 적는 파일이다. <code>tools/tokens_to_css.py</code>가 이 파일로 <code>prototype/css/tokens.css</code>를 만들고, <code>tools/contrast.py</code>가 색 대비를 잰다. 견본(값이 채워진 예)이므로 양식처럼 빈칸이 있지 않다.</li>
+<li><strong>쓰는 곳.</strong> 8장 3-5 「디자인토큰.md 견본 읽기」, 10-2 「대비 미달 고치기」. 색, 글꼴, 간격 같은 디자인 값을 표 한 줄에 토큰 하나로 적는 파일이다. <code>tools/tokens_to_css.py</code>가 이 파일로 <code>prototype/css/tokens.css</code>를 만들고, <code>tools/contrast.py</code>가 색 대비를 잰다. 견본(값이 채워진 예)이므로 양식처럼 빈칸이 있지 않다.</li>
 <li><strong>키트 경로.</strong> <code>Service_08주차/디자인토큰_견본.md</code> (107줄). 형식을 정한 머리만 싣는다. 본문은 색, 글꼴, 간격 등의 토큰 표이다.</li>
 </ul>
 <div class="code-label where-server">
@@ -2923,7 +2978,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 </section>
 <section id="c-9.-9장-웹-구현과-배포" class="level2">
 <h2 class="anchored" data-anchor-id="c-9.-9장-웹-구현과-배포">C-9. 9장: 웹 구현과 배포</h2>
-<p>9장은 명세와 화면 명세로 공고 모아보기 웹을 구현하고(7절), GitHub Pages로 배포하고(9절), 변경 요청 CR-01을 명세에 반영해 다시 배포한다(10절). 작업은 작업 목록의 단위로 나누어 Claude Code에 맡기고, 인수 조건으로 확인한다.</p>
+<p>9장의 핵심 실습(9절)은 명세와 화면 명세로 공고 모아보기 웹을 구현하고(9-3~9-4), 브라우저 에이전트 Aside의 점검을 사람의 판정과 대조하고(9-5, 9-7), GitHub Pages로 배포한 뒤(9-6), 변경 요청 CR-01을 명세에 반영해 다시 배포한다(9-8~9-9). 작업은 작업 목록의 단위로 나누어 Claude Code에 맡기고, 인수 조건으로 확인한다.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
@@ -2943,25 +2998,25 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <tr class="odd">
 <td>작업 목록</td>
 <td><code>Service_09주차/작업목록_양식.md</code></td>
-<td>1-5, 7절</td>
+<td>1-4, 9-1, 9-3</td>
 <td><code>jobprep/docs/작업목록.md</code></td>
 </tr>
 <tr class="even">
 <td>인수 조건</td>
 <td><code>Service_09주차/인수조건_양식.md</code></td>
-<td>5-4, 7절</td>
+<td>5-4, 9-2, 9-5, 9-7</td>
 <td><code>jobprep/docs/인수조건.md</code></td>
 </tr>
 <tr class="odd">
 <td>배포 기록</td>
 <td><code>Service_09주차/배포기록_양식.md</code></td>
-<td>9-8</td>
+<td>7-6, 9-6, 9-9</td>
 <td><code>jobprep/docs/배포기록.md</code></td>
 </tr>
 <tr class="even">
 <td>Pages 배포 워크플로</td>
 <td><code>Service_09주차/배포/.github/workflows/pages.yml</code></td>
-<td>8-4, 9-4, 9-6</td>
+<td>7-4, 7-5, 9-6</td>
 <td>저장소의 <code>.github/workflows/pages.yml</code></td>
 </tr>
 </tbody>
@@ -2970,7 +3025,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <section id="c-9-1.-작업-목록" class="level3">
 <h3 class="anchored" data-anchor-id="c-9-1.-작업-목록">C-9-1. 작업 목록</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 9장 1-5 「작업 목록」, 7절. 계획 모드에서 받은 계획을 사람이 검토해 이 표로 옮긴다. 작업 하나는 한 번의 지시로 끝나고, 끝났는지 확인할 수 있고, 커밋 하나가 되는 크기이다.</li>
+<li><strong>쓰는 곳.</strong> 9장 1-4 「작업 목록」, 9-1 「계획과 작업 목록」. 계획 모드에서 받은 계획을 사람이 검토해 이 표로 옮긴다. 작업 하나는 한 번의 지시로 끝나고, 끝났는지 확인할 수 있고, 커밋 하나가 되는 크기이다.</li>
 <li><strong>키트 경로.</strong> <code>Service_09주차/작업목록_양식.md</code></li>
 </ul>
 <div class="code-label where-server">
@@ -3020,8 +3075,8 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <section id="c-9-2.-인수-조건" class="level3">
 <h3 class="anchored" data-anchor-id="c-9-2.-인수-조건">C-9-2. 인수 조건</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 9장 5-4 「인수 조건 표」, 7절. 이 장에서 구현하는 요구마다 Given-When-Then 형식의 인수 조건을 하나 이상 두고, 확인 방법(자동 브라우저 검사, 자동 정적 검사, 손 점검)을 정한다.</li>
-<li><strong>키트 경로.</strong> <code>Service_09주차/인수조건_양식.md</code> (54줄). 인수 조건 표는 공통 사례의 요구 번호로 26행이 미리 적혀 있으므로 앞의 두 행만 싣는다.</li>
+<li><strong>쓰는 곳.</strong> 9장 5-4 「인수 조건 표」, 9-2 「인수 조건 표」, 9-5·9-7(에이전트 점검 대조). 이 장에서 구현하는 요구마다 Given-When-Then 형식의 인수 조건을 하나 이상 두고, 확인 방법(자동 브라우저 검사, 자동 정적 검사, 손 점검)을 정한다. 끝의 「에이전트 점검 대조」에는 Aside에게 맡긴 네 행의 판정을 Playwright 검사와 손 점검의 결과와 견주어 적는다.</li>
+<li><strong>키트 경로.</strong> <code>Service_09주차/인수조건_양식.md</code> (69줄). 인수 조건 표는 공통 사례의 요구 번호로 26행이 미리 적혀 있으므로 앞의 두 행만 싣는다. 손 점검 기록의 네 행도 뺐다.</li>
 </ul>
 <div class="code-label where-server">
 <span>파일: ~/kits/Service_09주차/인수조건_양식.md</span>
@@ -3053,7 +3108,22 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <span id="cb44-25"><a href="#cb44-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb44-26"><a href="#cb44-26" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 번호 <span class="pp">|</span> 한 사람 <span class="pp">|</span> 한 날 <span class="pp">|</span> 기기·브라우저 <span class="pp">|</span> 관찰한 것 <span class="pp">|</span></span>
 <span id="cb44-27"><a href="#cb44-27" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|---|</span></span>
-<span id="cb44-28"><a href="#cb44-28" aria-hidden="true" tabindex="-1"></a>(… 키트 원문 51~54줄 생략 …)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb44-28"><a href="#cb44-28" aria-hidden="true" tabindex="-1"></a>(… 키트 원문 51~54줄 생략 …)</span>
+<span id="cb44-29"><a href="#cb44-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-30"><a href="#cb44-30" aria-hidden="true" tabindex="-1"></a><span class="fu">## 에이전트 점검 대조</span></span>
+<span id="cb44-31"><a href="#cb44-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-32"><a href="#cb44-32" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; 핵심 실습 5단계와 7단계에서 채운다. 에이전트의 판정은 위 「결과」 칸에 옮기지 않는다.</span></span>
+<span id="cb44-33"><a href="#cb44-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-34"><a href="#cb44-34" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>날짜: 「YYYY-MM-DD」, 도구: 「Aside, 요금제」, 대상: <span class="in">`http://localhost:8100/`</span>, 대상 커밋: 「해시 7자리」</span>
+<span id="cb44-35"><a href="#cb44-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-36"><a href="#cb44-36" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 번호 <span class="pp">|</span> Playwright <span class="pp">|</span> 손 점검 <span class="pp">|</span> 에이전트의 판정과 근거 <span class="pp">|</span> 대조 <span class="pp">|</span> 사람이 다시 본 것 <span class="pp">|</span></span>
+<span id="cb44-37"><a href="#cb44-37" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|---|---|</span></span>
+<span id="cb44-38"><a href="#cb44-38" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> AC-002-1 <span class="pp">|</span> 「」 <span class="pp">|</span> - <span class="pp">|</span> 「」 <span class="pp">|</span> 「일치, 불일치, 판정 못함」 <span class="pp">|</span> 「」 <span class="pp">|</span></span>
+<span id="cb44-39"><a href="#cb44-39" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> AC-009-1 <span class="pp">|</span> 「」 <span class="pp">|</span> - <span class="pp">|</span> 「」 <span class="pp">|</span> 「」 <span class="pp">|</span> 「」 <span class="pp">|</span></span>
+<span id="cb44-40"><a href="#cb44-40" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> AC-039-1 <span class="pp">|</span> 「」 <span class="pp">|</span> - <span class="pp">|</span> 「」 <span class="pp">|</span> 「」 <span class="pp">|</span> 「」 <span class="pp">|</span></span>
+<span id="cb44-41"><a href="#cb44-41" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> AC-033-1 <span class="pp">|</span> - <span class="pp">|</span> 「」 <span class="pp">|</span> 「」 <span class="pp">|</span> 「」 <span class="pp">|</span> 「」 <span class="pp">|</span></span>
+<span id="cb44-42"><a href="#cb44-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-43"><a href="#cb44-43" aria-hidden="true" tabindex="-1"></a>에이전트가 드러낸 것 가운데 인수 조건 밖의 발견(다음 인수 조건의 후보): 「없음 또는 목록」</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong>프로젝트실습Ⅰ에서 바꿀 곳.</strong> 인수 조건 표의 행은 모두 지우고 팀 명세의 요구로 새로 쓴다. 번호 규칙 <code>AC-&lt;요구 번호&gt;-&lt;순번&gt;</code>과 「명세서 6절의 수용 기준을 구체화한 것은 같은 번호를 쓴다」는 규칙은 지킨다. 확인 방법의 <code>check/check_browser.py</code>, <code>check/check_static.py</code>는 9장 키트가 공통 사례의 화면에 맞추어 만든 검사이다. 팀 저장소에 같은 검사가 없으면 확인 방법을 「손 점검」으로 적고 손 점검 기록을 채운다. 자동 검사를 만들면 그 명령을 적는다.</li>
 </ul>
@@ -3061,7 +3131,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <section id="c-9-3.-배포-기록" class="level3">
 <h3 class="anchored" data-anchor-id="c-9-3.-배포-기록">C-9-3. 배포 기록</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 9장 9-8 「배포 기록」. 배포할 때마다 한 줄을 더하고, 배포 전 점검 다섯 항목을 확인한다.</li>
+<li><strong>쓰는 곳.</strong> 9장 7-6 「따라 하기 2: 저장소의 Pages 설정과 배포 설정 기록」에서 복사해 「배포 설정」을 채우고, 9-6(첫 배포, D-01)과 9-9(재배포, D-02)에서 한 줄씩 더한다. 배포 전 점검 항목은 가상 환경을 켠 터미널에서 확인한다.</li>
 <li><strong>키트 경로.</strong> <code>Service_09주차/배포기록_양식.md</code></li>
 </ul>
 <div class="code-label where-server">
@@ -3078,21 +3148,24 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>게시 원천(Source): GitHub Actions</span>
 <span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>워크플로: <span class="in">`.github/workflows/pages.yml`</span></span>
 <span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>공개 주소: 「https://아이디.github.io/llm-service-lab/」</span>
-<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## 배포 이력</span></span>
-<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 번호 <span class="pp">|</span> 날짜 <span class="pp">|</span> 명세 판 <span class="pp">|</span> 커밋 <span class="pp">|</span> 워크플로 실행 결과 <span class="pp">|</span> 공개 주소 점검(PC) <span class="pp">|</span> 공개 주소 점검(폰) <span class="pp">|</span> 비고 <span class="pp">|</span></span>
-<span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|---|---|---|---|</span></span>
-<span id="cb45-17"><a href="#cb45-17" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> D-01 <span class="pp">|</span> 「」 <span class="pp">|</span> v3 <span class="pp">|</span> 「」 <span class="pp">|</span> 「성공/실패」 <span class="pp">|</span> 「」 <span class="pp">|</span> 「」 <span class="pp">|</span> 첫 배포 <span class="pp">|</span></span>
-<span id="cb45-18"><a href="#cb45-18" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> D-02 <span class="pp">|</span> 「」 <span class="pp">|</span> v4 <span class="pp">|</span> 「」 <span class="pp">|</span> 「」 <span class="pp">|</span> 「」 <span class="pp">|</span> 「」 <span class="pp">|</span> CR-01 관심 공고의 마감순 정렬 <span class="pp">|</span></span>
-<span id="cb45-19"><a href="#cb45-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-20"><a href="#cb45-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## 배포 전 점검 (배포마다)</span></span>
-<span id="cb45-21"><a href="#cb45-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-22"><a href="#cb45-22" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> <span class="in">`python3 jobprep/web/check/check_static.py`</span> 통과</span>
-<span id="cb45-23"><a href="#cb45-23" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> <span class="in">`~/llm-service-lab/.venv/bin/python jobprep/web/check/check_browser.py`</span> 통과(또는 실행하지 못한 까닭)</span>
-<span id="cb45-24"><a href="#cb45-24" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> <span class="in">`python3 jobprep/tools/predeploy.py`</span>의 「공개할 파일」 목록을 읽었다</span>
-<span id="cb45-25"><a href="#cb45-25" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> 「뺀 파일」에 공개해야 할 것이 없다</span>
-<span id="cb45-26"><a href="#cb45-26" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> <span class="in">`git status`</span>에 커밋하지 않은 변경이 없다</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>GitHub 요금제와 저장소의 공개 범위: 「9장 7-2 표의 몇째 행인가(예: Pro(학생 혜택), 비공개 저장소에서 Pages)」</span>
+<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## 배포 이력</span></span>
+<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 번호 <span class="pp">|</span> 날짜 <span class="pp">|</span> 명세 판 <span class="pp">|</span> 커밋 <span class="pp">|</span> 워크플로 실행 결과 <span class="pp">|</span> 공개 주소 점검(PC) <span class="pp">|</span> 공개 주소 점검(폰) <span class="pp">|</span> 비고 <span class="pp">|</span></span>
+<span id="cb45-17"><a href="#cb45-17" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|---|---|---|---|</span></span>
+<span id="cb45-18"><a href="#cb45-18" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> D-01 <span class="pp">|</span> 「」 <span class="pp">|</span> v3 <span class="pp">|</span> 「」 <span class="pp">|</span> 「성공/실패」 <span class="pp">|</span> 「」 <span class="pp">|</span> 「」 <span class="pp">|</span> 첫 배포 <span class="pp">|</span></span>
+<span id="cb45-19"><a href="#cb45-19" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> D-02 <span class="pp">|</span> 「」 <span class="pp">|</span> v4 <span class="pp">|</span> 「」 <span class="pp">|</span> 「」 <span class="pp">|</span> 「」 <span class="pp">|</span> 「」 <span class="pp">|</span> CR-01 관심 공고의 마감순 정렬 <span class="pp">|</span></span>
+<span id="cb45-20"><a href="#cb45-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-21"><a href="#cb45-21" aria-hidden="true" tabindex="-1"></a><span class="fu">## 배포 전 점검 (배포마다)</span></span>
+<span id="cb45-22"><a href="#cb45-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-23"><a href="#cb45-23" aria-hidden="true" tabindex="-1"></a>가상 환경을 켠 터미널에서 저장소 맨 위(<span class="in">`~/llm-service-lab`</span>)에서 실행한다.</span>
+<span id="cb45-24"><a href="#cb45-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-25"><a href="#cb45-25" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> <span class="in">`python jobprep/web/check/check_static.py jobprep/web`</span> 통과</span>
+<span id="cb45-26"><a href="#cb45-26" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> <span class="in">`python jobprep/web/check/check_browser.py`</span> 통과(또는 실행하지 못한 까닭)</span>
+<span id="cb45-27"><a href="#cb45-27" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> <span class="in">`python jobprep/tools/predeploy.py`</span>의 「공개할 파일」 목록을 읽었다</span>
+<span id="cb45-28"><a href="#cb45-28" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> 「뺀 파일」에 공개해야 할 것이 없다</span>
+<span id="cb45-29"><a href="#cb45-29" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> <span class="in">`git status`</span>에 커밋하지 않은 변경이 없다</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong>프로젝트실습Ⅰ에서 바꿀 곳.</strong>
 <ul>
@@ -3106,8 +3179,8 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <section id="c-9-4.-pages-배포-워크플로" class="level3">
 <h3 class="anchored" data-anchor-id="c-9-4.-pages-배포-워크플로">C-9-4. Pages 배포 워크플로</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 9장 8-4 「게시 원천: 브랜치와 워크플로」, 9-4 「워크플로 파일 읽기」, 9-6. 저장소의 Settings → Pages에서 Source를 「GitHub Actions」로 바꾸고 이 파일을 <code>.github/workflows/pages.yml</code>에 두면, <code>main</code>에 푸시할 때마다 웹 폴더를 검사하고 배포한다.</li>
-<li><strong>키트 경로.</strong> <code>Service_09주차/배포/.github/workflows/pages.yml</code> (62줄). 머리 주석, <code>permissions</code>, <code>concurrency</code>, <code>deploy</code> 작업은 뺐다.</li>
+<li><strong>쓰는 곳.</strong> 9장 7-4 「게시 원천: 브랜치와 워크플로」, 7-5 「워크플로 파일 읽기」, 9-6 「첫 배포」. 저장소의 Settings → Pages에서 Source를 「GitHub Actions」로 바꾸고 이 파일을 <code>.github/workflows/pages.yml</code>에 두면, <code>main</code>에 푸시할 때마다 웹 폴더를 검사하고 배포한다.</li>
+<li><strong>키트 경로.</strong> <code>Service_09주차/배포/.github/workflows/pages.yml</code> (63줄). 머리 주석, <code>permissions</code>, <code>concurrency</code>, <code>deploy</code> 작업은 뺐다.</li>
 </ul>
 <div class="code-label where-server">
 <span>파일: ~/kits/Service_09주차/배포/.github/workflows/pages.yml</span>
@@ -3167,11 +3240,11 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 </section>
 <section id="c-10.-10장-프롬프트-판본-비교" class="level2">
 <h2 class="anchored" data-anchor-id="c-10.-10장-프롬프트-판본-비교">C-10. 10장: 프롬프트 판본 비교</h2>
-<p>10장 중심 실습(11절)은 공고 요약 기능의 프롬프트를 판본(v1, v2, v3)으로 나누어 같은 평가 문항과 채점기로 견주고, 점수와 비용을 근거로 한 판본을 채택한다. 판본마다 한 가지만 바꾸어야 결과의 차이를 그 변경 탓으로 읽을 수 있다.</p>
+<p>10장 핵심 실습(11절)은 공고 요약 기능의 프롬프트를 판본(v1, v2, v3)으로 나누어 같은 평가 문항과 채점기로 견주고, 점수와 비용을 근거로 한 판본을 채택한 뒤(11-2~11-4), 그 기능을 웹에 붙이면서 생기는 같은 출처 문제를 재현하고 해결한다(11-5~11-8). 판본마다 한 가지만 바꾸어야 결과의 차이를 그 변경 탓으로 읽을 수 있다.</p>
 <section id="c-10-1.-프롬프트-판본-비교" class="level3">
 <h3 class="anchored" data-anchor-id="c-10-1.-프롬프트-판본-비교">C-10-1. 프롬프트 판본 비교</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 10장 11-4 「채택과 기록」. 키트의 <code>jobprep/docs/</code> 안에 들어 있어, 저장소에서 <code>docs/프롬프트비교.md</code>로 복사해 채운다.</li>
+<li><strong>쓰는 곳.</strong> 10장 11-4 「채택과 기록」(1~6절), 11-7 「원인 찾기와 해결」(7절), 11-10 「실제 호출의 확인」(6절의 실제 호출 줄). 키트의 <code>jobprep/docs/</code> 안에 들어 있어, 저장소에서 <code>docs/프롬프트비교.md</code>로 복사해 채운다.</li>
 <li><strong>키트 경로.</strong> <code>Service_10주차/jobprep/docs/프롬프트비교_양식.md</code></li>
 </ul>
 <div class="code-label where-server">
@@ -3220,13 +3293,21 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <span id="cb47-41"><a href="#cb47-41" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb47-42"><a href="#cb47-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>모의 모드라면: 미리 적어 둔 응답을 재생한 것이므로 모델의 실제 성능이 아니다. 실제 호출로 다시 재야 한다.</span>
 <span id="cb47-43"><a href="#cb47-43" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>실제 호출이라면: 한 번 실행한 결과이다. 같은 판본을 다시 실행했을 때 점수가 얼마나 흔들리는지 「 」</span>
-<span id="cb47-44"><a href="#cb47-44" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>교수 시연의 실행 기록(11-8)에서 읽은 것: 「 실행 기록의 날짜, P04의 실제 입력 토큰(모의 어림 1105와 비교), 마감일의 정오, 판본 비교 3회 합계의 범위. 기록이 없으면 "실제 호출은 확인하지 못함(교수 시연 없음)" 」</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb47-44"><a href="#cb47-44" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>실제 호출에서 읽은 것(11-10): 「 출처(내 키로 한 first_call 1회 / 교수 시연의 실행 기록)와 날짜, P04의 실제 입력 토큰(모의 어림 1105와 비교), 마감일의 정오, (실행 기록이면) 판본 비교 3회 합계의 범위. 둘 다 없으면 "실제 호출은 확인하지 못함(까닭)" 」</span>
+<span id="cb47-45"><a href="#cb47-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-46"><a href="#cb47-46" aria-hidden="true" tabindex="-1"></a><span class="fu">## 7. 웹 연결에서 만난 문제와 해결</span></span>
+<span id="cb47-47"><a href="#cb47-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-48"><a href="#cb47-48" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>증상: 「 어느 주소에서 열었고, 화면과 서버를 띄운 터미널에 무엇이 나왔는가(상태 코드와 기록 한 줄) 」</span>
+<span id="cb47-49"><a href="#cb47-49" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>원인: 「 요청이 어느 서버로 갔고, 왜 그 서버가 처리하지 못했는가 」</span>
+<span id="cb47-50"><a href="#cb47-50" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>해결: 「 어떻게 바꾸었고, 바꾼 뒤 무엇을 보고 풀렸다고 판단했는가 」</span>
+<span id="cb47-51"><a href="#cb47-51" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>고르지 않은 해결과 그 까닭: 「 예: 웹 코드에 API의 전체 주소를 적고 CORS로 허락하는 방법 」</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong>프로젝트실습Ⅰ에서 바꿀 곳.</strong>
 <ul>
 <li>1절의 평가 문항(<code>eval/공고 10건</code>, <code>eval/정답.json</code>)과 채점기(<code>eval/grader.py</code>)는 공통 사례의 것이다. 팀의 LLM 기능에 맞는 평가 문항과 채점 기준을 먼저 만들고, 그 경로를 적는다. 채점기 없이 사람이 채점하면 채점 기준표의 경로와 채점한 사람을 적는다.</li>
 <li>5절의 비용 계산은 <code>jobprep/tools/cost_estimate.py</code>의 결과이다. 팀에 이 도구가 없으면 토큰 수와 단가로 계산한 식을 적는다. 「월 3만 6천 건」은 공통 사례의 가정이므로 팀의 사용량 가정으로 바꾸고, 시장 조사 보고(C-4-1)의 가정 기호를 붙인다.</li>
-<li>6절 「이 결과의 한계」는 지우지 않는다. 모의 모드(<code>LLM_FAKE=1</code>)의 점수는 모델의 실제 성능이 아니다(부록 A-14).</li>
+<li>6절 「이 결과의 한계」는 지우지 않는다. 모의 모드(<code>LLM_FAKE=1</code>)의 점수는 모델의 실제 성능이 아니다(부록 A-15). 실제 호출의 줄에는 출처(팀원이 각자 발급한 키로 한 호출인지, 교수의 실행 기록인지)를 밝힌다.</li>
+<li>7절 「웹 연결에서 만난 문제와 해결」은 팀의 웹 화면과 API를 붙일 때 그대로 쓴다. 증상에는 연 주소와 상태 코드를, 해결에는 풀렸다고 판단한 관찰을 적는다.</li>
 </ul></li>
 </ul>
 <hr>
@@ -3234,7 +3315,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 </section>
 <section id="c-11.-11장-rag-요구와-검색-평가" class="level2">
 <h2 class="anchored" data-anchor-id="c-11.-11장-rag-요구와-검색-평가">C-11. 11장: RAG 요구와 검색 평가</h2>
-<p>11장은 학과 취업 자료를 근거로 답하는 질의응답 기능(검색 증강 생성, RAG)을 만들고, 검색 품질을 재현율@3으로 잰다. 명세에 RAG 요구를 더해 v6으로 올리고(11절), 청킹 설정과 유사도 기준값을 측정으로 정한다(12절).</p>
+<p>11장의 핵심 실습(12절)은 학과 취업 자료를 근거로 답하는 질의응답 기능(검색 증강 생성, RAG)을 만들고, 검색 품질을 재현율@3으로 잰다. 명세에 RAG 요구를 더해 v6으로 올리고(11절, 12-2), 유사도 기준값을 측정으로 정한 뒤(12-6), 청킹 설정을 바꾸었을 때 생기는 검색 회귀를 재현하고 설정 하나로 고친다(12-9~12-11).</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
@@ -3254,13 +3335,13 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <tr class="odd">
 <td>RAG 요구</td>
 <td><code>Service_11주차/jobprep/docs/RAG요구_양식.md</code></td>
-<td>11-2</td>
+<td>11-2, 12-2, 12-12</td>
 <td>명세서에 붙인다</td>
 </tr>
 <tr class="even">
 <td>검색 평가</td>
 <td><code>Service_11주차/jobprep/docs/검색평가_양식.md</code></td>
-<td>12-5</td>
+<td>12-5, 12-6, 12-9~12-12</td>
 <td><code>docs/검색평가.md</code></td>
 </tr>
 </tbody>
@@ -3268,7 +3349,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <section id="c-11-1.-rag-요구" class="level3">
 <h3 class="anchored" data-anchor-id="c-11-1.-rag-요구">C-11-1. RAG 요구</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 11장 11-2 「양식 채우기」. 「 」 자리(검색할 청크 수, 유사도 기준값, 이력 왕복 수, 평가 문항 수)를 채운 뒤 「취업 자료 질의응답」 절 전체를 명세서의 마지막 요구 절 뒤에 붙인다.</li>
+<li><strong>쓰는 곳.</strong> 11장 11-2 「요구와 테스트의 대응」, 12-2 「명세에 RAG 요구 붙이기」. 「 」 자리(검색할 청크 수, 유사도 기준값, 이력 왕복 수, 평가 문항 수)를 채운 뒤 「취업 자료 질의응답」 절 전체를 명세서의 마지막 요구 절 뒤에 붙인다.</li>
 <li><strong>키트 경로.</strong> <code>Service_11주차/jobprep/docs/RAG요구_양식.md</code> (41줄). 요구 13개 가운데 「검색」의 세 개와 변경 이력만 싣는다. 나머지 「답변」, 「대화」, 「화면과 API」, 「측정」의 요구는 키트 원문에 있다.</li>
 </ul>
 <div class="code-label where-server">
@@ -3285,7 +3366,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a><span class="fu">### 검색</span></span>
 <span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>REQ-060 (사건): 사용자가 질문을 보내면, 시스템은 취업 자료 색인에서 질문과 코사인 유사도가 높은 순으로 청크 「  」개를 근거로 골라야 한다. (<span class="in">`rag/search.py`</span>의 <span class="in">`vector_search`</span>)</span>
-<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>REQ-061 (선택 기능): 실습 서버에 Ollama 임베딩 모델이 있는 곳에서는, 시스템은 그 모델로 임베딩해야 한다. 연결할 수 없으면 글자 n-gram 대체 임베딩을 쓰고 그 사실을 표시해야 한다. (<span class="in">`rag/embedder.py`</span>, 완성되어 있음)</span>
+<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>REQ-061 (선택 기능): Ollama 임베딩을 고른 곳에서는(<span class="in">`EMBED_BACKEND=ollama`</span>), 시스템은 그 모델로 임베딩해야 한다. 고르지 않으면 글자 n-gram 대체 임베딩을 쓰고, 색인에 쓴 임베딩 경로와 모델을 기록해야 한다. (<span class="in">`rag/embedder.py`</span>, <span class="in">`rag/store.py`</span>, 완성되어 있음)</span>
 <span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>REQ-062 (항상): 시스템은 색인을 만들기 전에 문서의 HTML 주석(<span class="in">`&lt;!-- --&gt;`</span>)을 걷어 내야 한다. (<span class="in">`rag/chunker.py`</span>의 <span class="in">`clean_text`</span>, 완성되어 있음)</span>
 <span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a>(… 키트 원문 15~36줄 생략 …)</span>
@@ -3301,8 +3382,8 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <section id="c-11-2.-검색-평가" class="level3">
 <h3 class="anchored" data-anchor-id="c-11-2.-검색-평가">C-11-2. 검색 평가</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 11장 12-5 「재현율@3 측정과 검색평가.md」. 측정 조건을 고정하고, <code>python -m rag eval --md</code>의 출력을 그대로 붙인 뒤 놓친 문항의 원인을 넷 중 하나로 고른다. 청킹 설정 하나를 바꾸어 다시 재고, 「자료에 없다」 응답의 기준값을 정한다.</li>
-<li><strong>키트 경로.</strong> <code>Service_11주차/jobprep/docs/검색평가_양식.md</code> (63줄). 전문을 싣는다.</li>
+<li><strong>쓰는 곳.</strong> 11장 12-5 「재현율 측정과 검색평가.md」, 12-6 「기준값과 「자료에 없다」」, 12-9~12-11(회귀, 고치기, 채택). 측정 조건을 고정하고, <code>python -m rag eval --md</code>의 출력을 그대로 붙인 뒤 놓친 문항의 원인을 넷 중 하나로 고른다. 청킹 설정을 바꾸었을 때 새로 놓친 문항(회귀)의 원인을 찾아 설정 하나로 고치고, 두 설정의 기준값을 견주어 채택할 설정을 정한다. 7절은 [선택]이다.</li>
+<li><strong>키트 경로.</strong> <code>Service_11주차/jobprep/docs/검색평가_양식.md</code> (74줄). 전문을 싣는다.</li>
 </ul>
 <div class="code-label where-server">
 <span>파일: ~/kits/Service_11주차/jobprep/docs/검색평가_양식.md</span>
@@ -3334,51 +3415,62 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <span id="cb49-25"><a href="#cb49-25" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|---|</span></span>
 <span id="cb49-26"><a href="#cb49-26" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 「  」 <span class="pp">|</span> 「  」 <span class="pp">|</span> 「  」 <span class="pp">|</span> 「  」 <span class="pp">|</span> 「  」 <span class="pp">|</span></span>
 <span id="cb49-27"><a href="#cb49-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-28"><a href="#cb49-28" aria-hidden="true" tabindex="-1"></a><span class="fu">## 4. 청킹 설정 하나를 바꾼 재측정</span></span>
+<span id="cb49-28"><a href="#cb49-28" aria-hidden="true" tabindex="-1"></a><span class="fu">## 4. 청킹 설정을 바꾸었을 때의 회귀와 해결</span></span>
 <span id="cb49-29"><a href="#cb49-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-30"><a href="#cb49-30" aria-hidden="true" tabindex="-1"></a>바꾼 설정 하나: 「예: CHUNK_MODE=heading → size(CHUNK_MAX_CHARS=200)」</span>
+<span id="cb49-30"><a href="#cb49-30" aria-hidden="true" tabindex="-1"></a>설정은 한 번에 하나씩 바꾼다. 각 줄의 숫자는 <span class="in">`python -m rag eval`</span>의 마지막 줄에서 옮긴다.</span>
 <span id="cb49-31"><a href="#cb49-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-32"><a href="#cb49-32" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 설정 <span class="pp">|</span> 청크 수 <span class="pp">|</span> 재현율@3 <span class="pp">|</span> 적중 <span class="pp">|</span> 정밀도@3 <span class="pp">|</span></span>
-<span id="cb49-33"><a href="#cb49-33" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|---|</span></span>
-<span id="cb49-34"><a href="#cb49-34" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 기본 <span class="pp">|</span> 「  」 <span class="pp">|</span> 「  」 <span class="pp">|</span> 「  」/10 <span class="pp">|</span> 「  」 <span class="pp">|</span></span>
-<span id="cb49-35"><a href="#cb49-35" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 바꾼 설정 <span class="pp">|</span> 「  」 <span class="pp">|</span> 「  」 <span class="pp">|</span> 「  」/10 <span class="pp">|</span> 「  」 <span class="pp">|</span></span>
-<span id="cb49-36"><a href="#cb49-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-37"><a href="#cb49-37" aria-hidden="true" tabindex="-1"></a>결과가 달라진 문항과 그 까닭(두세 문장): 「  」</span>
-<span id="cb49-38"><a href="#cb49-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-39"><a href="#cb49-39" aria-hidden="true" tabindex="-1"></a><span class="fu">## 5. 기준값</span></span>
-<span id="cb49-40"><a href="#cb49-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-41"><a href="#cb49-41" aria-hidden="true" tabindex="-1"></a>(<span class="in">`python -m rag calibrate`</span>의 출력을 붙여 넣는다)</span>
+<span id="cb49-32"><a href="#cb49-32" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 설정 <span class="pp">|</span> 바꾼 것 하나 <span class="pp">|</span> 청크 수 <span class="pp">|</span> 재현율@3 <span class="pp">|</span> 적중 <span class="pp">|</span> 정밀도@3 <span class="pp">|</span> 놓친 문항 <span class="pp">|</span></span>
+<span id="cb49-33"><a href="#cb49-33" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|---|---|---|</span></span>
+<span id="cb49-34"><a href="#cb49-34" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 기본(heading 500) <span class="pp">|</span> <span class="pp">|</span> 「  」 <span class="pp">|</span> 「  」 <span class="pp">|</span> 「  」/10 <span class="pp">|</span> 「  」 <span class="pp">|</span> 「  」 <span class="pp">|</span></span>
+<span id="cb49-35"><a href="#cb49-35" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 고정 길이 200 <span class="pp">|</span> CHUNK_MODE=size, CHUNK_MAX_CHARS=200 <span class="pp">|</span> 「  」 <span class="pp">|</span> 「  」 <span class="pp">|</span> 「  」/10 <span class="pp">|</span> 「  」 <span class="pp">|</span> 「  」 <span class="pp">|</span></span>
+<span id="cb49-36"><a href="#cb49-36" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 고친 설정 <span class="pp">|</span> 「  」 <span class="pp">|</span> 「  」 <span class="pp">|</span> 「  」/10 <span class="pp">|</span> 「  」 <span class="pp">|</span> 「  」 <span class="pp">|</span> 「  」 <span class="pp">|</span></span>
+<span id="cb49-37"><a href="#cb49-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-38"><a href="#cb49-38" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>새로 놓친 문항(회귀)과 그 원인: 「 번호, 1위 청크의 절, 정답 절이 어느 조각에 어떻게 들어갔는가(chunks.json에서 본 것) 」</span>
+<span id="cb49-39"><a href="#cb49-39" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>고친 설정 하나와 그 까닭: 「  」</span>
+<span id="cb49-40"><a href="#cb49-40" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>고친 뒤의 확인: 「 그 문항의 1위 청크의 절, 재현율 」</span>
+<span id="cb49-41"><a href="#cb49-41" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>다른 문항에 생긴 변화: 「  」</span>
 <span id="cb49-42"><a href="#cb49-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-43"><a href="#cb49-43" aria-hidden="true" tabindex="-1"></a>정한 기준값: 「  」. 까닭: 「  」</span>
+<span id="cb49-43"><a href="#cb49-43" aria-hidden="true" tabindex="-1"></a><span class="fu">## 5. 기준값</span></span>
 <span id="cb49-44"><a href="#cb49-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-45"><a href="#cb49-45" aria-hidden="true" tabindex="-1"></a><span class="fu">## 6. 「자료에 없다」의 확인</span></span>
+<span id="cb49-45"><a href="#cb49-45" aria-hidden="true" tabindex="-1"></a>기본 설정의 <span class="in">`python -m rag calibrate`</span> 출력(12-6):</span>
 <span id="cb49-46"><a href="#cb49-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-47"><a href="#cb49-47" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 질문 <span class="pp">|</span> 1위 유사도 <span class="pp">|</span> 답 <span class="pp">|</span> 판정 <span class="pp">|</span></span>
-<span id="cb49-48"><a href="#cb49-48" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|</span></span>
-<span id="cb49-49"><a href="#cb49-49" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 「자료에 없는 질문 1」 <span class="pp">|</span> 「  」 <span class="pp">|</span> 「  」 <span class="pp">|</span> 「통과/미통과」 <span class="pp">|</span></span>
-<span id="cb49-50"><a href="#cb49-50" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 「자료에 없는 질문 2」 <span class="pp">|</span> 「  」 <span class="pp">|</span> 「  」 <span class="pp">|</span> 「통과/미통과」 <span class="pp">|</span></span>
-<span id="cb49-51"><a href="#cb49-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-52"><a href="#cb49-52" aria-hidden="true" tabindex="-1"></a><span class="fu">## 7. 교수 시연의 실행 기록과 견주기</span></span>
-<span id="cb49-53"><a href="#cb49-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-54"><a href="#cb49-54" aria-hidden="true" tabindex="-1"></a><span class="in">`~/kits/Service_11주차/시연기록/11장_시연기록.md`</span>를 읽고 적는다. 기록이 없으면 「기록 없음」으로 적는다.</span>
-<span id="cb49-55"><a href="#cb49-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-56"><a href="#cb49-56" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>기록의 임베딩 경로와 생성 방식: 「  」</span>
-<span id="cb49-57"><a href="#cb49-57" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>6번 문항(아파서 못 가면)과 세 쌍의 셋째 쌍이 Ollama 경로에서 어떻게 달랐는가: 「  」</span>
-<span id="cb49-58"><a href="#cb49-58" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>실제 모델의 답(기록 6절)을 강의안 12-10절의 네 물음으로 판정한 결과: 「  」</span>
-<span id="cb49-59"><a href="#cb49-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-60"><a href="#cb49-60" aria-hidden="true" tabindex="-1"></a><span class="fu">## 8. 결론</span></span>
+<span id="cb49-47"><a href="#cb49-47" aria-hidden="true" tabindex="-1"></a>(붙여 넣는다)</span>
+<span id="cb49-48"><a href="#cb49-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-49"><a href="#cb49-49" aria-hidden="true" tabindex="-1"></a>고친 설정의 <span class="in">`calibrate`</span> 출력(12-10):</span>
+<span id="cb49-50"><a href="#cb49-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-51"><a href="#cb49-51" aria-hidden="true" tabindex="-1"></a>(붙여 넣는다)</span>
+<span id="cb49-52"><a href="#cb49-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-53"><a href="#cb49-53" aria-hidden="true" tabindex="-1"></a>정한 기준값: 「 기본 설정 0.18 / 고친 설정 「  」 」. 까닭: 「  」</span>
+<span id="cb49-54"><a href="#cb49-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-55"><a href="#cb49-55" aria-hidden="true" tabindex="-1"></a><span class="fu">## 6. 「자료에 없다」의 확인</span></span>
+<span id="cb49-56"><a href="#cb49-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-57"><a href="#cb49-57" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 질문 <span class="pp">|</span> 1위 유사도 <span class="pp">|</span> 답 <span class="pp">|</span> 판정 <span class="pp">|</span></span>
+<span id="cb49-58"><a href="#cb49-58" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|</span></span>
+<span id="cb49-59"><a href="#cb49-59" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 「자료에 없는 질문 1」 <span class="pp">|</span> 「  」 <span class="pp">|</span> 「  」 <span class="pp">|</span> 「통과/미통과」 <span class="pp">|</span></span>
+<span id="cb49-60"><a href="#cb49-60" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 「자료에 없는 질문 2」 <span class="pp">|</span> 「  」 <span class="pp">|</span> 「  」 <span class="pp">|</span> 「통과/미통과」 <span class="pp">|</span></span>
 <span id="cb49-61"><a href="#cb49-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-62"><a href="#cb49-62" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>채택한 설정: 「  」</span>
-<span id="cb49-63"><a href="#cb49-63" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>이 측정으로 말할 수 있는 것과 없는 것(문항 10개, 대체 임베딩 등의 한계): 「  」</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb49-62"><a href="#cb49-62" aria-hidden="true" tabindex="-1"></a><span class="fu">## 7. 교수 시연의 실행 기록과 견주기 [선택]</span></span>
+<span id="cb49-63"><a href="#cb49-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-64"><a href="#cb49-64" aria-hidden="true" tabindex="-1"></a><span class="in">`~/kits/Service_11주차/시연기록/11장_시연기록.md`</span>를 읽고 적는다. 기록이 없거나 이 절을 하지 않았으면 「기록 없음」으로 적는다.</span>
+<span id="cb49-65"><a href="#cb49-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-66"><a href="#cb49-66" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>기록의 임베딩 경로와 생성 방식: 「  」</span>
+<span id="cb49-67"><a href="#cb49-67" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>6번 문항(아파서 못 가면)과 세 쌍의 셋째 쌍이 Ollama 경로에서 어떻게 달랐는가: 「  」</span>
+<span id="cb49-68"><a href="#cb49-68" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>실제 모델의 답(기록 6절, 또는 내 키로 한 1회)을 강의안 12-13절의 네 물음으로 판정한 결과: 「  」</span>
+<span id="cb49-69"><a href="#cb49-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-70"><a href="#cb49-70" aria-hidden="true" tabindex="-1"></a><span class="fu">## 8. 결론</span></span>
+<span id="cb49-71"><a href="#cb49-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-72"><a href="#cb49-72" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>채택한 설정: 「 기본 설정 / 고친 설정 」. 고친 설정을 채택했으면 <span class="in">`.env`</span>에 적은 줄: 「  」</span>
+<span id="cb49-73"><a href="#cb49-73" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>채택의 근거(재현율, 기준값의 여유, 청크 수 가운데 무엇을 보았는가): 「  」</span>
+<span id="cb49-74"><a href="#cb49-74" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>이 측정으로 말할 수 있는 것과 없는 것(문항 10개, 대체 임베딩 등의 한계): 「  」</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li><strong>프로젝트실습Ⅰ에서 바꿀 곳.</strong> <code>python -m rag eval</code>, <code>calibrate</code>와 환경 변수 <code>CHUNK_MODE</code> 등은 공통 사례의 <code>rag</code> 패키지의 것이다. 팀이 다른 구현을 쓰면 그 측정 명령과 설정 이름으로 1절과 4절을 고친다. 「표는 출력을 그대로 붙이고 숫자를 손으로 고치지 않는다」는 규칙, 3절의 원인 네 가지, 4절의 「설정 하나만 바꾼다」는 원칙, 7절의 한계 칸은 그대로 둔다. 평가 문항(<code>평가문항.csv</code> 10개)은 팀의 자료로 새로 만든다.</li>
+<li><strong>프로젝트실습Ⅰ에서 바꿀 곳.</strong> <code>python -m rag eval</code>, <code>calibrate</code>와 환경 변수 <code>CHUNK_MODE</code> 등은 공통 사례의 <code>rag</code> 패키지의 것이다. 팀이 다른 구현을 쓰면 그 측정 명령과 설정 이름으로 1절과 4절을 고친다. 「표는 출력을 그대로 붙이고 숫자를 손으로 고치지 않는다」는 규칙, 3절의 원인 네 가지, 4절의 「설정은 한 번에 하나씩 바꾼다」는 원칙과 회귀를 적는 줄, 8절의 한계 칸은 그대로 둔다. 평가 문항(<code>평가문항.csv</code> 10개)은 팀의 자료로 새로 만든다.</li>
 </ul>
 <hr>
 </section>
 </section>
 <section id="c-12.-12장-비교-구현과-결정-기록" class="level2">
 <h2 class="anchored" data-anchor-id="c-12.-12장-비교-구현과-결정-기록">C-12. 12장: 비교 구현과 결정 기록</h2>
-<p>12장 중심 실습(9절)은 같은 명세(자기소개서 피드백, REQ-080~089)를 양식형(variant-form)과 대화형(variant-chat) 두 변형으로 구현하게 하고, 같은 기준표로 견준 뒤 하나를 병합하고 결정 기록(ADR)을 남긴다. 구현에서 명세를 다시 뽑아 원 명세와 대조하는 일(6절)도 한다.</p>
+<p>12장 핵심 실습(9절)은 같은 명세(자기소개서 피드백, REQ-080~089)를 Orca로 내 PC에 만든 작업 공간 두 개에서 양식형(variant-form)과 대화형(variant-chat) 두 변형으로 구현하게 하고(9-3, 9-4), 같은 기준표로 견준 뒤 하나를 병합하고 결정 기록(ADR)을 남긴다(9-9, 9-10). Orca의 설치는 부록 A-20이다. 구현에서 명세를 다시 뽑아 원 명세와 대조하는 일(6절)은 9-8의 [선택]이다.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
@@ -3398,43 +3490,43 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <tr class="odd">
 <td>변형 지시(공통)</td>
 <td><code>Service_12주차/변형지시_공통_양식.md</code></td>
-<td>4-2, 4-3</td>
+<td>4-2, 4-3, 9-4</td>
 <td><code>docs/변형지시/공통.md</code></td>
 </tr>
 <tr class="even">
 <td>변형 지시(양식형)</td>
 <td><code>Service_12주차/변형지시_form_양식.md</code></td>
-<td>4-2, 4-3</td>
+<td>4-2, 4-3, 9-4</td>
 <td><code>docs/변형지시/form.md</code></td>
 </tr>
 <tr class="odd">
 <td>변형 지시(대화형)</td>
 <td><code>Service_12주차/변형지시_chat_양식.md</code></td>
-<td>4-2, 4-3</td>
+<td>4-2, 4-3, 9-4</td>
 <td><code>docs/변형지시/chat.md</code></td>
 </tr>
 <tr class="even">
 <td>명세 충족 점검표</td>
 <td><code>Service_12주차/명세점검표_양식.md</code></td>
-<td>9-5</td>
+<td>9-6</td>
 <td><code>docs/비교/점검표_form.md</code>, <code>점검표_chat.md</code></td>
 </tr>
 <tr class="odd">
 <td>추출 명세</td>
 <td><code>Service_12주차/추출명세_양식.md</code></td>
-<td>6절</td>
+<td>6절, 9-8 [선택]</td>
 <td>변형마다 하나</td>
 </tr>
 <tr class="even">
 <td>비교 구현</td>
 <td><code>Service_12주차/비교구현_양식.md</code></td>
-<td>5절, 9절</td>
+<td>2-5, 5절, 9-5~9-8</td>
 <td><code>jobprep/docs/비교구현.md</code></td>
 </tr>
 <tr class="odd">
 <td>결정 기록(ADR)</td>
 <td><code>Service_12주차/결정기록_양식.md</code></td>
-<td>7-3, 9-10</td>
+<td>7-3, 9-9</td>
 <td><code>jobprep/docs/결정/ADR-001-….md</code></td>
 </tr>
 </tbody>
@@ -3442,7 +3534,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <section id="c-12-1.-변형-지시" class="level3">
 <h3 class="anchored" data-anchor-id="c-12-1.-변형-지시">C-12-1. 변형 지시</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 12장 4-2 「지시문의 구조: 공통과 차이」, 4-3. 두 변형에 똑같이 주는 공통 지시와 변형마다 다른 차이 지시를 나누어 쓴다. 변형마다 새 Claude Code 세션에 준다.</li>
+<li><strong>쓰는 곳.</strong> 12장 4-2 「지시문의 구조: 공통과 차이」, 4-3, 9-4 「두 에이전트의 구현」. 두 변형에 똑같이 주는 공통 지시와 변형마다 다른 차이 지시를 나누어 쓴다. Orca의 작업 공간마다 새 Claude Code 세션을 열어 준다.</li>
 <li><strong>키트 경로.</strong> <code>Service_12주차/변형지시_공통_양식.md</code>, <code>변형지시_form_양식.md</code>, <code>변형지시_chat_양식.md</code>. 대화형 지시는 양식형과 같은 구성(상호작용 방식, API 계약, 파일)이므로 뺐다.</li>
 </ul>
 <div class="code-label where-server">
@@ -3461,7 +3553,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>REQ-080~REQ-089를 구현한다. 백엔드는 <span class="in">`api/`</span> 아래 새 모듈과 라우터로, 화면은 <span class="in">`web/`</span> 아래 새 파일로 만든다.</span>
 <span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>LLM 호출은 <span class="in">`api/llm.py`</span>의 <span class="in">`complete()`</span>만 쓴다. <span class="in">`purpose`</span>는 <span class="in">`"feedback_" + 변형 이름`</span>으로 준다.</span>
-<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>요구마다 테스트를 하나 이상 <span class="in">`tests/test_feedback_&lt;변형 이름&gt;.py`</span>에 쓴다. 함수 이름은 <span class="in">`test_REQ_0NN_...`</span>(요구 번호 세 자리)으로 시작한다. 모의 모드(<span class="in">`LLM_FAKE=1 pytest -q`</span>)에서 통과시킨다.</span>
+<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>요구마다 테스트를 하나 이상 <span class="in">`tests/test_feedback_&lt;변형 이름&gt;.py`</span>에 쓴다. 함수 이름은 <span class="in">`test_REQ_0NN_...`</span>(요구 번호 세 자리)으로 시작한다. 모의 모드(<span class="in">`LLM_FAKE=1 python -m pytest`</span>. <span class="in">`pytest.ini`</span>가 <span class="in">`-q`</span>를 이미 준다)에서 통과시킨다.</span>
 <span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>기존 기능(공고 모아보기, 요약, 질의응답)과 그 테스트를 깨뜨리지 않는다.</span>
 <span id="cb50-16"><a href="#cb50-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb50-17"><a href="#cb50-17" aria-hidden="true" tabindex="-1"></a><span class="fu">## 하지 말 것</span></span>
@@ -3501,13 +3593,13 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <span id="cb51-18"><a href="#cb51-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`api/feedback.py`</span>, <span class="in">`web/feedback.html`</span>, <span class="in">`web/feedback.js`</span>, <span class="in">`tests/test_feedback_form.py`</span></span>
 <span id="cb51-19"><a href="#cb51-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>주 메뉴에 「자기소개서 피드백」을 더한다.</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li><strong>프로젝트실습Ⅰ에서 바꿀 곳.</strong> 두 안을 견주어 고르는 팀이 쓴다. 「기준 문서」의 절 이름과 요구 번호(REQ-080~089), 「할 일」의 <code>api/llm.py</code>의 <code>complete()</code>, 파일 이름은 팀의 것으로 바꾼다. 「하지 말 것」의 「명세 파일을 고치지 않는다」와 「보고」의 네 항목은 그대로 둔다. 특히 「명세에 없어 스스로 정한 것의 목록」은 명세의 빈틈을 찾는 가장 빠른 길이다(12장 6절). 차이 지시에는 상호작용 방식과 API 계약처럼 두 안이 실제로 다른 것만 적는다.</li>
+<li><strong>프로젝트실습Ⅰ에서 바꿀 곳.</strong> 두 안을 견주어 고르는 팀이 쓴다. 「기준 문서」의 절 이름과 요구 번호(REQ-080~089), 「할 일」의 <code>api/llm.py</code>의 <code>complete()</code>, 파일 이름은 팀의 것으로 바꾼다. 「하지 말 것」의 「명세 파일을 고치지 않는다」와 「보고」의 네 항목은 그대로 둔다. 특히 「명세에 없어 스스로 정한 것의 목록」은 명세의 빈틈을 찾는 가장 빠른 길이다(12장 9-8). 차이 지시에는 상호작용 방식과 API 계약처럼 두 안이 실제로 다른 것만 적는다.</li>
 </ul>
 </section>
 <section id="c-12-2.-명세-충족-점검표" class="level3">
 <h3 class="anchored" data-anchor-id="c-12-2.-명세-충족-점검표">C-12-2. 명세 충족 점검표</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 12장 9-5 「화면 점검: 명세 충족과 휴리스틱」. 변형마다 화면과 API를 직접 써 보고 요구별로 충족, 부분, 미충족, 해당없음을 판정한다. <code>도구/spec_checklist.py</code>가 집계한다.</li>
+<li><strong>쓰는 곳.</strong> 12장 9-6 「화면 점검과 응답 비교」. 변형마다 화면과 API를 직접 써 보고 요구별로 충족, 부분, 미충족, 해당없음을 판정한다. <code>도구/spec_checklist.py</code>가 집계한다.</li>
 <li><strong>키트 경로.</strong> <code>Service_12주차/명세점검표_양식.md</code></li>
 </ul>
 <div class="code-label where-server">
@@ -3538,7 +3630,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <section id="c-12-3.-추출-명세" class="level3">
 <h3 class="anchored" data-anchor-id="c-12-3.-추출-명세">C-12-3. 추출 명세</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 12장 6절 「구현에서 명세 다시 뽑기」. 1단계에서는 원 명세를 보지 않고 코드와 화면만 보고 EARS 문장을 뽑고, 2단계에서 원 명세를 열어 「대응」 칸을 채운다. <code>도구/spec_diff.py</code>가 대조한다.</li>
+<li><strong>쓰는 곳.</strong> 12장 6절 「구현에서 명세 다시 뽑기」, 9-8의 [선택]. 1단계에서는 원 명세를 보지 않고 코드와 화면만 보고 EARS 문장을 뽑고, 2단계에서 원 명세를 열어 「대응」 칸을 채운다. <code>도구/spec_diff.py</code>가 대조한다.</li>
 <li><strong>키트 경로.</strong> <code>Service_12주차/추출명세_양식.md</code></li>
 </ul>
 <div class="code-label where-server">
@@ -3560,7 +3652,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <section id="c-12-4.-비교-구현" class="level3">
 <h3 class="anchored" data-anchor-id="c-12-4.-비교-구현">C-12-4. 비교 구현</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 12장 5절 「비교 기준과 측정」, 9절. 두 변형을 명세 충족률, 자동 검사, 휴리스틱 위반, 과업 시간, 호출 수와 토큰, 비용, 코드 규모로 견준다. 모든 칸 옆에 그 값을 낸 명령이나 파일을 적는다.</li>
+<li><strong>쓰는 곳.</strong> 12장 2-5에서 기능 절과 함께 준비하고, 5절 「비교 기준과 측정」, 9-5~9-8에서 채운다. 두 변형을 명세 충족률, 자동 검사, 휴리스틱 위반, 과업 시간, 호출 수와 토큰, 비용, 코드 규모로 견준다. 모든 칸 옆에 그 값을 낸 명령이나 파일을 적는다.</li>
 <li><strong>키트 경로.</strong> <code>Service_12주차/비교구현_양식.md</code></li>
 </ul>
 <div class="code-label where-server">
@@ -3577,45 +3669,46 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 기준 명세 <span class="pp">|</span> <span class="in">`docs/요구사항명세서.md`</span> 「자기소개서 피드백」 절, 태그 「spec-v7」 <span class="pp">|</span></span>
 <span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 변형 브랜치와 커밋 <span class="pp">|</span> variant-form 「커밋」, variant-chat 「커밋」 <span class="pp">|</span></span>
 <span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 같은 지시 <span class="pp">|</span> <span class="in">`docs/변형지시/공통.md`</span> + 변형별 파일, 변형마다 새 세션 <span class="pp">|</span></span>
-<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 측정 환경 <span class="pp">|</span> 「실습 서버 / 내 PC」, 모의 모드 「LLM_FAKE=1, LLM_FAKE_LATENCY=on」 <span class="pp">|</span></span>
-<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 과업(시나리오) <span class="pp">|</span> <span class="in">`시나리오/form.json`</span>(요청 2회), <span class="in">`시나리오/chat.json`</span>(요청 3회) <span class="pp">|</span></span>
-<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## 2. 비교 기준표</span></span>
-<span id="cb54-16"><a href="#cb54-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-17"><a href="#cb54-17" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 기준 <span class="pp">|</span> 재는 법 <span class="pp">|</span> variant-form <span class="pp">|</span> variant-chat <span class="pp">|</span> 더 나은 쪽 <span class="pp">|</span></span>
-<span id="cb54-18"><a href="#cb54-18" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|---|</span></span>
-<span id="cb54-19"><a href="#cb54-19" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 명세 충족률 <span class="pp">|</span> <span class="in">`spec_checklist.py`</span> 점검표 집계 <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
-<span id="cb54-20"><a href="#cb54-20" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 자동 검사 통과 <span class="pp">|</span> <span class="in">`check_common.py`</span> 통과 수 / 5, 변형 자체 <span class="in">`pytest`</span> 통과 수 <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
-<span id="cb54-21"><a href="#cb54-21" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 휴리스틱 위반 수 <span class="pp">|</span> 3절의 표(평가자 1명) <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
-<span id="cb54-22"><a href="#cb54-22" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 과업 시간 중앙값 <span class="pp">|</span> <span class="in">`measure_latency.py --repeat 5`</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
-<span id="cb54-23"><a href="#cb54-23" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 과업당 호출 수 <span class="pp">|</span> <span class="in">`token_report.py --tasks 6`</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
-<span id="cb54-24"><a href="#cb54-24" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 과업당 토큰(모의 어림) <span class="pp">|</span> <span class="in">`token_report.py`</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
-<span id="cb54-25"><a href="#cb54-25" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 과업당 비용(USD, 단가 「입력 / 출력」) <span class="pp">|</span> <span class="in">`token_report.py --price-in --price-out`</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
-<span id="cb54-26"><a href="#cb54-26" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 코드 규모(더한 줄) <span class="pp">|</span> <span class="in">`git diff --shortstat main...&lt;브랜치&gt; -- jobprep`</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
-<span id="cb54-27"><a href="#cb54-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-28"><a href="#cb54-28" aria-hidden="true" tabindex="-1"></a><span class="fu">## 3. 휴리스틱 위반 (닐슨의 10가지, 빠른 자체 점검)</span></span>
-<span id="cb54-29"><a href="#cb54-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-30"><a href="#cb54-30" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 변형 <span class="pp">|</span> 휴리스틱 <span class="pp">|</span> 관찰한 문제 <span class="pp">|</span> 화면 위치 <span class="pp">|</span></span>
-<span id="cb54-31"><a href="#cb54-31" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|</span></span>
-<span id="cb54-32"><a href="#cb54-32" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
-<span id="cb54-33"><a href="#cb54-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-34"><a href="#cb54-34" aria-hidden="true" tabindex="-1"></a><span class="fu">## 4. 숫자로 드러나지 않는 차이</span></span>
-<span id="cb54-35"><a href="#cb54-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-36"><a href="#cb54-36" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>「예: 대화형은 이어서 묻기가 되지만 무엇을 물을지 사용자가 떠올려야 한다」</span>
-<span id="cb54-37"><a href="#cb54-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-38"><a href="#cb54-38" aria-hidden="true" tabindex="-1"></a><span class="fu">## 5. 명세의 빈틈 (6절의 대조에서)</span></span>
-<span id="cb54-39"><a href="#cb54-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-40"><a href="#cb54-40" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 빈틈 <span class="pp">|</span> 두 구현의 서로 다른 결정 <span class="pp">|</span> 보강한 요구 ID <span class="pp">|</span></span>
-<span id="cb54-41"><a href="#cb54-41" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
-<span id="cb54-42"><a href="#cb54-42" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 작업 공간 <span class="pp">|</span> Orca 「판」의 작업 공간 둘(Branch from 「spec-v7」) <span class="pp">|</span></span>
+<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 측정 환경 <span class="pp">|</span> 내 PC 「운영체제」, 서버 둘(form 8000, chat 8001), 모의 모드 「LLM_FAKE=1, LLM_FAKE_LATENCY=on」 <span class="pp">|</span></span>
+<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 과업(시나리오) <span class="pp">|</span> <span class="in">`시나리오/form.json`</span>(요청 2회), <span class="in">`시나리오/chat.json`</span>(요청 3회) <span class="pp">|</span></span>
+<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-16"><a href="#cb54-16" aria-hidden="true" tabindex="-1"></a><span class="fu">## 2. 비교 기준표</span></span>
+<span id="cb54-17"><a href="#cb54-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-18"><a href="#cb54-18" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 기준 <span class="pp">|</span> 재는 법 <span class="pp">|</span> variant-form <span class="pp">|</span> variant-chat <span class="pp">|</span> 더 나은 쪽 <span class="pp">|</span></span>
+<span id="cb54-19"><a href="#cb54-19" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|---|</span></span>
+<span id="cb54-20"><a href="#cb54-20" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 명세 충족률 <span class="pp">|</span> <span class="in">`spec_checklist.py`</span> 점검표 집계 <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb54-21"><a href="#cb54-21" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 자동 검사 통과 <span class="pp">|</span> <span class="in">`check_common.py`</span> 통과 수 / 5, 변형 자체 <span class="in">`pytest`</span> 통과 수 <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb54-22"><a href="#cb54-22" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 휴리스틱 위반 수 <span class="pp">|</span> 3절의 표(평가자 1명) <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb54-23"><a href="#cb54-23" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 과업 시간 중앙값 <span class="pp">|</span> <span class="in">`measure_latency.py --repeat 5`</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb54-24"><a href="#cb54-24" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 과업당 호출 수 <span class="pp">|</span> <span class="in">`token_report.py --tasks 6`</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb54-25"><a href="#cb54-25" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 과업당 토큰(모의 어림) <span class="pp">|</span> <span class="in">`token_report.py`</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb54-26"><a href="#cb54-26" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 과업당 비용(USD, 단가 「입력 / 출력」) <span class="pp">|</span> <span class="in">`token_report.py --price-in --price-out`</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb54-27"><a href="#cb54-27" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 코드 규모(더한 줄) <span class="pp">|</span> <span class="in">`git diff --shortstat main...&lt;브랜치&gt; -- jobprep`</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb54-28"><a href="#cb54-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-29"><a href="#cb54-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## 3. 휴리스틱 위반 (닐슨의 10가지, 빠른 자체 점검)</span></span>
+<span id="cb54-30"><a href="#cb54-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-31"><a href="#cb54-31" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 변형 <span class="pp">|</span> 휴리스틱 <span class="pp">|</span> 관찰한 문제 <span class="pp">|</span> 화면 위치 <span class="pp">|</span></span>
+<span id="cb54-32"><a href="#cb54-32" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|</span></span>
+<span id="cb54-33"><a href="#cb54-33" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb54-34"><a href="#cb54-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-35"><a href="#cb54-35" aria-hidden="true" tabindex="-1"></a><span class="fu">## 4. 숫자로 드러나지 않는 차이</span></span>
+<span id="cb54-36"><a href="#cb54-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-37"><a href="#cb54-37" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>「예: 대화형은 이어서 묻기가 되지만 무엇을 물을지 사용자가 떠올려야 한다」</span>
+<span id="cb54-38"><a href="#cb54-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-39"><a href="#cb54-39" aria-hidden="true" tabindex="-1"></a><span class="fu">## 5. 명세의 빈틈 (두 세션의 보고, 화면 점검, `curl` 비교, [선택] 추출 명세의 대조에서)</span></span>
+<span id="cb54-40"><a href="#cb54-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-41"><a href="#cb54-41" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 빈틈 <span class="pp">|</span> 두 구현의 서로 다른 결정 <span class="pp">|</span> 보강한 요구 ID <span class="pp">|</span></span>
+<span id="cb54-42"><a href="#cb54-42" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
+<span id="cb54-43"><a href="#cb54-43" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li><strong>프로젝트실습Ⅰ에서 바꿀 곳.</strong> 1절의 기준 명세와 태그, 브랜치, 시나리오 파일을 팀의 것으로 바꾼다. 2절 기준표의 측정 도구(<code>spec_checklist.py</code>, <code>check_common.py</code>, <code>measure_latency.py</code>, <code>token_report.py</code>)는 12장 키트의 것이다. 팀이 쓸 수 있는 도구가 아니면 「재는 법」 칸을 팀의 측정 방법으로 고친다. 잴 수 없는 기준은 지우지 말고 4절 「숫자로 드러나지 않는 차이」로 옮긴다. 모의 모드의 값은 「모의」라고 밝히는 규칙을 지킨다.</li>
+<li><strong>프로젝트실습Ⅰ에서 바꿀 곳.</strong> 1절의 기준 명세와 태그, 브랜치, 작업 공간, 시나리오 파일을 팀의 것으로 바꾼다. 두 서버를 함께 띄우면 둘째 서버의 포트를 따로 적는다(부록 A-16). 2절 기준표의 측정 도구(<code>spec_checklist.py</code>, <code>check_common.py</code>, <code>measure_latency.py</code>, <code>token_report.py</code>)는 12장 키트의 것이다. 팀이 쓸 수 있는 도구가 아니면 「재는 법」 칸을 팀의 측정 방법으로 고친다. 잴 수 없는 기준은 지우지 말고 4절 「숫자로 드러나지 않는 차이」로 옮긴다. 모의 모드의 값은 「모의」라고 밝히는 규칙을 지킨다.</li>
 </ul>
 </section>
 <section id="c-12-5.-결정-기록adr" class="level3">
 <h3 class="anchored" data-anchor-id="c-12-5.-결정-기록adr">C-12-5. 결정 기록(ADR)</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 12장 7-3 「좋은 기록과 나쁜 기록」, 9-10 「결정 기록」. Michael Nygard가 제안한 아키텍처 결정 기록의 다섯 항목(제목, 상태, 맥락, 결정, 결과)으로 어느 변형을 병합하고 무엇을 보존하는지 적는다.</li>
+<li><strong>쓰는 곳.</strong> 12장 7-3 「좋은 기록과 나쁜 기록」, 9-9 「결정 기록」. Michael Nygard가 제안한 아키텍처 결정 기록의 다섯 항목(제목, 상태, 맥락, 결정, 결과)으로 어느 변형을 병합하고 무엇을 보존하는지 적는다.</li>
 <li><strong>키트 경로.</strong> <code>Service_12주차/결정기록_양식.md</code></li>
 </ul>
 <div class="code-label where-server">
@@ -3650,7 +3743,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 </section>
 <section id="c-13.-13장-사용성-평가" class="level2">
 <h2 class="anchored" data-anchor-id="c-13.-13장-사용성-평가">C-13. 13장: 사용성 평가</h2>
-<p>13장 중심 실습(11절)은 동료의 프로덕트를 휴리스틱 평가와 과업 기반 사용성 테스트로 평가하고, SUS 설문으로 점수를 매긴 뒤, 문제를 우선순위에 따라 이슈로 등록하고 개선 풀 리퀘스트로 고친다. 평가 기록은 팀 실습 저장소의 <code>reviews/ch13/「아이디」/jobprep/docs/평가/</code> 아래에 둔다. 13장 본문(7-1)은 프로젝트실습Ⅰ에서 같은 절차를 쓸 때 평가자를 세 명 이상, 참가자를 다섯 명으로 늘리고, 고친 뒤 같은 과업으로 한 번 더 테스트하기를 권한다.</p>
+<p>13장 핵심 실습(11절)은 동료의 프로덕트를 휴리스틱 평가와 과업 기반 사용성 테스트로 평가하고, SUS 설문으로 점수를 매긴 뒤, 문제를 우선순위에 따라 이슈로 등록하고 개선 풀 리퀘스트로 고친다. 평가 기록은 팀 실습 저장소의 <code>reviews/ch13/「아이디」/jobprep/docs/평가/</code> 아래에 둔다. 13장 본문(7-1)은 프로젝트실습Ⅰ에서 같은 절차를 쓸 때 평가자를 세 명 이상, 참가자를 다섯 명으로 늘리고, 고친 뒤 같은 과업으로 한 번 더 테스트하기를 권한다.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
@@ -3670,7 +3763,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <tr class="odd">
 <td>휴리스틱 평가 개별 기록</td>
 <td><code>Service_13주차/휴리스틱평가_양식.md</code></td>
-<td>3절, 11-2</td>
+<td>3절, 4-4, 11-2</td>
 <td><code>docs/평가/개별/휴리스틱_「아이디」.md</code></td>
 </tr>
 <tr class="even">
@@ -3688,13 +3781,13 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <tr class="even">
 <td>과업 시나리오</td>
 <td><code>Service_13주차/과업시나리오_양식.md</code></td>
-<td>6-1, 6-2</td>
+<td>6-1, 6-2, 11-3</td>
 <td><code>docs/평가/과업시나리오.md</code></td>
 </tr>
 <tr class="odd">
 <td>진행자 대본</td>
 <td><code>Service_13주차/진행자대본_양식.md</code></td>
-<td>6-4</td>
+<td>6-4, 11-3</td>
 <td><code>docs/평가/진행자대본.md</code></td>
 </tr>
 <tr class="even">
@@ -3730,18 +3823,18 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <tr class="odd">
 <td>사용성 문제 이슈 템플릿</td>
 <td><code>Service_13주차/이슈템플릿/usability-problem.md</code></td>
-<td>10-1~10-3</td>
+<td>10-1~10-3, 11-7</td>
 <td><code>.github/ISSUE_TEMPLATE/usability-problem.md</code></td>
 </tr>
 <tr class="even">
 <td>개선 풀 리퀘스트</td>
 <td><code>Service_13주차/풀리퀘스트_양식.md</code></td>
-<td>10-5</td>
+<td>10-5, 11-8</td>
 <td>(<code>gh pr create --body-file</code>에 준다)</td>
 </tr>
 </tbody>
 </table>
-<p>13장 공통으로 바꿀 곳: 양식 안의 경로 <code>reviews/ch13/「아이디」/jobprep/docs/평가/</code>는 팀 저장소의 <code>docs/평가/</code>가 된다. 평가 대상은 「대상 아이디의 jobprep」가 아니라 팀의 프로덕트이고, 「프로덕트 주인」은 팀 전체이다. 집계 도구는 <code>python3 ~/kits/Service_13주차/도구/aggregate.py</code>와 <code>sus.py</code>를 팀 저장소의 <code>docs/평가/자료/</code> 파일에 대해 실행한다.</p>
+<p>13장 공통으로 바꿀 곳: 양식 안의 경로 <code>reviews/ch13/「아이디」/jobprep/docs/평가/</code>는 팀 저장소의 <code>docs/평가/</code>가 된다. 평가 대상은 「대상 아이디의 jobprep」가 아니라 팀의 프로덕트이고, 「프로덕트 주인」은 팀 전체이다. 집계 도구는 가상 환경을 켠 터미널에서 <code>python ~/kits/Service_13주차/도구/aggregate.py</code>와 <code>sus.py</code>를 팀 저장소의 <code>docs/평가/자료/</code> 파일에 대해 실행한다.</p>
 <section id="c-13-1.-휴리스틱-평가-개별-기록" class="level3">
 <h3 class="anchored" data-anchor-id="c-13-1.-휴리스틱-평가-개별-기록">C-13-1. 휴리스틱 평가 개별 기록</h3>
 <ul>
@@ -3805,7 +3898,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <section id="c-13-2.-휴리스틱-평가-결과통합" class="level3">
 <h3 class="anchored" data-anchor-id="c-13-2.-휴리스틱-평가-결과통합">C-13-2. 휴리스틱 평가 결과(통합)</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 13장 11-3 「단계 2: 통합과 심각도」. 개별 기록을 고쳐 쓰지 않고 새로 만든다. 같은 문제를 한 줄로 합치고, 평가자별 심각도와 그 평균 등급을 함께 적는다.</li>
+<li><strong>쓰는 곳.</strong> 13장 11-3 「단계 2: 통합과 테스트 준비」. 개별 기록을 고쳐 쓰지 않고 새로 만든다. 같은 문제를 한 줄로 합치고, 평가자별 심각도와 그 평균 등급을 함께 적는다.</li>
 <li><strong>키트 경로.</strong> <code>Service_13주차/휴리스틱통합_양식.md</code> (50줄). 5절 「평가자별 발견 수」는 뺐다.</li>
 </ul>
 <div class="code-label where-server">
@@ -3898,7 +3991,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <section id="c-13-4.-과업-시나리오" class="level3">
 <h3 class="anchored" data-anchor-id="c-13-4.-과업-시나리오">C-13-4. 과업 시나리오</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 13장 6-1 「테스트 계획」, 6-2 「과업 시나리오」. 테스트의 목적과 알고 싶은 것을 먼저 쓰고, 과업마다 참가자에게 보여 줄 카드, 시작 상태, 제한 시간, 네 수준의 성공 기준을 정한다.</li>
+<li><strong>쓰는 곳.</strong> 13장 6-1 「테스트 계획」, 6-2 「과업 시나리오」, 11-3. 테스트의 목적과 알고 싶은 것을 먼저 쓰고, 과업마다 참가자에게 보여 줄 카드, 시작 상태, 제한 시간, 네 수준의 성공 기준을 정한다.</li>
 <li><strong>키트 경로.</strong> <code>Service_13주차/과업시나리오_양식.md</code> (79줄). T2와 T3은 T1과 같은 구성이므로 뺐다.</li>
 </ul>
 <div class="code-label where-server">
@@ -3957,7 +4050,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <section id="c-13-5.-진행자-대본" class="level3">
 <h3 class="anchored" data-anchor-id="c-13-5.-진행자-대본">C-13-5. 진행자 대본</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 13장 6-4 「진행자 대본」. 참가자마다 같은 말을 같은 순서로 하기 위한 문서이다. 대본의 문장은 참가자에게 그대로 읽어 주는 말이므로 존댓말로 되어 있다.</li>
+<li><strong>쓰는 곳.</strong> 13장 6-4 「진행자 대본」, 11-3. 수업의 세션은 6-7의 축약(8분)을 따른다. 참가자마다 같은 말을 같은 순서로 하기 위한 문서이다. 대본의 문장은 참가자에게 그대로 읽어 주는 말이므로 존댓말로 되어 있다.</li>
 <li><strong>키트 경로.</strong> <code>Service_13주차/진행자대본_양식.md</code> (66줄). 5절 과업 직후 질문, 6절 SUS 설문, 7절 마무리의 문장은 뺐다.</li>
 </ul>
 <div class="code-label where-server">
@@ -4152,7 +4245,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <section id="c-13-9.-sus-결과" class="level3">
 <h3 class="anchored" data-anchor-id="c-13-9.-sus-결과">C-13-9. SUS 결과</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 13장 11-5 「단계 4: SUS」. <code>도구/sus.py</code>의 출력을 붙이고 세 가지를 해석한다.</li>
+<li><strong>쓰는 곳.</strong> 13장 11-5 「단계 4: SUS와 우선순위」. <code>도구/sus.py</code>의 출력을 붙이고 세 가지를 해석한다.</li>
 <li><strong>키트 경로.</strong> <code>Service_13주차/SUS_양식.md</code></li>
 </ul>
 <div class="code-label where-server">
@@ -4173,7 +4266,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <span id="cb64-13"><a href="#cb64-13" aria-hidden="true" tabindex="-1"></a>(아래 명령의 출력을 붙인다)</span>
 <span id="cb64-14"><a href="#cb64-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb64-15"><a href="#cb64-15" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb64-16"><a href="#cb64-16" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> ~/kits/Service_13주차/도구/sus.py 자료/sus.csv <span class="at">--md</span></span>
+<span id="cb64-16"><a href="#cb64-16" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> ~/kits/Service_13주차/도구/sus.py 자료/sus.csv <span class="at">--md</span></span>
 <span id="cb64-17"><a href="#cb64-17" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb64-18"><a href="#cb64-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb64-19"><a href="#cb64-19" aria-hidden="true" tabindex="-1"></a>「출력 표와 요약 줄」</span>
@@ -4229,7 +4322,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <span id="cb65-20"><a href="#cb65-20" aria-hidden="true" tabindex="-1"></a>(아래 명령의 출력을 붙인다)</span>
 <span id="cb65-21"><a href="#cb65-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb65-22"><a href="#cb65-22" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb65-23"><a href="#cb65-23" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> ~/kits/Service_13주차/도구/aggregate.py tasks 자료/과업기록.csv <span class="at">--md</span></span>
+<span id="cb65-23"><a href="#cb65-23" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> ~/kits/Service_13주차/도구/aggregate.py tasks 자료/과업기록.csv <span class="at">--md</span></span>
 <span id="cb65-24"><a href="#cb65-24" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb65-25"><a href="#cb65-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb65-26"><a href="#cb65-26" aria-hidden="true" tabindex="-1"></a>「출력 표」</span>
@@ -4253,7 +4346,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <span id="cb65-44"><a href="#cb65-44" aria-hidden="true" tabindex="-1"></a>휴리스틱 평가(H-번호)와 사용성 테스트(T-번호)의 문제를 합친 <span class="in">`자료/문제목록.csv`</span>를 집계한 결과를 붙인다. 같은 문제는 한 줄로 합치고 출처를 <span class="in">`둘다`</span>로 적는다.</span>
 <span id="cb65-45"><a href="#cb65-45" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb65-46"><a href="#cb65-46" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb65-47"><a href="#cb65-47" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> ~/kits/Service_13주차/도구/aggregate.py problems 자료/문제목록.csv <span class="at">--md</span></span>
+<span id="cb65-47"><a href="#cb65-47" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> ~/kits/Service_13주차/도구/aggregate.py problems 자료/문제목록.csv <span class="at">--md</span></span>
 <span id="cb65-48"><a href="#cb65-48" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb65-49"><a href="#cb65-49" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb65-50"><a href="#cb65-50" aria-hidden="true" tabindex="-1"></a>「출력」</span>
@@ -4267,7 +4360,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <section id="c-13-11.-사용성-문제-이슈-템플릿" class="level3">
 <h3 class="anchored" data-anchor-id="c-13-11.-사용성-문제-이슈-템플릿">C-13-11. 사용성 문제 이슈 템플릿</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 13장 10-1 「좋은 이슈의 요소」, 10-2 「이슈 템플릿의 등록」, 10-3. 우선순위가 높은 문제를 이 템플릿으로 이슈에 등록한다. 재현 절차, 근거(평가 기록의 ID), 분류(휴리스틱, 심각도, 빈도, 우선순위 점수, 요구 ID, 화면 ID), 명세 변경 필요 여부를 적는다.</li>
+<li><strong>쓰는 곳.</strong> 13장 10-1 「좋은 이슈의 요소」, 10-2 「이슈 템플릿」, 10-3, 11-7 「단계 6: 이슈 등록」. 우선순위가 높은 문제를 이 템플릿으로 이슈에 등록한다. 재현 절차, 근거(평가 기록의 ID), 분류(휴리스틱, 심각도, 빈도, 우선순위 점수, 요구 ID, 화면 ID), 명세 변경 필요 여부를 적는다.</li>
 <li><strong>키트 경로.</strong> <code>Service_13주차/이슈템플릿/usability-problem.md</code></li>
 </ul>
 <div class="code-label where-server">
@@ -4332,7 +4425,7 @@ usability   e99695  사용성 평가에서 찾은 문제(13장 이슈 템플릿)
 <section id="c-13-12.-개선-풀-리퀘스트" class="level3">
 <h3 class="anchored" data-anchor-id="c-13-12.-개선-풀-리퀘스트">C-13-12. 개선 풀 리퀘스트</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 13장 10-5 「개선 풀 리퀘스트」. 이슈 하나를 고치는 풀 리퀘스트의 설명으로, <code>gh pr create --body-file</code>에 줄 파일로 복사해 쓴다. 명세 변경과 구현 변경을 한 풀 리퀘스트에 담는다.</li>
+<li><strong>쓰는 곳.</strong> 13장 10-5 「개선의 범위와 구현」, 11-8 「단계 7: 명세 갱신과 개선 풀 리퀘스트」. 이슈 하나를 고치는 풀 리퀘스트의 설명으로, <code>gh pr create --body-file</code>에 줄 파일로 복사해 쓴다. 명세 변경과 구현 변경을 한 풀 리퀘스트에 담는다.</li>
 <li><strong>키트 경로.</strong> <code>Service_13주차/풀리퀘스트_양식.md</code></li>
 </ul>
 <div class="code-label where-server">
