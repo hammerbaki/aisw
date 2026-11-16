@@ -323,6 +323,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#대응-관계" id="toc-대응-관계" class="nav-link" data-scroll-target="#대응-관계">1-1. 대응 관계</a></li>
   <li><a href="#파이썬의-이점과-한계" id="toc-파이썬의-이점과-한계" class="nav-link" data-scroll-target="#파이썬의-이점과-한계">1-2. 파이썬의 이점과 한계</a></li>
   <li><a href="#용어의-대응" id="toc-용어의-대응" class="nav-link" data-scroll-target="#용어의-대응">1-3. 용어의 대응</a></li>
+  <li><a href="#본-장의-출력의-근거" id="toc-본-장의-출력의-근거" class="nav-link" data-scroll-target="#본-장의-출력의-근거">1-4. 본 장의 출력의 근거</a></li>
   </ul></li>
   <li><a href="#실행-환경과-셀의-실행" id="toc-실행-환경과-셀의-실행" class="nav-link" data-scroll-target="#실행-환경과-셀의-실행">2. 실행 환경과 셀의 실행</a>
   <ul class="collapse">
@@ -330,13 +331,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#폴더의-구성과-파일의-준비" id="toc-폴더의-구성과-파일의-준비" class="nav-link" data-scroll-target="#폴더의-구성과-파일의-준비">2-2. 폴더의 구성과 파일의 준비</a></li>
   <li><a href="#셀의-종류와-실행" id="toc-셀의-종류와-실행" class="nav-link" data-scroll-target="#셀의-종류와-실행">2-3. 셀의 종류와 실행</a></li>
   <li><a href="#커널과-저장" id="toc-커널과-저장" class="nav-link" data-scroll-target="#커널과-저장">2-4. 커널과 저장</a></li>
+  <li><a href="#출력-읽기" id="toc-출력-읽기" class="nav-link" data-scroll-target="#출력-읽기">2-5. 출력 읽기</a></li>
+  <li><a href="#오류-메시지-읽기" id="toc-오류-메시지-읽기" class="nav-link" data-scroll-target="#오류-메시지-읽기">2-6. 오류 메시지 읽기</a></li>
+  <li><a href="#막힐-때" id="toc-막힐-때" class="nav-link" data-scroll-target="#막힐-때">막힐 때</a></li>
   <li><a href="#따라-하기" id="toc-따라-하기" class="nav-link" data-scroll-target="#따라-하기">따라 하기</a></li>
   </ul></li>
   <li><a href="#변수와-출력" id="toc-변수와-출력" class="nav-link" data-scroll-target="#변수와-출력">3. 변수와 출력</a>
   <ul class="collapse">
   <li><a href="#변수" id="toc-변수" class="nav-link" data-scroll-target="#변수">3-1. 변수</a></li>
-  <li><a href="#숫자와-문자" id="toc-숫자와-문자" class="nav-link" data-scroll-target="#숫자와-문자">3-2. 숫자와 문자</a></li>
-  <li><a href="#출력" id="toc-출력" class="nav-link" data-scroll-target="#출력">3-3. 출력</a></li>
+  <li><a href="#엑셀의-자동-재계산과의-차이" id="toc-엑셀의-자동-재계산과의-차이" class="nav-link" data-scroll-target="#엑셀의-자동-재계산과의-차이">3-2. 엑셀의 자동 재계산과의 차이</a></li>
+  <li><a href="#숫자와-문자" id="toc-숫자와-문자" class="nav-link" data-scroll-target="#숫자와-문자">3-3. 숫자와 문자</a></li>
+  <li><a href="#출력과-반올림" id="toc-출력과-반올림" class="nav-link" data-scroll-target="#출력과-반올림">3-4. 출력과 반올림</a></li>
   <li><a href="#따라-하기-1" id="toc-따라-하기-1" class="nav-link" data-scroll-target="#따라-하기-1">따라 하기</a></li>
   </ul></li>
   <li><a href="#엑셀-파일-읽기" id="toc-엑셀-파일-읽기" class="nav-link" data-scroll-target="#엑셀-파일-읽기">4. 엑셀 파일 읽기</a>
@@ -344,28 +349,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#라이브러리" id="toc-라이브러리" class="nav-link" data-scroll-target="#라이브러리">4-1. 라이브러리</a></li>
   <li><a href="#파일-읽기" id="toc-파일-읽기" class="nav-link" data-scroll-target="#파일-읽기">4-2. 파일 읽기</a></li>
   <li><a href="#표의-확인" id="toc-표의-확인" class="nav-link" data-scroll-target="#표의-확인">4-3. 표의 확인</a></li>
-  <li><a href="#기준-파일을-사용하는-이유" id="toc-기준-파일을-사용하는-이유" class="nav-link" data-scroll-target="#기준-파일을-사용하는-이유">4-4. 기준 파일을 사용하는 이유</a></li>
+  <li><a href="#자료형" id="toc-자료형" class="nav-link" data-scroll-target="#자료형">4-4. 자료형</a></li>
+  <li><a href="#기준-파일을-사용하는-이유" id="toc-기준-파일을-사용하는-이유" class="nav-link" data-scroll-target="#기준-파일을-사용하는-이유">4-5. 기준 파일을 사용하는 이유</a></li>
+  <li><a href="#막힐-때-1" id="toc-막힐-때-1" class="nav-link" data-scroll-target="#막힐-때-1">막힐 때</a></li>
   <li><a href="#따라-하기-2" id="toc-따라-하기-2" class="nav-link" data-scroll-target="#따라-하기-2">따라 하기</a></li>
   </ul></li>
   <li><a href="#열의-계산" id="toc-열의-계산" class="nav-link" data-scroll-target="#열의-계산">5. 열의 계산</a>
   <ul class="collapse">
   <li><a href="#열의-선택" id="toc-열의-선택" class="nav-link" data-scroll-target="#열의-선택">5-1. 열의 선택</a></li>
   <li><a href="#열과-열의-계산" id="toc-열과-열의-계산" class="nav-link" data-scroll-target="#열과-열의-계산">5-2. 열과 열의 계산</a></li>
-  <li><a href="#원본-파일과의-관계" id="toc-원본-파일과의-관계" class="nav-link" data-scroll-target="#원본-파일과의-관계">5-3. 원본 파일과의 관계</a></li>
+  <li><a href="#구성비와-소수의-표시" id="toc-구성비와-소수의-표시" class="nav-link" data-scroll-target="#구성비와-소수의-표시">5-3. 구성비와 소수의 표시</a></li>
+  <li><a href="#원본-파일과의-관계" id="toc-원본-파일과의-관계" class="nav-link" data-scroll-target="#원본-파일과의-관계">5-4. 원본 파일과의 관계</a></li>
+  <li><a href="#막힐-때-2" id="toc-막힐-때-2" class="nav-link" data-scroll-target="#막힐-때-2">막힐 때</a></li>
   <li><a href="#따라-하기-3" id="toc-따라-하기-3" class="nav-link" data-scroll-target="#따라-하기-3">따라 하기</a></li>
   </ul></li>
   <li><a href="#기초-통계" id="toc-기초-통계" class="nav-link" data-scroll-target="#기초-통계">6. 기초 통계</a>
   <ul class="collapse">
+  <li><a href="#함수의-대응" id="toc-함수의-대응" class="nav-link" data-scroll-target="#함수의-대응">6-1. 함수의 대응</a></li>
+  <li><a href="#print-없이-표시한-값" id="toc-print-없이-표시한-값" class="nav-link" data-scroll-target="#print-없이-표시한-값">6-2. print 없이 표시한 값</a></li>
+  <li><a href="#표시와-값의-대조" id="toc-표시와-값의-대조" class="nav-link" data-scroll-target="#표시와-값의-대조">6-3. 표시와 값의 대조</a></li>
   <li><a href="#따라-하기-4" id="toc-따라-하기-4" class="nav-link" data-scroll-target="#따라-하기-4">따라 하기</a></li>
   </ul></li>
   <li><a href="#핵심-실습-판매-자료의-기초-통계-산출" id="toc-핵심-실습-판매-자료의-기초-통계-산출" class="nav-link" data-scroll-target="#핵심-실습-판매-자료의-기초-통계-산출">7. 핵심 실습: 판매 자료의 기초 통계 산출</a>
   <ul class="collapse">
+  <li><a href="#막힐-때-3" id="toc-막힐-때-3" class="nav-link" data-scroll-target="#막힐-때-3">막힐 때</a></li>
   <li><a href="#절차" id="toc-절차" class="nav-link" data-scroll-target="#절차">절차</a></li>
   <li><a href="#완료-기준" id="toc-완료-기준" class="nav-link" data-scroll-target="#완료-기준">완료 기준</a></li>
   <li><a href="#제출" id="toc-제출" class="nav-link" data-scroll-target="#제출">제출</a></li>
   </ul></li>
   <li><a href="#빈번한-오류와-해결" id="toc-빈번한-오류와-해결" class="nav-link" data-scroll-target="#빈번한-오류와-해결">빈번한 오류와 해결</a></li>
-  <li><a href="#심화-실습" id="toc-심화-실습" class="nav-link" data-scroll-target="#심화-실습">심화 실습</a></li>
+  <li><a href="#심화-실습-선택" id="toc-심화-실습-선택" class="nav-link" data-scroll-target="#심화-실습-선택">심화 실습 [선택]</a></li>
   <li><a href="#연습-문제" id="toc-연습-문제" class="nav-link" data-scroll-target="#연습-문제">연습 문제</a></li>
   <li><a href="#개념-점검" id="toc-개념-점검" class="nav-link" data-scroll-target="#개념-점검">개념 점검</a></li>
   <li><a href="#정리" id="toc-정리" class="nav-link" data-scroll-target="#정리">정리</a></li>
@@ -414,7 +427,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>학사 10주차 · 교재 08 · 3부 파이썬</p>
 </blockquote>
 <p>본 장부터 세 장에 걸쳐 파이썬을 다룬다. 3부의 목적은 파이썬의 문법을 습득하는 것이 아니라, 1부에서 엑셀로 수행한 작업을 코드로 수행하는 방법을 경험하고 두 방식의 차이를 이해하는 것이다. 본 장에서는 실행 환경의 사용법을 익히고, 판매 자료 파일을 읽어 3장 「수식과 셀 참조」와 4장 「기본 함수」에서 엑셀로 산출한 금액과 통계 값을 코드로 다시 산출한다. 코드의 결과는 4장의 수작업 결과와 대조하여 검증한다.</p>
-<p>본 과목에서는 코드를 처음부터 작성하지 않는다. 주어진 코드를 실행하고, 지정된 부분을 채우거나 변경하여 다시 실행하고, 결과를 수작업 결과와 비교하는 방식으로 진행한다. 수업은 실습 노트북을 위에서부터 실행하며 진행하고, 본 강의안은 노트북의 각 셀이 수행하는 일과 그 근거를 설명한다. 강의안의 절 번호는 노트북의 절 번호와 일치한다.</p>
+<p>본 과목에서는 코드를 처음부터 작성하지 않는다. 주어진 코드를 실행하고, 지정된 부분을 채우거나 변경하여 다시 실행하고, 결과를 수작업 결과와 비교하는 방식으로 진행한다. 수업은 실습 노트북을 위에서부터 실행하며 진행하고, 본 강의안은 노트북의 각 절이 무엇을 하는지, 출력을 어떻게 읽는지, 엑셀의 어느 조작과 대응하는지를 설명한다. 강의안의 절 번호와 <strong>[확인 N]</strong>의 번호는 노트북과 일치한다.</p>
+<p>노트북의 코드 셀은 세 종류이다. 첫 줄의 주석이 <code># [시연]</code>인 셀은 교수가 1월 자료로 먼저 실행하여 보이는 셀이고, <code># [따라 하기]</code>인 셀은 수강생이 2월 또는 3월 자료로 빈칸(<code>____</code>)을 채워 실행하는 셀이며, <code># [오류 확인]</code>인 셀은 오류를 일부러 내어 오류 메시지를 읽는 연습을 하는 셀이다. 어느 셀이든 실행하기 전에 바로 위 설명의 <strong>예상</strong>을 읽고 결과를 짐작한 뒤 실행한다. 예상과 실제의 차이가 곧 배울 내용이다.</p>
 <section id="학습-목표" class="level2">
 <h2 class="anchored" data-anchor-id="학습-목표">학습 목표</h2>
 <ol type="1">
@@ -433,6 +447,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>합계, 평균, 최댓값, 최솟값, 개수를 코드로 산출하여 수작업 결과와 대조할 수 있다.</strong>
 <ul>
 <li>예시: 코드의 결과 6479000이 4장의 <code>G25</code>와 일치함을 확인한다.</li>
+</ul></li>
+<li><strong>코드 셀의 출력과 오류 메시지를 읽을 수 있다.</strong>
+<ul>
+<li>예시: <code>np.int64(6479000)</code>에서 값을 읽고, <code>KeyError: '수 량'</code>에서 원인을 찾는다.</li>
 </ul></li>
 </ol>
 </section>
@@ -468,6 +486,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: 실습 사이트의 JupyterLab과 라이브러리의 판]</strong> 수업 전에 실습 사이트에서 다음을 확인하여 본문의 표기를 맞춘다. (1) JupyterLab의 판과 메뉴 이름([Kernel] → [Restart Kernel and Run All Cells…], [Run] → [Run Selected Cell and All Below], 파일 탐색기의 [New Folder], [Upload Files], [Refresh File List]. 메뉴가 한국어로 표시되는 환경인지). (2) pandas의 판. pandas 3.0 이상이면 문자 열의 자료형이 <code>str</code>로, 2.x이면 <code>object</code>로 표시되고, 날짜 열은 각각 <code>datetime64[us]</code>, <code>datetime64[ns]</code>로 표시된다(pandas 3.0.0 변경 사항, <a href="https://pandas.pydata.org/docs/whatsnew/v3.0.0.html" class="uri">https://pandas.pydata.org/docs/whatsnew/v3.0.0.html</a>, 2026-11-15 확인). (3) NumPy의 판. 2.0 이상이면 <code>print</code> 없이 표시한 합계가 <code>np.int64(6479000)</code>의 꼴로 나타난다(NumPy 2.0.0 릴리스 노트, <a href="https://numpy.org/doc/stable/release/2.0.0-notes.html" class="uri">https://numpy.org/doc/stable/release/2.0.0-notes.html</a>, 2026-11-15 확인). (4) openpyxl, matplotlib, koreanize-matplotlib의 설치 여부. (5) <code>[오류 확인]</code> 셀이 있는 노트북에서 [Restart Kernel and Run All Cells…]가 그 셀에서 멈추는지. 이 셀에는 태그 <code>raises-exception</code>이 붙어 있으며, JupyterLab의 소스(<a href="https://github.com/jupyterlab/jupyterlab" class="uri">https://github.com/jupyterlab/jupyterlab</a>, <code>packages/outputarea/src/widget.ts</code>)는 이 태그가 붙은 셀의 실행 요청에서 <code>stop_on_error</code>를 끈다. 화면에서의 동작은 확인하지 못하였다. 본 장의 출력은 2026-11-16에 교수의 작업 PC(Windows, Python 3.14.6, pandas 3.0.3, NumPy 2.4.6)에서 정답 노트북을 실행하여 얻은 것이다.</p>
+</blockquote>
 </section>
 <section id="엑셀과의-비교" class="level2">
 <h2 class="anchored" data-anchor-id="엑셀과의-비교">1. 엑셀과의 비교</h2>
@@ -476,31 +497,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>본 장에서 코드로 수행하는 작업은 3~4장에서 엑셀로 수행한 작업과 동일하다.</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
 </colgroup>
 <thead>
 <tr class="header">
 <th>엑셀에서의 작업(3~4장)</th>
 <th>파이썬에서의 작업(본 장)</th>
+<th>노트북의 절</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
+<td>셀에 <code>=30*24000</code>을 입력한다</td>
+<td>코드 셀에 <code>30 * 24000</code>을 입력하여 실행한다</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td><code>E4</code>에 수량, <code>F4</code>에 단가를 두고 <code>G4</code>에서 참조한다</td>
+<td>변수 <code>qty</code>, <code>price</code>에 값을 저장하고 <code>amount</code>에서 사용한다</td>
+<td>3</td>
+</tr>
+<tr class="odd">
 <td>통합 문서를 연다</td>
 <td>엑셀 파일을 읽어 표로 저장한다</td>
+<td>4</td>
 </tr>
 <tr class="even">
 <td><code>G4</code>에 <code>=E4*F4</code>를 작성하여 20행에 복사한다</td>
 <td>수량 열과 단가 열을 곱하여 금액 열을 추가한다</td>
+<td>5</td>
 </tr>
 <tr class="odd">
 <td><code>H4</code>에 <code>=G4/$G$25</code>를 작성하여 복사한다</td>
 <td>금액 열을 금액의 합계로 나누어 구성비 열을 추가한다</td>
+<td>5</td>
 </tr>
 <tr class="even">
+<td>수량 열을 선택하고 상태 표시줄의 합계를 읽는다</td>
+<td>수량 열의 <code>sum()</code>을 출력한다</td>
+<td>5</td>
+</tr>
+<tr class="odd">
 <td><code>=SUM(G4:G23)</code> 등 함수 5개를 작성한다</td>
 <td>금액 열의 합계, 평균, 최댓값, 최솟값, 개수를 산출한다</td>
+<td>6</td>
 </tr>
 </tbody>
 </table>
@@ -588,12 +630,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>코드에서는 열 문자(<code>G</code>)가 아니라 열의 이름(<code>"금액"</code>)으로 열을 가리킨다</td>
 </tr>
 <tr class="odd">
+<td>행 번호(1부터)</td>
+<td>행 번호(0부터)</td>
+<td>pandas의 행 번호는 자료의 일부가 아니며 0부터 매긴다</td>
+</tr>
+<tr class="even">
+<td>표시 형식(쉼표, 통화, 날짜)</td>
+<td>자료형(<code>int64</code>, <code>str</code>, <code>datetime64</code>)</td>
+<td>엑셀은 같은 값을 여러 모양으로 보여 주고, pandas는 값의 종류만 기록한다</td>
+</tr>
+<tr class="odd">
 <td>수식</td>
 <td>코드의 한 줄</td>
 <td>수식은 값이 변경되면 자동으로 다시 계산되나, 코드는 실행하여야 계산된다</td>
 </tr>
 </tbody>
 </table>
+</section>
+<section id="본-장의-출력의-근거" class="level3">
+<h3 class="anchored" data-anchor-id="본-장의-출력의-근거">1-4. 본 장의 출력의 근거</h3>
+<p>본 강의안에 실은 출력은 모두 정답 노트북(<code>Office_08주차_실습_정답.ipynb</code>)을 실제로 실행하여 얻은 것이다. 노트북 3종(학생용, 교수용, 정답)은 하나의 원본에서 생성하며, 정답 노트북은 생성할 때 월별 파일 12개를 둔 폴더에서 처음부터 끝까지 실행된다. 실행 환경은 준비 사항의 최신 자료 자리에 적었다. 실습 사이트의 판이 다르면 자료형의 이름과 일부 표시가 달라질 수 있으나, 값(합계, 개수 등)은 같다.</p>
 </section>
 </section>
 <section id="실행-환경과-셀의-실행" class="level2">
@@ -635,11 +691,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>노트북의 위쪽</td>
 <td>저장, 셀의 추가와 삭제, 실행, 셀 종류의 선택</td>
 </tr>
+<tr class="odd">
+<td>커널 상태</td>
+<td>노트북의 오른쪽 위</td>
+<td>커널의 이름과 상태. 실행 중이면 원이 채워진 모양으로 바뀐다</td>
+</tr>
 </tbody>
 </table>
 <p>메뉴가 한국어로 표시되는 환경에서는 대응하는 항목을 선택한다.</p>
 <blockquote class="blockquote">
-<p>그림 필요: (JupyterLab 화면에서 파일 탐색기, 노트북, 메뉴, 도구 모음의 위치)</p>
+<p><strong>[그림 자리: JupyterLab 화면의 구성]</strong> 실습 노트북을 연 JupyterLab 화면에 파일 탐색기(왼쪽), 노트북(가운데), 메뉴(위쪽), 도구 모음(노트북의 위), 커널 상태(오른쪽 위)를 번호로 표시한 그림. 찍을 곳: 실습 사이트의 JupyterLab, <code>컴퓨터활용</code> 폴더에서 <code>실습_08_학번.ipynb</code>를 연 화면.</p>
 </blockquote>
 </section>
 <section id="폴더의-구성과-파일의-준비" class="level3">
@@ -650,6 +711,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>자료</code> 폴더 안으로 이동하여 [Upload Files] 단추로 수강생 PC의 <code>컴퓨터활용\자료</code> 폴더에 있는 월별 파일 12개를 모두 올린다. 파일 선택 창에서 <code>Ctrl + A</code>로 12개를 한 번에 선택할 수 있다.</li>
 <li><code>컴퓨터활용</code> 폴더로 돌아와 실습 노트북 <code>Office_08주차_실습_학생용.ipynb</code>를 올린다.</li>
 <li>올린 노트북을 마우스 오른쪽 단추로 눌러 [Rename]을 선택하고 이름을 <code>실습_08_학번.ipynb</code>로 변경한다.</li>
+<li>노트북을 두 번 눌러 연다.</li>
 </ol>
 <p>완료된 폴더의 구성은 다음과 같다. 수강생 PC의 폴더 구성(1장 「파일 관리와 데이터 입력」)과 같은 이름을 사용한다.</p>
 <pre class="text"><code>컴퓨터활용/
@@ -658,6 +720,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     판매_2026_01.xlsx
     …
     판매_2026_12.xlsx</code></pre>
+<p>노트북을 <code>컴퓨터활용</code> 폴더가 아닌 곳(홈 폴더 등)에 올리면 4절의 파일 읽기에서 <code>FileNotFoundError</code>가 난다. 코드가 파일의 위치를 노트북이 있는 폴더를 기준으로 해석하기 때문이다(4-2절). 이 단계에서 폴더 구성을 정확히 맞추어 두는 것이 이후의 오류를 가장 많이 줄인다.</p>
 </section>
 <section id="셀의-종류와-실행" class="level3">
 <h3 class="anchored" data-anchor-id="셀의-종류와-실행">2-3. 셀의 종류와 실행</h3>
@@ -687,7 +750,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>셀을 선택하고 <code>Shift + Enter</code>를 누르면 셀이 실행되고 다음 셀로 이동한다.</li>
 <li>코드 셀의 왼쪽에 있는 <code>[ ]</code>는 실행 순서를 나타낸다. 실행하면 <code>[1]</code>, <code>[2]</code>와 같이 번호가 부여되고, 실행 중에는 <code>[*]</code>로 표시된다. 번호가 없는 셀은 아직 실행하지 않은 셀이다.</li>
 <li>셀은 <strong>위에서부터 순서대로</strong> 실행한다. 앞의 셀에서 만든 변수를 뒤의 셀이 사용하기 때문이다.</li>
-<li>코드 셀에 여러 줄이 있을 때에는 마지막 줄의 계산 결과만 셀의 아래에 표시된다. 중간 줄의 값을 표시하려면 <code>print</code>를 사용한다(3절).</li>
 <li>마크다운 셀을 두 번 누르면 편집 상태가 되어 원문이 표시된다. <code>Shift + Enter</code>를 누르면 다시 서식이 적용된 글로 표시된다. 설명 셀을 실수로 편집 상태로 만든 경우에 사용한다.</li>
 </ul>
 </section>
@@ -722,21 +784,105 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 <p>노트북을 다시 열면 이전의 결과가 화면에 남아 있으나 변수는 남아 있지 않다. 따라서 <strong>노트북을 다시 열었을 때에는 맨 위의 셀부터 다시 실행하여야 한다.</strong> <code>[Kernel] → [Restart Kernel and Run All Cells...]</code>는 커널을 재시작하고 모든 셀을 처음부터 차례로 실행한다. 노트북의 저장은 <code>Ctrl + S</code>로 한다.</p>
 </section>
+<section id="출력-읽기" class="level3">
+<h3 class="anchored" data-anchor-id="출력-읽기">2-5. 출력 읽기</h3>
+<p>코드 셀의 출력은 엑셀의 셀 표시와 모양이 다르다. 2절의 셀들은 그 차이를 하나씩 보인다.</p>
+<p><strong>값만 표시된다.</strong> <code>30 * 24000</code>을 실행하면 셀의 아래에 다음이 표시된다.</p>
+<pre class="text"><code>720000</code></pre>
+<p>엑셀의 셀에 표시되던 <code>720,000</code>이나 <code>₩720,000</code>의 쉼표와 원화 기호는 표시 형식(2장)이 붙인 것이다. 코드의 출력에는 표시 형식이 없으므로 값만 나타난다. 수작업 결과와 대조할 때에는 엑셀 쪽의 쉼표와 기호를 떼고 읽는다.</p>
+<p><strong>마지막 줄만 표시된다.</strong> 코드 셀에 줄이 여러 개 있으면 모든 줄이 실행되지만 셀의 아래에는 마지막 줄의 결과만 표시된다. 노트북의 셋째 코드 셀은 <code>30 * 24000</code>과 <code>50 * 6000</code>의 두 줄이며, 출력은 <code>300000</code> 하나이다. 첫 줄의 720000은 계산되었으나 표시되지 않았다. 중간의 값까지 보려면 줄마다 <code>print</code>를 사용한다. <code>print("판매번호 1001의 금액:", 30 * 24000)</code>의 출력은 <code>판매번호 1001의 금액: 720000</code>이다. <code>print</code>는 쉼표로 구분한 값을 공백 하나를 사이에 두고 한 줄에 이어 출력한다.</p>
+<p><strong>숫자 안의 쉼표는 다른 뜻이 된다.</strong> 엑셀에서는 <code>24,000</code>을 입력하여도 숫자로 인식되었으나(1장), 파이썬에서 쉼표는 값과 값을 구분하는 기호이다. <code>30 * 24,000</code>의 출력은 다음과 같다.</p>
+<pre class="text"><code>(720, 0)</code></pre>
+<p>파이썬은 이 줄을 <code>30 * 24</code>와 <code>000</code>의 두 값으로 읽고, 두 값을 괄호로 묶어 표시하였다. 오류가 나지 않고 엉뚱한 값이 나오는 경우는 오류보다 발견하기 어렵다. 출력이 하나의 숫자가 아니라 괄호로 묶인 여러 값이면 입력한 숫자에 쉼표가 들어갔는지 먼저 확인한다.</p>
+<p><strong>나누기의 결과에는 소수점이 붙는다.</strong> <code>6479000 / 20</code>(4장의 <code>=AVERAGE(G4:G23)</code>과 같은 값)의 출력은 <code>323950.0</code>이다. <code>.0</code>은 값이 소수를 담을 수 있는 수(실수)로 계산되었다는 표시이며 값의 크기는 323950과 같다. 6절의 평균도 같은 꼴로 표시된다.</p>
+</section>
+<section id="오류-메시지-읽기" class="level3">
+<h3 class="anchored" data-anchor-id="오류-메시지-읽기">2-6. 오류 메시지 읽기</h3>
+<p>코드가 실행되지 못하면 셀의 아래에 붉은 바탕의 여러 줄이 표시된다. 이 출력을 트레이스백이라고 한다. 파이썬 공식 자습서는 오류 메시지의 <strong>마지막 줄</strong>이 무슨 일이 일어났는지를 나타내며, 오류의 종류(예외의 이름)가 그 줄에 함께 인쇄된다고 설명한다. 그 앞부분은 오류가 일어난 맥락을 보여 준다. 따라서 오류가 나면 다음의 순서로 읽는다.</p>
+<ol type="1">
+<li><strong>마지막 줄의 콜론 앞</strong>을 읽는다. 오류의 종류이다(<code>NameError</code>, <code>KeyError</code>, <code>FileNotFoundError</code> 등).</li>
+<li><strong>마지막 줄의 콜론 뒤</strong>를 읽는다. 원인의 설명이며, 따옴표 안에 문제가 된 이름이나 파일이 들어 있다.</li>
+<li>위쪽에서 화살표(<code>----&gt;</code> 또는 <code>^</code>)가 가리키는 줄을 찾는다. 오류가 발견된 줄이다. 문법 오류에서는 화살표의 위치가 고쳐야 할 곳과 다를 수 있다.</li>
+<li>마지막 줄을 본 장의 「빈번한 오류와 해결」 표와 대조한다.</li>
+</ol>
+<p>노트북의 2절 끝에 있는 <code>[오류 확인]</code> 셀은 빈칸을 채우지 않고 <code>____ * 85000</code>을 실행한 경우이다. 실제 출력의 마지막 줄은 다음과 같다.</p>
+<pre class="text"><code>NameError: name '____' is not defined</code></pre>
+<p><code>NameError</code>는 “그런 이름이 없다”는 종류의 오류이다. 파이썬은 <code>____</code>를 아직 만들지 않은 변수의 이름으로 읽었다. 따라 하기의 셀에서 이 오류가 나면 빈칸을 채우지 않은 것이다.</p>
+</section>
+<section id="막힐-때" class="level3">
+<h3 class="anchored" data-anchor-id="막힐-때">막힐 때</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>증상</th>
+<th>먼저 볼 곳</th>
+<th>할 일</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Shift + Enter</code>를 눌러도 출력이 없다</td>
+<td>셀 왼쪽의 <code>[ ]</code> 표시</td>
+<td>표시가 없으면 설명(마크다운) 셀을 실행한 것이다. 회색 바탕의 코드 셀을 선택한다</td>
+</tr>
+<tr class="even">
+<td>셀 왼쪽이 계속 <code>[*]</code>이다</td>
+<td>커널 상태(오른쪽 위)</td>
+<td>앞의 셀이 끝나기를 기다린다. 끝나지 않으면 <code>[Kernel] → [Restart Kernel...]</code> 후 위에서부터 다시 실행한다</td>
+</tr>
+<tr class="odd">
+<td>붉은 출력이 나타났다</td>
+<td>출력의 마지막 줄</td>
+<td>2-6절의 순서로 읽고 「빈번한 오류와 해결」 표와 대조한다</td>
+</tr>
+<tr class="even">
+<td>숫자 대신 <code>(720, 0)</code>과 같은 출력</td>
+<td>입력한 숫자</td>
+<td>숫자 안의 쉼표를 지운다</td>
+</tr>
+<tr class="odd">
+<td>설명 셀이 원문(<code>##</code>, <code>**</code>)으로 보인다</td>
+<td>셀의 편집 상태</td>
+<td>그 셀을 선택하고 <code>Shift + Enter</code>를 누른다</td>
+</tr>
+</tbody>
+</table>
+</section>
 <section id="따라-하기" class="level3">
 <h3 class="anchored" data-anchor-id="따라-하기">따라 하기</h3>
 <p>실습 노트북의 2절에 있는 셀을 차례로 실행한다.</p>
 <ol type="1">
-<li><code>30 * 24000</code>이 기재된 셀을 선택하고 <code>Shift + Enter</code>를 누른다. 셀의 아래에 720000이 표시된다.</li>
-<li><code>print</code>가 기재된 셀을 실행한다.</li>
-<li>2월 자료의 판매번호 1022는 토너 6개(단가 85,000원)이다. <code>____ * ____</code>가 기재된 셀의 <code>____</code>를 수량과 단가로 변경하여 실행한다.
+<li>노트북을 열기 전에 파일 탐색기의 폴더 구성을 확인한다.
 <ul>
-<li><span class="check-badge">확인 1</span> 셀의 아래에 <code>510000</code>이 표시되고, 셀의 왼쪽에 실행 번호가 부여되었다.</li>
+<li><span class="check-badge">확인 1</span> 왼쪽 파일 탐색기에서 <code>컴퓨터활용/자료</code> 폴더에 월별 파일 12개가 있고, 이 노트북이 <code>컴퓨터활용</code> 폴더에 있다.</li>
+</ul></li>
+<li><code>30 * 24000</code>이 기재된 셀을 선택하고 <code>Shift + Enter</code>를 누른다. 예상은 엑셀의 <code>=30*24000</code>과 같은 720000이다.
+<ul>
+<li><span class="check-badge">확인 2</span> 셀의 아래에 <code>720000</code>이 표시되고 셀 왼쪽에 실행 번호가 부여되었다.</li>
+</ul></li>
+<li><code>print</code>의 셀과 두 줄짜리 셀을 실행하고, 두 줄짜리 셀의 출력이 <code>300000</code> 하나뿐인 것을 확인한다. 이어서 쉼표를 넣은 셀을 실행한다.
+<ul>
+<li><span class="check-badge">확인 3</span> 출력이 <code>(720, 0)</code>이다.</li>
+</ul></li>
+<li>2월 자료의 판매번호 1022는 토너 6개(단가 85,000원)이다. <code>____ * ____</code>가 기재된 셀의 <code>____</code>를 수량과 단가로 변경하여 실행한다. 2월 연습용 통합 문서의 <code>G5</code>가 대조 대상이다.
+<ul>
+<li><span class="check-badge">확인 4</span> 셀의 아래에 <code>510000</code>이 표시되고, 셀의 왼쪽에 실행 번호가 부여되었다.</li>
 </ul></li>
 <li>다음 셀의 <code>____</code>도 같은 값으로 변경하여 실행한다.
 <ul>
-<li><span class="check-badge">확인 2</span> 셀의 아래에 <code>판매번호 1022의 금액: 510000</code>이 표시되었다.</li>
+<li><span class="check-badge">확인 5</span> 셀의 아래에 <code>판매번호 1022의 금액: 510000</code>이 표시되었다.</li>
 </ul></li>
-<li><code>2 + 3 * 4</code>와 <code>(2 + 3) * 4</code>의 셀을 실행하여 결과가 14와 20임을 확인한다. 계산의 순서는 엑셀의 수식(3장)과 같다.</li>
+<li>계산의 순서와 나누기의 셀을 실행한다. 출력은 <code>14</code>, <code>20</code>, <code>323950.0</code>의 세 줄이다. 계산의 순서는 엑셀의 수식(3장)과 같다.</li>
+<li>다음 셀의 첫 줄에는 2월에서 금액이 가장 큰 판매번호 1036(A4 복사용지 38개, 단가 24,000원)의 수량과 단가를, 둘째 줄에는 2월의 판매 건수 19를 기재하여 실행한다.
+<ul>
+<li><span class="check-badge">확인 6</span> <code>판매번호 1036의 금액: 912000</code>과 <code>2월 평균: 421894.7368421053</code>이 출력되었다. 912000은 2월 연습용 통합 문서의 최댓값(<code>G26</code>)과 같고, 평균은 엑셀에서 <code>₩421,895</code>로 표시되던 셀의 실제 값이다.</li>
+</ul></li>
+<li>2절 끝의 <code>[오류 확인]</code> 셀을 실행하고 마지막 줄 <code>NameError: name '____' is not defined</code>를 읽는다.</li>
 </ol>
 </section>
 </section>
@@ -745,10 +891,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="변수" class="level3">
 <h3 class="anchored" data-anchor-id="변수">3-1. 변수</h3>
 <p>값에 이름을 부여한 것을 <strong>변수</strong>라고 한다. 엑셀에서는 값을 셀에 두고 셀 주소(<code>E4</code>)로 참조하였다. 파이썬에서는 값을 변수에 저장하고 변수의 이름(<code>qty</code>)으로 참조한다.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>qty <span class="op">=</span> <span class="dv">30</span>          <span class="co"># 수량</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>price <span class="op">=</span> <span class="dv">24000</span>     <span class="co"># 단가</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>amount <span class="op">=</span> qty <span class="op">*</span> price</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(amount)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>qty <span class="op">=</span> <span class="dv">30</span>               <span class="co"># 수량. 엑셀의 E4에 해당한다</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>price <span class="op">=</span> <span class="dv">24000</span>          <span class="co"># 단가. 엑셀의 F4에 해당한다</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>amount <span class="op">=</span> qty <span class="op">*</span> price   <span class="co"># 금액. 엑셀의 G4(=E4*F4)에 해당한다</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(amount)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -785,10 +931,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>대문자와 소문자를 구분한다. <code>qty</code>와 <code>Qty</code>는 서로 다른 변수이다.</li>
 <li>이미 있는 이름에 값을 다시 저장하면 이전의 값은 사라진다.</li>
 </ul>
-<p>엑셀은 셀의 값이 변경되면 그 셀을 참조하는 수식을 자동으로 다시 계산한다. 노트북은 그렇지 않다. <code>qty</code>의 값을 변경한 뒤에는 <code>amount</code>를 계산하는 줄을 다시 실행하여야 결과가 갱신된다.</p>
+</section>
+<section id="엑셀의-자동-재계산과의-차이" class="level3">
+<h3 class="anchored" data-anchor-id="엑셀의-자동-재계산과의-차이">3-2. 엑셀의 자동 재계산과의 차이</h3>
+<p>엑셀은 셀의 값이 변경되면 그 셀을 참조하는 수식을 자동으로 다시 계산한다. 노트북은 그렇지 않다. 노트북의 3절은 이 차이를 세 셀로 보인다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>셀</th>
+<th>코드</th>
+<th>출력</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><code>qty = 31</code>, <code>amount = qty * price</code>, <code>print(amount)</code></td>
+<td><code>744000</code></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><code>qty = 40</code>, <code>print(amount)</code></td>
+<td><code>744000</code></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><code>amount = qty * price</code>, <code>print(amount)</code></td>
+<td><code>960000</code></td>
+</tr>
+</tbody>
+</table>
+<p>둘째 셀을 실행하기 전에 출력을 예상한다. 엑셀이라면 <code>E4</code>를 40으로 바꾸는 순간 <code>G4</code>가 960,000으로 바뀐다. 노트북의 출력은 <code>744000</code>이다. <code>amount</code>에는 마지막으로 계산한 시점의 값이 저장되어 있을 뿐, <code>qty</code>와 연결되어 있지 않기 때문이다. 셋째 셀처럼 계산하는 줄을 다시 실행하여야 960000이 된다. 엑셀의 수식은 참조한 셀과 연결된 채로 남지만, 코드의 변수는 실행한 시점의 값을 담는다. 노트북에서 셀을 위에서부터 순서대로 실행하여야 하는 까닭과, 값을 고친 뒤 “결과가 바뀌지 않는다”는 질문의 대부분이 이 차이에서 비롯된다.</p>
 </section>
 <section id="숫자와-문자" class="level3">
-<h3 class="anchored" data-anchor-id="숫자와-문자">3-2. 숫자와 문자</h3>
+<h3 class="anchored" data-anchor-id="숫자와-문자">3-3. 숫자와 문자</h3>
 <p>값에는 숫자와 문자가 있다. 문자는 큰따옴표로 감싼다. 큰따옴표가 없는 글자는 변수의 이름으로 해석된다.</p>
 <table class="caption-top table">
 <colgroup>
@@ -820,14 +996,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>엑셀에서도 숫자와 문자는 구분되었다. 1장에서 숫자는 셀의 오른쪽에, 문자는 왼쪽에 맞추어 표시됨을 확인하였고, 4장의 IF 함수에서 문자 값 <code>"달성"</code>을 큰따옴표로 감쌌다.</p>
+<p>노트북의 3절에 있는 <code>[오류 확인]</code> 셀은 <code>customer = 한빛상사</code>를 실행한다. 마지막 줄은 다음과 같다.</p>
+<pre class="text"><code>NameError: name '한빛상사' is not defined</code></pre>
+<p>2절의 오류와 종류가 같다. 파이썬은 <code>한빛상사</code>를 변수의 이름으로 읽었고 그런 변수가 없었다. 4장의 IF 함수에서 <code>"달성"</code>을 큰따옴표로 감싸지 않으면 <code>#NAME?</code> 오류가 표시된 것과 같은 원인이다. 엑셀에서도 숫자와 문자는 구분되었다. 1장에서 숫자는 셀의 오른쪽에, 문자는 왼쪽에 맞추어 표시됨을 확인하였다.</p>
 </section>
-<section id="출력" class="level3">
-<h3 class="anchored" data-anchor-id="출력">3-3. 출력</h3>
+<section id="출력과-반올림" class="level3">
+<h3 class="anchored" data-anchor-id="출력과-반올림">3-4. 출력과 반올림</h3>
 <p><code>print</code>의 괄호 안에 쉼표로 구분하여 여러 값을 기재하면 한 줄에 차례로 출력된다. 값과 값의 사이에는 공백이 하나 들어간다.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>customer <span class="op">=</span> <span class="st">"한빛상사"</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(customer, <span class="st">"의 판매 금액:"</span>, amount)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><code>round(값, 자릿수)</code>는 값을 지정한 소수 자릿수까지 반올림한다. 자릿수를 생략하면 정수로 반올림한다. 엑셀의 [자릿수 늘림]과 [자릿수 줄임]은 표시만 변경하였으나, <code>round</code>는 반올림한 값을 새로 만든다.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>customer <span class="op">=</span> <span class="st">"한빛상사"</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(customer, <span class="st">"의 판매 금액:"</span>, amount)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>이 셀은 3-2절의 셋째 셀 다음에 실행되므로 <code>amount</code>는 960000이며, 출력은 <code>한빛상사 의 판매 금액: 960000</code>이다. <code>한빛상사</code>와 <code>의</code> 사이의 공백은 <code>print</code>가 넣은 것이다.</p>
+<p><code>round(값, 자릿수)</code>는 값을 지정한 소수 자릿수까지 반올림한다. 자릿수를 생략하면 정수로 반올림한다. 엑셀의 [자릿수 늘림]과 [자릿수 줄임]은 표시만 변경하였으나, <code>round</code>는 반올림한 값을 새로 만든다. 3절의 따라 하기는 판매번호 1022의 구성비를 세 가지 꼴로 출력한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>코드</th>
+<th>출력</th>
+<th>엑셀의 대응</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>amount / total</code></td>
+<td><code>0.06362275449101797</code></td>
+<td><code>H5</code>에 저장된 값</td>
+</tr>
+<tr class="even">
+<td><code>round(amount / total, 3)</code></td>
+<td><code>0.064</code></td>
+<td>소수 셋째 자리까지 표시한 모양</td>
+</tr>
+<tr class="odd">
+<td><code>round(amount / total * 100, 1)</code></td>
+<td><code>6.4</code></td>
+<td>백분율 형식으로 6.4%가 표시된 모양</td>
+</tr>
+</tbody>
+</table>
+<p>엑셀에서는 셀의 값이 0.0636…으로 남고 표시만 6.4%로 바뀐다. 코드에서는 반올림한 값이 따로 만들어지며 원래의 계산 결과는 바뀌지 않는다. 6절에서 엑셀의 표시와 코드의 결과를 대조할 때 이 차이를 다시 사용한다.</p>
 </section>
 <section id="따라-하기-1" class="level3">
 <h3 class="anchored" data-anchor-id="따라-하기-1">따라 하기</h3>
@@ -835,14 +1046,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>수량 30, 단가 24000의 셀을 실행하여 720000을 확인한다.</li>
 <li>다음 셀의 <code>____</code>에 31을 기재하여 실행하고 744000을 확인한다.</li>
-<li><code>customer</code>의 셀을 실행한다.</li>
+<li><code>qty = 40</code>의 셀과 다시 계산하는 셀을 차례로 실행한다. 첫 셀을 실행하기 전에 출력을 예상한다.
+<ul>
+<li><span class="check-badge">확인 7</span> <code>qty = 40</code>의 셀은 <code>744000</code>을, 아래 셀은 <code>960000</code>을 출력하였다.</li>
+</ul></li>
+<li><code>customer</code>의 셀과 <code>[오류 확인]</code> 셀을 실행하고, 오류의 마지막 줄에서 오류의 종류와 따옴표 안의 이름을 읽는다.</li>
 <li>판매번호 1022(토너 6개, 단가 85,000원)의 값을 다음 셀의 <code>____</code>에 기재하여 실행한다.
 <ul>
-<li><span class="check-badge">확인 3</span> <code>510000</code>이 출력되었다.</li>
+<li><span class="check-badge">확인 8</span> <code>510000</code>이 출력되었다.</li>
 </ul></li>
-<li>구성비를 계산하는 셀을 실행한다. 2월의 금액 합계 8,016,000원에서 이 판매 건이 차지하는 비율이다.
+<li>구성비를 계산하는 셀을 실행한다. 2월의 금액 합계 8,016,000원(연습용 통합 문서의 <code>G24</code>)에서 이 판매 건이 차지하는 비율이다.
 <ul>
-<li><span class="check-badge">확인 4</span> 구성비 <code>0.064</code>가 출력되었다. 연습용 통합 문서의 <code>H5</code>(6.4%)와 같은 값이다.</li>
+<li><span class="check-badge">확인 9</span> 반올림하지 않은 구성비 <code>0.06362275449101797</code>, 소수 셋째 자리까지 반올림한 구성비 <code>0.064</code>, 백분율 <code>6.4</code>가 차례로 출력되었다. 2월 연습용 통합 문서의 <code>H5</code>(백분율 형식으로 6.4%)와 같은 값이다.</li>
+</ul></li>
+<li>3월의 판매번호 1043(동아문구, A4 복사용지 33개, 단가 24,000원)의 수량, 단가, 3월의 금액 합계 8687000을 다음 셀의 <code>____</code> 3곳에 기재하여 실행한다.
+<ul>
+<li><span class="check-badge">확인 10</span> 금액 <code>792000</code>과 백분율 <code>9.1</code>이 출력되었다. 792000은 3월에서 금액이 가장 큰 판매 건이다.</li>
+</ul></li>
+<li>다음 셀은 2월 연습용 통합 문서의 4~6행(판매번호 1021~1023)의 금액을 변수 세 개로 계산하고 합한다. <code>____</code> 3곳에 수량 33, 6, 32를 기재하여 실행한다. 변수의 이름 <code>amount_1021</code>처럼 판매번호를 붙이면 어느 행의 금액인지 이름만으로 알 수 있다.
+<ul>
+<li><span class="check-badge">확인 11</span> <code>792000 510000 288000</code>과 <code>세 건의 합계: 1590000</code>이 출력되었다. 연습용 통합 문서에서 <code>G4:G6</code>을 선택하였을 때 상태 표시줄의 합계와 같다.</li>
 </ul></li>
 </ol>
 </section>
@@ -852,12 +1075,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="라이브러리" class="level3">
 <h3 class="anchored" data-anchor-id="라이브러리">4-1. 라이브러리</h3>
 <p>파이썬에는 특정한 작업에 필요한 기능을 모아 둔 <strong>라이브러리</strong>가 있다. 표 형태의 자료를 다루는 라이브러리는 pandas이며, 다음과 같이 불러온 뒤에 사용한다. <code>pd</code>는 pandas를 짧게 부르기 위한 이름이다. 이 셀은 실행하여도 아무것도 표시되지 않으며, 커널을 재시작하면 다시 실행하여야 한다.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>ModuleNotFoundError: No module named 'pandas'</code>가 나면 실습 사이트에 pandas가 설치되지 않은 것이다. 수강생이 해결할 수 있는 오류가 아니므로 담당 교수에게 알린다.</p>
 </section>
 <section id="파일-읽기" class="level3">
 <h3 class="anchored" data-anchor-id="파일-읽기">4-2. 파일 읽기</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sales <span class="op">=</span> pd.read_excel(<span class="st">"자료/판매_2026_01.xlsx"</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>sales.head()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sales <span class="op">=</span> pd.read_excel(<span class="st">"자료/판매_2026_01.xlsx"</span>)   <span class="co"># 엑셀에서 통합 문서를 여는 조작에 해당한다</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>sales.head()                                      <span class="co"># 처음 5행을 표시한다</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -885,11 +1109,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <p>파일의 위치는 <strong>노트북이 있는 폴더를 기준으로</strong> 해석된다. 노트북이 <code>컴퓨터활용</code> 폴더에 있고 파일이 <code>컴퓨터활용/자료</code>에 있으므로 <code>"자료/판매_2026_01.xlsx"</code>로 기재한다. 노트북을 다른 폴더로 옮기면 같은 코드가 파일을 찾지 못한다. 파일 이름은 확장자를 포함하여 글자 하나까지 일치하여야 한다.</p>
-<p><code>read_excel</code>은 통합 문서의 첫 시트를 읽는다. 기준 파일에는 “판매내역” 시트 하나만 있다.</p>
+<p>pandas 공식 문서에 따르면 <code>read_excel</code>은 별도로 지정하지 않으면 통합 문서의 첫 시트를 읽고(<code>sheet_name</code>의 기본값 0), 첫 행을 열의 이름으로 사용한다(<code>header</code>의 기본값 0). <code>.xlsx</code> 파일을 읽는 데에는 openpyxl이라는 라이브러리를 사용한다. 기준 파일에는 “판매내역” 시트 하나만 있다.</p>
 </section>
 <section id="표의-확인" class="level3">
 <h3 class="anchored" data-anchor-id="표의-확인">4-3. 표의 확인</h3>
-<p>읽은 표는 계산에 앞서 다음의 방법으로 확인한다. 엑셀에서는 파일을 열면 표가 화면에 표시되나, 코드에서는 표시하도록 지시하여야 보인다.</p>
+<p>엑셀에서는 파일을 열면 표가 화면에 표시되나, 코드에서는 표시하도록 지시하여야 보인다. 위의 셀을 실행하기 전에 출력을 예상한다. 열은 6개이고 첫 행은 1장에서 입력한 판매번호 1001이다. 실제 출력은 다음과 같다.</p>
+<pre class="text"><code>   판매번호        판매일    거래처       품목  수량     단가
+0  1001 2026-01-02   한빛상사  A4 복사용지  30  24000
+1  1002 2026-01-05   동아문구       볼펜  50   6000
+2  1003 2026-01-06  서울오피스       토너   4  85000
+3  1004 2026-01-07   미래유통    파일 폴더  40   9000
+4  1005 2026-01-08   한빛상사       토너   8  85000</code></pre>
+<p>노트북 화면에는 같은 내용이 칸이 그어진 표로 표시된다. 다음의 네 가지를 읽는다.</p>
+<ul>
+<li><strong>행 번호.</strong> 맨 왼쪽의 0~4는 pandas가 부여한 행 번호이며 자료의 일부가 아니다. 엑셀의 행 번호와 달리 0부터 시작한다. 판매번호 1001의 행은 엑셀에서 2행이었고 여기서는 0번 행이다.</li>
+<li><strong>머리글.</strong> 엑셀의 1행인 머리글이 열의 이름이 되었다. 머리글은 행의 수에 포함되지 않는다.</li>
+<li><strong>날짜.</strong> 판매일은 <code>2026-01-02</code>의 꼴로 표시된다. 엑셀에서 날짜 형식으로 입력한 값이 날짜로 읽혔다는 뜻이다.</li>
+<li><strong>숫자.</strong> 수량과 단가는 쉼표 없이 표시된다. 엑셀의 쉼표 형식과 통화 형식은 읽어 오지 않는다.</li>
+</ul>
+<p>표를 확인하는 방법은 다음과 같다.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -900,19 +1138,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="header">
 <th>표기</th>
 <th>결과</th>
-<th>1월 자료</th>
+<th>1월 자료의 출력</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><code>sales.head()</code></td>
 <td>처음 5행. 괄호 안에 숫자를 기재하면 그 수만큼 표시한다</td>
-<td>판매번호 1001~1005</td>
+<td>판매번호 1001~1005, 행 번호 0~4</td>
 </tr>
 <tr class="even">
 <td><code>sales.tail(3)</code></td>
 <td>마지막 3행</td>
-<td>판매번호 1018~1020</td>
+<td>판매번호 1018~1020, 행 번호 17~19</td>
 </tr>
 <tr class="odd">
 <td><code>sales.shape</code></td>
@@ -922,29 +1160,127 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="even">
 <td><code>list(sales.columns)</code></td>
 <td>열의 이름의 목록</td>
-<td>판매번호, 판매일, 거래처, 품목, 수량, 단가</td>
+<td><code>['판매번호', '판매일', '거래처', '품목', '수량', '단가']</code></td>
 </tr>
 </tbody>
 </table>
-<p>표의 맨 왼쪽에 표시되는 0, 1, 2, …는 pandas가 부여한 행 번호이며 자료의 일부가 아니다. 엑셀의 행 번호와 달리 0부터 시작한다. <code>shape</code>의 행의 수에는 머리글 행이 포함되지 않는다. 엑셀에서 자료가 2행부터 21행까지 20행이었던 것과 같다.</p>
+<p><code>shape</code>의 행의 수에는 머리글 행이 포함되지 않는다. 엑셀에서 자료가 2행부터 21행까지 20행이었던 것과 같다. <code>tail(3)</code>의 마지막 행 번호가 19인 것도 같은 이유이다. 행 번호가 0부터 시작하므로 20행의 마지막 번호는 19이다. 열 이름의 목록에서 각 이름을 감싼 작은따옴표는 그 이름이 문자라는 표시이다. 이후의 코드에서는 열의 이름을 이 목록과 글자 하나까지 같게 기재한다.</p>
+</section>
+<section id="자료형" class="level3">
+<h3 class="anchored" data-anchor-id="자료형">4-4. 자료형</h3>
+<p><code>sales.dtypes</code>는 열마다 값이 어떤 종류(자료형)로 읽혔는지를 표시한다. 실행하기 전에 판매번호, 수량, 단가는 정수, 판매일은 날짜, 거래처와 품목은 문자로 읽혔을 것이라고 예상한다. 실제 출력은 다음과 같다.</p>
+<pre class="text"><code>판매번호             int64
+판매일     datetime64[us]
+거래처                str
+품목                 str
+수량               int64
+단가               int64
+dtype: object</code></pre>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>표시</th>
+<th>뜻</th>
+<th>엑셀의 대응(1장)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>int64</code></td>
+<td>정수(64비트)</td>
+<td>일반, 쉼표, 통화 형식의 숫자</td>
+</tr>
+<tr class="even">
+<td><code>datetime64[us]</code></td>
+<td>날짜와 시각. <code>[us]</code>는 마이크로초 단위까지 담는다는 뜻이다</td>
+<td>날짜 형식으로 입력한 값</td>
+</tr>
+<tr class="odd">
+<td><code>str</code></td>
+<td>문자</td>
+<td>셀의 왼쪽에 맞추어 표시되던 문자</td>
+</tr>
+</tbody>
+</table>
+<p>마지막 줄의 <code>dtype: object</code>는 이 목록 자체의 종류를 나타내는 것이므로 읽지 않아도 된다.</p>
+<p>엑셀의 표시 형식은 같은 값을 여러 모양으로 보여 주는 장치였다(2장). 720000을 <code>720,000</code>으로 보이든 <code>₩720,000</code>으로 보이든 값은 같았다. pandas의 자료형은 모양이 아니라 값의 종류를 기록한다. 그래서 쉼표 형식의 수량과 통화 형식의 단가가 모두 <code>int64</code> 하나로 읽힌다.</p>
+<p>pandas의 판에 따라 표시가 다르다. pandas 3.0의 변경 사항 문서는 3.0부터 문자 열에 전용 문자 자료형이 기본으로 쓰이며 이전에는 <code>object</code>로 표시되었다고 설명하고, 날짜를 읽을 때의 기본 단위도 나노초(<code>ns</code>)에서 값에 맞는 단위(예: 마이크로초 <code>us</code>)로 바뀌었다고 설명한다. 따라서 실습 사이트의 pandas가 2.x이면 거래처와 품목은 <code>object</code>, 판매일은 <code>datetime64[ns]</code>로 표시된다. 이후의 계산 결과는 어느 판에서나 같다.</p>
+<p>자료형은 계산이 가능한지를 미리 알려 준다. 수량이나 단가가 <code>int64</code>가 아니라 <code>str</code> 또는 <code>object</code>로 표시되면 엑셀에서 숫자가 문자로 입력된 것이며(1장에서 셀의 왼쪽에 맞추어 표시되던 숫자), 5절의 곱하기가 올바르게 수행되지 않는다. 판매일이 <code>datetime64</code>가 아니면 10장의 월 추출이 실패한다. 파일을 읽은 직후에 <code>dtypes</code>를 한 번 보는 것은 엑셀에서 입력 직후 셀의 맞춤을 살피는 것과 같은 점검이다.</p>
 </section>
 <section id="기준-파일을-사용하는-이유" class="level3">
-<h3 class="anchored" data-anchor-id="기준-파일을-사용하는-이유">4-4. 기준 파일을 사용하는 이유</h3>
+<h3 class="anchored" data-anchor-id="기준-파일을-사용하는-이유">4-5. 기준 파일을 사용하는 이유</h3>
 <p>코드가 읽는 파일은 수강생이 작성한 <code>판매현황_04_학번.xlsx</code>가 아니라 기준 파일 <code>판매_2026_01.xlsx</code>이다. 수강생의 통합 문서에는 1행에 제목, 2행에 빈 행, 25행 이하에 요약 행이 있다. <code>read_excel</code>은 <strong>첫 행이 머리글이고 그 아래가 모두 자료인 표</strong>를 전제로 하므로, 제목과 요약 행이 포함된 시트를 그대로 읽으면 제목이 열의 이름이 되고 요약 행이 자료로 취급된다. 사람이 읽기 위한 표와 프로그램이 읽기 위한 표는 형태가 다르다는 점은 13장 「액세스 입문: 테이블과 쿼리」에서 다시 다룬다.</p>
+</section>
+<section id="막힐-때-1" class="level3">
+<h3 class="anchored" data-anchor-id="막힐-때-1">막힐 때</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>증상</th>
+<th>먼저 볼 곳</th>
+<th>할 일</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>FileNotFoundError</code></td>
+<td>마지막 줄의 따옴표 안 파일 이름</td>
+<td>파일 탐색기의 실제 이름과 글자 단위로 대조한다</td>
+</tr>
+<tr class="even">
+<td><code>NameError: name 'pd' is not defined</code></td>
+<td>4절 첫 셀의 실행 번호</td>
+<td><code>import pandas as pd</code>의 셀을 실행한다</td>
+</tr>
+<tr class="odd">
+<td><code>ModuleNotFoundError</code></td>
+<td>마지막 줄의 라이브러리 이름</td>
+<td>담당 교수에게 알린다</td>
+</tr>
+<tr class="even">
+<td>표가 표시되지 않는다</td>
+<td>셀의 마지막 줄</td>
+<td><code>sales.head()</code>가 셀의 마지막 줄에 있는지 확인한다</td>
+</tr>
+<tr class="odd">
+<td>수량이 <code>int64</code>가 아니다</td>
+<td><code>sales.dtypes</code>의 출력</td>
+<td>기준 파일을 다시 올린다. 수강생이 고친 파일을 읽은 경우가 많다</td>
+</tr>
+</tbody>
+</table>
+<p>노트북의 4절에 있는 <code>[오류 확인]</code> 셀은 월을 한 자리로 기재한 <code>pd.read_excel("자료/판매_2026_1.xlsx")</code>이다. 마지막 줄은 다음과 같다.</p>
+<pre class="text"><code>FileNotFoundError: [Errno 2] No such file or directory: '자료/판매_2026_1.xlsx'</code></pre>
+<p><code>No such file or directory</code>는 “그런 파일이나 폴더가 없다”는 뜻이고, 작은따옴표 안이 찾지 못한 위치이다. 이 오류가 나면 (1) 따옴표 안의 파일 이름을 파일 탐색기의 실제 이름과 대조하고(월은 두 자리, 확장자는 <code>.xlsx</code>), (2) 노트북과 <code>자료</code> 폴더가 같은 <code>컴퓨터활용</code> 폴더 안에 있는지 확인하고, (3) <code>자료</code> 폴더에 파일 12개가 올라가 있는지 확인한다.</p>
 </section>
 <section id="따라-하기-2" class="level3">
 <h3 class="anchored" data-anchor-id="따라-하기-2">따라 하기</h3>
 <p>실습 노트북의 4절에 있는 셀을 차례로 실행한다.</p>
 <ol type="1">
 <li><code>import pandas as pd</code>의 셀을 실행한다. 아무것도 표시되지 않으면 정상이다.</li>
-<li>1월 파일을 읽는 셀과 <code>sales.shape</code>, <code>sales.tail(3)</code>, <code>list(sales.columns)</code>의 셀을 실행한다.</li>
-<li>2월 파일을 읽는 셀에서 파일 이름의 <code>____</code>에 월을 두 자리로 기재하여 실행한다.
+<li>1월 파일을 읽는 셀, 크기와 열 이름의 셀, <code>tail(3)</code>의 셀, <code>dtypes</code>의 셀을 실행하여 4-3절과 4-4절의 출력과 대조한다.
 <ul>
-<li><span class="check-badge">확인 5</span> <code>feb.shape</code>의 결과가 <code>(19, 6)</code>이다.</li>
+<li><span class="check-badge">확인 12</span> 판매번호, 수량, 단가가 <code>int64</code>, 판매일이 <code>datetime64[…]</code>, 거래처와 품목이 <code>str</code>(또는 <code>object</code>)로 표시되었다.</li>
 </ul></li>
-<li><code>feb.head(3)</code>의 셀을 실행한다.
+<li><code>[오류 확인]</code> 셀을 실행하여 <code>FileNotFoundError</code>의 마지막 줄을 읽는다.</li>
+<li>2월 파일을 읽는 셀에서 파일 이름의 <code>____</code>에 월을 두 자리로 기재하여 실행한다. 이 셀은 크기를 출력하고 처음 3행을 표시한다.
 <ul>
-<li><span class="check-badge">확인 6</span> 첫 행의 판매번호가 1021, 거래처가 동아문구이다.</li>
+<li><span class="check-badge">확인 13</span> <code>feb.shape</code>의 결과가 <code>(19, 6)</code>이다.</li>
+<li><span class="check-badge">확인 14</span> 첫 행의 판매번호가 1021, 거래처가 동아문구이다. 2월 연습용 통합 문서의 4행과 같다.</li>
+</ul></li>
+<li><code>feb.____(2)</code>의 <code>____</code>에 마지막 행을 표시하는 함수의 이름을 기재하여 실행한다.
+<ul>
+<li><span class="check-badge">확인 15</span> 행 번호 17, 18의 두 행이 표시되고 마지막 행은 판매번호 1039(미래유통, A4 복사용지, 수량 34)이다. 2월 연습용 통합 문서의 22행과 같다. 자료가 19행이므로 마지막 행의 번호는 18이다.</li>
 </ul></li>
 </ol>
 </section>
@@ -953,7 +1289,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="열의-계산">5. 열의 계산</h2>
 <section id="열의-선택" class="level3">
 <h3 class="anchored" data-anchor-id="열의-선택">5-1. 열의 선택</h3>
-<p>대괄호 안에 열의 이름을 기재하면 해당 열 전체가 선택된다. 열의 이름은 문자이므로 큰따옴표로 감싼다. 대괄호를 두 겹으로 하여 이름을 쉼표로 나열하면 여러 열을 함께 선택한다.</p>
+<p>대괄호 안에 열의 이름을 기재하면 해당 열 전체가 선택된다. 엑셀에서 열 머리글 <code>E</code>를 눌러 열 전체를 선택하는 조작에 해당한다. 열의 이름은 문자이므로 큰따옴표로 감싼다. <code>sales["수량"].head()</code>의 출력은 다음과 같다.</p>
+<pre class="text"><code>0    30
+1    50
+2     4
+3    40
+4     8
+Name: 수량, dtype: int64</code></pre>
+<p>표가 아니라 값의 목록이 표시되었다. 왼쪽은 행 번호, 오른쪽은 값이다. 맨 아래 줄 <code>Name: 수량, dtype: int64</code>는 이 목록의 이름이 수량이고 값이 정수라는 뜻이다. 열 하나를 선택한 결과는 이처럼 머리글 대신 아래쪽에 이름이 적힌 꼴로 표시된다. pandas는 이런 값의 목록을 Series라고 부른다. 대괄호를 두 겹으로 하여 이름을 쉼표로 나열하면 여러 열을 함께 선택하며, 이 경우에는 표로 표시된다. 엑셀에서 <code>Ctrl</code>을 누른 채 열 머리글을 여러 개 선택하는 것과 같다.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -968,7 +1311,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td><code>sales["수량"]</code></td>
-<td>수량 열</td>
+<td>수량 열(값의 목록)</td>
 </tr>
 <tr class="even">
 <td><code>sales[["거래처", "품목", "금액"]]</code></td>
@@ -984,7 +1327,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="열과-열의-계산" class="level3">
 <h3 class="anchored" data-anchor-id="열과-열의-계산">5-2. 열과 열의 계산</h3>
 <p>열과 열을 계산하면 같은 행의 값끼리 계산된다.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sales[<span class="st">"금액"</span>] <span class="op">=</span> sales[<span class="st">"수량"</span>] <span class="op">*</span> sales[<span class="st">"단가"</span>]</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>sales[<span class="st">"금액"</span>] <span class="op">=</span> sales[<span class="st">"수량"</span>] <span class="op">*</span> sales[<span class="st">"단가"</span>]   <span class="co"># 엑셀: G4에 =E4*F4를 입력하고 G23까지 복사한다</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>sales.head()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>실행하기 전에 표의 오른쪽 끝에 금액 열이 생기고 첫 두 행의 금액이 720000, 300000일 것이라고 예상한다. 출력은 다음과 같다.</p>
+<pre class="text"><code>   판매번호        판매일    거래처       품목  수량     단가      금액
+0  1001 2026-01-02   한빛상사  A4 복사용지  30  24000  720000
+1  1002 2026-01-05   동아문구       볼펜  50   6000  300000
+2  1003 2026-01-06  서울오피스       토너   4  85000  340000
+3  1004 2026-01-07   미래유통    파일 폴더  40   9000  360000
+4  1005 2026-01-08   한빛상사       토너   8  85000  680000</code></pre>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -1012,29 +1363,93 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <p>등호의 왼쪽에 존재하지 않는 열의 이름(<code>"금액"</code>)을 기재하면 계산 결과가 새로운 열로 추가된다. 이미 있는 이름을 기재하면 그 열의 값이 교체된다.</p>
+</section>
+<section id="구성비와-소수의-표시" class="level3">
+<h3 class="anchored" data-anchor-id="구성비와-소수의-표시">5-3. 구성비와 소수의 표시</h3>
 <p>구성비도 동일한 방법으로 산출한다. <code>sales["금액"].sum()</code>은 값 하나이므로 모든 행이 같은 값으로 나누어진다. 3장에서 필요하였던 절대 참조(<code>$G$25</code>)에 해당하는 지정은 필요하지 않다.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sales[<span class="st">"구성비"</span>] <span class="op">=</span> sales[<span class="st">"금액"</span>] <span class="op">/</span> sales[<span class="st">"금액"</span>].<span class="bu">sum</span>()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sales[<span class="st">"구성비"</span>] <span class="op">=</span> sales[<span class="st">"금액"</span>] <span class="op">/</span> sales[<span class="st">"금액"</span>].<span class="bu">sum</span>()   <span class="co"># 엑셀: H4에 =G4/$G$25를 입력하고 복사한다</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sales[<span class="st">"구성비"</span>].<span class="bu">sum</span>())                          <span class="co"># 엑셀: H25의 =SUM(H4:H23)</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>sales.head()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>출력의 첫 줄은 <code>1.0</code>이고, 그 아래 표의 구성비 열은 다음과 같이 표시된다.</p>
+<pre class="text"><code>         금액       구성비
+0    720000  0.111128
+1    300000  0.046303
+2    340000  0.052477</code></pre>
+<p>(실제 표에는 판매번호부터 단가까지의 열도 함께 표시된다. 위는 두 열만 옮긴 것이다.)</p>
+<p>구성비 열은 소수 여섯째 자리까지 표시된다. 표를 표시할 때 pandas가 여섯째 자리에서 반올림하여 보여 줄 뿐, 저장된 값은 그보다 길다. 0.111128에 100을 곱하면 11.1128이므로 3장에서 백분율 형식으로 표시한 11.1%와 같은 값이다. 구성비의 합계 <code>1.0</code>은 3장의 <code>H25</code>(100%)에 해당한다.</p>
 </section>
 <section id="원본-파일과의-관계" class="level3">
-<h3 class="anchored" data-anchor-id="원본-파일과의-관계">5-3. 원본 파일과의 관계</h3>
+<h3 class="anchored" data-anchor-id="원본-파일과의-관계">5-4. 원본 파일과의 관계</h3>
 <p>코드로 추가한 열은 변수 <code>sales</code>에 저장된 표에만 존재한다. 서버의 파일 <code>판매_2026_01.xlsx</code>는 변경되지 않는다. 엑셀에서 통합 문서를 열어 열을 추가하고 저장하면 파일이 변경되는 것과 다르다. 계산 결과를 파일로 남기려면 별도의 저장 명령이 필요하며 9장에서 다룬다. 이 성질 때문에 코드는 원본을 훼손할 위험 없이 여러 번 실행할 수 있다.</p>
+</section>
+<section id="막힐-때-2" class="level3">
+<h3 class="anchored" data-anchor-id="막힐-때-2">막힐 때</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>증상</th>
+<th>먼저 볼 곳</th>
+<th>할 일</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>KeyError: '…'</code></td>
+<td>마지막 줄의 따옴표 안 이름</td>
+<td><code>list(sales.columns)</code>의 출력과 글자 단위로 대조한다</td>
+</tr>
+<tr class="even">
+<td>금액 열이 표에 없다</td>
+<td>금액 열을 추가하는 셀의 실행 번호</td>
+<td>그 셀을 실행한다. 노트북을 다시 열었다면 4절부터 다시 실행한다</td>
+</tr>
+<tr class="odd">
+<td>구성비의 합계가 1.0이 아니다</td>
+<td>금액 열의 값</td>
+<td>금액 열을 다시 계산한 뒤 구성비 셀을 다시 실행한다</td>
+</tr>
+<tr class="even">
+<td><code>SyntaxError</code></td>
+<td>열 이름의 큰따옴표</td>
+<td><code>sales["____"]</code>의 큰따옴표는 지우지 않고 빈칸만 바꾼다</td>
+</tr>
+</tbody>
+</table>
+<p>노트북의 5절에 있는 <code>[오류 확인]</code> 셀은 <code>sales["수 량"]</code>이다. 출력은 여러 화면에 걸쳐 길게 나타나지만 마지막 줄은 한 줄이다.</p>
+<pre class="text"><code>KeyError: '수 량'</code></pre>
+<p><code>KeyError</code>는 “그런 이름의 열이 없다”는 뜻이고, 작은따옴표 안이 찾지 못한 이름이다. 위쪽의 긴 줄들은 pandas의 내부에서 오류가 전달된 경로이므로 읽지 않아도 된다. 2-6절의 순서대로 마지막 줄만 읽으면 원인이 열 이름의 공백임을 알 수 있다.</p>
 </section>
 <section id="따라-하기-3" class="level3">
 <h3 class="anchored" data-anchor-id="따라-하기-3">따라 하기</h3>
 <p>실습 노트북의 5절에 있는 셀을 차례로 실행한다.</p>
 <ol type="1">
-<li>1월 자료의 수량 열을 선택하는 셀, 금액 열과 구성비 열을 추가하는 셀을 실행한다.</li>
-<li><code>print(sales["수량"].sum())</code>의 셀을 실행하여 493을 확인한다.</li>
+<li>1월 자료의 수량 열을 선택하는 셀, 금액 열을 추가하는 셀을 실행한다.</li>
+<li>구성비 열을 추가하는 셀을 실행한다.
+<ul>
+<li><span class="check-badge">확인 16</span> <code>1.0</code>이 출력되었다.</li>
+</ul></li>
+<li>수량의 합계와 세 열을 선택하는 셀을 실행하여 493과 3행의 표를 확인한다. 이어서 <code>[오류 확인]</code> 셀을 실행하여 <code>KeyError</code>의 마지막 줄을 읽는다.</li>
 <li>2월 자료(<code>feb</code>)에 금액 열과 구성비 열을 추가하는 셀에서 <code>____</code> 3곳을 채워 실행한다.
 <ul>
-<li><span class="check-badge">확인 7</span> 첫 행(판매번호 1021)의 금액이 792000이다.</li>
-<li><span class="check-badge">확인 8</span> 첫 행의 구성비가 0.098802이다. 백분율로는 9.9%이며 연습용 통합 문서의 <code>H4</code>와 같다.</li>
+<li><span class="check-badge">확인 17</span> 첫 행(판매번호 1021)의 금액이 792000이다. 2월 연습용 통합 문서의 <code>G4</code>와 같다.</li>
+<li><span class="check-badge">확인 18</span> 첫 행의 구성비가 0.098802이다. 백분율로는 9.9%이며 연습용 통합 문서의 <code>H4</code>와 같다.</li>
+</ul></li>
+<li>다음 셀의 첫 줄 <code>____</code>에 수량 열의 이름을 기재하여 실행한다.
+<ul>
+<li><span class="check-badge">확인 19</span> 수량 합계 <code>532</code>와 구성비 합계 <code>1.0</code>이 출력되고, 그 아래에 판매번호 1037~1039의 세 열이 표시되었다. 532는 2월 자료의 수량 합계로, 연습용 통합 문서에서 수량 열(<code>E4:E22</code>)을 선택하였을 때 상태 표시줄에 나타나는 합계와 같다.</li>
 </ul></li>
 </ol>
 </section>
 </section>
 <section id="기초-통계" class="level2">
 <h2 class="anchored" data-anchor-id="기초-통계">6. 기초 통계</h2>
+<section id="함수의-대응" class="level3">
+<h3 class="anchored" data-anchor-id="함수의-대응">6-1. 함수의 대응</h3>
 <p>열을 선택한 뒤 점(<code>.</code>)과 함수의 이름을 기재하여 통계 값을 산출한다.</p>
 <table class="caption-top table">
 <thead>
@@ -1042,6 +1457,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <th>엑셀(4장)</th>
 <th>파이썬</th>
 <th>1월 자료의 결과</th>
+<th>엑셀의 셀</th>
 </tr>
 </thead>
 <tbody>
@@ -1049,44 +1465,83 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td><code>=SUM(G4:G23)</code></td>
 <td><code>sales["금액"].sum()</code></td>
 <td>6479000</td>
+<td><code>G25</code></td>
 </tr>
 <tr class="even">
 <td><code>=AVERAGE(G4:G23)</code></td>
 <td><code>sales["금액"].mean()</code></td>
 <td>323950.0</td>
+<td><code>G26</code></td>
 </tr>
 <tr class="odd">
 <td><code>=MAX(G4:G23)</code></td>
 <td><code>sales["금액"].max()</code></td>
 <td>720000</td>
+<td><code>G27</code></td>
 </tr>
 <tr class="even">
 <td><code>=MIN(G4:G23)</code></td>
 <td><code>sales["금액"].min()</code></td>
 <td>108000</td>
+<td><code>G28</code></td>
 </tr>
 <tr class="odd">
 <td><code>=COUNT(G4:G23)</code></td>
 <td><code>sales["금액"].count()</code></td>
 <td>20</td>
+<td><code>G29</code></td>
 </tr>
 </tbody>
 </table>
 <ul>
 <li>엑셀의 함수는 범위(<code>G4:G23</code>)를 인수로 지정하나, 파이썬에서는 열의 이름으로 지정한다. 행이 20개에서 200개로 증가하여도 코드는 변경되지 않는다. 4장에서 범위를 잘못 지정하여 발생한 오류(합계 범위에 요약 행이 포함되는 경우 등)가 발생하지 않는다.</li>
 <li>결과에는 쉼표와 통화 기호가 표시되지 않는다. 표시 형식은 엑셀의 기능이며, 코드의 결과는 값 자체이다.</li>
-<li>평균은 <code>323950.0</code>과 같이 소수점이 붙어 표시된다. 나누기의 결과는 소수로 취급되기 때문이며 값은 323950과 같다.</li>
-<li>2월 자료의 평균은 421894.7368…이다. 엑셀에서 통화 형식으로 표시한 421,895는 표시만 반올림한 것이고 셀의 값은 이와 같다. <code>round</code>로 반올림하면 421895가 된다.</li>
+<li>평균은 <code>323950.0</code>과 같이 소수점이 붙어 표시된다. 나누기의 결과는 소수로 취급되기 때문이며 값은 323950과 같다(2-5절).</li>
 </ul>
+</section>
+<section id="print-없이-표시한-값" class="level3">
+<h3 class="anchored" data-anchor-id="print-없이-표시한-값">6-2. print 없이 표시한 값</h3>
+<p>같은 계산을 <code>print</code> 없이 셀의 마지막 줄에 두면 표시가 달라진다. 노트북의 6절은 두 셀로 이를 보인다.</p>
+<pre class="text"><code>np.int64(6479000)</code></pre>
+<pre class="text"><code>np.float64(323950.0)</code></pre>
+<p>괄호 안이 값이고, 앞의 <code>np.int64</code>와 <code>np.float64</code>는 그 값의 종류를 나타내는 꼬리표이다. <code>int64</code>는 64비트 정수, <code>float64</code>는 소수를 담을 수 있는 64비트 실수이다. pandas는 계산에 NumPy라는 라이브러리를 사용하며, NumPy 2.0의 릴리스 노트는 값의 표현에 자료형의 정보를 넣도록 바꾸어 <code>3.0</code> 대신 <code>np.float64(3.0)</code>으로 표시한다고 설명한다. 같은 값을 <code>print</code>로 출력하면 꼬리표 없이 <code>6479000</code>, <code>323950.0</code>만 나타난다. 수작업 결과와 대조할 때에는 괄호 안의 값만 읽는다. 실습 사이트의 NumPy가 2.0보다 오래된 판이면 꼬리표 없이 값만 표시된다.</p>
+</section>
+<section id="표시와-값의-대조" class="level3">
+<h3 class="anchored" data-anchor-id="표시와-값의-대조">6-3. 표시와 값의 대조</h3>
+<p>2월 자료의 금액 평균은 다음과 같이 출력된다.</p>
+<pre class="text"><code>평균  : 421894.7368421053
+평균(반올림): 421895</code></pre>
+<p>엑셀에서 통화 형식으로 표시한 <code>₩421,895</code>는 표시만 반올림한 것이고 셀의 값은 421894.7368…이다(3-4절). 따라서 엑셀의 화면에 보이는 421895를 그대로 코드의 평균과 비교하면 일치하지 않는다. 노트북 6절의 대조 셀은 코드 쪽의 평균을 <code>round</code>로 정수로 반올림한 뒤 비교한다. 수작업 결과를 대조할 때는 “엑셀에 표시된 값”과 “셀에 저장된 값” 가운데 어느 것을 적었는지를 먼저 정하고, 코드의 결과도 같은 꼴로 맞춘다. 1월 자료의 평균은 323950으로 나누어떨어지므로 핵심 실습에서는 이 문제가 생기지 않는다.</p>
+<p>대조 셀의 출력은 다음과 같다.</p>
+<pre class="text"><code>      수작업 결과   코드의 결과    일치
+합계   8016000  8016000  True
+평균    421895   421895  True
+최댓값   912000   912000  True
+최솟값   104000   104000  True
+개수        19       19  True</code></pre>
+<p>행은 통계의 이름이고, 열은 수작업 결과, 코드의 결과, 일치 여부이다. “일치” 열의 <code>True</code>는 두 값이 같다는 뜻이고 <code>False</code>는 다르다는 뜻이다. <code>False</code>가 나타나면 그 행의 두 값을 비교하여 어느 쪽이 다른지 확인한다. 코드는 모든 수강생에게서 같은 결과를 내므로, 대개는 기재한 수작업 결과에 오타가 있다.</p>
+</section>
 <section id="따라-하기-4" class="level3">
 <h3 class="anchored" data-anchor-id="따라-하기-4">따라 하기</h3>
 <p>실습 노트북의 6절에 있는 셀을 차례로 실행한다.</p>
 <ol type="1">
-<li>1월 자료의 합계와 평균을 출력하는 셀을 실행한다.</li>
-<li>2월 자료의 통계 값 5개를 출력하는 셀을 실행한다.
+<li>1월 자료의 합계와 평균을 출력하는 셀을 실행한다. 출력은 <code>6479000</code>과 <code>323950.0</code>이다.</li>
+<li><code>print</code> 없이 합계와 평균을 표시하는 두 셀을 실행한다.
 <ul>
-<li><span class="check-badge">확인 9</span> 합계 8016000, 최댓값 912000, 최솟값 104000, 개수 19가 출력되었다.</li>
-<li><span class="check-badge">확인 10</span> 반올림한 평균이 421895이다. 연습용 통합 문서의 <code>G25</code>에 통화 형식으로 표시된 평균과 같다.</li>
+<li><span class="check-badge">확인 20</span> 위 셀은 <code>np.int64(6479000)</code>, 아래 셀은 <code>np.float64(323950.0)</code>을 표시하였다.</li>
+</ul></li>
+<li>2월 자료의 통계 값을 출력하는 셀의 <code>____</code> 3곳에 최댓값, 최솟값, 개수의 함수 이름을 기재하여 실행한다. 4장의 따라 하기에서 연습용 통합 문서의 <code>G24:G28</code>에 산출한 값과 대조한다.
+<ul>
+<li><span class="check-badge">확인 21</span> 합계 8016000, 최댓값 912000, 최솟값 104000, 개수 19가 출력되었다.</li>
+<li><span class="check-badge">확인 22</span> 반올림한 평균이 421895이다. 엑셀에서 통화 형식으로 표시된 평균(<code>G25</code>)과 같다.</li>
+</ul></li>
+<li>수량 열의 통계를 출력하는 셀의 <code>____</code> 2곳에 수량 열의 이름을 기재하여 실행한다. 1장의 따라 하기에서 2월 파일의 <code>E2:E20</code>을 선택하였을 때 상태 표시줄에 나타난 값과 대조한다.
+<ul>
+<li><span class="check-badge">확인 23</span> 수량의 합계 532, 평균 28.0, 개수 19, 최댓값 50, 최솟값 4가 출력되었다. 1장의 상태 표시줄에는 평균 28, 개수 19, 합계 532가 표시되었다.</li>
+</ul></li>
+<li>대조 셀의 <code>____</code> 5곳에 연습용 통합 문서의 <code>G24:G28</code>에 표시된 값을 쉼표와 원화 기호 없이 기재하여 실행한다. 평균은 421895를 기재한다.
+<ul>
+<li><span class="check-badge">확인 24</span> “일치” 열이 5행 모두 <code>True</code>이다.</li>
 </ul></li>
 </ol>
 </section>
@@ -1116,26 +1571,82 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
+<section id="막힐-때-3" class="level3">
+<h3 class="anchored" data-anchor-id="막힐-때-3">막힐 때</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>증상</th>
+<th>먼저 볼 곳</th>
+<th>할 일</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>가의 셀에서 <code>NameError: name 'pd' is not defined</code></td>
+<td>4절 첫 셀의 실행 번호</td>
+<td>노트북을 다시 열었다면 위에서부터 다시 실행한다</td>
+</tr>
+<tr class="even">
+<td>가의 셀에서 <code>AttributeError: 'Series' object has no attribute '____'</code></td>
+<td>통계 함수 자리의 빈칸</td>
+<td>빈칸 5곳에 <code>sum</code>, <code>mean</code>, <code>max</code>, <code>min</code>, <code>count</code>를 기재한다</td>
+</tr>
+<tr class="odd">
+<td>가의 셀에서 <code>KeyError: '____'</code></td>
+<td>금액을 계산하는 줄의 빈칸</td>
+<td>빈칸 2곳에 <code>수량</code>, <code>단가</code>를 기재한다</td>
+</tr>
+<tr class="even">
+<td>나의 셀에서 <code>False</code>가 나타난다</td>
+<td>그 행의 “수작업 결과”</td>
+<td>아래 「완료 기준」 뒤의 순서로 원인을 좁힌다</td>
+</tr>
+<tr class="odd">
+<td>다에서 실행이 <code>[오류 확인]</code> 셀에서 멈춘다</td>
+<td>멈춘 셀의 위치</td>
+<td>그 다음 셀을 선택하고 <code>[Run] → [Run Selected Cell and All Below]</code>를 실행한다</td>
+</tr>
+</tbody>
+</table>
+</section>
 <section id="절차" class="level3">
 <h3 class="anchored" data-anchor-id="절차">절차</h3>
 <section id="단계-1.-통계-값의-산출" class="level4">
 <h4 class="anchored" data-anchor-id="단계-1.-통계-값의-산출">단계 1. 통계 값의 산출</h4>
 <ol type="1">
-<li>노트북의 7절 가의 셀에서 <code>____</code> 7곳을 채운다. 금액 열을 계산하는 두 열의 이름과 통계 함수의 이름 5개이다.</li>
-<li>셀을 실행한다.
+<li><p>노트북의 7절 가의 셀에서 <code>____</code> 7곳을 채운다. 금액 열을 계산하는 두 열의 이름과 통계 함수의 이름 5개이다. 셀의 주석 <code># G25</code> 등은 4장의 통합 문서에서 같은 값이 놓인 셀이다.</p></li>
+<li><p>실행하기 전에 출력의 다섯 줄을 4장의 <code>G25:G29</code>로 예상한다.</p></li>
+<li><p>셀을 실행한다. 출력은 다음과 같다.</p>
+<pre class="text"><code>합계  : 6479000
+평균  : 323950.0
+최댓값: 720000
+최솟값: 108000
+개수  : 20</code></pre>
 <ul>
-<li><span class="check-badge">확인 11</span> 합계 6479000, 평균 323950.0, 최댓값 720000, 최솟값 108000, 개수 20이 출력되었다.</li>
+<li><span class="check-badge">확인 25</span> 합계 6479000, 평균 323950.0, 최댓값 720000, 최솟값 108000, 개수 20이 출력되었다.</li>
 </ul></li>
 </ol>
 </section>
 <section id="단계-2.-수작업-결과와의-대조" class="level4">
 <h4 class="anchored" data-anchor-id="단계-2.-수작업-결과와의-대조">단계 2. 수작업 결과와의 대조</h4>
 <ol type="1">
-<li><code>판매현황_04_학번.xlsx</code>를 엑셀로 열어 <code>G25:G29</code>의 값을 확인한다.</li>
-<li>노트북의 7절 나의 셀에서 <code>____</code> 5곳에 확인한 값을 숫자로 기재한다. 쉼표와 원화 기호는 기재하지 않는다.</li>
-<li>셀을 실행한다.
+<li><p><code>판매현황_04_학번.xlsx</code>를 엑셀로 열어 <code>G25:G29</code>의 값을 확인한다.</p></li>
+<li><p>노트북의 7절 나의 셀에서 <code>____</code> 5곳에 확인한 값을 숫자로 기재한다. 쉼표와 원화 기호는 기재하지 않는다.</p></li>
+<li><p>셀을 실행한다. 출력은 다음과 같다. “코드의 결과” 열이 <code>6479000.0</code>처럼 소수점이 붙어 표시되는 것은 평균(실수)과 한 열에 놓였기 때문이며 판정에 영향이 없다.</p>
+<pre class="text"><code>      수작업 결과     코드의 결과    일치
+합계   6479000  6479000.0  True
+평균    323950   323950.0  True
+최댓값   720000   720000.0  True
+최솟값   108000   108000.0  True
+개수        20       20.0  True</code></pre>
 <ul>
-<li><span class="check-badge">확인 12</span> 출력된 표의 “일치” 열이 5행 모두 <code>True</code>이다.</li>
+<li><span class="check-badge">확인 26</span> 출력된 표의 “일치” 열이 5행 모두 <code>True</code>이다.</li>
 </ul></li>
 </ol>
 </section>
@@ -1143,9 +1654,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="단계-3.-전체-재실행과-저장">단계 3. 전체 재실행과 저장</h4>
 <ol type="1">
 <li>메뉴의 <code>[Kernel] → [Restart Kernel and Run All Cells...]</code>를 실행하고 확인 창에서 [Restart]를 누른다.</li>
-<li>노트북을 맨 아래까지 내려 오류가 표시된 셀이 없는지 확인한다.
+<li>실행이 <code>[오류 확인]</code> 셀에서 멈추면 그 다음 셀을 선택하고 <code>[Run] → [Run Selected Cell and All Below]</code>를 실행한다.</li>
+<li>노트북을 맨 아래까지 내려 오류가 표시된 셀을 확인한다.
 <ul>
-<li><span class="check-badge">확인 13</span> 모든 코드 셀에 실행 번호가 위에서부터 차례로 부여되었고 붉은색의 오류 출력이 없다.</li>
+<li><span class="check-badge">확인 27</span> 모든 코드 셀에 실행 번호가 위에서부터 차례로 부여되었고, 붉은 오류 출력은 <code>[오류 확인]</code> 셀 4개에만 있다.</li>
 </ul></li>
 <li><code>Ctrl + S</code>로 노트북을 저장한다.</li>
 </ol>
@@ -1156,7 +1668,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>파일 탐색기에서 <code>실습_08_학번.ipynb</code>를 마우스 오른쪽 단추로 눌러 [Download]를 선택한다.</li>
 <li>내려받은 파일을 수강생 PC의 <code>컴퓨터활용\실습</code> 폴더로 옮긴다.
 <ul>
-<li><span class="check-badge">확인 14</span> <code>컴퓨터활용\실습</code> 폴더에 <code>실습_08_학번.ipynb</code>가 있다.</li>
+<li><span class="check-badge">확인 28</span> <code>컴퓨터활용\실습</code> 폴더에 <code>실습_08_학번.ipynb</code>가 있다.</li>
 </ul></li>
 </ol>
 </section>
@@ -1164,6 +1676,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="완료-기준" class="level3">
 <h3 class="anchored" data-anchor-id="완료-기준">완료 기준</h3>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
 <thead>
 <tr class="header">
 <th>번호</th>
@@ -1213,11 +1731,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>7</td>
 <td>전체 재실행</td>
 <td>실행 번호와 오류 출력의 유무</td>
-<td>오류 없이 완료</td>
+<td>오류 출력은 <code>[오류 확인]</code> 셀 4개에만 있다</td>
 </tr>
 </tbody>
 </table>
 <p>대조표에 <code>False</code>가 있는 경우에는 다음의 순서로 원인을 좁힌다. 코드는 기준 파일을 읽으므로 코드의 결과는 모든 수강생에게서 동일하다. 따라서 원인은 기재한 수작업 결과에 있다. 먼저 기재한 값에 오타가 없는지 확인하고, 오타가 아니면 4장의 파일에서 해당 셀의 수식과 범위를 확인한다. 4장의 값 자체가 기준 값과 다르면 1장의 입력 값에 오류가 있는 것이다.</p>
+<p>이 기준 값은 4장의 완성 파일을 실습 PC의 엑셀(Microsoft 365, 16.0 빌드 20527)로 열어 확인한 <code>G25:G29</code>의 값과 같다(2026-11-14 확인). 2월 연습용 통합 문서의 평균이 <code>₩421,895</code>로 표시되는 것도 같은 확인에서 보았다. 엑셀의 결과와 코드의 결과가 같은 자료에서 같은 값으로 나오는지를 확인하는 것이 본 실습의 목적이다.</p>
 </section>
 <section id="제출" class="level3">
 <h3 class="anchored" data-anchor-id="제출">제출</h3>
@@ -1226,7 +1745,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="빈번한-오류와-해결" class="level2">
 <h2 class="anchored" data-anchor-id="빈번한-오류와-해결">빈번한 오류와 해결</h2>
-<p>오류가 발생하면 셀의 아래에 붉은색의 오류 내용이 표시된다. 오류 내용은 여러 줄이나, <strong>맨 마지막 줄</strong>에 오류의 종류와 원인이 기재되어 있으므로 마지막 줄을 먼저 확인한다. 그 위에는 오류가 발생한 줄이 화살표(<code>----&gt;</code>)로 표시된다.</p>
+<p>오류가 발생하면 셀의 아래에 붉은색의 오류 내용이 표시된다. 오류 내용은 여러 줄이나, <strong>맨 마지막 줄</strong>에 오류의 종류와 원인이 기재되어 있으므로 마지막 줄을 먼저 확인한다(2-6절). 아래의 표는 오류의 마지막 줄과 그 원인을 정리한 것이다.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -1242,23 +1761,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>FileNotFoundError: … No such file or directory</code></td>
-<td>파일이 해당 위치에 없다. <code>자료</code> 폴더의 이름이 다르거나, 파일을 다른 폴더에 올렸거나, 노트북이 <code>컴퓨터활용</code> 폴더에 있지 않다</td>
-<td>파일 탐색기에서 2-2절의 폴더 구성과 대조한다</td>
+<td><code>FileNotFoundError: [Errno 2] No such file or directory: '…'</code></td>
+<td>코드는 노트북이 있는 폴더를 기준으로 파일을 찾는다. <code>자료</code> 폴더의 이름이 다르거나, 파일을 다른 폴더에 올렸거나, 노트북이 <code>컴퓨터활용</code> 폴더에 있지 않거나, 파일 이름의 월을 한 자리로 기재하였다</td>
+<td>파일 탐색기에서 2-2절의 폴더 구성과 대조하고 따옴표 안의 이름을 실제 이름과 맞춘다</td>
 </tr>
 <tr class="even">
 <td><code>NameError: name 'sales' is not defined</code></td>
-<td>변수를 만드는 셀을 실행하지 않았다. 노트북을 다시 열었거나 커널을 재시작한 뒤에 중간의 셀부터 실행한 경우이다</td>
+<td>변수는 커널의 기억에만 있다. 노트북을 다시 열었거나 커널을 재시작한 뒤에 중간의 셀부터 실행하면 그 변수를 만드는 셀이 실행되지 않은 상태이다</td>
 <td>위의 셀부터 순서대로 다시 실행한다</td>
 </tr>
 <tr class="odd">
 <td><code>NameError: name 'pd' is not defined</code></td>
-<td><code>import pandas as pd</code>의 셀을 실행하지 않았다</td>
+<td><code>import pandas as pd</code>의 셀을 실행하지 않았다. 불러온 라이브러리도 커널의 기억에 있다</td>
 <td>해당 셀을 실행한다</td>
 </tr>
 <tr class="even">
-<td><code>KeyError: '____'</code>, <code>AttributeError: … '____'</code>, <code>NameError: name '____' is not defined</code></td>
-<td><code>____</code>를 채우지 않고 실행하였다</td>
+<td><code>NameError: name '____' is not defined</code>, <code>KeyError: '____'</code>, <code>AttributeError: … '____'</code></td>
+<td>빈칸을 채우지 않았다. 파이썬은 <code>____</code>를 변수, 열, 함수의 이름으로 읽는다</td>
 <td><code>____</code>를 지시된 값으로 변경한다</td>
 </tr>
 <tr class="odd">
@@ -1268,12 +1787,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td><code>SyntaxError: unterminated string literal</code></td>
-<td>큰따옴표를 닫지 않았다</td>
+<td>큰따옴표를 닫지 않았다. 빈칸을 채우면서 따옴표까지 지운 경우가 많다</td>
 <td>문자의 앞뒤에 큰따옴표가 모두 있는지 확인한다</td>
 </tr>
 <tr class="odd">
 <td><code>NameError: name '한빛상사' is not defined</code></td>
-<td>문자 값을 큰따옴표로 감싸지 않았다</td>
+<td>문자 값을 큰따옴표로 감싸지 않아 변수의 이름으로 읽혔다</td>
 <td><code>"한빛상사"</code>로 기재한다</td>
 </tr>
 <tr class="even">
@@ -1282,35 +1801,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>담당 교수에게 알린다</td>
 </tr>
 <tr class="odd">
+<td>오류는 없으나 <code>(720, 0)</code> 같은 출력</td>
+<td>숫자 안에 쉼표를 넣어 값 두 개가 되었다</td>
+<td>숫자의 쉼표를 지운다</td>
+</tr>
+<tr class="even">
 <td>셀이 <code>[*]</code>인 채로 종료되지 않는다</td>
 <td>실행이 진행 중이거나 중단되었다</td>
 <td><code>[Kernel] → [Restart Kernel...]</code>을 실행한 뒤 처음부터 다시 실행한다</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>“일치” 열에 <code>False</code>가 표시된다</td>
-<td>기재한 수작업 결과가 코드의 결과와 다르다</td>
-<td>완료 기준 아래의 순서로 원인을 좁힌다</td>
+<td>기재한 수작업 결과가 코드의 결과와 다르다. 엑셀에 표시된 값과 셀에 저장된 값이 다른 경우(평균)도 있다</td>
+<td>완료 기준 아래의 순서로 원인을 좁히고, 6-3절의 표시와 값의 차이를 확인한다</td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="심화-실습" class="level2">
-<h2 class="anchored" data-anchor-id="심화-실습">심화 실습</h2>
+<section id="심화-실습-선택" class="level2">
+<h2 class="anchored" data-anchor-id="심화-실습-선택">심화 실습 [선택]</h2>
 <p>핵심 실습을 완료한 수강생은 4장의 목표 달성 건수를 코드로 산출한다.</p>
 <ol type="1">
 <li>노트북의 “심화 실습” 절에 있는 셀에서 <code>target</code>의 값으로 500000을 기재하여 실행한다. 결과를 4장에서 센 달성 건수(5건)와 대조한다.</li>
 <li><code>target</code>을 300000으로 변경하여 다시 실행한다.</li>
 <li>엑셀에서 기준 금액을 300,000원으로 변경하려면 어떠한 조작이 필요한지 정리하여 코드의 경우와 비교한다.</li>
 </ol>
-<p><code>sales["금액"] &gt;= target</code>은 행마다 조건의 충족 여부를 참(<code>True</code>) 또는 거짓(<code>False</code>)으로 판정하며, <code>sum()</code>은 참의 개수를 센다. 4장의 IF 함수가 행마다 “달성” 또는 “미달”을 표시한 것과 같은 판정이다.</p>
+<p><code>sales["금액"] &gt;= target</code>은 행마다 조건의 충족 여부를 참(<code>True</code>) 또는 거짓(<code>False</code>)으로 판정하며, <code>sum()</code>은 참의 개수를 센다. 참은 1, 거짓은 0으로 더해지기 때문이다. 4장의 IF 함수가 행마다 “달성” 또는 “미달”을 표시한 것과 같은 판정이다.</p>
 </section>
 <section id="연습-문제" class="level2">
 <h2 class="anchored" data-anchor-id="연습-문제">연습 문제</h2>
-<p>3월 자료(<code>자료/판매_2026_03.xlsx</code>)를 사용한다. 노트북의 “연습 문제” 절에 있는 빈 셀에 코드를 작성한다. 절차는 제시하지 않는다.</p>
+<p>3월 자료(<code>자료/판매_2026_03.xlsx</code>)를 사용한다. 노트북의 “연습 문제” 절에 있는 셀에 코드를 작성한다. 셀에는 해야 할 일이 주석으로 적혀 있다. 절차는 제시하지 않는다. 변수의 이름은 <code>sales</code>나 <code>feb</code>가 아닌 새 이름(<code>mar</code>)을 사용한다.</p>
 <ol type="1">
-<li>3월 파일을 읽어 <code>mar</code>에 저장하고 표의 크기를 확인한다. 기준 값은 <code>(25, 6)</code>이다.</li>
-<li><code>mar</code>에 금액 열을 추가하고 금액의 합계와 평균을 출력한다. 기준 값은 합계 8687000, 평균 347480.0이다.</li>
-<li>3월의 수량 합계와, 금액이 500,000원 이상인 판매 건의 수를 출력한다. 기준 값은 수량 합계 536, 500,000원 이상 8건이다.</li>
+<li>3월 파일을 읽어 <code>mar</code>에 저장하고 표의 크기를 확인한다. 기준 값은 <code>(25, 6)</code>이다. 실마리: 4절의 따라 하기.</li>
+<li><code>mar</code>에 금액 열을 추가하고 금액의 합계와 평균을 출력한다. 기준 값은 합계 8687000, 평균 347480.0이다. 실마리: 5절과 6절의 따라 하기.</li>
+<li>3월의 수량 합계와, 금액이 500,000원 이상인 판매 건의 수를 출력한다. 기준 값은 수량 합계 536, 500,000원 이상 8건이다. 실마리: 5절의 수량 합계와 심화 실습의 셀.</li>
 </ol>
 </section>
 <section id="개념-점검" class="level2">
@@ -1321,6 +1845,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>qty = 30</code>과 엑셀의 수식 <code>=30</code>에서 등호의 의미는 어떻게 다른가.</li>
 <li><code>sales["금액"] = sales["수량"] * sales["단가"]</code>는 엑셀의 어떠한 조작에 해당하는가. 행이 20개에서 200개로 증가하였을 때 두 방식에서 필요한 작업을 비교하시오.</li>
 <li>코드가 수강생의 <code>판매현황_04_학번.xlsx</code>가 아닌 기준 파일을 읽는 이유는 무엇인가.</li>
+<li><code>sales["금액"].sum()</code>의 표시 <code>np.int64(6479000)</code>에서 값은 무엇이며, <code>np.int64</code>는 무엇을 나타내는가.</li>
+<li>2월의 평균을 엑셀의 화면에 보이는 421895와 비교하면 <code>False</code>가 나온다. 그 까닭과 대조하는 방법을 기술하시오.</li>
 </ol>
 </section>
 <section id="정리" class="level2">
@@ -1343,7 +1869,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>셀의 실행</td>
-<td><code>Shift + Enter</code>. 코드 셀의 결과는 셀의 아래에 표시된다</td>
+<td><code>Shift + Enter</code>. 코드 셀의 결과는 셀의 아래에 표시되며, 마지막 줄의 결과만 표시된다</td>
 </tr>
 <tr class="odd">
 <td>커널</td>
@@ -1351,7 +1877,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>변수</td>
-<td>값에 부여한 이름. <code>이름 = 값</code>의 형식으로 저장한다</td>
+<td>값에 부여한 이름. <code>이름 = 값</code>의 형식으로 저장한다. 다시 계산하지 않으면 값이 바뀌지 않는다</td>
 </tr>
 <tr class="odd">
 <td>라이브러리</td>
@@ -1359,11 +1885,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td><code>read_excel</code></td>
-<td>엑셀 파일을 표로 읽는 pandas의 함수</td>
+<td>엑셀 파일을 표로 읽는 pandas의 함수. 첫 시트를 읽고 첫 행을 열의 이름으로 쓴다</td>
 </tr>
 <tr class="odd">
+<td>자료형</td>
+<td>열의 값의 종류(<code>int64</code>, <code>str</code>, <code>datetime64</code>). <code>dtypes</code>로 확인한다</td>
+</tr>
+<tr class="even">
 <td>열의 선택</td>
-<td><code>표["열의 이름"]</code></td>
+<td><code>표["열의 이름"]</code>. 결과는 값의 목록(Series)이다</td>
+</tr>
+<tr class="odd">
+<td>트레이스백</td>
+<td>오류가 났을 때의 출력. 마지막 줄에 오류의 종류와 원인이 있다</td>
 </tr>
 <tr class="even">
 <td>기준 파일</td>
@@ -1375,40 +1909,75 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="참고-자료" class="level2">
 <h2 class="anchored" data-anchor-id="참고-자료">참고 자료</h2>
-<p>확인일은 2026-11-13이다.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
 <th>자료</th>
 <th>주소</th>
 <th>본문에서 근거로 삼은 내용</th>
+<th>확인일</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>JupyterLab 공식 문서, Notebooks</td>
 <td><a href="https://jupyterlab.readthedocs.io/en/stable/user/notebook.html" class="uri">https://jupyterlab.readthedocs.io/en/stable/user/notebook.html</a></td>
-<td>노트북의 정의, 코드 셀과 마크다운 셀</td>
+<td>노트북의 정의, 코드 셀과 마크다운 셀, 커널</td>
+<td>2026-11-15</td>
 </tr>
 <tr class="even">
 <td>JupyterLab 공식 문서, Commands</td>
 <td><a href="https://jupyterlab.readthedocs.io/en/stable/user/commands.html" class="uri">https://jupyterlab.readthedocs.io/en/stable/user/commands.html</a></td>
-<td>메뉴와 단추의 이름(New Folder, Upload Files, Refresh File List, Restart Kernel and Run All Cells…)</td>
+<td>명령 이름(Restart Kernel and Run All Cells…, Restart Kernel…, New Folder, Refresh File List)</td>
+<td>2026-11-15</td>
 </tr>
 <tr class="odd">
 <td>JupyterLab 공식 문서, Working with Files</td>
 <td><a href="https://jupyterlab.readthedocs.io/en/stable/user/files.html" class="uri">https://jupyterlab.readthedocs.io/en/stable/user/files.html</a></td>
 <td>파일 탐색기에서의 올리기, 내려받기, 이름 변경</td>
+<td>2026-11-13</td>
+</tr>
+<tr class="even">
+<td>JupyterLab 소스, <code>packages/outputarea/src/widget.ts</code></td>
+<td><a href="https://github.com/jupyterlab/jupyterlab/blob/main/packages/outputarea/src/widget.ts" class="uri">https://github.com/jupyterlab/jupyterlab/blob/main/packages/outputarea/src/widget.ts</a></td>
+<td><code>raises-exception</code> 태그가 붙은 셀에서 <code>stop_on_error</code>를 끈다</td>
+<td>2026-11-15</td>
+</tr>
+<tr class="odd">
+<td>Python 공식 자습서, 8. Errors and Exceptions</td>
+<td><a href="https://docs.python.org/3/tutorial/errors.html" class="uri">https://docs.python.org/3/tutorial/errors.html</a></td>
+<td>오류 메시지의 마지막 줄이 무슨 일이 일어났는지를 나타내고 예외의 종류가 함께 인쇄된다. 화살표의 위치가 고칠 곳과 다를 수 있다</td>
+<td>2026-11-15</td>
 </tr>
 <tr class="even">
 <td>pandas 공식 문서, <code>pandas.read_excel</code></td>
 <td><a href="https://pandas.pydata.org/docs/reference/api/pandas.read_excel.html" class="uri">https://pandas.pydata.org/docs/reference/api/pandas.read_excel.html</a></td>
-<td>엑셀 파일 읽기, 첫 시트와 첫 행의 처리</td>
+<td><code>sheet_name</code>과 <code>header</code>의 기본값 0, <code>.xlsx</code>를 읽는 openpyxl</td>
+<td>2026-11-15</td>
 </tr>
 <tr class="odd">
+<td>pandas 공식 문서, What’s new in 3.0.0</td>
+<td><a href="https://pandas.pydata.org/docs/whatsnew/v3.0.0.html" class="uri">https://pandas.pydata.org/docs/whatsnew/v3.0.0.html</a></td>
+<td>문자 열의 기본 자료형 <code>str</code>, 날짜를 읽을 때의 단위(마이크로초)의 변경</td>
+<td>2026-11-15</td>
+</tr>
+<tr class="even">
 <td>pandas 공식 문서, 10 minutes to pandas</td>
 <td><a href="https://pandas.pydata.org/docs/user_guide/10min.html" class="uri">https://pandas.pydata.org/docs/user_guide/10min.html</a></td>
 <td>표의 확인(<code>head</code>, <code>tail</code>), 열의 선택과 계산</td>
+<td>2026-11-13</td>
+</tr>
+<tr class="odd">
+<td>NumPy 2.0.0 릴리스 노트</td>
+<td><a href="https://numpy.org/doc/stable/release/2.0.0-notes.html" class="uri">https://numpy.org/doc/stable/release/2.0.0-notes.html</a></td>
+<td>값의 표현에 자료형의 정보를 넣는다(<code>np.float64(3.0)</code>)</td>
+<td>2026-11-15</td>
+</tr>
+<tr class="even">
+<td>NumPy NEP 51, Changing the representation of NumPy scalars</td>
+<td><a href="https://numpy.org/neps/nep-0051-scalar-representation.html" class="uri">https://numpy.org/neps/nep-0051-scalar-representation.html</a></td>
+<td><code>print</code>와 <code>str</code>의 출력은 바뀌지 않고 표현(<code>repr</code>)만 바뀐다</td>
+<td>2026-11-15</td>
 </tr>
 </tbody>
 </table>

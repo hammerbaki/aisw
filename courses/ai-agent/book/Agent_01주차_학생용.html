@@ -440,6 +440,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#역할-정의서" id="toc-역할-정의서" class="nav-link" data-scroll-target="#역할-정의서">11-11. 역할 정의서</a></li>
   <li><a href="#역할-검사" id="toc-역할-검사" class="nav-link" data-scroll-target="#역할-검사">11-12. 역할 검사</a></li>
   <li><a href="#커밋과-푸시" id="toc-커밋과-푸시" class="nav-link" data-scroll-target="#커밋과-푸시">11-13. 커밋과 푸시</a></li>
+  <li><a href="#중심-실습-복기" id="toc-중심-실습-복기" class="nav-link" data-scroll-target="#중심-실습-복기">11-14. 중심 실습 복기</a></li>
   </ul></li>
   <li><a href="#자주-하는-실수와-해결" id="toc-자주-하는-실수와-해결" class="nav-link" data-scroll-target="#자주-하는-실수와-해결">자주 하는 실수와 해결</a></li>
   <li><a href="#제출물" id="toc-제출물" class="nav-link" data-scroll-target="#제출물">제출물</a></li>
@@ -654,6 +655,7 @@ A  api/main.py
   https://github.com/아이디/jobprep
 ✓ Added remote https://github.com/아이디/jobprep.git
 ✓ Pushed commits to https://github.com/아이디/jobprep.git</code></pre>
+<p>위 출력은 예시이다. 원격 조작(이 절과 11-13절의 푸시)은 집필할 때 실행하지 않았다.</p>
 <p><code>jobprep</code>은 만들 원격 저장소의 이름이다(소유자를 생략하면 로그인한 계정이 소유자가 된다). <code>--private</code>는 비공개로, <code>--source=.</code>는 지금 폴더의 로컬 저장소를 원본으로, <code>--remote=origin</code>은 원격을 <code>origin</code>이라는 이름으로 등록하게, <code>--push</code>는 로컬의 커밋을 바로 올리게 한다.</p>
 <p><strong>웹에서 만드는 길.</strong> <code>gh</code>가 없거나 로그인이 막히면 GitHub 웹에서 「New repository」로 이름 <code>jobprep</code>, Private, README 추가 안 함으로 빈 저장소를 만든 뒤 다음을 실행한다. README를 추가하면 원격에 커밋이 하나 생겨 첫 푸시가 거부된다.</p>
 <div class="code-label where-server">
@@ -672,6 +674,9 @@ origin  https://github.com/아이디/jobprep.git (push)
 ## main...origin/main</code></pre>
 <p><code>## main...origin/main</code> 뒤에 <code>[ahead 1]</code> 같은 표시가 없으면 로컬과 원격이 같은 커밋에 있다.</p>
 <p><span class="check-badge">확인 4</span> <code>git status -sb</code>의 첫 줄이 <code>## main...origin/main</code>이고, 브라우저로 연 <code>https://github.com/아이디/jobprep</code>에 자물쇠 표시(Private)와 파일 목록이 보이며, 파일 목록에 <code>.env</code>가 없다.</p>
+<blockquote class="blockquote">
+<p><strong>[그림 자리: 비공개 저장소의 첫 화면]</strong> 저장소 이름 옆의 「Private」 표시와 파일 목록(<code>.env.example</code>은 있고 <code>.env</code>는 없음)이 보이는 화면. 찍을 곳: 브라우저, <code>github.com/아이디/jobprep</code>.</p>
+</blockquote>
 </section>
 <section id="이-장의-진행" class="level3">
 <h3 class="anchored" data-anchor-id="이-장의-진행">0-5. 이 장의 진행</h3>
@@ -1076,6 +1081,7 @@ uvicorn           0.54.0</code></pre>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="bu">jobs</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>[1]+  Terminated   LLM_FAKE=1 LOG_DIR=logs/runtime uvicorn api.main:app --port $PORT &gt; logs/runtime/server.out 2&gt;&amp;1</code></pre>
 <p><span class="check-badge">확인 11</span> 미구현 요구 세 개의 요청이 각각 <code>30</code>, <code>200</code>, <code>200</code>을 돌려주었고, <code>kill %1</code> 뒤의 <code>jobs</code>에 <code>Terminated</code>가 보인다.</p>
+<p><strong>2절 복기.</strong> 설치, 테스트, 요청, 기록, 미구현 확인의 다섯 단계에서 남은 것은 숫자이다. 테스트 43개(기준선), 공고 30건, 근거 유사도 0.3216(기준값 0.3), 목록 응답 수 ms와 질의응답 4,469ms, 미구현 셋의 <code>30</code>·<code>200</code>·<code>200</code>이다. 8절과 11절의 요건은 이 숫자에서 출발한다. 요건의 기준값을 짐작이 아니라 실제로 본 값 옆에 정하는 것이 이 절을 먼저 한 까닭이다.</p>
 <hr>
 </section>
 </section>
@@ -1417,6 +1423,9 @@ uvicorn           0.54.0</code></pre>
 <li><strong>우회 모드의 조건.</strong> <code>bypassPermissions</code>는 인터넷이 없는 컨테이너나 가상 머신처럼 Claude Code가 호스트를 해칠 수 없는 격리 환경에서만 쓰라고 하며, 이 모드는 프롬프트 주입이나 의도하지 않은 행동을 막아 주지 않는다고 밝힌다[C2]. 또 저장소에 커밋되는 설정 파일(<code>.claude/settings.json</code>)로는 <code>auto</code>나 <code>bypassPermissions</code>를 기본값으로 정할 수 없다.</li>
 </ol>
 <p>모드는 <code>Shift+Tab</code>으로 바꾼다. <code>auto</code>에서 누르면 <code>default</code>로 가고, 이후 <code>default</code> → <code>acceptEdits</code> → <code>plan</code> 순서로 돈다[C2]. 시작할 때 <code>claude --permission-mode plan</code>으로 정할 수도 있다.</p>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: Claude Code의 권한 모드와 시작 모드]</strong> 모드 여섯 개, 기본 시작 모드 <code>auto</code>(v2.1.283 이후), <code>Shift+Tab</code>의 순서는 2026-11-14에 Claude Code 2.1.296과 [C2]로 확인한 값이다. 수업 전에 <code>claude --version</code>, <code>claude --help</code>와 <a href="https://code.claude.com/docs/en/permission-modes" class="uri">https://code.claude.com/docs/en/permission-modes</a>에서 다시 확인한다.</p>
+</blockquote>
 <p><span class="check-badge">확인 14</span> <code>claude --help</code>의 <code>--permission-mode</code> 선택지 여섯 개를 확인하고, 그 가운데 운영 저장소에서 처음 구조를 파악할 때 쓸 모드와 그 까닭을 말할 수 있다.</p>
 </section>
 <section id="사람의-개입-지점" class="level3">
@@ -1836,6 +1845,9 @@ uvicorn           0.54.0</code></pre>
 </tr>
 </tbody>
 </table>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: 모델 단가와 Claude Code의 평균 비용]</strong> 위 단가(2026-11-14)와 아래 문단의 평균 비용(하루 약 13달러, 한 달 150~250달러)은 바뀐다. 확인할 곳: <a href="https://platform.claude.com/docs/en/about-claude/models/overview" class="uri">https://platform.claude.com/docs/en/about-claude/models/overview</a>, <a href="https://code.claude.com/docs/en/costs" class="uri">https://code.claude.com/docs/en/costs</a>.</p>
+</blockquote>
 <p><code>jobprep</code>의 견본 기록에서 요약 한 번은 입력 약 1,000토큰, 출력 약 300토큰을 썼다(<code>logs/llm.log</code>의 첫 줄: 입력 1,056, 출력 286). Haiku 5.5의 최저 단가로 계산하면 다음과 같다.</p>
 <div class="code-label where-server">
 <span>서버 터미널</span>
@@ -3024,9 +3036,21 @@ To https://github.com/아이디/jobprep.git
 8fb5680 docs: 1장 운영 문서를 씀
 33a6811 chore: 기준 저장소 jobprep을 받음
 ## main...origin/main</code></pre>
+<p>위 출력은 예시이다. 커밋 번호와 바뀐 줄 수는 학습자마다 다르다.</p>
 <p><code>git add .</code>을 쓰지 않고 경로를 지정했다. 무엇을 커밋하는지 사람이 정한다는 원칙(일관성과 보안의 습관)을 지키기 위해서이다.</p>
 <p>브라우저로 <code>https://github.com/아이디/jobprep</code>을 열어 <code>docs/운영/운영요건.md</code>를 누른다. GitHub는 마크다운 표를 표로 보여 준다. 표가 깨져 보이는 행이 있으면 그 행의 <code>|</code> 개수가 머리글과 다른 것이다.</p>
 <p><span class="check-badge">확인 33</span> <code>git log --oneline</code>에 커밋이 둘 있고, <code>git status -sb</code>가 <code>## main...origin/main</code>이며, GitHub 웹에서 <code>docs/운영/운영요건.md</code>의 표가 깨지지 않고 보인다.</p>
+</section>
+<section id="중심-실습-복기" class="level3">
+<h3 class="anchored" data-anchor-id="중심-실습-복기">11-14. 중심 실습 복기</h3>
+<ol type="1">
+<li><strong>설명을 명령으로 대조했다.</strong> Claude Code의 저장소 설명은 대부분 맞았지만, <code>PROMPT_</code>로 만드는 환경 변수처럼 검색이 놓친 것이 있었다. 맞는지 틀린지는 응답이 아니라 서버 터미널의 출력이 정했다.</li>
+<li><strong>요건마다 재는 법을 붙였다.</strong> 형식 검사는 통과와 실패를 기계로 가렸지만, 「사람이 확인한다」 같은 측정 방법이 좋은지는 가리지 못하였다. 그 판정이 사람의 몫으로 남는다.</li>
+<li><strong>에이전트의 경계를 사람이 썼다.</strong> 역할마다 「금지」와 명령의 결과로 쓴 완료 조건이 있다. 2장부터 이 문서가 에이전트에게 주는 지시의 근거가 된다.</li>
+</ol>
+<pre class="text"><code>   실습 전  "에이전트가 알아서 안전하게 운영한다"
+   실습 뒤  OR-SEC-01 … 측정: git ls-files | grep -cx .env → 0
+   # 같은 바람이 잴 수 있는 문장과 명령으로 바뀌었다</code></pre>
 <hr>
 </section>
 </section>
@@ -3082,41 +3106,46 @@ To https://github.com/아이디/jobprep.git
 <td><code>pytest --collect-only -q \| tail -1</code>로 모은 수를 보고, 인자 없이 실행했는지 확인한다</td>
 </tr>
 <tr class="even">
+<td><code>jobs</code>에 <code>Exit 127</code>이 보이고 <code>server.out</code>에 <code>uvicorn: command not found</code></td>
+<td>새 터미널에서 가상 환경을 켜지 않았다</td>
+<td><code>source .venv/bin/activate</code> 뒤 다시 띄운다</td>
+</tr>
+<tr class="odd">
 <td><code>jobs</code>에 <code>Exit 1</code>이 보이고 서버가 뜨지 않는다</td>
 <td>포트가 겹쳤다</td>
 <td><code>server.out</code>에 <code>address already in use</code>가 있으면 <code>PORT</code>를 부록 A의 자기 포트로 고친다</td>
 </tr>
-<tr class="odd">
-<td><code>curl</code>이 <code>Connection refused</code></td>
-<td>서버가 아직 뜨지 않았거나 이미 꺼졌다</td>
+<tr class="even">
+<td><code>curl</code>이 <code>Connection refused</code>(또는 <code>curl -s</code>가 빈 줄만 내고 <code>echo $?</code>가 7)</td>
+<td>서버가 아직 뜨지 않았거나 이미 꺼졌다. <code>-s</code>는 이 오류 문구를 숨긴다</td>
 <td><code>jobs</code>로 확인하고 <code>sleep 3</code> 뒤 다시 보낸다</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Claude Code가 파일을 고치겠다고 승인을 묻는다</td>
 <td>계획 모드가 아니다</td>
 <td><code>Esc</code>로 거절하고 <code>Shift+Tab</code>으로 <code>plan</code>으로 바꾼다</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>계획 승인 창에서 <code>Shift+Tab</code>을 눌렀더니 계획이 승인되었다</td>
 <td>승인 창에서 <code>Shift+Tab</code>은 승인이다</td>
 <td>이 실습에서는 고칠 것이 없으므로 그대로 두되, 다음에는 <code>Esc</code>를 먼저 누른다. <code>git status</code>로 바뀐 파일이 없는지 확인한다</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>검사가 <code>요구 문장이 비어 있다</code>를 계속 낸다</td>
 <td>「 」 자리 표시가 남아 있다</td>
 <td>문장 앞뒤의 「 」를 지운다. 문장 안에서 따옴표로 「 」를 쓰는 것은 괜찮다</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>검사가 <code>「~인 동안,」 표지가 없다</code>를 낸다</td>
 <td>문형 칸과 문장이 맞지 않는다</td>
 <td>문장에 조건이 없으면 문형을 「상시」로, 설정에 따른 조건이면 「선택」으로 바꾼다</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>표가 GitHub에서 깨져 보인다</td>
 <td>칸 안에 <code>\|</code>가 아닌 <code>|</code>를 썼다</td>
 <td>명령에 파이프가 들어가면 <code>\|</code>로 쓴다. 검사 도구도 <code>\|</code>를 칸 구분으로 보지 않는다</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>역할 검사가 <code>역할이 0개이다</code>를 낸다</td>
 <td>역할 제목이 <code>### R1 기획</code> 꼴이 아니다</td>
 <td><code>###</code>, 빈칸, <code>R</code>과 번호, 빈칸, 이름의 순서를 지킨다</td>
@@ -3136,10 +3165,10 @@ To https://github.com/아이디/jobprep.git
 <div class="code-label where-prof">
 <span>교수 화면</span>
 </div>
-<div class="sourceCode" id="cb98"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/아이디/jobprep.git <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> jobprep</span>
-<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> ops/check/check_ops.py reqs docs/운영/운영요건.md</span>
-<span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> ops/check/check_ops.py roles docs/운영/역할정의.md <span class="at">--reqs</span> docs/운영/운영요건.md</span>
-<span id="cb98-4"><a href="#cb98-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/아이디/jobprep.git <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> jobprep</span>
+<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> ops/check/check_ops.py reqs docs/운영/운영요건.md</span>
+<span id="cb99-3"><a href="#cb99-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> ops/check/check_ops.py roles docs/운영/역할정의.md <span class="at">--reqs</span> docs/운영/운영요건.md</span>
+<span id="cb99-4"><a href="#cb99-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>원격 저장소가 비공개이므로 교수가 확인하려면 교수 계정을 협업자(collaborator)로 초대해야 한다. 초대 방법과 교수 계정은 수업에서 안내한다.</p>
 <hr>
 </section>

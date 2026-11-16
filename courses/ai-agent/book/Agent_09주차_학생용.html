@@ -555,6 +555,9 @@ LLM_FAKE=1
 LLM_MODEL=claude-haiku-5-5
 (앞 장까지의 테스트 수) passed in 3.12s</code></pre>
 <p><code>git status --short</code>에 줄이 나오면 앞 장의 작업을 먼저 커밋한다. <code>.env</code>의 <code>LLM_FAKE</code>가 <code>1</code>이 아니면 <code>1</code>로 고친다. 이 장의 실습은 모의 모드에서 한다. 테스트 수는 앞 장을 어디까지 했는가에 따라 다르며, 기준 저장소를 막 받은 상태라면 <code>43 passed</code>이다.</p>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: 기본 모델의 이름과 가격]</strong> <code>LLM_MODEL</code>의 기본값과 그 모델의 단가. 확인할 곳: <a href="https://platform.claude.com/docs/en/about-claude/models/overview" class="uri">https://platform.claude.com/docs/en/about-claude/models/overview</a>. 2026-11-15에 확인한 값: Claude Haiku 5.5, ID <code>claude-haiku-5-5</code>, 입력 백만 토큰당 0.10달러부터, 출력 0.50달러부터.</p>
+</blockquote>
 <p>이 장의 중심 실습은 앞 장의 산출물에 기대지 않는다. 앞 장의 결과는 0-3의 동결 기록과 11절에서 <code>.claude/settings.json</code>과 <code>.claude/agents/</code>를 읽을 때만 쓴다. 3·6·7장을 하지 않아 그 파일이 없으면, 11절에서 키트의 <code>기준산출물/.claude/</code>를 대신 읽는다. 기준산출물은 저장소로 복사하지 않는다. 훅 설정만 옮기고 훅 스크립트가 없으면 Claude Code가 편집할 때마다 훅 오류를 내기 때문이다.</p>
 </section>
 <section id="골격을-저장소에-넣기" class="level3">
@@ -771,6 +774,9 @@ LLM_MODEL=claude-haiku-5-5
 <ul>
 <li><span class="check-badge">확인 4</span> 위 명령의 출력이 <code>2.8.0 2026-10-21</code>이다.</li>
 </ul>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: 파이썬 SDK와 API 버전]</strong> <code>anthropic</code>의 최신 판과 그 판이 보내는 API 버전, 그 버전의 금지 매개변수. 확인할 곳: <a href="https://pypi.org/project/anthropic/" class="uri">https://pypi.org/project/anthropic/</a>, [A18], [A19]. 2026-11-15에 확인한 값: PyPI 최신 2.8.0, API 버전 2026-10-21.</p>
+</blockquote>
 </section>
 <section id="도구-정의의-항목" class="level3">
 <h3 class="anchored" data-anchor-id="도구-정의의-항목">2-2. 도구 정의의 항목</h3>
@@ -911,6 +917,9 @@ LLM_MODEL=claude-haiku-5-5
 </tbody>
 </table>
 <p>도구 정의는 토큰 비용이기도 하다. 요청의 입력 토큰에는 <code>tools</code> 매개변수(이름, 설명, 스키마)가 들어가고, 그와 별도로 도구 사용을 위한 시스템 프롬프트가 붙는다[A10]. 그 크기는 모델과 <code>tool_choice</code>에 따라 다르며, 2026-11-14 기준 문서의 표에서 Claude Haiku 5.5는 <code>auto</code>·<code>none</code>일 때 286토큰, <code>any</code>·<code>tool</code>일 때 406토큰이다[A10]. 도구 정의가 회차마다 다시 실리므로 쓰지 않는 도구를 등록해 두는 것도 비용이다.</p>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: 도구 사용 시스템 프롬프트의 토큰과 강제 호출]</strong> 모델별 토큰 표와 <code>any</code>·<code>tool</code>을 받지 않는 모델(2-4). 확인할 곳: [A10], [A12]. 2026-11-15에 확인한 값: Haiku 5.5는 286·406토큰, Opus 5.5와 Sonnet 5.5는 <code>auto</code>·<code>none</code> 286토큰이고 <code>any</code>·<code>tool</code> 칸이 비어 있다.</p>
+</blockquote>
 <p>골격에서 두 도구의 정의가 어떤 상태인지 본다.</p>
 <div class="code-label where-server">
 <span>서버 터미널</span>
@@ -1733,6 +1742,38 @@ agent_loop/loop.py:112: NotImplementedError</code></pre>
 </tbody>
 </table>
 <p>TODO 1과 TODO 2는 직접 타이핑한다. 이 장에서 가장 중요한 열 줄 남짓이고, Claude Code에 맡기면 왕복의 모양을 손으로 익힐 기회를 잃는다. TODO 3과 TODO 4는 Claude Code에 맡겨도 된다. 맡긴 경우 결과 코드를 읽고, 테스트를 고치지 않았는지 <code>git diff tests/</code>로 확인한다(2장의 테스트 동결).</p>
+<p><strong>결과 읽기: 끝줄이 위 표와 다를 때.</strong> 세 갈래로 나누어 본다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>내 화면</th>
+<th>갈래</th>
+<th>할 일</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>끝줄에 <code>1 skipped</code>가 붙고 통과가 하나 적다</td>
+<td>윈도우에서 링크 탈출 테스트가 건너뛰어졌다. 정상</td>
+<td>그대로 진행</td>
+</tr>
+<tr class="even">
+<td>실패가 표보다 많다</td>
+<td>E 줄의 오류 이름이 원인이다. <code>NotImplementedError: TODO N</code>은 그 TODO가 비었거나 <code>raise</code> 줄이 남은 것, <code>FakeModelExhausted: 모의 응답 3개를 다 썼는데 또 불렸다.</code>는 끝나야 할 회차에 루프가 모델을 또 부른 것(TODO 2의 <code>return</code>), <code>IndentationError</code>는 들여쓰기</td>
+<td><code>pytest -q tests/test_agent_loop.py 2&gt;&amp;1 \| grep -E "^E \|^FAILED"</code></td>
+</tr>
+<tr class="odd">
+<td>실패가 한두 개만 남는다</td>
+<td><code>FAILED</code> 줄의 테스트 이름이 곧 어긴 규칙이다</td>
+<td>「자주 하는 실수와 해결」에서 그 이름의 행</td>
+</tr>
+</tbody>
+</table>
 <section id="단계-도구-결과-돌려주기-todo-1" class="level3">
 <h3 class="anchored" data-anchor-id="단계-도구-결과-돌려주기-todo-1">7-1. 1단계: 도구 결과 돌려주기 (TODO 1)</h3>
 <p><code>agent_loop/loop.py</code>의 <code>run_agent()</code>에서 <code>if stop == "tool_use":</code> 아래의 TODO 1을 다음 코드로 바꾼다. <code>raise NotImplementedError(...)</code> 줄과 그 위의 TODO 주석을 지우고 그 자리에 넣는다. 들여쓰기는 <code>if</code> 아래 12칸이다.</p>
@@ -1992,6 +2033,45 @@ A  tests/test_agent_loop.py</code></pre>
 <ul>
 <li><span class="check-badge">확인 18</span> <code>git log --oneline -1</code>에 방금의 커밋이 보이고, <code>git show --stat HEAD</code>에 <code>agent_loop/loop.py</code>, <code>agent_loop/tools.py</code>, <code>tests/test_agent_loop.py</code>가 들어 있다.</li>
 </ul>
+<section id="중심-실습-복기-모델은-요청하고-코드가-지킨다" class="level4">
+<h4 class="anchored" data-anchor-id="중심-실습-복기-모델은-요청하고-코드가-지킨다">중심 실습 복기: 모델은 요청하고 코드가 지킨다</h4>
+<ol type="1">
+<li><strong>왕복의 모양은 코드가 지킨다.</strong> 결과를 user 메시지 하나에 모으고 <code>tool_use_id</code>로 짝짓는 열 줄(TODO 1)이 없으면 루프는 한 바퀴도 돌지 못한다.</li>
+<li><strong>끝은 <code>end_turn</code>만 정상이다.</strong> 상한(<code>max_turns</code>)과 잘림(<code>max_tokens</code>)에서는 답을 지어내지 않고 종료 사유를 남겼다.</li>
+<li><strong>인자는 믿지 않는다.</strong> 스키마 검사, 경로 검사 두 겹, 사람 승인이 모델의 판단과 관계없이 매번 같은 결과를 냈다.</li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>현장에서 겪는 장면</th>
+<th>빠진 장치</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>상담 챗봇이 같은 검색을 수십 번 되풀이해 요금이 늘었다</td>
+<td>최대 반복 상한(4-3)</td>
+</tr>
+<tr class="even">
+<td>문서 조회 도구가 <code>../</code>가 든 이름으로 설정 파일을 읽었다</td>
+<td>처리 함수 안의 경로 검사(7-4)</td>
+</tr>
+<tr class="odd">
+<td>잘린 응답이 완성된 답처럼 사용자에게 보였다</td>
+<td><code>end_turn</code>만 정상으로 보는 종료 조건(7-2)</td>
+</tr>
+<tr class="even">
+<td>도구 오류의 원문에 내부 경로가 실려 화면에 나왔다</td>
+<td>예외를 종류 이름만의 <code>is_error</code> 결과로 바꾸기(5-4)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>폴더에 남은 것.</strong> <code>agent_loop/</code>(TODO 네 곳), <code>runs/normal.json</code>, <code>runs/runaway.json</code>, <code>루프대조.md</code>의 1절. <strong>다음.</strong> 같은 루프를 실제 모델의 기록으로 읽고, 기록이 왜 회차마다 커지는지 잰다.</p>
+</section>
 </section>
 <section id="실제-모델의-실행-기록" class="level3">
 <h3 class="anchored" data-anchor-id="실제-모델의-실행-기록">7-7. 실제 모델의 실행 기록</h3>
@@ -2008,6 +2088,9 @@ A  tests/test_agent_loop.py</code></pre>
 [2회차] 모델 호출 → stop_reason=end_turn (보낸 기록 3,xxx자)
 ...
 [요약] 종료=end_turn, 회차=2, 도구 호출=2회</code></pre>
+<blockquote class="blockquote">
+<p><strong>[그림 자리: 실제 모델로 돈 루프]</strong> 교수 화면에서 위 명령을 실행한 터미널. <code>[도구 요청]</code> 두 줄이 한 회차에 나왔는지(병렬 호출) 보이게 찍는다. 찍을 곳: 교수 시연 터미널. 배포 기록 <code>real.json</code>과 같은 실행이어야 한다.</p>
+</blockquote>
 <p>위 출력은 예시이다. 실제 모델은 두 도구를 한 응답에서 함께 부를 수도(병렬 호출, 2회차에 끝남), 차례로 부를 수도(3회차에 끝남) 있다. 교수는 시연한 기록 <code>real.json</code>과 화면 출력 <code>real_출력.txt</code>를 <code>~/kits/Agent_09주차/시연기록/</code>에 둔다. 학습자는 기록을 자기 저장소로 들여와 회차별 값과 assistant 메시지의 블록 종류를 꺼낸다.</p>
 <div class="code-label where-server">
 <span>서버 터미널</span>
@@ -2336,6 +2419,9 @@ runaway: 회차별 기록 [47, 1027, 2007], 합계 3081자, 고정분(시스템+
 </tr>
 </tbody>
 </table>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: Agent SDK의 판]</strong> <code>claude-agent-sdk</code>의 최신 판과 함께 든 Claude Code의 판, 설치 크기. 확인할 곳: <a href="https://pypi.org/project/claude-agent-sdk/" class="uri">https://pypi.org/project/claude-agent-sdk/</a>, [S5]. 2026-11-15에 확인한 값: PyPI 최신 0.2.182(Claude Code 2.1.325 포함).</p>
+</blockquote>
 <p><code>query()</code>는 질문(<code>prompt</code>)과 옵션(<code>options</code>)을 키워드 인자로 받아 메시지를 하나씩 내는 비동기 반복자(async iterator)이다[S2]. 루프는 그 안에서 돈다. 10-3절에서 패키지를 설치한 뒤 서명을 직접 확인한다.</p>
 </section>
 <section id="인증" class="level3">
@@ -2629,6 +2715,9 @@ runaway: 회차별 기록 [47, 1027, 2007], 합계 3081자, 고정분(시스템+
 <li>결과 크기 상한(<code>MAX_DOC_CHARS</code>)은 도구 응답 상한과 자동 압축에 해당한다.</li>
 </ul>
 <p>Claude Code를 쓰는 동안 화면에 보이는 “Read(api/jobs.py)”, “Bash(.venv/bin/python -m pytest -q)” 같은 줄이 이 장의 <code>[도구 요청]</code> 줄이고, 그 아래 결과가 <code>[코드가 실행]</code> 줄이다. 사람이 대화 중에 <code>Esc</code>를 눌러 멈추거나 수정 지시를 넣을 수 있다는 점이 이 장의 루프와 다르다[C21].</p>
+<blockquote class="blockquote">
+<p><strong>[그림 자리: Claude Code 화면의 도구 호출]</strong> <code>jobprep</code>에서 “<code>api/jobs.py</code>의 테스트를 돌려라”를 맡긴 Claude Code 화면. <code>Read(…)</code>, <code>Bash(.venv/bin/python -m pytest -q)</code> 줄과 그 아래 결과 줄에 ②③④의 표시를 붙인다. 찍을 곳: VS Code 터미널의 Claude Code(2026-11 기준 화면).</p>
+</blockquote>
 </section>
 <section id="하네스-부품이-루프에-끼는-자리" class="level3">
 <h3 class="anchored" data-anchor-id="하네스-부품이-루프에-끼는-자리">11-2. 하네스 부품이 루프에 끼는 자리</h3>
@@ -2871,7 +2960,7 @@ runaway: 회차별 기록 [47, 1027, 2007], 합계 3081자, 고정분(시스템+
 <td><code>if stop == "tool_use":</code> 아래는 12칸, TODO 2 자리는 8칸</td>
 </tr>
 <tr class="odd">
-<td><code>test_messages_alternate_and_ids_match</code> 실패</td>
+<td><code>test_parallel_results_in_one_user_message</code>만 실패</td>
 <td>결과마다 user 메시지를 따로 붙였다</td>
 <td>결과를 <code>results</code> 목록에 모아 반복문이 끝난 뒤 한 번 붙인다</td>
 </tr>
@@ -3173,7 +3262,7 @@ runaway: 회차별 기록 [47, 1027, 2007], 합계 3081자, 고정분(시스템+
 <tr class="even">
 <td>K1</td>
 <td>2026년 2학기판 LLM 7주차(도구 사용, 계산 도구의 검증과 폴백)와 8주차(ReAct, Agent SDK) 강의안과 키트</td>
-<td>볼트 <code>courses/llm-ai/2027-2판_재료/docs/subjects/llm-ai/</code>, <code>courses/llm-ai/2027-2판_재료/assets/code/LLM_07주차/</code>, <code>LLM_08주차/</code></td>
+<td>볼트 <code>docs/subjects/llm-ai/</code>, <code>assets/code/LLM_07주차/</code>, <code>LLM_08주차/</code></td>
 <td>2026-11-14</td>
 </tr>
 </tbody>

@@ -439,6 +439,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#단계-7-명세-대조-기록과-명세서-v3" id="toc-단계-7-명세-대조-기록과-명세서-v3" class="nav-link" data-scroll-target="#단계-7-명세-대조-기록과-명세서-v3">10-8. 단계 7: 명세 대조 기록과 명세서 v3</a></li>
   <li><a href="#단계-8-커밋과-푸시" id="toc-단계-8-커밋과-푸시" class="nav-link" data-scroll-target="#단계-8-커밋과-푸시">10-9. 단계 8: 커밋과 푸시</a></li>
   <li><a href="#단계-9-팀-실습-저장소의-풀-리퀘스트와-리뷰" id="toc-단계-9-팀-실습-저장소의-풀-리퀘스트와-리뷰" class="nav-link" data-scroll-target="#단계-9-팀-실습-저장소의-풀-리퀘스트와-리뷰">10-10. 단계 9: 팀 실습 저장소의 풀 리퀘스트와 리뷰</a></li>
+  <li><a href="#중심-실습-복기" id="toc-중심-실습-복기" class="nav-link" data-scroll-target="#중심-실습-복기">10-11. 중심 실습 복기</a></li>
   </ul></li>
   <li><a href="#자주-하는-실수와-해결" id="toc-자주-하는-실수와-해결" class="nav-link" data-scroll-target="#자주-하는-실수와-해결">자주 하는 실수와 해결</a></li>
   <li><a href="#제출물" id="toc-제출물" class="nav-link" data-scroll-target="#제출물">제출물</a></li>
@@ -543,6 +544,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre class="text"><code>.............s..........s........                                        [100%]
 31 passed, 2 skipped in 1.36s</code></pre>
 <p>학생 배포본에는 교수 폴더가 없으므로 그 폴더를 쓰는 테스트 2개는 건너뛴다(skipped). 실패(failed)가 하나라도 있으면 키트를 다시 복사한다.</p>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: 키트가 고정한 패키지의 판]</strong> <code>requirements.txt</code>의 pytest 9.2.0, playwright 1.64.0. 확인할 곳 <a href="https://pypi.org/project/playwright/" class="uri">https://pypi.org/project/playwright/</a>. 2026-11-16 값: 최신은 pytest 9.2.0, playwright 1.65.2.</p>
+</blockquote>
 <p><span class="check-badge">확인 1</span> <code>~/llm-service-lab/.venv/bin/python -m pytest -q</code>의 마지막 줄에 <code>passed</code>가 있고 <code>failed</code>가 없다.</p>
 </section>
 <section id="앞-장-산출물의-확인" class="level3">
@@ -612,8 +616,10 @@ docs/설계:
 <ol type="1">
 <li>VS Code의 명령 팔레트(<code>F1</code>)에서 「Forward a Port」를 고르고 자기 포트(예: <code>8001</code>)를 입력한다. 아래쪽 「포트(Ports)」 탭에서 같은 일을 할 수도 있다.</li>
 <li>알림이나 포트 탭에 나온 로컬 주소(보통 <code>http://localhost:8001</code>)를 내 PC의 브라우저로 연다.</li>
-<li>다 보았으면 서버 터미널에서 <code>Ctrl+C</code>로 웹 서버를 끈다. 다른 폴더(예: 10절의 <code>jobprep/prototype</code>)를 보려면 그 폴더로 <code>cd</code> 한 뒤 같은 명령으로 다시 띄운다.</li>
 </ol>
+<blockquote class="blockquote">
+<p><strong>[그림 자리: 포트 탭에 전달된 자기 포트]</strong> 아래쪽 패널의 「포트(Ports)」 탭에 <code>8001</code>과 로컬 주소가 한 줄로 보이는 화면. 찍을 곳: Remote-SSH로 접속한 VS Code. 3. 다 보았으면 서버 터미널에서 <code>Ctrl+C</code>로 웹 서버를 끈다. 다른 폴더(예: 10절의 <code>jobprep/prototype</code>)를 보려면 그 폴더로 <code>cd</code> 한 뒤 같은 명령으로 다시 띄운다.</p>
+</blockquote>
 <p>웹 서버를 띄운 터미널은 그동안 다른 명령을 받지 못한다. 서버 터미널을 하나 더 열어 두고 한쪽은 웹 서버, 한쪽은 명령 실행에 쓴다. 서버 없이 내 PC에서 실습하는 학습자는 HTML 파일을 탐색기에서 두 번 눌러 열어도 된다(주소가 <code>file://</code>로 시작한다). 이 장의 프로토타입은 어느 방식으로 열어도 동작하도록 만든다.</p>
 <p><span class="check-badge">확인 4</span> 내 PC의 브라우저에서 <code>http://localhost:8001</code>(자기 포트)을 열었을 때 <code>위계_비교.html</code>과 <code>일정등록_나쁜예.html</code>이 든 파일 목록이 보인다.</p>
 <hr>
@@ -2480,7 +2486,19 @@ REQ-039 2</code></pre>
 <section id="선택-도구-pencil" class="level3">
 <h3 class="anchored" data-anchor-id="선택-도구-pencil">8-6. 선택 도구: Pencil</h3>
 <p>2026년판 교재는 화면 명세의 그림을 Pencil(pen.dev)이라는 도구로 그렸다[R1]. Pencil은 VS Code와 Cursor의 확장으로 쓰는 디자인 캔버스이며, 캔버스에 그린 화면은 <code>.pen</code> 파일로 저장된다. <code>.pen</code>은 프레임, 사각형, 글자를 고유 ID와 종류를 가진 객체의 트리로 적은 JSON 텍스트 파일이고, 그 형식의 스키마는 공개되어 있다[P1]. Claude Code 같은 에이전트는 MCP로 Pencil에 연결해 캔버스에 직접 그리거나 <code>.pen</code>을 읽어 코드에 적용한다[P1].</p>
-<p>ASCII 그림은 순서, 묶음, 대략의 위치까지 정하고, 화면명세.md 안의 글자라 git 차이가 줄 단위로 읽히며, 아무것도 설치하지 않아도 된다. Pencil은 크기, 간격, 정렬까지 정하지만 <code>.pen</code>의 차이를 사람이 읽기 어렵고, 확장 설치, pen.dev 계정, MCP 연결이 필요하다. 이 장은 도구의 계정과 설치에 기대지 않도록 ASCII 그림과 HTML 프로토타입을 기본으로 한다. 배치를 더 정확히 정해야 하는 팀은 Pencil을 쓸 수 있고, 그때도 기능은 화면명세.md가, 배치는 <code>.pen</code>이 기준이다. Pencil의 설치와 연결 절차는 2026년판 교재(LLM_02주차 9-3~9-6절)에 있으며, 확장과 서비스의 화면은 그 뒤로 바뀌었을 수 있다(2026-11 기준). Pencil의 가격 정책은 공식 누리집에서 확인하지 못하였다.</p>
+<p>ASCII 그림은 순서, 묶음, 대략의 위치까지 정하고, 화면명세.md 안의 글자라 git 차이가 줄 단위로 읽히며, 아무것도 설치하지 않아도 된다. Pencil은 크기, 간격, 정렬까지 정하지만 <code>.pen</code>의 차이를 사람이 읽기 어렵고, 확장 설치, pen.dev 계정, MCP 연결이 필요하다. 이 장은 도구의 계정과 설치에 기대지 않도록 ASCII 그림과 HTML 프로토타입을 기본으로 한다. 배치를 더 정확히 정해야 하는 팀은 Pencil을 쓸 수 있고, 그때도 기능은 화면명세.md가, 배치는 <code>.pen</code>이 기준이다. 설치와 연결 절차는 2026년판 교재(LLM_02주차 9-3~9-6절)에 있다.</p>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: Pencil의 제공 방식과 요금]</strong> 확인할 곳 <a href="https://www.pen.dev/pricing" class="uri">https://www.pen.dev/pricing</a>. 2026-11-16 값: VS Code·Cursor 확장과 웹판, MCP 연결. Free $0(로컬 <code>.pen</code> 편집, MCP 호출 무제한), Pro 월 $16, Ultra 월 $48(사용자당).</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>[그림 자리: Pencil 캔버스와 HTML 프로토타입의 비교]</strong> 같은 SCR-01의 <code>.pen</code> 캔버스와 <code>prototype/index.html</code>을 나란히 둔 화면. 찍을 곳: 교수 시연용 VS Code와 브라우저.</p>
+</blockquote>
+<p>2026년판이 정리한 그림 파일의 쓰임은 ASCII 그림에도 같다.</p>
+<pre class="text"><code>   합의        말로 정하던 배치를 그 자리에서 그림으로 남긴다
+   변경 요청   「카드 3열로」를 그림을 고친 커밋으로 준다
+   인수인계    화면명세.md와 그림이 함께 있으면 설명 없이 넘긴다
+   리뷰        그림과 실제 화면을 대조해 일치·다름·없음을 기록한다 (9-5)
+   # 글, 사진, 키 같은 실제 내용은 어느 도구로도 정해지지 않아 사람이 넣는다</code></pre>
 </section>
 <section id="claude-code로-화면-명세-초안-쓰기" class="level3">
 <h3 class="anchored" data-anchor-id="claude-code로-화면-명세-초안-쓰기">8-7. Claude Code로 화면 명세 초안 쓰기</h3>
@@ -2511,9 +2529,9 @@ REQ-039 2</code></pre>
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb60"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff <span class="at">--stat</span></span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff jobprep/docs/설계/화면명세.md <span class="kw">|</span> <span class="fu">head</span> <span class="at">-40</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff <span class="at">--stat</span></span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff jobprep/docs/설계/화면명세.md <span class="kw">|</span> <span class="fu">head</span> <span class="at">-40</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><span class="check-badge">확인 21</span> Claude Code가 쓴 SCR-01 초안에서 상태 표의 네 줄(기본, 로딩, 빈 상태, 오류)과 그 문구가 모두 채워져 있고, 관련 요구 칸에 명세서에 없는 ID가 없다.</p>
 <hr>
 </section>
@@ -2535,9 +2553,9 @@ REQ-039 2</code></pre>
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb61"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/jobprep</span>
-<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> prototype <span class="kw">&amp;&amp;</span> <span class="fu">cp</span> <span class="at">-rn</span> <span class="st">"</span><span class="va">$KIT</span><span class="st">/prototype_시작/."</span> prototype/</span>
-<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> prototype <span class="at">-type</span> f <span class="kw">|</span> <span class="fu">sort</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/jobprep</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> prototype <span class="kw">&amp;&amp;</span> <span class="fu">cp</span> <span class="at">-rn</span> <span class="st">"</span><span class="va">$KIT</span><span class="st">/prototype_시작/."</span> prototype/</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> prototype <span class="at">-type</span> f <span class="kw">|</span> <span class="fu">sort</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>prototype/css/style.css
 prototype/css/tokens.css
 prototype/index.html
@@ -2557,9 +2575,9 @@ prototype/js/data.js</code></pre>
     └── app.js          화면마다 data-page로 초기화 함수를 고른다</code></pre>
 <p>화면마다 HTML 파일 하나를 두고, 자바스크립트는 <code>app.js</code> 하나에 모은다. 각 HTML의 <code>&lt;body&gt;</code>에 <code>data-page</code> 속성을 두고, <code>app.js</code>의 끝에서 그 값에 맞는 초기화 함수를 부른다.</p>
 <p><strong>[파일: prototype/js/app.js]</strong> (끝부분)</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> page <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="at">body</span><span class="op">.</span><span class="at">dataset</span><span class="op">.</span><span class="at">page</span><span class="op">;</span></span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>({ <span class="st">"job-list"</span><span class="op">:</span> initJobList<span class="op">,</span> <span class="st">"job-detail"</span><span class="op">:</span> initJobDetail<span class="op">,</span> <span class="st">"schedule"</span><span class="op">:</span> initSchedule<span class="op">,</span></span>
-<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>   <span class="st">"schedule-new"</span><span class="op">:</span> initScheduleNew }[page] <span class="op">||</span> (() <span class="kw">=&gt;</span> {}))()<span class="op">;</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> page <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="at">body</span><span class="op">.</span><span class="at">dataset</span><span class="op">.</span><span class="at">page</span><span class="op">;</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>({ <span class="st">"job-list"</span><span class="op">:</span> initJobList<span class="op">,</span> <span class="st">"job-detail"</span><span class="op">:</span> initJobDetail<span class="op">,</span> <span class="st">"schedule"</span><span class="op">:</span> initSchedule<span class="op">,</span></span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>   <span class="st">"schedule-new"</span><span class="op">:</span> initScheduleNew }[page] <span class="op">||</span> (() <span class="kw">=&gt;</span> {}))()<span class="op">;</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="프롬프트의-설계" class="level3">
 <h3 class="anchored" data-anchor-id="프롬프트의-설계">9-3. 프롬프트의 설계</h3>
@@ -2598,10 +2616,10 @@ SCR-01 공고 목록을 jobprep/prototype/index.html 과 js/app.js 의 initJobLi
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb66"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/jobprep</span>
-<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="st">"</span><span class="va">$KIT</span><span class="st">/tools/html_check.py"</span> prototype/</span>
-<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-nE</span> <span class="st">"#[0-9a-fA-F]{6}\b"</span> prototype/css/style.css <span class="kw">||</span> <span class="bu">echo</span> <span class="st">"16진 색 없음"</span></span>
-<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">-C</span> .. status <span class="at">--short</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/jobprep</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="st">"</span><span class="va">$KIT</span><span class="st">/tools/html_check.py"</span> prototype/</span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-nE</span> <span class="st">"#[0-9a-fA-F]{6}\b"</span> prototype/css/style.css <span class="kw">||</span> <span class="bu">echo</span> <span class="st">"16진 색 없음"</span></span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">-C</span> .. status <span class="at">--short</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>
 파일 1개, 오류 0건, 경고 0건
 기본 점검 통과. 대체 텍스트의 적절성, 초점 표시, 키보드 순서는 사람이 확인한다.
@@ -2622,7 +2640,10 @@ SCR-01 공고 목록을 jobprep/prototype/index.html 과 js/app.js 의 initJobLi
 <li>명세 밖: 구현에 있으나 명세에 없다. 빼거나, 필요하면 명세에 더한다.</li>
 </ul>
 <p>「다름」에서 구현이 더 나은 경우가 있다. 5-5의 검사 시점 사례가 그렇다. 명세는 검사 시점을 정하지 않았고, 구현은 칸을 떠날 때 검사하였고, 자동 점검에서 결함이 드러나 저장 시점으로 바꾸었다. 이때는 명세에 결정을 더하고, 대조 기록에 「다름 → 고침」과 고친 내용을 남긴다. 명세 주도 개발에서 명세는 처음 쓴 그대로 굳어 있는 문서가 아니라, 구현과 대조하며 빈틈을 메워 가는 문서이다.</p>
-<p>화면을 눈으로 대조할 때는 스크린샷을 Claude Code에 보여 줄 수 있다. Claude Code는 이미지를 대화에 끌어다 놓거나, 복사해 붙여 넣거나(Windows에서는 <code>Alt+V</code>), 이미지 파일의 경로를 알려 주는 방법으로 받는다C1.</p>
+<p>화면을 눈으로 대조할 때는 스크린샷을 Claude Code에 보여 줄 수 있다. Claude Code는 이미지를 대화에 끌어다 놓거나, 복사해 붙여 넣거나(Windows에서는 <code>Alt+V</code>), 이미지 파일의 경로를 알려 주는 방법으로 받는다[C1].</p>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: Claude Code에 이미지를 넣는 방법]</strong> 끌어다 놓기, 붙여 넣기 단축키(Windows <code>Alt+V</code>), 경로 지정. 확인할 곳 [C1]의 「Work with images」. 2026-11-14 값: 위와 같다.</p>
+</blockquote>
 <div class="code-label where-claude">
 <span>Claude Code</span>
 </div>
@@ -2637,7 +2658,7 @@ SCR-01 공고 목록을 jobprep/prototype/index.html 과 js/app.js 의 initJobLi
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb69"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="ex">~/llm-service-lab/.venv/bin/python</span> <span class="st">"</span><span class="va">$KIT</span><span class="st">/tools/keyboard_walk.py"</span> prototype/schedule-new.html <span class="at">--tabs</span> 20</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="ex">~/llm-service-lab/.venv/bin/python</span> <span class="st">"</span><span class="va">$KIT</span><span class="st">/tools/keyboard_walk.py"</span> prototype/schedule-new.html <span class="at">--tabs</span> 20</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>다음은 이 교재의 견본 프로토타입 첫 판을 Windows의 Edge로 기록한 결과이다(<code>--channel msedge</code>).</p>
 <pre class="text"><code>페이지: 지원 일정 등록 - jobprep  (…/prototype/schedule-new.html)
 순서  요소      이름                            초점표시  크기(px)
@@ -2752,14 +2773,14 @@ SCR-01 공고 목록을 jobprep/prototype/index.html 과 js/app.js 의 initJobLi
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb71"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="va">KIT</span><span class="op">=</span>~/kits/Service_08주차</span>
-<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/jobprep</span>
-<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> docs/설계 prototype</span>
-<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> <span class="st">"</span><span class="va">$KIT</span><span class="st">/디자인토큰_견본.md"</span> docs/설계/디자인토큰.md</span>
-<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> <span class="st">"</span><span class="va">$KIT</span><span class="st">/화면명세_양식.md"</span>   docs/설계/화면명세.md</span>
-<span id="cb71-6"><a href="#cb71-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> <span class="st">"</span><span class="va">$KIT</span><span class="st">/접근성점검_양식.md"</span> docs/설계/접근성점검.md</span>
-<span id="cb71-7"><a href="#cb71-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-rn</span> <span class="st">"</span><span class="va">$KIT</span><span class="st">/prototype_시작/."</span> prototype/</span>
-<span id="cb71-8"><a href="#cb71-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> docs/설계 prototype</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="va">KIT</span><span class="op">=</span>~/kits/Service_08주차</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/jobprep</span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> docs/설계 prototype</span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> <span class="st">"</span><span class="va">$KIT</span><span class="st">/디자인토큰_견본.md"</span> docs/설계/디자인토큰.md</span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> <span class="st">"</span><span class="va">$KIT</span><span class="st">/화면명세_양식.md"</span>   docs/설계/화면명세.md</span>
+<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> <span class="st">"</span><span class="va">$KIT</span><span class="st">/접근성점검_양식.md"</span> docs/설계/접근성점검.md</span>
+<span id="cb72-7"><a href="#cb72-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-rn</span> <span class="st">"</span><span class="va">$KIT</span><span class="st">/prototype_시작/."</span> prototype/</span>
+<span id="cb72-8"><a href="#cb72-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> docs/설계 prototype</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>docs/설계:
 디자인토큰.md  사용자흐름.md  여정지도.md  접근성점검.md  정보구조.md  화면명세.md
 
@@ -2779,9 +2800,9 @@ css  index.html  js</code></pre>
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb73"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="st">"</span><span class="va">$KIT</span><span class="st">/tools/contrast.py"</span> docs/설계/디자인토큰.md <span class="op">&gt;</span> /dev/null<span class="kw">;</span> <span class="bu">echo</span> <span class="st">"대비 점검 종료 코드 </span><span class="va">$?</span><span class="st">"</span></span>
-<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="st">"</span><span class="va">$KIT</span><span class="st">/tools/tokens_to_css.py"</span> docs/설계/디자인토큰.md <span class="at">-o</span> prototype/css/tokens.css</span>
-<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-1</span> prototype/css/tokens.css</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="st">"</span><span class="va">$KIT</span><span class="st">/tools/contrast.py"</span> docs/설계/디자인토큰.md <span class="op">&gt;</span> /dev/null<span class="kw">;</span> <span class="bu">echo</span> <span class="st">"대비 점검 종료 코드 </span><span class="va">$?</span><span class="st">"</span></span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="st">"</span><span class="va">$KIT</span><span class="st">/tools/tokens_to_css.py"</span> docs/설계/디자인토큰.md <span class="at">-o</span> prototype/css/tokens.css</span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-1</span> prototype/css/tokens.css</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>대비 점검 종료 코드 0
 토큰 51개 -&gt; prototype/css/tokens.css
 /* 이 파일은 tools/tokens_to_css.py가 디자인토큰.md에서 만든다. 직접 고치지 않는다.</code></pre>
@@ -2905,10 +2926,10 @@ css  index.html  js</code></pre>
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb80"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/jobprep</span>
-<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="st">"</span><span class="va">$KIT</span><span class="st">/tools/html_check.py"</span> prototype/</span>
-<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-nE</span> <span class="st">"#[0-9a-fA-F]{6}\b"</span> prototype/css/style.css <span class="kw">||</span> <span class="bu">echo</span> <span class="st">"16진 색 없음"</span></span>
-<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="st">"</span><span class="va">$KIT</span><span class="st">/tools/contrast.py"</span> docs/설계/디자인토큰.md <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-1</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/jobprep</span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="st">"</span><span class="va">$KIT</span><span class="st">/tools/html_check.py"</span> prototype/</span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-nE</span> <span class="st">"#[0-9a-fA-F]{6}\b"</span> prototype/css/style.css <span class="kw">||</span> <span class="bu">echo</span> <span class="st">"16진 색 없음"</span></span>
+<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="st">"</span><span class="va">$KIT</span><span class="st">/tools/contrast.py"</span> docs/설계/디자인토큰.md <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-1</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>
 파일 4개, 오류 0건, 경고 0건
 기본 점검 통과. 대체 텍스트의 적절성, 초점 표시, 키보드 순서는 사람이 확인한다.
@@ -2972,6 +2993,24 @@ css  index.html  js</code></pre>
 </tbody>
 </table>
 <p>개발자 도구의 기기 모드에서 폭 320으로 네 화면을 열고, 콘솔에서 <code>document.documentElement.scrollWidth</code>가 320 이하인지 본다(7-3).</p>
+<blockquote class="blockquote">
+<p><strong>[그림 자리: 폭 320의 상태 화면 두 장]</strong> 폭 320에서 연 <code>index.html?state=empty</code>와 <code>job.html?id=J001</code>의 요약 완료 상태(고지와 근거 링크). 찍을 곳: 개발자 도구의 기기 모드, 견본 프로토타입.</p>
+</blockquote>
+<p><strong>결과 읽기.</strong> 점검이 실패하면 출력의 문구와 종료 코드로 갈래를 가린다.</p>
+<pre class="text"><code>   ① …html:줄  오류  form-label 등 / 종료 코드 1          html_check
+      규칙 위반. 줄 번호의 요소를 6-8의 규칙 표대로 고친다
+   ② 오류: 없는 경로: prototype/… / 종료 코드 2           html_check
+      점검할 폴더를 잘못 주었다. jobprep 폴더에서 prototype/ 로
+   ③ 62:… color: #123456; 처럼 줄 번호와 16진 색이 찍힌다  grep
+      토큰 대신 색을 직접 썼다. 의미 토큰 var(--color-…)로 바꾼다
+   ④ 미달 N건. 미달한 쌍의 줄 번호: … / 종료 코드 1       contrast
+      토큰 값의 문제. 6-4의 세 방법 가운데 하나로 고친다
+   ⑤ 오류: 「대비 쌍」 절에 쌍이 하나도 없다 / 종료 코드 2 contrast
+      문서 형식의 문제. 절 제목과 백틱을 확인한다
+   ⑥ 오류: 없는 토큰 '…'를 가리킨다 / 종료 코드 2         tokens_to_css
+      별칭 철자. 디자인토큰.md를 고치고 변환기를 다시 실행한다
+   # 종료 코드 1은 「검사는 했고 기준에 못 미침」, 2는 「검사를 하지 못함」이다
+   # ② ⑤ ⑥을 먼저 없애야 ① ③ ④의 판정을 믿을 수 있다</code></pre>
 <p><span class="check-badge">확인 28</span> <code>html_check.py</code>의 오류가 0건이고, 위 표의 여덟 주소에서 명세의 상태가 보이며, 네 화면 모두 폭 320에서 <code>scrollWidth</code>가 320 이하이다.</p>
 </section>
 <section id="단계-6-키보드-점검과-접근성점검.md" class="level3">
@@ -3006,11 +3045,11 @@ css  index.html  js</code></pre>
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb83"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
-<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">--short</span></span>
-<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add jobprep/docs/ jobprep/prototype/</span>
-<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"8장: 화면 명세 4개, 디자인 토큰 v1.0, 프로토타입, 접근성 점검"</span></span>
-<span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin ch08-ui</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">--short</span></span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add jobprep/docs/ jobprep/prototype/</span>
+<span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"8장: 화면 명세 4개, 디자인 토큰 v1.0, 프로토타입, 접근성 점검"</span></span>
+<span id="cb85-5"><a href="#cb85-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin ch08-ui</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>[ch08-ui 3a7f11e] 8장: 화면 명세 4개, 디자인 토큰 v1.0, 프로토타입, 접근성 점검
  13 files changed, 1471 insertions(+), 9 deletions(-)
 ...
@@ -3024,44 +3063,59 @@ branch 'ch08-ui' set up to track 'origin/ch08-ui'.</code></pre>
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb85"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/teams/「팀」-lab</span>
-<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch main <span class="kw">&amp;&amp;</span> <span class="fu">git</span> pull</span>
-<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">-c</span> ch08-「아이디」</span>
-<span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> reviews/ch08/「아이디」</span>
-<span id="cb85-5"><a href="#cb85-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ~/llm-service-lab/jobprep/docs/요구사항명세서.md reviews/ch08/「아이디」/</span>
-<span id="cb85-6"><a href="#cb85-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ~/llm-service-lab/jobprep/docs/설계/<span class="dt">{화면명세</span><span class="op">,</span><span class="dt">디자인토큰</span><span class="op">,</span><span class="dt">접근성점검}</span>.md reviews/ch08/「아이디」/</span>
-<span id="cb85-7"><a href="#cb85-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-r</span> ~/llm-service-lab/jobprep/prototype reviews/ch08/「아이디」/</span>
-<span id="cb85-8"><a href="#cb85-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add reviews/ch08/「아이디」</span>
-<span id="cb85-9"><a href="#cb85-9" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"8장 리뷰 요청: 「아이디」의 화면 명세와 프로토타입"</span></span>
-<span id="cb85-10"><a href="#cb85-10" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin ch08-「아이디」</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/teams/「팀」-lab</span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch main <span class="kw">&amp;&amp;</span> <span class="fu">git</span> pull</span>
+<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">-c</span> ch08-「아이디」</span>
+<span id="cb87-4"><a href="#cb87-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> reviews/ch08/「아이디」</span>
+<span id="cb87-5"><a href="#cb87-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ~/llm-service-lab/jobprep/docs/요구사항명세서.md reviews/ch08/「아이디」/</span>
+<span id="cb87-6"><a href="#cb87-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ~/llm-service-lab/jobprep/docs/설계/<span class="dt">{화면명세</span><span class="op">,</span><span class="dt">디자인토큰</span><span class="op">,</span><span class="dt">접근성점검}</span>.md reviews/ch08/「아이디」/</span>
+<span id="cb87-7"><a href="#cb87-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-r</span> ~/llm-service-lab/jobprep/prototype reviews/ch08/「아이디」/</span>
+<span id="cb87-8"><a href="#cb87-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add reviews/ch08/「아이디」</span>
+<span id="cb87-9"><a href="#cb87-9" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"8장 리뷰 요청: 「아이디」의 화면 명세와 프로토타입"</span></span>
+<span id="cb87-10"><a href="#cb87-10" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin ch08-「아이디」</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>풀 리퀘스트 설명은 파일로 쓰고(<code>gh pr create --body-file</code>[G1]), 리뷰어에게 무엇을 보아 달라고 할지 적는다.</p>
 <div class="code-label where-server">
 <span>파일: ~/pr-ch08.md</span>
 </div>
-<div class="sourceCode" id="cb86"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## 무엇</span></span>
-<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>jobprep 핵심 화면 4개(SCR-01~04)의 화면 명세, 명세서 v3(REQ-028~039 추가), 디자인 토큰 v1.0, HTML 프로토타입, 접근성 점검.</span>
-<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a><span class="fu">## 보는 법</span></span>
-<span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a>reviews/ch08/「아이디」/prototype/index.html 을 브라우저로 연다. 상태는 주소 뒤 ?state=empty|loading|error.</span>
-<span id="cb86-6"><a href="#cb86-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb86-7"><a href="#cb86-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## 리뷰를 부탁하는 것</span></span>
-<span id="cb86-8"><a href="#cb86-8" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>화면명세.md의 상태 표에 빠진 상태가 있는가</span>
-<span id="cb86-9"><a href="#cb86-9" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>프로토타입이 화면 명세와 다른 곳(대조 기록에 없는 것)</span>
-<span id="cb86-10"><a href="#cb86-10" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>키보드만으로 FLOW-01(공고 → 지원 일정 저장)을 끝까지 할 수 있는가</span>
-<span id="cb86-11"><a href="#cb86-11" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>오류 문구가 무엇이 틀렸고 어떻게 고치는지 말하는가</span>
-<span id="cb86-12"><a href="#cb86-12" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>명세서 v3에 더한 요구가 화면에 꼭 필요한 것인가, 이미 있는 요구와 뜻이 겹치지 않는가</span>
-<span id="cb86-13"><a href="#cb86-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb86-14"><a href="#cb86-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## 자동 점검</span></span>
-<span id="cb86-15"><a href="#cb86-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>contrast.py: 쌍 14개, 미달 0건</span>
-<span id="cb86-16"><a href="#cb86-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>html_check.py: 파일 4개, 오류 0건</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## 무엇</span></span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>jobprep 핵심 화면 4개(SCR-01~04)의 화면 명세, 명세서 v3(REQ-028~039 추가), 디자인 토큰 v1.0, HTML 프로토타입, 접근성 점검.</span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a><span class="fu">## 보는 법</span></span>
+<span id="cb88-5"><a href="#cb88-5" aria-hidden="true" tabindex="-1"></a>reviews/ch08/「아이디」/prototype/index.html 을 브라우저로 연다. 상태는 주소 뒤 ?state=empty|loading|error.</span>
+<span id="cb88-6"><a href="#cb88-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-7"><a href="#cb88-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## 리뷰를 부탁하는 것</span></span>
+<span id="cb88-8"><a href="#cb88-8" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>화면명세.md의 상태 표에 빠진 상태가 있는가</span>
+<span id="cb88-9"><a href="#cb88-9" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>프로토타입이 화면 명세와 다른 곳(대조 기록에 없는 것)</span>
+<span id="cb88-10"><a href="#cb88-10" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>키보드만으로 FLOW-01(공고 → 지원 일정 저장)을 끝까지 할 수 있는가</span>
+<span id="cb88-11"><a href="#cb88-11" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>오류 문구가 무엇이 틀렸고 어떻게 고치는지 말하는가</span>
+<span id="cb88-12"><a href="#cb88-12" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>명세서 v3에 더한 요구가 화면에 꼭 필요한 것인가, 이미 있는 요구와 뜻이 겹치지 않는가</span>
+<span id="cb88-13"><a href="#cb88-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-14"><a href="#cb88-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## 자동 점검</span></span>
+<span id="cb88-15"><a href="#cb88-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>contrast.py: 쌍 14개, 미달 0건</span>
+<span id="cb88-16"><a href="#cb88-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>html_check.py: 파일 4개, 오류 0건</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb87"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> pr create <span class="at">--base</span> main <span class="at">--title</span> <span class="st">"8장 리뷰 요청: 「아이디」의 화면 명세와 프로토타입"</span> <span class="dt">\</span></span>
-<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--body-file</span> ~/pr-ch08.md <span class="at">--reviewer</span> 「동료 GitHub 아이디」</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> pr create <span class="at">--base</span> main <span class="at">--title</span> <span class="st">"8장 리뷰 요청: 「아이디」의 화면 명세와 프로토타입"</span> <span class="dt">\</span></span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--body-file</span> ~/pr-ch08.md <span class="at">--reviewer</span> 「동료 GitHub 아이디」</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>리뷰어는 GitHub의 「Files changed」 탭에서 화면명세.md의 줄에 의견을 단다. 의견은 「이 상태의 문구가 없다」, 「이 오류 문구는 고치는 방법을 말하지 않는다(NN/g 오류 메시지 지침)」처럼 명세의 칸과 근거를 짚어 쓴다. 의견을 받은 사람은 개인 저장소에서 고치고 커밋한 뒤, 팀 저장소의 리뷰 폴더에 다시 복사해 같은 브랜치에 푸시한다. 같은 브랜치에 푸시하면 열려 있는 풀 리퀘스트에 커밋이 더해진다.</p>
 <p>리뷰가 끝난 풀 리퀘스트의 병합 여부는 팀의 규칙을 따른다. 개인 저장소의 <code>ch08-ui</code>는 리뷰를 반영한 뒤 <code>main</code>에 병합한다(3장의 절차). 병합한 <code>main</code>에 6장의 <code>spec-v1</code>, 7장의 <code>spec-v2</code>와 같은 방식으로 태그를 단다(<code>git tag spec-v3</code>, <code>git push origin main spec-v3</code>). 9장은 개인 저장소 <code>main</code>의 명세서 v3, 화면 명세, 프로토타입에서 출발한다.</p>
 <p><span class="check-badge">확인 32</span> 팀 실습 저장소에 8장 풀 리퀘스트가 열려 있고, 동료의 리뷰 의견이 하나 이상 달렸으며, 그 의견에 대한 답(고친 커밋 또는 고치지 않는 까닭)이 있다.</p>
+</section>
+<section id="중심-실습-복기" class="level3">
+<h3 class="anchored" data-anchor-id="중심-실습-복기">10-11. 중심 실습 복기</h3>
+<p>명세를 입력으로 프로토타입을 만들고 다시 명세에 대어 검사하였다.</p>
+<ol type="1">
+<li><strong>세 기준을 나누어 적었다.</strong> 기능은 표, 배치는 와이어프레임, 시각은 토큰이다. 그래서 「어긋나면 묻는다」를 지시할 수 있었다.</li>
+<li><strong>기계가 볼 것과 사람이 볼 것을 갈랐다.</strong> 대비, 레이블, 16진 색은 도구가, 초점의 행방, 문구의 뜻, 명세와의 일치는 사람이 판정했다.</li>
+<li><strong>대조에서 명세가 자랐다.</strong> 「다름」과 「없음」은 구현이나 명세를 고치는 결정이 되었고, 명세의 변경은 REQ-028 이후와 <code>spec-v3</code>로 남았다.</li>
+</ol>
+<pre class="text"><code>   화면명세.md 상태 표   SCR-04 「저장 실패」
+     → 프로토타입        schedule-new.html?state=store-error
+     → 자동 점검         html_check 오류 0건 (형식만 본다)
+     → 사람 점검         값이 그대로 남는가, 초점이 오류 요약으로 가는가
+     → 대조 기록         일치 / 다름 → 고침
+   # AI의 「완료했습니다」는 이 사슬의 어느 칸도 대신하지 않는다</code></pre>
 <hr>
 </section>
 </section>
@@ -3347,7 +3401,7 @@ branch 'ch08-ui' set up to track 'origin/ch08-ui'.</code></pre>
 <tr class="odd">
 <td>R1</td>
 <td>2026년 2학기판 LLM 강의안 2주차 9절(화면 명세)</td>
-<td><code>courses/llm-ai/2027-2판_재료/docs/subjects/llm-ai/LLM_02주차_학생용.md</code></td>
+<td><code>docs/subjects/llm-ai/LLM_02주차_학생용.md</code></td>
 <td>2026-11-14</td>
 </tr>
 </tbody>

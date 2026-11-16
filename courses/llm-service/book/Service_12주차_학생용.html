@@ -554,7 +554,7 @@ jobprep:     CLAUDE.md  api  docs  eval  prompts  pytest.ini  rag  requirements.
 jobprep/api: __init__.py  app.py  ask_route.py  fake.py  llm.py  prompts.py  schema.py
 jobprep/web: ask.css  ask.html  ask.js  css  data  detail.html  index.html  js  saved.html  schedule.html
 jobprep/docs: 검색평가.md  설계  요구사항명세서.md  프롬프트비교.md</code></pre>
-<p><code>git status --short</code>가 아무것도 출력하지 않아야 한다. 커밋하지 않은 변경이 있으면 이 장의 작업 트리와 브랜치가 그 변경을 데려가지 않으므로, 먼저 커밋하거나 되돌린다(2장의 <code>git restore</code>).</p>
+<p>출력의 첫 줄은 11장 13-4절의 커밋이며, 해시(<code>b1c2d3e</code>)는 형식을 보이기 위한 예시다. 학습자의 해시와 그 아래 네 줄은 각자의 이력에 따라 다르다. <code>git status --short</code>가 아무것도 출력하지 않아야 한다. 커밋하지 않은 변경이 있으면 이 장의 작업 트리와 브랜치가 그 변경을 데려가지 않으므로, 먼저 커밋하거나 되돌린다(2장의 <code>git restore</code>).</p>
 <p>이어 API를 모의 모드로 띄워 질의응답이 도는지 본다.</p>
 <div class="code-label where-server">
 <span>서버 터미널</span>
@@ -566,6 +566,9 @@ jobprep/docs: 검색평가.md  설계  요구사항명세서.md  프롬프트비
 71 passed in 34.24s
 INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)</code></pre>
 <p>테스트 수는 10장의 42개와 11장의 29개를 합친 것이다(기준 산출물 기준. 자기 산출물이면 수가 다를 수 있다). 앱은 10장에서 정한 <code>api/app.py</code>의 <code>app</code>이고, 키트의 검사 도구도 이 파일을 찾는다. 포트는 부록 A의 자기 포트를 쓴다. 이 장의 예시는 첫째 포트 8001과 둘째 포트 8101이다. <code>EMBED_BACKEND</code>는 11장에서 색인을 만들 때와 같은 값을 준다(Ollama로 만들었으면 <code>ollama</code>). VS Code의 PORTS 탭에 자기 포트가 전달되었는지 확인하고, 브라우저에서 <code>http://localhost:8001/ask.html</code>을 열어 “자기소개서 글자 수 제한은 어떻게 세나요?”를 묻는다. 확인이 끝나면 <code>Ctrl+C</code>로 서버를 끈다.</p>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: VS Code의 포트 전달 화면]</strong> 「PORTS(포트)」 탭의 이름과 포트를 더하는 단추의 위치. 확인할 곳은 <a href="https://code.visualstudio.com/docs/remote/ssh" class="uri">https://code.visualstudio.com/docs/remote/ssh</a>의 포트 전달 절과 수업용 PC의 VS Code다. 2026-11-16에 집필 PC에서 확인한 판은 VS Code 1.144.0이며, 탭의 실제 문구는 이 장에서 확인하지 못하였다.</p>
+</blockquote>
 <ul>
 <li><span class="check-badge">확인 2</span> 질의응답 화면에 답 「(모의 응답) 기업이 글자 수를 정해 두면 그 기준의 90% 이상을 채운다. [1]」과 근거 1 「자기소개서_작성가이드 &gt; 분량과 글자 수」가 보인다(대체 임베딩과 모의 모드의 기준 산출물 기준. 11장 산출물이면 답과 근거는 다를 수 있다).</li>
 </ul>
@@ -1000,6 +1003,9 @@ Aborting</code></pre>
 </ul>
 <p>이 장은 <code>git worktree add</code>로 직접 만든다. 까닭은 세 가지다. 첫째, 브랜치 이름을 <code>variant-form</code>처럼 뜻이 드러나게 정할 수 있다. 둘째, 출발점을 명세를 커밋한 <code>main</code>으로 분명히 정할 수 있다. 기본 설정의 <code>--worktree</code>는 원격의 기본 브랜치에서 출발하므로, 명세 커밋을 아직 푸시하지 않았으면 명세가 없는 상태에서 출발한다. 셋째, 작업 트리를 저장소 바깥 형제 폴더에 두면 경로가 짧고 Remote-SSH 탐색기에서 찾기 쉽다. Claude Code 문서도 특정 브랜치를 꺼내거나 저장소 밖에 둘 때는 git으로 직접 만들라고 안내한다[C8].</p>
 <p>직접 만든 작업 트리에서 Claude Code를 쓰는 법은 평소와 같다. 그 폴더로 가서 <code>claude</code>를 실행하면 된다. 다만 새 폴더이므로 처음 한 번은 폴더 신뢰를 묻는다.</p>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: Claude Code의 작업 트리 기능과 이 장이 쓰는 옵션]</strong> <code>--worktree</code>(<code>-w</code>)의 위치·브랜치 이름·출발점·<code>.worktreeinclude</code>의 동작, 그리고 9절이 쓰는 <code>-n</code>(<code>--name</code>), <code>--permission-mode plan</code>, <code>/model</code>, <code>/effort</code>, <code>/resume</code>의 이름. 확인할 곳은 <a href="https://code.claude.com/docs/en/worktrees" class="uri">https://code.claude.com/docs/en/worktrees</a>, <a href="https://code.claude.com/docs/en/cli-reference" class="uri">https://code.claude.com/docs/en/cli-reference</a>와 실습 서버의 <code>claude --help</code>다. 2026-11-16에 집필 PC의 Claude Code 2.1.296에서 <code>claude --help</code>로 <code>-n, --name</code>, <code>-w, --worktree [name]</code>, <code>--permission-mode</code>가 있음을 확인하였다. 위 다섯 줄의 동작은 2026-11-14에 문서로 확인한 것이다.</p>
+</blockquote>
 </section>
 <section id="두-방식의-비교" class="level3">
 <h3 class="anchored" data-anchor-id="두-방식의-비교">3-4. 두 방식의 비교</h3>
@@ -1100,10 +1106,10 @@ HEAD is now at 9b3d962 B: 반말
 인사말: 반가워
 /home/아이디/ch12-연습/git-연습    38fbf4f [main]
 /home/아이디/ch12-연습/git-연습-b  9b3d962 [variant-b]
-  variant-a
 * main
+  variant-a
 + variant-b</code></pre>
-<p><code>git branch</code>의 <code>+</code> 표시는 그 브랜치가 다른 작업 트리에 꺼내져 있다는 뜻이다. 같은 명령을 주 작업 트리에서 <code>git switch variant-b</code>로 바꾸어 실행하면 3-2의 <code>already used by worktree</code> 오류가 난다.</p>
+<p><code>git branch</code>는 브랜치를 이름 순서로 보이며, <code>*</code>는 지금 작업 트리의 브랜치, <code>+</code> 표시는 그 브랜치가 다른 작업 트리에 꺼내져 있다는 뜻이다[G4]. 같은 명령을 주 작업 트리에서 <code>git switch variant-b</code>로 바꾸어 실행하면 3-2의 <code>already used by worktree</code> 오류가 난다.</p>
 <ul>
 <li><span class="check-badge">확인 9</span> 두 <code>cat</code>이 서로 다른 인사말을 보이고, <code>git worktree list</code>에 두 줄이 나온다.</li>
 </ul>
@@ -1123,6 +1129,53 @@ HEAD is now at 9b3d962 B: 반말
 <ul>
 <li><span class="check-badge">확인 10</span> 주 작업 트리의 <code>git log variant-b -1</code>이 작업 트리에서 만든 커밋을 보이고, 지운 뒤 <code>git worktree list</code>가 한 줄이다.</li>
 </ul>
+<p><strong>연습에서 막힐 때.</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>증상</th>
+<th>원인</th>
+<th>할 일</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>fatal: invalid reference: variant-b</code></td>
+<td>브랜치를 만들기 전에 <code>worktree add</code>를 하였다(첫 블록을 건너뜀)</td>
+<td><code>git branch</code>로 브랜치 목록을 보고 첫 블록부터 다시 한다</td>
+</tr>
+<tr class="even">
+<td><code>fatal: '../git-연습-b' already exists</code></td>
+<td>앞 시도에서 만든 폴더가 남아 있다</td>
+<td><code>git worktree list</code>에 없으면 그 폴더를 지운다. 있으면 <code>git worktree remove</code>로 지운다</td>
+</tr>
+<tr class="odd">
+<td><code>git worktree remove</code>가 <code>contains modified or untracked files</code>로 거부한다</td>
+<td>작업 트리에 커밋하지 않은 파일이 있다</td>
+<td><code>git -C ../git-연습-b status --short</code>로 무엇이 남았는지 보고 커밋하거나 지운다</td>
+</tr>
+<tr class="even">
+<td><code>git worktree list</code>의 경로가 따옴표와 <code>\354\227\260…</code>로 보인다</td>
+<td>ASCII 밖의 문자를 git이 감싸 보인다</td>
+<td><code>git config --global core.quotepath false</code>(9-1절)</td>
+</tr>
+</tbody>
+</table>
+<p>집필 때 같은 명령을 실행해 보니, 무시 목록에 든 파일(예: <code>.env</code>)만 남은 작업 트리는 <code>git worktree remove</code>가 거부하지 않고 그 파일과 함께 지웠다. 무시되지 않은 새 파일이 하나라도 있으면 셋째 줄처럼 거부한다. 3-6절의 <code>.env</code>가 작업 트리를 지울 때 함께 사라지는 까닭이다.</p>
+<blockquote class="blockquote">
+<p><strong>[작업 트리 연습 복기: 브랜치는 하나, 폴더는 여럿]</strong> 버려도 되는 저장소에서 브랜치 전환과 작업 트리를 차례로 써 보았다.</p>
+<ol type="1">
+<li><strong>무엇을 하였는가.</strong> 커밋하지 않은 변경이 있으면 브랜치 전환이 거부되는 것을 보았고(확인 8), <code>variant-b</code>를 옆 폴더에 꺼내 두 인사말을 동시에 열었으며(확인 9), 작업 트리에서 만든 커밋이 주 작업 트리에서 바로 보이는 것을 확인하였다(확인 10).</li>
+<li><strong>왜 중요한가.</strong> 비교 구현은 두 변형의 서버를 동시에 띄우고 같은 과업으로 재야 한다. 브랜치 전환으로는 한 번에 한 변형만 폴더에 있으므로 동시 측정이 되지 않는다. 작업 트리는 커밋 기록을 하나로 두면서 폴더만 나누어 이 문제를 푼다.</li>
+<li><strong>생각해 볼 것 하나.</strong> 작업 트리를 지워도 브랜치와 커밋은 남았다. 그렇다면 브랜치까지 지운 뒤에도 그 커밋을 다시 찾으려면 무엇이 필요한가. 힌트는 8-2절의 태그다.</li>
+</ol>
+<p><strong>폴더에 남은 것</strong>: <code>~/ch12-연습/git-연습</code>(브랜치 <code>main</code>, <code>variant-a</code>, <code>variant-b</code>). 8-6절에서 다시 쓴다. <strong>다음</strong>: 작업 트리에서 두 변형을 돌릴 때 챙길 실행 환경(3-6).</p>
+</blockquote>
 </section>
 <section id="작업-트리와-실행-환경" class="level3">
 <h3 class="anchored" data-anchor-id="작업-트리와-실행-환경">3-6. 작업 트리와 실행 환경</h3>
@@ -1452,6 +1505,9 @@ HEAD is now at 9b3d962 B: 반말
 <p>비용은 다음 식으로 어림한다.</p>
 <pre class="text"><code>과업당 비용 = (입력 토큰 × 입력 단가 + 출력 토큰 × 출력 단가) ÷ 1,000,000 ÷ 과업 수</code></pre>
 <p>단가는 백만 토큰당 달러로 공시된다. 2026-11-14에 공식 모델 개요 표에서 확인한 값 가운데 하나를 예로 들면, Claude Haiku 4.5는 입력 1달러, 출력 5달러다[A4]. 같은 표의 다른 모델은 단가가 다르고, 단가는 바뀔 수 있다. 수업에서 쓰는 단가는 그날 공식 가격표에서 확인해 비교구현.md에 날짜와 함께 적는다. 출력 단가가 입력 단가의 몇 배이므로, 출력을 짧게 하는 설계(예: 정해진 칸만 출력)가 비용에 크게 듣는다.</p>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: 수업에서 쓰는 모델의 토큰 단가]</strong> <code>token_report.py</code>의 <code>--price-in</code>, <code>--price-out</code>에 넣을 값. 확인할 곳은 <a href="https://platform.claude.com/docs/en/about-claude/models/overview" class="uri">https://platform.claude.com/docs/en/about-claude/models/overview</a>와 <a href="https://platform.claude.com/docs/en/about-claude/pricing" class="uri">https://platform.claude.com/docs/en/about-claude/pricing</a>이다. 이 절의 예(입력 1달러, 출력 5달러)는 2026-11-14에 확인한 Claude Haiku 4.5의 단가다. 2026-11-16에 다시 확인한 현행 저가 모델 Claude Haiku 5.5의 단가는 백만 토큰당 입력 0.10달러부터, 출력 0.50달러부터이며, 10만 토큰을 넘는 프롬프트는 값이 더 높다. 수업에서 쓰는 모델(<code>LLM_MODEL</code>)의 단가를 수업 직전에 다시 확인한다.</p>
+</blockquote>
 <p>연습 기록으로 집계 도구를 써 본다. 기록에는 변형 A의 호출 2회와 변형 B의 호출 4회가 있고, B의 하나는 실패했다.</p>
 <div class="code-label where-server">
 <span>서버 터미널</span>
@@ -2052,6 +2108,16 @@ variant-b-v1    연습: 보존</code></pre>
 <ul>
 <li><span class="check-badge">확인 19</span> 그래프에 병합 커밋과 <code>variant-b</code>의 커밋 두 개가 모두 보이고, <code>git tag -n1</code>에 <code>variant-b-v1</code>이 있다.</li>
 </ul>
+<p>출력의 둘째 줄 <code>error: the branch 'variant-b' is not fully merged</code>는 의도한 실패다. <code>-d</code>는 병합된 브랜치만 지우므로, 병합하지 않은 <code>variant-b</code>를 지키기 위해 거부한 것이다. 태그를 먼저 붙였는지 확인한 뒤 <code>-D</code>로 지운다. 3-5절의 작업 트리를 지우지 않은 채 이 절을 실행하면 <code>error: cannot delete branch 'variant-b' used by worktree at …</code>가 대신 나온다(집필 때 실제로 겪었다). 이때는 <code>git worktree list</code>로 남은 작업 트리를 보고 <code>git worktree remove</code>로 먼저 지운다.</p>
+<blockquote class="blockquote">
+<p><strong>[병합과 보존 연습 복기: 버린 변형은 지우지 않고 이름을 붙여 둔다]</strong> 연습 저장소에서 <code>variant-a</code>를 병합하고 <code>variant-b</code>를 태그로 남긴 뒤 브랜치를 지웠다.</p>
+<ol type="1">
+<li><strong>무엇을 하였는가.</strong> 주석 태그 → <code>--no-ff</code> 병합 → 브랜치 삭제의 순서로 하였다. <code>-d</code>의 거부를 보고 <code>-D</code>로 지웠다.</li>
+<li><strong>왜 중요한가.</strong> 병합 커밋이 있으면 「언제 어느 변형을 들였는가」가 그래프에 한 점으로 남는다. 태그가 있으면 브랜치를 지운 뒤에도 택하지 않은 변형의 마지막 상태를 언제든 다시 꺼낼 수 있다(8-5).</li>
+<li><strong>생각해 볼 것 하나.</strong> 태그를 붙이기 전에 <code>git branch -D variant-b</code>를 먼저 했다면 그 커밋은 어떻게 되는가. 힌트는 「어느 이름에서도 닿지 않는 커밋」이다.</li>
+</ol>
+<p><strong>폴더에 남은 것</strong>: <code>~/ch12-연습/git-연습</code>(병합 커밋, 태그 <code>variant-b-v1</code>). 연습 저장소는 이 장이 끝나면 지워도 된다. <strong>다음</strong>: 같은 절차를 팀 저장소에서 할 때의 차이(8-7)와 중심 실습(9절).</p>
+</blockquote>
 </section>
 <section id="팀-저장소에서-할-때" class="level3">
 <h3 class="anchored" data-anchor-id="팀-저장소에서-할-때">8-7. 팀 저장소에서 할 때</h3>
@@ -2062,6 +2128,68 @@ variant-b-v1    연습: 보존</code></pre>
 <section id="중심-실습-자기소개서-피드백의-두-구현-비교" class="level2">
 <h2 class="anchored" data-anchor-id="중심-실습-자기소개서-피드백의-두-구현-비교">9. 중심 실습: 자기소개서 피드백의 두 구현 비교</h2>
 <p>1~8절에서 익힌 것을 공통 사례에 처음부터 끝까지 적용한다. 단계는 열한 개이고, 3단계(구현)는 두 Claude Code 세션을 나란히 돌린다. 시작 전 상태는 2-5와 4-3을 마친 상태, 즉 명세서에 자기소개서 피드백 절이 붙어 있고 <code>docs/변형지시/</code> 세 파일과 <code>docs/비교구현.md</code>가 있으며 아직 커밋하지 않은 상태다.</p>
+<p><strong>중심 실습에서 막힐 때.</strong> 열한 단계에 공통으로 쓰는 표다. 장 끝의 「자주 하는 실수와 해결」은 오류 문구로 찾는 표이고, 이 표는 단계로 찾는 표다. 터미널이 넷(주 작업 트리, form, chat, Claude Code)이므로, 증상을 말하기 전에 그 명령을 <strong>어느 터미널에서</strong> 쳤는지부터 확인한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>단계</th>
+<th>증상</th>
+<th>먼저 볼 곳</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>9-1</td>
+<td><code>git status --short</code>에 <code>docs/</code> 밖의 파일이 보인다</td>
+<td>9~11장의 커밋하지 않은 변경이다. 이 장의 커밋에 섞지 말고 따로 커밋하거나 되돌린다</td>
+</tr>
+<tr class="even">
+<td>9-2</td>
+<td><code>fatal: invalid reference: spec-v7</code></td>
+<td>9-1의 태그를 붙이지 않았다. <code>git tag -l 'spec-*'</code>로 확인한다</td>
+</tr>
+<tr class="odd">
+<td>9-3</td>
+<td>두 변형의 계획이 거의 같다</td>
+<td>두 세션이 각자의 작업 트리에서 열렸는지 프롬프트의 경로로 본다. 같은 세션에서 이어서 시켰다면 새 세션으로 다시 한다</td>
+</tr>
+<tr class="even">
+<td>9-3</td>
+<td><code>git status</code>에 <code>docs/</code> 아래 변경이 보인다</td>
+<td>Claude Code가 명세를 고쳤다. 커밋하지 말고 <code>git restore docs</code>로 되돌린 뒤 그 세션에 공통 지시의 금지 사항을 다시 보낸다</td>
+</tr>
+<tr class="odd">
+<td>9-4</td>
+<td><code>FAIL</code>이나 <code>통과 0/5</code></td>
+<td>9-4의 결과 갈래표</td>
+</tr>
+<tr class="even">
+<td>9-5~9-6</td>
+<td>두 번째 서버가 뜨지 않는다</td>
+<td>포트(8001, 8101)와 가상 환경. 장 끝 표의 <code>address already in use</code>, <code>uvicorn: command not found</code> 줄</td>
+</tr>
+<tr class="odd">
+<td>9-6</td>
+<td><code>200이 아닌 응답</code>이 0건이 아니다</td>
+<td>9-6의 결과 읽기 표</td>
+</tr>
+<tr class="even">
+<td>9-8</td>
+<td>추출 명세에 테스트 이름이나 원 요구의 ID가 들어 있다</td>
+<td>추출 세션이 <code>tests/</code>나 <code>docs/</code>를 읽었다. 읽을 파일을 구현 파일로 한정해 새 세션에서 다시 뽑는다</td>
+</tr>
+<tr class="odd">
+<td>9-11</td>
+<td><code>git worktree remove</code>나 <code>git branch -d</code>가 거부된다</td>
+<td>8-6절 끝의 두 오류와 같다. 남은 파일과 태그를 먼저 확인한다</td>
+</tr>
+</tbody>
+</table>
 <section id="명세-v7의-커밋과-태그" class="level3">
 <h3 class="anchored" data-anchor-id="명세-v7의-커밋과-태그">9-1. 명세 v7의 커밋과 태그</h3>
 <p>두 변형의 출발점을 고정한다.</p>
@@ -2100,6 +2228,9 @@ HEAD is now at 0e0cd1f 명세 v7: 자기소개서 피드백 REQ-080~089, 변형 
 /home/아이디/llm-service-lab-chat  0e0cd1f [variant-chat]
 /home/아이디/llm-service-lab-form  0e0cd1f [variant-form]</code></pre>
 <p>VS Code에서 터미널을 둘 더 연다. 하나는 <code>~/llm-service-lab-form/jobprep</code>, 하나는 <code>~/llm-service-lab-chat/jobprep</code>으로 간다. 탐색기에서 두 폴더를 보려면 File &gt; Add Folder to Workspace로 더한다.</p>
+<blockquote class="blockquote">
+<p><strong>[그림 자리: 작업 트리 세 개를 연 VS Code 화면]</strong> 탐색기에 <code>llm-service-lab</code>, <code>llm-service-lab-form</code>, <code>llm-service-lab-chat</code> 세 폴더가 보이고, 아래쪽 터미널 패널에 주 작업 트리, form, chat 세 터미널의 탭이 보이는 화면. 찍을 곳은 실습 서버에 Remote-SSH로 접속한 VS Code이며, 9-2의 <code>git worktree list</code> 직후다.</p>
+</blockquote>
 <ul>
 <li><span class="check-badge">확인 21</span> <code>git worktree list</code>가 세 줄이고 세 줄의 커밋 번호가 같다.</li>
 </ul>
@@ -2134,6 +2265,9 @@ HEAD is now at 0e0cd1f 명세 v7: 자기소개서 피드백 REQ-080~089, 변형 
    - 글자 수와 50자 검사는 첫 메시지에만 적용한다
    - 대화 이력은 브라우저 메모리에만 둔다
 4. LLM_FAKE=1 pytest -q → 76 passed</code></pre>
+<blockquote class="blockquote">
+<p><strong>[그림 자리: 두 Claude Code 세션의 계획을 나란히 띄운 화면]</strong> 왼쪽 터미널에 <code>variant-form</code> 세션, 오른쪽 터미널에 <code>variant-chat</code> 세션의 계획(만들 파일, 요구 ID별 대응, 테스트 계획)이 보이고, 각 세션의 이름이 화면에 드러나는 화면. 찍을 곳은 실습 서버 VS Code의 터미널 두 개를 좌우로 나눈 배치다.</p>
+</blockquote>
 <p>보고의 3번 목록은 그대로 <code>docs/비교구현.md</code> 5절의 「두 구현의 서로 다른 결정」 칸 옆에 메모해 둔다. 6절의 추출에서 다시 확인할 후보다.</p>
 <p>구현이 끝나면 각 작업 트리에서 사람이 직접 검사하고 커밋한다. Claude Code의 보고만 믿지 않는다.</p>
 <div class="code-label where-server">
@@ -2185,6 +2319,78 @@ HEAD is now at 0e0cd1f 명세 v7: 자기소개서 피드백 REQ-080~089, 변형 
   ...
 통과 5/5</code></pre>
 <p><code>FAIL</code>이 있으면 먼저 API 계약과 어댑터가 맞는지 본다. 예를 들어 대화형 응답의 칸 이름이 <code>reply</code>가 아니라 <code>answer</code>이면 REQ-081이 실패한다. 계약을 어긴 것이므로 변형의 세션에 「API 계약의 응답 칸 이름을 지시문대로 고쳐라」라고 보낸다. 다른 쪽 세션에는 보낼 것이 없다. 계약 위반을 고친 뒤에도 실패하는 검사는 고치지 않고 그대로 기준표에 적는다. 그것이 비교 결과다.</p>
+<p><strong>결과 읽기: 공통 검사의 화면은 어느 갈래인가.</strong> 아래 화면은 모두 집필 때 기준 산출물과 교수 견본에 같은 명령을 실행해 얻은 것이다. 끝 상태 코드는 <code>echo $?</code>로 본다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>갈래</th>
+<th>화면</th>
+<th>끝 상태</th>
+<th>뜻</th>
+<th>할 일</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>①</td>
+<td><code>통과 5/5</code></td>
+<td>0</td>
+<td>최소 조건을 지켰다</td>
+<td>「자동 검사 통과」 칸에 적는다</td>
+</tr>
+<tr class="even">
+<td>②</td>
+<td><code>경로 /api/feedback가 없다(HTTP 405)</code>와 <code>통과 0/5</code></td>
+<td>1</td>
+<td>그 폴더에 변형의 API가 없다(라우터를 등록하지 않았거나 <code>main</code>을 가리켰다)</td>
+<td><code>--app-dir</code>가 변형의 작업 트리인지, <code>api/app.py</code>에 라우터 두 줄이 있는지 본다</td>
+</tr>
+<tr class="odd">
+<td>③</td>
+<td><code>REQ-081 … FAIL</code>만 있고 나머지는 <code>PASS</code></td>
+<td>1</td>
+<td>세 부분을 읽지 못하였다. 대개 응답 칸 이름이 어댑터와 다르다</td>
+<td>응답을 <code>curl</code>로 받아 칸 이름을 보고, 지시문의 API 계약과 어긋나면 그 변형에만 고치게 한다</td>
+</tr>
+<tr class="even">
+<td>④</td>
+<td><code>REQ-086</code> 또는 <code>REQ-083</code>이 <code>FAIL</code></td>
+<td>1</td>
+<td>실패 처리나 짧은 답변의 차단이 명세와 다르다</td>
+<td>고치지 않고 기준표에 적는다. 비교 결과다</td>
+</tr>
+<tr class="odd">
+<td>⑤</td>
+<td><code>REQ-087 … FAIL</code>과 <code>답변이 남은 파일: …</code></td>
+<td>1</td>
+<td>사용자의 답변이 파일에 남았다(개인 정보 요구 위반)</td>
+<td>그 줄의 파일을 열어 어디서 썼는지 찾는다. 기준표에 적고 9-9의 보강 후보로 둔다</td>
+</tr>
+<tr class="even">
+<td>⑥</td>
+<td><code>ModuleNotFoundError: No module named 'api'</code></td>
+<td>1</td>
+<td><code>--app-dir</code>가 <code>jobprep</code>이 아니라 그 위 폴더다</td>
+<td>경로 끝에 <code>/jobprep</code>을 붙인다</td>
+</tr>
+</tbody>
+</table>
+<p>③의 실제 화면은 다음과 같다. 집필 때 견본 대화형에 응답 칸 이름을 <code>answer</code>로 바꾼 어댑터를 주어 만들었다.</p>
+<pre class="text"><code>공통 검사: chat (/api/feedback/chat)
+  REQ-081 피드백 세 부분(강점, 보완점, 예시)    FAIL
+  REQ-082 글자 수 초과 표시               PASS
+  REQ-083 짧은 답변은 LLM을 부르지 않음       PASS
+  REQ-086 호출 실패 시 502·503과 안내      PASS
+  REQ-087 답변이 파일·기록에 남지 않음         PASS
+통과 4/5</code></pre>
+<p>REQ-082는 통과하였다. 초과 표시는 어댑터의 다른 칸(<code>over_limit</code>의 <code>reply</code>)으로 읽기 때문이다. 이처럼 한 줄만 실패하면 구현 전체가 아니라 그 줄이 읽는 칸 하나를 의심한다. ⑥은 Python이 <code>api</code> 패키지를 찾지 못한 것으로, 마지막 줄에 이 오류가 찍히고 그 위로 긴 추적 기록이 나온다.</p>
 <ul>
 <li><span class="check-badge">확인 23</span> 두 변형의 통과 수를 <code>비교구현.md</code> 2절의 「자동 검사 통과」 칸에 적었다(예: <code>5/5 · 77 passed</code>).</li>
 </ul>
@@ -2193,24 +2399,24 @@ HEAD is now at 0e0cd1f 명세 v7: 자기소개서 피드백 REQ-080~089, 변형 
 <h3 class="anchored" data-anchor-id="화면-점검-명세-충족과-휴리스틱">9-5. 화면 점검: 명세 충족과 휴리스틱</h3>
 <p>두 변형의 서버를 각자의 포트로 띄운다.</p>
 <p><strong>[서버 터미널]</strong> 세 줄씩 각자의 터미널에서</p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># form 터미널</span></span>
-<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab-form/jobprep</span>
-<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> api/logs</span>
-<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a><span class="va">JOBPREP_VARIANT</span><span class="op">=</span>form <span class="va">EMBED_BACKEND</span><span class="op">=</span>fallback <span class="va">LLM_FAKE</span><span class="op">=</span>1 <span class="va">LLM_FAKE_LATENCY</span><span class="op">=</span>on <span class="ex">uvicorn</span> api.app:app <span class="at">--port</span> 8001</span>
-<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a><span class="co"># chat 터미널</span></span>
-<span id="cb74-6"><a href="#cb74-6" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab-chat/jobprep</span>
-<span id="cb74-7"><a href="#cb74-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> api/logs</span>
-<span id="cb74-8"><a href="#cb74-8" aria-hidden="true" tabindex="-1"></a><span class="va">JOBPREP_VARIANT</span><span class="op">=</span>chat <span class="va">EMBED_BACKEND</span><span class="op">=</span>fallback <span class="va">LLM_FAKE</span><span class="op">=</span>1 <span class="va">LLM_FAKE_LATENCY</span><span class="op">=</span>on <span class="ex">uvicorn</span> api.app:app <span class="at">--port</span> 8101</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co"># form 터미널</span></span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab-form/jobprep</span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> api/logs</span>
+<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a><span class="va">JOBPREP_VARIANT</span><span class="op">=</span>form <span class="va">EMBED_BACKEND</span><span class="op">=</span>fallback <span class="va">LLM_FAKE</span><span class="op">=</span>1 <span class="va">LLM_FAKE_LATENCY</span><span class="op">=</span>on <span class="ex">uvicorn</span> api.app:app <span class="at">--port</span> 8001</span>
+<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a><span class="co"># chat 터미널</span></span>
+<span id="cb75-6"><a href="#cb75-6" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab-chat/jobprep</span>
+<span id="cb75-7"><a href="#cb75-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> api/logs</span>
+<span id="cb75-8"><a href="#cb75-8" aria-hidden="true" tabindex="-1"></a><span class="va">JOBPREP_VARIANT</span><span class="op">=</span>chat <span class="va">EMBED_BACKEND</span><span class="op">=</span>fallback <span class="va">LLM_FAKE</span><span class="op">=</span>1 <span class="va">LLM_FAKE_LATENCY</span><span class="op">=</span>on <span class="ex">uvicorn</span> api.app:app <span class="at">--port</span> 8101</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>브라우저에서 <code>http://localhost:8001/</code>과 <code>http://localhost:8101/</code>를 나란히 연다. 주 메뉴에서 새 화면으로 간다. 키트의 <code>시나리오/답변_초안.txt</code>를 붙여 넣어 피드백을 받고, <code>답변_수정.txt</code>로 다시 받는다.</p>
 <p>먼저 REQ-082를 <code>curl</code>로 확인한다. 같은 답변 초안을 제한 300자로 두 변형에 보낸다.</p>
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb75"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/kits/Service_12주차/시나리오</span>
-<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> <span class="at">-X</span> POST http://127.0.0.1:8001/api/feedback <span class="dt">\</span></span>
-<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-H</span> <span class="st">"Content-Type: application/json"</span> <span class="at">-d</span> @요청_초과_form.json</span>
-<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> <span class="at">-X</span> POST http://127.0.0.1:8101/api/feedback/chat <span class="dt">\</span></span>
-<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">-H</span> <span class="st">"Content-Type: application/json"</span> <span class="at">-d</span> @요청_초과_chat.json</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/kits/Service_12주차/시나리오</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> <span class="at">-X</span> POST http://127.0.0.1:8001/api/feedback <span class="dt">\</span></span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-H</span> <span class="st">"Content-Type: application/json"</span> <span class="at">-d</span> @요청_초과_form.json</span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> <span class="at">-X</span> POST http://127.0.0.1:8101/api/feedback/chat <span class="dt">\</span></span>
+<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">-H</span> <span class="st">"Content-Type: application/json"</span> <span class="at">-d</span> @요청_초과_chat.json</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>{"strengths":[...],"improvements":[...],"rewrite":"...","char_count":378,"limit":300,"over_limit":true,...}
 {"reply":"강점:\n- 경험을 구체적인 ...","char_count":281,"over_limit":false,...}</code></pre>
 <p>위는 교수 견본으로 잰 값이다. 같은 답변이 한 변형에서는 78자 초과이고 다른 변형에서는 제한 안이다. 견본 양식형은 공백과 줄바꿈을 포함해 세고(378자), 견본 대화형은 빼고 센다(281자). 학습자의 두 구현이 같은 방식으로 세었다면 차이가 나지 않는다. 그래도 그것은 우연이며, 명세가 세는 방식을 정하지 않았다는 사실은 같다.</p>
@@ -2218,18 +2424,21 @@ HEAD is now at 0e0cd1f 명세 v7: 자기소개서 피드백 REQ-080~089, 변형 
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb77"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/jobprep</span>
-<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> docs/비교</span>
-<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> ~/kits/Service_12주차/명세점검표_양식.md docs/비교/점검표_form.md</span>
-<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> ~/kits/Service_12주차/명세점검표_양식.md docs/비교/점검표_chat.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/jobprep</span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> docs/비교</span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> ~/kits/Service_12주차/명세점검표_양식.md docs/비교/점검표_form.md</span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> ~/kits/Service_12주차/명세점검표_양식.md docs/비교/점검표_chat.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>REQ-080~089을 한 줄씩 화면에서 해 보고 판정과 근거를 적는다. REQ-086은 서버를 <code>LLM_FAKE_FAIL=1</code>을 더해 다시 띄워 확인하고, 끝나면 원래대로 띄운다. REQ-087은 공통 검사의 결과를 근거로 쓴다. 다 채우면 집계한다.</p>
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb78"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> ~/kits/Service_12주차/도구/spec_checklist.py docs/비교/점검표_form.md docs/비교/점검표_chat.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> ~/kits/Service_12주차/도구/spec_checklist.py docs/비교/점검표_form.md docs/비교/점검표_chat.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>점검표_form.md: 충족 10 · 부분 0 · 미충족 0 · 해당없음 0 → 충족률 100.0%
 점검표_chat.md: 충족 7 · 부분 2 · 미충족 1 · 해당없음 0 → 충족률 80.0%</code></pre>
 <p>위 값은 교수 견본의 예다. 견본 대화형은 화면에 공고를 고르는 수단이 없어 REQ-085가 미충족이고, 고친 답변의 글자 수를 세지 않아 REQ-082가 부분이었다. 학습자의 값은 다를 수 있다.</p>
+<blockquote class="blockquote">
+<p><strong>[그림 자리: 두 변형의 화면을 나란히 띄운 브라우저]</strong> 왼쪽에 양식형(<code>http://localhost:8001/feedback.html</code>)의 강점·보완점·예시 세 칸과 글자 수 표시, 오른쪽에 대화형(<code>http://localhost:8101/</code>의 대화 화면)의 첫 응답과 이어서 묻는 입력 칸이 보이는 화면. 두 쪽 모두 <code>시나리오/답변_초안.txt</code>를 붙여 넣고 피드백을 받은 직후에 찍는다. 찍을 곳은 내 PC 브라우저(VS Code 포트 전달), 모의 모드다.</p>
+</blockquote>
 <p>같은 화면을 쓰면서 5-6의 휴리스틱 표로 위반을 찾아 <code>비교구현.md</code> 3절에 적는다. 견본에서는 양식형에서 「다시 요청하면 이전 피드백이 사라진다(3. 사용자 통제와 자유)」, 대화형에서 「첫 피드백 뒤 무엇을 물을 수 있는지 보이지 않는다(6. 기억보다 인식)」가 나왔다.</p>
 <ul>
 <li><span class="check-badge">확인 24</span> <code>spec_checklist.py</code>가 두 파일의 충족률을 내고 「판정을 읽지 못함」 줄이 없다. <code>비교구현.md</code> 3절에 두 변형의 위반이 한 줄 이상씩 있다.</li>
@@ -2241,11 +2450,11 @@ HEAD is now at 0e0cd1f 명세 v7: 자기소개서 피드백 REQ-080~089, 변형 
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb80"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/kits/Service_12주차</span>
-<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> 도구/measure_latency.py <span class="at">--base</span> http://127.0.0.1:8001 <span class="at">--scenario</span> 시나리오/form.json <span class="dt">\</span></span>
-<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--repeat</span> 5 <span class="at">--out</span> ~/llm-service-lab/jobprep/docs/비교/시간_form.csv</span>
-<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> 도구/measure_latency.py <span class="at">--base</span> http://127.0.0.1:8101 <span class="at">--scenario</span> 시나리오/chat.json <span class="dt">\</span></span>
-<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">--repeat</span> 5 <span class="at">--out</span> ~/llm-service-lab/jobprep/docs/비교/시간_chat.csv</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/kits/Service_12주차</span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> 도구/measure_latency.py <span class="at">--base</span> http://127.0.0.1:8001 <span class="at">--scenario</span> 시나리오/form.json <span class="dt">\</span></span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--repeat</span> 5 <span class="at">--out</span> ~/llm-service-lab/jobprep/docs/비교/시간_form.csv</span>
+<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> 도구/measure_latency.py <span class="at">--base</span> http://127.0.0.1:8101 <span class="at">--scenario</span> 시나리오/chat.json <span class="dt">\</span></span>
+<span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">--repeat</span> 5 <span class="at">--out</span> ~/llm-service-lab/jobprep/docs/비교/시간_chat.csv</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>시나리오: form · 과업당 요청 2회 · 반복 5회 (준비 1회 제외)
   단계 1: 중앙값   1056.3 ms
   단계 2: 중앙값   1048.9 ms
@@ -2259,12 +2468,49 @@ HEAD is now at 0e0cd1f 명세 v7: 자기소개서 피드백 REQ-080~089, 변형 
 과업 시간: 중앙값 2554.2 ms · 최소 2549.0 · 최대 2570.8
 200이 아닌 응답: 0건
 저장: /home/아이디/llm-service-lab/jobprep/docs/비교/시간_chat.csv</code></pre>
+<p><strong>결과 읽기: 측정 화면의 네 줄.</strong> 「과업당 요청 N회」는 시나리오의 단계 수이고, 「단계 k: 중앙값」은 단계마다 다섯 번 잰 시간의 가운데 값이다. 「과업 시간」은 한 과업(단계 전부)의 합의 중앙값과 최소·최대이며, 최소와 최대의 차가 크면 측정 중에 다른 일이 끼어든 것이다. 「200이 아닌 응답」이 0건이 아니면 그 측정은 쓰지 않는다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>화면</th>
+<th>뜻</th>
+<th>할 일</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>200이 아닌 응답: 0건</code></td>
+<td>측정이 유효하다</td>
+<td>값을 기준표에 옮긴다</td>
+</tr>
+<tr class="even">
+<td><code>200이 아닌 응답</code>이 1건 이상</td>
+<td>서버가 꺼졌거나, 모의 실패(<code>LLM_FAKE_FAIL=1</code>)를 켠 채 띄웠거나, 요청 형식이 다르다</td>
+<td>서버 터미널의 오류를 보고 서버를 9-5의 명령 그대로 다시 띄운 뒤 다시 잰다</td>
+</tr>
+<tr class="odd">
+<td>과업 시간이 수십 밀리초</td>
+<td><code>LLM_FAKE_LATENCY=on</code> 없이 띄웠다. 모의 응답이 즉시 온다(집필 때 견본 대화형을 <code>--app-dir</code>로 같은 프로세스 안에서 재니 과업 시간 중앙값 23.8ms였다)</td>
+<td>9-5의 명령대로 다시 띄운다. 비교의 조건이 두 변형에서 같아야 한다</td>
+</tr>
+<tr class="even">
+<td>최소와 최대의 차가 중앙값만큼 크다</td>
+<td>측정 중에 다른 프로세스가 끼어들었다</td>
+<td>다른 서버와 측정을 끄고 다시 잰다</td>
+</tr>
+</tbody>
+</table>
 <p>준비 1회와 반복 5회를 돌렸으므로 기록에는 과업 6개가 있다. 토큰을 집계한다. 단가는 수업 날 공식 가격표에서 확인한 값으로 바꾼다.</p>
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb82"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> 도구/token_report.py ~/llm-service-lab-form/jobprep/api/logs/llm_calls.jsonl <span class="dt">\</span></span>
-<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>  ~/llm-service-lab-chat/jobprep/api/logs/llm_calls.jsonl <span class="at">--tasks</span> 6 <span class="at">--price-in</span> 1.0 <span class="at">--price-out</span> 5.0</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> 도구/token_report.py ~/llm-service-lab-form/jobprep/api/logs/llm_calls.jsonl <span class="dt">\</span></span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>  ~/llm-service-lab-chat/jobprep/api/logs/llm_calls.jsonl <span class="at">--tasks</span> 6 <span class="at">--price-in</span> 1.0 <span class="at">--price-out</span> 5.0</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>| 변형 | 호출 | 실패 | 입력 토큰 | 출력 토큰 | 과업당 호출 | 과업당 토큰 | 과업당 비용(USD) |
 |---|---|---|---|---|---|---|---|
 | chat (모의·어림) | 18 | 0 | 13128 | 2406 | 3.0 | 2589 | 0.004193 |
@@ -2279,9 +2525,9 @@ HEAD is now at 0e0cd1f 명세 v7: 자기소개서 피드백 REQ-080~089, 변형 
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb84"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
-<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff <span class="at">--shortstat</span> main...variant-form <span class="at">--</span> jobprep</span>
-<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff <span class="at">--shortstat</span> main...variant-chat <span class="at">--</span> jobprep</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff <span class="at">--shortstat</span> main...variant-form <span class="at">--</span> jobprep</span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff <span class="at">--shortstat</span> main...variant-chat <span class="at">--</span> jobprep</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code> 7 files changed, 225 insertions(+)
  7 files changed, 201 insertions(+)</code></pre>
 <p><code>비교구현.md</code> 2절의 마지막 줄과 「더 나은 쪽」 열을 채운다. 4절 「숫자로 드러나지 않는 차이」에는 화면을 쓰면서 느낀 차이를 관찰한 사실로 적는다. 「대화형이 더 친근하다」보다 「대화형은 보완점 하나를 골라 더 물을 수 있었다. 양식형은 같은 일을 하려면 답변을 고쳐 다시 보내야 했다」처럼 쓴다.</p>
@@ -2295,8 +2541,8 @@ HEAD is now at 0e0cd1f 명세 v7: 자기소개서 피드백 REQ-080~089, 변형 
 <div class="code-label where-server">
 <span>서버 터미널 · chat</span>
 </div>
-<div class="sourceCode" id="cb86"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab-chat/jobprep</span>
-<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="at">-n</span> extract-chat <span class="at">--permission-mode</span> plan</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab-chat/jobprep</span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="at">-n</span> extract-chat <span class="at">--permission-mode</span> plan</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>6-2의 추출 프롬프트를 보낸다. form 작업 트리에서는 읽을 파일을 <code>api/feedback.py, api/app.py, web/feedback.html, web/feedback.js</code>로, ID 접두를 <code>F-</code>로 바꾸어 보낸다. 결과 표를 받으면 <code>Shift+Tab</code>으로 계획 모드를 끄고 저장을 지시한다.</p>
 <p><strong>[Claude Code] extract-chat 세션, 계획 모드를 끈 뒤</strong></p>
 <pre class="text"><code>위 표 앞에 「# 추출 명세: variant-chat」 제목을 붙여 ~/llm-service-lab/jobprep/docs/비교/추출명세_chat.md 로 저장하라. 다른 파일은 만들지 마라.</code></pre>
@@ -2304,9 +2550,9 @@ HEAD is now at 0e0cd1f 명세 v7: 자기소개서 피드백 REQ-080~089, 변형 
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb88"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/jobprep</span>
-<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> ~/kits/Service_12주차/도구/spec_diff.py docs/요구사항명세서.md <span class="at">--range</span> REQ-080~089 <span class="dt">\</span></span>
-<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a>  form=docs/비교/추출명세_form.md chat=docs/비교/추출명세_chat.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/jobprep</span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> ~/kits/Service_12주차/도구/spec_diff.py docs/요구사항명세서.md <span class="at">--range</span> REQ-080~089 <span class="dt">\</span></span>
+<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a>  form=docs/비교/추출명세_form.md chat=docs/비교/추출명세_chat.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>원 명세 요구 10개 (범위 REQ-080~089)
 추출 명세 form: 요구 12개, 대응 없음 2개
 추출 명세 chat: 요구 13개, 대응 없음 4개
@@ -2352,11 +2598,11 @@ HEAD is now at 0e0cd1f 명세 v7: 자기소개서 피드백 REQ-080~089, 변형 
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb91"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
-<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add jobprep/docs</span>
-<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"명세 v7.1: REQ-090~093 보강, 비교 구현 기준표, 추출 명세"</span></span>
-<span id="cb91-4"><a href="#cb91-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> tag <span class="at">-a</span> spec-v7.1 <span class="at">-m</span> <span class="st">"12장 명세 보강"</span></span>
-<span id="cb91-5"><a href="#cb91-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff <span class="at">--stat</span> spec-v7 spec-v7.1 <span class="at">--</span> jobprep/docs/요구사항명세서.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add jobprep/docs</span>
+<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"명세 v7.1: REQ-090~093 보강, 비교 구현 기준표, 추출 명세"</span></span>
+<span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> tag <span class="at">-a</span> spec-v7.1 <span class="at">-m</span> <span class="st">"12장 명세 보강"</span></span>
+<span id="cb92-5"><a href="#cb92-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff <span class="at">--stat</span> spec-v7 spec-v7.1 <span class="at">--</span> jobprep/docs/요구사항명세서.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code> jobprep/docs/요구사항명세서.md | 5 +++++
  1 file changed, 5 insertions(+)</code></pre>
 <ul>
@@ -2370,9 +2616,9 @@ HEAD is now at 0e0cd1f 명세 v7: 자기소개서 피드백 REQ-080~089, 변형 
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb93"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/jobprep</span>
-<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> docs/결정</span>
-<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> ~/kits/Service_12주차/결정기록_양식.md docs/결정/ADR-001-자기소개서피드백-상호작용방식.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/jobprep</span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> docs/결정</span>
+<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> ~/kits/Service_12주차/결정기록_양식.md docs/결정/ADR-001-자기소개서피드백-상호작용방식.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Claude Code에 초안을 맡겨도 된다. 다만 결정은 사람이 내리고, 초안에 그 결정을 적어 준다.</p>
 <p><strong>[Claude Code] 주 작업 트리</strong></p>
 <pre class="text"><code>@docs/비교구현.md 와 @docs/결정/ADR-001-자기소개서피드백-상호작용방식.md 를 읽어라.
@@ -2383,9 +2629,9 @@ ADR 양식의 다섯 항목을 채워라. 맥락에는 비교구현.md의 수치
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb95"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
-<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add jobprep/docs/결정</span>
-<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"ADR-001: 자기소개서 피드백의 상호작용 방식으로 양식형 채택"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add jobprep/docs/결정</span>
+<span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"ADR-001: 자기소개서 피드백의 상호작용 방식으로 양식형 채택"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><span class="check-badge">확인 29</span> ADR에 다섯 항목이 모두 있고, 「맥락」에 기준표의 수치가 두 개 이상, 「결과」에 감수하는 것이 하나 이상 있다.</li>
 </ul>
@@ -2396,12 +2642,12 @@ ADR 양식의 다섯 항목을 채워라. 맥락에는 비교구현.md의 수치
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb96"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
-<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> tag <span class="at">-a</span> variant-form-v1 variant-form <span class="at">-m</span> <span class="st">"12장 양식형 변형(병합)"</span></span>
-<span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> tag <span class="at">-a</span> variant-chat-v1 variant-chat <span class="at">-m</span> <span class="st">"12장 대화형 변형(보존, 병합하지 않음)"</span></span>
-<span id="cb96-4"><a href="#cb96-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge <span class="at">--no-ff</span> variant-form <span class="at">-m</span> <span class="st">"병합: variant-form(양식형)을 main에 (ADR-001)"</span></span>
-<span id="cb96-5"><a href="#cb96-5" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> jobprep <span class="kw">&amp;&amp;</span> <span class="va">LLM_FAKE</span><span class="op">=</span>1 <span class="ex">pytest</span> <span class="at">-q</span> <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> ..</span>
-<span id="cb96-6"><a href="#cb96-6" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> ~/kits/Service_12주차/도구/check_common.py <span class="at">--app-dir</span> ~/llm-service-lab/jobprep <span class="at">--adapter</span> ~/kits/Service_12주차/검사어댑터/form.json</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> tag <span class="at">-a</span> variant-form-v1 variant-form <span class="at">-m</span> <span class="st">"12장 양식형 변형(병합)"</span></span>
+<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> tag <span class="at">-a</span> variant-chat-v1 variant-chat <span class="at">-m</span> <span class="st">"12장 대화형 변형(보존, 병합하지 않음)"</span></span>
+<span id="cb97-4"><a href="#cb97-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge <span class="at">--no-ff</span> variant-form <span class="at">-m</span> <span class="st">"병합: variant-form(양식형)을 main에 (ADR-001)"</span></span>
+<span id="cb97-5"><a href="#cb97-5" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> jobprep <span class="kw">&amp;&amp;</span> <span class="va">LLM_FAKE</span><span class="op">=</span>1 <span class="ex">pytest</span> <span class="at">-q</span> <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> ..</span>
+<span id="cb97-6"><a href="#cb97-6" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> ~/kits/Service_12주차/도구/check_common.py <span class="at">--app-dir</span> ~/llm-service-lab/jobprep <span class="at">--adapter</span> ~/kits/Service_12주차/검사어댑터/form.json</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>Merge made by the 'ort' strategy.
  jobprep/api/app.py                  |  2 ++
  jobprep/api/feedback.py             | 71 +++++++++++++++++++++++++++++++++++++
@@ -2421,14 +2667,14 @@ ADR 양식의 다섯 항목을 채워라. 맥락에는 비교구현.md의 수치
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb99"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add jobprep <span class="kw">&amp;&amp;</span> <span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"REQ-090~093 반영: 글자 수 두 값, 직전 피드백 보존, 호출 상한"</span></span>
-<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> worktree remove ../llm-service-lab-form</span>
-<span id="cb99-3"><a href="#cb99-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> worktree remove ../llm-service-lab-chat</span>
-<span id="cb99-4"><a href="#cb99-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-d</span> variant-form</span>
-<span id="cb99-5"><a href="#cb99-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-D</span> variant-chat</span>
-<span id="cb99-6"><a href="#cb99-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main <span class="at">--follow-tags</span></span>
-<span id="cb99-7"><a href="#cb99-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin variant-chat-v1</span>
-<span id="cb99-8"><a href="#cb99-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span> <span class="at">--graph</span> <span class="at">--all</span> <span class="at">-12</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add jobprep <span class="kw">&amp;&amp;</span> <span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"REQ-090~093 반영: 글자 수 두 값, 직전 피드백 보존, 호출 상한"</span></span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> worktree remove ../llm-service-lab-form</span>
+<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> worktree remove ../llm-service-lab-chat</span>
+<span id="cb100-4"><a href="#cb100-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-d</span> variant-form</span>
+<span id="cb100-5"><a href="#cb100-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-D</span> variant-chat</span>
+<span id="cb100-6"><a href="#cb100-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main <span class="at">--follow-tags</span></span>
+<span id="cb100-7"><a href="#cb100-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin variant-chat-v1</span>
+<span id="cb100-8"><a href="#cb100-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span> <span class="at">--graph</span> <span class="at">--all</span> <span class="at">-12</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>Deleted branch variant-form (was 9d67f7e).
 Deleted branch variant-chat (was 3f1d3f1).
 * d22f377 REQ-090~093 반영: 글자 수 두 값, 직전 피드백 보존, 호출 상한
@@ -2446,6 +2692,16 @@ Deleted branch variant-chat (was 3f1d3f1).
 <li><span class="check-badge">확인 30</span> <code>git worktree list</code>가 한 줄이고, <code>git branch</code>에 <code>main</code>만 있으며, <code>git tag -l 'variant-*'</code>에 두 태그가 있다.</li>
 <li><span class="check-badge">확인 31</span> <code>git ls-remote --tags origin</code>에 <code>spec-v7</code>, <code>spec-v7.1</code>, <code>variant-form-v1</code>, <code>variant-chat-v1</code>이 모두 있다.</li>
 </ul>
+<blockquote class="blockquote">
+<p><strong>[중심 실습 복기: 같은 명세의 두 구현이 명세의 빈틈을 보여 주었다]</strong> 명세 v7 하나에서 양식형과 대화형을 각자의 작업 트리와 새 세션으로 구현하고, 같은 시험지와 같은 과업으로 재어 하나를 골랐다.</p>
+<ol type="1">
+<li><strong>공정한 비교의 조건을 지켰다.</strong> 같은 태그(<code>spec-v7</code>)에서 출발하고(9-2), 같은 공통 지시와 새 세션으로 구현하고(9-3), 같은 공통 검사(9-4)와 같은 시나리오(9-6)로 쟀다. 조건 하나가 어긋나면 기준표의 차이가 구현의 차이인지 조건의 차이인지 가를 수 없다.</li>
+<li><strong>숫자와 숫자 밖의 것을 함께 적었다.</strong> 충족률, 통과 수, 과업 시간, 과업당 토큰과 비용은 기준표의 숫자로(9-5~9-7), 화면을 쓰며 느낀 차이는 관찰한 사실로 적었다. 대화형의 과업당 토큰이 호출 수보다 빠르게 는 것은 Messages API가 상태를 기억하지 않기 때문이었다.</li>
+<li><strong>두 구현이 다르게 정한 곳을 명세로 되돌렸다.</strong> 원 명세를 가리고 추출한 두 명세를 대조해(9-8) 빈틈을 찾고, EARS로 보강해 v7.1을 만들었다(9-9). 결정과 그 대가는 ADR로 남기고(9-10), 택하지 않은 변형은 태그로 보존하였다(9-11).</li>
+</ol>
+<p><strong>생각해 볼 것 하나.</strong> 프로젝트실습Ⅰ에서 팀원 두 사람이 각자 하나씩 변형을 맡아 구현한다면, 이 장의 공정성 조건 가운데 무엇이 가장 깨지기 쉬운가. 힌트는 9-3의 「같은 지적은 같은 문장으로 양쪽에」와 5-8절의 측정의 함정이다. ① 지시문 밖의 구두 지시가 한쪽에만 간다. ② 한쪽만 실제 모델로 잰다. ③ 화면 점검을 각자 자기 변형만 한다.</p>
+<p><strong>폴더에 남은 것</strong>: <code>main</code>의 병합 커밋과 REQ-090~093 반영 커밋, <code>docs/비교구현.md</code>, <code>docs/비교/</code>의 여섯 파일, <code>docs/결정/ADR-001-….md</code>, 태그 넷. 작업 트리 두 개와 변형 브랜치는 지웠다. <strong>다음</strong>: 병합한 구현을 동료가 평가하는 13장.</p>
+</blockquote>
 <hr>
 </section>
 </section>
@@ -2628,7 +2884,7 @@ Deleted branch variant-chat (was 3f1d3f1).
 <tr class="odd">
 <td>R1</td>
 <td>2026년 2학기판 LLM 강의안 2주차 8-5~8-6절(원본과 재생성본의 비교, 세 종류의 빈틈), 문어체 변환본</td>
-<td>볼트 <code>courses/llm-ai/2027-2판_재료/docs/subjects/llm-ai/LLM_02주차_학생용.md</code></td>
+<td>볼트 <code>docs/subjects/llm-ai/LLM_02주차_학생용.md</code></td>
 <td>2026-11-14</td>
 </tr>
 <tr class="even">
@@ -2755,15 +3011,21 @@ Deleted branch variant-chat (was 3f1d3f1).
 <td>A4</td>
 <td>Claude API 문서, Models overview(모델과 단가)</td>
 <td><a href="https://platform.claude.com/docs/en/about-claude/models/overview" class="uri">https://platform.claude.com/docs/en/about-claude/models/overview</a></td>
-<td>2026-11-14</td>
+<td>2026-11-14, 2026-11-16 다시 확인</td>
 </tr>
 <tr class="odd">
+<td>A5</td>
+<td>Claude API 문서, Pricing(긴 프롬프트의 단가)</td>
+<td><a href="https://platform.claude.com/docs/en/about-claude/pricing" class="uri">https://platform.claude.com/docs/en/about-claude/pricing</a></td>
+<td>2026-11-16 (모델 개요 표의 각주로 확인)</td>
+</tr>
+<tr class="even">
 <td>P1</td>
 <td>Python 문서, time 모듈(<code>perf_counter</code>)</td>
 <td><a href="https://docs.python.org/3/library/time.html" class="uri">https://docs.python.org/3/library/time.html</a></td>
 <td>2026-11-14</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>P2</td>
 <td>FastAPI 문서, Testing(<code>TestClient</code>)</td>
 <td><a href="https://fastapi.tiangolo.com/tutorial/testing/" class="uri">https://fastapi.tiangolo.com/tutorial/testing/</a></td>

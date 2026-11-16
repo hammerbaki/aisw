@@ -646,6 +646,9 @@ css  data  detail.html  index.html  js  saved.html  schedule.html</code></pre>
 <li><code>httpx==0.28.1</code>: FastAPI의 테스트 클라이언트가 쓴다[A12].</li>
 <li><code>pytest==9.2.0</code>: 테스트 실행기.</li>
 </ul>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: SDK와 패키지의 판]</strong> <code>anthropic</code>의 최신 판과 그 판이 보내는 API 버전, 나머지 여섯 패키지의 판. 확인할 곳 <a href="https://pypi.org/project/anthropic/" class="uri">https://pypi.org/project/anthropic/</a>, <code>pip index versions anthropic</code>. 2026-11-16에 집필 PC의 새 가상 환경에 위 판을 설치해 <code>42 passed</code>를 다시 얻었다. 판을 올리면 <code>requirements.txt</code>와 4-1을 함께 고친다.</p>
+</blockquote>
 <p>버전을 고정하는 까닭은 같은 키트가 학기 내내, 그리고 학생마다 같게 동작하게 하기 위해서이다. 특히 <code>anthropic</code>은 1.x에서 2.x로 바뀌면서 보내는 API 버전과 받는 인자가 달라졌다(4절). 버전을 적지 않으면 설치하는 날에 따라 다른 SDK가 깔리고, 이 교재의 코드가 그 SDK에서 돌지 않을 수 있다.</p>
 <p>테스트 42개는 모두 모의 모드에서 돈다. <code>tests/conftest.py</code>가 테스트마다 <code>LLM_FAKE=1</code>을 넣고 <code>ANTHROPIC_API_KEY</code>를 지우기 때문에, <code>.env</code>에 키가 있어도 테스트는 API를 부르지 않는다.</p>
 <ul>
@@ -831,6 +834,9 @@ css  data  detail.html  index.html  js  saved.html  schedule.html</code></pre>
 </tr>
 </tbody>
 </table>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: 기본 모델의 이름과 성질]</strong> <code>LLM_MODEL</code>의 기본값 <code>claude-haiku-5-5</code>, 이 모델의 사고 방식(적응형)과 기본 effort. 확인할 곳 <a href="https://platform.claude.com/docs/en/about-claude/models/overview" class="uri">https://platform.claude.com/docs/en/about-claude/models/overview</a>. 2026-11-16의 값은 <code>claude-haiku-5-5</code>, 적응형 사고, 기본 effort <code>medium</code>이다.</p>
+</blockquote>
 <p>선택 항목 가운데 이 장에서 쓰는 것은 둘이다. <code>system</code>은 시스템 프롬프트로, 역할, 규칙, 출력 형식처럼 모든 호출에 같이 적용할 지시를 담는다. 이 장에서는 프롬프트 판본 파일의 <code>## system</code> 부분이 들어간다. <code>output_config</code>는 출력에 관한 설정으로, <code>effort</code>(생각의 깊이)와 <code>format</code>(구조화 출력의 JSON 스키마)을 담는다. 이 장에서는 <code>effort</code>를 <code>low</code>로, <code>format</code>을 5절의 요약 스키마로 둔다.</p>
 <p><code>system</code>은 <code>messages</code> 목록 안이 아니라 밖의 별도 항목이다. 2026년판에서 <code>role</code>에 <code>system</code>을 넣으면 오류가 났던 것과 같은 구조이다. 시스템 프롬프트를 사용자 메시지와 분리해 두면, 공고 본문 안에 지시처럼 보이는 문장이 섞여 있어도 모델이 그것을 서비스의 규칙과 구분하기 쉬워진다(6절).</p>
 <p>응답에서 읽는 항목은 셋이다[A1].</p>
@@ -1067,6 +1073,9 @@ tests/test_llm_real_path.py::test_missing_key_is_clear_error PASSED      [100%]
 </tbody>
 </table>
 <p>이 장의 기본 모델은 표의 첫 줄이다. 공식 모델 목록은 Haiku 5.5를 분류, 추출, 라우팅처럼 양이 많고 빠른 응답이 필요한 일에 쓰는 모델로 소개한다[A4]. 공고 요약은 공고에 적힌 내용을 정해진 칸으로 옮기는 추출에 가까우므로 이 모델에서 시작한다. 가격은 바뀐다. 계산하기 전에 가격표를 다시 열어 확인하고, 확인한 날짜를 기록에 적는다.</p>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: 모델 단가]</strong> 위 표의 단가, Haiku 5.5의 긴 프롬프트 기준(10만 토큰), 일괄 처리 할인, 캐시 읽기 배율. 확인할 곳 <a href="https://platform.claude.com/docs/en/about-claude/pricing" class="uri">https://platform.claude.com/docs/en/about-claude/pricing</a>. 2026-11-16에 다시 확인한 값은 표와 같고, 일괄 처리는 50% 할인, Haiku 5.5의 캐시 읽기는 100만 토큰당 0.01달러다.</p>
+</blockquote>
 <p>가격표에서 함께 읽어 둘 사항이 셋 있다[A7].</p>
 <ul>
 <li><strong>일괄 처리(Batch API)는 50% 할인이다.</strong> 결과를 바로 받지 않아도 되는 일(예: 밤사이 공고 전체를 미리 요약)은 일괄 처리로 보내면 입력과 출력 모두 반값이다.</li>
@@ -1090,7 +1099,7 @@ tests/test_llm_real_path.py::test_missing_key_is_clear_error PASSED      [100%]
 <pre class="text"><code>호출 수   : 300명 × 4.0회/일 × 30일 = 36,000회
 토큰      : 입력 1,085 + 출력 129 (호출 1회 평균)
 단가      : 입력 $0.1 / 출력 $0.5 (100만 토큰당)
-월 비용   : $6.23  (약 8,717원)
+월 비용   : $6.23  (약 8,719원)
 출력 몫   : 37% (출력 단가가 입력의 5배)</code></pre>
 <p><code>--krw</code>의 1400은 계산을 보이기 위한 가정 환율이다. 실제 환율은 계산하는 날의 값을 쓴다.</p>
 <ul>
@@ -1234,6 +1243,9 @@ v3: 입력 1148 토큰  (모의 어림값)</code></pre>
 </tbody>
 </table>
 <p>마지막 줄이 가장 바깥의 방어선이다. 코드의 제한이 모두 뚫려도 작업 공간의 한도에서 멈춘다. 그러나 한도에 닿으면 그 작업 공간을 쓰는 모든 학생의 기능이 멈추므로, 코드의 제한이 먼저 일해야 한다.</p>
+<blockquote class="blockquote">
+<p><strong>[그림 자리: Console의 작업 공간 사용 한도]</strong> 학과 조직 Console에서 실습용 작업 공간의 지출 한도를 정하는 화면(교수 계정). 키 값과 조직 정보는 가리고 찍는다.</p>
+</blockquote>
 <hr>
 </section>
 </section>
@@ -1461,6 +1473,9 @@ v3: 입력 1148 토큰  (모의 어림값)</code></pre>
 </tbody>
 </table>
 <p>그래서 「핵심업무는 1~5개」 같은 개수 제약은 스키마에 적지 못하고 설명(<code>description</code>)으로만 전한다. 지원하지 않는 기능을 스키마에 넣으면 400 오류가 난다. 파이썬 SDK의 <code>client.messages.parse()</code>에 Pydantic 모델을 주면 SDK가 지원하지 않는 제약을 설명으로 옮기고 응답을 원래 제약으로 검사해 주지만[A3], 이 장은 요청과 검사의 단계를 눈으로 보기 위해 스키마를 직접 쓰고 검사도 직접 한다.</p>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: 구조화 출력의 지원 모델과 스키마 제약]</strong> 지원 모델 목록과 위 표의 지원·미지원 항목. 확인할 곳 [A3]. 2026-11-14 집필 때의 문서 기준이다.</p>
+</blockquote>
 <p>구조화 출력에는 비용이 따른다. 공식 문서에 따르면 형식을 설명하는 시스템 프롬프트가 추가되어 입력 토큰이 늘고, 새 스키마의 첫 요청은 문법을 만드는 시간이 더 걸린다. 만든 문법은 마지막 사용부터 24시간 저장된다[A3].</p>
 <ul>
 <li><span class="check-badge">확인 13</span> 2-2의 출력 ①에서 <code>output_config.format.type</code>이 <code>json_schema</code>인 것을 찾는다.</li>
@@ -1526,7 +1541,15 @@ v3: 입력 1148 토큰  (모의 어림값)</code></pre>
 <h3 class="anchored" data-anchor-id="강제와-측정의-분리">5-4. 강제와 측정의 분리</h3>
 <p>이 장은 구조화 출력을 쓰는 자리와 쓰지 않는 자리를 나눈다. 요약 API(<code>api/app.py</code>)는 늘 쓴다(<code>json_schema=SUMMARY_SCHEMA</code>). 서비스는 형식이 무너지면 안 되기 때문이다. 판본 비교(<code>eval/run_compare.py</code>)는 기본으로 쓰지 않고 <code>--schema</code>를 줄 때만 쓴다. 프롬프트 자체가 형식을 얼마나 지키게 하는지 재기 위해서이다.</p>
 <p>판본 비교에서 강제를 끄면, 점수 차이가 프롬프트의 차이에서 온 것인지 볼 수 있다. 서비스에서는 강제를 켜고, 강제로도 보장되지 않는 내용(마감일이 맞는가, 우대 사항이 섞이지 않았는가)은 프롬프트와 평가로 다룬다. 형식은 기계가 보장하고 내용은 측정으로 관리한다는 분업이다.</p>
+<section id="절-실습-복기" class="level4">
+<h4 class="anchored" data-anchor-id="절-실습-복기">2~5절 실습 복기</h4>
+<ol type="1">
+<li><strong>요청은 프로그램이 만든다.</strong> <code>first_call.py</code>의 ①에서 필수 세 항목, <code>system</code>, <code>output_config</code>를 보았고, 키는 본문이 아니라 헤더로 간다.</li>
+<li><strong>응답은 고르고 검사한다.</strong> 글은 <code>type</code>이 <code>text</code>인 블록에서 꺼내고, 형식은 <code>parse_summary()</code>가 다시 판정한다. 다섯 표본 가운데 하나만 통과하였다.</li>
+<li><strong>비용과 일관성은 숫자로 말한다.</strong> 월 6.23달러는 토큰 단가와 호출 수의 곱이고, <code>temperature</code>가 없는 지금 일관성은 형식 강제, 지시, 캐시, 평가로 얻는다.</li>
+</ol>
 <hr>
+</section>
 </section>
 </section>
 <section id="프롬프트-설계-기법" class="level2">
@@ -2090,6 +2113,56 @@ INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)</code>
 <ul>
 <li><span class="check-badge">확인 21</span> 출력이 <code>422</code>이다.</li>
 </ul>
+<p><code>curl</code>의 결과로 갈래를 가린다. 아래는 2026-11-16에 집필 PC에서 같은 명령을 실행해 얻은 것이다(429는 <code>RATE_LIMIT_PER_MIN=2</code>, 503은 <code>LLM_FAKE=0</code>이고 키가 빈 상태).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>화면에 나온 것</th>
+<th>서버 터미널의 기록</th>
+<th>뜻</th>
+<th>할 일</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>아무것도 나오지 않는다. <code>echo $?</code>가 <code>7</code></td>
+<td>(기록 없음)</td>
+<td>서버가 떠 있지 않거나 포트가 다르다. <code>-s</code>가 연결 오류 문구까지 숨긴다</td>
+<td>서버 터미널의 <code>Uvicorn running</code> 줄과 포트를 본다</td>
+</tr>
+<tr class="even">
+<td><code>{"detail":"Method Not Allowed"}</code></td>
+<td><code>"POST /summary HTTP/1.1" 405</code></td>
+<td>주소에서 <code>/api</code>가 빠졌다</td>
+<td>주소를 <code>/api/summary</code>로 고친다</td>
+</tr>
+<tr class="odd">
+<td><code>{"detail":[{"type":"string_too_short",…</code></td>
+<td><code>422 Unprocessable Content</code></td>
+<td>본문이 20자 미만이거나 <code>text</code> 키가 아니다</td>
+<td>보낸 본문을 본다</td>
+</tr>
+<tr class="even">
+<td><code>{"detail":"요청이 너무 잦다. 1분 뒤 다시 시도한다."}</code></td>
+<td><code>429 Too Many Requests</code></td>
+<td>요청 제한에 닿았다</td>
+<td>1분 기다린다</td>
+</tr>
+<tr class="odd">
+<td><code>{"detail":"요약 서비스를 쓸 수 없다. 키가 없다: …"}</code></td>
+<td><code>503 Service Unavailable</code></td>
+<td>모의 모드가 꺼졌는데 키가 없다</td>
+<td><code>/api/health</code>의 <code>fake</code>를 보고 <code>LLM_FAKE=1</code>로 되돌린다</td>
+</tr>
+</tbody>
+</table>
+<p>서버 터미널의 기록 한 줄(<code>INFO:     127.0.0.1:62729 - "POST /api/summary HTTP/1.1" 429 Too Many Requests</code>)은 요청한 곳, 방식과 주소, 상태 코드의 순서다. 웹 화면의 오류를 볼 때도 이 기록을 함께 보면 브라우저가 무엇을 보냈는지 알 수 있다.</p>
 </section>
 <section id="자동-문서" class="level3">
 <h3 class="anchored" data-anchor-id="자동-문서">8-4. 자동 문서</h3>
@@ -2100,7 +2173,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)</code>
 <pre class="text"><code>http://localhost:8001/docs</code></pre>
 <p>화면에 <code>GET /api/health</code>와 <code>POST /api/summary</code>가 보이고, <code>POST /api/summary</code>를 펼치면 요청 본문의 모양(<code>text</code>, 문자열)이 나온다. 「Try it out」으로 요청을 직접 보낼 수도 있다. 이 문서는 웹을 만드는 사람과 API를 만드는 사람이 같은 약속을 보게 하는 데 쓴다.</p>
 <blockquote class="blockquote">
-<p>그림 필요: 브라우저의 <code>http://localhost:8001/docs</code> 화면에서 <code>POST /api/summary</code>를 펼친 모습</p>
+<p><strong>[그림 자리: FastAPI의 자동 문서]</strong> <code>http://localhost:8001/docs</code> 화면에서 <code>POST /api/summary</code>를 펼쳐 요청 본문의 모양(<code>text</code>)이 보이는 모습. 내 PC의 브라우저에서 포트 전달로 열어 찍는다.</p>
 </blockquote>
 <ul>
 <li><span class="check-badge">확인 22</span> <code>/docs</code> 화면에 <code>POST /api/summary</code>가 보인다.</li>
@@ -2110,7 +2183,15 @@ INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)</code>
 <h3 class="anchored" data-anchor-id="테스트가-지키는-것">8-5. 테스트가 지키는 것</h3>
 <p>요약 API의 테스트 <code>tests/test_api.py</code>는 8-2의 상태 코드 표를 그대로 옮긴 것이다. FastAPI의 <code>TestClient</code>로 서버를 띄우지 않고 요청을 보낸다[A12]. 정상 요청에 네 필드와 <code>meta</code>가 오는지(<code>test_summary_fake</code>), 빈 본문과 5자와 6,001자가 모두 422인지(<code>test_rejects_bad_length</code>), 모델이 코드 울타리로 감싼 답을 내면 502인지(<code>test_bad_json_from_model_is_502</code>), API 오류가 503이고 응답에 키 모양의 문자열이 없는지(<code>test_api_error_is_503_without_secret</code>), 거절이 502인지(<code>test_refusal_is_502</code>), 두 번째 요청이 같은 요약과 <code>cached: true</code>를 돌려주는지(<code>test_cache_returns_same_summary</code>), 한도를 2로 줄이면 세 번째 요청이 429인지(<code>test_rate_limit</code>)를 차례로 본다.</p>
 <p>모델의 잘못된 응답과 API 오류는 실제로 일으키기 어렵다. 테스트는 <code>monkeypatch</code>로 <code>llm.complete</code>를 그런 결과를 내는 가짜 함수로 바꾸어 확인한다. 실제 호출 없이 실패의 처리까지 검사할 수 있는 것이 호출을 <code>llm.complete</code> 한 곳에 모은 설계의 이점이다.</p>
+<section id="절-실습-복기-1" class="level4">
+<h4 class="anchored" data-anchor-id="절-실습-복기-1">8절 실습 복기</h4>
+<ol type="1">
+<li><strong>서버가 규칙을 지킨다.</strong> 길이, 요청 횟수, 형식 검사, 캐시가 모두 서버의 한 함수에 있어 브라우저가 지울 수 없다.</li>
+<li><strong>실패에 이름을 붙였다.</strong> 422, 429, 502, 503이 원인별로 나뉘어, 웹은 코드만 보고 사용자에게 할 일을 알린다.</li>
+<li><strong>실패도 키 없이 시험한다.</strong> <code>monkeypatch</code>로 거절, 형식 위반, API 오류를 만들어 테스트가 상태 코드를 고정한다.</li>
+</ol>
 <hr>
+</section>
 </section>
 </section>
 <section id="웹-연결과-출력의-안전한-표시" class="level2">
@@ -2221,6 +2302,9 @@ INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)</code>
 <ul>
 <li><span class="check-badge">확인 23</span> <code>innerHTML</code>일 때는 탭 제목이 <code>HACKED</code>로 바뀌고, <code>textContent</code>일 때는 바뀌지 않는다.</li>
 </ul>
+<blockquote class="blockquote">
+<p><strong>[그림 자리: innerHTML과 textContent의 차이]</strong> 탭 제목이 <code>HACKED</code>로 바뀐 화면과, 같은 문자열이 글자 그대로 보이고 제목이 그대로인 화면. 상세 화면의 개발자 도구 콘솔에서 찍는다.</p>
+</blockquote>
 <p><code>js/summary.js</code>를 쓸 때의 원칙은 셋이다.</p>
 <ol type="1">
 <li>모델 출력은 <code>textContent</code>로만 넣는다. 목록이 필요하면 <code>document.createElement("li")</code>로 요소를 만들고 그 요소의 <code>textContent</code>에 넣는다.</li>
@@ -2535,11 +2619,12 @@ api 그대로
 <li>API 서버 터미널에서 <code>Ctrl+C</code>로 서버를 끄고 버튼을 누르면 빨간 오류 문구가 보인다. 확인한 뒤 서버를 다시 띄운다.</li>
 </ol>
 <blockquote class="blockquote">
-<p>그림 필요: <code>detail.html?id=JOB-003</code>에서 「요약 보기」를 누른 뒤 요약이 보이는 화면, 서버를 끈 뒤의 오류 문구 화면</p>
+<p><strong>[그림 자리: 요약 기능의 성공과 실패 화면]</strong> <code>detail.html?id=JOB-003</code>에서 「요약 보기」를 누른 뒤 요약과 안내 문구가 보이는 화면, 서버를 끈 뒤 빨간 오류 문구가 보이는 화면. 내 PC의 브라우저에서 찍는다.</p>
 </blockquote>
 <ul>
 <li><span class="check-badge">확인 29</span> 요약이 화면에 보이고, 서버를 끈 상태에서는 오류 문구가 보이며, 두 경우 모두 버튼이 다시 눌리는 상태로 돌아온다.</li>
 </ul>
+<p>화면의 오류 문구가 예상과 다르면 개발자 도구 Network 탭의 <code>summary</code> 요청을 열어 상태 코드와 응답 본문을 보고, 8-3의 갈래표에서 같은 응답을 찾는다. 상태 코드가 200인데 화면이 비면 <code>summary.js</code>가 응답을 그리는 쪽의 문제이므로 Console의 빨간 줄을 본다.</p>
 </section>
 <section id="검사" class="level3">
 <h3 class="anchored" data-anchor-id="검사">11-6. 검사</h3>
@@ -2575,7 +2660,7 @@ KEY_CHECK_OK</code></pre>
 [main 3f2a9c1] 10장: 공고 요약 API와 웹 연결, 프롬프트 판본 v1~v3 비교 후 v3 채택 (REQ-013, REQ-050)
  59 files changed, 1934 insertions(+)
 3f2a9c1 (HEAD -&gt; main, tag: spec-v5) 10장: 공고 요약 API와 웹 연결, 프롬프트 판본 v1~v3 비교 후 v3 채택 (REQ-013, REQ-050)</code></pre>
-<p><code>git add .</code>나 <code>git add -A</code>를 쓰지 않고 폴더를 골라 올리는 까닭은 <code>.env</code>를 실수로 올리는 일을 한 번 더 막기 위해서이다. 커밋 해시와 파일 수는 학습자마다 다르다. 원격 저장소에 올리는 것(<code>git push</code>)은 2장의 방법대로 하고, 태그는 <code>git push origin spec-v5</code>로 따로 올린다.</p>
+<p>위 출력은 예시다. <code>git add .</code>나 <code>git add -A</code>를 쓰지 않고 폴더를 골라 올리는 까닭은 <code>.env</code>를 실수로 올리는 일을 한 번 더 막기 위해서이다. 커밋 해시와 파일 수는 학습자마다 다르다. 원격 저장소에 올리는 것(<code>git push</code>)은 2장의 방법대로 하고, 태그는 <code>git push origin spec-v5</code>로 따로 올린다.</p>
 <ul>
 <li><span class="check-badge">확인 31</span> <code>git log --oneline --decorate -1</code>에 이 장의 커밋과 <code>tag: spec-v5</code>가 보이고, 커밋에 <code>.env</code>와 <code>.venv/</code>가 없다(<code>git show --stat HEAD | grep -E "\.env$|\.venv"</code>가 빈 출력).</li>
 </ul>
@@ -2610,6 +2695,14 @@ KEY_CHECK_OK</code></pre>
 <ul>
 <li><span class="check-badge">확인 32</span> <code>docs/프롬프트비교.md</code>의 6절에 교수 시연(실행 기록)에서 읽은 실제 호출의 결과(모의와 다른 토큰 수, 마감일의 정오, 판본 비교의 흔들림) 또는 「확인하지 못함」과 그 까닭이 적혀 있다.</li>
 </ul>
+<section id="중심-실습-복기" class="level4">
+<h4 class="anchored" data-anchor-id="중심-실습-복기">중심 실습 복기</h4>
+<ol type="1">
+<li><strong>채택은 기록으로 남았다.</strong> 같은 문항과 채점기로 잰 비교표, 오답 두 건의 원문, 점수와 비용을 함께 적은 근거가 <code>프롬프트비교.md</code>에 있고, <code>.env</code>의 <code>PROMPT_VERSION</code>이 그 기록과 같다.</li>
+<li><strong>기능은 안전한 길로만 연결되었다.</strong> 브라우저는 <code>/api/summary</code>만 알고, 모델 출력은 <code>textContent</code>로만 화면에 들어가며, <code>KEY_CHECK_OK</code>가 키의 부재를 확인한다.</li>
+<li><strong>모의와 실제를 구분해 적었다.</strong> 학습자의 숫자는 모의 결과이고, 실제 모델에 관한 사실은 교수 시연의 기록에서 읽은 것만 적는다.</li>
+</ol>
+</section>
 </section>
 <section id="심화-판본-v4" class="level3">
 <h3 class="anchored" data-anchor-id="심화-판본-v4">11-9. 심화: 판본 v4</h3>
@@ -2825,7 +2918,7 @@ KEY_CHECK_OK</code></pre>
 <td>A4</td>
 <td>Claude API 문서: Models overview, Claude Haiku 5.5 개요(모델 이름, 적응형 사고, 기본 effort, 샘플링 값 생략)</td>
 <td><a href="https://platform.claude.com/docs/en/about-claude/models/overview" class="uri">https://platform.claude.com/docs/en/about-claude/models/overview</a>, <a href="https://platform.claude.com/docs/en/models/haiku-5-5/overview" class="uri">https://platform.claude.com/docs/en/models/haiku-5-5/overview</a></td>
-<td>2026-11-14</td>
+<td>2026-11-14(2026-11-16 다시 확인)</td>
 </tr>
 <tr class="odd">
 <td>A5</td>
@@ -2867,7 +2960,7 @@ KEY_CHECK_OK</code></pre>
 <td>A7</td>
 <td>Claude API 문서: Pricing(모델별 단가, 일괄 처리, 캐시, 긴 프롬프트 요금)</td>
 <td><a href="https://platform.claude.com/docs/en/about-claude/pricing" class="uri">https://platform.claude.com/docs/en/about-claude/pricing</a></td>
-<td>2026-11-14</td>
+<td>2026-11-14(2026-11-16 다시 확인)</td>
 </tr>
 <tr class="even">
 <td>A8</td>
@@ -2914,7 +3007,7 @@ KEY_CHECK_OK</code></pre>
 <tr class="odd">
 <td>R1</td>
 <td>2026년 2학기판 LLM 강의안 04(프롬프트 엔지니어링), 05(동작 원리), 06(API, 비용, 키 보안, 출력 표시)의 문어체 변환본</td>
-<td><code>courses/llm-ai/2027-2판_재료/docs/subjects/llm-ai/</code></td>
+<td><code>docs/subjects/llm-ai/</code></td>
 <td>2026-11-14</td>
 </tr>
 </tbody>
