@@ -362,6 +362,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#a-4-1.-git-bash를-기본-터미널로" id="toc-a-4-1.-git-bash를-기본-터미널로" class="nav-link" data-scroll-target="#a-4-1.-git-bash를-기본-터미널로">A-4-1. Git Bash를 기본 터미널로</a></li>
   <li><a href="#a-4-2.-터미널-두-개의-배치" id="toc-a-4-2.-터미널-두-개의-배치" class="nav-link" data-scroll-target="#a-4-2.-터미널-두-개의-배치">A-4-2. 터미널 두 개의 배치</a></li>
   <li><a href="#a-4-3.-windows와-macos에서-다른-점" id="toc-a-4-3.-windows와-macos에서-다른-점" class="nav-link" data-scroll-target="#a-4-3.-windows와-macos에서-다른-점">A-4-3. Windows와 macOS에서 다른 점</a></li>
+  <li><a href="#a-4-4.-windows에서-한글이-깨질-때-파이썬의-utf-8-모드" id="toc-a-4-4.-windows에서-한글이-깨질-때-파이썬의-utf-8-모드" class="nav-link" data-scroll-target="#a-4-4.-windows에서-한글이-깨질-때-파이썬의-utf-8-모드">A-4-4. Windows에서 한글이 깨질 때: 파이썬의 UTF-8 모드</a></li>
   </ul></li>
   <li><a href="#a-5.-claude-code의-판과-로그인" id="toc-a-5.-claude-code의-판과-로그인" class="nav-link" data-scroll-target="#a-5.-claude-code의-판과-로그인">A-5. Claude Code의 판과 로그인</a>
   <ul class="collapse">
@@ -739,7 +740,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>A-17</td>
-<td>Orca 설치와 로컬 작업 공간</td>
+<td>Orca 설치와 로컬 작업 공간(필수)</td>
 <td>10장 전 주(앞 과목에서 했으면 확인만)</td>
 <td>설치는 한 번, 작업 공간은 실습마다</td>
 </tr>
@@ -1036,8 +1037,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>A-2-3, A-11</td>
 </tr>
 <tr class="even">
-<td>Orca</td>
-<td>10장의 병렬 작업 공간</td>
+<td>Orca(필수)</td>
+<td>10장 핵심 실습의 병렬 작업 공간</td>
 <td>계정이 필요 없다(무료 오픈소스)</td>
 <td>10장 전 주에 설치</td>
 <td>A-17</td>
@@ -1513,6 +1514,21 @@ GNU bash, version 5.3.15(2)-release (x86_64-pc-cygwin)</code></pre>
 </table>
 <p>Git Bash에서는 <code>~</code>가 Windows의 사용자 폴더(<code>C:\Users\이름</code>)이고, 같은 폴더가 <code>/c/Users/이름</code>으로 보인다. Windows의 탐색기에서 <code>~/agent-lab</code>을 찾으려면 <code>C:\Users\이름\agent-lab</code>을 연다.</p>
 <p><span class="check-badge">확인 3</span> VS Code 안에 Git Bash(macOS는 zsh) 터미널이 두 개 나란히 있고, 두 터미널의 <code>pwd</code>가 같은 저장소 폴더를 출력한다(1장 이후).</p>
+</section>
+<section id="a-4-4.-windows에서-한글이-깨질-때-파이썬의-utf-8-모드" class="level3">
+<h3 class="anchored" data-anchor-id="a-4-4.-windows에서-한글이-깨질-때-파이썬의-utf-8-모드">A-4-4. Windows에서 한글이 깨질 때: 파이썬의 UTF-8 모드</h3>
+<p>Windows의 파이썬은 따로 정하지 않으면 한국어 Windows의 기본 문자 집합(cp949)으로 화면 출력을 내보내고 파일을 연다. 그래서 Git Bash에서 파이썬의 출력을 파이프(<code>|</code>)로 다른 명령에 넘기면 한글이 깨지고, 인코딩을 밝히지 않고 UTF-8 파일을 여는 프로그램은 <code>UnicodeDecodeError: 'cp949' codec can't decode</code>로 멈춘다. 환경 변수 <code>PYTHONUTF8=1</code>을 두면 파이썬이 UTF-8 모드로 돌아 화면 출력과 파일의 기본 인코딩이 UTF-8이 된다[P4]. Git Bash를 열 때마다 켜지도록 한 번 등록한다(macOS는 기본이 UTF-8이므로 하지 않아도 된다).</p>
+<div class="code-label where-server">
+<span>터미널</span>
+</div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'export PYTHONUTF8=1'</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.bashrc</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"import sys; print(sys.flags.utf8_mode, sys.stdout.encoding)"</span> <span class="kw">|</span> <span class="fu">cat</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>1 utf-8</code></pre>
+<p>등록하기 전에는 같은 명령이 <code>0 cp949</code>를 출력한다(집필용 PC, Windows 11, 파이썬 3.13.7, 2026-11-17). VS Code의 통합 터미널에서도 새 터미널을 연 뒤 위의 확인 명령이 <code>1 utf-8</code>을 출력하는지 본다.</p>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: 파이썬의 UTF-8 모드 기본값]</strong> 파이썬의 다음 판들에서 UTF-8 모드가 기본이 되는지. 확인할 곳 [P4]와 PEP 686. 2026-11-17에 집필용 PC의 파이썬 3.13.7에서 기본이 꺼져 있음(<code>0 cp949</code>)을 확인하였다.</p>
+</blockquote>
 <hr>
 </section>
 </section>
@@ -1523,8 +1539,8 @@ GNU bash, version 5.3.15(2)-release (x86_64-pc-cygwin)</code></pre>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="at">--version</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> doctor</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="at">--version</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> doctor</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>2.1.296 (Claude Code)</code></pre>
 <table class="caption-top table">
 <colgroup>
@@ -1570,7 +1586,7 @@ GNU bash, version 5.3.15(2)-release (x86_64-pc-cygwin)</code></pre>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> auth status <span class="at">--text</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> auth status <span class="at">--text</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>Anthropic base URL: https://api.anthropic.com
 Not logged in. Run claude auth login to authenticate.</code></pre>
 <p>위는 로그인하기 전의 출력이다(빈 설정 폴더에서 실행, 2026-11-16). 로그인한 뒤에는 같은 명령이 로그인 방식과 계정을 보이고, 만료되었으면 <code>Login: Expired — log in again</code>을 보인다. Claude Code 안에서는 <code>/status</code>의 Status 탭이 판, 모델, 계정, 읽은 설정 파일(Setting sources)을 보여 준다[C3].</p>
@@ -1600,8 +1616,8 @@ Anthropic base URL: https://api.anthropic.com</code></pre>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">test</span> <span class="at">-z</span> <span class="st">"</span><span class="va">$ANTHROPIC_API_KEY</span><span class="st">"</span> <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> <span class="st">"셸에 키 없음: 정상"</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-n</span> <span class="st">"ANTHROPIC_API_KEY"</span> ~/.bashrc ~/.bash_profile ~/.zshrc <span class="dv">2</span><span class="op">&gt;</span>/dev/null <span class="kw">||</span> <span class="bu">echo</span> <span class="st">"설정 파일에 키 없음: 정상"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">test</span> <span class="at">-z</span> <span class="st">"</span><span class="va">$ANTHROPIC_API_KEY</span><span class="st">"</span> <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> <span class="st">"셸에 키 없음: 정상"</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-n</span> <span class="st">"ANTHROPIC_API_KEY"</span> ~/.bashrc ~/.bash_profile ~/.zshrc <span class="dv">2</span><span class="op">&gt;</span>/dev/null <span class="kw">||</span> <span class="bu">echo</span> <span class="st">"설정 파일에 키 없음: 정상"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>셸에 키 없음: 정상
 설정 파일에 키 없음: 정상</code></pre>
 <p>첫 줄이 아무것도 출력하지 않으면 어딘가에 키가 등록되어 있다. 설정 파일에서 그 줄을 지우고, Windows이면 「시스템 환경 변수 편집」 → 「환경 변수」의 사용자 변수 목록에서 <code>ANTHROPIC_API_KEY</code>를 지운 뒤 VS Code를 새로 연다.</p>
@@ -1617,7 +1633,7 @@ Anthropic base URL: https://api.anthropic.com</code></pre>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> <span class="at">--list</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-E</span> <span class="st">"user\.|quotepath|defaultbranch"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> <span class="at">--list</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-E</span> <span class="st">"user\.|quotepath|defaultbranch"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>user.name=홍길동
 user.email=GitHub에_등록한_이메일
 core.quotepath=false
@@ -1660,7 +1676,7 @@ init.defaultbranch=main</code></pre>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> auth status</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> auth status</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>github.com
   ✓ Logged in to github.com account 「GitHub 아이디」 (keyring)
   - Active account: true
@@ -1689,7 +1705,7 @@ init.defaultbranch=main</code></pre>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> api user/memberships/orgs/「조직 이름」 <span class="at">--jq</span> .state</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> api user/memberships/orgs/「조직 이름」 <span class="at">--jq</span> .state</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>active</code></pre>
 <p><code>active</code>이면 구성원이고, <code>pending</code>이면 초대를 아직 받아들이지 않은 것이다[H8]. 위 출력은 REST API 문서에 따른 예시이다. 집필 때 실제 조직으로는 실행하지 않았다. 메일을 찾지 못하면 <code>gh api -X PATCH user/memberships/orgs/「조직 이름」 -f state=active --jq .state</code>로 받아들일 수도 있다[H8].</p>
 <blockquote class="blockquote">
@@ -1787,8 +1803,8 @@ init.defaultbranch=main</code></pre>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> repo clone 「조직 이름」/「키트 저장소」 ~/kits-repo</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> ~/kits-repo</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> repo clone 「조직 이름」/「키트 저장소」 ~/kits-repo</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> ~/kits-repo</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>Agent_01주차</code></pre>
 <p>위 출력은 예시이다. 키트 저장소에는 학기가 진행되는 대로 장 폴더가 하나씩 올라온다. <code>gh repo clone</code>이 「Could not resolve to a Repository」로 끝나면 조직 초대를 받아들이지 않았거나 저장소 이름이 틀린 것이다.</p>
 </section>
@@ -1798,10 +1814,10 @@ init.defaultbranch=main</code></pre>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">-C</span> ~/kits-repo pull</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/kits</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-rn</span> ~/kits-repo/Agent_NN주차 ~/kits/</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> ~/kits/Agent_NN주차</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">-C</span> ~/kits-repo pull</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/kits</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-rn</span> ~/kits-repo/Agent_NN주차 ~/kits/</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> ~/kits/Agent_NN주차</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>Updating c366932..f12b1bb
 Fast-forward
  Agent_03주차/README.md | 1 +
@@ -1889,9 +1905,9 @@ Fast-forward
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">-C</span> ~/kits-repo pull</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> ~/kits/Agent_NN주차 ~/kits/Agent_NN주차_내사본</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-rn</span> ~/kits-repo/Agent_NN주차 ~/kits/</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">-C</span> ~/kits-repo pull</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> ~/kits/Agent_NN주차 ~/kits/Agent_NN주차_내사본</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-rn</span> ~/kits-repo/Agent_NN주차 ~/kits/</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>~/kits-repo</code> 안에서 파일을 고치면 다음 <code>git pull</code>이 충돌로 멈출 수 있다. <code>git -C ~/kits-repo status --short</code>에 고친 파일이 보이면, 필요한 내용을 <code>~/kits/</code> 쪽으로 옮긴 뒤 <code>git -C ~/kits-repo restore &lt;파일&gt;</code>로 되돌린다.</p>
 <p><span class="check-badge">확인 6</span> <code>ls ~/kits-repo</code>에 <code>Agent_</code> 폴더가 보이고, <code>git -C ~/kits-repo pull</code>이 오류 없이 끝나며, <code>ls ~/kits/Agent_01주차</code>가 키트의 <code>README.md</code>를 보인다.</p>
 <hr>
@@ -1905,12 +1921,12 @@ Fast-forward
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/kits ~/agent-lab</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">-C</span> ~/kits-repo pull</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-rn</span> ~/kits-repo/Agent_01주차 ~/kits/</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-rn</span> ~/kits/Agent_01주차/jobprep ~/agent-lab/</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-A</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/kits ~/agent-lab</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">-C</span> ~/kits-repo pull</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-rn</span> ~/kits-repo/Agent_01주차 ~/kits/</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-rn</span> ~/kits/Agent_01주차/jobprep ~/agent-lab/</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-A</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>.env.example
 .gitignore
 README.md
@@ -1933,9 +1949,9 @@ web</code></pre>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> repo create jobprep <span class="at">--private</span> <span class="at">--source</span><span class="op">=</span>. <span class="at">--remote</span><span class="op">=</span>origin <span class="at">--push</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">-sb</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-1</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> repo view <span class="at">--json</span> visibility <span class="at">--jq</span> .visibility</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> repo create jobprep <span class="at">--private</span> <span class="at">--source</span><span class="op">=</span>. <span class="at">--remote</span><span class="op">=</span>origin <span class="at">--push</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">-sb</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-1</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> repo view <span class="at">--json</span> visibility <span class="at">--jq</span> .visibility</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>✓ Created repository 「GitHub 아이디」/jobprep on GitHub
 ✓ Added remote https://github.com/「GitHub 아이디」/jobprep.git
 ✓ Pushed commits to https://github.com/「GitHub 아이디」/jobprep.git
@@ -1957,12 +1973,12 @@ PRIVATE</code></pre>
 <p>이 과목은 가상 환경을 <strong>저장소 맨 위에 하나</strong>(<code>~/agent-lab/jobprep/.venv</code>) 만들어 학기 내내 쓴다. 저장소가 하나뿐이고 훅(6장), 하네스 점검(7장), 루프(8장)가 저장소의 <code>.venv</code>를 찾아 쓰기 때문이다. 기준 저장소의 <code>.gitignore</code>가 <code>.venv/</code>를 무시한다. 가상 환경은 1장 0절에서 만든다.</p>
 <p><strong>터미널마다 가상 환경을 먼저 켜고, 그 뒤로는 <code>python</code>과 <code>python -m pytest</code>로 부른다.</strong> <code>.venv/bin/python …</code>처럼 경로로 부르는 것과 <code>python3</code>은 쓰지 않는다. Windows의 가상 환경에는 <code>.venv/bin/</code>이 없고 <code>.venv/Scripts/</code>가 있으며, Git Bash에는 <code>python3</code>이 없기 때문이다. Claude Code도 가상 환경을 켠 터미널에서 띄운다. 그래야 Claude Code가 실행하는 <code>python</code>이 같은 가상 환경을 쓴다.</p>
 <p><strong>[터미널]</strong> (Windows의 Git Bash. macOS는 첫 두 줄의 <code>python</code>을 <code>python3</code>으로, <code>Scripts</code>를 <code>bin</code>으로 바꾼다)</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> venv .venv</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/Scripts/activate</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install <span class="at">-r</span> requirements.txt</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pytest <span class="at">-q</span></span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> check-ignore <span class="at">-v</span> .venv</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> venv .venv</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/Scripts/activate</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install <span class="at">-r</span> requirements.txt</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pytest <span class="at">-q</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> check-ignore <span class="at">-v</span> .venv</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>...........................................                              [100%]
 43 passed in 1.16s
 .gitignore:7:.venv/ .venv</code></pre>
@@ -2015,7 +2031,7 @@ PRIVATE</code></pre>
 <div class="code-label where-server">
 <span>파일: 훅과 스크립트에서 파이썬을 고르는 줄</span>
 </div>
-<div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">[</span> <span class="ot">-x</span> <span class="st">"</span><span class="va">$ROOT</span><span class="st">/.venv/Scripts/python.exe"</span> <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span> <span class="va">PY</span><span class="op">=</span><span class="st">"</span><span class="va">$ROOT</span><span class="st">/.venv/Scripts/python.exe"</span><span class="kw">;</span> <span class="cf">else</span> <span class="va">PY</span><span class="op">=</span><span class="st">"</span><span class="va">$ROOT</span><span class="st">/.venv/bin/python"</span><span class="kw">;</span> <span class="cf">fi</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">[</span> <span class="ot">-x</span> <span class="st">"</span><span class="va">$ROOT</span><span class="st">/.venv/Scripts/python.exe"</span> <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span> <span class="va">PY</span><span class="op">=</span><span class="st">"</span><span class="va">$ROOT</span><span class="st">/.venv/Scripts/python.exe"</span><span class="kw">;</span> <span class="cf">else</span> <span class="va">PY</span><span class="op">=</span><span class="st">"</span><span class="va">$ROOT</span><span class="st">/.venv/bin/python"</span><span class="kw">;</span> <span class="cf">fi</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>6장 키트의 <code>run_tests.sh</code>, <code>stop_gate.sh</code>, <code>check_hooks.sh</code>는 이미 두 경로를 모두 찾는다(2026-11-16 키트에서 확인). 가상 환경이 없거나 이름이 다르면 훅이 「<code>.venv</code>를 찾지 못하였다」로 멈춘다. 학습자가 훅이나 스크립트를 새로 쓸 때도 이 규칙을 따른다.</p>
 </section>
 <section id="a-9-3.-장별로-더-설치하는-패키지" class="level3">
@@ -2073,10 +2089,10 @@ PRIVATE</code></pre>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/Scripts/activate</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install <span class="at">-r</span> requirements-dev.txt</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip list <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-iE</span> <span class="st">"^(pytest|coverage|mcp|claude-agent-sdk) "</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/Scripts/activate</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install <span class="at">-r</span> requirements-dev.txt</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip list <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-iE</span> <span class="st">"^(pytest|coverage|mcp|claude-agent-sdk) "</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>coverage          7.17.3
 pytest            9.2.0</code></pre>
 <p>목록에는 그 장까지 설치한 것만 보인다. 설치 중에 이미 있던 패키지를 다른 판으로 바꾼다는 줄(<code>Successfully uninstalled 패키지-판</code>)이 나오면, 두 장의 파일이 같은 패키지를 다른 판으로 고정한 것이다. 그대로 진행하되 교수에게 알린다. 키트에 없는 패키지를 Claude Code가 설치하자고 하면 바로 설치하지 않는다. 설치하기로 했으면 판과 함께 <code>requirements.txt</code>에 적고, 13장 이후에는 잠금 파일도 다시 만든다.</p>
@@ -2085,14 +2101,14 @@ pytest            9.2.0</code></pre>
 <h3 class="anchored" data-anchor-id="a-9-4.-다시-만들기">A-9-4. 다시 만들기</h3>
 <p>패키지가 꼬였으면 가상 환경을 지우고 다시 만든다. 저장소 안의 모든 <code>requirements*.txt</code>를 다시 설치한다. 잠금 파일이 있으면(13장 이후) 잠금 파일로 설치한다.</p>
 <p><strong>[터미널]</strong> (Windows. macOS는 <code>python3 -m venv</code>와 <code>bin/activate</code>)</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep <span class="kw">&amp;&amp;</span> <span class="bu">pwd</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="ex">deactivate</span> <span class="dv">2</span><span class="op">&gt;</span>/dev/null</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> .venv</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> venv .venv</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/Scripts/activate</span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install <span class="at">-q</span> <span class="at">-r</span> requirements.txt</span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> f <span class="kw">in</span> requirements-dev.txt agent_loop/requirements-sdk.txt<span class="kw">;</span> <span class="cf">do</span> <span class="bu">[</span> <span class="ot">-f</span> <span class="st">"</span><span class="va">$f</span><span class="st">"</span> <span class="bu">]</span> <span class="kw">&amp;&amp;</span> <span class="ex">python</span> <span class="at">-m</span> pip install <span class="at">-q</span> <span class="at">-r</span> <span class="st">"</span><span class="va">$f</span><span class="st">"</span><span class="kw">;</span> <span class="cf">done</span></span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pytest <span class="at">-q</span> <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-1</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep <span class="kw">&amp;&amp;</span> <span class="bu">pwd</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="ex">deactivate</span> <span class="dv">2</span><span class="op">&gt;</span>/dev/null</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> .venv</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> venv .venv</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/Scripts/activate</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install <span class="at">-q</span> <span class="at">-r</span> requirements.txt</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> f <span class="kw">in</span> requirements-dev.txt agent_loop/requirements-sdk.txt<span class="kw">;</span> <span class="cf">do</span> <span class="bu">[</span> <span class="ot">-f</span> <span class="st">"</span><span class="va">$f</span><span class="st">"</span> <span class="bu">]</span> <span class="kw">&amp;&amp;</span> <span class="ex">python</span> <span class="at">-m</span> pip install <span class="at">-q</span> <span class="at">-r</span> <span class="st">"</span><span class="va">$f</span><span class="st">"</span><span class="kw">;</span> <span class="cf">done</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pytest <span class="at">-q</span> <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-1</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>rm -rf .venv</code>는 반드시 <code>pwd</code>가 저장소 맨 위를 출력한 것을 본 뒤에 실행한다. VS Code나 Claude Code, 띄워 둔 서버가 그 가상 환경의 파이썬을 쓰는 중이면 Windows에서는 파일이 잠겨 지우기가 실패할 수 있다. 그 터미널들을 닫고 다시 한다.</p>
 <p><span class="check-badge">확인 8</span> 가상 환경을 켠 터미널에서 <code>command -v python</code>이 저장소의 <code>.venv</code> 안을 가리키고, <code>python -m pytest -q</code>의 마지막 줄이 <code>passed</code>로 끝나며(1장 기준 <code>43 passed</code>), <code>git check-ignore -v .venv</code>가 <code>.gitignore</code>의 줄을 출력한다.</p>
 <hr>
@@ -2131,9 +2147,9 @@ pytest            9.2.0</code></pre>
 <h3 class="anchored" data-anchor-id="a-10-1.-띄우고-확인하기">A-10-1. 띄우고 확인하기</h3>
 <p>먼저 포트가 비어 있는지 보고 API 서버를 띄운다.</p>
 <p><strong>[터미널]</strong> (가상 환경을 켠 터미널)</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">netstat</span> <span class="at">-ano</span> <span class="kw">|</span> <span class="ex">findstr</span> :8000 <span class="kw">||</span> <span class="bu">echo</span> <span class="st">"8000 비어 있음"</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="va">LLM_FAKE</span><span class="op">=</span>1 <span class="ex">uvicorn</span> api.main:app <span class="at">--port</span> 8000</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">netstat</span> <span class="at">-ano</span> <span class="kw">|</span> <span class="ex">findstr</span> :8000 <span class="kw">||</span> <span class="bu">echo</span> <span class="st">"8000 비어 있음"</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="va">LLM_FAKE</span><span class="op">=</span>1 <span class="ex">uvicorn</span> api.main:app <span class="at">--port</span> 8000</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>8000 비어 있음
 INFO:     Started server process [16592]
 INFO:     Waiting for application startup.
@@ -2143,15 +2159,15 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)</code>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb36"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> http://127.0.0.1:8000/api/health</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> http://127.0.0.1:8000/api/health</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>{"status":"ok","llm_fake":true,"jobs":30}</code></pre>
 <p>웹 화면까지 볼 때는 셋째 터미널에서 웹 서버를 띄우고 브라우저로 연다.</p>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb38"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/Scripts/activate</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> http.server 8100 <span class="at">--bind</span> 127.0.0.1 <span class="at">--directory</span> web</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/Scripts/activate</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> http.server 8100 <span class="at">--bind</span> 127.0.0.1 <span class="at">--directory</span> web</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="code-label where-server">
 <span>브라우저</span>
 </div>
@@ -2173,9 +2189,9 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)</code>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb41"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">netstat</span> <span class="at">-ano</span> <span class="kw">|</span> <span class="ex">findstr</span> :8000</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="ex">tasklist</span> //FI <span class="st">"PID eq 16592"</span></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="ex">taskkill</span> //PID 16592 //F</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">netstat</span> <span class="at">-ano</span> <span class="kw">|</span> <span class="ex">findstr</span> :8000</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="ex">tasklist</span> //FI <span class="st">"PID eq 16592"</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="ex">taskkill</span> //PID 16592 //F</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>  TCP    127.0.0.1:8000         0.0.0.0:0              LISTENING       16592
 python.exe                   16592 Console                    1     51,660 K
 성공: 프로세스(PID 16592)가 종료되었습니다.</code></pre>
@@ -2245,10 +2261,10 @@ EMBED_MODEL=nomic-embed-text</code></pre>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb44"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> .env.example .env</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> 600 .env</span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> check-ignore <span class="at">-v</span> .env</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> .env.example .env</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> 600 .env</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> check-ignore <span class="at">-v</span> .env</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>.gitignore:2:.env   .env</code></pre>
 <p>(2026-11-16, Git Bash에서 실행.)</p>
 <blockquote class="blockquote">
@@ -2308,8 +2324,8 @@ EMBED_MODEL=nomic-embed-text</code></pre>
 </table>
 <p>키가 들어갔는지는 값을 출력하지 않고 확인한다.</p>
 <p><strong>[터미널]</strong> (가상 환경을 켠 터미널)</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"from dotenv import load_dotenv; import os; load_dotenv(); print('KEY_SET' if os.getenv('ANTHROPIC_API_KEY') else 'KEY_EMPTY')"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"from dotenv import load_dotenv; import os; load_dotenv(); print('KEY_SET' if os.getenv('ANTHROPIC_API_KEY') else 'KEY_EMPTY')"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>KEY_EMPTY</code></pre>
 <p>키를 넣기 전이면 <code>KEY_EMPTY</code>, 넣은 뒤이면 <code>KEY_SET</code>이 나온다. 키를 발급하지 않은 학습자는 학기 내내 <code>KEY_EMPTY</code>이다.</p>
 <p><strong>키를 커밋하거나 푸시했으면</strong> 그 키는 이미 샌 것으로 본다. 다음 커밋에서 파일을 지워도 기록에 남는다. 바로 Console에서 그 키를 폐기하고 새 키를 만든 뒤 교수에게 알린다. 기록을 고쳐 쓰는 것(강제 푸시)으로 해결하려 하지 않는다. 비공개 저장소여도 같다(11장).</p>
@@ -2680,8 +2696,8 @@ EMBED_MODEL=nomic-embed-text</code></pre>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb48"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> check-ignore <span class="at">-v</span> .claude/settings.local.json CLAUDE.local.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> check-ignore <span class="at">-v</span> .claude/settings.local.json CLAUDE.local.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>.gitignore:26:.claude/settings.local.json   .claude/settings.local.json
 .gitignore:27:CLAUDE.local.md   CLAUDE.local.md</code></pre>
 <p>줄 번호는 저장소마다 다르다. 아무것도 출력하지 않으면 <code>.gitignore</code>에 없는 것이다(3장 7-3).</p>
@@ -2699,11 +2715,11 @@ EMBED_MODEL=nomic-embed-text</code></pre>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb50"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/agent-lab/cc-practice</span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">CLAUDE_CONFIG_DIR</span><span class="op">=</span>~/agent-lab/cc-practice</span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> auth status <span class="at">--text</span></span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> plugin list</span>
-<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-A</span> ~/agent-lab/cc-practice</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/agent-lab/cc-practice</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">CLAUDE_CONFIG_DIR</span><span class="op">=</span>~/agent-lab/cc-practice</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> auth status <span class="at">--text</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> plugin list</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-A</span> ~/agent-lab/cc-practice</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>Anthropic base URL: https://api.anthropic.com
 Not logged in. Run claude auth login to authenticate.
 No plugins installed. Use `claude plugin install` to install a plugin.
@@ -2805,10 +2821,10 @@ backups</code></pre>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb52"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/ops-demo</span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> plugin marketplace add ~/agent-lab/jobprep <span class="at">--scope</span> local</span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> plugin install jobprep-ops@jobprep-team <span class="at">--scope</span> local</span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> .claude/settings.local.json</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/ops-demo</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> plugin marketplace add ~/agent-lab/jobprep <span class="at">--scope</span> local</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> plugin install jobprep-ops@jobprep-team <span class="at">--scope</span> local</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> .claude/settings.local.json</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>Adding marketplace…✔ Successfully added marketplace: jobprep-team (declared in local settings)
 Installing plugin "jobprep-ops@jobprep-team"...✔ Successfully installed plugin: jobprep-ops@jobprep-team (scope: local)
 {
@@ -2940,7 +2956,7 @@ demo-local:
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb55"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="at">--help</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-E</span> <span class="st">"^  (-p, )?--(print|output-format|allowedTools|disallowedTools|permission-mode|max-budget-usd|bare|permission-prompts)"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="at">--help</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-E</span> <span class="st">"^  (-p, )?--(print|output-format|allowedTools|disallowedTools|permission-mode|max-budget-usd|bare|permission-prompts)"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>  --allowedTools, --allowed-tools &lt;tools...&gt;
   --bare                                Minimal mode: skip hooks (those defined
   --disallowedTools, --disallowed-tools &lt;tools...&gt;
@@ -3058,10 +3074,10 @@ demo-local:
 <p><strong>[최신 자료 자리: Agent SDK의 판, 크기, 파이썬 요구]</strong> 확인할 곳: <a href="https://pypi.org/project/claude-agent-sdk/" class="uri">https://pypi.org/project/claude-agent-sdk/</a>, <a href="https://code.claude.com/docs/en/agent-sdk/overview" class="uri">https://code.claude.com/docs/en/agent-sdk/overview</a>. 마지막으로 확인한 날짜와 값: 2026-11-14, 9장이 고정한 0.2.182, Windows 휠 약 164MB, 파이썬 3.10 이상. macOS 휠의 크기는 확인하지 않았다. 새 판이 나와도 9장은 고정한 판을 쓰므로, 고정을 바꿀지는 9장 전에 키트의 테스트로 정한다.</p>
 </blockquote>
 <p><strong>[터미널]</strong> (가상 환경을 켠 터미널)</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">df</span> <span class="at">-h</span> ~ <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-1</span></span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install <span class="at">-r</span> agent_loop/requirements-sdk.txt</span>
-<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip show claude-agent-sdk <span class="kw">|</span> <span class="fu">head</span> <span class="at">-3</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">df</span> <span class="at">-h</span> ~ <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-1</span></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install <span class="at">-r</span> agent_loop/requirements-sdk.txt</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip show claude-agent-sdk <span class="kw">|</span> <span class="fu">head</span> <span class="at">-3</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>설치 전에 <code>df -h ~</code>로 사용자 폴더가 있는 드라이브에 1GB 정도의 여유가 있는지 본다. 학교 네트워크에서 여러 학생이 같은 시간에 내려받으면 오래 걸리므로, 9장 전 주에 집에서 미리 설치해 두는 것이 좋다.</p>
 </section>
 <section id="a-16-2.-인증-api-키만" class="level3">
@@ -3105,7 +3121,7 @@ demo-local:
 <section id="a-17.-orca-설치와-로컬-작업-공간" class="level2">
 <h2 class="anchored" data-anchor-id="a-17.-orca-설치와-로컬-작업-공간">A-17. Orca 설치와 로컬 작업 공간</h2>
 <p>Orca는 작업마다 git worktree를 만들고 그 안에서 Claude Code 같은 CLI 에이전트를 나란히 돌리는 데스크톱 프로그램이다. 무료 오픈소스(MIT 사용 허가)이며 macOS, Windows, Linux에서 돈다[OR1]. 계정이 필요 없다. 이 과목은 10장 9-11에서 내 PC의 Orca로 내 PC의 저장소를 열어 작업 공간 둘을 만들고, 각 작업 공간에서 자기 계정의 Claude Code를 돌린다. Orca의 실험 기능인 오케스트레이션(조정자 에이전트가 작업자 에이전트를 띄우는 기능)은 교수 시연으로만 본다.</p>
-<p>앞 과목 「LLM 서비스 개발」 12장에서 Orca를 설치하였다면, 이 절은 A-17-3의 확인만 하고 넘어간다.</p>
+<p>Orca는 이 과목의 필수 준비물이다. 10장의 핵심 실습을 Orca로 하기 때문이다(사용자 결정 12, 2026-11-17). 실습실 PC에서 Orca가 돌지 않으면 개인 노트북에 설치한다. 앞 과목 「LLM 서비스 개발」 12장에서 Orca를 설치하였다면, 이 절은 A-17-3의 확인만 하고 넘어간다.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -3169,8 +3185,8 @@ demo-local:
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb58"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nproc</span></span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-2</span> /proc/meminfo</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nproc</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-2</span> /proc/meminfo</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>8
 MemTotal:       16478388 kB
 MemFree:         3758768 kB</code></pre>
@@ -3358,9 +3374,9 @@ MemFree:         3758768 kB</code></pre>
 <h3 class="anchored" data-anchor-id="a-19-1.-pip-tools">A-19-1. pip-tools</h3>
 <p>도구용 가상 환경은 켜지 않고 경로로 부른다. 프로젝트의 가상 환경과 섞이지 않게 하기 위해서이다.</p>
 <p><strong>[터미널]</strong> (Windows. macOS는 <code>python3 -m venv</code>, <code>Scripts</code>를 <code>bin</code>으로)</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> venv ~/agent-lab/.tools</span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="ex">~/agent-lab/.tools/Scripts/python</span> <span class="at">-m</span> pip install <span class="at">--quiet</span> pip-tools==7.6.2</span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="ex">~/agent-lab/.tools/Scripts/pip-compile</span> <span class="at">--version</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> venv ~/agent-lab/.tools</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="ex">~/agent-lab/.tools/Scripts/python</span> <span class="at">-m</span> pip install <span class="at">--quiet</span> pip-tools==7.6.2</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="ex">~/agent-lab/.tools/Scripts/pip-compile</span> <span class="at">--version</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>pip-compile, version 7.6.2</code></pre>
 <p>(2026-11-16, Windows 11의 Git Bash와 파이썬 3.13.7에서 스크래치의 도구 환경으로 실행.)</p>
 <ul>
@@ -3373,12 +3389,12 @@ MemFree:         3758768 kB</code></pre>
 <h3 class="anchored" data-anchor-id="a-19-2.-actionlint">A-19-2. actionlint</h3>
 <p>actionlint는 워크플로의 문법, 키 이름, 식, 작업 사이의 참조를 검사한다. 공식 릴리스에서 받고, 같은 릴리스의 체크섬 목록으로 내려받은 파일을 확인한 뒤 푼다[T1]. Windows용 파일은 <code>actionlint_1.7.12_windows_amd64.zip</code>이고, 압축 안의 실행 파일은 <code>actionlint.exe</code>이다.</p>
 <p><strong>[터미널]</strong> (Windows의 Git Bash)</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/agent-lab/.tools/actionlint <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> ~/agent-lab/.tools/actionlint</span>
-<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> release download v1.7.12 <span class="at">-R</span> rhysd/actionlint <span class="dt">\</span></span>
-<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-p</span> <span class="st">'actionlint_1.7.12_windows_amd64.zip'</span> <span class="at">-p</span> <span class="st">'actionlint_1.7.12_checksums.txt'</span></span>
-<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> windows_amd64.zip actionlint_1.7.12_checksums.txt <span class="kw">|</span> <span class="fu">sha256sum</span> <span class="at">-c</span> <span class="at">-</span></span>
-<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> <span class="at">-o</span> actionlint_1.7.12_windows_amd64.zip actionlint.exe</span>
-<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a><span class="ex">./actionlint</span> <span class="at">-version</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-1</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/agent-lab/.tools/actionlint <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> ~/agent-lab/.tools/actionlint</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> release download v1.7.12 <span class="at">-R</span> rhysd/actionlint <span class="dt">\</span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-p</span> <span class="st">'actionlint_1.7.12_windows_amd64.zip'</span> <span class="at">-p</span> <span class="st">'actionlint_1.7.12_checksums.txt'</span></span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> windows_amd64.zip actionlint_1.7.12_checksums.txt <span class="kw">|</span> <span class="fu">sha256sum</span> <span class="at">-c</span> <span class="at">-</span></span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> <span class="at">-o</span> actionlint_1.7.12_windows_amd64.zip actionlint.exe</span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a><span class="ex">./actionlint</span> <span class="at">-version</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-1</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>actionlint_1.7.12_windows_amd64.zip: OK
 Archive:  actionlint_1.7.12_windows_amd64.zip
   inflating: actionlint.exe
@@ -3443,16 +3459,16 @@ Archive:  actionlint_1.7.12_windows_amd64.zip
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb64"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="at">--version</span></span>
-<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> auth status <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="at">-n</span> 2p</span>
-<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">-C</span> ~/kits-repo pull <span class="at">-q</span> <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> <span class="st">"키트 저장소 최신"</span></span>
-<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"API_KEY_ENV=</span><span class="va">${ANTHROPIC_API_KEY</span><span class="op">:+</span>있음<span class="va">}</span><span class="st">"</span></span>
-<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"CONFIG_DIR=</span><span class="va">${CLAUDE_CONFIG_DIR</span><span class="op">:-</span>기본<span class="va">}</span><span class="st">"</span></span>
-<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"AGENT_CMD=</span><span class="va">${AGENT_CMD</span><span class="op">:-</span>없음<span class="va">}</span><span class="st">"</span></span>
-<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a><span class="bu">command</span> <span class="at">-v</span> python</span>
-<span id="cb64-9"><a href="#cb64-9" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">-sb</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-1</span></span>
-<span id="cb64-10"><a href="#cb64-10" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pytest <span class="at">-q</span> <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-1</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="at">--version</span></span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> auth status <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="at">-n</span> 2p</span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">-C</span> ~/kits-repo pull <span class="at">-q</span> <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> <span class="st">"키트 저장소 최신"</span></span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"API_KEY_ENV=</span><span class="va">${ANTHROPIC_API_KEY</span><span class="op">:+</span>있음<span class="va">}</span><span class="st">"</span></span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"CONFIG_DIR=</span><span class="va">${CLAUDE_CONFIG_DIR</span><span class="op">:-</span>기본<span class="va">}</span><span class="st">"</span></span>
+<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"AGENT_CMD=</span><span class="va">${AGENT_CMD</span><span class="op">:-</span>없음<span class="va">}</span><span class="st">"</span></span>
+<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a><span class="bu">command</span> <span class="at">-v</span> python</span>
+<span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">-sb</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-1</span></span>
+<span id="cb66-10"><a href="#cb66-10" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pytest <span class="at">-q</span> <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-1</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>2.1.296 (Claude Code)
   ✓ Logged in to github.com account 「GitHub 아이디」 (keyring)
 키트 저장소 최신
@@ -4231,84 +4247,90 @@ AGENT_CMD=없음
 <td>2026-11-14(13장의 확인을 따름)</td>
 </tr>
 <tr class="even">
+<td>P4</td>
+<td>Python 문서: Command line and environment(<code>PYTHONUTF8</code>, UTF-8 모드)</td>
+<td><a href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONUTF8" class="uri">https://docs.python.org/3/using/cmdline.html#envvar-PYTHONUTF8</a></td>
+<td>2026-11-17</td>
+</tr>
+<tr class="odd">
 <td>H1</td>
 <td>GitHub Docs: Setting your commit email address</td>
 <td><a href="https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-email-preferences/setting-your-commit-email-address" class="uri">https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-email-preferences/setting-your-commit-email-address</a></td>
 <td>2026-11-14</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>H2</td>
 <td>GitHub CLI 매뉴얼</td>
 <td><a href="https://cli.github.com/manual/" class="uri">https://cli.github.com/manual/</a></td>
 <td>2026-11-16(gh 2.88.1의 도움말로 확인)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>H3</td>
 <td>GitHub Docs: About rulesets(요금제별 사용 조건)</td>
 <td><a href="https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets" class="uri">https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets</a></td>
 <td>2026-11-14</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>H4</td>
 <td>GitHub Docs: GitHub’s plans(Free와 Pro, 비공개 저장소의 고급 기능, Actions 몫, Pages)</td>
 <td><a href="https://docs.github.com/en/get-started/learning-about-github/githubs-plans" class="uri">https://docs.github.com/en/get-started/learning-about-github/githubs-plans</a></td>
 <td>2026-11-14</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>H5</td>
 <td>GitHub Education: Student Developer Pack</td>
 <td><a href="https://education.github.com/pack" class="uri">https://education.github.com/pack</a></td>
 <td>2026-11-14</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>H6</td>
 <td>GitHub Docs: Apply to GitHub Education as a student</td>
 <td><a href="https://docs.github.com/en/education/about-github-education/github-education-for-students/apply-to-github-education-as-a-student" class="uri">https://docs.github.com/en/education/about-github-education/github-education-for-students/apply-to-github-education-as-a-student</a></td>
 <td>2026-11-14</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>H7</td>
 <td>GitHub Docs: Inviting users to join your organization</td>
 <td><a href="https://docs.github.com/en/organizations/managing-membership-in-your-organization/inviting-users-to-join-your-organization" class="uri">https://docs.github.com/en/organizations/managing-membership-in-your-organization/inviting-users-to-join-your-organization</a></td>
 <td>2026-11-14</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>H8</td>
 <td>GitHub REST API: Organization members(인증된 사용자의 조직 구성원 상태)</td>
 <td><a href="https://docs.github.com/en/rest/orgs/members" class="uri">https://docs.github.com/en/rest/orgs/members</a></td>
 <td>2026-11-14</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>H9</td>
 <td>GitHub Docs: Using secrets in GitHub Actions</td>
 <td><a href="https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets" class="uri">https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets</a></td>
 <td>2026-11-14</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>T1</td>
 <td>rhysd/actionlint 릴리스 v1.7.12</td>
 <td><a href="https://github.com/rhysd/actionlint/releases/tag/v1.7.12" class="uri">https://github.com/rhysd/actionlint/releases/tag/v1.7.12</a></td>
 <td>2026-11-16</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>R1</td>
 <td>「LLM 서비스 개발」 부록 A 실습 환경(2027-1판)</td>
 <td>볼트 <code>courses/llm-service/book/Service_부록A_실습환경_학생용.md</code></td>
 <td>2026-11-16</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>OR1</td>
 <td>Orca README(stablyai/orca): MIT, 지원 OS, 설치 수단, Homebrew 이름 경고</td>
 <td><a href="https://github.com/stablyai/orca" class="uri">https://github.com/stablyai/orca</a></td>
 <td>2026-11-16</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>OR2</td>
 <td>Orca 문서: Worktrees(Add a new project, Run on, Branch from, Branch name, 삭제, Force Delete, 자동 정리 규칙)</td>
 <td><a href="https://orca.dev/docs/model/worktrees" class="uri">https://orca.dev/docs/model/worktrees</a></td>
 <td>2026-11-16</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>OR4</td>
 <td>Orca Releases(최신 안정판 v1.4.261, 2026-11-16)</td>
 <td><a href="https://github.com/stablyai/orca/releases" class="uri">https://github.com/stablyai/orca/releases</a></td>
