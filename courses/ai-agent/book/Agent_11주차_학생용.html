@@ -2621,6 +2621,10 @@ model: haiku
 <ul>
 <li><span class="check-badge">확인 32</span> <code>.mcp.json</code>의 서버가 모두 로컬 프로세스(stdio)이고 출처를 설명할 수 있으며, <code>requirements.txt</code>에 판을 고정하지 않은 줄이 없고, <code>.github/dependabot.yml</code>이 커밋되었다.</li>
 </ul>
+<p><strong>배포 전 취약점 검사 [선택, 교수 시연].</strong> 배포 전에 코드의 취약점을 훑는 도구로, Anthropic은 Claude Code용 Claude Security 플러그인을 베타로 내놓았다[C8]. 공식 마켓플레이스의 <code>claude-security</code>를 들이면 <code>/claude-security</code> 명령으로 저장소나 브랜치의 변경을 여러 에이전트가 검사하고, 찾은 문제마다 패치 파일을 만든다. 패치는 자동 적용되지 않고 사람이 읽고 <code>git apply</code>로 적용한다[C8]. 실제 모델을 여러 번 부르므로 수업에서는 교수 시연으로 보인다. 플러그인도 공급망이므로 설치 전에 「설치될 것」을 읽는다. 검사기가 찾지 못했다고 취약점이 없는 것은 아니며, 테스트와 위협 모델을 대신하지 않는다.</p>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: Claude Security 플러그인]</strong> 베타 여부, 설치 명령, 이용 조건. 확인할 곳 [C8]. 2026-11-16 값: Claude Code 사용자 대상 베타, <code>/plugin install claude-security@claude-plugins-official</code>, 명령은 <code>/claude-security</code> 하나.</p>
+</blockquote>
 <hr>
 </section>
 </section>
@@ -3004,126 +3008,132 @@ model: haiku
 <td>2026-11-14</td>
 </tr>
 <tr class="odd">
+<td>C8</td>
+<td>Claude Code 문서: Claude Security</td>
+<td><a href="https://code.claude.com/docs/en/claude-security" class="uri">https://code.claude.com/docs/en/claude-security</a></td>
+<td>2026-11-16</td>
+</tr>
+<tr class="even">
 <td>E1</td>
 <td>Anthropic: Mitigating the risk of prompt injections in browser use (2025-11-24)</td>
 <td><a href="https://www.anthropic.com/research/prompt-injection-defenses" class="uri">https://www.anthropic.com/research/prompt-injection-defenses</a></td>
 <td>2026-11-14</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>E2</td>
 <td>Anthropic Engineering: Making Claude Code safer with sandboxing (2025-10-20)</td>
 <td><a href="https://www.anthropic.com/engineering/claude-code-sandboxing" class="uri">https://www.anthropic.com/engineering/claude-code-sandboxing</a></td>
 <td>2026-11-14</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>S1</td>
 <td>Simon Willison: The lethal trifecta for AI agents (2025-06-16)</td>
 <td><a href="https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/" class="uri">https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/</a></td>
 <td>2026-11-14</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>I1</td>
 <td>Invariant Labs: GitHub MCP Exploited (2025-05-26)</td>
 <td><a href="https://invariantlabs.ai/blog/mcp-github-vulnerability" class="uri">https://invariantlabs.ai/blog/mcp-github-vulnerability</a></td>
 <td>2026-11-14</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>I2</td>
 <td>Invariant Labs: MCP Security Notification: Tool Poisoning Attacks (2025-04-01)</td>
 <td><a href="https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks" class="uri">https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks</a></td>
 <td>2026-11-14</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>I3</td>
 <td>General Analysis: Supabase MCP can leak your entire SQL database (2025-07-08)</td>
 <td><a href="https://generalanalysis.com/blog/supabase-mcp-blog" class="uri">https://generalanalysis.com/blog/supabase-mcp-blog</a></td>
 <td>2026-11-14</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>I4</td>
 <td>AWS Security Bulletin AWS-2025-015: Amazon Q Developer Extension for VS Code 1.84 (2025-07-23)</td>
 <td><a href="https://aws.amazon.com/security/security-bulletins/AWS-2025-015/" class="uri">https://aws.amazon.com/security/security-bulletins/AWS-2025-015/</a></td>
 <td>2026-11-14</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>I5</td>
 <td>GitHub Advisory GHSA-cxm3-wv7p-598c: Malicious versions of Nx (2025-08-27)</td>
 <td><a href="https://github.com/nrwl/nx/security/advisories/GHSA-cxm3-wv7p-598c" class="uri">https://github.com/nrwl/nx/security/advisories/GHSA-cxm3-wv7p-598c</a></td>
 <td>2026-11-14</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>G1</td>
 <td>GitHub Docs: About secret scanning</td>
 <td><a href="https://docs.github.com/en/code-security/secret-scanning/introduction/about-secret-scanning" class="uri">https://docs.github.com/en/code-security/secret-scanning/introduction/about-secret-scanning</a></td>
 <td>2026-11-14</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>G2</td>
 <td>GitHub Docs: About push protection</td>
 <td><a href="https://docs.github.com/en/code-security/secret-scanning/introduction/about-push-protection" class="uri">https://docs.github.com/en/code-security/secret-scanning/introduction/about-push-protection</a></td>
 <td>2026-11-14</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>G3</td>
 <td>GitHub Docs: Removing sensitive data from a repository</td>
 <td><a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository" class="uri">https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository</a></td>
 <td>2026-11-14</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>G4</td>
 <td>GitHub Changelog: Anthropic is now a GitHub secret scanning partner (2024-08-20)</td>
 <td><a href="https://github.blog/changelog/2024-08-20-anthropic-is-now-a-github-secret-scanning-partner/" class="uri">https://github.blog/changelog/2024-08-20-anthropic-is-now-a-github-secret-scanning-partner/</a></td>
 <td>2026-11-14</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>G5</td>
 <td>GitHub Changelog: Secret scanning blocks Anthropic keys by default (2026-10-13)</td>
 <td><a href="https://github.blog/changelog/2026-10-13-secret-scanning-blocks-anthropic-keys-by-default-adds-salesforce" class="uri">https://github.blog/changelog/2026-10-13-secret-scanning-blocks-anthropic-keys-by-default-adds-salesforce</a></td>
 <td>2026-11-14</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>G6</td>
 <td>GitHub Docs: Configuring Dependabot version updates</td>
 <td><a href="https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuring-dependabot-version-updates" class="uri">https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuring-dependabot-version-updates</a></td>
 <td>2026-11-14</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>G7</td>
 <td>GitHub Docs: About Dependabot alerts</td>
 <td><a href="https://docs.github.com/en/code-security/dependabot/dependabot-alerts/about-dependabot-alerts" class="uri">https://docs.github.com/en/code-security/dependabot/dependabot-alerts/about-dependabot-alerts</a></td>
 <td>2026-11-14</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>G8</td>
 <td>GitHub Docs: Dependabot supported ecosystems and repositories</td>
 <td><a href="https://docs.github.com/en/code-security/dependabot/ecosystems-supported-by-dependabot/supported-ecosystems-and-repositories" class="uri">https://docs.github.com/en/code-security/dependabot/ecosystems-supported-by-dependabot/supported-ecosystems-and-repositories</a></td>
 <td>2026-11-14</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>N1</td>
 <td>NIST AI 600-1: AI RMF Generative AI Profile (2024-07-26)</td>
 <td><a href="https://doi.org/10.6028/NIST.AI.600-1" class="uri">https://doi.org/10.6028/NIST.AI.600-1</a></td>
 <td>2026-11-14 (발간 정보 페이지 확인)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>N2</td>
 <td>NIST AI Risk Management Framework (AI RMF 1.0, 2023-01-26)</td>
 <td><a href="https://www.nist.gov/itl/ai-risk-management-framework" class="uri">https://www.nist.gov/itl/ai-risk-management-framework</a></td>
 <td>2026-11-14</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>M1</td>
 <td>Microsoft Learn: Threats - Microsoft Threat Modeling Tool (STRIDE)</td>
 <td><a href="https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool-threats" class="uri">https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool-threats</a></td>
 <td>2026-11-14</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>W1</td>
 <td>MDN Web Docs: Node.textContent</td>
 <td><a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent" class="uri">https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent</a></td>
 <td>2026-11-14</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>R1</td>
 <td>RFC 2606: Reserved Top Level DNS Names</td>
 <td><a href="https://www.rfc-editor.org/rfc/rfc2606.html" class="uri">https://www.rfc-editor.org/rfc/rfc2606.html</a></td>

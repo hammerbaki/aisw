@@ -2723,22 +2723,26 @@ REQ-023  [복합] 통과
 </table>
 <p>명세에서 끌어낼 규칙과 끌어내지 않을 것을 나누면 다음과 같다.</p>
 <ul>
-<li><strong>넣는다</strong>: 기준 문서의 경로와 현재 판, 「명세에 없는 기능을 만들지 않고 정하지 않은 것은 질문으로 보고한다」는 규칙, 「변경은 명세에서 시작한다」와 변경 이력의 규칙, 명세를 고친 뒤 돌릴 검사 명령, 커밋 메시지에 REQ ID를 적는 규칙, 하지 않는 것(키와 개인 정보를 커밋하지 않는다).</li>
+<li><strong>넣는다</strong>: 기준 문서의 경로와 현재 판, 「명세에 없는 기능을 만들지 않고 정하지 않은 것은 질문으로 보고한다」는 규칙, 「변경은 명세에서 시작한다」와 변경 이력의 규칙, 명세를 고친 뒤 돌릴 검사 명령, 커밋 메시지에 REQ ID를 적는 규칙, 코드 주석에 명세 문서와 REQ ID를 적는 규칙, 하지 않는 것(키와 개인 정보를 커밋하지 않는다).</li>
 <li><strong>넣지 않는다</strong>: 요구 문장 자체(명세서에 있다), 일반적인 코딩 조언(「깔끔한 코드를 쓴다」), 날마다 바뀌는 작업 메모, API 키와 서버 주소와 계정, 아직 정하지 않은 기술 선택(9장 이후에 채운다).</li>
 </ul>
+<p>코드 주석의 규칙은 9장 이후에 코드가 생길 때 쓰인다. 요구를 구현한 함수나 블록 바로 위에 명세 문서의 이름과 REQ ID를 적어 두면, 새 세션의 에이전트가 그 코드를 고칠 때 근거가 된 요구 문장을 찾아 읽고 맥락을 되찾는다. 사람이 리뷰할 때도 코드에서 명세로 거슬러 올라가는 길이 된다. 주석에는 요구 문장을 옮기지 않고 위치만 적는다. 문장을 옮기면 명세가 바뀔 때 주석이 낡기 때문이다. 9장의 웹 코드에서는 다음처럼 쓰게 된다.</p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="co">// 명세: docs/요구사항명세서.md REQ-002, REQ-003 (spec-v1)</span></span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">sortAndMarkDeadline</span>(postings<span class="op">,</span> today) {</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>판을 함께 적어 두면 명세가 올라간 뒤 이 코드가 어느 판을 기준으로 쓰였는지 드러난다. 명세를 고칠 때 <code>grep -rn "REQ-003" .</code>으로 영향을 받는 코드를 찾을 수 있는 것도 이 규칙의 쓸모다.</p>
 <p>양식을 복사하고 Claude Code에 초안을 맡긴 뒤 사람이 고친다.</p>
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb80"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
-<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> ~/kits/Service_06주차/양식/CLAUDE_양식.md jobprep/CLAUDE.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> ~/kits/Service_06주차/양식/CLAUDE_양식.md jobprep/CLAUDE.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="code-label where-claude">
 <span>Claude Code</span>
 </div>
 <pre class="text"><code>jobprep/docs/요구사항명세서.md와 docs/추적표.md를 읽고 jobprep/CLAUDE.md 양식을 채워라.
 - 명세의 요구 문장을 옮겨 적지 마라. 명세를 어떻게 쓰는지에 관한 규칙만 적는다
 - 「명세 규칙」에 검사 명령 `python tools/ears_check.py docs/요구사항명세서.md --trace docs/추적표.md --problems ../ch05/문제정의.md`를 넣어라
-- 「작업 방식」에 커밋 메시지 끝에 REQ ID를 적는 규칙과, 여러 파일을 바꾸는 작업은 계획 모드로 먼저 보인다는 규칙을 넣어라
+- 「작업 방식」에 커밋 메시지 끝에 REQ ID를 적는 규칙, 요구를 구현한 함수나 블록 위의 주석에 명세 문서 이름과 REQ ID를 적는 규칙과, 여러 파일을 바꾸는 작업은 계획 모드로 먼저 보인다는 규칙을 넣어라
 - 「기술 제약」 절을 만들고 9장 이후에 채운다고 적어라. 지금 기술을 정하지 마라
 - 200줄을 넘기지 마라</code></pre>
 <p><strong>[파일: jobprep/CLAUDE.md]</strong> (견본 일부)</p>
@@ -2756,9 +2760,9 @@ REQ-023  [복합] 통과
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb83"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/jobprep</span>
-<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wc</span> <span class="at">-l</span> CLAUDE.md</span>
-<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/jobprep</span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wc</span> <span class="at">-l</span> CLAUDE.md</span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="code-label where-claude">
 <span>Claude Code</span>
 </div>
@@ -2794,14 +2798,14 @@ REQ-023  [복합] 통과
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb87"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/jobprep</span>
-<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> tools/ears_check.py docs/요구사항명세서.md <span class="at">--trace</span> docs/추적표.md <span class="at">--problems</span> ../ch05/문제정의.md <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-1</span></span>
-<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
-<span id="cb87-4"><a href="#cb87-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add jobprep</span>
-<span id="cb87-5"><a href="#cb87-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"jobprep 요구사항 명세서 v1, 추적표, 프로젝트 규칙"</span></span>
-<span id="cb87-6"><a href="#cb87-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> tag <span class="at">-a</span> spec-v1 <span class="at">-m</span> <span class="st">"요구사항 명세서 v1: 요구 23개, 수용 기준 23개"</span></span>
-<span id="cb87-7"><a href="#cb87-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> tag <span class="at">-n</span></span>
-<span id="cb87-8"><a href="#cb87-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> show spec-v1 <span class="at">--stat</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-11</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/jobprep</span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> tools/ears_check.py docs/요구사항명세서.md <span class="at">--trace</span> docs/추적표.md <span class="at">--problems</span> ../ch05/문제정의.md <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-1</span></span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
+<span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add jobprep</span>
+<span id="cb88-5"><a href="#cb88-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"jobprep 요구사항 명세서 v1, 추적표, 프로젝트 규칙"</span></span>
+<span id="cb88-6"><a href="#cb88-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> tag <span class="at">-a</span> spec-v1 <span class="at">-m</span> <span class="st">"요구사항 명세서 v1: 요구 23개, 수용 기준 23개"</span></span>
+<span id="cb88-7"><a href="#cb88-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> tag <span class="at">-n</span></span>
+<span id="cb88-8"><a href="#cb88-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> show spec-v1 <span class="at">--stat</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-11</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>요약: 요구 23개, 수용 기준 23개, 오류 0건, 경고 0건
 [main e3ac470] jobprep 요구사항 명세서 v1, 추적표, 프로젝트 규칙
  4 files changed, 578 insertions(+)
@@ -2825,9 +2829,9 @@ Date:   Mon Apr 12 15:51:58 2027 +0900
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb89"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span>
-<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin spec-v1</span>
-<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> ls-remote <span class="at">--tags</span> origin</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin spec-v1</span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> ls-remote <span class="at">--tags</span> origin</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>To github.com:「아이디」/llm-service-lab.git
  * [new tag]         spec-v1 -&gt; spec-v1
 1761264abb157652fa02ba8a3e775b901291eadc    refs/tags/spec-v1
@@ -2854,16 +2858,16 @@ e3ac470bb4ddabb92f5e218575a70a2544c8f87e    refs/tags/spec-v1^{}</code></pre>
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb92"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
-<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> jobprep/tools/ears_check.py jobprep/docs/요구사항명세서.md <span class="at">--trace</span> jobprep/docs/추적표.md <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-1</span></span>
-<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add jobprep/docs</span>
-<span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"명세 v1.1(연습): 공백 검색어 처리 추가 (REQ-901)"</span></span>
-<span id="cb92-5"><a href="#cb92-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff <span class="at">--stat</span> spec-v1 HEAD</span>
-<span id="cb92-6"><a href="#cb92-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span> spec-v1..HEAD</span>
-<span id="cb92-7"><a href="#cb92-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> show spec-v1:jobprep/docs/요구사항명세서.md <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-c</span> <span class="st">'^- \*\*REQ-'</span></span>
-<span id="cb92-8"><a href="#cb92-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> show HEAD:jobprep/docs/요구사항명세서.md <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-c</span> <span class="st">'^- \*\*REQ-'</span></span>
-<span id="cb92-9"><a href="#cb92-9" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch main</span>
-<span id="cb92-10"><a href="#cb92-10" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-c</span> <span class="st">'REQ-901'</span> jobprep/docs/요구사항명세서.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> jobprep/tools/ears_check.py jobprep/docs/요구사항명세서.md <span class="at">--trace</span> jobprep/docs/추적표.md <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-1</span></span>
+<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add jobprep/docs</span>
+<span id="cb93-4"><a href="#cb93-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"명세 v1.1(연습): 공백 검색어 처리 추가 (REQ-901)"</span></span>
+<span id="cb93-5"><a href="#cb93-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff <span class="at">--stat</span> spec-v1 HEAD</span>
+<span id="cb93-6"><a href="#cb93-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span> spec-v1..HEAD</span>
+<span id="cb93-7"><a href="#cb93-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> show spec-v1:jobprep/docs/요구사항명세서.md <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-c</span> <span class="st">'^- \*\*REQ-'</span></span>
+<span id="cb93-8"><a href="#cb93-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> show HEAD:jobprep/docs/요구사항명세서.md <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-c</span> <span class="st">'^- \*\*REQ-'</span></span>
+<span id="cb93-9"><a href="#cb93-9" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch main</span>
+<span id="cb93-10"><a href="#cb93-10" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-c</span> <span class="st">'REQ-901'</span> jobprep/docs/요구사항명세서.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>요약: 요구 24개, 수용 기준 24개, 오류 0건, 경고 0건
 [practice-v1.1 a146111] 명세 v1.1(연습): 공백 검색어 처리 추가 (REQ-901)
  2 files changed, 4 insertions(+)
