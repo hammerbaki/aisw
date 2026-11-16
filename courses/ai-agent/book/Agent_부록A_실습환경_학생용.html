@@ -2477,16 +2477,16 @@ EMBED_MODEL=nomic-embed-text</code></pre>
 </tr>
 <tr class="even">
 <td>3</td>
-<td>규칙을 둔 뒤의 검증 요청(10-7)</td>
+<td>경로별 규칙 확인(10-4), 거부 규칙 시험(10-5), 규칙을 둔 뒤의 검증 요청(10-6)</td>
 <td>구독 계정</td>
-<td>대화형 요청 1회(규칙 적용 뒤 같은 요청을 다시 보내 어긋남이 다시 나오는지 확인)</td>
-<td>규칙 없음 조건의 기록</td>
+<td>대화형 요청 셋. 규칙을 고친 경우에만 검증 하나를 더해 최대 넷</td>
+<td>규칙 없음 조건의 기록, <code>CLAUDE.md</code> 점검 요청과 <code>/init</code></td>
 </tr>
 <tr class="odd">
 <td>6</td>
-<td>고친 검토자 정의의 투입(10-7)</td>
+<td>훅 동작 관찰(7-3, 10-2), 서브에이전트 목록(10-3), 고친 검토자 정의의 투입(10-7)</td>
 <td>구독 계정</td>
-<td>고친 검토자 정의로 대화형 투입 1회</td>
+<td>대화형 요청 다섯</td>
 <td>검토자 1회차·2회차 기록</td>
 </tr>
 <tr class="even">
@@ -3977,9 +3977,9 @@ AGENT_CMD=없음
 </tr>
 <tr class="odd">
 <td>Orca로 만든 작업에 <code>judge.sh</code>가 「…가 없다」</td>
-<td>스크립트는 <code>.claude/worktrees/</code>에서 찾는다</td>
-<td><code>MULTI_WT_BASE</code>에 Orca의 작업 공간 폴더를 준다</td>
-<td>10장 9-5</td>
+<td>스크립트는 작업 브랜치(<code>agent/issue-07-tN</code>)를 꺼낸 worktree를 <code>git worktree list --porcelain</code>에서 찾는다. 브랜치 이름이 다르면 찾지 못한다</td>
+<td><code>git worktree list</code>로 브랜치 이름을 본다. Orca의 Advanced → Branch name을 <code>agent/issue-07-t1</code>처럼 적었는지 확인한다</td>
+<td>10장 9-3, 9-5</td>
 </tr>
 <tr class="even">
 <td><code>git worktree list</code>에 <code>prunable</code></td>

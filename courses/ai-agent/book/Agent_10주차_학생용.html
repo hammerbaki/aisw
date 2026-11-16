@@ -982,7 +982,7 @@ README.md  digest.sh  fake  fake_agent.py  fix_until_green.py  prompt_fix.md  te
 </section>
 <section id="경쟁-후-선택의-비용-선택" class="level3">
 <h3 class="anchored" data-anchor-id="경쟁-후-선택의-비용-선택">3-2. 경쟁 후 선택의 비용 [선택]</h3>
-<p>경쟁 후 선택은 같은 일을 N번 하므로 비용도 N배이다. 고르는 기준이 기계로 판정되면(테스트 통과, 변경 줄 수) 사람 없이 고를 수 있다. Claude Code 문서는 원인 모를 버그에 팀원 다섯을 붙여 서로의 가설을 반박하게 하는 「경쟁 가설」 조사를 예로 든다[C23]. 구현 과제에 쓸 때는 둘 다 통과하면 무엇으로 고를지 미리 정해야 한다. 정하지 않으면 결국 사람이 둘을 다 읽는다.</p>
+<p>경쟁 후 선택은 같은 일을 N번 하므로 비용도 N배이고, 둘 다 통과하면 무엇으로 고를지 미리 정해야 한다. 정하지 않으면 결국 사람이 둘을 다 읽는다. Claude Code 문서는 원인 모를 버그에 팀원 다섯을 붙여 가설을 서로 반박하게 하는 예를 든다[C23].</p>
 </section>
 <section id="claude-code의-병렬-실행-방법-선택" class="level3">
 <h3 class="anchored" data-anchor-id="claude-code의-병렬-실행-방법-선택">3-3. Claude Code의 병렬 실행 방법 [선택]</h3>
@@ -1528,38 +1528,7 @@ maxTurns: 20
 <section id="공유하지-않는-것-선택" class="level3">
 <h3 class="anchored" data-anchor-id="공유하지-않는-것-선택">6-3. 공유하지 않는 것 [선택]</h3>
 <p>worktree는 파일을 나누지만 모든 것을 나누지는 않는다. 연결된 worktree들은 저장소와 참조(브랜치, 태그)를 공유하고 <code>HEAD</code>와 인덱스만 따로 가진다[G15]. 반대로 저장소에 없는 파일은 따라가지 않는다. <code>.gitignore</code>에 있는 <code>.env</code>는 새 작업 공간에 없다. 키가 없으면 새어 나갈 것도 없다. 무시된 파일을 복사해 주는 <code>.worktreeinclude</code>[C21]는 쓰지 않는다. 작업 공간 터미널에서 기본 작업 공간의 가상 환경을 켜는 까닭(9-4)도 <code>.venv</code>가 따라가지 않기 때문이다.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>무엇</th>
-<th>작업 공간 사이에</th>
-<th>근거</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>커밋, 브랜치, 태그 / <code>HEAD</code>, 인덱스, 작업 파일</td>
-<td>공유한다 / 따로 가진다</td>
-<td>[G15]</td>
-</tr>
-<tr class="even">
-<td>Claude Code의 「다시 묻지 않기」 승인</td>
-<td>공유한다(기본 작업 공간의 <code>settings.local.json</code>)</td>
-<td>[C21]</td>
-</tr>
-<tr class="odd">
-<td>훅의 <code>${CLAUDE_PROJECT_DIR}</code></td>
-<td><code>EnterWorktree</code>로 들어간 세션에서는 처음 시작한 곳을 가리킨다</td>
-<td>[C21]</td>
-</tr>
-</tbody>
-</table>
-<p>마지막 줄 때문에 worktree 안의 파일을 검사하는 훅은 <code>${CLAUDE_PROJECT_DIR}</code> 대신 훅 입력 JSON의 <code>cwd</code>를 읽는다[C21]. worktree 안에서 <code>claude</code>를 새로 시작하면 이 문제는 생기지 않는다.</p>
+<p>Claude Code의 「다시 묻지 않기」 승인은 작업 공간 사이에 공유되고, <code>EnterWorktree</code>로 들어간 세션에서는 훅의 <code>${CLAUDE_PROJECT_DIR}</code>가 처음 시작한 곳을 가리킨다[C21]. worktree 안에서 <code>claude</code>를 새로 시작하면(9-4) 이 문제는 생기지 않는다.</p>
 <hr>
 </section>
 </section>
@@ -2009,7 +1978,7 @@ exec claude -p "$PROMPT" \
 <p><code>통합...작업</code>의 점 셋은 「두 브랜치가 갈라진 지점부터 작업 브랜치까지」의 차이이다. 점 둘(<code>통합..작업</code>)로 비교하면, 그사이 통합 브랜치에 다른 작업이 병합되었을 때 그 변경까지 이 작업의 변경처럼 보인다. 작업 하나의 범위를 재려면 점 셋을 써야 한다.</p>
 <p>검토의 기본 명령은 규칙 검토기 <code>rule_review.py</code>이다. 기계로 확실히 가릴 수 있는 팀 규칙 넷(웹의 <code>innerHTML</code>, <code>api/llm.py</code> 밖의 <code>anthropic</code>, 키처럼 보이는 문자열, 기록에 요청 본문)만 본다. 검토기의 번호 W1~W4는 검토자의 검토 규칙 RV3, RV2, RV1, RV7에 차례로 대응한다. LLM 검토자를 쓰려면 <code>REVIEW_CMD="bash ops/multi/claude_review.sh"</code>로 바꾼다(교수 시연). 규칙 검토기는 싸고 늘 같은 결과를 내므로 먼저 걸러 내고, LLM 검토자는 의도를 읽어야 하는 문제를 본다.</p>
 <p>판정 파일에는 판정한 커밋의 해시가 남는다. <code>merge.sh</code>는 병합하기 전에 이 해시와 작업 브랜치의 끝 커밋을 대조해, 판정 뒤에 커밋이 더해졌으면 병합을 거부한다. 「통과 판정을 받은 뒤 몰래 고친 변경」이 병합되는 것을 막는 장치이며, 9-6에서 충돌을 푼 커밋을 다시 판정해야 하는 까닭이기도 하다.</p>
-<p>Orca가 만든 작업 공간을 판정할 때는 그 부모 폴더를 환경 변수 <code>MULTI_WT_BASE</code>로 알려 준다(기본은 <code>.claude/worktrees</code>, 9-3). 폴더 안의 이름이 <code>issue-07-t1</code>, <code>issue-07-t2</code>여야 한다.</p>
+<p><code>judge.sh</code>는 작업 공간을 작업 브랜치 이름(<code>agent/issue-07-t1</code>)으로 <code>git worktree list</code>에서 찾는다. 그래서 Orca가 작업 공간을 어디에 어떤 폴더 이름으로 두었든 그대로 판정한다.</p>
 <section id="따라-하기-2-규칙-검토기-한-번" class="level4">
 <h4 class="anchored" data-anchor-id="따라-하기-2-규칙-검토기-한-번">따라 하기 2: 규칙 검토기 한 번</h4>
 <p>판정의 「검토」 항목이 무엇을 잡는지 연습 브랜치에서 한 번 본다. 웹 코드에 <code>innerHTML</code>을 쓴 커밋을 만들어 검토기에 넣고, <code>textContent</code>로 고친 뒤 다시 넣는다. 확인한 뒤 연습 브랜치는 지운다.</p>
@@ -2064,6 +2033,13 @@ Deleted branch practice/review (was 9515dca).</code></pre>
     E -. "거부, 상한 2" .-&gt; D
 </pre>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
 <thead>
 <tr class="header">
 <th>단계</th>
@@ -2134,13 +2110,13 @@ Deleted branch practice/review (was 9515dca).</code></pre>
 <td>9</td>
 <td>9-9</td>
 <td>5분</td>
-<td>설계서 완성(수업 뒤 마무리 가능)</td>
+<td>비교표와 Orca의 증거. 나머지 절은 [선택: 수업 뒤]</td>
 <td>14</td>
 </tr>
 </tbody>
 </table>
-<p>4단계의 구현은 세션마다 몇 분이 걸린다. 두 세션에 카드를 넣은 뒤 기다리는 동안 9-5의 판정표 읽는 법과 9-6의 충돌 풀이 순서를 미리 읽는다. 시간이 모자라면 9-9의 설계서를 수업 뒤로 넘긴다. 3단계(Orca 작업 공간), 5~6단계(판정, 충돌 풀이와 병합), 8단계(정리)는 줄이지 않는다.</p>
-<p><strong>핵심 실습에서 막힐 때.</strong> 단계로 찾는 표다. 장 끝의 「자주 하는 실수와 해결」은 오류 문구로 찾는 표다. 터미널이 여럿(<code>[터미널]</code>, Orca의 T1·T2 작업 공간 터미널)이므로, 증상을 말하기 전에 그 명령을 <strong>어느 터미널에서</strong> 쳤는지부터 본다. 스크립트는 멈출 때 까닭을 한 줄로 알리고 종료 코드를 남기므로, 마지막 줄의 첫 낱말과 <code>echo $?</code>를 먼저 본다.</p>
+<p>4단계의 구현은 세션마다 몇 분이 걸린다. 두 세션에 카드를 넣은 뒤 기다리는 동안 9-5의 판정표 읽는 법과 9-6의 충돌 풀이 순서를 미리 읽는다. 9-9-2는 [선택: 수업 뒤]이다(다음 수업 전까지). 3단계(Orca 작업 공간), 5~6단계(판정, 충돌 풀이와 병합), 8단계(정리)는 줄이지 않는다.</p>
+<p><strong>핵심 실습에서 막힐 때.</strong> 단계로 찾는 표다(오류 문구로는 장 끝의 표). 터미널이 여럿(<code>[터미널]</code>, Orca의 T1·T2 작업 공간 터미널)이므로, 증상을 말하기 전에 그 명령을 <strong>어느 터미널에서</strong> 쳤는지부터 본다. 스크립트는 멈출 때 까닭을 한 줄로 알리고 종료 코드를 남기므로, 마지막 줄의 첫 낱말과 <code>echo $?</code>를 먼저 본다.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -2183,7 +2159,7 @@ Deleted branch practice/review (was 9515dca).</code></pre>
 <tr class="even">
 <td>9-5</td>
 <td><code>judge.sh</code>가 「…가 없다」로 멈춘다</td>
-<td><code>MULTI_WT_BASE</code>를 같은 <code>[터미널]</code>에서 <code>export</code>했는지, <code>ls "$MULTI_WT_BASE"</code>에 <code>issue-07-t1</code>, <code>issue-07-t2</code>가 있는지 본다</td>
+<td>스크립트는 작업 브랜치 이름으로 찾는다. <code>git worktree list</code>의 브랜치가 <code>agent/issue-07-t1</code>, <code>-t2</code>인지 본다(9-3의 Branch name)</td>
 </tr>
 <tr class="odd">
 <td>9-6</td>
@@ -2298,7 +2274,7 @@ Red 확인: 13 failed in 1.73s
 </blockquote>
 <p>Branch from은 반드시 바꾼다. 비워 두면 기준 브랜치(대개 <code>origin/main</code>)에서 갈라져 계획서와 인수 테스트가 없다(8-2)[O1]. 작업 공간 이름은 판정 스크립트가 폴더 이름으로 찾으므로 표대로 적는다. 브랜치 이름은 3장 규약과 판정 스크립트의 이름 규칙(<code>agent/&lt;이슈&gt;-&lt;작업&gt;</code>)을 따른다.</p>
 <ol start="3" type="1">
-<li><strong><code>[터미널]</code>에서 확인.</strong> Orca가 만든 것을 git으로 확인하고, 두 작업 공간의 경로와 그 부모 폴더를 변수에 담는다. 부모 폴더는 판정 스크립트에 <code>MULTI_WT_BASE</code>로 알려 준다(8-5).</li>
+<li><strong><code>[터미널]</code>에서 확인.</strong> Orca가 만든 것을 git으로 확인하고, 두 작업 공간의 경로를 변수에 담는다(9-4~9-8에서 쓴다).</li>
 </ol>
 <div class="code-label where-server">
 <span>터미널</span>
@@ -2307,9 +2283,7 @@ Red 확인: 13 failed in 1.73s
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch</span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">-1</span> <span class="at">--format</span><span class="op">=</span>%h issue-07-red</span>
 <span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="va">T1</span><span class="op">=</span><span class="va">$(</span><span class="fu">git</span> worktree list <span class="kw">|</span> <span class="fu">awk</span> <span class="st">'/\[agent\/issue-07-t1\]/{print $1}'</span><span class="va">)</span></span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="va">T2</span><span class="op">=</span><span class="va">$(</span><span class="fu">git</span> worktree list <span class="kw">|</span> <span class="fu">awk</span> <span class="st">'/\[agent\/issue-07-t2\]/{print $1}'</span><span class="va">)</span></span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">MULTI_WT_BASE</span><span class="op">=</span><span class="st">"</span><span class="va">$(</span><span class="fu">dirname</span> <span class="st">"</span><span class="va">$T1</span><span class="st">"</span><span class="va">)</span><span class="st">"</span></span>
-<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="st">"</span><span class="va">$MULTI_WT_BASE</span><span class="st">"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="va">T2</span><span class="op">=</span><span class="va">$(</span><span class="fu">git</span> worktree list <span class="kw">|</span> <span class="fu">awk</span> <span class="st">'/\[agent\/issue-07-t2\]/{print $1}'</span><span class="va">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>(예시. Orca가 작업 공간을 두는 폴더는 판과 설정에 따라 다르다)
 C:/Users/아이디/agent-lab/jobprep                   eac74fd [feat/issue-07]
 C:/Users/아이디/orca/workspaces/jobprep/issue-07-t1 eac74fd [agent/issue-07-t1]
@@ -2318,15 +2292,13 @@ C:/Users/아이디/orca/workspaces/jobprep/issue-07-t2 eac74fd [agent/issue-07-t
 + agent/issue-07-t2
 * feat/issue-07
   main
-eac74fd
-issue-07-t1
-issue-07-t2</code></pre>
-<p>세 줄의 커밋 번호가 <code>issue-07-red</code>의 번호와 같으면 두 작업이 계획서와 인수 테스트가 있는 상태에서 출발한 것이다. 경로는 예시이다. 집필 때는 Orca 대신 <code>git worktree add</code>로 같은 모양의 작업 공간을 만들어 출력을 얻었다. 작업 공간의 자리는 Orca의 판과 설정에 따라 다르므로 늘 <code>git worktree list</code>로 읽는다. 사용자 폴더 이름에 빈칸이 있으면 <code>awk</code>가 경로를 자르므로 <code>T1="경로"</code>처럼 직접 적는다. 세 변수는 터미널을 새로 열면 다시 입력한다.</p>
+eac74fd</code></pre>
+<p>세 줄의 커밋 번호가 <code>issue-07-red</code>의 번호와 같으면 두 작업이 계획서와 인수 테스트가 있는 상태에서 출발한 것이다. 경로는 예시이다. 집필 때는 Orca 대신 <code>git worktree add</code>로 같은 모양의 작업 공간을 만들어 출력을 얻었다. 작업 공간의 자리는 Orca의 판과 설정에 따라 다르므로 늘 <code>git worktree list</code>로 읽는다. 사용자 폴더 이름에 빈칸이 있으면 <code>awk</code>가 경로를 자르므로 <code>T1="경로"</code>처럼 직접 적는다. 두 변수는 터미널을 새로 열면 다시 입력한다. 이 출력은 설계서 9절에 붙이고, 아래 그림 자리와 같은 Orca 화면을 캡처해 <code>docs/운영/인계/ISSUE-07/orca.png</code>로 저장한다(9-9).</p>
 <blockquote class="blockquote">
 <p><strong>[그림 자리: Orca에서 두 작업 공간의 Claude Code 세션]</strong> 왼쪽 작업 공간 목록에 <code>issue-07-t1</code>, <code>issue-07-t2</code>, 가운데에 두 세션의 터미널, 오른쪽에 변경(diff) 화면. 찍을 곳: Windows 11 PC의 Orca(로컬 프로젝트 <code>jobprep</code>).</p>
 </blockquote>
 <ul>
-<li><span class="check-badge">확인 7</span> <code>git worktree list</code>가 세 줄이고, Orca가 만든 두 줄의 브랜치가 <code>agent/issue-07-t1</code>, <code>agent/issue-07-t2</code>이며, 세 줄의 커밋 번호가 <code>git log -1 --format=%h issue-07-red</code>와 같다. <code>ls "$MULTI_WT_BASE"</code>에 <code>issue-07-t1</code>, <code>issue-07-t2</code>가 보인다.</li>
+<li><span class="check-badge">확인 7</span> <code>git worktree list</code>가 세 줄이고, Orca가 만든 두 줄의 브랜치가 <code>agent/issue-07-t1</code>, <code>agent/issue-07-t2</code>이며, 세 줄의 커밋 번호가 <code>git log -1 --format=%h issue-07-red</code>와 같다. 이 출력을 설계서 9절에 붙였다.</li>
 </ul>
 </section>
 <section id="두-세션의-구현" class="level3">
@@ -2366,7 +2338,7 @@ issue-07-t2</code></pre>
 </section>
 <section id="판정과-재시도" class="level3">
 <h3 class="anchored" data-anchor-id="판정과-재시도">9-5. 판정과 재시도</h3>
-<p>Orca에는 판정이 없으므로 <code>judge.sh</code>로 판정한다. 9-3에서 <code>MULTI_WT_BASE</code>를 <code>export</code>한 <code>[터미널]</code>에서 실행한다.</p>
+<p>Orca에는 판정이 없으므로 <code>[터미널]</code>에서 <code>judge.sh</code>로 판정한다. 작업 공간은 브랜치 이름으로 찾는다(8-5).</p>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
@@ -2638,7 +2610,7 @@ Your branch is ahead of 'origin/main' by 2 commits.
 </section>
 <section id="설계서와-두-방식의-비교" class="level3">
 <h3 class="anchored" data-anchor-id="설계서와-두-방식의-비교">9-9. 설계서와 두 방식의 비교</h3>
-<p><code>docs/운영/멀티에이전트설계.md</code>의 나머지 절을 이 실습의 결과로 채운다(1절은 2절, 2절은 3-4, 4절은 5절이 근거). 3-1절의 비교표는 스크립트 조정자와 Orca 방식을 견준다. 아래는 그 앞 네 열의 예이다. 「남은 것」 열은 이 장이 저장소에 둔 것이라 도구를 바꾸어도 남는다.</p>
+<p><strong>9-9-1. 수업 안.</strong> 설계서 <code>docs/운영/멀티에이전트설계.md</code>의 3-1절 비교표와 9절의 Orca 증거를 채운다. 비교표는 스크립트 조정자와 Orca 방식을 견준다. 아래는 그 앞 네 열의 예이다. 「남은 것」 열은 이 장이 저장소에 둔 것이라 도구를 바꾸어도 남는다.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
@@ -2670,7 +2642,7 @@ Your branch is ahead of 'origin/main' by 2 commits.
 <tr class="odd">
 <td>판정</td>
 <td><code>judge.sh</code></td>
-<td>같은 <code>judge.sh</code>(<code>MULTI_WT_BASE</code>)</td>
+<td>같은 <code>judge.sh</code>(브랜치 이름으로 작업 공간을 찾음)</td>
 <td>판정 기준과 판정 파일</td>
 </tr>
 <tr class="even">
@@ -2694,17 +2666,18 @@ Your branch is ahead of 'origin/main' by 2 commits.
 </tbody>
 </table>
 <p>설계서의 표에는 다섯째 열 「그래서 사람이 더 확인할 것」이 있다. 둘째·셋째 열이 다른 행마다, 스크립트가 하던 일 가운데 Orca 방식에서 사람이 대신 맡은 것을 자기 실습에서 겪은 대로 적는다.</p>
-<p>9절 표에는 단계마다 근거가 되는 파일이나 명령(예: <code>판정_T2.md</code>, <code>git log --graph</code>)을 적고, 그 아래에 충돌을 풀며 내린 판단과 다음 이슈에서 바꿀 계획을 적는다. 7절에는 10-4의 방법으로 센 값을 적는다. 4-7의 역할 정의서 v0.2도 함께 커밋한다.</p>
+<p>9절의 「Orca 작업 공간」 칸에는 9-3의 <code>git worktree list</code> 출력과 캡처 <code>인계/ISSUE-07/orca.png</code>를 둔다. 교수의 안내로 Orca 대신 <code>git worktree</code> 명령을 썼다면 그 사유를 적는다.</p>
+<p><strong>9-9-2. 나머지 절 [선택: 수업 뒤].</strong> 1절(근거는 2절), 2절(3-4), 4절(5절)을 채우고, 9절 표의 단계마다 근거(예: <code>판정_T2.md</code>, <code>git log --graph</code>), 충돌을 풀며 내린 판단, 다음 이슈에서 바꿀 계획을 적는다. 7절에는 10-4의 방법으로 센 값을 적는다. 4-7의 역할 정의서 v0.2도 함께 커밋한다.</p>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
 <div class="sourceCode" id="cb80"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-c</span> <span class="st">'「」'</span> docs/운영/멀티에이전트설계.md</span>
-<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add docs/운영/멀티에이전트설계.md docs/운영/역할정의.md</span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add docs/운영/멀티에이전트설계.md docs/운영/역할정의.md docs/운영/인계/ISSUE-07/orca.png</span>
 <span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"docs(ops): 멀티 에이전트 운영 설계서 v0.1, 역할 정의서 v0.2"</span></span>
 <span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><code>grep -c</code>가 0이면 「」가 하나도 남지 않았다. 수업 안에 마치지 못하면 수업 뒤에 마무리한다.</p>
+<p>수업 안에서는 9-9-1까지 커밋하고, 9-9-2 뒤에 다시 커밋한다. <code>grep -c</code>가 0이면 「」가 남지 않았다.</p>
 <ul>
-<li><span class="check-badge">확인 14</span> 설계서에 「」가 남지 않았고(<code>grep -c</code>가 0), 3-1절 비교표의 「그래서 사람이 더 확인할 것」 열과 9절 표의 모든 행에 근거가 있으며, 7절에 자기 실행의 판정 수·거부 수·충돌 수가 적혀 있다. 역할 정의서가 v0.2이다.</li>
+<li><span class="check-badge">확인 14</span> 설계서에 「」가 남지 않았고(<code>grep -c</code>가 0), 3-1절 비교표의 「그래서 사람이 더 확인할 것」 열과 9절 표의 모든 행에 근거가 있으며, 9절에 9-3의 <code>git worktree list</code> 출력과 <code>orca.png</code>(대비 경로이면 그 사유)가 있으며, 7절에 판정 수·거부 수·충돌 수가 있다. 역할 정의서가 v0.2이다.</li>
 </ul>
 </section>
 <section id="핵심-실습-복기" class="level3">
@@ -3004,7 +2977,7 @@ Your branch is ahead of 'origin/main' by 2 commits.
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>git worktree list</code>의 경로가 <code>"C:/Users/\354\225\210…"</code>처럼 따옴표와 숫자로 보이고 <code>judge.sh</code>가 경로를 찾지 못한다</td>
+<td><code>git worktree list</code>의 경로가 <code>"C:/Users/\354\225\210…"</code>처럼 따옴표와 숫자로 보이고 <code>$T1</code>이 경로를 잘못 담는다</td>
 <td><code>core.quotepath</code>가 켜져 있어 한글이 든 경로를 바꾸어 찍었다</td>
 <td><code>git config --global core.quotepath false</code>(부록 A-6-1) 뒤 9-3의 변수를 다시 만든다</td>
 </tr>
@@ -3052,11 +3025,12 @@ Your branch is ahead of 'origin/main' by 2 commits.
   ops/multi/                          ← 판정·병합 스크립트, 스크립트 조정자, 가짜 에이전트, 테스트
   ops/multi/logs/ISSUE-07/            ← events.jsonl(merge_conflict 1, merged 2), 판정_T1.md, 판정_T2.md, 커밋별 판정
   docs/운영/
-    멀티에이전트설계.md                ← 「」 없음, 3-1절 비교표, 9절 실행 결과
+    멀티에이전트설계.md                ← 「」 없음, 3-1절 비교표, 9절(Orca의 git worktree list 출력)
     역할정의.md                        ← v0.2, 정의 파일 열
     변경기록.md                        ← 끝 두 줄이 ISSUE-07 T1, T2
     인계/계획서_양식.md, 작업카드_양식.md, 결과보고_양식.md
     인계/ISSUE-07/계획서.md, T1_카드.md, T2_카드.md, T1_보고.md, T2_보고.md
+    인계/ISSUE-07/orca.png              ← Orca에서 두 작업 공간과 세션을 보인 화면
   docs/요구사항명세서.md               ← REQ-FAV-03~05 (구현, 구현, 구현(수동))
   api/export.py, api/main.py, web/js/export.js, web/index.html
   tests/test_favorites_export.py, tests/test_web_export.py
@@ -3068,6 +3042,7 @@ Your branch is ahead of 'origin/main' by 2 commits.
 <li><code>ops/multi/logs/ISSUE-07/판정_T1.md</code>, <code>판정_T2.md</code>가 모두 「통과」이고, <code>events.jsonl</code>에 <code>merge_conflict</code> 사건 하나와 <code>merged</code> 사건 둘이 있다.</li>
 <li><code>git worktree list</code>가 한 줄이고 <code>agent/</code> 브랜치가 남지 않았다(Orca의 작업 공간을 정리하였다).</li>
 <li>설계서에 「」가 없고, 3-1절 비교표와 9절 표의 모든 행에 근거가 있다.</li>
+<li>설계서 9절의 <code>git worktree list</code> 출력에 <code>agent/issue-07-t1</code>, <code>-t2</code>가 Orca 작업 공간의 경로로 있고, <code>orca.png</code>가 두 작업 공간을 보인다(명령으로 대신했으면 그 사유).</li>
 </ol>
 </section>
 <section id="정리" class="level2">

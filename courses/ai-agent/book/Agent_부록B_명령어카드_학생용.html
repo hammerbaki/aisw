@@ -2463,7 +2463,7 @@ TOTAL               282     26    91%</code></pre>
 <td>10</td>
 <td><code>judge.sh</code>, <code>merge.sh</code></td>
 <td><code>ops/multi/</code></td>
-<td>작업 하나의 판정(인수, 전체 테스트, 범위, 규칙) / 판정한 작업을 순서대로 병합. Orca 작업 공간은 <code>MULTI_WT_BASE</code>로 알린다</td>
+<td>작업 하나의 판정(인수, 전체 테스트, 범위, 규칙) / 판정한 작업을 순서대로 병합. Orca 작업 공간은 작업 브랜치(<code>agent/issue-07-tN</code>)로 찾는다(<code>MULTI_WT_BASE</code>를 주면 그 폴더 아래)</td>
 <td><code>merge.sh</code> 2 판정 뒤 바뀜, 3 병합 충돌</td>
 </tr>
 <tr class="odd">
@@ -2641,18 +2641,17 @@ TEST_CHANGED: 동결한 뒤 바뀐 파일이 있다
 <p>시나리오는 <code>normal</code>, <code>parallel</code>, <code>bad_doc</code>, <code>bad_args</code>, <code>escape</code>, <code>runaway</code>, <code>truncated</code>, <code>note</code>이다.</p>
 <p><strong>10장: 멀티 에이전트</strong></p>
 <div class="sourceCode" id="cb38"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> ops/multi/check_agents.py</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 핵심 실습(9절): Orca가 만든 작업 공간 둘을 판정하고 병합한다</span></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="va">T1</span><span class="op">=</span><span class="va">$(</span><span class="fu">git</span> worktree list <span class="kw">|</span> <span class="fu">awk</span> <span class="st">'/\[agent\/issue-07-t1\]/{print $1}'</span><span class="va">)</span></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">MULTI_WT_BASE</span><span class="op">=</span><span class="st">"</span><span class="va">$(</span><span class="fu">dirname</span> <span class="st">"</span><span class="va">$T1</span><span class="st">"</span><span class="va">)</span><span class="st">"</span></span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> ops/multi/judge.sh ISSUE-07 T1</span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> ops/multi/judge.sh ISSUE-07 T2</span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> ops/multi/merge.sh ISSUE-07 T1 T2        <span class="co"># 적은 순서가 병합 순서. 사람이 판정을 읽은 뒤에</span></span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 스크립트 조정자(교수 시연, 대비 경로)</span></span>
-<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pytest <span class="at">-q</span> ops/multi/tests</span>
-<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> ops/multi/prepare.sh ISSUE-07 T1 T2</span>
-<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a><span class="va">AGENT_CMD</span><span class="op">=</span><span class="st">"python ops/multi/fake/impl_agent.py"</span> <span class="fu">bash</span> ops/multi/run_issue.sh ISSUE-07 T1 T2</span>
-<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> ops/multi/status.sh ISSUE-07</span>
-<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> ops/multi/cleanup.sh ISSUE-07 T1 T2</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 핵심 실습(9절): Orca가 만든 작업 공간 둘을 판정하고 병합한다(작업 공간은 브랜치 이름으로 찾는다)</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> worktree list</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> ops/multi/judge.sh ISSUE-07 T1</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> ops/multi/judge.sh ISSUE-07 T2</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> ops/multi/merge.sh ISSUE-07 T1 T2        <span class="co"># 적은 순서가 병합 순서. 사람이 판정을 읽은 뒤에</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 스크립트 조정자(교수 시연, 대비 경로)</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pytest <span class="at">-q</span> ops/multi/tests</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> ops/multi/prepare.sh ISSUE-07 T1 T2</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a><span class="va">AGENT_CMD</span><span class="op">=</span><span class="st">"python ops/multi/fake/impl_agent.py"</span> <span class="fu">bash</span> ops/multi/run_issue.sh ISSUE-07 T1 T2</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> ops/multi/status.sh ISSUE-07</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> ops/multi/cleanup.sh ISSUE-07 T1 T2</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>merge.sh</code>는 병합 충돌이면 병합을 되돌리고 종료 코드 3으로, 판정한 뒤 작업 브랜치가 바뀌었으면 종료 코드 2로 멈춘다(10장 9-6). 스크립트 조정자에서는 <code>MULTI_MAX</code>(작업마다의 시도 상한, 기본 3), <code>REVIEW_CMD</code>(검토 명령), <code>FAKE_SCENARIO="T2=fail_once"</code> 같은 작업별 각본을 환경 변수로 준다. 실행 기록은 <code>ops/multi/logs/&lt;이슈&gt;/events.jsonl</code>이다.</p>
 <p><strong>11장: 보안</strong></p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> ~/kits/Agent_11주차/도구/merge_security.py <span class="at">--check</span></span>

@@ -1487,7 +1487,7 @@ Agent-Attempt: 1</code></pre>
 </section>
 <section id="c-3.-3장-팀-규칙의-양식" class="level2">
 <h2 class="anchored" data-anchor-id="c-3.-3장-팀-규칙의-양식">C-3. 3장: 팀 규칙의 양식</h2>
-<p>3장의 핵심 실습(10절)은 교수 시연 기록(규칙 없음)에서 막을 어긋남 하나를 고르고(10-2), 팀이 함께 쓰는 규칙 파일 일체를 만든 뒤(10-3~10-6), 같은 요청 하나를 다시 보내 그 어긋남이 다시 나오는지 센다(10-7). 양식은 일부러 <code>CLAUDE.md</code>, <code>.claude/rules/</code> 같은 제자리 이름을 쓰지 않았다. 키트 폴더 안에서 Claude Code를 실행해도 양식이 규칙으로 읽히지 않게 하기 위해서이다(키트 README). 그러므로 복사할 때 반드시 제자리 이름으로 바꾼다. 이 절의 양식은 졸업 프로젝트 팀 저장소의 첫 커밋이 된다.</p>
+<p>3장의 핵심 실습(10절)은 교수 시연 기록(규칙 없음)에서 막을 어긋남 하나를 고르고(10-2), 그것을 막는 지시와 설정을 만든 뒤(10-3~10-5), 같은 요청 하나를 다시 보내 그 어긋남이 다시 나오는지 센다(10-6). 저장소 규약(규약 문서, PR 템플릿, CODEOWNERS)과 commit-msg 훅은 핵심 실습 밖의 따라 하기 3(8-9)에서 키트의 기준본 <code>규약/</code>을 복사해 넣는다. 아래의 규약 양식으로 처음부터 쓰는 것은 [선택]이다. 양식은 일부러 <code>CLAUDE.md</code>, <code>.claude/rules/</code> 같은 제자리 이름을 쓰지 않았다. 키트 폴더 안에서 Claude Code를 실행해도 양식이 규칙으로 읽히지 않게 하기 위해서이다(키트 README). 그러므로 복사할 때 반드시 제자리 이름으로 바꾼다. 이 절의 양식은 졸업 프로젝트 팀 저장소의 첫 커밋이 된다.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
@@ -1524,26 +1524,26 @@ Agent-Attempt: 1</code></pre>
 </tr>
 <tr class="even">
 <td>저장소 규약</td>
-<td><code>Agent_03주차/양식/저장소규약_양식.md</code></td>
-<td>10-6</td>
+<td><code>Agent_03주차/양식/저장소규약_양식.md</code>([선택]. 기준본은 <code>Agent_03주차/규약/</code>)</td>
+<td>8-9</td>
 <td><code>docs/운영/저장소규약.md</code></td>
 </tr>
 <tr class="odd">
 <td>PR 템플릿</td>
-<td><code>Agent_03주차/양식/pull_request_template_양식.md</code></td>
-<td>10-6</td>
+<td><code>Agent_03주차/양식/pull_request_template_양식.md</code>([선택]. 기준본은 <code>규약/</code>)</td>
+<td>8-9</td>
 <td><code>.github/pull_request_template.md</code></td>
 </tr>
 <tr class="even">
 <td>코드 소유자</td>
-<td><code>Agent_03주차/양식/CODEOWNERS_양식</code></td>
-<td>10-6</td>
+<td><code>Agent_03주차/양식/CODEOWNERS_양식</code>([선택]. 기준본은 <code>규약/</code>)</td>
+<td>8-9</td>
 <td><code>CODEOWNERS</code></td>
 </tr>
 <tr class="odd">
 <td>규칙 유무 비교</td>
 <td><code>Agent_03주차/양식/규칙비교_양식.md</code></td>
-<td>10-2, 10-7</td>
+<td>10-2, 10-6</td>
 <td><code>docs/운영/규칙비교.md</code></td>
 </tr>
 </tbody>
@@ -1683,7 +1683,7 @@ Agent-Attempt: 1</code></pre>
 <section id="c-3-4.-저장소-규약" class="level3">
 <h3 class="anchored" data-anchor-id="c-3-4.-저장소-규약">C-3-4. 저장소 규약</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 3장 10-6. 브랜치는 8-2, 커밋 메시지는 8-3, PR과 리뷰는 8-4~8-7에 있다. 이 부록 앞의 「커밋 메시지」, 「브랜치」 표가 채운 결과의 요약이다.</li>
+<li><strong>쓰는 곳.</strong> 3장 8-9(따라 하기 3. 기준본 <code>규약/</code>을 복사하고 날짜와 GitHub 아이디만 채운다. 이 양식으로 처음부터 쓰는 것은 [선택]). 브랜치는 8-2, 커밋 메시지는 8-3, PR과 리뷰는 8-4~8-7에 있다. 이 부록 앞의 「커밋 메시지」, 「브랜치」 표가 채운 결과의 요약이다.</li>
 <li><strong>키트 경로.</strong> <code>Agent_03주차/양식/저장소규약_양식.md</code> (72줄).</li>
 <li><strong>검사.</strong> <code>lint_rules.py</code>의 C5(문서가 있고 자리 표시가 남지 않았는가), <code>check_commits.py</code>(규약의 실제 적용).</li>
 </ul>
@@ -1774,7 +1774,7 @@ Agent-Attempt: 1</code></pre>
 <section id="c-3-5.-pr-템플릿" class="level3">
 <h3 class="anchored" data-anchor-id="c-3-5.-pr-템플릿">C-3-5. PR 템플릿</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 3장 10-6에서 <code>.github/pull_request_template.md</code>로 두고, 10-8에서 이 템플릿으로 첫 PR을 연다. 템플릿은 기본 브랜치에 있어야 자동으로 채워지므로, 템플릿을 처음 더하는 PR은 <code>gh pr create --template .github/pull_request_template.md</code>로 연다(8-4).</li>
+<li><strong>쓰는 곳.</strong> 3장 8-9에서 <code>.github/pull_request_template.md</code>로 두고(기준본 <code>규약/</code>), 10-7에서 이 템플릿으로 첫 PR을 연다. 템플릿은 기본 브랜치에 있어야 자동으로 채워지므로, 템플릿을 처음 더하는 PR은 <code>gh pr create --template .github/pull_request_template.md</code>로 연다(8-4).</li>
 <li><strong>키트 경로.</strong> <code>Agent_03주차/양식/pull_request_template_양식.md</code> (27줄).</li>
 </ul>
 <div class="code-label where-server">
@@ -1819,7 +1819,7 @@ Agent-Attempt: 1</code></pre>
 <section id="c-3-6.-codeowners" class="level3">
 <h3 class="anchored" data-anchor-id="c-3-6.-codeowners">C-3-6. CODEOWNERS</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 3장 10-6. 형식과 「마지막으로 맞는 줄이 적용된다」는 규칙은 8-6에 있다.</li>
+<li><strong>쓰는 곳.</strong> 3장 8-9(기준본 <code>규약/</code>). 형식과 「마지막으로 맞는 줄이 적용된다」는 규칙은 8-6에 있다.</li>
 <li><strong>키트 경로.</strong> <code>Agent_03주차/양식/CODEOWNERS_양식</code> (16줄).</li>
 <li><strong>검사.</strong> <code>lint_rules.py</code>의 C6. 소유자에 한글 자리 표시(<code>@GitHub아이디</code>)가 남으면 「주의」를 낸다.</li>
 </ul>
@@ -1849,7 +1849,7 @@ Agent-Attempt: 1</code></pre>
 <section id="c-3-7.-규칙-유무-비교" class="level3">
 <h3 class="anchored" data-anchor-id="c-3-7.-규칙-유무-비교">C-3-7. 규칙 유무 비교</h3>
 <ul>
-<li><strong>쓰는 곳.</strong> 3장 10-2에서 <code>docs/운영/규칙비교.md</code>로 복사하고, 교수 시연 기록(<code>시연기록/no-rules.bundle</code>)을 풀어 1~2절(조건과 막을 어긋남)을 채운다. 10-7에서 검증 브랜치 <code>chore/rules-check</code>에 같은 요청 하나를 보낸 뒤 <code>count_violations.py</code>의 두 표를 3절에 붙이고 4~6절을 쓴다. 위반을 세는 법은 9-3, 남은 위반의 원인을 가리는 법은 9-5에 있다.</li>
+<li><strong>쓰는 곳.</strong> 3장 10-2에서 <code>docs/운영/규칙비교.md</code>로 복사하고, 교수 시연 기록(<code>시연기록/no-rules.bundle</code>)을 풀어 1~2절(조건과 막을 어긋남)을 채운다. 10-6에서 검증 브랜치 <code>chore/rules-check</code>에 같은 요청 하나를 보낸 뒤 <code>count_violations.py</code>의 두 표를 3절에 붙이고 4~6절을 쓴다. 위반을 세는 법은 9-3, 남은 위반의 원인을 가리는 법은 9-5에 있다.</li>
 <li><strong>키트 경로.</strong> <code>Agent_03주차/양식/규칙비교_양식.md</code> (53줄).</li>
 </ul>
 <div class="code-label where-server">
