@@ -312,6 +312,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#학습-목표" id="toc-학습-목표" class="nav-link active" data-scroll-target="#학습-목표">학습 목표</a></li>
   <li><a href="#준비-사항" id="toc-준비-사항" class="nav-link" data-scroll-target="#준비-사항">준비 사항</a></li>
+  <li><a href="#실습-준비" id="toc-실습-준비" class="nav-link" data-scroll-target="#실습-준비">0. 실습 준비</a>
+  <ul class="collapse">
+  <li><a href="#노트북-열기" id="toc-노트북-열기" class="nav-link" data-scroll-target="#노트북-열기">0-1. 노트북 열기</a></li>
+  <li><a href="#그래프-라이브러리와-그림의-표시" id="toc-그래프-라이브러리와-그림의-표시" class="nav-link" data-scroll-target="#그래프-라이브러리와-그림의-표시">0-2. 그래프 라이브러리와 그림의 표시</a></li>
+  <li><a href="#자료-읽기" id="toc-자료-읽기" class="nav-link" data-scroll-target="#자료-읽기">0-3. 자료 읽기</a></li>
+  </ul></li>
   <li><a href="#그림과-축-그림의-분할" id="toc-그림과-축-그림의-분할" class="nav-link" data-scroll-target="#그림과-축-그림의-분할">1. 그림과 축, 그림의 분할</a>
   <ul class="collapse">
   <li><a href="#matplotlib과-seaborn" id="toc-matplotlib과-seaborn" class="nav-link" data-scroll-target="#matplotlib과-seaborn">1.1 matplotlib과 seaborn</a></li>
@@ -319,6 +325,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#두-가지-작성-방식" id="toc-두-가지-작성-방식" class="nav-link" data-scroll-target="#두-가지-작성-방식">1.3 두 가지 작성 방식</a></li>
   <li><a href="#그림의-분할-subplots와-ax-인자" id="toc-그림의-분할-subplots와-ax-인자" class="nav-link" data-scroll-target="#그림의-분할-subplots와-ax-인자">1.4 그림의 분할: <code>subplots</code>와 <code>ax=</code> 인자</a></li>
   <li><a href="#축-수준-함수와-그림-수준-함수" id="toc-축-수준-함수와-그림-수준-함수" class="nav-link" data-scroll-target="#축-수준-함수와-그림-수준-함수">1.5 축 수준 함수와 그림 수준 함수</a></li>
+  <li><a href="#그림-분할의-흔한-오류" id="toc-그림-분할의-흔한-오류" class="nav-link" data-scroll-target="#그림-분할의-흔한-오류">1.6 그림 분할의 흔한 오류</a></li>
   </ul></li>
   <li><a href="#제목-축-이름-범례-눈금-회전-한글-글꼴" id="toc-제목-축-이름-범례-눈금-회전-한글-글꼴" class="nav-link" data-scroll-target="#제목-축-이름-범례-눈금-회전-한글-글꼴">2. 제목, 축 이름, 범례, 눈금 회전, 한글 글꼴</a>
   <ul class="collapse">
@@ -350,13 +357,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#히트맵-heatmap" id="toc-히트맵-heatmap" class="nav-link" data-scroll-target="#히트맵-heatmap">6.2 히트맵: <code>heatmap</code></a></li>
   <li><a href="#상관-계수의-해석" id="toc-상관-계수의-해석" class="nav-link" data-scroll-target="#상관-계수의-해석">6.3 상관 계수의 해석</a></li>
   </ul></li>
-  <li><a href="#중심-실습-그래프-6종과-답-변수-6개" id="toc-중심-실습-그래프-6종과-답-변수-6개" class="nav-link" data-scroll-target="#중심-실습-그래프-6종과-답-변수-6개">7. 중심 실습: 그래프 6종과 답 변수 6개</a></li>
+  <li><a href="#중심-실습-그래프-6종과-답-변수-6개" id="toc-중심-실습-그래프-6종과-답-변수-6개" class="nav-link" data-scroll-target="#중심-실습-그래프-6종과-답-변수-6개">7. 중심 실습: 그래프 6종과 답 변수 6개</a>
+  <ul class="collapse">
+  <li><a href="#라이브러리와-자료" id="toc-라이브러리와-자료" class="nav-link" data-scroll-target="#라이브러리와-자료">7-1. 라이브러리와 자료</a></li>
+  <li><a href="#범주형-변수의-분포그래프-1-2" id="toc-범주형-변수의-분포그래프-1-2" class="nav-link" data-scroll-target="#범주형-변수의-분포그래프-1-2">7-2. 범주형 변수의 분포(그래프 1, 2)</a></li>
+  <li><a href="#수치형-변수의-분포그래프-3" id="toc-수치형-변수의-분포그래프-3" class="nav-link" data-scroll-target="#수치형-변수의-분포그래프-3">7-3. 수치형 변수의 분포(그래프 3)</a></li>
+  <li><a href="#상자그림그래프-4" id="toc-상자그림그래프-4" class="nav-link" data-scroll-target="#상자그림그래프-4">7-4. 상자그림(그래프 4)</a></li>
+  <li><a href="#두-변수의-관계그래프-5" id="toc-두-변수의-관계그래프-5" class="nav-link" data-scroll-target="#두-변수의-관계그래프-5">7-5. 두 변수의 관계(그래프 5)</a></li>
+  <li><a href="#상관-행렬과-히트맵그래프-6" id="toc-상관-행렬과-히트맵그래프-6" class="nav-link" data-scroll-target="#상관-행렬과-히트맵그래프-6">7-6. 상관 행렬과 히트맵(그래프 6)</a></li>
+  <li><a href="#자가-채점과-값의-해석" id="toc-자가-채점과-값의-해석" class="nav-link" data-scroll-target="#자가-채점과-값의-해석">7-7. 자가 채점과 값의 해석</a></li>
+  </ul></li>
   <li><a href="#시간-제한-문항" id="toc-시간-제한-문항" class="nav-link" data-scroll-target="#시간-제한-문항">8. 시간 제한 문항</a>
   <ul class="collapse">
   <li><a href="#문항-1-빈칸-채우기" id="toc-문항-1-빈칸-채우기" class="nav-link" data-scroll-target="#문항-1-빈칸-채우기">문항 1 (빈칸 채우기)</a></li>
   <li><a href="#문항-2-오류-정정" id="toc-문항-2-오류-정정" class="nav-link" data-scroll-target="#문항-2-오류-정정">문항 2 (오류 정정)</a></li>
   <li><a href="#문항-3-답-변수" id="toc-문항-3-답-변수" class="nav-link" data-scroll-target="#문항-3-답-변수">문항 3 (답 변수)</a></li>
   </ul></li>
+  <li><a href="#스스로-점검" id="toc-스스로-점검" class="nav-link" data-scroll-target="#스스로-점검">스스로 점검</a></li>
   <li><a href="#정리" id="toc-정리" class="nav-link" data-scroll-target="#정리">9. 정리</a></li>
   <li><a href="#참고-자료" id="toc-참고-자료" class="nav-link" data-scroll-target="#참고-자료">참고 자료</a></li>
   </ul>
@@ -403,16 +420,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>학사 3주차 · 교재 02 · 1부 데이터 분석 · 출제 분야: 데이터 분석 &gt; 데이터 구성 및 특성 파악, AI 모델링 &gt; 모델 성능 개선 및 그래픽 출력(그래픽 출력의 기초)</p>
 </blockquote>
 <p>AICE Associate의 데이터 분석 문항은 표를 읽은 다음 지정된 그래프를 그리게 한다. 가이드는 그래프의 종류(빈도 그래프, 히스토그램, 상자그림, 결합 그래프 등), 대상 열, 한 그림 안의 배치, 제목을 지정한다. 이어지는 문항은 그 그래프에서 읽을 수 있는 값, 예를 들어 가장 많은 범주나 이상치가 나타나는 열, 목표 열과 상관이 가장 큰 열을 답 변수에 저장하게 한다.</p>
-<p>본 장은 matplotlib의 그림(Figure)과 축(Axes)의 개념에서 시작하여, seaborn의 그래프 함수 일곱 가지로 범주형 변수의 분포, 수치형 변수의 분포, 두 변수의 관계, 상관 행렬을 그리는 방법을 다룬다. 그래프에서 읽은 답은 눈으로 옮겨 적지 않고 그래프를 그린 자료에서 코드로 구한다. 본 장의 상자그림에서 확인한 이상치와 히스토그램에서 확인한 불가능한 값은 3장(결측치·이상치 처리)에서 제거한다. 상관 행렬은 6장 이후에 모델의 입력을 해석하는 근거가 된다.</p>
+<p>본 장은 matplotlib의 그림(Figure)과 축(Axes)의 개념에서 시작하여, seaborn의 그래프 함수 일곱 가지로 범주형 변수의 분포, 수치형 변수의 분포, 두 변수의 관계, 상관 행렬을 그리는 방법을 다룬다. 그래프마다 무엇을 읽는가를 함께 다룬다. 히스토그램은 모양과 구간 수, 상자그림은 다섯 수치와 수염의 끝, 산점도는 상관 계수의 크기, 히트맵은 목표 열의 행이다. 계산이 있는 그래프는 값 열 개 안팎의 작은 자료로 손 계산을 먼저 하고, 같은 자료로 그린 그래프와 코드의 출력을 대조한다. 그래프에서 읽은 답은 눈으로 옮겨 적지 않고 그래프를 그린 자료에서 코드로 구한다. 본 장의 상자그림에서 확인한 이상치와 히스토그램에서 확인한 불가능한 값은 3장(결측치·이상치 처리)에서 제거한다. 상관 행렬은 6장 이후에 모델의 입력을 해석하는 근거가 된다.</p>
 <hr>
 <section id="학습-목표" class="level2">
 <h2 class="anchored" data-anchor-id="학습-목표">학습 목표</h2>
 <ol type="1">
-<li>matplotlib의 그림(Figure)과 축(Axes)을 구분하고, <code>subplots</code>로 한 그림에 여러 그래프를 배치한다.</li>
-<li>그래프에 제목, 축 이름, 범례를 붙이고 눈금 글자를 회전한다. 한글 글꼴을 설정하는 방법을 안다.</li>
-<li>범주형 변수의 분포를 <code>countplot</code>과 <code>barplot</code>으로, 수치형 변수의 분포를 <code>histplot</code>과 <code>boxplot</code>으로 그린다.</li>
+<li>matplotlib의 그림(Figure)과 축(Axes)을 구분하고, <code>subplots</code>로 한 그림에 여러 그래프를 배치한다. 축의 배열을 잘못 고른 오류를 메시지로 구분한다.</li>
+<li>그래프에 제목, 축 이름, 범례를 붙이고 눈금 글자를 회전한다. 한글 글꼴을 설정하고 확인하는 단계를 안다.</li>
+<li>범주형 변수의 분포를 <code>countplot</code>과 <code>barplot</code>으로, 수치형 변수의 분포를 <code>histplot</code>과 <code>boxplot</code>으로 그리고, 히스토그램의 모양과 상자그림의 다섯 수치를 읽는다.</li>
 <li>두 수치형 변수의 관계를 <code>scatterplot</code>과 <code>jointplot</code>으로 그리고, seaborn의 축 수준 함수와 그림 수준 함수를 구분한다.</li>
-<li>수치형 열의 상관 행렬을 구하여 <code>heatmap</code>으로 그리고, 상관 계수의 부호와 크기를 해석한다.</li>
+<li>수치형 열의 상관 행렬을 구하여 <code>heatmap</code>으로 그리고, 상관 계수의 부호와 크기를 해석하며, 목표 열의 행을 읽는다.</li>
 <li>그래프에서 읽은 답을 그래프를 그린 자료에서 코드로 구하여 지정된 변수에 저장한다.</li>
 </ol>
 </section>
@@ -436,11 +453,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>자료</td>
-<td><code>customers.csv</code>(학기 공통 자료의 원본), <code>laptops.csv</code>(시간 제한 문항용). 둘 다 <code>assets/data/AICE_공통/</code>에 있다</td>
+<td><code>customers.csv</code>(학기 공통 자료의 원본), <code>laptops.csv</code>(시간 제한 문항용). 둘 다 자료 폴더 <code>kit/data/AICE_공통/</code>에 있다. 노트북이 있는 <code>book/</code> 폴더에서 본 경로는 <code>../kit/data/AICE_공통/</code>이다</td>
 </tr>
 <tr class="odd">
 <td>앞 장과의 연계</td>
-<td>1장의 <code>value_counts</code>, <code>groupby</code>, <code>idxmax</code>. 그래프에서 읽은 답은 이 함수들로 구한다</td>
+<td>1장의 <code>value_counts</code>, <code>groupby</code>, <code>idxmax</code>, <code>describe</code>의 사분위수. 그래프에서 읽은 답은 이 함수들로 구한다</td>
 </tr>
 <tr class="even">
 <td>앞 과목과의 연계</td>
@@ -454,18 +471,101 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 <hr>
 </section>
+<section id="실습-준비" class="level2">
+<h2 class="anchored" data-anchor-id="실습-준비">0. 실습 준비</h2>
+<p>그래프는 셀의 출력 영역에 그림으로 표시된다. 그래프 라이브러리가 설치되어 있지 않거나 그림이 표시되지 않으면 본 장의 모든 셀이 의미가 없으므로, 설명을 듣기 전에 확인한다. 노트북을 열고 커널을 확인하는 방법은 1장의 0절과 같다.</p>
+<section id="노트북-열기" class="level3">
+<h3 class="anchored" data-anchor-id="노트북-열기">0-1. 노트북 열기</h3>
+<ol type="1">
+<li><code>book/</code> 폴더의 <code>AICE_02주차_실습_학생용.ipynb</code>를 연다.</li>
+<li>커널의 이름과 상태를 확인한다(1장 0-1절).</li>
+</ol>
+<ul>
+<li><span class="check-badge">확인 1</span> 노트북 오른쪽 위에 파이썬 커널의 이름이 보이고, 상태 표시가 쉼이다.</li>
+</ul>
+</section>
+<section id="그래프-라이브러리와-그림의-표시" class="level3">
+<h3 class="anchored" data-anchor-id="그래프-라이브러리와-그림의-표시">0-2. 그래프 라이브러리와 그림의 표시</h3>
+<p>1부의 첫 셀은 matplotlib과 seaborn의 판을 출력하고 작은 그림을 하나 그린다.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"matplotlib"</span>, matplotlib.__version__)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"seaborn"</span>, sns.__version__)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">2</span>))</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>ax.plot([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">9</span>])</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Test"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>matplotlib 3.11.2
+seaborn 0.13.2</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../kit/images/AICE_02_0_1.png" class="img-fluid figure-img"></p>
+<figcaption>시험 그림</figcaption>
+</figure>
+</div>
+<p><code>plt.show()</code>는 그때까지 그린 그림을 출력 영역에 표시한다. 주피터 노트북에서는 셀이 끝날 때 그림이 자동으로 표시되기도 하지만, 본 교재는 그래프 셀을 언제나 <code>plt.show()</code>로 끝맺는다. 그래프 함수의 반환값 설명(<code>&lt;Axes: ...&gt;</code> 같은 글자)이 함께 출력되는 것을 막고, 한 셀에서 그림을 여러 장 그릴 때 그림의 경계를 분명히 하기 위함이다.</p>
+<ul>
+<li><span class="check-badge">확인 2</span> 판 번호 두 줄 아래에 제목이 <code>Test</code>인 꺾은선 그림이 보인다. 판 번호는 실습 환경에 따라 다를 수 있다.</li>
+</ul>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>막힐 때의 증상</th>
+<th>원인</th>
+<th>대처</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ModuleNotFoundError: No module named 'seaborn'</code></td>
+<td>seaborn이 설치되지 않았다</td>
+<td>부록 A.3의 <code>%pip install seaborn</code>으로 설치하고 커널을 다시 시작한다</td>
+</tr>
+<tr class="even">
+<td>그림 대신 <code>&lt;Figure size ... with 1 Axes&gt;</code>라는 글자만 나온다</td>
+<td>노트북이 그림을 표시하지 못하는 설정이다</td>
+<td>셀의 맨 위에 <code>%matplotlib inline</code>을 한 번 실행한 뒤 다시 실행한다</td>
+</tr>
+<tr class="odd">
+<td>그림이 두 번 나온다</td>
+<td><code>plt.show()</code> 앞에서 그림이 자동 표시되었다</td>
+<td>동작에는 문제가 없다. 그대로 진행한다</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: 시험 환경의 matplotlib과 seaborn의 판]</strong> 시험 환경의 matplotlib, seaborn의 판과 한글 글꼴의 설치 여부. 공식 사이트(<a href="https://aice.study/info/aice/asso" class="uri">https://aice.study/info/aice/asso</a>)에는 공개되어 있지 않다(2026-11-13 확인). seaborn 0.11 이하의 판에서는 <code>barplot</code>의 오차 막대 인자가 <code>errorbar</code>가 아니라 <code>ci</code>이므로(0.12.0의 변경 사항), 응시자가 사전 환경점검에서 <code>sns.__version__</code>을 확인한 값을 학기마다 받아 적는다.</p>
+</blockquote>
+</section>
+<section id="자료-읽기" class="level3">
+<h3 class="anchored" data-anchor-id="자료-읽기">0-3. 자료 읽기</h3>
+<p>1절의 첫 셀(1.1절)이 라이브러리를 불러오고 자료를 읽는다. 1부의 모든 셀이 이 <code>df</code>를 쓴다.</p>
+<ul>
+<li><span class="check-badge">확인 3</span> 1.1절 셀의 출력이 <code>(3030, 17)</code>이다.</li>
+</ul>
+<hr>
+</section>
+</section>
 <section id="그림과-축-그림의-분할" class="level2">
 <h2 class="anchored" data-anchor-id="그림과-축-그림의-분할">1. 그림과 축, 그림의 분할</h2>
 <section id="matplotlib과-seaborn" class="level3">
 <h3 class="anchored" data-anchor-id="matplotlib과-seaborn">1.1 matplotlib과 seaborn</h3>
 <p>seaborn은 matplotlib을 바탕으로 만든 통계 그래프 라이브러리로, 데이터프레임과 열 이름만 주면 빈도나 평균의 계산까지 수행하여 그래프를 그린다. 그래프는 seaborn이 그리고, 그림의 크기와 배치, 제목과 축 이름은 matplotlib이 다룬다. 시험에서도 두 라이브러리를 함께 쓴다.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>DATA <span class="op">=</span> <span class="st">"../kit/data/AICE_공통/"</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(DATA <span class="op">+</span> <span class="st">"customers.csv"</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>df.shape</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>DATA <span class="op">=</span> <span class="st">"../kit/data/AICE_공통/"</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(DATA <span class="op">+</span> <span class="st">"customers.csv"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>df.shape</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>(3030, 17)</code></pre>
 </section>
 <section id="그림figure과-축axes" class="level3">
@@ -498,12 +598,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <p>한 그림에는 축이 하나 이상 들어간다. 이름이 혼동되기 쉬운데, <code>Axes</code>는 그래프 한 칸을 뜻하고, 그 안의 가로축과 세로축 하나하나는 <code>Axis</code>라 부른다. <code>plt.subplots()</code>는 그림과 축을 함께 만들어 돌려준다.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">3</span>))</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> df[<span class="st">"grade"</span>].value_counts()</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ax.bar(counts.index, counts.values)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(fig))</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(ax))</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p><strong>[그림 자리: 그림과 축의 구조 도식]</strong> 한 장의 <code>Figure</code> 안에 두 개의 <code>Axes</code>가 가로로 놓인 도식. 그림 전체에 <code>fig.suptitle</code>의 위치, 각 칸에 <code>ax.set_title</code>(칸 제목), <code>ax.set_xlabel</code>과 <code>ax.set_ylabel</code>(축 이름), 눈금과 눈금 글자(<code>tick</code>, <code>tick label</code>), 범례(<code>legend</code>), x축과 y축(<code>Axis</code>)의 위치를 이름표와 화살표로 표시한다. matplotlib 공식 문서 Quick start guide의 “Parts of a Figure” 그림과 같은 내용을 새로 그린다(공식 그림을 옮기지 않는다). 찍을 곳: 도식 도구로 새로 작성.</p>
+</blockquote>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">3</span>))</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> df[<span class="st">"grade"</span>].value_counts()</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>ax.bar(counts.index, counts.values)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(fig))</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(ax))</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>&lt;class 'matplotlib.figure.Figure'&gt;
 &lt;class 'matplotlib.axes._axes.Axes'&gt;</code></pre>
 <div class="quarto-figure quarto-figure-center">
@@ -513,6 +616,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 <p><code>figsize=(6, 3)</code>은 그림의 가로와 세로를 인치 단위로 지정한다. 지정하지 않으면 matplotlib의 기본값(6.4, 4.8)이 쓰인다. <code>ax.bar</code>는 그 축에 막대를 그리는 matplotlib의 메서드이다. 1장의 <code>value_counts()</code>가 돌려준 시리즈에서 인덱스(등급 이름)를 x에, 값(빈도)을 y에 주었다. 셀의 끝에 쓴 <code>plt.show()</code>는 그림을 표시한다. 생략하면 마지막 줄 그래프 함수의 반환값 설명이 함께 출력되므로 <code>plt.show()</code>로 끝맺는다.</p>
+<p>출력의 두 줄은 <code>fig</code>와 <code>ax</code>의 자료형이다. <code>Figure</code>는 그림, <code>Axes</code>는 축이다. 칸이 하나인 그림에서 <code>subplots()</code>는 축 하나를 돌려주므로, <code>ax</code>는 배열이 아니라 축 객체 하나이다. 여기에 <code>ax[0]</code>처럼 번호를 붙이면 <code>TypeError: 'Axes' object is not subscriptable</code>이 난다(1.6절).</p>
+<ul>
+<li><span class="check-badge">확인 4</span> 1.2절 셀의 출력 둘째 줄에 <code>Axes</code>가 보이고, 막대가 네 개인 그림이 표시된다.</li>
+</ul>
 </section>
 <section id="두-가지-작성-방식" class="level3">
 <h3 class="anchored" data-anchor-id="두-가지-작성-방식">1.3 두 가지 작성 방식</h3>
@@ -544,19 +651,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <p>pyplot 방식의 함수는 “현재 축”, 즉 가장 최근에 만들어지거나 사용된 축에 작용한다. 아래 셀은 <code>plt.figure</code>로 그림을 만든 뒤 seaborn에 축을 지정하지 않고 히스토그램을 그린다. seaborn은 축을 지정받지 않으면 현재 축에 그린다.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">3</span>))</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"tenure_months"</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">3</span>))</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"tenure_months"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="그림의-분할-subplots와-ax-인자" class="level3">
 <h3 class="anchored" data-anchor-id="그림의-분할-subplots와-ax-인자">1.4 그림의 분할: <code>subplots</code>와 <code>ax=</code> 인자</h3>
 <p><code>plt.subplots(nrows, ncols)</code>는 그림을 행과 열의 칸으로 나눈다. 반환값의 둘째는 축의 배열이다. 칸이 하나이면 축 하나가, 한 줄이면 1차원 배열이, 여러 행과 여러 열이면 2차원 배열이 돌아온다. seaborn의 그래프 함수에 <code>ax=축</code>을 주면 그 칸에 그린다.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="fl">3.5</span>))</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>sns.countplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"grade"</span>, ax<span class="op">=</span>axes[<span class="dv">0</span>])</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>sns.countplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"payment"</span>, ax<span class="op">=</span>axes[<span class="dv">1</span>])</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(axes.shape)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="fl">3.5</span>))</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>sns.countplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"grade"</span>, ax<span class="op">=</span>axes[<span class="dv">0</span>])</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>sns.countplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"payment"</span>, ax<span class="op">=</span>axes[<span class="dv">1</span>])</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(axes.shape)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>(2,)</code></pre>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -565,14 +672,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 <p><code>axes.shape</code>가 <code>(2,)</code>이므로 <code>axes[0]</code>이 왼쪽 칸, <code>axes[1]</code>이 오른쪽 칸이다. <code>plt.tight_layout()</code>은 칸 사이의 간격을 조정하여 축 이름과 제목이 겹치지 않게 한다. 2행 2열로 나누면 축의 배열이 2차원이 되어 <code>axes[행, 열]</code>로 칸을 지정한다.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">6</span>))</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"tenure_months"</span>, ax<span class="op">=</span>axes[<span class="dv">0</span>, <span class="dv">0</span>])</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"visits_per_month"</span>, ax<span class="op">=</span>axes[<span class="dv">0</span>, <span class="dv">1</span>])</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"coupon_use_rate"</span>, ax<span class="op">=</span>axes[<span class="dv">1</span>, <span class="dv">0</span>])</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"last_login_days"</span>, ax<span class="op">=</span>axes[<span class="dv">1</span>, <span class="dv">1</span>])</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(axes.shape)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">6</span>))</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"tenure_months"</span>, ax<span class="op">=</span>axes[<span class="dv">0</span>, <span class="dv">0</span>])</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"visits_per_month"</span>, ax<span class="op">=</span>axes[<span class="dv">0</span>, <span class="dv">1</span>])</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"coupon_use_rate"</span>, ax<span class="op">=</span>axes[<span class="dv">1</span>, <span class="dv">0</span>])</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"last_login_days"</span>, ax<span class="op">=</span>axes[<span class="dv">1</span>, <span class="dv">1</span>])</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(axes.shape)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>(2, 2)</code></pre>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -582,30 +689,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>실수</th>
-<th>결과</th>
+<th><code>subplots</code>의 호출</th>
+<th>돌려주는 축</th>
+<th><code>shape</code></th>
+<th>칸을 고르는 법</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>ax=</code>를 빠뜨린다</td>
-<td>모든 그래프가 마지막 칸(현재 축)에 겹쳐 그려진다</td>
+<td><code>plt.subplots()</code></td>
+<td>축 하나</td>
+<td>(배열이 아니다)</td>
+<td><code>ax</code> 그대로</td>
 </tr>
 <tr class="even">
-<td>2행 2열에서 <code>axes[2]</code>라고 쓴다</td>
-<td><code>IndexError</code>. 2차원 배열은 <code>axes[1, 0]</code>처럼 행과 열을 함께 쓴다</td>
+<td><code>plt.subplots(1, 2)</code></td>
+<td>1차원 배열</td>
+<td><code>(2,)</code></td>
+<td><code>axes[0]</code>, <code>axes[1]</code></td>
 </tr>
 <tr class="odd">
-<td><code>fig, ax = plt.subplots(1, 2)</code>로 받고 <code>ax.set_title()</code>을 부른다</td>
-<td><code>ax</code>가 배열이므로 <code>AttributeError</code>. <code>ax[0].set_title()</code>처럼 칸을 고른다</td>
+<td><code>plt.subplots(1, 3)</code></td>
+<td>1차원 배열</td>
+<td><code>(3,)</code></td>
+<td><code>axes[0]</code> ~ <code>axes[2]</code></td>
+</tr>
+<tr class="even">
+<td><code>plt.subplots(2, 2)</code></td>
+<td>2차원 배열</td>
+<td><code>(2, 2)</code></td>
+<td><code>axes[0, 0]</code> ~ <code>axes[1, 1]</code>. 첫 번호가 행, 둘째가 열</td>
 </tr>
 </tbody>
 </table>
+<ul>
+<li><span class="check-badge">확인 5</span> 1.4절 셀의 출력이 <code>(2,)</code>, 1.5절 셀의 출력이 <code>(2, 2)</code>이고, 1.5절의 그림에서 왼쪽 위 칸의 x축 이름이 <code>tenure_months</code>이다.</li>
+</ul>
 </section>
 <section id="축-수준-함수와-그림-수준-함수" class="level3">
 <h3 class="anchored" data-anchor-id="축-수준-함수와-그림-수준-함수">1.5 축 수준 함수와 그림 수준 함수</h3>
@@ -644,13 +770,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.countplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"app_user"</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(ax))</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="text"><code>&lt;class 'matplotlib.axes._axes.Axes'&gt;</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> sns.jointplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"tenure_months"</span>, y<span class="op">=</span><span class="st">"annual_spend"</span>, height<span class="op">=</span><span class="dv">4</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(g))</span>
+<blockquote class="blockquote">
+<p><strong>[그림 자리: seaborn의 축 수준 함수와 그림 수준 함수의 관계 도식]</strong> 왼쪽에 그림 수준 함수(<code>relplot</code>, <code>displot</code>, <code>catplot</code>), 오른쪽에 각각이 안에서 쓰는 축 수준 함수(<code>scatterplot</code>·<code>lineplot</code>, <code>histplot</code>·<code>kdeplot</code>, <code>countplot</code>·<code>barplot</code>·<code>boxplot</code>)를 묶어 보이는 도식. 그림 수준 함수는 그림 전체를 새로 만들고, 축 수준 함수는 주어진 칸 하나에 그린다는 것을 화살표로 표시한다. seaborn 공식 문서의 “Overview of seaborn plotting functions”의 분류를 따르되 그림은 새로 그린다. 찍을 곳: 도식 도구로 새로 작성.</p>
+</blockquote>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.countplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"app_user"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(ax))</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>&lt;class 'matplotlib.axes._axes.Axes'&gt;</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> sns.jointplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"tenure_months"</span>, y<span class="op">=</span><span class="st">"annual_spend"</span>, height<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(g))</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>&lt;class 'seaborn.axisgrid.JointGrid'&gt;</code></pre>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -659,8 +788,114 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 <p><code>jointplot</code>은 축 세 개(가운데의 산점도, 위와 오른쪽의 분포)를 가진 그림을 스스로 만든다. 따라서 <code>subplots</code>로 나눈 칸 하나에 넣을 수 없다. <code>ax=</code>를 주면 seaborn은 그 인자를 무시하고 경고만 낸 뒤 새 그림을 만든다. 가이드가 “한 그림에 두 그래프”를 요구하면 축 수준 함수를 쓰고, 결합 그래프는 따로 그린다. 그림 수준 함수의 크기는 <code>figsize</code>가 아니라 <code>height</code>(정사각형 한 변의 인치)로 정한다.</p>
+<p>아래 셀은 가로 두 칸의 그림을 만든 뒤 <code>jointplot</code>에 왼쪽 칸을 <code>ax=</code>로 주고, seaborn이 낸 경고를 출력한다. 경고는 오류가 아니므로 셀은 끝까지 실행된다. 이 셀은 강의안에서만 실행한다.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">3</span>))</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> warnings.catch_warnings(record<span class="op">=</span><span class="va">True</span>) <span class="im">as</span> w:</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    warnings.simplefilter(<span class="st">"always"</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    g <span class="op">=</span> sns.jointplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"tenure_months"</span>, y<span class="op">=</span><span class="st">"annual_spend"</span>, height<span class="op">=</span><span class="dv">4</span>, ax<span class="op">=</span>axes[<span class="dv">0</span>])</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(w[<span class="dv">0</span>].message)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(plt.get_fignums()))</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>Ignoring `ax`; jointplot is a figure-level function.
+2</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../kit/images/AICE_02_1_7b.png" class="img-fluid figure-img"></p>
+<figcaption>그림 수준 함수에 ax를 준 경우</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../kit/images/AICE_02_1_7b_2.png" class="img-fluid figure-img"></p>
+<figcaption>그림 수준 함수에 ax를 준 경우</figcaption>
+</figure>
+</div>
+<p>경고의 문장은 “<code>ax</code>를 무시한다. <code>jointplot</code>은 그림 수준 함수이다”라는 뜻이다. 둘째 줄의 2는 열려 있는 그림의 수이다. 첫째 그림(가로 두 칸)은 비어 있고, 결합 그래프는 둘째 그림에 따로 그려졌다. 경고를 놓치면 “빈 그림 하나와 결합 그래프 하나”라는 결과만 보고 원인을 찾기 어렵다.</p>
 <p>노트북 1부의 연습 1(가로 두 칸)과 연습 2(2행 2열, <code>[선택]</code>)를 푼다.</p>
+</section>
+<section id="그림-분할의-흔한-오류" class="level3">
+<h3 class="anchored" data-anchor-id="그림-분할의-흔한-오류">1.6 그림 분할의 흔한 오류</h3>
+<p>그림 분할의 오류는 대부분 “<code>subplots</code>가 돌려준 것이 축 하나인가, 1차원 배열인가, 2차원 배열인가”를 착각하여 생긴다. 2행 2열의 축 배열에 번호를 하나만 주면 다음과 같다.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>]</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>IndexError: index 2 is out of bounds for axis 0 with size 2</code></pre>
+<p><code>axes[2]</code>는 첫 축(행)의 2번을 찾는다. 행은 0과 1의 둘뿐이므로(<code>size 2</code>) 범위를 벗어났다. 세 번째 칸(왼쪽 아래)은 <code>axes[1, 0]</code>이다.</p>
+<p><code>ax=</code>를 빠뜨리면 오류는 나지 않지만 그래프가 겹친다. 아래 셀은 가로 두 칸을 만들었으나 두 히스토그램에 칸을 지정하지 않았다.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="fl">3.5</span>))</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"tenure_months"</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"visits_per_month"</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../kit/images/AICE_02_1_4b.png" class="img-fluid figure-img"></p>
+<figcaption>ax를 빠뜨린 경우</figcaption>
+</figure>
+</div>
+<p>왼쪽 칸은 비어 있고, 두 히스토그램이 오른쪽 칸에 겹쳐 그려졌다. <code>subplots</code>가 마지막으로 만든 칸이 현재 축이고, 축을 지정받지 못한 seaborn은 현재 축에 그리기 때문이다. 두 열의 값의 범위가 달라(가입 기간 1~120, 방문 수 1~45) x축이 넓어지고, 방문 수의 히스토그램은 왼쪽에 몰려 보인다.</p>
+<section id="흔한-오류" class="level4">
+<h4 class="anchored" data-anchor-id="흔한-오류">흔한 오류</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>증상</th>
+<th>실제 메시지(마지막 줄)</th>
+<th>원인</th>
+<th>대처</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>칸이 하나인 그림에 번호를 붙였다</td>
+<td><code>TypeError: 'Axes' object is not subscriptable</code></td>
+<td><code>fig, ax = plt.subplots()</code>의 <code>ax</code>는 축 하나이다. <code>ax[0]</code></td>
+<td>번호 없이 <code>ax</code>를 쓴다</td>
+</tr>
+<tr class="even">
+<td>축 배열 전체에 제목을 붙였다</td>
+<td><code>AttributeError: 'numpy.ndarray' object has no attribute 'set_title'</code></td>
+<td><code>plt.subplots(1, 2)</code>의 반환값은 배열이다. <code>axes.set_title(...)</code></td>
+<td><code>axes[0].set_title(...)</code>처럼 칸을 고른다</td>
+</tr>
+<tr class="odd">
+<td>2차원 배열에 번호를 하나만 주었다</td>
+<td><code>IndexError: index 2 is out of bounds for axis 0 with size 2</code></td>
+<td>2행 2열의 <code>axes[2]</code></td>
+<td><code>axes[행, 열]</code>. 세 번째 칸은 <code>axes[1, 0]</code></td>
+</tr>
+<tr class="even">
+<td>그래프가 한 칸에 겹친다</td>
+<td>(오류 없음)</td>
+<td><code>ax=</code>를 빠뜨렸다</td>
+<td>그래프 함수마다 <code>ax=axes[i]</code></td>
+</tr>
+<tr class="odd">
+<td>칸 하나가 비고 새 그림이 생긴다</td>
+<td>(경고) <code>Ignoring `ax`; jointplot is a figure-level function.</code></td>
+<td>그림 수준 함수에 <code>ax=</code>를 주었다</td>
+<td>그림 수준 함수는 따로 그린다. 한 칸에 넣으려면 축 수준 함수(<code>scatterplot</code>)를 쓴다</td>
+</tr>
+<tr class="even">
+<td>칸의 제목과 축 이름이 겹친다</td>
+<td>(오류 없음)</td>
+<td>칸 사이의 간격이 좁다</td>
+<td><code>plt.show()</code> 앞에 <code>plt.tight_layout()</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><span class="check-badge">확인 6</span> 1.4절의 셀에서 둘째 <code>countplot</code>의 <code>ax=axes[1]</code>을 지우고 실행하면 오른쪽 칸에 두 그래프가 겹친다. 확인한 뒤 원래대로 되돌린다.</li>
+<li><span class="check-badge">확인 7</span> 연습 1의 그림이 가로 두 칸이고, 왼쪽 칸의 x축 이름이 <code>app_user</code>, 오른쪽 칸의 x축 이름이 <code>marketing_agree</code>이다.</li>
+</ul>
 <hr>
+</section>
 </section>
 </section>
 <section id="제목-축-이름-범례-눈금-회전-한글-글꼴" class="level2">
@@ -710,13 +945,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <p>아래 셀은 pyplot 방식으로 지역별 빈도 그래프에 제목과 축 이름을 붙이고, 겹치는 눈금 글자를 45도 회전한다. seaborn은 축 이름을 열 이름(<code>region</code>, <code>count</code>)으로 자동으로 붙이는데, <code>plt.xlabel</code>과 <code>plt.ylabel</code>은 그 이름을 바꾼다.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="fl">3.5</span>))</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>sns.countplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"region"</span>)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Customers by region"</span>)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Region"</span>)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Count"</span>)</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>)</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="fl">3.5</span>))</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>sns.countplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"region"</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Customers by region"</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Region"</span>)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Count"</span>)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../kit/images/AICE_02_2_1.png" class="img-fluid figure-img"></p>
@@ -728,13 +963,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="범례" class="level3">
 <h3 class="anchored" data-anchor-id="범례">2.2 범례</h3>
 <p><code>hue=열</code>을 주면 seaborn은 그 열의 값마다 색을 달리하여 그리고 범례를 자동으로 만든다. 범례의 제목과 위치를 바꾸려면 <code>legend</code>를 다시 부른다. <code>loc</code>에는 <code>"upper right"</code>, <code>"upper left"</code>, <code>"lower right"</code>, <code>"best"</code> 등을 쓴다.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="fl">3.5</span>))</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>sns.countplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"grade"</span>, hue<span class="op">=</span><span class="st">"churn"</span>, ax<span class="op">=</span>ax)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Churn by grade"</span>)</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Grade"</span>)</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Count"</span>)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>ax.legend(title<span class="op">=</span><span class="st">"Churn"</span>, loc<span class="op">=</span><span class="st">"upper right"</span>)</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="fl">3.5</span>))</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>sns.countplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"grade"</span>, hue<span class="op">=</span><span class="st">"churn"</span>, ax<span class="op">=</span>ax)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Churn by grade"</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Grade"</span>)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Count"</span>)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>ax.legend(title<span class="op">=</span><span class="st">"Churn"</span>, loc<span class="op">=</span><span class="st">"upper right"</span>)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../kit/images/AICE_02_2_2.png" class="img-fluid figure-img"></p>
@@ -746,35 +981,199 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="칸마다-제목-붙이기와-눈금-회전" class="level3">
 <h3 class="anchored" data-anchor-id="칸마다-제목-붙이기와-눈금-회전">2.3 칸마다 제목 붙이기와 눈금 회전</h3>
 <p>한 그림에 칸이 여럿이면 제목은 칸마다 <code>axes[i].set_title()</code>로 붙이고, 그림 전체의 제목은 <code>fig.suptitle()</code>로 붙인다. 한 칸의 눈금만 회전하려면 그 칸의 <code>tick_params</code>를 쓴다. <code>plt.xticks</code>는 현재 축, 즉 마지막 칸에만 작용하므로 칸이 여럿일 때에는 의도와 다른 칸이 회전될 수 있다.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="fl">3.5</span>))</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>sns.countplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"payment"</span>, ax<span class="op">=</span>axes[<span class="dv">0</span>])</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>sns.countplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"region"</span>, ax<span class="op">=</span>axes[<span class="dv">1</span>])</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">"Payment"</span>)</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">"Region"</span>)</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].tick_params(axis<span class="op">=</span><span class="st">"x"</span>, rotation<span class="op">=</span><span class="dv">90</span>)</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">"Categorical columns"</span>)</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="fl">3.5</span>))</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>sns.countplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"payment"</span>, ax<span class="op">=</span>axes[<span class="dv">0</span>])</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>sns.countplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"region"</span>, ax<span class="op">=</span>axes[<span class="dv">1</span>])</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">"Payment"</span>)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">"Region"</span>)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].tick_params(axis<span class="op">=</span><span class="st">"x"</span>, rotation<span class="op">=</span><span class="dv">90</span>)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">"Categorical columns"</span>)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../kit/images/AICE_02_2_3.png" class="img-fluid figure-img"></p>
 <figcaption>칸별 제목</figcaption>
 </figure>
 </div>
+<section id="제목과-축-이름의-확인" class="level4">
+<h4 class="anchored" data-anchor-id="제목과-축-이름의-확인">제목과 축 이름의 확인</h4>
+<p>그림에 붙인 글자는 축의 <code>get_title()</code>, <code>get_xlabel()</code>, <code>get_ylabel()</code>로 다시 읽을 수 있다. 중심 실습의 자가 채점 셀이 이 방법으로 제목과 축 이름을 검사한다. 시험에서도 채점은 그림을 눈으로 보지 않고 객체의 값으로 할 수 있으므로, 가이드의 문자열을 한 글자도 바꾸지 않는다.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="fl">3.5</span>))</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>sns.countplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"grade"</span>, ax<span class="op">=</span>ax)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Grade count"</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Grade"</span>)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ax.get_title())</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ax.get_xlabel())</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ax.get_ylabel())</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>Grade count
+Grade
+count</code></pre>
+<p>첫 줄은 <code>set_title</code>로 붙인 제목, 둘째 줄은 <code>set_xlabel</code>로 바꾼 x축 이름이다. 셋째 줄의 <code>count</code>는 바꾸지 않은 y축 이름으로, seaborn이 자동으로 붙인 것이다.</p>
+<ul>
+<li><span class="check-badge">확인 8</span> 위의 셀(제목과 축 이름을 출력하는 셀)의 출력이 <code>Grade count</code>, <code>Grade</code>, <code>count</code>의 세 줄이다.</li>
+</ul>
+</section>
 </section>
 <section id="한글-글꼴" class="level3">
 <h3 class="anchored" data-anchor-id="한글-글꼴">2.4 한글 글꼴</h3>
 <p>matplotlib의 기본 글꼴에는 한글 글자가 없다. 한글 제목을 그대로 쓰면 글자가 네모(□)로 표시되고 글꼴이 없다는 경고가 출력된다. 현재의 글꼴 설정은 <code>plt.rcParams</code>에서 확인한다.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(plt.rcParams[<span class="st">"font.family"</span>])</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(plt.rcParams[<span class="st">"axes.unicode_minus"</span>])</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(plt.rcParams[<span class="st">"font.family"</span>])</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(plt.rcParams[<span class="st">"axes.unicode_minus"</span>])</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>['sans-serif']
 True</code></pre>
 <p><code>rcParams</code>는 matplotlib의 설정값을 담은 사전이다. 한글을 쓰려면 운영 체제에 설치된 한글 글꼴의 이름을 <code>font.family</code>에 지정한다. 한글 글꼴을 쓰면 음수 부호(−)가 깨지는 경우가 있으므로 <code>axes.unicode_minus</code>를 <code>False</code>로 바꾸어 일반 하이픈으로 표시하게 한다.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">"font.family"</span>] <span class="op">=</span> <span class="st">"Malgun Gothic"</span>     <span class="co"># 윈도우(맑은 고딕). macOS는 "AppleGothic"</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">"axes.unicode_minus"</span>] <span class="op">=</span> <span class="va">False</span>         <span class="co"># 음수 부호를 하이픈으로 표시</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">"font.family"</span>] <span class="op">=</span> <span class="st">"Malgun Gothic"</span>     <span class="co"># 윈도우(맑은 고딕). macOS는 "AppleGothic"</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">"axes.unicode_minus"</span>] <span class="op">=</span> <span class="va">False</span>         <span class="co"># 음수 부호를 하이픈으로 표시</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>이 설정은 커널이 다시 시작될 때까지 이후의 모든 그림에 적용된다. 글꼴의 이름은 환경마다 다르고 리눅스 서버에는 한글 글꼴이 없는 경우가 많으므로, 본 교재의 그림은 모든 글자를 영문으로 쓴다. 시험에서는 가이드가 지정한 문자열을 그대로 쓴다.</p>
+<section id="설정의-단계" class="level4">
+<h4 class="anchored" data-anchor-id="설정의-단계">설정의 단계</h4>
+<p>한글 글꼴은 다음 다섯 단계로 설정하고 확인한다. 아래의 셀은 이 교재를 빌드한 윈도우 PC에서 실행한 결과이며, 실습 환경에서는 글꼴의 목록이 다르다. 첫 단계의 셀만 노트북에 있고, 나머지는 강의안에서만 실행한다. 본 교재의 그림에는 한글을 쓰지 않는다는 원칙에 따라, 한글 제목을 붙인 확인용 그림은 그리기만 하고 표시하지 않는다(<code>plt.close</code>).</p>
+<p><strong>1단계: 설치된 한글 글꼴을 찾는다.</strong> <code>font_manager.get_font_names()</code>는 matplotlib이 찾은 글꼴의 이름 목록을 돌려준다. 쓰려는 이름이 목록에 있는지 확인한다.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> font_manager</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> font_manager.get_font_names()</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Malgun Gothic"</span> <span class="kw">in</span> names, <span class="st">"AppleGothic"</span> <span class="kw">in</span> names, <span class="st">"NanumGothic"</span> <span class="kw">in</span> names)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>True False True</code></pre>
+<p>이 PC에는 맑은 고딕(<code>Malgun Gothic</code>)과 나눔고딕(<code>NanumGothic</code>)이 있고, macOS의 <code>AppleGothic</code>은 없다. 목록에 없는 글꼴은 지정하여도 쓰이지 않는다.</p>
+<p><strong>2단계: 설정하기 전의 증상을 본다.</strong> 기본 글꼴로 한글 제목을 그리면 글자마다 경고가 난다. 아래 셀은 그 경고의 첫 번째를 출력한다.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">2</span>))</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"한글"</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> warnings.catch_warnings(record<span class="op">=</span><span class="va">True</span>) <span class="im">as</span> w:</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    warnings.simplefilter(<span class="st">"always"</span>)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    fig.canvas.draw()</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(w[<span class="dv">0</span>].message)</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>plt.close(fig)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>Glyph 54620 (\N{HANGUL SYLLABLE HAN}) missing from font(s) DejaVu Sans.</code></pre>
+<p><code>Glyph 54620</code>은 글자 「한」의 번호이고, <code>missing from font(s) DejaVu Sans</code>는 기본 글꼴인 DejaVu Sans에 그 글자의 모양(글리프)이 없다는 뜻이다. 그림에서는 이 글자가 네모로 표시된다.</p>
+<p><strong>3단계: 그 글꼴의 파일을 찾을 수 있는지 확인하고 지정한다.</strong> <code>findfont</code>에 <code>fallback_to_default=False</code>를 주면, 글꼴을 찾지 못할 때 기본 글꼴로 대신하지 않고 오류를 낸다. 확인을 먼저 하므로, 글꼴이 없으면 설정을 바꾸기 전에 셀이 멈춘다.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(font_manager.findfont(<span class="st">"Malgun Gothic"</span>, fallback_to_default<span class="op">=</span><span class="va">False</span>))</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">"font.family"</span>] <span class="op">=</span> <span class="st">"Malgun Gothic"</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">"axes.unicode_minus"</span>] <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(plt.rcParams[<span class="st">"font.family"</span>])</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>C:\Windows\Fonts\malgun.ttf
+['Malgun Gothic']</code></pre>
+<p>첫 줄은 그 글꼴 파일의 위치, 둘째 줄은 지정한 글꼴의 이름이다. 파일의 위치가 나오면 설정이 쓰일 수 있는 상태이다. 목록에 없는 글꼴을 같은 방법으로 찾으면 오류가 난다.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>font_manager.findfont(<span class="st">"AppleGothic"</span>, fallback_to_default<span class="op">=</span><span class="va">False</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>ValueError: Failed to find font AppleGothic:style=normal:variant=normal:weight=normal:stretch=normal:size=10.0, and fallback to the default font was disabled</code></pre>
+<p>메시지의 앞부분 <code>Failed to find font AppleGothic</code>이 원인이다. 이 경우 1단계의 목록에 있는 다른 글꼴을 고른다.</p>
+<p><strong>4단계: 같은 한글 제목을 다시 그려 경고가 사라졌는지 확인한다.</strong> 출력은 경고의 개수이다.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">2</span>))</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"한글"</span>)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> warnings.catch_warnings(record<span class="op">=</span><span class="va">True</span>) <span class="im">as</span> w:</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    warnings.simplefilter(<span class="st">"always"</span>)</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>    fig.canvas.draw()</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(w))</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>plt.close(fig)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>0</code></pre>
+<p>경고가 0개이면 한글 글자가 모두 그 글꼴로 그려졌다는 뜻이다.</p>
+<p><strong>5단계: 필요하면 원래 설정으로 되돌린다.</strong> 이 교재는 다음 셀들의 그림을 기본 글꼴로 그리기 위하여 되돌렸다. 커널을 다시 시작하여도 원래 설정으로 돌아간다.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">"font.family"</span>] <span class="op">=</span> <span class="st">"sans-serif"</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">"axes.unicode_minus"</span>] <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(plt.rcParams[<span class="st">"font.family"</span>], plt.rcParams[<span class="st">"axes.unicode_minus"</span>])</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>['sans-serif'] True</code></pre>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>단계</th>
+<th>하는 일</th>
+<th>확인하는 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>설치된 글꼴의 이름을 찾는다</td>
+<td><code>get_font_names()</code>의 목록에 그 이름이 있다(<code>True</code>)</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>설정 전의 증상을 본다</td>
+<td><code>Glyph ... missing from font(s) DejaVu Sans</code> 경고, 그림의 네모 글자</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><code>font.family</code>와 <code>axes.unicode_minus</code>를 지정한다</td>
+<td><code>findfont(..., fallback_to_default=False)</code>가 파일의 위치를 돌려준다</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>같은 그림을 다시 그린다</td>
+<td>경고가 없다. 한글이 보인다. 음수 눈금이 깨지지 않는다</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>필요하면 되돌린다</td>
+<td><code>font.family</code>가 <code>['sans-serif']</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><span class="check-badge">확인 9</span> 노트북의 한글 글꼴 확인 셀의 출력이 <code>True</code>나 <code>False</code>의 세 값이다. 학교 실습 환경의 결과를 적어 둔다(실습 환경마다 다르다).</li>
+</ul>
 <p>노트북 1부의 연습 3(제목, 축 이름, 눈금 회전)과 연습 4(범례)를 푼다.</p>
+</section>
+<section id="흔한-오류-1" class="level4">
+<h4 class="anchored" data-anchor-id="흔한-오류-1">흔한 오류</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>증상</th>
+<th>실제 메시지(마지막 줄)</th>
+<th>원인</th>
+<th>대처</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>한글이 네모로 나온다</td>
+<td>(경고) <code>Glyph 54620 (\N{HANGUL SYLLABLE HAN}) missing from font(s) DejaVu Sans.</code></td>
+<td>기본 글꼴에 한글이 없다</td>
+<td>2.4절의 단계로 한글 글꼴을 지정하거나, 영문으로 쓴다</td>
+</tr>
+<tr class="even">
+<td>지정한 글꼴을 찾지 못한다</td>
+<td><code>ValueError: Failed to find font AppleGothic:style=normal:...</code> (<code>fallback_to_default=False</code>로 찾은 경우)</td>
+<td>그 글꼴이 설치되어 있지 않다</td>
+<td>1단계의 목록에 있는 이름을 쓴다</td>
+</tr>
+<tr class="odd">
+<td>제목이 엉뚱한 칸에 붙었다</td>
+<td>(오류 없음)</td>
+<td>칸이 여럿인 그림에서 <code>plt.title</code>을 썼다. 현재 축(마지막 칸)에 붙는다</td>
+<td><code>axes[i].set_title()</code></td>
+</tr>
+<tr class="even">
+<td>왼쪽 칸의 눈금이 회전되지 않았다</td>
+<td>(오류 없음)</td>
+<td><code>plt.xticks(rotation=)</code>은 현재 축에만 작용한다</td>
+<td><code>axes[0].tick_params(axis="x", rotation=)</code></td>
+</tr>
+<tr class="odd">
+<td>범례의 제목이 바뀌지 않았다</td>
+<td>(오류 없음)</td>
+<td><code>legend</code>를 부르지 않고 <code>hue</code>만 주었다</td>
+<td><code>ax.legend(title="...")</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><span class="check-badge">확인 10</span> 연습 3의 그림의 제목이 <code>Region count</code>이고, x축의 눈금 글자가 세로(90도)로 서 있다.</li>
+</ul>
 <hr>
+</section>
 </section>
 </section>
 <section id="범주형-변수의-분포" class="level2">
@@ -813,20 +1212,61 @@ True</code></pre>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>order <span class="op">=</span> [<span class="st">"Bronze"</span>, <span class="st">"Silver"</span>, <span class="st">"Gold"</span>, <span class="st">"VIP"</span>]</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>sns.countplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"grade"</span>, order<span class="op">=</span>order)</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Grade count"</span>)</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>order <span class="op">=</span> [<span class="st">"Bronze"</span>, <span class="st">"Silver"</span>, <span class="st">"Gold"</span>, <span class="st">"VIP"</span>]</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.countplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"grade"</span>, order<span class="op">=</span>order)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Grade count"</span>)</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ax.containers[<span class="dv">0</span>].datavalues)</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>[1259.  970.  573.  228.]</code></pre>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../kit/images/AICE_02_3_1.png" class="img-fluid figure-img"></p>
 <figcaption>등급 빈도</figcaption>
 </figure>
 </div>
+<p><code>countplot</code>이 돌려준 축의 <code>containers[0].datavalues</code>는 그려진 막대의 높이를 순서대로 담은 배열이다. 출력의 네 값은 <code>order</code>의 순서(Bronze, Silver, Gold, VIP)의 막대 높이이고, 1장 5.1절의 <code>value_counts()</code>의 값과 같다. 그래프가 무엇을 그렸는지를 코드로 확인하는 방법이다.</p>
+<section id="결과-읽기" class="level4">
+<h4 class="anchored" data-anchor-id="결과-읽기">결과 읽기</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>묻는 것</th>
+<th>읽는 자리</th>
+<th>이 그래프의 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>막대 하나가 뜻하는 것</td>
+<td>x축의 범주</td>
+<td>등급 하나</td>
+</tr>
+<tr class="even">
+<td>막대의 높이</td>
+<td>y축(<code>count</code>)</td>
+<td>그 등급의 행 수. Bronze 1259, VIP 228</td>
+</tr>
+<tr class="odd">
+<td>막대의 순서</td>
+<td><code>order</code> 인자</td>
+<td>Bronze, Silver, Gold, VIP</td>
+</tr>
+<tr class="even">
+<td>가장 많은 범주</td>
+<td>가장 높은 막대</td>
+<td>그래프로는 짐작만 하고 <code>value_counts().idxmax()</code>로 구한다</td>
+</tr>
+</tbody>
+</table>
 <p>등급처럼 순서가 있는 범주는 <code>order</code>로 순서를 지정해야 읽기 쉽다. 빈도가 많은 순서로 놓으려면 <code>order=df["grade"].value_counts().index</code>처럼 쓴다. “가장 많은 범주”를 묻는 답 변수는 막대의 높이를 눈으로 비교하지 않고 같은 자료에서 코드로 구한다.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> df[<span class="st">"grade"</span>].value_counts()</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(counts)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(counts.idxmax())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> df[<span class="st">"grade"</span>].value_counts()</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(counts)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(counts.idxmax())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>grade
 Bronze    1259
 Silver     970
@@ -834,13 +1274,17 @@ Gold       573
 VIP        228
 Name: count, dtype: int64
 Bronze</code></pre>
+<ul>
+<li><span class="check-badge">확인 11</span> 3.1절 셀의 출력이 <code>[1259.  970.  573.  228.]</code>이고, 그림의 막대가 왼쪽부터 Bronze, Silver, Gold, VIP의 순서이다.</li>
+</ul>
+</section>
 </section>
 <section id="막대그래프-barplot" class="level3">
 <h3 class="anchored" data-anchor-id="막대그래프-barplot">3.2 막대그래프: <code>barplot</code></h3>
-<p><code>barplot</code>은 x의 범주마다 y 열의 값을 하나로 요약하여 막대의 높이로 그린다. 요약에 쓰는 함수가 <code>estimator</code>이며 기본값은 평균(<code>"mean"</code>)이다. 막대 끝의 검은 선은 오차 막대로, 기본값(<code>errorbar=("ci", 95)</code>)은 평균의 95% 신뢰 구간이다. 신뢰 구간의 계산에는 시간이 걸린다.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>sns.barplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"grade"</span>, y<span class="op">=</span><span class="st">"annual_spend"</span>, order<span class="op">=</span>order)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Mean annual spend by grade"</span>)</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>barplot</code>은 x의 범주마다 y 열의 값을 하나로 요약하여 막대의 높이로 그린다. 요약에 쓰는 함수가 <code>estimator</code>이며 기본값은 평균(<code>"mean"</code>)이다. 막대 끝의 검은 선은 오차 막대로, 기본값(<code>errorbar=("ci", 95)</code>)은 평균의 95% 신뢰 구간이다. 신뢰 구간은 자료를 여러 번 다시 뽑아(부트스트랩) 계산하므로 시간이 걸린다.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>sns.barplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"grade"</span>, y<span class="op">=</span><span class="st">"annual_spend"</span>, order<span class="op">=</span>order)</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Mean annual spend by grade"</span>)</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../kit/images/AICE_02_3_3.png" class="img-fluid figure-img"></p>
@@ -868,33 +1312,29 @@ Bronze</code></pre>
 </tr>
 </tbody>
 </table>
-<p>0과 1로 된 열의 평균은 1의 비율이다. 따라서 <code>y="churn"</code>으로 막대그래프를 그리면 막대의 높이가 이탈 비율이 된다. 아래 셀은 오차 막대를 없애고(<code>errorbar=None</code>), 같은 값을 <code>groupby</code>로 구하여 비교한다.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>sns.barplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"payment"</span>, y<span class="op">=</span><span class="st">"churn"</span>, errorbar<span class="op">=</span><span class="va">None</span>)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Churn rate by payment"</span>)</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">"payment"</span>)[<span class="st">"churn"</span>].mean().<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>0과 1로 된 열의 평균은 1의 비율이다. 따라서 <code>y="churn"</code>으로 막대그래프를 그리면 막대의 높이가 이탈 비율이 된다. 아래 셀은 오차 막대를 없애고(<code>errorbar=None</code>), 그려진 막대의 높이를 출력한 뒤, 같은 값을 <code>groupby</code>로 구하여 비교한다.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.barplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"payment"</span>, y<span class="op">=</span><span class="st">"churn"</span>, errorbar<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Churn rate by payment"</span>)</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ax.containers[<span class="dv">0</span>].datavalues.<span class="bu">round</span>(<span class="dv">3</span>))</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">"payment"</span>)[<span class="st">"churn"</span>].mean().<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../kit/images/AICE_02_3_4.png" class="img-fluid figure-img"></p>
 <figcaption>이탈 비율</figcaption>
 </figure>
 </div>
-<pre class="text"><code>payment
+<pre class="text"><code>[0.194 0.201 0.18  0.206]
+payment
 Card        0.194
 Mobile      0.201
 Point       0.206
 Transfer    0.180
 Name: churn, dtype: float64</code></pre>
+<p>첫 줄은 막대의 높이를 그림의 왼쪽부터 적은 것이다. 막대의 순서는 <code>order</code>를 주지 않았으므로 자료에 처음 나타난 순서(Card, Mobile, Transfer, Point)이다. 아래의 <code>groupby</code> 결과는 알파벳 순서(Card, Mobile, Point, Transfer)이므로, 같은 값이 다른 순서로 놓여 있다. 막대의 높이 0.18은 <code>Transfer</code>의 0.180이고, 마지막 막대의 0.206은 <code>Point</code>의 값이다.</p>
 <p>막대의 높이는 0.18~0.21로 서로 비슷하여 눈으로는 순위를 가리기 어렵다. <code>groupby</code>로 구한 값에서 이탈 비율이 가장 높은 결제 수단은 <code>Point</code>(0.206)이고 가장 낮은 결제 수단은 <code>Transfer</code>(0.180)이다. 그래프에서 읽는 답을 코드로 구해야 하는 까닭이다. 평균 대신 중앙값이나 합계로 요약하려면 <code>estimator="median"</code>, <code>estimator="sum"</code>을 쓴다.</p>
-</section>
-<section id="열-이름의-오류" class="level3">
-<h3 class="anchored" data-anchor-id="열-이름의-오류">3.3 열 이름의 오류</h3>
-<p>seaborn의 <code>x</code>, <code>y</code>, <code>hue</code>에는 열 이름을 문자열로 준다. 따옴표를 빠뜨리면 파이썬은 <code>grade</code>를 변수의 이름으로 읽는다.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>sns.countplot(data<span class="op">=</span>df, x<span class="op">=</span>grade)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="text"><code>NameError: name 'grade' is not defined</code></pre>
-<p>열 이름의 대소문자가 다르면 seaborn이 그 이름을 자료에서 찾지 못한다.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>sns.countplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"Grade"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="text"><code>ValueError: Could not interpret value `Grade` for `x`. An entry with this name does not appear in `data`.</code></pre>
+<section id="결과-읽기-1" class="level4">
+<h4 class="anchored" data-anchor-id="결과-읽기-1">결과 읽기</h4>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -903,26 +1343,116 @@ Name: churn, dtype: float64</code></pre>
 </colgroup>
 <thead>
 <tr class="header">
-<th>오류의 마지막 줄</th>
+<th>묻는 것</th>
+<th>읽는 자리</th>
+<th>이 그래프의 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>막대의 높이</td>
+<td>y축(<code>churn</code>)</td>
+<td>결제 수단별 <code>churn</code>의 평균, 즉 이탈 비율</td>
+</tr>
+<tr class="even">
+<td>막대의 순서</td>
+<td>x축</td>
+<td>자료에 처음 나타난 순서. 알파벳 순서가 아니다</td>
+</tr>
+<tr class="odd">
+<td>오차 막대</td>
+<td>막대 끝의 검은 선</td>
+<td><code>errorbar=None</code>이므로 없다</td>
+</tr>
+<tr class="even">
+<td>가장 높은 막대</td>
+<td>높이 비교</td>
+<td>눈으로 가리기 어렵다. <code>groupby(...).mean().idxmax()</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><span class="check-badge">확인 12</span> 3.2절의 이탈 비율 셀에서 첫 줄의 막대 높이 네 개와 <code>groupby</code> 결과의 네 값이 순서만 다르고 같은 값이다.</li>
+</ul>
+</section>
+</section>
+<section id="열-이름의-오류" class="level3">
+<h3 class="anchored" data-anchor-id="열-이름의-오류">3.3 열 이름의 오류</h3>
+<p>seaborn의 <code>x</code>, <code>y</code>, <code>hue</code>에는 열 이름을 문자열로 준다. 따옴표를 빠뜨리면 파이썬은 <code>grade</code>를 변수의 이름으로 읽는다.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>sns.countplot(data<span class="op">=</span>df, x<span class="op">=</span>grade)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>NameError: name 'grade' is not defined</code></pre>
+<p>열 이름의 대소문자가 다르면 seaborn이 그 이름을 자료에서 찾지 못한다.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>sns.countplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"Grade"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>ValueError: Could not interpret value `Grade` for `x`. An entry with this name does not appear in `data`.</code></pre>
+<p><code>order</code>의 값에 오타가 있으면 오류가 나지 않는다. 그 값의 자리는 비어 있고 막대가 하나 모자라게 그려진다. 아래 셀은 <code>"VIP"</code>를 <code>"Vip"</code>로 잘못 쓴 경우이다. 이 셀은 강의안에서만 실행한다.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.countplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"grade"</span>, order<span class="op">=</span>[<span class="st">"Bronze"</span>, <span class="st">"Silver"</span>, <span class="st">"Gold"</span>, <span class="st">"Vip"</span>])</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Grade count"</span>)</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ax.containers[<span class="dv">0</span>].datavalues)</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>[1259.  970.  573.]</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../kit/images/AICE_02_3_7.png" class="img-fluid figure-img"></p>
+<figcaption>order의 오타</figcaption>
+</figure>
+</div>
+<p>막대의 높이가 세 개뿐이고 x축의 네 번째 자리(<code>Vip</code>)는 비어 있다. 자료에 <code>Vip</code>라는 값이 없기 때문이다. 오류 메시지가 없으므로, 막대의 수가 범주의 수와 같은지를 눈으로 확인해야 한다.</p>
+<section id="흔한-오류-2" class="level4">
+<h4 class="anchored" data-anchor-id="흔한-오류-2">흔한 오류</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>증상</th>
+<th>실제 메시지(마지막 줄)</th>
 <th>원인</th>
 <th>정정</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>NameError: name '...' is not defined</code></td>
 <td>열 이름에 따옴표가 없다</td>
+<td><code>NameError: name 'grade' is not defined</code></td>
+<td>파이썬이 <code>grade</code>를 변수로 읽었다</td>
 <td><code>x="grade"</code></td>
 </tr>
 <tr class="even">
-<td><code>ValueError: Could not interpret value ...</code></td>
-<td>열 이름의 철자나 대소문자가 다르다</td>
+<td>열 이름의 대소문자가 다르다</td>
+<td><code>ValueError: Could not interpret value `Grade` for `x`. An entry with this name does not appear in `data`.</code></td>
+<td>자료에 <code>Grade</code>라는 열이 없다</td>
 <td><code>df.columns</code>로 이름을 확인한다</td>
+</tr>
+<tr class="odd">
+<td>막대 하나가 비어 있다</td>
+<td>(오류 없음)</td>
+<td><code>order</code>의 값에 오타가 있다</td>
+<td><code>df["열"].unique()</code>로 실제 값을 확인한다</td>
+</tr>
+<tr class="even">
+<td>막대가 하나뿐이고 높이가 행 수이다</td>
+<td>(오류 없음)</td>
+<td><code>countplot</code>에 범주가 아닌 열(연속 수치)을 주었거나, <code>x</code> 대신 <code>data</code>만 주었다</td>
+<td>그래프의 종류와 인자를 가이드와 대조한다</td>
+</tr>
+<tr class="odd">
+<td>셀의 실행이 오래 걸린다</td>
+<td>(오류 없음)</td>
+<td><code>barplot</code>의 신뢰 구간 계산</td>
+<td><code>errorbar=None</code></td>
 </tr>
 </tbody>
 </table>
 <p>노트북 1부의 연습 5(빈도 순서)와 연습 6(중앙값 막대그래프)을 푼다.</p>
+<ul>
+<li><span class="check-badge">확인 13</span> 연습 6의 그림에서 막대 끝에 검은 선이 없고, 막대의 순서가 Bronze, Silver, Gold, VIP이다.</li>
+</ul>
 <hr>
+</section>
 </section>
 </section>
 <section id="수치형-변수의-분포" class="level2">
@@ -961,9 +1491,70 @@ Name: churn, dtype: float64</code></pre>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"annual_spend"</span>, bins<span class="op">=</span><span class="dv">30</span>, kde<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Annual spend"</span>)</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="계산의-원리-값-열-개의-손-계산" class="level4">
+<h4 class="anchored" data-anchor-id="계산의-원리-값-열-개의-손-계산">계산의 원리: 값 열 개의 손 계산</h4>
+<p>자료 1, 2, 2, 3, 3, 3, 4, 4, 5, 9를 구간 4개로 나눈다. 구간의 폭은 (최댓값 - 최솟값) ÷ 구간 수 = (9 - 1) ÷ 4 = 2이다. 따라서 구간의 경계는 1, 3, 5, 7, 9이다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>구간</th>
+<th>들어가는 값</th>
+<th>개수</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1 이상 3 미만</td>
+<td>1, 2, 2</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>3 이상 5 미만</td>
+<td>3, 3, 3, 4, 4</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td>5 이상 7 미만</td>
+<td>5</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>7 이상 9 이하</td>
+<td>9</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>구간은 왼쪽 끝을 포함하고 오른쪽 끝을 포함하지 않는다. 마지막 구간만 오른쪽 끝(최댓값)을 포함한다. 같은 계산을 넘파이의 <code>histogram</code>으로 실행하고, 같은 자료로 히스토그램을 그린다.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> pd.Series([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">9</span>])</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>counts, edges <span class="op">=</span> np.histogram(x, bins<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(edges)</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(counts)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>[1. 3. 5. 7. 9.]
+[3 5 1 1]</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.histplot(x<span class="op">=</span>x, bins<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Small sample, bins=4"</span>)</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ax.containers[<span class="dv">0</span>].datavalues)</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>[3 5 1 1]</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../kit/images/AICE_02_4_0b.png" class="img-fluid figure-img"></p>
+<figcaption>작은 자료의 히스토그램</figcaption>
+</figure>
+</div>
+<p>경계와 개수가 손 계산과 같고, 그린 막대의 높이(<code>[3 5 1 1]</code>)도 같다. 막대의 높이는 그 구간에 든 값의 개수이며, 막대의 폭은 구간의 폭(2)이다. 오른쪽 끝의 9 하나가 7~9의 구간을 따로 차지하고, 5~7의 구간과 함께 낮은 막대 둘을 만든다. 공통 자료에서 극단적인 값이 하나라도 있으면 같은 일이 생긴다.</p>
+<ul>
+<li><span class="check-badge">확인 14</span> 노트북의 작은 자료의 셀에서 경계가 <code>[1. 3. 5. 7. 9.]</code>, 개수가 <code>[3 5 1 1]</code>이고, 그린 히스토그램의 막대 높이도 <code>[3 5 1 1]</code>이다.</li>
+</ul>
+</section>
+<section id="공통-자료의-히스토그램" class="level4">
+<h4 class="anchored" data-anchor-id="공통-자료의-히스토그램">공통 자료의 히스토그램</h4>
+<div class="sourceCode" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"annual_spend"</span>, bins<span class="op">=</span><span class="dv">30</span>, kde<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Annual spend"</span>)</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../kit/images/AICE_02_4_1.png" class="img-fluid figure-img"></p>
@@ -971,16 +1562,107 @@ Name: churn, dtype: float64</code></pre>
 </figure>
 </div>
 <p>분포는 오른쪽으로 꼬리가 긴 모양이다. 왼쪽 끝의 0보다 작은 구간에 낮은 막대가 보인다. 1장의 <code>describe()</code>에서 최솟값이 -76.1이었던 값들이다. 구간이 너무 적으면 모양이 뭉개지고 너무 많으면 들쭉날쭉해진다. 가이드가 <code>bins</code>를 지정하면 그대로 쓴다.</p>
+</section>
+<section id="구간-수의-영향" class="level4">
+<h4 class="anchored" data-anchor-id="구간-수의-영향">구간 수의 영향</h4>
+<p>같은 자료를 구간 5개, 30개, 150개로 그려 비교한다.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="fl">3.5</span>))</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"annual_spend"</span>, bins<span class="op">=</span><span class="dv">5</span>, ax<span class="op">=</span>axes[<span class="dv">0</span>])</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"annual_spend"</span>, bins<span class="op">=</span><span class="dv">30</span>, ax<span class="op">=</span>axes[<span class="dv">1</span>])</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"annual_spend"</span>, bins<span class="op">=</span><span class="dv">150</span>, ax<span class="op">=</span>axes[<span class="dv">2</span>])</span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">"bins=5"</span>)</span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">"bins=30"</span>)</span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_title(<span class="st">"bins=150"</span>)</span>
+<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../kit/images/AICE_02_4_1b.png" class="img-fluid figure-img"></p>
+<figcaption>구간 수의 비교</figcaption>
+</figure>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>구간 수</th>
+<th>보이는 것</th>
+<th>놓치는 것</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>5</td>
+<td>값이 200 안팎에 몰려 있다는 큰 모양</td>
+<td>왼쪽의 음수 값, 꼬리의 모양</td>
+</tr>
+<tr class="even">
+<td>30</td>
+<td>봉우리 하나와 오른쪽 꼬리, 왼쪽 끝의 낮은 막대</td>
+<td>(적당하다)</td>
+</tr>
+<tr class="odd">
+<td>150</td>
+<td>세밀한 값의 위치</td>
+<td>막대마다 개수가 적어 들쭉날쭉하고, 전체의 모양이 흐려진다</td>
+</tr>
+</tbody>
+</table>
+<p>구간 수에는 정답이 없다. 분포의 모양을 볼 때에는 기본값(<code>"auto"</code>)이나 20~50개로 시작하고, 극단값을 찾을 때에는 구간을 늘려 본다. 구간 수가 적으면 음수처럼 적은 수의 특이한 값이 이웃한 값과 한 구간에 섞여 보이지 않게 된다.</p>
+</section>
+<section id="결과-읽기-2" class="level4">
+<h4 class="anchored" data-anchor-id="결과-읽기-2">결과 읽기</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>묻는 것</th>
+<th>읽는 자리</th>
+<th>이 그래프(<code>annual_spend</code>, 구간 30)의 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>값이 가장 많이 모인 곳</td>
+<td>가장 높은 막대의 x 위치</td>
+<td>200 안팎</td>
+</tr>
+<tr class="even">
+<td>치우침</td>
+<td>꼬리가 긴 쪽</td>
+<td>오른쪽(큰 값 쪽)으로 길다. 평균이 중앙값보다 크다(226.8과 214.2, 1장 3.3절)</td>
+</tr>
+<tr class="odd">
+<td>봉우리의 수</td>
+<td>높은 막대 무리의 수</td>
+<td>하나</td>
+</tr>
+<tr class="even">
+<td>범위를 벗어난 값</td>
+<td>양 끝의 떨어진 낮은 막대</td>
+<td>0보다 작은 구간</td>
+</tr>
+</tbody>
+</table>
 <p><code>hue</code>를 주면 범주마다 히스토그램을 겹쳐 그린다. 아래 그래프에서 앱 사용자(<code>Y</code>)의 분포가 오른쪽에 있다. 1장 5.4절에서 앱 사용자의 구매액 평균이 더 높았던 것과 같다.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"annual_spend"</span>, hue<span class="op">=</span><span class="st">"app_user"</span>, bins<span class="op">=</span><span class="dv">30</span>)</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Annual spend by app user"</span>)</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"annual_spend"</span>, hue<span class="op">=</span><span class="st">"app_user"</span>, bins<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Annual spend by app user"</span>)</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../kit/images/AICE_02_4_2.png" class="img-fluid figure-img"></p>
 <figcaption>범주별 히스토그램</figcaption>
 </figure>
 </div>
+</section>
 </section>
 <section id="상자그림-boxplot" class="level3">
 <h3 class="anchored" data-anchor-id="상자그림-boxplot">4.2 상자그림: <code>boxplot</code></h3>
@@ -1020,9 +1702,114 @@ Name: churn, dtype: float64</code></pre>
 </tbody>
 </table>
 <p>1.5는 <code>boxplot</code>의 <code>whis</code> 인자의 기본값이다. <code>whis=3</code>으로 바꾸면 수염이 길어지고 점으로 표시되는 값이 줄어든다.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>sns.boxplot(data<span class="op">=</span>df, y<span class="op">=</span><span class="st">"avg_session_min"</span>)</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Average session minutes"</span>)</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="계산의-원리-다섯-수치와-수염-끝의-손-계산" class="level4">
+<h4 class="anchored" data-anchor-id="계산의-원리-다섯-수치와-수염-끝의-손-계산">계산의 원리: 다섯 수치와 수염 끝의 손 계산</h4>
+<p>4.1절의 작은 자료(1, 2, 2, 3, 3, 3, 4, 4, 5, 9)로 상자그림의 각 위치를 손으로 계산한다. 값은 10개이고 이미 작은 순서로 놓여 있다. 사분위수의 위치는 1장 3.3절과 같이 (개수 - 1) × 비율로 구한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>위치</th>
+<th>계산</th>
+<th>값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Q1</td>
+<td>위치 (10 - 1) × 0.25 = 2.25. 0부터 센 2번째 값(2)과 3번째 값(3) 사이의 0.25 지점: 2 + 0.25 × (3 - 2)</td>
+<td>2.25</td>
+</tr>
+<tr class="even">
+<td>중앙값</td>
+<td>위치 4.5. 4번째 값(3)과 5번째 값(3)의 가운데</td>
+<td>3.0</td>
+</tr>
+<tr class="odd">
+<td>Q3</td>
+<td>위치 6.75. 6번째 값(4)과 7번째 값(4) 사이</td>
+<td>4.0</td>
+</tr>
+<tr class="even">
+<td>IQR</td>
+<td>4.0 - 2.25</td>
+<td>1.75</td>
+</tr>
+<tr class="odd">
+<td>아래 경계</td>
+<td>2.25 - 1.5 × 1.75 = 2.25 - 2.625</td>
+<td>-0.375</td>
+</tr>
+<tr class="even">
+<td>위 경계</td>
+<td>4.0 + 2.625</td>
+<td>6.625</td>
+</tr>
+<tr class="odd">
+<td>아래 수염의 끝</td>
+<td>아래 경계(-0.375) 이상인 값 가운데 가장 작은 값</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>위 수염의 끝</td>
+<td>위 경계(6.625) 이하인 값 가운데 가장 큰 값</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td>수염 밖의 점</td>
+<td>경계 밖의 값</td>
+<td>9</td>
+</tr>
+</tbody>
+</table>
+<p>수염의 끝은 경계값(-0.375, 6.625) 자체가 아니라 경계 안에 실제로 있는 값 가운데 가장 먼 값이다. 위 수염은 6.625까지 뻗지 않고 실제 값 5에서 멈춘다. 같은 계산을 코드로 실행한다.</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>q1 <span class="op">=</span> x.quantile(<span class="fl">0.25</span>)</span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>q3 <span class="op">=</span> x.quantile(<span class="fl">0.75</span>)</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>iqr <span class="op">=</span> q3 <span class="op">-</span> q1</span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(q1, x.median(), q3, iqr)</span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(q1 <span class="op">-</span> <span class="fl">1.5</span> <span class="op">*</span> iqr, q3 <span class="op">+</span> <span class="fl">1.5</span> <span class="op">*</span> iqr)</span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x[x <span class="op">&gt;=</span> q1 <span class="op">-</span> <span class="fl">1.5</span> <span class="op">*</span> iqr].<span class="bu">min</span>(), x[x <span class="op">&lt;=</span> q3 <span class="op">+</span> <span class="fl">1.5</span> <span class="op">*</span> iqr].<span class="bu">max</span>())</span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x[(x <span class="op">&lt;</span> q1 <span class="op">-</span> <span class="fl">1.5</span> <span class="op">*</span> iqr) <span class="op">|</span> (x <span class="op">&gt;</span> q3 <span class="op">+</span> <span class="fl">1.5</span> <span class="op">*</span> iqr)].tolist())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>2.25 3.0 4.0 1.75
+-0.375 6.625
+1 5
+[9]</code></pre>
+<p>출력의 넷째 줄 <code>[9]</code>가 수염 밖의 점이다. 손 계산의 아홉 값과 모두 같다.</p>
+</section>
+<section id="matplotlib의-계산과의-대조-선택" class="level4">
+<h4 class="anchored" data-anchor-id="matplotlib의-계산과의-대조-선택">matplotlib의 계산과의 대조 [선택]</h4>
+<p>seaborn의 <code>boxplot</code>은 상자그림의 위치를 matplotlib의 <code>cbook.boxplot_stats</code>로 계산한다. 같은 자료를 넣으면 그림이 쓰는 값을 직접 볼 수 있다. 이 셀은 강의안에서만 실행한다.</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> cbook</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>st <span class="op">=</span> cbook.boxplot_stats(x.values)[<span class="dv">0</span>]</span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(st[<span class="st">"q1"</span>], st[<span class="st">"med"</span>], st[<span class="st">"q3"</span>])</span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(st[<span class="st">"whislo"</span>], st[<span class="st">"whishi"</span>], st[<span class="st">"fliers"</span>])</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>2.25 3.0 4.0
+1 5 [9]</code></pre>
+<p><code>whislo</code>와 <code>whishi</code>는 아래와 위 수염의 끝, <code>fliers</code>는 수염 밖의 점이다. pandas로 계산한 값과 같으므로, 상자그림의 점을 세는 대신 위의 pandas 코드로 이상치를 구하여도 그래프와 어긋나지 않는다. 같은 자료로 그린 상자그림은 다음과 같다.</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>sns.boxplot(y<span class="op">=</span>x)</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Small sample"</span>)</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../kit/images/AICE_02_4_3c.png" class="img-fluid figure-img"></p>
+<figcaption>작은 자료의 상자그림</figcaption>
+</figure>
+</div>
+<p>상자의 아래 변은 2.25, 위 변은 4.0, 안의 선은 3.0이다. 아래 수염은 1, 위 수염은 5에서 끝나고, 9가 수염 밖의 점으로 따로 그려졌다.</p>
+<ul>
+<li><span class="check-badge">확인 15</span> 노트북의 작은 자료의 셀에서 출력이 <code>2.25 3.0 4.0 1.75</code>, <code>-0.375 6.625</code>, <code>1 5</code>, <code>[9]</code>의 네 줄이고, 상자그림에 점이 하나 있다.</li>
+</ul>
+</section>
+<section id="공통-자료의-상자그림" class="level4">
+<h4 class="anchored" data-anchor-id="공통-자료의-상자그림">공통 자료의 상자그림</h4>
+<div class="sourceCode" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>sns.boxplot(data<span class="op">=</span>df, y<span class="op">=</span><span class="st">"avg_session_min"</span>)</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Average session minutes"</span>)</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../kit/images/AICE_02_4_3.png" class="img-fluid figure-img"></p>
@@ -1030,24 +1817,68 @@ Name: churn, dtype: float64</code></pre>
 </figure>
 </div>
 <p>이 상자그림에서 상자는 0 근처에 납작하게 눌려 있고 300~830분의 점 몇 개가 위쪽에 떨어져 있다. 극단적인 값이 y축의 범위를 넓혀 놓았기 때문이다. 수염의 끝이 어디인지는 사분위수로 계산할 수 있다.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> df[<span class="st">"avg_session_min"</span>]</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>q1 <span class="op">=</span> s.quantile(<span class="fl">0.25</span>)</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>q3 <span class="op">=</span> s.quantile(<span class="fl">0.75</span>)</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>iqr <span class="op">=</span> q3 <span class="op">-</span> q1</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>lower <span class="op">=</span> q1 <span class="op">-</span> <span class="fl">1.5</span> <span class="op">*</span> iqr</span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>upper <span class="op">=</span> q3 <span class="op">+</span> <span class="fl">1.5</span> <span class="op">*</span> iqr</span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(q1, <span class="dv">2</span>), <span class="bu">round</span>(q3, <span class="dv">2</span>), <span class="bu">round</span>(iqr, <span class="dv">2</span>))</span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(lower, <span class="dv">2</span>), <span class="bu">round</span>(upper, <span class="dv">2</span>))</span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((s <span class="op">&lt;</span> lower).<span class="bu">sum</span>(), (s <span class="op">&gt;</span> upper).<span class="bu">sum</span>())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> df[<span class="st">"avg_session_min"</span>]</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>q1 <span class="op">=</span> s.quantile(<span class="fl">0.25</span>)</span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>q3 <span class="op">=</span> s.quantile(<span class="fl">0.75</span>)</span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>iqr <span class="op">=</span> q3 <span class="op">-</span> q1</span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>lower <span class="op">=</span> q1 <span class="op">-</span> <span class="fl">1.5</span> <span class="op">*</span> iqr</span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a>upper <span class="op">=</span> q3 <span class="op">+</span> <span class="fl">1.5</span> <span class="op">*</span> iqr</span>
+<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(q1, <span class="dv">2</span>), <span class="bu">round</span>(q3, <span class="dv">2</span>), <span class="bu">round</span>(iqr, <span class="dv">2</span>))</span>
+<span id="cb67-8"><a href="#cb67-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(lower, <span class="dv">2</span>), <span class="bu">round</span>(upper, <span class="dv">2</span>))</span>
+<span id="cb67-9"><a href="#cb67-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((s <span class="op">&lt;</span> lower).<span class="bu">sum</span>(), (s <span class="op">&gt;</span> upper).<span class="bu">sum</span>())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>13.7 19.9 6.2
 4.4 29.2
 15 21</code></pre>
 <p>Q1은 13.7분, Q3은 19.9분, IQR은 6.2분이다. 수염의 범위는 4.4분에서 29.2분까지이고, 그 밖의 값이 아래쪽에 15개, 위쪽에 21개 있다. 그래프에서는 비슷한 값의 점이 겹쳐 보이므로 점의 개수는 코드로 구한다.</p>
+</section>
+<section id="결과-읽기-3" class="level4">
+<h4 class="anchored" data-anchor-id="결과-읽기-3">결과 읽기</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>묻는 것</th>
+<th>읽는 자리</th>
+<th>이 그래프(<code>avg_session_min</code>)의 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>가운데 값</td>
+<td>상자 안의 선</td>
+<td>중앙값 16.7분(1장 3.3절)</td>
+</tr>
+<tr class="even">
+<td>값의 절반이 있는 범위</td>
+<td>상자의 아래 변과 위 변</td>
+<td>13.7분~19.9분</td>
+</tr>
+<tr class="odd">
+<td>퍼짐</td>
+<td>상자의 높이(IQR)</td>
+<td>6.2분</td>
+</tr>
+<tr class="even">
+<td>이상치 후보</td>
+<td>수염 밖의 점</td>
+<td>아래 15개, 위 21개(코드로 센 값)</td>
+</tr>
+<tr class="odd">
+<td>상자가 납작한 까닭</td>
+<td>y축의 범위</td>
+<td>830.7분까지의 극단값이 y축을 넓혔다</td>
+</tr>
+</tbody>
+</table>
 <p>상자그림의 점은 “이상치 후보”이다. 830분처럼 업무상 불가능한 값은 입력 오류이지만, 30분처럼 경계를 조금 넘는 값은 실제로 오래 머문 회원일 수 있다. 어느 값을 제거할지는 업무의 판단과 가이드의 지시를 따른다. 3장에서는 이 계산을 행의 제거에 쓴다.</p>
 <p>x에 범주형 열을 주면 범주마다 상자그림을 나란히 그려 분포를 비교할 수 있다.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>sns.boxplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"grade"</span>, y<span class="op">=</span><span class="st">"annual_spend"</span>, order<span class="op">=</span>order)</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Annual spend by grade"</span>)</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>sns.boxplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"grade"</span>, y<span class="op">=</span><span class="st">"annual_spend"</span>, order<span class="op">=</span>order)</span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Annual spend by grade"</span>)</span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../kit/images/AICE_02_4_5.png" class="img-fluid figure-img"></p>
@@ -1055,8 +1886,59 @@ Name: churn, dtype: float64</code></pre>
 </figure>
 </div>
 <p>등급이 높을수록 중앙값이 높고, 각 등급 안에서도 수염 밖의 점이 있다. 전체 자료에서는 이상치가 아닌 값도 한 등급 안에서는 이상치로 표시될 수 있다.</p>
+</section>
+<section id="흔한-오류-3" class="level4">
+<h4 class="anchored" data-anchor-id="흔한-오류-3">흔한 오류</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>증상</th>
+<th>실제 메시지·모양</th>
+<th>원인</th>
+<th>대처</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>상자가 납작한 선처럼 보인다</td>
+<td>(오류 없음)</td>
+<td>극단값이 축의 범위를 넓혔다</td>
+<td>그래프의 결함이 아니다. 이상치를 코드로 확인한다</td>
+</tr>
+<tr class="even">
+<td>상자그림이 가로로 누웠다</td>
+<td>(오류 없음)</td>
+<td>수치형 열을 <code>x=</code>에 주었다</td>
+<td>세로 상자그림은 <code>y=열</code></td>
+</tr>
+<tr class="odd">
+<td>점의 수를 눈으로 셌더니 코드와 다르다</td>
+<td>(오류 없음)</td>
+<td>같은 값의 점이 겹쳐 하나로 보인다</td>
+<td>4.4절처럼 코드로 센다</td>
+</tr>
+<tr class="even">
+<td>히스토그램의 <code>bins</code>에 문자열을 주었다</td>
+<td>`<code>ValueError: '40' is not a valid estimator for</code>bins``<code>|</code>bins=“40”<code>. 수는 따옴표 없이 쓴다 |</code>bins=40`</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>마지막 줄의 메시지는 <code>sns.histplot(data=df, x="annual_spend", bins="40")</code>을 강의안에서 실행하여 얻은 것이다.</p>
+<ul>
+<li><span class="check-badge">확인 16</span> 4.2절의 공통 자료 셀의 출력이 <code>13.7 19.9 6.2</code>, <code>4.4 29.2</code>, <code>15 21</code>의 세 줄이다.</li>
+<li><span class="check-badge">확인 17</span> 연습 8의 출력에서 <code>churn</code>이 1인 회원의 중앙값이 0인 회원의 중앙값보다 크다.</li>
+</ul>
 <p>노트북 1부의 연습 7(범주별 히스토그램)과 연습 8(범주별 상자그림과 중앙값)을 푼다.</p>
 <hr>
+</section>
 </section>
 </section>
 <section id="두-변수의-관계" class="level2">
@@ -1064,9 +1946,9 @@ Name: churn, dtype: float64</code></pre>
 <section id="산점도-scatterplot" class="level3">
 <h3 class="anchored" data-anchor-id="산점도-scatterplot">5.1 산점도: <code>scatterplot</code></h3>
 <p>산점도는 두 수치형 열의 값을 x와 y로 하여 행마다 점 하나를 찍는다. 점들이 오른쪽 위로 향하면 양의 관계, 오른쪽 아래로 향하면 음의 관계이다. <code>hue</code>로 범주를 색으로 나눌 수 있다.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"tenure_months"</span>, y<span class="op">=</span><span class="st">"annual_spend"</span>, hue<span class="op">=</span><span class="st">"app_user"</span>)</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Tenure and annual spend"</span>)</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"tenure_months"</span>, y<span class="op">=</span><span class="st">"annual_spend"</span>, hue<span class="op">=</span><span class="st">"app_user"</span>)</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Tenure and annual spend"</span>)</span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../kit/images/AICE_02_5_1.png" class="img-fluid figure-img"></p>
@@ -1078,15 +1960,19 @@ Name: churn, dtype: float64</code></pre>
 <section id="결합-그래프-jointplot" class="level3">
 <h3 class="anchored" data-anchor-id="결합-그래프-jointplot">5.2 결합 그래프: <code>jointplot</code></h3>
 <p><code>jointplot</code>은 가운데에 두 변수의 관계를, 위와 오른쪽에 각 변수의 분포를 함께 그린다. 그림 수준 함수이므로 크기는 <code>height</code>로 정하고, 그림 전체의 제목은 반환값의 <code>figure</code> 속성에 <code>suptitle</code>로 붙인다. <code>y=1.02</code>는 제목이 위쪽 히스토그램과 겹치지 않게 한다.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> sns.jointplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"tenure_months"</span>, y<span class="op">=</span><span class="st">"annual_spend"</span>, height<span class="op">=</span><span class="dv">5</span>)</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>g.figure.suptitle(<span class="st">"Tenure and annual spend"</span>, y<span class="op">=</span><span class="fl">1.02</span>)</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> sns.jointplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"tenure_months"</span>, y<span class="op">=</span><span class="st">"annual_spend"</span>, height<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>g.figure.suptitle(<span class="st">"Tenure and annual spend"</span>, y<span class="op">=</span><span class="fl">1.02</span>)</span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../kit/images/AICE_02_5_2.png" class="img-fluid figure-img"></p>
 <figcaption>결합 그래프</figcaption>
 </figure>
 </div>
+<p>반환값 <code>JointGrid</code>는 세 축을 속성으로 가진다. 가운데 산점도의 축은 <code>ax_joint</code>, 위쪽 분포의 축은 <code>ax_marg_x</code>, 오른쪽 분포의 축은 <code>ax_marg_y</code>이다. 가운데 축의 축 이름을 읽으려면 <code>g.ax_joint.get_xlabel()</code>처럼 쓴다. 중심 실습의 자가 채점이 이 방법으로 결합 그래프의 축을 검사한다.</p>
+<blockquote class="blockquote">
+<p><strong>[그림 자리: 결합 그래프의 세 축]</strong> <code>jointplot</code> 한 장 위에 세 축의 이름(<code>ax_joint</code>, <code>ax_marg_x</code>, <code>ax_marg_y</code>)과 그림 전체(<code>g.figure</code>)의 테두리를 이름표로 표시한 도식. 5.2절의 결합 그래프 그림을 바탕으로 이름표를 덧붙인다. 찍을 곳: 5.2절의 그림 파일에 도식 도구로 이름표를 더한다.</p>
+</blockquote>
 <p><code>kind</code> 인자는 가운데 그래프의 종류를 정한다.</p>
 <table class="caption-top table">
 <colgroup>
@@ -1122,8 +2008,8 @@ Name: churn, dtype: float64</code></pre>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> sns.jointplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"tenure_months"</span>, y<span class="op">=</span><span class="st">"annual_spend"</span>, kind<span class="op">=</span><span class="st">"hex"</span>, height<span class="op">=</span><span class="dv">5</span>)</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> sns.jointplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"tenure_months"</span>, y<span class="op">=</span><span class="st">"annual_spend"</span>, kind<span class="op">=</span><span class="st">"hex"</span>, height<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../kit/images/AICE_02_5_3.png" class="img-fluid figure-img"></p>
@@ -1134,12 +2020,221 @@ Name: churn, dtype: float64</code></pre>
 <section id="두-열의-상관-계수" class="level3">
 <h3 class="anchored" data-anchor-id="두-열의-상관-계수">5.3 두 열의 상관 계수</h3>
 <p>그래프에서 본 관계의 세기는 상관 계수로 수치화한다. 두 시리즈의 상관 계수는 <code>시리즈1.corr(시리즈2)</code>로 구한다.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> df[<span class="st">"tenure_months"</span>].corr(df[<span class="st">"annual_spend"</span>])</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(r, <span class="dv">3</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> df[<span class="st">"tenure_months"</span>].corr(df[<span class="st">"annual_spend"</span>])</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(r, <span class="dv">3</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>0.326</code></pre>
 <p>가입 기간과 연간 구매액의 상관 계수는 0.326이다. 산점도에서 본 “다소 커지는 경향”이 약한 양의 상관으로 나타난 것이다. 상관 계수의 해석은 6절에서 정리한다.</p>
+<section id="계산의-원리-다섯-쌍의-손-계산" class="level4">
+<h4 class="anchored" data-anchor-id="계산의-원리-다섯-쌍의-손-계산">계산의 원리: 다섯 쌍의 손 계산</h4>
+<p>피어슨 상관 계수는 두 변수가 각자의 평균에서 같은 방향으로 벗어나는 정도를 -1과 1 사이로 나타낸 값이다. 계산은 세 단계이다. 각 값에서 평균을 뺀 편차를 구하고, 두 편차의 곱의 합을 구하고, 그 합을 각 편차의 제곱합의 제곱근의 곱으로 나눈다.</p>
+<p>x = 1, 2, 3, 4, 5와 y = 2, 4, 5, 4, 5의 다섯 쌍으로 계산한다. x의 평균은 3, y의 평균은 4이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>x</th>
+<th>y</th>
+<th>x의 편차</th>
+<th>y의 편차</th>
+<th>편차의 곱</th>
+<th>x 편차의 제곱</th>
+<th>y 편차의 제곱</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>2</td>
+<td>-2</td>
+<td>-2</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>4</td>
+<td>-1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>5</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>4</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>5</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>합</td>
+<td></td>
+<td></td>
+<td></td>
+<td>6</td>
+<td>10</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+<p>상관 계수 = 6 ÷ √(10 × 6) = 6 ÷ √60 = 6 ÷ 7.746 = 0.775이다. 편차의 곱이 양수인 쌍(첫째와 다섯째)이 합을 만들었다. 두 값이 함께 평균보다 작거나 함께 크면 곱이 양수가 되고, 한쪽만 크면 음수가 된다. 같은 계산을 코드로 실행한다.</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> pd.Series([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>])</span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> pd.Series([<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">5</span>])</span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(a.corr(b), <span class="dv">3</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>0.775</code></pre>
+</section>
+<section id="상관-계수의-크기와-산점도의-모양" class="level4">
+<h4 class="anchored" data-anchor-id="상관-계수의-크기와-산점도의-모양">상관 계수의 크기와 산점도의 모양</h4>
+<p>상관 계수의 크기가 산점도에서 어떻게 보이는지를 같은 x에 대한 세 가지 y로 비교한다. 아래 셀은 난수로 점 200개를 만든다(<code>default_rng(42)</code>로 시드를 고정하였다). 첫째는 x에 작은 잡음을 더한 y, 둘째는 x의 0.3배에 큰 잡음을 더한 y, 셋째는 x와 관계없는 y이다.</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">42</span>)</span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> pd.Series(rng.normal(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">200</span>))</span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>y1 <span class="op">=</span> u <span class="op">+</span> pd.Series(rng.normal(<span class="dv">0</span>, <span class="fl">0.4</span>, <span class="dv">200</span>))</span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a>y2 <span class="op">=</span> <span class="fl">0.3</span> <span class="op">*</span> u <span class="op">+</span> pd.Series(rng.normal(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">200</span>))</span>
+<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a>y3 <span class="op">=</span> pd.Series(rng.normal(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">200</span>))</span>
+<span id="cb77-6"><a href="#cb77-6" aria-hidden="true" tabindex="-1"></a>r1 <span class="op">=</span> <span class="bu">round</span>(u.corr(y1), <span class="dv">2</span>)</span>
+<span id="cb77-7"><a href="#cb77-7" aria-hidden="true" tabindex="-1"></a>r2 <span class="op">=</span> <span class="bu">round</span>(u.corr(y2), <span class="dv">2</span>)</span>
+<span id="cb77-8"><a href="#cb77-8" aria-hidden="true" tabindex="-1"></a>r3 <span class="op">=</span> <span class="bu">round</span>(u.corr(y3), <span class="dv">2</span>)</span>
+<span id="cb77-9"><a href="#cb77-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(r1, r2, r3)</span>
+<span id="cb77-10"><a href="#cb77-10" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="fl">3.5</span>))</span>
+<span id="cb77-11"><a href="#cb77-11" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span>u, y<span class="op">=</span>y1, ax<span class="op">=</span>axes[<span class="dv">0</span>])</span>
+<span id="cb77-12"><a href="#cb77-12" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span>u, y<span class="op">=</span>y2, ax<span class="op">=</span>axes[<span class="dv">1</span>])</span>
+<span id="cb77-13"><a href="#cb77-13" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span>u, y<span class="op">=</span>y3, ax<span class="op">=</span>axes[<span class="dv">2</span>])</span>
+<span id="cb77-14"><a href="#cb77-14" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">"r = "</span> <span class="op">+</span> <span class="bu">str</span>(r1))</span>
+<span id="cb77-15"><a href="#cb77-15" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">"r = "</span> <span class="op">+</span> <span class="bu">str</span>(r2))</span>
+<span id="cb77-16"><a href="#cb77-16" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_title(<span class="st">"r = "</span> <span class="op">+</span> <span class="bu">str</span>(r3))</span>
+<span id="cb77-17"><a href="#cb77-17" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb77-18"><a href="#cb77-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>0.9 0.21 -0.02</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../kit/images/AICE_02_5_5.png" class="img-fluid figure-img"></p>
+<figcaption>상관 계수의 크기</figcaption>
+</figure>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>상관 계수</th>
+<th>산점도의 모양</th>
+<th>읽는 법</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0.9</td>
+<td>점들이 오른쪽 위로 향하는 좁은 띠를 이룬다</td>
+<td>강한 양의 상관. x를 알면 y를 꽤 정확히 짐작할 수 있다</td>
+</tr>
+<tr class="even">
+<td>0.21</td>
+<td>전체로는 오른쪽 위로 기울었으나 점이 넓게 퍼져 있다</td>
+<td>약한 양의 상관. 경향은 있으나 x만으로 y를 짐작하기 어렵다</td>
+</tr>
+<tr class="odd">
+<td>-0.02</td>
+<td>방향이 없는 둥근 구름</td>
+<td>직선 관계가 거의 없다</td>
+</tr>
+</tbody>
+</table>
+<p>공통 자료의 가입 기간과 연간 구매액(0.326)은 둘째 그림보다 조금 강한 정도의 관계이다. 5.1절의 산점도가 넓게 퍼져 보인 것과 같다.</p>
+</section>
+<section id="곡선-관계와-상관-계수-선택" class="level4">
+<h4 class="anchored" data-anchor-id="곡선-관계와-상관-계수-선택">곡선 관계와 상관 계수 [선택]</h4>
+<p>상관 계수는 직선 관계만 잰다. 아래 셀은 -3부터 3까지의 x와 그 제곱 y로 산점도를 그린다. y는 x로 완전히 정해지지만 상관 계수는 0이다.</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> pd.Series(np.linspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">61</span>))</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>w2 <span class="op">=</span> v <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(v.corr(w2), <span class="dv">3</span>))</span>
+<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span>v, y<span class="op">=</span>w2)</span>
+<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"y = x squared"</span>)</span>
+<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>0.0</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../kit/images/AICE_02_5_6.png" class="img-fluid figure-img"></p>
+<figcaption>곡선 관계</figcaption>
+</figure>
+</div>
+<p>x가 음수인 쪽에서는 x가 커질 때 y가 작아지고, 양수인 쪽에서는 커진다. 두 쪽의 관계가 서로 상쇄되어 상관 계수가 0이 된다. 상관 계수가 작다고 관계가 없다고 단정하지 않고 산점도를 함께 보아야 하는 까닭이다.</p>
+</section>
+<section id="결과-읽기-4" class="level4">
+<h4 class="anchored" data-anchor-id="결과-읽기-4">결과 읽기</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>묻는 것</th>
+<th>읽는 자리</th>
+<th>이 절의 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>관계의 방향</td>
+<td>상관 계수의 부호, 산점도의 기울기</td>
+<td>가입 기간과 연간 구매액: 양(0.326)</td>
+</tr>
+<tr class="even">
+<td>관계의 세기</td>
+<td>상관 계수의 절댓값, 점의 띠의 폭</td>
+<td>약한 편. 점이 넓게 퍼져 있다</td>
+</tr>
+<tr class="odd">
+<td>직선이 아닌 관계</td>
+<td>산점도의 모양</td>
+<td>상관 계수만으로는 알 수 없다(곡선 관계의 0.0)</td>
+</tr>
+<tr class="even">
+<td>이상치의 영향</td>
+<td>무리에서 떨어진 점</td>
+<td>0보다 작은 연간 구매액의 점</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><span class="check-badge">확인 18</span> 노트북의 다섯 쌍 셀의 출력이 <code>0.775</code>이고, 세 산점도 셀의 출력이 <code>0.9 0.21 -0.02</code>이다.</li>
+</ul>
 <p>노트북 1부의 연습 9(색을 나눈 산점도)와 연습 10(결합 그래프, <code>[선택]</code>)을 푼다.</p>
 <hr>
+</section>
 </section>
 </section>
 <section id="상관-행렬과-히트맵" class="level2">
@@ -1147,11 +2242,11 @@ Name: churn, dtype: float64</code></pre>
 <section id="상관-행렬-corrnumeric_onlytrue" class="level3">
 <h3 class="anchored" data-anchor-id="상관-행렬-corrnumeric_onlytrue">6.1 상관 행렬: <code>corr(numeric_only=True)</code></h3>
 <p>데이터프레임의 <code>corr()</code>는 모든 열의 쌍에 대하여 상관 계수를 구한 표(상관 행렬)를 돌려준다. 그런데 문자열 열이 섞인 데이터프레임에 그대로 쓰면 오류가 난다.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>df.corr()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>df.corr()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>ValueError: could not convert string to float: 'C02493'</code></pre>
 <p>pandas 2.0부터 <code>numeric_only</code>의 기본값이 <code>False</code>로 바뀌어, 문자열 열(<code>customer_id</code>)의 값을 수로 바꾸려다 실패한 것이다. 이전 판의 자료나 블로그의 코드에는 <code>df.corr()</code>만 쓴 것이 많으므로, 시험에서 이 오류를 만나면 <code>numeric_only=True</code>를 넣는다.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>corr <span class="op">=</span> df.corr(numeric_only<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>corr.<span class="bu">round</span>(<span class="dv">2</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>corr <span class="op">=</span> df.corr(numeric_only<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>corr.<span class="bu">round</span>(<span class="dv">2</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>                   age  tenure_months  visits_per_month  avg_session_min  cart_items  coupon_use_rate  \
 age               1.00          -0.00              0.01            -0.00       -0.02             0.01   
 tenure_months    -0.00           1.00              0.03             0.01        0.03            -0.01   
@@ -1175,7 +2270,7 @@ cs_calls              1.00             0.01         -0.00   0.26
 last_login_days       0.01             1.00         -0.04   0.37  
 annual_spend         -0.00            -0.04          1.00  -0.21  
 churn                 0.26             0.37         -0.21   1.00  </code></pre>
-<p>상관 행렬은 대각선(자기 자신과의 상관, 1.00)을 기준으로 대칭이다. 0과 1로 된 <code>churn</code>도 수치형 열이므로 포함된다.</p>
+<p>상관 행렬은 대각선(자기 자신과의 상관, 1.00)을 기준으로 대칭이다. 0과 1로 된 <code>churn</code>도 수치형 열이므로 포함된다. 수치형 열이 10개이므로 상관 행렬은 10행 10열이다.</p>
 </section>
 <section id="히트맵-heatmap" class="level3">
 <h3 class="anchored" data-anchor-id="히트맵-heatmap">6.2 히트맵: <code>heatmap</code></h3>
@@ -1216,10 +2311,10 @@ churn                 0.26             0.37         -0.21   1.00  </code></pre>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">7</span>))</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>sns.heatmap(corr, annot<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">".2f"</span>, cmap<span class="op">=</span><span class="st">"coolwarm"</span>, vmin<span class="op">=-</span><span class="dv">1</span>, vmax<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Correlation matrix"</span>)</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">7</span>))</span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>sns.heatmap(corr, annot<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">".2f"</span>, cmap<span class="op">=</span><span class="st">"coolwarm"</span>, vmin<span class="op">=-</span><span class="dv">1</span>, vmax<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Correlation matrix"</span>)</span>
+<span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../kit/images/AICE_02_6_3.png" class="img-fluid figure-img"></p>
@@ -1227,6 +2322,62 @@ churn                 0.26             0.37         -0.21   1.00  </code></pre>
 </figure>
 </div>
 <p>상관 계수는 -1에서 1 사이이므로 <code>vmin=-1</code>, <code>vmax=1</code>을 주어야 색이 0을 가운데로 대칭이 된다. <code>fmt</code>의 기본값 <code>".2g"</code>는 유효 숫자 두 자리여서 대각선이 <code>1</code>로 표시되는 등 자릿수가 들쑥날쑥하므로, 소수 자리를 맞추려면 <code>fmt=".2f"</code>를 쓴다.</p>
+<section id="결과-읽기-목표-열의-행" class="level4">
+<h4 class="anchored" data-anchor-id="결과-읽기-목표-열의-행">결과 읽기: 목표 열의 행</h4>
+<p>히트맵에서 목표 열과의 관계를 읽을 때에는 목표 열의 이름이 붙은 행 하나를 왼쪽에서 오른쪽으로 따라간다. 상관 행렬은 대칭이므로 같은 이름의 열을 위에서 아래로 따라가도 같다. 아래 셀은 <code>churn</code>의 행을 꺼내어 출력하고, 그 행이 <code>churn</code>의 열과 같은지 확인한다. 이 셀은 강의안에서만 실행한다.</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(corr.loc[<span class="st">"churn"</span>].<span class="bu">round</span>(<span class="dv">2</span>))</span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((corr.loc[<span class="st">"churn"</span>] <span class="op">==</span> corr[<span class="st">"churn"</span>]).<span class="bu">all</span>())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>age                -0.01
+tenure_months      -0.12
+visits_per_month   -0.21
+avg_session_min    -0.01
+cart_items         -0.09
+coupon_use_rate    -0.04
+cs_calls            0.26
+last_login_days     0.37
+annual_spend       -0.21
+churn               1.00
+Name: churn, dtype: float64
+True</code></pre>
+<p>마지막 <code>True</code>는 행과 열의 값이 모두 같다는 뜻이다. 행을 읽는 순서는 다음과 같다.</p>
+<ol type="1">
+<li><strong>자기 자신의 칸을 뺀다.</strong> <code>churn</code>과 <code>churn</code>의 칸은 언제나 1.00이다. 가장 진한 칸이지만 답이 아니다.</li>
+<li><strong>부호를 본다.</strong> 빨강(양수)이면 그 열이 클수록 이탈이 많고, 파랑(음수)이면 그 열이 클수록 이탈이 적다. <code>last_login_days</code>(0.37)와 <code>cs_calls</code>(0.26)는 양수, <code>visits_per_month</code>(-0.21)와 <code>annual_spend</code>(-0.21)는 음수이다.</li>
+<li><strong>크기를 본다.</strong> 물음이 “관계가 가장 강한 열”이면 부호를 떼고 크기를 비교한다. 물음이 “상관 계수가 가장 큰 열”이면 부호를 붙인 채 비교한다.</li>
+<li><strong>코드로 답을 구한다.</strong> 색의 진하기가 비슷한 칸(-0.21과 0.26)은 눈으로 순위를 가리기 어렵다.</li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>묻는 것</th>
+<th>읽는 자리</th>
+<th><code>churn</code>의 행에서</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>가장 강한 양의 관계</td>
+<td>가장 진한 빨강(자기 자신 제외)</td>
+<td><code>last_login_days</code> 0.37</td>
+</tr>
+<tr class="even">
+<td>가장 강한 음의 관계</td>
+<td>가장 진한 파랑</td>
+<td><code>visits_per_month</code>와 <code>annual_spend</code>의 -0.21(소수 둘째 자리에서 같다)</td>
+</tr>
+<tr class="odd">
+<td>거의 관계가 없는 열</td>
+<td>흰색에 가까운 칸</td>
+<td><code>age</code> -0.01, <code>avg_session_min</code> -0.01</td>
+</tr>
+</tbody>
+</table>
+</section>
 </section>
 <section id="상관-계수의-해석" class="level3">
 <h3 class="anchored" data-anchor-id="상관-계수의-해석">6.3 상관 계수의 해석</h3>
@@ -1257,11 +2408,11 @@ churn                 0.26             0.37         -0.21   1.00  </code></pre>
 </tr>
 </tbody>
 </table>
-<p>해석할 때 주의할 점은 세 가지이다. 첫째, 상관은 인과가 아니다. 마지막 접속 이후 경과 일수가 이탈과 상관이 있다고 하여 접속하지 않은 것이 이탈의 원인이라고 단정할 수 없다. 둘째, 상관 계수는 직선 관계만 잰다. 곡선 관계가 강하여도 상관 계수는 작을 수 있으므로 산점도를 함께 본다. 셋째, 극단적인 이상치는 상관 계수를 크게 바꾼다. 3장에서 이상치를 제거한 뒤에는 상관 계수도 달라진다.</p>
+<p>해석할 때 주의할 점은 세 가지이다. 첫째, 상관은 인과가 아니다. 마지막 접속 이후 경과 일수가 이탈과 상관이 있다고 하여 접속하지 않은 것이 이탈의 원인이라고 단정할 수 없다. 둘째, 상관 계수는 직선 관계만 잰다. 곡선 관계가 강하여도 상관 계수는 작을 수 있으므로 산점도를 함께 본다(5.3절의 곡선 관계). 셋째, 극단적인 이상치는 상관 계수를 크게 바꾼다. 3장에서 이상치를 제거한 뒤에는 상관 계수도 달라진다.</p>
 <p>목표 열과의 상관을 묻는 문항은 상관 행렬에서 목표 열의 열(또는 행) 하나를 꺼내, 자기 자신을 빼고, 가장 큰 값의 위치를 구한다. “관계가 가장 강한 열”을 묻는 경우에는 음의 상관도 강한 관계이므로 절댓값(<code>abs()</code>)을 쓴다. 아래 셀은 이탈 여부(<code>churn</code>)와 상관이 가장 강한 열을 구한다.</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>churn_corr <span class="op">=</span> corr[<span class="st">"churn"</span>].drop(<span class="st">"churn"</span>)</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(churn_corr.<span class="bu">abs</span>().sort_values(ascending<span class="op">=</span><span class="va">False</span>).<span class="bu">round</span>(<span class="dv">3</span>))</span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(churn_corr.<span class="bu">abs</span>().idxmax())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>churn_corr <span class="op">=</span> corr[<span class="st">"churn"</span>].drop(<span class="st">"churn"</span>)</span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(churn_corr.<span class="bu">abs</span>().sort_values(ascending<span class="op">=</span><span class="va">False</span>).<span class="bu">round</span>(<span class="dv">3</span>))</span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(churn_corr.<span class="bu">abs</span>().idxmax())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>last_login_days     0.369
 cs_calls            0.255
 visits_per_month    0.212
@@ -1274,14 +2425,78 @@ avg_session_min     0.007
 Name: churn, dtype: float64
 last_login_days</code></pre>
 <p>이탈과 관계가 가장 강한 열은 <code>last_login_days</code>(0.369)이고, 다음은 <code>cs_calls</code>(0.255)이다. 히트맵에서 <code>churn</code>의 행을 따라가며 가장 진한 칸을 찾은 것과 같은 결과이다. 문항이 “상관 계수가 가장 큰”이라고 하였는지 “절댓값이 가장 큰”이라고 하였는지에 따라 <code>abs()</code>의 사용 여부가 달라지므로 가이드의 표현을 확인한다.</p>
+<p>자기 자신을 빼지 않으면 어떻게 되는지를 세 줄로 비교한다. 이 셀은 강의안에서만 실행한다.</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(corr[<span class="st">"churn"</span>].idxmax())</span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(corr[<span class="st">"churn"</span>].drop(<span class="st">"churn"</span>).idxmax())</span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(corr[<span class="st">"churn"</span>].drop(<span class="st">"churn"</span>).<span class="bu">abs</span>().idxmax())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>churn
+last_login_days
+last_login_days</code></pre>
+<p>첫 줄은 자기 자신(1.00)을 빼지 않아 <code>churn</code>이 답으로 나왔다. 둘째 줄(부호를 붙인 채 비교)과 셋째 줄(절댓값으로 비교)은 이 자료에서 같은 열이지만, 가장 강한 관계가 음수인 자료에서는 두 줄이 달라진다(8절의 시간 제한 문항 3).</p>
+<section id="흔한-오류-4" class="level4">
+<h4 class="anchored" data-anchor-id="흔한-오류-4">흔한 오류</h4>
+<div class="sourceCode" id="cb92"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>corr[<span class="st">"Churn"</span>]</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>KeyError: 'Churn'</code></pre>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>증상</th>
+<th>실제 메시지(마지막 줄)</th>
+<th>원인</th>
+<th>대처</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>문자열 열이 섞인 표의 상관</td>
+<td><code>ValueError: could not convert string to float: 'C02493'</code></td>
+<td><code>df.corr()</code>. pandas 2.0부터 <code>numeric_only</code>의 기본값이 <code>False</code>이다</td>
+<td><code>df.corr(numeric_only=True)</code></td>
+</tr>
+<tr class="even">
+<td>목표 열의 이름이 틀렸다</td>
+<td><code>KeyError: 'Churn'</code></td>
+<td>열 이름은 대소문자를 구분한다</td>
+<td><code>corr.columns</code>로 확인한다</td>
+</tr>
+<tr class="odd">
+<td>답이 목표 열 자신이다</td>
+<td>(오류 없음)</td>
+<td>자기 상관 1.00을 빼지 않았다</td>
+<td><code>drop("목표 열")</code></td>
+</tr>
+<tr class="even">
+<td>음의 상관이 강한 열을 놓쳤다</td>
+<td>(오류 없음)</td>
+<td>“관계가 강한”을 묻는데 <code>abs()</code>를 쓰지 않았다</td>
+<td><code>abs().idxmax()</code></td>
+</tr>
+<tr class="odd">
+<td>색이 0을 가운데로 대칭이 아니다</td>
+<td>(오류 없음)</td>
+<td><code>vmin</code>, <code>vmax</code>를 주지 않았다</td>
+<td><code>vmin=-1, vmax=1</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><span class="check-badge">확인 19</span> 6.2절의 상관 행렬이 10행 10열이고, 대각선의 값이 모두 <code>1.00</code>이다.</li>
+<li><span class="check-badge">확인 20</span> 연습 11의 히트맵이 5행 5열이고, 칸마다 소수 둘째 자리의 값이 적혀 있다.</li>
+</ul>
 <p>노트북 1부의 연습 11(일부 열의 히트맵)을 푼다.</p>
 <hr>
 </section>
 </section>
+</section>
 <section id="중심-실습-그래프-6종과-답-변수-6개" class="level2">
 <h2 class="anchored" data-anchor-id="중심-실습-그래프-6종과-답-변수-6개">7. 중심 실습: 그래프 6종과 답 변수 6개</h2>
-<p>노트북 <code>AICE_02주차_실습_학생용.ipynb</code>의 2부에서 수행한다. 학기 공통 자료의 원본으로 가이드가 지정한 그래프를 그리고, 그래프에서 읽은 답을 코드로 구하여 답 변수에 저장한다.</p>
-<p><strong>준비.</strong> 단계 1의 셀을 실행하여 라이브러리를 불러오고 자료를 <code>df</code>에 읽는다.</p>
+<p>노트북 <code>AICE_02주차_실습_학생용.ipynb</code>의 2부에서 수행한다. 학기 공통 자료의 원본으로 가이드가 지정한 그래프를 그리고, 그래프에서 읽은 답을 코드로 구하여 답 변수에 저장한다. 단계는 일곱 개이며, 아래 7-1~7-7의 단계 절에 단계마다의 조건과 확인, 막힐 때의 대처가 있다.</p>
 <p><strong>절차.</strong></p>
 <table class="caption-top table">
 <colgroup>
@@ -1343,7 +2558,7 @@ last_login_days</code></pre>
 </tr>
 </tbody>
 </table>
-<p>세부 설정은 노트북의 단계별 가이드에 있다. 축을 지정된 변수에 저장하는 것은 자가 채점 셀이 제목과 축 이름을 검사하기 때문이다.</p>
+<p>세부 설정은 노트북의 단계별 가이드와 아래의 단계 절에 있다. 축을 지정된 변수에 저장하는 것은 자가 채점 셀이 제목과 축 이름을 검사하기 때문이다(2.3절의 「제목과 축 이름의 확인」).</p>
 <p><strong>물음.</strong></p>
 <table class="caption-top table">
 <colgroup>
@@ -1383,15 +2598,355 @@ last_login_days</code></pre>
 </tr>
 </tbody>
 </table>
-<p><code>ans4</code>는 세 열의 사분위수를 한 번에 구하여 판정한다. <code>df[cols].quantile(0.25)</code>는 열마다 Q1을 담은 시리즈를 돌려주고, 데이터프레임과 시리즈를 비교하면 열 이름을 기준으로 맞추어 계산된다. 상자그림의 점을 눈으로 세지 않는다.</p>
 <p><strong>완료 기준.</strong> 자가 채점 셀이 <code>통과</code>를 출력한다. 자가 채점 셀은 그래프 1~6의 칸 수, 제목, 축 이름과 <code>ans1</code>~<code>ans6</code>의 값을 검사한다.</p>
-<p><strong>값의 해석.</strong> 단계 7에서 다음 두 물음에 한 문장씩 답한다.</p>
+<p><strong>제출물.</strong> 실행을 마친 노트북 파일. 그래프 6종, 자가 채점 셀의 <code>통과</code>, 단계 7의 두 문장이 있어야 한다.</p>
+<section id="라이브러리와-자료" class="level3">
+<h3 class="anchored" data-anchor-id="라이브러리와-자료">7-1. 라이브러리와 자료</h3>
+<p><strong>목적.</strong> 2부를 1부와 따로 실행할 수 있게 라이브러리를 불러오고 자료를 다시 읽는다.</p>
+<ol type="1">
+<li>2부 첫 코드 셀(단계 1)을 실행한다. 셀은 이미 작성되어 있다.</li>
+</ol>
+<ul>
+<li><span class="check-badge">확인 21</span> 단계 1의 출력이 <code>(3030, 17)</code>이다.</li>
+</ul>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>막힐 때의 증상</th>
+<th>원인</th>
+<th>대처</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>FileNotFoundError</code></td>
+<td>노트북의 위치가 바뀌었다</td>
+<td>1장 0-2절의 셀로 자료 폴더를 확인하고 <code>DATA</code>를 고친다</td>
+</tr>
+<tr class="even">
+<td>1부에서 그린 그림이 2부의 그림에 섞인다</td>
+<td>1부의 마지막 셀에서 <code>plt.show()</code>를 빠뜨렸다</td>
+<td>2부는 단계 1부터 다시 실행한다</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="범주형-변수의-분포그래프-1-2" class="level3">
+<h3 class="anchored" data-anchor-id="범주형-변수의-분포그래프-1-2">7-2. 범주형 변수의 분포(그래프 1, 2)</h3>
+<p><strong>목적.</strong> 한 그림에 두 칸을 만들어 범주의 빈도와 범주별 비율을 나란히 그린다. 시험에서 “한 그림에 두 그래프”로 묻는 형식이다.</p>
+<ol type="1">
+<li><code>plt.subplots(1, 2, figsize=(10, 4))</code>로 그림을 만들어 <code>fig1</code>, <code>axes1</code>에 저장한다.</li>
+<li>왼쪽 칸에 <code>grade</code>의 빈도 그래프를 그린다. 막대의 순서는 Bronze, Silver, Gold, VIP이다.</li>
+<li>오른쪽 칸에 결제 수단(<code>payment</code>)별 <code>churn</code>의 평균을 막대그래프로 그린다. 오차 막대는 표시하지 않는다.</li>
+<li>두 칸에 제목을 붙인다. 왼쪽은 <code>Grade count</code>, 오른쪽은 <code>Churn rate by payment</code>이다.</li>
+<li><code>ans1</code>과 <code>ans2</code>를 그래프가 아닌 자료에서 코드로 구한다(3.1절과 3.2절).</li>
+</ol>
+<p><strong>작성할 코드의 조건.</strong></p>
+<ul>
+<li><p>그래프 함수마다 <code>ax=</code>로 칸을 지정한다(1.6절의 겹친 그림을 피한다).</p></li>
+<li><p>제목은 칸마다 축의 메서드로 붙인다. <code>plt.title</code>은 오른쪽 칸에만 붙는다(2.3절).</p></li>
+<li><p><code>ans1</code>, <code>ans2</code>는 문자열이다.</p></li>
+<li><p><span class="check-badge">확인 22</span> 한 그림에 두 칸이 나란히 있고, 왼쪽 칸의 막대가 Bronze, Silver, Gold, VIP의 순서이다. <code>axes1[0].get_title()</code>이 <code>'Grade count'</code>이다. 오른쪽 칸의 막대 끝에 검은 선이 없다.</p></li>
+</ul>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>막힐 때의 증상</th>
+<th>원인</th>
+<th>대처</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>두 그래프가 오른쪽 칸에 겹친다</td>
+<td><code>ax=</code>를 빠뜨렸다</td>
+<td><code>ax=axes1[0]</code>, <code>ax=axes1[1]</code></td>
+</tr>
+<tr class="even">
+<td><code>AttributeError: 'numpy.ndarray' object has no attribute 'set_title'</code></td>
+<td><code>axes1.set_title(...)</code></td>
+<td>칸을 골라 <code>axes1[0].set_title(...)</code></td>
+</tr>
+<tr class="odd">
+<td>셀이 오래 걸린다</td>
+<td>오차 막대(신뢰 구간)를 계산하고 있다</td>
+<td><code>errorbar=None</code></td>
+</tr>
+<tr class="even">
+<td><code>ans2</code>가 0.2 근처의 수이다</td>
+<td><code>max()</code>를 썼다</td>
+<td>이름을 물으므로 <code>idxmax()</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="수치형-변수의-분포그래프-3" class="level3">
+<h3 class="anchored" data-anchor-id="수치형-변수의-분포그래프-3">7-3. 수치형 변수의 분포(그래프 3)</h3>
+<p><strong>목적.</strong> 연간 구매액의 분포를 보고, 히스토그램의 왼쪽 끝에 보이는 불가능한 값(0 이하)의 수를 구한다.</p>
+<ol type="1">
+<li><code>annual_spend</code>의 히스토그램을 구간 40개로 그린다. 그래프 함수가 돌려준 축을 <code>ax3</code>에 저장한다.</li>
+<li><code>ax3</code>에 제목 <code>Annual spend</code>를 붙인다.</li>
+<li>연간 구매액이 0 이하인 행의 수를 <code>ans3</code>에 저장한다. 조건식의 참·거짓을 세는 방법(1장 3.5절의 <code>sum()</code>)을 쓴다.</li>
+</ol>
+<p><strong>작성할 코드의 조건.</strong></p>
+<ul>
+<li><p><code>ax3 = sns.histplot(...)</code>처럼 반환값을 저장한다. 축 수준 함수는 그 축을 돌려준다(1.5절).</p></li>
+<li><p>“0 이하”는 0을 포함한다(<code>&lt;=</code>).</p></li>
+<li><p><span class="check-badge">확인 23</span> <code>len(ax3.patches)</code>가 40이다. 그래프의 x축 이름이 <code>annual_spend</code>이다.</p></li>
+</ul>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>막힐 때의 증상</th>
+<th>원인</th>
+<th>대처</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ax3</code>가 <code>None</code>이다</td>
+<td><code>plt.show()</code>의 반환값을 저장하였다</td>
+<td>그래프 함수의 반환값을 저장한다</td>
+</tr>
+<tr class="even">
+<td><code>len(ax3.patches)</code>가 40이 아니다</td>
+<td><code>bins</code>를 빠뜨렸거나 다른 셀의 그림에 겹쳐 그렸다</td>
+<td><code>bins=40</code>. 셀을 다시 실행한다</td>
+</tr>
+<tr class="odd">
+<td><code>ans3</code>이 <code>True</code>/<code>False</code>의 시리즈이다</td>
+<td><code>sum()</code>을 빠뜨렸다</td>
+<td>조건식에 <code>.sum()</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="상자그림그래프-4" class="level3">
+<h3 class="anchored" data-anchor-id="상자그림그래프-4">7-4. 상자그림(그래프 4)</h3>
+<p><strong>목적.</strong> 세 열의 상자그림을 나란히 그리고, 이상치 점이 나타나는 열을 그래프의 계산과 같은 식으로 판정한다.</p>
+<ol type="1">
+<li><code>plt.subplots(1, 3, figsize=(12, 4))</code>로 그림을 만들어 <code>fig4</code>, <code>axes4</code>에 저장한다.</li>
+<li>세 칸에 <code>age</code>, <code>tenure_months</code>, <code>avg_session_min</code>의 상자그림을 차례로 그린다(<code>y=열 이름</code>). 각 칸의 제목은 열 이름이다.</li>
+<li>세 열의 Q1과 Q3를 한 번에 구한다. <code>df[cols].quantile(0.25)</code>는 열마다의 Q1을 담은 시리즈를 돌려준다.</li>
+<li>세 열 각각에서 경계 밖의 값의 개수를 구한다. 데이터프레임과 시리즈를 비교하면 열 이름을 기준으로 맞추어 계산된다.</li>
+<li>개수가 0보다 큰 열의 이름을 리스트로 <code>ans4</code>에 저장한다.</li>
+</ol>
+<p><strong>작성할 코드의 조건.</strong></p>
+<ul>
+<li><p>경계는 Q1 - 1.5×IQR과 Q3 + 1.5×IQR이다(4.2절의 손 계산과 같은 식).</p></li>
+<li><p>상자그림의 점을 눈으로 세지 않는다.</p></li>
+<li><p><code>ans4</code>는 리스트이다. 문자열 하나가 아니다.</p></li>
+<li><p><span class="check-badge">확인 24</span> 세 칸의 y축 이름이 차례로 <code>age</code>, <code>tenure_months</code>, <code>avg_session_min</code>이다. 판정에 쓴 열별 개수가 세 열 모두에 대하여 출력된다. <code>type(ans4)</code>가 리스트이다.</p></li>
+</ul>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>막힐 때의 증상</th>
+<th>원인</th>
+<th>대처</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>세 상자가 한 칸에 겹친다</td>
+<td><code>ax=</code>를 빠뜨렸다</td>
+<td><code>ax=axes4[0]</code> ~ <code>axes4[2]</code></td>
+</tr>
+<tr class="even">
+<td>상자그림이 가로로 누웠다</td>
+<td><code>x=</code>에 열을 주었다</td>
+<td><code>y=열 이름</code></td>
+</tr>
+<tr class="odd">
+<td><code>ans4</code>가 문자열 하나이다</td>
+<td><code>idxmax()</code>로 가장 많은 열만 골랐다</td>
+<td>개수가 0보다 큰 열 모두. <code>index.tolist()</code></td>
+</tr>
+<tr class="even">
+<td>개수가 모두 0이다</td>
+<td>경계식의 부호를 바꾸어 썼다</td>
+<td>아래 경계는 <code>q1 - 1.5 * iqr</code>, 위 경계는 <code>q3 + 1.5 * iqr</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="두-변수의-관계그래프-5" class="level3">
+<h3 class="anchored" data-anchor-id="두-변수의-관계그래프-5">7-5. 두 변수의 관계(그래프 5)</h3>
+<p><strong>목적.</strong> 두 수치형 열의 관계와 각자의 분포를 결합 그래프로 함께 보고, 관계의 세기를 상관 계수로 구한다.</p>
+<ol type="1">
+<li><code>visits_per_month</code>를 x축, <code>cart_items</code>를 y축으로 하는 결합 그래프를 <code>height=5</code>로 그린다. 반환값을 <code>g5</code>에 저장한다.</li>
+<li>두 열의 상관 계수를 구하여 소수 둘째 자리까지 반올림한 값을 <code>ans5</code>에 저장한다(5.3절).</li>
+</ol>
+<p><strong>작성할 코드의 조건.</strong></p>
+<ul>
+<li><p>결합 그래프는 그림 수준 함수이므로 <code>subplots</code>의 칸에 넣지 않는다(1.5절).</p></li>
+<li><p>x와 y를 가이드대로 둔다. 바꾸어 주면 자가 채점의 축 검사가 실패한다.</p></li>
+<li><p>반올림은 <code>round(값, 2)</code>로 한다.</p></li>
+<li><p><span class="check-badge">확인 25</span> 그림 가운데에 산점도가, 위와 오른쪽에 히스토그램이 있다. <code>g5.ax_joint.get_xlabel()</code>이 <code>'visits_per_month'</code>이다.</p></li>
+</ul>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>막힐 때의 증상</th>
+<th>원인</th>
+<th>대처</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>경고 <code>Ignoring `ax`; jointplot is a figure-level function.</code></td>
+<td><code>ax=</code>를 주었다</td>
+<td><code>ax=</code>를 지운다</td>
+</tr>
+<tr class="even">
+<td><code>g5.ax_joint</code>에서 <code>AttributeError</code></td>
+<td><code>g5</code>에 결합 그래프가 아닌 것(예: <code>plt.show()</code>의 반환값)을 저장하였다</td>
+<td><code>g5 = sns.jointplot(...)</code></td>
+</tr>
+<tr class="odd">
+<td><code>ans5</code>가 0.5 근처이나 자리가 길다</td>
+<td>반올림을 하지 않았다</td>
+<td><code>round(..., 2)</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="상관-행렬과-히트맵그래프-6" class="level3">
+<h3 class="anchored" data-anchor-id="상관-행렬과-히트맵그래프-6">7-6. 상관 행렬과 히트맵(그래프 6)</h3>
+<p><strong>목적.</strong> 수치형 열의 상관 행렬을 히트맵으로 그리고, 목표 열의 행을 읽어 답을 구한다.</p>
+<ol type="1">
+<li>수치형 열만의 상관 행렬을 <code>corr</code>에 저장한다(6.1절).</li>
+<li><code>plt.figure(figsize=(9, 7))</code>로 그림을 만들고, 값을 소수 둘째 자리까지 표시한 히트맵을 <code>cmap="coolwarm"</code>, <code>vmin=-1</code>, <code>vmax=1</code>로 그린다. 히트맵 함수가 돌려주는 축을 <code>ax6</code>에 저장한다.</li>
+<li><code>ax6</code>에 제목 <code>Correlation matrix</code>를 붙인다.</li>
+<li><code>annual_spend</code>의 행(또는 열)을 꺼내 자기 자신을 빼고, 상관 계수가 가장 큰 열의 이름을 <code>ans6</code>에 저장한다(6.2절의 「결과 읽기」 네 단계).</li>
+</ol>
+<p><strong>작성할 코드의 조건.</strong></p>
+<ul>
+<li><p>물음은 “상관 계수가 가장 큰”이므로 부호를 붙인 채 비교한다. 절댓값을 쓰지 않는다.</p></li>
+<li><p><code>ans6</code>은 문자열이다.</p></li>
+<li><p><span class="check-badge">확인 26</span> <code>corr.shape</code>가 <code>(10, 10)</code>이다. 히트맵의 대각선 칸이 모두 <code>1.00</code>이다.</p></li>
+</ul>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>막힐 때의 증상</th>
+<th>원인</th>
+<th>대처</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ValueError: could not convert string to float: 'C02493'</code></td>
+<td><code>numeric_only=True</code>를 빠뜨렸다</td>
+<td><code>df.corr(numeric_only=True)</code></td>
+</tr>
+<tr class="even">
+<td><code>ans6</code>이 <code>annual_spend</code>이다</td>
+<td>자기 자신을 빼지 않았다</td>
+<td><code>drop("annual_spend")</code></td>
+</tr>
+<tr class="odd">
+<td>칸의 값이 <code>0.3</code>, <code>1</code>처럼 자릿수가 다르다</td>
+<td><code>fmt</code>를 주지 않았다</td>
+<td><code>fmt=".2f"</code></td>
+</tr>
+<tr class="even">
+<td>그림이 작아 글자가 겹친다</td>
+<td><code>figsize</code>를 주지 않았다</td>
+<td><code>plt.figure(figsize=(9, 7))</code>을 히트맵보다 먼저</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="자가-채점과-값의-해석" class="level3">
+<h3 class="anchored" data-anchor-id="자가-채점과-값의-해석">7-7. 자가 채점과 값의 해석</h3>
+<p><strong>목적.</strong> 단계 2~5의 그림과 답이 기준과 같은지 확인하고, 두 그래프의 결과를 업무의 말로 해석한다.</p>
+<ol type="1">
+<li>자가 채점 셀을 실행한다. 셀은 작성되어 있고 고치지 않는다. <code>AssertionError</code>가 나면 메시지가 가리키는 그래프나 변수의 단계로 돌아가 고친 뒤, 그 단계의 셀과 자가 채점 셀을 다시 실행한다.</li>
+<li>단계 7의 셀에 다음 두 물음의 답을 주석으로 한 문장씩 쓴다.
 <ol type="1">
 <li>그래프 4에서 <code>avg_session_min</code>의 상자가 납작하게 보이는 까닭은 무엇인가.</li>
 <li><code>ans6</code>의 열과 <code>annual_spend</code>의 상관 계수는 얼마이며, 그 크기를 어떻게 해석하는가.</li>
+</ol></li>
+<li>노트북을 저장한다.</li>
 </ol>
-<p><strong>제출물.</strong> 실행을 마친 노트북 파일. 그래프 6종, 자가 채점 셀의 <code>통과</code>, 단계 7의 두 문장이 있어야 한다.</p>
+<ul>
+<li><span class="check-badge">확인 27</span> 자가 채점 셀의 마지막 줄에 <code>통과</code>가 출력된다.</li>
+<li><span class="check-badge">확인 28</span> 단계 7의 셀에 주석 두 줄이 있고, 둘째 줄에 상관 계수의 값과 그 크기의 해석(약한, 중간의, 강한 가운데 하나)이 들어 있다.</li>
+</ul>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>막힐 때의 증상</th>
+<th>원인</th>
+<th>대처</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>AssertionError: 그래프 1의 제목이 다르다</code></td>
+<td><code>plt.title</code>을 썼거나 제목의 철자가 다르다</td>
+<td><code>axes1[0].set_title("Grade count")</code>. 대소문자와 공백까지 같게</td>
+</tr>
+<tr class="even">
+<td><code>AssertionError: 그래프 4의 세 번째 칸이 다르다</code></td>
+<td>세 열의 순서가 다르다</td>
+<td><code>age</code>, <code>tenure_months</code>, <code>avg_session_min</code>의 순서</td>
+</tr>
+<tr class="odd">
+<td><code>AssertionError: ans4가 다르다</code></td>
+<td>리스트가 아니거나 열이 빠졌다</td>
+<td>7-4의 표</td>
+</tr>
+<tr class="even">
+<td><code>NameError: name 'g5' is not defined</code></td>
+<td>단계 5의 셀을 실행하지 않았다</td>
+<td>단계 1부터 차례로 실행한다</td>
+</tr>
+<tr class="odd">
+<td>해석의 상관 계수를 모른다</td>
+<td></td>
+<td><code>corr.loc["ans6의 열", "annual_spend"]</code>처럼 상관 행렬의 칸을 꺼낸다</td>
+</tr>
+</tbody>
+</table>
 <hr>
+</section>
 </section>
 <section id="시간-제한-문항" class="level2">
 <h2 class="anchored" data-anchor-id="시간-제한-문항">8. 시간 제한 문항</h2>
@@ -1435,37 +2990,51 @@ last_login_days</code></pre>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>DATA <span class="op">=</span> <span class="st">"../kit/data/AICE_공통/"</span></span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>lap <span class="op">=</span> pd.read_csv(DATA <span class="op">+</span> <span class="st">"laptops.csv"</span>)</span>
-<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lap.shape)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb94-4"><a href="#cb94-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb94-5"><a href="#cb94-5" aria-hidden="true" tabindex="-1"></a>DATA <span class="op">=</span> <span class="st">"../kit/data/AICE_공통/"</span></span>
+<span id="cb94-6"><a href="#cb94-6" aria-hidden="true" tabindex="-1"></a>lap <span class="op">=</span> pd.read_csv(DATA <span class="op">+</span> <span class="st">"laptops.csv"</span>)</span>
+<span id="cb94-7"><a href="#cb94-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lap.shape)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="문항-1-빈칸-채우기" class="level3">
 <h3 class="anchored" data-anchor-id="문항-1-빈칸-채우기">문항 1 (빈칸 채우기)</h3>
 <p>가로로 두 칸인 그림을 만들어 왼쪽 칸에 제조사(<code>brand</code>)의 빈도 그래프를, 오른쪽 칸에 외관 등급(<code>condition</code>)별 가격(<code>price</code>)의 상자그림을 그린다. 왼쪽 칸의 제목은 <code>Brand count</code>, 오른쪽 칸의 제목은 <code>Price by condition</code>이다. 빈칸 <code>___</code>을 채운다.</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.___(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>sns.countplot(data<span class="op">=</span>lap, x<span class="op">=</span><span class="st">"brand"</span>, ___<span class="op">=</span>axes[<span class="dv">0</span>])</span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>sns.boxplot(data<span class="op">=</span>lap, x<span class="op">=</span><span class="st">"condition"</span>, y<span class="op">=</span><span class="st">"price"</span>, order<span class="op">=</span>[<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>], ax<span class="op">=</span>axes[<span class="dv">1</span>])</span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].___(<span class="st">"Brand count"</span>)</span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">"Price by condition"</span>)</span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.___(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>sns.countplot(data<span class="op">=</span>lap, x<span class="op">=</span><span class="st">"brand"</span>, ___<span class="op">=</span>axes[<span class="dv">0</span>])</span>
+<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a>sns.boxplot(data<span class="op">=</span>lap, x<span class="op">=</span><span class="st">"condition"</span>, y<span class="op">=</span><span class="st">"price"</span>, order<span class="op">=</span>[<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>], ax<span class="op">=</span>axes[<span class="dv">1</span>])</span>
+<span id="cb95-4"><a href="#cb95-4" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].___(<span class="st">"Brand count"</span>)</span>
+<span id="cb95-5"><a href="#cb95-5" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">"Price by condition"</span>)</span>
+<span id="cb95-6"><a href="#cb95-6" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb95-7"><a href="#cb95-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="문항-2-오류-정정" class="level3">
 <h3 class="anchored" data-anchor-id="문항-2-오류-정정">문항 2 (오류 정정)</h3>
 <p>아래 코드는 메모리(<code>ram_gb</code>)를 x축, 가격(<code>price</code>)을 y축으로 하는 산점도를 그리고 제목 <code>Price by RAM</code>을 붙이려 한다. 실행하면 오류가 난다. 오류를 모두 정정하여 실행한다.</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>lap, x<span class="op">=</span>ram_gb, y<span class="op">=</span><span class="st">"Price"</span>)</span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Price by RAM"</span>)</span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>lap, x<span class="op">=</span>ram_gb, y<span class="op">=</span><span class="st">"Price"</span>)</span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Price by RAM"</span>)</span>
+<span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="문항-3-답-변수" class="level3">
 <h3 class="anchored" data-anchor-id="문항-3-답-변수">문항 3 (답 변수)</h3>
 <p>수치형 열의 상관 행렬을 히트맵으로 그린다(값 표시, 소수 둘째 자리). 가격(<code>price</code>)과 상관 계수의 절댓값이 가장 큰 열(자기 자신 제외)의 이름을 <code>ans_t3</code>에 저장한다.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 여기에 코드를 작성한다</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 여기에 코드를 작성한다</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
+</section>
+<section id="스스로-점검" class="level2">
+<h2 class="anchored" data-anchor-id="스스로-점검">스스로 점검</h2>
+<ol type="1">
+<li><code>fig, axes = plt.subplots(2, 3)</code>으로 만든 그림에서 둘째 행의 첫 칸에 그래프를 그리려면 <code>ax=</code>에 무엇을 주는가. <code>axes[3]</code>이라고 쓰면 어떤 오류가 나는가.</li>
+<li>가로 두 칸의 그림에서 두 그래프 함수에 <code>ax=</code>를 모두 빠뜨렸다. 그림은 어떻게 보이고, 그 까닭은 무엇인가.</li>
+<li>값 2, 2, 3, 4, 4, 5, 6, 6, 7, 20의 히스토그램을 구간 3개로 그리면 구간의 경계와 구간별 개수는 어떻게 되는가.</li>
+<li>4.2절의 작은 자료(1, 2, 2, 3, 3, 3, 4, 4, 5, 9)에서 9를 6으로 바꾸면 위 수염의 끝은 어디가 되고, 수염 밖의 점은 남는가.</li>
+<li>상관 계수가 0에 가까운데 산점도에서는 뚜렷한 모양이 보인다. 어떤 경우이며, 무엇을 뜻하는가.</li>
+<li>히트맵에서 목표 열의 행을 읽어 “목표 열과 관계가 가장 강한 열”을 답하는 순서를 쓰라.</li>
+<li><code>jointplot</code>을 <code>subplots</code>의 한 칸에 넣으려고 <code>ax=</code>를 주었다. 무슨 일이 일어나는가.</li>
+<li>한글 글꼴을 지정하였는데도 그림의 한글이 네모로 나온다. 확인할 것 두 가지는 무엇인가.</li>
+</ol>
+<hr>
 </section>
 <section id="정리" class="level2">
 <h2 class="anchored" data-anchor-id="정리">9. 정리</h2>
@@ -1482,40 +3051,48 @@ last_login_days</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
+<td>실습 준비</td>
+<td>그래프 셀은 <code>plt.show()</code>로 끝맺는다. 그림이 안 보이면 <code>%matplotlib inline</code></td>
+</tr>
+<tr class="even">
 <td>그림과 축</td>
 <td><code>Figure</code>는 종이, <code>Axes</code>는 칸. <code>fig, axes = plt.subplots(행, 열, figsize=(가로, 세로))</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>칸 지정</td>
-<td>축 수준 함수에 <code>ax=axes[i]</code>(2차원이면 <code>axes[행, 열]</code>)</td>
+<td>축 수준 함수에 <code>ax=axes[i]</code>(2차원이면 <code>axes[행, 열]</code>). 빠뜨리면 마지막 칸에 겹친다</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>그림 수준 함수</td>
-<td><code>jointplot</code>은 새 그림을 만든다. 크기는 <code>height</code>, 제목은 <code>g.figure.suptitle()</code></td>
-</tr>
-<tr class="even">
-<td>제목과 축</td>
-<td><code>plt.title</code>·<code>plt.xlabel</code>(현재 축) 또는 <code>ax.set_title</code>·<code>ax.set_xlabel</code>(지정한 칸). 회전은 <code>plt.xticks(rotation=)</code>, <code>ax.tick_params(axis="x", rotation=)</code></td>
+<td><code>jointplot</code>은 새 그림을 만든다. 크기는 <code>height</code>, 제목은 <code>g.figure.suptitle()</code>, 가운데 축은 <code>g.ax_joint</code></td>
 </tr>
 <tr class="odd">
-<td>한글 글꼴</td>
-<td><code>plt.rcParams["font.family"]</code>, <code>plt.rcParams["axes.unicode_minus"] = False</code></td>
+<td>제목과 축</td>
+<td><code>plt.title</code>·<code>plt.xlabel</code>(현재 축) 또는 <code>ax.set_title</code>·<code>ax.set_xlabel</code>(지정한 칸). 회전은 <code>plt.xticks(rotation=)</code>, <code>ax.tick_params(axis="x", rotation=)</code>. 확인은 <code>ax.get_title()</code></td>
 </tr>
 <tr class="even">
+<td>한글 글꼴</td>
+<td>찾기(<code>get_font_names</code>) → 증상 → 지정(<code>font.family</code>, <code>axes.unicode_minus = False</code>)·확인(<code>findfont</code>) → 다시 그리기 → 되돌리기</td>
+</tr>
+<tr class="odd">
 <td>범주형 분포</td>
 <td><code>countplot</code>(행 수, <code>order</code>, <code>hue</code>), <code>barplot</code>(y의 요약, <code>estimator</code>, <code>errorbar=None</code>)</td>
 </tr>
+<tr class="even">
+<td>히스토그램</td>
+<td>폭 = (최댓값 - 최솟값) ÷ 구간 수. 구간 수가 적으면 뭉개지고 많으면 들쭉날쭉하다</td>
+</tr>
 <tr class="odd">
-<td>수치형 분포</td>
-<td><code>histplot</code>(<code>bins</code>, <code>kde</code>), <code>boxplot</code>(수염은 1.5×IQR, 밖의 점은 이상치 후보)</td>
+<td>상자그림</td>
+<td>Q1, 중앙값, Q3, 경계 Q1 - 1.5×IQR과 Q3 + 1.5×IQR. 수염의 끝은 경계 안의 가장 먼 실제 값</td>
 </tr>
 <tr class="even">
 <td>관계</td>
-<td><code>scatterplot</code>(<code>hue</code>), <code>jointplot</code>(<code>kind</code>), <code>시리즈.corr(시리즈)</code></td>
+<td><code>scatterplot</code>(<code>hue</code>), <code>jointplot</code>(<code>kind</code>), <code>시리즈.corr(시리즈)</code>. 상관 계수는 직선 관계만 잰다</td>
 </tr>
 <tr class="odd">
 <td>상관 행렬</td>
-<td><code>df.corr(numeric_only=True)</code>, <code>heatmap(annot=True, fmt=".2f", vmin=-1, vmax=1)</code>, 목표 열에서 자기 자신을 빼고 <code>idxmax()</code></td>
+<td><code>df.corr(numeric_only=True)</code>, <code>heatmap(annot=True, fmt=".2f", vmin=-1, vmax=1)</code>. 목표 열의 행에서 자기 자신을 빼고 <code>idxmax()</code>, 관계의 세기는 <code>abs()</code></td>
 </tr>
 <tr class="even">
 <td>답 변수</td>
@@ -1528,7 +3105,7 @@ last_login_days</code></pre>
 </section>
 <section id="참고-자료" class="level2">
 <h2 class="anchored" data-anchor-id="참고-자료">참고 자료</h2>
-<p>확인일은 2026-11-13이다. 표시한 항목은 2026-11-14에 확인하였다.</p>
+<p>확인일은 2026-11-13이다. 표시한 항목은 2026-11-14 또는 2026-11-16에 확인하였다.</p>
 <ul>
 <li>Matplotlib, Quick start guide. <a href="https://matplotlib.org/stable/users/explain/quick_start.html" class="uri">https://matplotlib.org/stable/users/explain/quick_start.html</a></li>
 <li>Matplotlib, <code>matplotlib.pyplot.subplots</code>. <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots.html" class="uri">https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots.html</a></li>
@@ -1539,6 +3116,9 @@ last_login_days</code></pre>
 <li>Matplotlib, <code>matplotlib.axes.Axes.tick_params</code> (2026-11-14 확인). <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.tick_params.html" class="uri">https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.tick_params.html</a></li>
 <li>Matplotlib, <code>matplotlib.figure.Figure.suptitle</code> (2026-11-14 확인). <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.suptitle.html" class="uri">https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.suptitle.html</a></li>
 <li>Matplotlib, <code>matplotlib.pyplot.tight_layout</code> (2026-11-14 확인). <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.tight_layout.html" class="uri">https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.tight_layout.html</a></li>
+<li>Matplotlib, <code>matplotlib.font_manager</code> (<code>get_font_names</code>, <code>findfont</code>, 2026-11-16 확인). <a href="https://matplotlib.org/stable/api/font_manager_api.html" class="uri">https://matplotlib.org/stable/api/font_manager_api.html</a></li>
+<li>Matplotlib, <code>matplotlib.cbook.boxplot_stats</code> (<code>whislo</code>, <code>whishi</code>, <code>fliers</code>, 2026-11-16 확인). <a href="https://matplotlib.org/stable/api/cbook_api.html" class="uri">https://matplotlib.org/stable/api/cbook_api.html</a></li>
+<li>NumPy, <code>numpy.histogram</code> (2026-11-16 확인). <a href="https://numpy.org/doc/stable/reference/generated/numpy.histogram.html" class="uri">https://numpy.org/doc/stable/reference/generated/numpy.histogram.html</a></li>
 <li>seaborn, Overview of seaborn plotting functions. <a href="https://seaborn.pydata.org/tutorial/function_overview.html" class="uri">https://seaborn.pydata.org/tutorial/function_overview.html</a></li>
 <li>seaborn, Visualizing categorical data. <a href="https://seaborn.pydata.org/tutorial/categorical.html" class="uri">https://seaborn.pydata.org/tutorial/categorical.html</a></li>
 <li>seaborn, <code>seaborn.countplot</code>. <a href="https://seaborn.pydata.org/generated/seaborn.countplot.html" class="uri">https://seaborn.pydata.org/generated/seaborn.countplot.html</a></li>
@@ -1547,6 +3127,8 @@ last_login_days</code></pre>
 <li>seaborn, <code>seaborn.boxplot</code>. <a href="https://seaborn.pydata.org/generated/seaborn.boxplot.html" class="uri">https://seaborn.pydata.org/generated/seaborn.boxplot.html</a></li>
 <li>seaborn, <code>seaborn.scatterplot</code>. <a href="https://seaborn.pydata.org/generated/seaborn.scatterplot.html" class="uri">https://seaborn.pydata.org/generated/seaborn.scatterplot.html</a></li>
 <li>seaborn, <code>seaborn.jointplot</code>. <a href="https://seaborn.pydata.org/generated/seaborn.jointplot.html" class="uri">https://seaborn.pydata.org/generated/seaborn.jointplot.html</a></li>
+<li>seaborn, What’s new in v0.12.0 (<code>errorbar</code> 인자의 도입, 2026-11-16 확인). <a href="https://seaborn.pydata.org/whatsnew/v0.12.0.html" class="uri">https://seaborn.pydata.org/whatsnew/v0.12.0.html</a></li>
+<li>seaborn, <code>seaborn.JointGrid</code> (<code>ax_joint</code>, <code>ax_marg_x</code>, <code>ax_marg_y</code>, 2026-11-16 확인). <a href="https://seaborn.pydata.org/generated/seaborn.JointGrid.html" class="uri">https://seaborn.pydata.org/generated/seaborn.JointGrid.html</a></li>
 <li>seaborn, <code>seaborn.heatmap</code>. <a href="https://seaborn.pydata.org/generated/seaborn.heatmap.html" class="uri">https://seaborn.pydata.org/generated/seaborn.heatmap.html</a></li>
 <li>pandas, <code>DataFrame.corr</code>. <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corr.html" class="uri">https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corr.html</a></li>
 <li>pandas, <code>DataFrame.quantile</code>. <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.quantile.html" class="uri">https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.quantile.html</a></li>
