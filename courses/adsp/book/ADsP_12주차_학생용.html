@@ -408,6 +408,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<header class="chapter-head">
+<p class="chapter-part">빅데이터개론</p>
+<p class="chapter-no"><span class="num">12</span><span class="unit">장</span></p>
+<p class="chapter-title">군집 분석과 연관 분석</p>
+</header>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -525,7 +530,7 @@ Arizona        8.1      294        80  31.0
 </section>
 <section id="군집-분석과-거리" class="level2">
 <h2 class="anchored" data-anchor-id="군집-분석과-거리">1. 군집 분석과 거리</h2>
-<p><strong>배경과 쓰임.</strong> 군집 분석은 집단의 이름이 미리 주어지지 않은 자료를 몇 개의 집단으로 나누어 요약할 때 쓴다. 공공 통계의 대표적인 쓰임은 지역 분류다. 영국 통계청(ONS)은 인구 총조사의 인구 구성, 주거, 건강, 노동 시장 지표로 지방 행정 구역 374곳을 k-평균 군집으로 묶어 3단계의 지역 분류를 만들고, 이를 정부 부처와 지방 정부, 연구자가 비슷한 지역을 찾는 데 쓰게 한다(ONS, 2021·2022년 지역 분류 방법 안내). 기업에서는 고객 세분화가 같은 구조의 일이다. 4장 「표 데이터와 데이터 마트」에서 만든 고객별 요약 변수(구매 횟수, 구매 금액 등)가 군집 분석의 입력이 되고, 군집마다 다른 판촉을 기획한다. 두 경우 모두 분석가는 “몇 개로 나눌 것인가”와 “나눈 집단에 어떤 이름을 붙일 것인가”를 결과를 보고 정한다. 이 판단의 근거가 되는 값(거리, 병합 높이, 집단 내 제곱합, 실루엣 계수)을 이 장에서 차례로 다룬다.</p>
+<p><strong>배경과 쓰임.</strong> 군집 분석은 집단의 이름이 미리 주어지지 않은 자료를 몇 개의 집단으로 나누어 요약할 때 쓴다. 공공 통계의 대표적인 쓰임은 지역 분류다. 영국 통계청(ONS)은 인구 총조사의 인구 구성, 주거, 건강, 노동 시장 지표로 지방 행정 구역 374곳을 k-평균 군집으로 묶어 3단계의 지역 분류를 만들고, 이를 비슷한 지역을 찾는 데 쓰게 한다(ONS, 2021·2022년 지역 분류 방법 안내). 기업에서는 고객 세분화가 같은 구조의 일이다. 4장 「표 데이터와 데이터 마트」에서 만든 고객별 요약 변수(구매 횟수, 구매 금액 등)가 군집 분석의 입력이 되고, 군집마다 다른 판촉을 기획한다. 두 경우 모두 분석가는 “몇 개로 나눌 것인가”와 “나눈 집단에 어떤 이름을 붙일 것인가”를 결과를 보고 정한다. 이 판단의 근거가 되는 값(거리, 병합 높이, 집단 내 제곱합, 실루엣 계수)을 이 장에서 차례로 다룬다.</p>
 <blockquote class="blockquote">
 <p><strong>[최신 자료 자리: 영국 통계청 지역 분류의 단계별 군집 수]</strong> 2021·2022년 인구 총조사에 바탕을 둔 지방 행정 구역 분류의 대상 구역 수와 단계별 군집 수. 확인할 곳: <a href="https://www.ons.gov.uk/methodology/geography/geographicalproducts/areaclassifications/2021and2022residentialbasedareaclassifications" class="uri">https://www.ons.gov.uk/methodology/geography/geographicalproducts/areaclassifications/2021and2022residentialbasedareaclassifications</a>. 2026-11-16 확인 값: 374개 구역, 상위 6개 군(supergroup), 중간 19개 군(group), 하위 32개 군(subgroup). 다음 인구 총조사 뒤에 바뀔 수 있다.</p>
 </blockquote>
@@ -1065,7 +1070,7 @@ Name: count, dtype: int64</code></pre>
 </section>
 <section id="비계층적-군집" class="level2">
 <h2 class="anchored" data-anchor-id="비계층적-군집">3. 비계층적 군집</h2>
-<p><strong>배경과 쓰임.</strong> k-평균 군집은 개체가 많아도 계산이 빠르므로 대규모 자료의 군집 분석에 가장 널리 쓰는 방법이다. 1절에서 든 영국 통계청의 지방 행정 구역 분류는 표준적인 k-평균 군집으로 구역을 묶고, 그렇게 얻은 각 군을 다시 k-평균 군집으로 나누어 위에서 아래로 내려가는 3단계의 분류를 만들었다. 비계층적 방법으로도 계층이 있는 분류를 만들 수 있다는 예다. R은 <code>kmeans()</code>, 파이썬은 scikit-learn의 <code>KMeans</code>로 실행한다. 두 함수 모두 “각 개체에서 자기 군집의 중심까지 거리의 제곱을 더한 값”을 줄이는 것을 목표로 한다(R 매뉴얼 <code>kmeans</code>, scikit-learn <code>KMeans</code> 문서).</p>
+<p><strong>배경과 쓰임.</strong> k-평균 군집은 개체가 많아도 계산이 빠르므로 대규모 자료의 군집 분석에 가장 널리 쓰는 방법이다. 1절에서 든 영국 통계청의 지역 분류는 k-평균 군집으로 얻은 각 군을 다시 k-평균 군집으로 나누어 3단계를 만들었으므로, 비계층적 방법으로도 계층이 있는 분류를 만들 수 있다. R은 <code>kmeans()</code>, 파이썬은 scikit-learn의 <code>KMeans</code>로 실행한다. 두 함수 모두 “각 개체에서 자기 군집의 중심까지 거리의 제곱을 더한 값”을 줄이는 것을 목표로 한다(R 매뉴얼 <code>kmeans</code>, scikit-learn <code>KMeans</code> 문서).</p>
 <section id="k-평균-군집의-절차" class="level3">
 <h3 class="anchored" data-anchor-id="k-평균-군집의-절차">3.1 k-평균 군집의 절차</h3>
 <p>k-평균 군집은 군집 수 k를 먼저 정하고, 개체를 가장 가까운 군집의 중심에 배정하는 일을 되풀이한다.</p>
@@ -1377,7 +1382,7 @@ dtype: float64</code></pre>
 </section>
 <section id="연관-분석" class="level2">
 <h2 class="anchored" data-anchor-id="연관-분석">4. 연관 분석</h2>
-<p><strong>배경과 쓰임.</strong> 연관 규칙의 탐색은 바코드로 기록된 슈퍼마켓의 대량 거래 자료에서 “어떤 품목들을 함께 사는가”를 찾는 문제로 1993년에 정식화되었다(Agrawal, Imieliński, Swami, 1993). 이듬해 같은 연구진이 후보를 줄여 빠르게 찾는 Apriori 알고리즘을 발표하였다(Agrawal, Srikant, 1994). 찾은 규칙은 매장의 진열, 묶음 판매와 할인의 설계, 온라인 상점의 “함께 산 상품” 추천에 쓴다. 거래 대신 환자별 진단 기록, 회원별 수강 과목, 접속자별 방문 화면을 “품목의 집합”으로 보면 같은 계산을 쓸 수 있다. R에서는 <code>arules</code> 패키지가 거래 자료를 담는 형식과 <code>apriori()</code>, <code>inspect()</code>를 제공한다(CRAN <code>arules</code>).</p>
+<p><strong>배경과 쓰임.</strong> 연관 규칙의 탐색은 바코드로 기록된 슈퍼마켓의 대량 거래 자료에서 “어떤 품목들을 함께 사는가”를 찾는 문제로 1993년에 정식화되었다(Agrawal, Imieliński, Swami, 1993). 이듬해 같은 연구진이 후보를 줄여 빠르게 찾는 Apriori 알고리즘을 발표하였다(Agrawal, Srikant, 1994). 찾은 규칙은 매장의 진열과 온라인 상점의 “함께 산 상품” 추천에 쓴다. 거래 대신 환자별 진단 기록을 “품목의 집합”으로 보면 같은 계산을 쓸 수 있다. R에서는 <code>arules</code> 패키지가 거래 자료를 담는 형식과 <code>apriori()</code>, <code>inspect()</code>를 제공한다(CRAN <code>arules</code>).</p>
 <section id="연관-분석의-뜻" class="level3">
 <h3 class="anchored" data-anchor-id="연관-분석의-뜻">4.1 연관 분석의 뜻</h3>
 <p>연관 분석은 거래 자료에서 “어떤 품목을 사면 다른 품목도 산다”는 꼴의 규칙을 찾는 방법이다. 한 고객이 한 번에 산 품목의 묶음을 살피므로 장바구니 분석이라고도 한다. 종속 변수가 없는 비지도 학습이다. 1장에서 빅데이터 활용 기본 테크닉의 하나로 든 연관 규칙 학습이 이것이다.</p>

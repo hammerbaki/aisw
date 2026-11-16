@@ -407,6 +407,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<header class="chapter-head">
+<p class="chapter-part">빅데이터개론</p>
+<p class="chapter-no"><span class="num">9</span><span class="unit">장</span></p>
+<p class="chapter-title">시계열 분석</p>
+</header>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -766,7 +771,7 @@ year
 <h2 class="anchored" data-anchor-id="분해-시계열">2. 분해 시계열</h2>
 <section id="시계열의-성분" class="level3">
 <h3 class="anchored" data-anchor-id="시계열의-성분">2.1 시계열의 성분</h3>
-<p><strong>배경과 쓰임.</strong> 분해는 시계열을 읽는 첫 도구다. 1절의 배경에서 본 계절조정 계열은 분해에서 계절 성분만 걷어 낸 것이다. 가법 모형이면 관측값에서 계절 성분을 빼고, 승법 모형이면 관측값을 계절 성분으로 나눈다. FPP3의 3.2절은 실업률 같은 경제 지표가 계절 변동이 아닌 변동을 드러내려고 보통 계절조정되어 공표된다는 것과, 계절조정 계열에도 불규칙 성분이 남아 있어 매끄럽지 않으므로 경기의 전환점을 찾을 때에는 추세(추세-순환) 성분을 보라는 것을 함께 적는다. 같은 책의 3.5절은 통계 기관이 쓰는 X-11 방법이 이 장의 고전적 분해에 단계를 더하여 양 끝의 관측값까지 추세를 구하고, 계절 성분이 시간에 따라 천천히 바뀌는 것을 허용한다고 설명한다. 업무에서는 매출, 방문자 수, 전력 사용량처럼 달력에 매인 자료를 분해하여 “계절 때문에 늘어난 몫”과 “실제로 늘어난 몫”을 가른다. 중심 실습의 단계 1에서 항공 승객 수의 계절조정 계열을 직접 만든다.</p>
+<p><strong>배경과 쓰임.</strong> 분해는 시계열을 읽는 첫 도구다. 1절의 배경에서 본 계절조정 계열은 분해에서 계절 성분만 걷어 낸 것이다. 가법 모형이면 관측값에서 계절 성분을 빼고, 승법 모형이면 관측값을 계절 성분으로 나눈다. FPP3의 3.2절은 실업률 같은 경제 지표가 계절 변동이 아닌 변동을 드러내려고 보통 계절조정되어 공표된다는 것과, 계절조정 계열에도 불규칙 성분이 남아 있어 매끄럽지 않으므로 경기의 전환점을 찾을 때에는 추세(추세-순환) 성분을 보라는 것을 함께 적는다. 업무에서는 매출처럼 달력에 매인 자료를 분해하여 “계절 때문에 늘어난 몫”과 “실제로 늘어난 몫”을 가른다. 중심 실습의 단계 1에서 항공 승객 수의 계절조정 계열을 직접 만든다.</p>
 <p>분해 시계열은 시계열을 몇 가지 성분으로 나누어 분석하는 방법이다. 성분(요인)은 넷이다.</p>
 <table class="caption-top table">
 <colgroup>
@@ -954,7 +959,7 @@ year
 </section>
 <section id="자기상관-함수와-부분자기상관-함수" class="level3">
 <h3 class="anchored" data-anchor-id="자기상관-함수와-부분자기상관-함수">3.2 자기상관 함수와 부분자기상관 함수</h3>
-<p><strong>배경과 쓰임.</strong> 자기상관은 시계열의 “기억”을 재는 값이다. NIST 통계 공학 편람(6.4.4.6절)은 Box-Jenkins 방법에서 모형을 식별하는 주된 도구로 자기상관 그림과 부분자기상관 그림을 들고, 그림에서 정상성과 계절성을 먼저 판단한 뒤 차수를 고르는 순서를 제시한다. 자기상관은 모형을 고를 때만이 아니라 모형을 다 만든 뒤에도 쓴다. 모형이 자료의 규칙을 남김없이 설명했다면 잔차에는 자기상관이 없어야 하므로, 잔차의 자기상관 그림과 융-박스 검정(4.5절)으로 모형을 진단한다. 품질 관리에서 공정의 측정값에 자기상관이 있으면 관리도의 판단이 틀어지고, 회귀 분석에서 시간 순서로 모은 자료의 잔차에 자기상관이 있으면 7장의 더빈-왓슨 통계량이 2에서 멀어진다. 모두 “가까운 시점의 값끼리 닮는다”는 같은 성질을 다른 자리에서 본 것이다.</p>
+<p><strong>배경과 쓰임.</strong> 자기상관은 시계열의 “기억”을 재는 값이다. NIST 통계 공학 편람(6.4.4.6절)은 Box-Jenkins 방법에서 모형을 식별하는 주된 도구로 자기상관 그림과 부분자기상관 그림을 들고, 그림에서 정상성과 계절성을 먼저 판단한 뒤 차수를 고르는 순서를 제시한다. 자기상관은 모형을 고를 때만이 아니라 모형을 다 만든 뒤에도 쓴다. 모형이 자료의 규칙을 남김없이 설명했다면 잔차에는 자기상관이 없어야 하므로, 잔차의 자기상관 그림과 융-박스 검정(4.5절)으로 모형을 진단한다. 회귀 분석에서 시간 순서로 모은 자료의 잔차에 자기상관이 있으면 7장의 더빈-왓슨 통계량이 2에서 멀어지는 것도 “가까운 시점의 값끼리 닮는다”는 같은 성질을 다른 자리에서 본 것이다.</p>
 <p>그림을 눈으로 보는 것만으로는 판단이 사람마다 다를 수 있다. 시계열이 과거의 값과 얼마나 닮았는지를 수로 재는 것이 자기상관이다.</p>
 <table class="caption-top table">
 <colgroup>
@@ -1091,7 +1096,7 @@ year
 </section>
 <section id="시계열-모형" class="level2">
 <h2 class="anchored" data-anchor-id="시계열-모형">4. 시계열 모형</h2>
-<p><strong>배경과 쓰임.</strong> 이 절의 모형들은 Box와 Jenkins가 정리한 방법(4.5절)의 중심이다. FPP3는 ARIMA 모형을 지수평활과 함께 가장 널리 쓰이는 두 예측 방법으로 다룬다. 1절의 배경에서 본 X-13ARIMA-SEATS라는 이름에도 ARIMA가 들어 있다. 그 일부인 SEATS는 “ARIMA 시계열에서의 계절 추출(Seasonal Extraction in ARIMA Time Series)”의 머리글자이며, ARIMA 모형에 바탕을 두고 계절 성분을 뽑는다(FPP3 3.5절). 업무에서는 수요 예측, 재고 관리, 전력이나 교통량의 단기 예측에 쓰이며, 계절이 있는 월별 자료에는 계절 ARIMA 모형을 쓴다(6.5절). 시험은 모형의 계산이 아니라 표기(p, d, q)의 뜻과, 자기상관 그림으로 모형의 종류를 고르는 판단을 묻는다.</p>
+<p><strong>배경과 쓰임.</strong> 이 절의 모형들은 Box와 Jenkins가 정리한 방법(4.5절)의 중심이다. FPP3는 ARIMA 모형을 지수평활과 함께 가장 널리 쓰이는 두 예측 방법으로 다룬다. 1절의 배경에서 본 X-13ARIMA-SEATS라는 이름에도 ARIMA가 들어 있다. 그 일부인 SEATS는 “ARIMA 시계열에서의 계절 추출(Seasonal Extraction in ARIMA Time Series)”의 머리글자이며, ARIMA 모형에 바탕을 두고 계절 성분을 뽑는다(FPP3 3.5절). 업무에서는 수요 예측 같은 단기 예측에 쓰이며, 계절이 있는 월별 자료에는 계절 ARIMA 모형을 쓴다(6.5절). 시험은 모형의 계산이 아니라 표기(p, d, q)의 뜻과, 자기상관 그림으로 모형의 종류를 고르는 판단을 묻는다.</p>
 <p>정상 시계열에 적합하는 모형은 자기회귀 모형, 이동평균 모형, 그리고 둘을 합친 ARMA 모형이다. 차분까지 모형에 넣은 것이 ARIMA 모형이다.</p>
 <section id="자기회귀-모형" class="level3">
 <h3 class="anchored" data-anchor-id="자기회귀-모형">4.1 자기회귀 모형</h3>
@@ -2585,7 +2590,7 @@ sigma^2 estimated as 0.001348:  log likelihood = 244.7,  aic = -483.4</code></pr
 <td>FPP3, 3.5절 Methods used by official statistics agencies(X-11, SEATS, X-13ARIMA-SEATS)</td>
 <td><a href="https://otexts.com/fpp3/methods-used-by-official-statistics-agencies.html" class="uri">https://otexts.com/fpp3/methods-used-by-official-statistics-agencies.html</a></td>
 <td>2026-11-15</td>
-<td>1절, 2절, 4절의 배경과 쓰임</td>
+<td>1절, 4절의 배경과 쓰임</td>
 </tr>
 <tr class="even">
 <td>FPP3, 5.4절 Residual diagnostics(융-박스 검정, 시차의 선택)</td>

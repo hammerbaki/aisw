@@ -427,6 +427,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<header class="chapter-head">
+<p class="chapter-part">빅데이터개론</p>
+<p class="chapter-no"><span class="num">13</span><span class="unit">장</span></p>
+<p class="chapter-title">R 코드와 출력의 해석</p>
+</header>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -605,7 +610,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="r-코드-독해를-위한-최소-문법" class="level2">
 <h2 class="anchored" data-anchor-id="r-코드-독해를-위한-최소-문법">1. R 코드 독해를 위한 최소 문법</h2>
-<p><strong>배경과 쓰임.</strong> R은 통계 계산과 그래픽을 위한 자유 소프트웨어이며, 기본 배포판에 통계 함수(<code>lm()</code>, <code>t.test()</code>, <code>prcomp()</code> 등)와 예제 자료가 들어 있다(R Project, An Introduction to R). 통계학 교재, 공공 기관과 연구소의 분석 보고서, 학술 논문의 부록에 R의 코드와 출력이 그대로 실리는 일이 많으므로, 분석을 직접 하지 않는 실무자도 R의 출력을 읽어야 할 때가 있다. ADsP가 R의 코드를 쓰게 하지 않고 읽게 하는 것도 이 쓰임에 맞춘 것이다. 이 절은 출력을 읽는 데 필요한 만큼의 문법만 다룬다.</p>
+<p><strong>배경과 쓰임.</strong> R은 통계 계산과 그래픽을 위한 자유 소프트웨어이며, 기본 배포판에 통계 함수(<code>lm()</code>, <code>t.test()</code>, <code>prcomp()</code> 등)와 예제 자료가 들어 있다(R Project, An Introduction to R). 분석 보고서와 학술 논문의 부록에 R의 코드와 출력이 그대로 실리는 일이 많으므로, 분석을 직접 하지 않는 실무자도 R의 출력을 읽어야 할 때가 있다. ADsP가 R의 코드를 쓰게 하지 않고 읽게 하는 것도 이 쓰임에 맞춘 것이다. 이 절은 출력을 읽는 데 필요한 만큼의 문법만 다룬다.</p>
 <p>1학기 「파이썬 기초」에서 리스트, 인덱스, 반복문, DataFrame을 배웠으므로 R의 코드도 대부분은 읽힌다. 이 절은 파이썬과 다르게 읽히는 다섯 곳(1부터 세는 인덱스, <code>&lt;-</code>, 팩터, <code>NA</code>, <code>$</code>)만 다룬다. 4장 「표 데이터와 데이터 마트」의 「R 출력 해석」에서 본 벡터와 데이터 프레임의 출력이 바탕이다.</p>
 <p>아래의 출력에서 <code>&gt;</code>로 시작하는 줄은 입력한 코드이고, 그 아래의 줄은 R이 내놓은 결과다. 결과의 앞에 붙는 <code>[1]</code>은 그 줄의 첫 값이 몇 번째 값인지를 알리는 표시이며 값이 아니다.</p>
 <section id="대입과-벡터" class="level3">
@@ -1058,7 +1063,7 @@ high  low  mid
 </section>
 <section id="출력-해석-회귀-분석" class="level2">
 <h2 class="anchored" data-anchor-id="출력-해석-회귀-분석">3. 출력 해석: 회귀 분석</h2>
-<p><strong>배경과 쓰임.</strong> 회귀 분석의 결과표는 통계 소프트웨어마다 꼴이 조금씩 다르지만 담긴 값(계수, 표준 오차, t 값, 유의 확률, 결정 계수, F 통계량)은 같다. 7장에서 파이썬 <code>statsmodels</code>의 결과표와 R의 <code>summary(lm())</code>을 나란히 놓고 같은 값을 짝지은 것이 그 확인이었다. R의 <code>summary(lm())</code> 출력이 무엇을 담는지는 R 매뉴얼의 <code>summary.lm</code>에 적혀 있다. 이 절의 출력을 읽을 수 있으면 논문이나 보고서에 실린 회귀 결과표도 같은 순서로 읽을 수 있다.</p>
+<p><strong>배경과 쓰임.</strong> 회귀 분석의 결과표는 통계 소프트웨어마다 꼴이 조금씩 다르지만 담긴 값(계수, 표준 오차, t 값, 유의 확률, 결정 계수, F 통계량)은 같다. R의 <code>summary(lm())</code> 출력이 무엇을 담는지는 R 매뉴얼의 <code>summary.lm</code>에 적혀 있다. 이 절의 출력을 읽을 수 있으면 논문이나 보고서에 실린 회귀 결과표도 같은 순서로 읽을 수 있다.</p>
 <p>출력 해석 문항이 가장 꾸준히 나오는 유형이다. 이 절의 출력은 7장 「상관 분석과 회귀 분석」의 「R 출력 해석」에서 읽은 <code>summary(lm())</code>과 <code>anova()</code>와 같은 꼴이다. 읽는 순서도 7장과 같다. 모형의 유의성, 계수의 유의성, 설명력의 순서다.</p>
 <section id="단순-회귀-summarylm" class="level3">
 <h3 class="anchored" data-anchor-id="단순-회귀-summarylm">3.1 단순 회귀: <code>summary(lm())</code></h3>
@@ -1395,7 +1400,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </section>
 <section id="출력-해석-기술-통계와-검정" class="level2">
 <h2 class="anchored" data-anchor-id="출력-해석-기술-통계와-검정">4. 출력 해석: 기술 통계와 검정</h2>
-<p><strong>배경과 쓰임.</strong> 자료를 받으면 가장 먼저 <code>str()</code>과 <code>summary()</code>로 구조와 분포를 보고, 집단의 차이를 묻는 질문에는 t-검정과 분산분석으로 답한다. 실험 연구에서 처리 집단과 대조 집단을 견주는 일, 공정에서 조건별 불량 수를 견주는 일이 이 꼴이다. 이 절의 자료(<code>warpbreaks</code>, <code>chickwts</code>, <code>immer</code>)도 각각 직물 공정, 사료 실험, 농업 시험의 기록이다. R의 <code>t.test()</code>와 <code>aov()</code>의 출력이 담는 값은 R 매뉴얼에 적혀 있다.</p>
+<p><strong>배경과 쓰임.</strong> 자료를 받으면 가장 먼저 <code>str()</code>과 <code>summary()</code>로 구조와 분포를 보고, 집단의 차이를 묻는 질문에는 t-검정과 분산분석으로 답한다. 실험 연구에서 처리 집단과 대조 집단을 견주는 일이 이 꼴이다. 이 절의 자료(<code>warpbreaks</code>, <code>chickwts</code>, <code>immer</code>)도 각각 직물 공정, 사료 실험, 농업 시험의 기록이다.</p>
 <p>이 절의 출력은 5장 「결측값·이상값과 기술 통계」(<code>summary()</code>, 상자그림), 6장 「통계학 개론: 표본, 분포, 추정, 검정」(<code>t.test()</code>), 7장(<code>cor()</code>)의 「R 출력 해석」에서 읽은 것과 같은 꼴이다. 4.5절의 <code>aov()</code>만은 이 장에서 처음 다룬다.</p>
 <section id="str과-summary" class="level3">
 <h3 class="anchored" data-anchor-id="str과-summary">4.1 <code>str()</code>과 <code>summary()</code></h3>
@@ -1785,7 +1790,7 @@ Volume 0.967  0.598  1.000</code></pre>
 </section>
 <section id="출력-해석-주성분-분석" class="level2">
 <h2 class="anchored" data-anchor-id="출력-해석-주성분-분석">5. 출력 해석: 주성분 분석</h2>
-<p><strong>배경과 쓰임.</strong> 주성분 분석은 서로 상관된 여러 지표를 적은 수의 축으로 요약할 때 쓴다. 여러 경제 지표를 하나의 “경제 규모” 축으로 묶거나, 설문의 여러 문항을 몇 개의 차원으로 줄이는 일이 그 예다. 이 절의 <code>longley</code>는 16년치의 경제 지표 일곱 개이고, 세트 13의 <code>attitude</code>는 설문 일곱 항목이다. 출력의 세 줄(표준편차, 기여율, 누적 기여율)과 적재값을 읽는 법은 8장과 같다.</p>
+<p><strong>배경과 쓰임.</strong> 주성분 분석은 서로 상관된 여러 지표를 적은 수의 축으로 요약할 때 쓴다. 여러 경제 지표를 하나의 “경제 규모” 축으로 묶거나, 설문의 여러 문항을 몇 개의 차원으로 줄이는 일이 그 예다. 이 절의 <code>longley</code>는 16년치의 경제 지표 일곱 개이고, 세트 13의 <code>attitude</code>는 설문 일곱 항목이다.</p>
 <p>이 절의 출력은 8장 「다차원 척도법과 주성분 분석」의 「R 출력 해석」에서 읽은 <code>summary(prcomp())</code>, 적재값, <code>screeplot()</code>과 같은 꼴이다.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(longley, <span class="at">scale. =</span> <span class="cn">TRUE</span>)   <span class="co"># 일곱 변수를 표준화하여 주성분 분석을 한다</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(p)                            <span class="co"># 중요도 표</span></span>
@@ -1951,7 +1956,7 @@ Area       -0.033  0.588</code></pre>
 </section>
 <section id="출력-해석-분류와-군집" class="level2">
 <h2 class="anchored" data-anchor-id="출력-해석-분류와-군집">6. 출력 해석: 분류와 군집</h2>
-<p><strong>배경과 쓰임.</strong> 로지스틱 회귀는 의학(질병의 유무), 금융(연체의 유무), 마케팅(반응의 유무)처럼 결과가 둘 가운데 하나인 문제에 널리 쓰이며, 결과는 계수와 오즈비로 보고된다. 오분류표는 그 모형이 실제로 얼마나 맞히는지를 보이고, 군집 분석의 출력은 정답 없이 묶은 결과를 보인다. 세 출력은 10~12장의 「R 출력 해석」에서 각각 읽었다.</p>
+<p><strong>배경과 쓰임.</strong> 로지스틱 회귀는 의학(질병의 유무), 금융(연체의 유무), 마케팅(반응의 유무)처럼 결과가 둘 가운데 하나인 문제에 널리 쓰이며, 결과는 계수와 오즈비로 보고된다. 오분류표는 그 모형이 실제로 얼마나 맞히는지를 보이고, 군집 분석의 출력은 정답 없이 묶은 결과를 보인다.</p>
 <p>이 절의 출력은 10장 「분류 분석 (1): 데이터 분할, 로지스틱 회귀, 의사결정나무」의 <code>summary(glm())</code>, 11장 「분류 분석 (2): 앙상블, 인공신경망, 모형 평가」의 <code>table()</code> 오분류표, 12장 「군집 분석과 연관 분석」의 덴드로그램과 <code>cutree()</code>를 다시 읽는다.</p>
 <section id="로지스틱-회귀의-계수-summaryglm" class="level3">
 <h3 class="anchored" data-anchor-id="로지스틱-회귀의-계수-summaryglm">6.1 로지스틱 회귀의 계수: <code>summary(glm())</code></h3>
@@ -2193,7 +2198,7 @@ actual   0   1
 </section>
 <section id="그-밖의-출력-시계열-모형-의사결정나무-연관-규칙" class="level2">
 <h2 class="anchored" data-anchor-id="그-밖의-출력-시계열-모형-의사결정나무-연관-규칙">7. 그 밖의 출력: 시계열 모형, 의사결정나무, 연관 규칙</h2>
-<p><strong>배경과 쓰임.</strong> ARIMA 모형은 월별 수요나 접속량의 예측에, 의사결정나무는 규칙으로 설명할 수 있는 분류에, 연관 규칙은 장바구니 분석에 쓴다. 세 출력은 시험에서 드물게 나오지만 꼴이 독특하여, 한 번 읽어 두면 처음 보는 출력에서 당황하지 않는다.</p>
+<p><strong>배경과 쓰임.</strong> ARIMA 모형은 월별 수요나 접속량의 예측에, 의사결정나무는 규칙으로 설명할 수 있는 분류에, 연관 규칙은 장바구니 분석에 쓴다. 세 출력은 꼴이 독특하여, 한 번 읽어 두면 처음 보는 출력에서 당황하지 않는다.</p>
 <p>출제 범위 안에 있으나 R 출력의 꼴로 묻는 일은 드문 주제다. 9장 「시계열 분석」의 <code>arima()</code>, 10장의 <code>rpart</code>, 12장의 연관 규칙을 다시 본다. 출력의 생김새를 익혀 둔다.</p>
 <section id="시계열-모형-arima" class="level3">
 <h3 class="anchored" data-anchor-id="시계열-모형-arima">7.1 시계열 모형: <code>arima()</code></h3>
