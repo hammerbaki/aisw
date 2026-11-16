@@ -340,6 +340,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#부록-e.-오류-사전" id="toc-부록-e.-오류-사전" class="nav-link" data-scroll-target="#부록-e.-오류-사전">부록 E. 오류 사전</a>
   <ul class="collapse">
+  <li><a href="#e.0-메시지를-읽는-순서" id="toc-e.0-메시지를-읽는-순서" class="nav-link" data-scroll-target="#e.0-메시지를-읽는-순서">E.0 메시지를 읽는 순서</a></li>
   <li><a href="#e.1-환경과-파일" id="toc-e.1-환경과-파일" class="nav-link" data-scroll-target="#e.1-환경과-파일">E.1 환경과 파일</a></li>
   <li><a href="#e.2-pandas" id="toc-e.2-pandas" class="nav-link" data-scroll-target="#e.2-pandas">E.2 pandas</a></li>
   <li><a href="#e.3-scikit-learn" id="toc-e.3-scikit-learn" class="nav-link" data-scroll-target="#e.3-scikit-learn">E.3 scikit-learn</a></li>
@@ -386,6 +387,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>「비즈니스 빅데이터 분석」 교재 공통 부록</p>
 </blockquote>
 <p>부록은 다섯 부분으로 구성된다. A는 실습 환경, B는 시험 규정, C는 함수와 공식 문서의 위치, D는 장별 완료 기준, E는 수업에서 자주 나는 오류와 대처이다. 각 장의 강의안은 설치와 접속을 다루지 않고 부록 A를 가리킨다. 부록 B와 C는 시험에서 쓸 수 없는 참고 자료이므로, 시험 전에 내용을 익혀 두는 용도로 쓴다.</p>
+<p>부록 A의 단계마다 붙은 <strong>[확인 N]</strong> 줄은 그 단계를 마친 뒤 자기 화면에서 보아야 할 값이나 모양이다. 확인이 화면과 다르면 다음 단계로 넘어가지 않고 부록 E에서 원인을 찾는다. 학기마다 바뀌는 값(학교 실습 환경과 시험 환경의 판, 시험 환경의 자원, 사전 환경점검의 기간)은 「최신 자료 자리」로 두었다. 자리 표시 안의 값은 확인한 날짜의 값이며, 수업 전에 다시 확인한다.</p>
 <hr>
 <section id="부록-a.-실습-환경" class="level2">
 <h2 class="anchored" data-anchor-id="부록-a.-실습-환경">부록 A. 실습 환경</h2>
@@ -393,19 +395,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="a.1-파일과-폴더의-구조">A.1 파일과 폴더의 구조</h3>
 <p>교재의 노트북과 실습 자료는 다음 구조로 배포된다. 학교 서버의 주소와 계정, 파일을 받는 방법은 강의에서 안내한다.</p>
 <pre class="text"><code>(교재 폴더)
-├─ courses/aice/book/
-│   ├─ AICE_00주차_실습_학생용.ipynb      사전 진단
-│   ├─ AICE_01주차_실습_학생용.ipynb      교재 01의 실습 노트북
-│   ├─ ...
-│   └─ AICE_NN주차_학생용.md              강의안
-└─ assets/data/AICE_공통/
-    ├─ customers.csv                      학기 공통 자료
-    ├─ laptops.csv                        사전 진단, 시간 제한 문항(교재 01~06, 09)
-    └─ loans.csv                          시간 제한 문항(교재 07~10)</code></pre>
+└─ courses/aice/
+    ├─ book/
+    │   ├─ AICE_00주차_실습_학생용.ipynb      사전 진단
+    │   ├─ AICE_01주차_실습_학생용.ipynb      교재 01의 실습 노트북
+    │   ├─ ...
+    │   └─ AICE_NN주차_학생용.md              강의안
+    └─ kit/data/AICE_공통/
+        ├─ customers.csv                      학기 공통 자료
+        ├─ laptops.csv                        사전 진단, 시간 제한 문항(교재 01~06, 09)
+        └─ loans.csv                          시간 제한 문항(교재 07~10)</code></pre>
 <p>모든 노트북은 자료 폴더의 위치를 첫 부분에서 변수 <code>DATA</code>에 저장하고, 파일 이름을 이어 붙여 읽는다.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>DATA <span class="op">=</span> <span class="st">"../kit/data/AICE_공통/"</span>   <span class="co"># 자료 폴더의 위치</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(DATA <span class="op">+</span> <span class="st">"customers.csv"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><code>..</code>은 한 단계 위의 폴더를 뜻한다. 노트북이 있는 <code>courses/aice/book/</code>에서 세 단계 올라가 <code>assets/data/AICE_공통/</code>으로 내려가는 경로이다. 이 경로는 노트북과 자료가 위의 구조로 놓여 있을 때에만 맞다. 구조를 바꾸었으면 <code>DATA</code> 한 줄만 고친다.</p>
+<p><code>..</code>은 한 단계 위의 폴더를 뜻한다. 노트북이 있는 <code>courses/aice/book/</code>에서 한 단계 올라가(<code>courses/aice/</code>) <code>kit/data/AICE_공통/</code>으로 내려가는 경로이다. 끝의 <code>/</code>는 뒤에 파일 이름을 이어 붙이기 위한 것이므로 빼지 않는다. 이 경로는 노트북과 자료가 위의 구조로 놓여 있을 때에만 맞다. 구조를 바꾸었으면 <code>DATA</code> 한 줄만 고친다.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -440,6 +443,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(os.getcwd())          <span class="co"># 지금의 폴더</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(os.listdir(DATA))     <span class="co"># DATA 폴더 안의 파일 목록</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>os.getcwd()</code>의 출력은 노트북 파일이 있는 폴더여야 한다. 위의 구조라면 끝이 <code>courses/aice/book</code>(윈도우에서는 <code>courses\aice\book</code>)이다. <code>os.listdir(DATA)</code>가 <code>FileNotFoundError</code>를 내면 <code>DATA</code> 폴더 자체가 없는 것이고, 목록이 나오는데 파일 이름이 다르면 파일 이름의 철자를 고친다.</p>
+<p>세 파일이 있는지는 파일을 열지 않고 다음 셀로 한 번에 확인할 수 있다. 사전 진단 노트북의 2절에 같은 셀이 있다(교재 00의 0.3절).</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name <span class="kw">in</span> [<span class="st">"customers.csv"</span>, <span class="st">"laptops.csv"</span>, <span class="st">"loans.csv"</span>]:</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(name, os.path.exists(DATA <span class="op">+</span> name))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><span class="check-badge">확인 1</span> <code>os.getcwd()</code>의 출력이 노트북이 있는 폴더로 끝난다.</li>
+<li><span class="check-badge">확인 2</span> 위 셀의 출력 세 줄이 모두 <code>True</code>로 끝난다. <code>False</code>가 있으면 위의 표에서 자기 상태에 맞는 <code>DATA</code>를 고른다.</li>
+</ul>
 </section>
 <section id="a.2-필요한-라이브러리와-판-확인" class="level3">
 <h3 class="anchored" data-anchor-id="a.2-필요한-라이브러리와-판-확인">A.2 필요한 라이브러리와 판 확인</h3>
@@ -505,13 +518,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 <p>설치 이름과 불러오는 이름이 다른 것은 scikit-learn이다. <code>pip install scikit-learn</code>으로 설치하고 <code>import sklearn</code>으로 불러온다.</p>
 <p>아래 셀은 일곱 라이브러리의 설치 여부와 판 번호를 한 번에 출력한다. 사전 진단 노트북의 1절에 같은 셀이 있다. <code>importlib.metadata</code>는 파이썬의 표준 라이브러리이므로 따로 설치할 것이 없고, 라이브러리를 실제로 불러오지 않으므로 빨리 끝난다.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> importlib.metadata <span class="im">import</span> version, PackageNotFoundError</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name <span class="kw">in</span> [<span class="st">"numpy"</span>, <span class="st">"pandas"</span>, <span class="st">"matplotlib"</span>, <span class="st">"seaborn"</span>, <span class="st">"scikit-learn"</span>, <span class="st">"xgboost"</span>, <span class="st">"tensorflow"</span>]:</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(name, version(name))</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> PackageNotFoundError:</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(name, <span class="st">"설치되어 있지 않다"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> importlib.metadata <span class="im">import</span> version, PackageNotFoundError</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name <span class="kw">in</span> [<span class="st">"numpy"</span>, <span class="st">"pandas"</span>, <span class="st">"matplotlib"</span>, <span class="st">"seaborn"</span>, <span class="st">"scikit-learn"</span>, <span class="st">"xgboost"</span>, <span class="st">"tensorflow"</span>]:</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(name, version(name))</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> PackageNotFoundError:</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(name, <span class="st">"설치되어 있지 않다"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><span class="check-badge">확인 3</span> 출력이 일곱 줄이고, 각 줄이 라이브러리 이름과 판 번호 또는 <code>설치되어 있지 않다</code>로 끝난다. 줄이 일곱보다 적으면 셀이 중간에 멈춘 것이므로 마지막 줄의 오류를 부록 E.1에서 찾는다.</li>
+</ul>
+<p><code>version</code>에는 불러오는 이름이 아니라 설치 이름을 준다. <code>version("sklearn")</code>처럼 불러오는 이름을 주면 scikit-learn이 설치되어 있어도 <code>PackageNotFoundError: No package metadata was found for sklearn</code>이 난다(교재의 실행 환경에서 확인하였다).</p>
 <p>출력에서 <code>설치되어 있지 않다</code>가 나온 라이브러리를 A.3의 명령으로 설치한다. numpy, pandas, matplotlib, seaborn, scikit-learn은 2주차 전에, xgboost는 9주차 전에, tensorflow는 11주차 전에 갖추어 둔다. 이 셀은 설치 이름으로 찾으므로, TensorFlow를 <code>tensorflow-cpu</code>처럼 다른 이름으로 설치한 환경에서는 <code>설치되어 있지 않다</code>로 나올 수 있다. 그때에는 A.4의 셀로 확인한다.</p>
 <p>교재의 출력은 2026-11-14에 다음 판으로 실행한 것이다.</p>
 <table class="caption-top table">
@@ -548,14 +565,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>판이 다르면 출력의 모양이 조금 다를 수 있다. 특히 pandas 2.x에서는 문자열 열의 자료형이 <code>str</code> 대신 <code>object</code>로 표시된다(교재 01의 3.2절). 시험 환경의 판은 공개되어 있지 않으므로, 응시자는 사전 환경점검(A.6)에서 확인한다.</p>
+<p>판이 다르면 출력의 모양이 조금 다를 수 있다. 특히 pandas 2.x에서는 문자열 열의 자료형이 <code>str</code> 대신 <code>object</code>로 표시된다(교재 01의 3.2절). 위의 표는 교재를 빌드할 때 실제로 쓴 판이다. 학교 실습 환경과 시험 환경의 판은 아래의 자리에서 관리한다.</p>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: 학교 실습 환경의 판]</strong> 확인할 곳: 학교 Jupyter 서버(위의 확인 셀을 서버에서 실행한 출력)와 Colab(A.5). 확인할 값: 파이썬, pandas, numpy, scikit-learn, matplotlib, seaborn, xgboost, tensorflow, keras의 판. 2026-11-16까지 서버의 판은 확인하지 않았다. 개강 전 주에 서버에서 확인하고, 판이 교재의 판과 다르면 출력이 달라지는 곳(문자열 열의 자료형 표시 등)을 첫 수업에서 알린다.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: 시험 환경의 라이브러리 판]</strong> 확인할 곳: AICE 수험자 가이드 <a href="https://aice.study/certi/examGuide" class="uri">https://aice.study/certi/examGuide</a>, Associate 상세 <a href="https://aice.study/info/aice/asso" class="uri">https://aice.study/info/aice/asso</a>, 접수 후의 사전 환경점검(A.6). 2026-11-13 확인 값: 시험 환경의 pandas, scikit-learn, tensorflow(Keras)의 판은 공개되어 있지 않다. 응시자는 사전 환경점검에서 확인하고, 수업 전에 공개 여부를 다시 확인한다.</p>
+</blockquote>
+<ul>
+<li><span class="check-badge">확인 4</span> 자기 환경의 pandas 판의 첫 숫자(2 또는 3)를 적어 두었다.</li>
+</ul>
 </section>
 <section id="a.3-설치-명령" class="level3">
 <h3 class="anchored" data-anchor-id="a.3-설치-명령">A.3 설치 명령</h3>
 <p>주피터 노트북에서는 셀에 다음과 같이 적어 실행한다. 명령 앞의 <code>%</code>는 노트북의 매직 명령 표시로, 지금 노트북이 쓰는 파이썬 환경에 설치하게 한다.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install numpy pandas matplotlib seaborn scikit<span class="op">-</span>learn</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install xgboost</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install tensorflow</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install numpy pandas matplotlib seaborn scikit<span class="op">-</span>learn</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install xgboost</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install tensorflow</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -586,44 +612,62 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
+<p>설치를 마친 뒤에는 다음 순서로 확인한다.</p>
+<ol type="1">
+<li>설치 명령의 출력 끝에 <code>Successfully installed</code> 또는 <code>Requirement already satisfied</code>가 있는지 본다.</li>
+<li>커널을 다시 시작한다. JupyterLab에서는 Kernel 메뉴의 Restart Kernel…이다.</li>
+<li>A.2의 확인 셀을 다시 실행한다.</li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>[그림 자리: JupyterLab의 Kernel 메뉴]</strong> Kernel 메뉴를 펼친 화면. Restart Kernel…, Restart Kernel and Run All Cells…, Interrupt Kernel에 표시를 한다. 학교 Jupyter 서버에서 찍는다.</p>
+</blockquote>
+<ul>
+<li><span class="check-badge">확인 5</span> 커널을 다시 시작한 뒤 A.2의 확인 셀에서 설치한 라이브러리의 줄에 판 번호가 나온다. 셀 왼쪽의 실행 번호가 <code>[1]</code>이면 커널이 다시 시작된 것이다.</li>
+</ul>
 <p>TensorFlow 공식 설치 안내에 따르면 Windows에서 직접 실행하는 TensorFlow는 2.11 이후의 판부터 GPU를 지원하지 않는다. 본 과목과 시험 환경은 CPU로 충분하므로 문제가 되지 않는다.</p>
 </section>
 <section id="a.4-tensorflow가-동작하는지-확인하기" class="level3">
 <h3 class="anchored" data-anchor-id="a.4-tensorflow가-동작하는지-확인하기">A.4 TensorFlow가 동작하는지 확인하기</h3>
 <p>tensorflow를 설치한 뒤 아래 셀을 실행한다. 작은 신경망을 무작위 자료로 두 에폭 학습시키는 셀이다. 판 번호, Keras가 쓰는 계산 엔진(backend), <code>학습 완료: 2 에폭</code>이 차례로 출력되면 9~10장의 실습을 할 수 있다.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>os.environ[<span class="st">"KERAS_BACKEND"</span>] <span class="op">=</span> <span class="st">"tensorflow"</span>   <span class="co"># Keras가 TensorFlow를 쓰도록 지정한다</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> keras</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"tensorflow"</span>, tf.__version__)</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"keras"</span>, keras.__version__, <span class="st">"backend"</span>, keras.config.backend())</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.random.rand(<span class="dv">100</span>, <span class="dv">4</span>)</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.random.rand(<span class="dv">100</span>)</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> keras.Sequential([keras.Input(shape<span class="op">=</span>(<span class="dv">4</span>,)), keras.layers.Dense(<span class="dv">8</span>, activation<span class="op">=</span><span class="st">"relu"</span>), keras.layers.Dense(<span class="dv">1</span>)])</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">"adam"</span>, loss<span class="op">=</span><span class="st">"mse"</span>)</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> model.fit(X, y, epochs<span class="op">=</span><span class="dv">2</span>, verbose<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"학습 완료:"</span>, <span class="bu">len</span>(history.history[<span class="st">"loss"</span>]), <span class="st">"에폭"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>TensorFlow를 불러올 때 계산 장치와 관련된 안내 문장(<code>WARNING</code>이나 <code>I0000</code>으로 시작하는 줄)이 함께 출력될 수 있다. 셀이 끝까지 실행되어 마지막 줄이 출력되면 문제가 없다.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>os.environ[<span class="st">"KERAS_BACKEND"</span>] <span class="op">=</span> <span class="st">"tensorflow"</span>   <span class="co"># Keras가 TensorFlow를 쓰도록 지정한다</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> keras</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"tensorflow"</span>, tf.__version__)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"keras"</span>, keras.__version__, <span class="st">"backend"</span>, keras.config.backend())</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.random.rand(<span class="dv">100</span>, <span class="dv">4</span>)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.random.rand(<span class="dv">100</span>)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> keras.Sequential([keras.Input(shape<span class="op">=</span>(<span class="dv">4</span>,)), keras.layers.Dense(<span class="dv">8</span>, activation<span class="op">=</span><span class="st">"relu"</span>), keras.layers.Dense(<span class="dv">1</span>)])</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">"adam"</span>, loss<span class="op">=</span><span class="st">"mse"</span>)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> model.fit(X, y, epochs<span class="op">=</span><span class="dv">2</span>, verbose<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"학습 완료:"</span>, <span class="bu">len</span>(history.history[<span class="st">"loss"</span>]), <span class="st">"에폭"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>TensorFlow를 불러올 때 계산 장치와 관련된 안내 문장(<code>WARNING</code>이나 <code>I0000</code>으로 시작하는 줄)이 함께 출력될 수 있다. 셀이 끝까지 실행되어 마지막 줄이 출력되면 문제가 없다. 처음 불러올 때에는 다른 라이브러리보다 시간이 오래 걸린다.</p>
+<ul>
+<li><span class="check-badge">확인 6</span> <code>keras</code>로 시작하는 줄의 끝이 <code>backend tensorflow</code>이고, 마지막 줄이 <code>학습 완료: 2 에폭</code>이다.</li>
+</ul>
 <p><strong>Keras의 backend 설정.</strong> Keras 3은 TensorFlow 외에 다른 계산 엔진도 쓸 수 있으며, 어느 엔진을 쓸지를 환경 변수 <code>KERAS_BACKEND</code>나 사용자 폴더의 설정 파일 <code>~/.keras/keras.json</code>의 <code>"backend"</code> 값으로 정한다. 이 값이 <code>tensorflow</code>가 아니고 그 엔진이 설치되어 있지 않으면, <code>import keras</code>나 <code>from tensorflow import keras</code>를 실행할 때 <code>ValueError: Unable to import backend : theano</code>와 같은 오류가 난다(마지막 낱말은 설정 파일에 적힌 엔진의 이름이다). <code>import tensorflow as tf</code>만으로는 오류가 나지 않으므로, Keras를 처음 쓰는 순간에 오류를 만나게 된다. 다른 프로그램이 예전에 만든 설정 파일이 남아 있는 PC에서 이런 일이 생긴다.</p>
 <p>설정은 다음 셀로 확인한다.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"KERAS_BACKEND:"</span>, os.environ.get(<span class="st">"KERAS_BACKEND"</span>))</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> os.path.join(os.path.expanduser(<span class="st">"~"</span>), <span class="st">".keras"</span>, <span class="st">"keras.json"</span>)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(path)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> os.path.exists(path):</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">open</span>(path, encoding<span class="op">=</span><span class="st">"utf-8"</span>).read())</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"keras.json이 없다"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"KERAS_BACKEND:"</span>, os.environ.get(<span class="st">"KERAS_BACKEND"</span>))</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> os.path.join(os.path.expanduser(<span class="st">"~"</span>), <span class="st">".keras"</span>, <span class="st">"keras.json"</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(path)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> os.path.exists(path):</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">open</span>(path, encoding<span class="op">=</span><span class="st">"utf-8"</span>).read())</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"keras.json이 없다"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>KERAS_BACKEND</code>가 <code>None</code>이고 <code>keras.json</code>의 <code>"backend"</code>가 <code>"tensorflow"</code>가 아니면 다음 가운데 하나로 해결한다.</p>
 <ol type="1">
 <li><strong>노트북에서 환경 변수를 지정한다.</strong> 노트북의 첫 셀에 <code>os.environ["KERAS_BACKEND"] = "tensorflow"</code>를 두고, Keras를 불러오기 전에 실행한다. 이미 Keras를 불러오다 오류가 났다면 커널을 다시 시작한 뒤 이 셀부터 실행한다. 위의 확인 셀이 이 방법을 쓴다.</li>
 <li><strong>설정 파일의 값을 고친다.</strong> <code>keras.json</code>의 <code>"backend"</code> 값을 <code>"tensorflow"</code>로 바꾸고 커널을 다시 시작한다. 같은 PC의 다른 프로그램이 그 파일을 쓰고 있을 수 있으므로, 자기 PC가 아니면 1의 방법을 쓴다.</li>
 </ol>
+<ul>
+<li><span class="check-badge">확인 7</span> 위의 설정 확인 셀에서 <code>KERAS_BACKEND</code>가 <code>tensorflow</code>이거나, <code>keras.json</code>의 <code>"backend"</code>가 <code>"tensorflow"</code>이다. 둘 다 아니면 A.4의 확인 셀이 <code>ValueError</code>로 멈춘다.</li>
+</ul>
 </section>
 <section id="a.5-colab에서-쓰는-경우" class="level3">
 <h3 class="anchored" data-anchor-id="a.5-colab에서-쓰는-경우">A.5 Colab에서 쓰는 경우</h3>
@@ -634,13 +678,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>CSV 파일을 올린다. 방법은 둘이다.</li>
 </ol>
 <p><strong>방법 1: 실행 중인 환경에 올린다.</strong> 셀에서 다음을 실행하면 파일 선택 창이 나온다. 선택한 파일은 지금의 폴더(Colab에서는 <code>/content</code>)에 저장된다.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> google.colab <span class="im">import</span> files</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>uploaded <span class="op">=</span> files.upload()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> google.colab <span class="im">import</span> files</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>uploaded <span class="op">=</span> files.upload()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>이 경우 <code>DATA = "/content/"</code>로 둔다. Colab의 가상 머신은 한동안 쓰지 않으면 삭제되므로, 올린 파일은 다음 접속 때 남아 있지 않다. 접속할 때마다 다시 올린다.</p>
 <p><strong>방법 2: Google Drive를 연결한다.</strong> CSV를 Google Drive의 한 폴더에 올려 두고, 셀에서 다음을 실행하여 계정의 접근을 허용한다.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> google.colab <span class="im">import</span> drive</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>drive.mount(<span class="st">"/content/drive"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> google.colab <span class="im">import</span> drive</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>drive.mount(<span class="st">"/content/drive"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>연결한 뒤에는 Drive의 파일이 <code>/content/drive/</code> 아래에 보인다. Colab 화면 왼쪽의 파일 패널에서 CSV를 둔 폴더의 경로를 확인하여 <code>DATA</code>를 고친다(A.1의 표). 이 방법은 파일을 한 번만 올려 두면 된다.</p>
+<blockquote class="blockquote">
+<p><strong>[그림 자리: Colab의 파일 패널]</strong> Colab 화면 왼쪽의 폴더 아이콘을 눌러 연 파일 패널. 방법 1로 올린 CSV가 <code>/content</code> 아래에 있는 모습과, 방법 2로 연결한 <code>drive</code> 폴더 아래의 CSV 폴더에서 경로 복사 메뉴를 연 모습을 나란히 둔다. Google Colab에서 찍는다.</p>
+</blockquote>
+<ul>
+<li><span class="check-badge">확인 8</span> <code>DATA</code>를 고친 뒤 A.1의 세 파일 확인 셀이 세 줄 모두 <code>True</code>를 출력한다. Colab에서 방법 1을 썼다면 접속할 때마다 이 확인을 다시 한다.</li>
+</ul>
 <p>Colab에는 코드 생성을 돕는 AI 기능이 들어 있다. 시간 제한 문항과 종합 모의에서는 이 기능을 쓰지 않는다(교재 00의 1.5절).</p>
 </section>
 <section id="a.6-공식-사이트의-샘플-문항과-사전-환경점검" class="level3">
@@ -662,7 +712,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="even">
 <td>사전 환경점검</td>
 <td>응시 접수를 마친 뒤 공식 사이트에서 이용한다</td>
-<td>시험 7일 전부터 1일 전까지 열린다. 감독 환경과 실제 시험 환경의 샘플 문항을 체험한다. 2027년 제4회의 경우 12.10부터 12.16까지이다</td>
+<td>감독 환경과 실제 시험 환경의 샘플 문항을 체험한다. 열리는 기간은 아래의 최신 자료 자리</td>
 </tr>
 <tr class="odd">
 <td>수험자 가이드</td>
@@ -681,7 +731,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>사전 환경점검에서는 다음을 확인한다. 화면에서 공식 문서 7곳의 링크가 어디에 있는지, 복사 기능 목록이 어떻게 동작하는지, 시험 환경의 pandas와 scikit-learn과 tensorflow의 판이 무엇인지(A.2의 확인 셀을 실행할 수 있다면 실행한다), 답안 셀과 제출이 어떻게 이루어지는지이다.</p>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: 사전 환경점검의 기간]</strong> 확인할 곳: Associate 상세 <a href="https://aice.study/info/aice/asso" class="uri">https://aice.study/info/aice/asso</a>, FAQ <a href="https://aice.study/board/faq/list" class="uri">https://aice.study/board/faq/list</a>. 2026-11-13 확인 값: 접수를 마친 응시자가 시험 7일 전부터 1일 전까지 이용할 수 있다. 2027년 제4회(2026-11-13 확인 값으로 시험 12.17~12.18)에 적용하면 12.10부터 12.16까지이다. 수업 전과 접수 후에 다시 확인한다.</p>
+</blockquote>
+<p>사전 환경점검에서는 다음을 확인한다. 화면에서 공식 문서 7곳의 링크가 어디에 있는지, 복사 기능 목록이 어떻게 동작하는지, 시험 환경의 pandas와 scikit-learn과 tensorflow의 판이 무엇인지(A.2의 확인 셀을 실행할 수 있다면 실행한다), 답안 셀과 제출이 어떻게 이루어지는지, 커널 재시작과 셀 삭제의 메뉴가 어디에 있는지이다. 확인한 판은 A.2의 「시험 환경의 라이브러리 판」 자리와 대조한다.</p>
+<blockquote class="blockquote">
+<p><strong>[그림 자리: 사전 환경점검 화면]</strong> 사전 환경점검에 들어갔을 때의 화면. 감독 프로그램의 점검 항목과 샘플 문항의 시험 화면, 공식 문서 링크와 복사 기능 목록이 놓인 자리에 표시를 한다. 응시 접수를 한 경우에 찍는다.</p>
+</blockquote>
+<ul>
+<li><span class="check-badge">확인 9</span> (응시자) 사전 환경점검에서 위의 다섯 가지를 확인하여, 시험 환경의 pandas 판과 커널 재시작 메뉴의 이름을 적어 두었다.</li>
+</ul>
 <hr>
 </section>
 </section>
@@ -716,7 +775,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>환경</td>
-<td>Jupyter Notebook 기반의 시험 전용 페이지. CPU 2 Core, Memory 16G</td>
+<td>Jupyter Notebook 기반의 시험 전용 페이지. 제공 자원은 아래의 최신 자료 자리</td>
 </tr>
 <tr class="odd">
 <td>입실</td>
@@ -728,6 +787,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: 시험 환경의 제공 자원과 감독 환경의 요건]</strong> 확인할 곳: 수험자 가이드 <a href="https://aice.study/certi/examGuide" class="uri">https://aice.study/certi/examGuide</a>의 시험 환경, 「PC 및 네트워크 권장 사양」, 「온라인 감독 환경 셋팅」 항목. 2026-11-13 확인 값: CPU 2 Core, Memory 16G가 제공된다고 적혀 있다. PC와 감독 환경 항목은 이름만 확인하였고 본문은 확인하지 못하였다. 응시 전에 다시 확인한다.</p>
+</blockquote>
 </section>
 <section id="b.2-허용되는-것-시험지-안의-공식-문서-7곳" class="level3">
 <h3 class="anchored" data-anchor-id="b.2-허용되는-것-시험지-안의-공식-문서-7곳">B.2 허용되는 것: 시험지 안의 공식 문서 7곳</h3>
@@ -1738,7 +1800,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="부록-e.-오류-사전" class="level2">
 <h2 class="anchored" data-anchor-id="부록-e.-오류-사전">부록 E. 오류 사전</h2>
-<p>수업과 시험에서 자주 나는 오류와 경고를 단계별로 모았다. 오류 메시지는 마지막 줄부터 읽는다. 마지막 줄의 콜론 앞이 오류의 이름이고, 뒤가 내용이다. 아래 메시지는 2026-11-14에 부록 A.2의 판(pandas 3.1.1, scikit-learn 1.9.1, matplotlib 3.11.2, keras 3.15.1)으로 실제로 실행하여 확인한 것이다. 열 이름과 숫자는 실행한 예의 값이므로 상황에 따라 달라진다. 판이 다르면 문구가 조금 다를 수 있다.</p>
+<p>수업과 시험에서 자주 나는 오류와 경고를 단계별로 모았다. 오류 메시지는 마지막 줄부터 읽는다. 마지막 줄의 콜론 앞이 오류의 이름이고, 뒤가 내용이다. 아래 메시지는 2026-11-14와 2026-11-15에 부록 A.2의 판(pandas 3.1.1, scikit-learn 1.9.1, matplotlib 3.11.2, keras 3.15.1)으로 실제로 실행하여 확인한 것이다. 열 이름과 숫자는 실행한 예의 값이므로 상황에 따라 달라진다. 판이 다르면 문구가 조금 다를 수 있다.</p>
+<section id="e.0-메시지를-읽는-순서" class="level3">
+<h3 class="anchored" data-anchor-id="e.0-메시지를-읽는-순서">E.0 메시지를 읽는 순서</h3>
+<ol type="1">
+<li><strong>마지막 줄의 콜론 앞(오류의 이름)을 읽는다.</strong> 이름이 원인의 종류를 알려 준다. <code>NameError</code>는 이름이 아직 없다는 것, <code>KeyError</code>는 없는 열이나 키를 가리켰다는 것, <code>ValueError</code>는 값의 종류나 모양이 맞지 않는다는 것, <code>TypeError</code>는 함수가 아닌 것을 함수처럼 쓰거나 지원하지 않는 연산을 했다는 것, <code>FileNotFoundError</code>는 경로에 파일이 없다는 것이다.</li>
+<li><strong>콜론 뒤의 따옴표 안을 읽는다.</strong> 파이썬이 실제로 찾은 이름, 경로, 값이 그대로 나온다. 철자와 끝의 <code>/</code>는 여기에서 찾는다.</li>
+<li><strong>오류가 난 셀만 고칠지, 위의 셀을 다시 실행할지를 정한다.</strong> <code>NameError</code>와 같은 셀을 두 번 실행하여 생긴 <code>KeyError</code>는 셀의 코드가 아니라 실행 순서의 문제이다. 위에서부터 다시 실행한다.</li>
+<li><strong>아래 표에서 같은 이름의 행을 찾는다.</strong> 같은 이름의 행이 여럿이면 따옴표 안의 내용으로 고른다.</li>
+</ol>
+<p>오류가 나지 않는데 값이 이상한 경우도 있다(E.2의 마지막 행들, E.4의 <code>nan</code>). 이런 경우는 셀 끝에 크기(<code>shape</code>)와 결측치 수를 출력해 두어야 알아차릴 수 있다.</p>
+</section>
 <section id="e.1-환경과-파일" class="level3">
 <h3 class="anchored" data-anchor-id="e.1-환경과-파일">E.1 환경과 파일</h3>
 <table class="caption-top table">
@@ -1766,21 +1838,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>노트북의 처음부터 다시 실행한다(Run All). 시험에서 커널이 재시작되면 라이브러리와 데이터를 불러오는 셀부터 차례로 다시 실행한다</td>
 </tr>
 <tr class="odd">
-<td><code>FileNotFoundError: [Errno 2] No such file or directory: '../../../assets/data/AICE_공통/customer.csv'</code></td>
+<td><code>NameError: name 'DATA' is not defined</code></td>
+<td>자료 폴더의 경로를 저장하는 셀(<code>DATA = ...</code>)을 실행하지 않았다</td>
+<td>노트북의 첫 부분에서 <code>DATA</code> 셀을 먼저 실행한다</td>
+</tr>
+<tr class="even">
+<td><code>PackageNotFoundError: No package metadata was found for sklearn</code></td>
+<td>판을 확인할 때 설치 이름 대신 불러오는 이름을 썼다</td>
+<td><code>version("scikit-learn")</code>처럼 설치 이름을 쓴다(부록 A.2)</td>
+</tr>
+<tr class="odd">
+<td><code>ModuleNotFoundError: No module named 'sklearn.model_selections'</code></td>
+<td>모듈 이름의 철자가 틀렸다(<code>model_selection</code>). 라이브러리가 설치되어 있어도 난다</td>
+<td>따옴표 안을 한 글자씩 읽는다. 철자가 맞으면 설치되지 않은 것이다(부록 A.3)</td>
+</tr>
+<tr class="even">
+<td><code>FileNotFoundError: [Errno 2] No such file or directory: '../kit/data/AICE_공통/customer.csv'</code></td>
 <td>경로나 파일 이름이 틀렸다. 이 예는 <code>customers.csv</code>의 <code>s</code>가 빠졌다</td>
 <td>메시지에 나온 경로를 그대로 읽어 본다. 지금의 폴더와 파일 목록을 확인한다(부록 A.1)</td>
 </tr>
+<tr class="odd">
+<td><code>FileNotFoundError: [Errno 2] No such file or directory: '../kit/data/AICE_공통laptops.csv'</code></td>
+<td><code>DATA</code>의 끝에 <code>/</code>가 없어 폴더 이름과 파일 이름이 붙었다</td>
+<td><code>DATA</code>의 끝에 <code>/</code>를 붙인다</td>
+</tr>
 <tr class="even">
+<td><code>FileNotFoundError: [Errno 2] No such file or directory: 'customers.csv'</code></td>
+<td>경로 없이 파일 이름만 주었는데, 그 파일이 노트북과 같은 폴더에 없다</td>
+<td><code>DATA + "customers.csv"</code>처럼 경로를 붙인다. 시험에서는 문제지가 지정한 경로를 따른다</td>
+</tr>
+<tr class="odd">
 <td><code>UnicodeDecodeError: 'utf-8' codec can't decode byte 0xc0 in position 0: invalid start byte</code></td>
 <td>파일이 UTF-8이 아닌 인코딩으로 저장되어 있다. 한글 윈도우의 프로그램으로 저장한 CSV에서 흔하다</td>
 <td><code>pd.read_csv(경로, encoding="cp949")</code>로 읽는다</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>ParserError: Error tokenizing data. C error: Expected 2 fields in line 3, saw 3</code></td>
 <td>행마다 열의 수가 다르거나 구분자가 쉼표가 아니다</td>
 <td>메시지가 가리키는 줄을 열어 본다. 구분자가 탭이면 <code>sep="\t"</code>를 준다</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>ValueError: Unable to import backend : theano</code></td>
 <td>Keras의 backend 설정이 TensorFlow가 아니다</td>
 <td>부록 A.4의 확인 셀과 해결 방법을 따른다</td>
@@ -1825,28 +1922,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>01</td>
 </tr>
 <tr class="even">
+<td><code>TypeError: dtype 'str' does not support operation 'mean'</code></td>
+<td>문자열 열이 있는 데이터프레임 전체에 그룹별 평균을 구하였다(<code>df.groupby("brand").mean()</code>)</td>
+<td>평균을 구할 열을 지정한다(<code>df.groupby("brand")["price"].mean()</code>). 여러 수치 열이 필요하면 열 목록을 지정한다</td>
+<td>01</td>
+</tr>
+<tr class="odd">
 <td><code>ValueError: The truth value of a Series is ambiguous. Use a.empty, a.item(), a.any() or a.all().</code></td>
 <td>조건을 <code>and</code>, <code>or</code>로 이었다</td>
 <td><code>&amp;</code>, <code>\|</code>를 쓰고 각 조건을 괄호로 감싼다</td>
 <td>01</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>TypeError: Cannot perform 'rand_' with a dtyped [int64] array and scalar of type [bool]</code></td>
 <td><code>&amp;</code>를 썼으나 조건을 괄호로 감싸지 않았다. <code>&amp;</code>가 <code>==</code>보다 먼저 계산된다</td>
 <td><code>(df["grade"] == "VIP") &amp; (df["churn"] == 1)</code>처럼 조건마다 괄호를 친다</td>
 <td>01</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>경고 <code>Pandas4Warning: For backward compatibility, 'str' dtypes are included by select_dtypes when 'object' dtype is specified. ...</code></td>
 <td>pandas 3에서 <code>include="object"</code>로 문자열 열을 골랐다. 문자열 열의 자료형이 <code>str</code>이기 때문이다</td>
 <td>판에 관계없이 <code>exclude="number"</code>를 쓴다</td>
 <td>01, 04</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>경고 <code>ChainedAssignmentError: A value is being set on a copy of a DataFrame or Series through chained assignment.</code></td>
 <td><code>df[조건]["열"] = 값</code>처럼 선택을 두 번 이어 붙인 뒤 값을 넣었다. pandas 3에서는 원본이 바뀌지 않는다</td>
 <td><code>df.loc[조건, "열"] = 값</code>으로 한 번에 선택하여 넣는다</td>
 <td>03</td>
+</tr>
+<tr class="odd">
+<td>오류 없이 열의 값이 모두 <code>NaN</code>이 된다</td>
+<td><code>map</code>으로 값을 바꾸는 셀을 두 번 실행하였다. 첫 실행에서 <code>"N"</code>, <code>"Y"</code>가 0, 1로 바뀌어 둘째 실행에서는 대응표에 맞는 값이 없다(<code>customers.csv</code>의 <code>app_user</code>로 확인: 둘째 실행 뒤 3,030개 모두 결측)</td>
+<td>위에서부터 다시 실행한다. <code>map</code> 셀의 끝에 <code>isna().sum()</code>을 출력해 두면 바로 드러난다</td>
+<td>04</td>
 </tr>
 <tr class="even">
 <td>경고 <code>SettingWithCopyWarning</code></td>
@@ -1889,8 +1998,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td><code>NotFittedError: This StandardScaler instance is not fitted yet. Call 'fit' with appropriate arguments before using this estimator.</code></td>
-<td>적합(<code>fit</code>)하지 않은 스케일러나 모델로 <code>transform</code>이나 <code>predict</code>를 실행하였다</td>
-<td>훈련용 데이터로 <code>fit</code> 또는 <code>fit_transform</code>을 먼저 실행한다</td>
+<td>적합(<code>fit</code>)하지 않은 스케일러나 모델로 <code>transform</code>이나 <code>predict</code>를 실행하였다. 모델이면 이름이 바뀌어 <code>This RandomForestRegressor instance is not fitted yet.</code>처럼 나온다</td>
+<td>훈련용 데이터로 <code>fit</code> 또는 <code>fit_transform</code>을 먼저 실행한다. 커널이 재시작된 뒤라면 모델을 만드는 셀부터 다시 실행한다</td>
 <td>05, 06</td>
 </tr>
 <tr class="even">
@@ -1987,6 +2096,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>10</td>
 </tr>
 <tr class="even">
+<td><code>ValueError: Invalid filepath extension for saving. Please add either a `.keras` extension for the native Keras format (recommended) or a `.h5` extension. ...</code></td>
+<td><code>model.save("best_model")</code>처럼 확장자 없이 저장하였다</td>
+<td>가이드의 파일 이름을 확장자까지 그대로 쓴다(<code>best_model.keras</code>). 대소문자나 하이픈이 다른 이름은 오류 없이 저장되므로 파일 목록에서 이름을 대조한다. 윈도우에서는 대소문자가 다른 이름으로 불러와도 오류가 나지 않으므로 불러오기로는 확인되지 않는다</td>
+<td>10</td>
+</tr>
+<tr class="odd">
 <td>오류 없이 손실이 <code>nan</code>으로 출력된다</td>
 <td>입력에 결측치가 남아 있다. Keras는 결측치가 있어도 오류를 내지 않고 학습을 계속한다</td>
 <td><code>np.isnan(X_train).sum()</code>이 0인지 확인한다. 결측치 처리를 다시 실행한다</td>
@@ -2026,7 +2141,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="참고-자료" class="level2">
 <h2 class="anchored" data-anchor-id="참고-자료">참고 자료</h2>
-<p>AICE 공식 사이트의 확인일은 2026-11-13이고, 그 밖의 주소는 2026-11-14에 열리는 것과 인용한 이름이 그 쪽에 있는 것을 확인하였다. 부록 C의 함수별 링크도 2026-11-14에 확인하였다.</p>
+<p>AICE 공식 사이트의 확인일은 2026-11-13이고, 그 밖의 주소는 2026-11-14에 열리는 것과 인용한 이름이 그 쪽에 있는 것을 확인하였다(표시한 항목은 2026-11-15). 부록 C의 함수별 링크도 2026-11-14에 확인하였다.</p>
 <ul>
 <li>AICE, Associate 상세. <a href="https://aice.study/info/aice/asso" class="uri">https://aice.study/info/aice/asso</a></li>
 <li>AICE, 수험자 가이드. <a href="https://aice.study/certi/examGuide" class="uri">https://aice.study/certi/examGuide</a></li>
@@ -2050,6 +2165,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>TensorFlow, <code>tf.keras.layers</code>, <code>tf.keras.callbacks</code>. <a href="https://www.tensorflow.org/api_docs/python/tf/keras/layers" class="uri">https://www.tensorflow.org/api_docs/python/tf/keras/layers</a>, <a href="https://www.tensorflow.org/api_docs/python/tf/keras/callbacks" class="uri">https://www.tensorflow.org/api_docs/python/tf/keras/callbacks</a></li>
 <li>XGBoost, Python API Reference. <a href="https://xgboost.readthedocs.io/en/stable/python/python_api.html" class="uri">https://xgboost.readthedocs.io/en/stable/python/python_api.html</a></li>
 <li>NumPy, NumPy reference. <a href="https://numpy.org/doc/stable/reference/index.html" class="uri">https://numpy.org/doc/stable/reference/index.html</a></li>
+<li>Python, <code>importlib.metadata</code>(<code>version</code>, <code>PackageNotFoundError</code>). 2026-11-15 확인. <a href="https://docs.python.org/3/library/importlib.metadata.html" class="uri">https://docs.python.org/3/library/importlib.metadata.html</a></li>
+<li>Python, Built-in Exceptions(<code>NameError</code>, <code>ModuleNotFoundError</code>, <code>FileNotFoundError</code>). 2026-11-15 확인. <a href="https://docs.python.org/3/library/exceptions.html" class="uri">https://docs.python.org/3/library/exceptions.html</a></li>
+<li>JupyterLab, Commands(Restart Kernel…, Restart Kernel and Run All Cells…, Interrupt Kernel). 2026-11-15 확인. <a href="https://jupyterlab.readthedocs.io/en/stable/user/commands.html" class="uri">https://jupyterlab.readthedocs.io/en/stable/user/commands.html</a></li>
 </ul>
 
 
