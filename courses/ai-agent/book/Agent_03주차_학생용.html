@@ -432,6 +432,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#규칙-유무-비교-교수-시연" id="toc-규칙-유무-비교-교수-시연" class="nav-link" data-scroll-target="#규칙-유무-비교-교수-시연">10-6. 규칙 유무 비교: 교수 시연</a></li>
   <li><a href="#규칙-유무-비교-실행-기록의-분석" id="toc-규칙-유무-비교-실행-기록의-분석" class="nav-link" data-scroll-target="#규칙-유무-비교-실행-기록의-분석">10-7. 규칙 유무 비교: 실행 기록의 분석</a></li>
   <li><a href="#푸시와-pr" id="toc-푸시와-pr" class="nav-link" data-scroll-target="#푸시와-pr">10-8. 푸시와 PR</a></li>
+  <li><a href="#중심-실습-복기" id="toc-중심-실습-복기" class="nav-link" data-scroll-target="#중심-실습-복기">10-9. 중심 실습 복기</a></li>
   </ul></li>
   <li><a href="#자주-하는-실수와-해결" id="toc-자주-하는-실수와-해결" class="nav-link" data-scroll-target="#자주-하는-실수와-해결">자주 하는 실수와 해결</a></li>
   <li><a href="#제출물" id="toc-제출물" class="nav-link" data-scroll-target="#제출물">제출물</a></li>
@@ -531,6 +532,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>버전 번호는 서버와 시점에 따라 다르다. 이 장의 화면 이름과 메뉴는 2026-11 기준이며, Claude Code가 바뀌면 달라질 수 있다.</li>
 <li>마지막 줄이 <code>## main...origin/main</code>이면 1장에서 만든 원격 저장소와 연결된 <code>main</code> 브랜치에 있고, 커밋하지 않은 변경이 없다는 뜻이다. 다른 줄이 더 나오면 앞 장의 작업을 먼저 커밋한다.</li>
 </ul>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: Claude Code의 판, 명령 이름, 권장 값]</strong> 2026-11-14 확인 값: Claude Code 2.1.296. 이 장의 <code>/memory</code>, <code>/context all</code>, <code>/status</code>, <code>/permissions</code>, <code>/init</code>, <code>/export</code>, <code>claude doctor</code>, <code>Loaded …</code> 줄, <code>CLAUDE.md</code> 200줄 미만 권장은 이 판과 공식 문서를 따랐다. 확인할 곳: <a href="https://code.claude.com/docs/en/commands" class="uri">https://code.claude.com/docs/en/commands</a>, <a href="https://code.claude.com/docs/en/memory" class="uri">https://code.claude.com/docs/en/memory</a>, 실습 서버의 <code>claude --version</code>.</p>
+</blockquote>
 <p><span class="check-badge">확인 1</span> <code>claude --version</code>이 번호를 출력하고, <code>KIT_HOME</code>이 빈 줄이 아니며, <code>git status</code>의 첫 줄이 <code>## main</code>으로 시작한다.</p>
 </section>
 <section id="키트-받기" class="level3">
@@ -888,6 +892,9 @@ ls: cannot access '/home/아이디/agent-lab/CLAUDE.md': No such file or directo
 </div>
 <pre class="text"><code>/memory</code></pre>
 <p>화면에 사용자 범위와 프로젝트 범위의 <code>CLAUDE.md</code> 위치, 자동 메모리의 켜짐 여부가 나온다(항목의 이름과 배치는 판에 따라 다르다). 파일이 없어도 위치가 목록에 나오고, 고르면 새로 만들어 편집기로 연다[C1]. 지금은 아무것도 고르지 않고 <code>Esc</code>로 닫는다.</p>
+<blockquote class="blockquote">
+<p><strong>[그림 자리: /memory 화면]</strong> 사용자 범위(<code>~/.claude/CLAUDE.md</code>)와 프로젝트 범위(<code>./CLAUDE.md</code>)의 위치 목록, 자동 메모리 켜짐 여부가 보이는 화면. 찍을 곳: 실습 서버의 Claude Code, <code>jobprep</code> 폴더(2026-11).</p>
+</blockquote>
 <p><span class="check-badge">확인 5</span> <code>/memory</code>의 목록에서 사용자 범위와 프로젝트 범위의 <code>CLAUDE.md</code> 위치를 찾고, 셸의 <code>ls</code> 결과와 견주어 지금 실제로 있는 파일이 무엇인지 말할 수 있다.</p>
 <hr>
 </section>
@@ -1345,6 +1352,9 @@ Invalid settings
 <li><strong>ask 규칙과 보호 경로.</strong> ask 규칙에 맞는 호출은 어느 모드에서도 묻는다. <code>.git</code>, <code>.claude</code>, <code>.vscode</code>, <code>.husky</code> 같은 보호 경로와 <code>.bashrc</code>, <code>.mcp.json</code> 같은 보호 파일의 쓰기는 default와 acceptEdits 모드에서 묻고, <code>permissions.allow</code> 규칙으로 미리 허용되지 않는다[C4]. 에이전트가 자기 규칙 파일을 조용히 고치지 못하게 하는 장치이다.</li>
 <li><strong>우회 모드 끄기.</strong> <code>permissions.disableBypassPermissionsMode</code>를 <code>"disable"</code>로 두면 그 설정이 적용되는 세션에서 bypass 모드를 쓸 수 없다. 이 키는 어느 범위에서나 동작하므로 팀 파일에 두어도 된다[C3].</li>
 </ul>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: 권한 모드의 이름과 시작 모드]</strong> 2026-11-15 확인 값: 2.1.283 이상의 대화형 세션은 auto로 시작하고, <code>Shift+Tab</code>을 auto에서 처음 누르면 default가 된 뒤 default → acceptEdits → plan으로 돈다. 표시는 <code>⏸ manual mode on</code>, <code>⏵⏵ accept edits on</code>. 확인할 곳: <a href="https://code.claude.com/docs/en/permission-modes" class="uri">https://code.claude.com/docs/en/permission-modes</a>.</p>
+</blockquote>
 </section>
 <section id="permissions-대화-상자" class="level3">
 <h3 class="anchored" data-anchor-id="permissions-대화-상자">4-6. /permissions 대화 상자</h3>
@@ -1979,6 +1989,9 @@ Refs: REQ-JOB-06</code></pre>
 <h3 class="anchored" data-anchor-id="pr-템플릿">8-4. PR 템플릿</h3>
 <p>PR 템플릿은 PR을 열 때 본문에 자동으로 채워지는 마크다운 파일이다[G1]. 파일 이름은 <code>pull_request_template.md</code>이고 저장소 루트, <code>docs/</code>, 숨은 폴더 <code>.github/</code> 가운데 한 곳에 둔다[G2]. 여러 템플릿이 필요하면 <code>PULL_REQUEST_TEMPLATE/</code> 하위 폴더에 두고, PR을 만드는 주소의 <code>template</code> 질의 매개변수로 고른다[G2].</p>
 <p>가장 자주 놓치는 조건은 이것이다. <strong>템플릿은 저장소의 기본 브랜치(<code>main</code>)에 있어야 쓰인다</strong>[G1][G2]. 이 장에서 템플릿을 처음 더하는 PR은 템플릿이 아직 <code>main</code>에 없으므로, 그 PR의 본문에는 템플릿이 자동으로 채워지지 않는다. 이 PR은 GitHub CLI의 <code>--template</code> 옵션(<code>gh pr create --template .github/pull_request_template.md</code>)으로 로컬 파일을 본문의 출발점으로 쓴다(10-8).</p>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: GitHub의 화면 이름과 기능 범위]</strong> 이 장의 「Files changed」 탭, 보호 브랜치의 「Require review from Code Owners」, 템플릿과 <code>CODEOWNERS</code>의 위치, 비공개 저장소에서 코드 소유자를 쓸 수 있는 플랜은 2026-11-14의 GitHub Docs를 따랐다. 확인할 곳: [G1], [G2], [G5]의 주소, <a href="https://docs.github.com/en/get-started/learning-about-github/githubs-plans" class="uri">https://docs.github.com/en/get-started/learning-about-github/githubs-plans</a>.</p>
+</blockquote>
 <p><code>jobprep</code>의 PR 템플릿은 다섯 칸이다. 무엇을, 왜, 어떻게 확인하였는가(검사 명령 셋의 점검 상자), 에이전트 사용(Claude Code가 만든 변경을 사람이 읽었는가), 규칙 파일 변경. 마지막 칸은 8-7에서 다룬다.</p>
 </section>
 <section id="이슈-템플릿" class="level3">
@@ -2452,7 +2465,14 @@ paths:
 58 passed in 3.21s
 TEST_CHANGED: 동결한 뒤 바뀐 파일이 있다
   수정: tests/test_jobs.py</code></pre>
-<p>위는 예시이며 함수 이름과 위치는 사람마다 다르다. 볼 것은 넷이다. 새 함수 바로 위에 요구 마커가 있는가, 지운 줄(<code>-</code>로 시작하는 줄)이 없는가, 테스트가 모두 통과하는가, 동결 검사가 바뀐 파일로 <code>tests/test_jobs.py</code> 하나만 알리는가. 동결 검사의 <code>TEST_CHANGED</code>는 테스트를 더했으므로 정상이다. 2장에서 정한 대로, 동결 기록을 고칠지는 사람이 diff를 읽고 정한다.</p>
+<p>위는 예시이며 함수 이름과 위치는 사람마다 다르다. 결과는 <code>Loaded</code> 줄과 마커의 유무로 먼저 갈래를 가른다.</p>
+<pre class="text"><code>   ① Loaded 줄 있음 · 마커 있음   규칙이 읽히고 지켜졌다 → 아래 넷을 본다
+   ② Loaded 줄 없음 · 마커 없음   규칙이 읽히지 않았다 → 머리말(head -4), 새 세션, paths 패턴
+   ③ Loaded 줄 있음 · 마커 없음   읽혔으나 지켜지지 않았다 → 지시의 한계(1-2). 문장을 고치고 9-5로
+   ④ Loaded 줄 없음 · 마커 있음   이미 마커가 있는 tests/의 다른 파일을 본떴을 수 있다
+                                   → 화면을 위로 올려 Loaded 줄을 다시 찾고, 없으면 ②처럼 확인
+   # ②와 ④는 규칙의 효과를 말할 수 없다. 규칙 유무 비교(10-7)에도 같은 질문을 쓴다</code></pre>
+<p>볼 것은 넷이다. 새 함수 바로 위에 요구 마커가 있는가, 지운 줄(<code>-</code>로 시작하는 줄)이 없는가, 테스트가 모두 통과하는가, 동결 검사가 바뀐 파일로 <code>tests/test_jobs.py</code> 하나만 알리는가. 동결 검사의 <code>TEST_CHANGED</code>는 테스트를 더했으므로 정상이다. 2장에서 정한 대로, 동결 기록을 고칠지는 사람이 diff를 읽고 정한다.</p>
 <p><span class="check-badge">확인 17</span> <code>Loaded .claude/rules/tests.md</code> 줄이 나왔고, 새 테스트 위에 요구 마커가 있으며, <code>git diff</code>에 지운 줄이 없다. 마커가 없다면 <code>head -4</code>로 머리말을 다시 보고(6-2의 주의 1), 새 세션인지 확인한다.</p>
 <ol start="5" type="1">
 <li>이 테스트 추가는 경로별 규칙의 확인용이다. 남길지는 각자 정한다. 남기면 명세서의 REQ-JOB-04 테스트 열에도 함수 이름을 더하고, 사람이 <code>.venv/bin/python tools/test_guard.py freeze --update</code>로 동결 기록을 고친 뒤 <code>test(api):</code> 커밋으로 남긴다. 남기지 않으면 <code>git restore tests/test_jobs.py</code>로 되돌린다. 규칙 파일은 커밋한다.</li>
@@ -2460,8 +2480,8 @@ TEST_CHANGED: 동결한 뒤 바뀐 파일이 있다
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb66"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .claude/rules</span>
-<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"docs(claude): 경로별 규칙 api.md, tests.md 추가"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .claude/rules</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"docs(claude): 경로별 규칙 api.md, tests.md 추가"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="팀-권한-설정" class="level3">
 <h3 class="anchored" data-anchor-id="팀-권한-설정">10-4. 팀 권한 설정</h3>
@@ -2471,22 +2491,22 @@ TEST_CHANGED: 동결한 뒤 바뀐 파일이 있다
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb67"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> ~/kits/Agent_03주차/양식/settings_양식.json .claude/settings.json</span>
-<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> .claude/settings.json</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb68"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"$schema"</span><span class="fu">:</span> <span class="st">"https://json.schemastore.org/claude-code-settings.json"</span><span class="fu">,</span></span>
-<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"permissions"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"allow"</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Bash(.venv/bin/python -m pytest *)"</span></span>
-<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>    <span class="ot">]</span><span class="fu">,</span></span>
-<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"ask"</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Bash(git push *)"</span></span>
-<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a>    <span class="ot">]</span><span class="fu">,</span></span>
-<span id="cb68-10"><a href="#cb68-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"deny"</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb68-11"><a href="#cb68-11" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Read(./.env)"</span></span>
-<span id="cb68-12"><a href="#cb68-12" aria-hidden="true" tabindex="-1"></a>    <span class="ot">]</span></span>
-<span id="cb68-13"><a href="#cb68-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
-<span id="cb68-14"><a href="#cb68-14" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> ~/kits/Agent_03주차/양식/settings_양식.json .claude/settings.json</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> .claude/settings.json</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"$schema"</span><span class="fu">:</span> <span class="st">"https://json.schemastore.org/claude-code-settings.json"</span><span class="fu">,</span></span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"permissions"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"allow"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Bash(.venv/bin/python -m pytest *)"</span></span>
+<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a>    <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"ask"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb69-8"><a href="#cb69-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Bash(git push *)"</span></span>
+<span id="cb69-9"><a href="#cb69-9" aria-hidden="true" tabindex="-1"></a>    <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb69-10"><a href="#cb69-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"deny"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb69-11"><a href="#cb69-11" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Read(./.env)"</span></span>
+<span id="cb69-12"><a href="#cb69-12" aria-hidden="true" tabindex="-1"></a>    <span class="ot">]</span></span>
+<span id="cb69-13"><a href="#cb69-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb69-14"><a href="#cb69-14" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>$schema</code> 줄은 공개 JSON 스키마를 가리켜, VS Code가 키 이름을 자동 완성하고 검사하게 한다. 스키마는 최신 판보다 늦을 수 있어, 새 키에 경고가 나와도 곧 잘못된 설정은 아니다[C2][J1].</p>
 <ol start="2" type="1">
 <li>다음 표를 모두 만족하도록 규칙을 더한다. 각 항목을 어느 목록에 어떤 모양으로 둘지는 4절에서 다룬 문법으로 정한다.</li>
@@ -2568,8 +2588,8 @@ TEST_CHANGED: 동결한 뒤 바뀐 파일이 있다
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb69"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> json.tool .claude/settings.json <span class="op">&gt;</span> /dev/null <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> <span class="st">"JSON 문법 통과"</span></span>
-<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv/bin/python</span> ops/rules/lint_rules.py <span class="kw">|</span> <span class="fu">grep</span> C3</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> json.tool .claude/settings.json <span class="op">&gt;</span> /dev/null <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> <span class="st">"JSON 문법 통과"</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv/bin/python</span> ops/rules/lint_rules.py <span class="kw">|</span> <span class="fu">grep</span> C3</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>JSON 문법 통과
 통과 C3 settings.json의 JSON 문법
 통과 C3 권한 규칙 28개의 모양
@@ -2581,8 +2601,8 @@ TEST_CHANGED: 동결한 뒤 바뀐 파일이 있다
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb71"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv/bin/python</span> ops/rules/perm_sim.py <span class="at">--cases</span> ~/kits/Agent_03주차/견본/판정사례.txt <span class="dt">\</span></span>
-<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--settings</span> .claude/settings.json <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-7</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv/bin/python</span> ops/rules/perm_sim.py <span class="at">--cases</span> ~/kits/Agent_03주차/견본/판정사례.txt <span class="dt">\</span></span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--settings</span> .claude/settings.json <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-7</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>확인  Edit(api/main.py)  일치
       기본 동작: 편집은 확인
 확인  Bash(git -C . push --force origin main)  일치
@@ -2597,7 +2617,7 @@ TEST_CHANGED: 동결한 뒤 바뀐 파일이 있다
 </ol>
 <p><strong>[Claude Code]</strong>에서 <code>/status</code>를 실행해 Status 탭의 「Setting sources」 줄에 <code>Project settings</code>와 <code>Project local settings</code>가 있는지 본다. 이어서 <code>/permissions</code>를 연다.</p>
 <blockquote class="blockquote">
-<p>그림 필요: Claude Code의 <code>/permissions</code> 대화 상자에서 Ask 목록의 <code>Bash(git push *)</code>와 그 출처(Project settings)가 보이는 화면 (2026-11, 실습 서버)</p>
+<p><strong>[그림 자리: /permissions 대화 상자]</strong> Ask 목록의 <code>Bash(git push *)</code>와 그 출처(Project settings), Allow 목록의 <code>Bash(.venv/bin/uvicorn *)</code>와 출처(Project local settings)가 보이는 화면. 찍을 곳: 실습 서버의 Claude Code에서 <code>/permissions</code>(2026-11).</p>
 </blockquote>
 <p>규칙마다 어느 설정 파일에서 왔는지가 나온다. <code>Bash(git push *)</code>가 Ask 목록에 Project settings로, 7절에서 만든 개인 규칙 <code>Bash(.venv/bin/uvicorn *)</code>가 Allow 목록에 Project local settings로 보이면 된다(화면의 배치는 2026-11 기준이며 판에 따라 다르다). <code>Esc</code>로 닫는다.</p>
 <ol start="6" type="1">
@@ -2606,8 +2626,8 @@ TEST_CHANGED: 동결한 뒤 바뀐 파일이 있다
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb73"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="bu">printf</span> <span class="st">'PRACTICE_SECRET=fake-value-for-ch03\n'</span> <span class="op">&gt;</span> .env.local</span>
-<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">--short</span> .env.local</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="bu">printf</span> <span class="st">'PRACTICE_SECRET=fake-value-for-ch03\n'</span> <span class="op">&gt;</span> .env.local</span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">--short</span> .env.local</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>git status</code>가 아무것도 출력하지 않으면 무시되고 있는 것이다. Claude Code에 다음을 보낸다.</p>
 <div class="code-label where-claude">
 <span>Claude Code</span>
@@ -2621,8 +2641,8 @@ TEST_CHANGED: 동결한 뒤 바뀐 파일이 있다
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb75"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .claude/settings.json</span>
-<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"chore(claude): 팀 권한 설정 추가"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .claude/settings.json</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"chore(claude): 팀 권한 설정 추가"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="저장소-규약-pr-템플릿-codeowners" class="level3">
 <h3 class="anchored" data-anchor-id="저장소-규약-pr-템플릿-codeowners">10-5. 저장소 규약, PR 템플릿, CODEOWNERS</h3>
@@ -2632,17 +2652,17 @@ TEST_CHANGED: 동결한 뒤 바뀐 파일이 있다
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb76"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> ~/kits/Agent_03주차/양식/저장소규약_양식.md docs/운영/저장소규약.md</span>
-<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> .github</span>
-<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> ~/kits/Agent_03주차/양식/pull_request_template_양식.md .github/pull_request_template.md</span>
-<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> ~/kits/Agent_03주차/양식/CODEOWNERS_양식 CODEOWNERS</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> ~/kits/Agent_03주차/양식/저장소규약_양식.md docs/운영/저장소규약.md</span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> .github</span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> ~/kits/Agent_03주차/양식/pull_request_template_양식.md .github/pull_request_template.md</span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> ~/kits/Agent_03주차/양식/CODEOWNERS_양식 CODEOWNERS</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="2" type="1">
 <li>전체를 검사한다.</li>
 </ol>
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb77"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv/bin/python</span> ops/rules/lint_rules.py</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv/bin/python</span> ops/rules/lint_rules.py</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>통과 C1 CLAUDE.md 35줄
 통과 C1 금지 항목 6개 모두 이유가 있다
 통과 C2 .claude/rules/api.md: 'api/**/*.py'에 맞는 파일 6개
@@ -2667,10 +2687,10 @@ TEST_CHANGED: 동결한 뒤 바뀐 파일이 있다
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb79"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add docs/운영/저장소규약.md .github CODEOWNERS</span>
-<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"docs: 저장소 규약, PR 템플릿, CODEOWNERS 추가"</span></span>
-<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> tag rules-v1</span>
-<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv/bin/python</span> ops/rules/check_commits.py <span class="at">--range</span> main..HEAD</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add docs/운영/저장소규약.md .github CODEOWNERS</span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"docs: 저장소 규약, PR 템플릿, CODEOWNERS 추가"</span></span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> tag rules-v1</span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv/bin/python</span> ops/rules/check_commits.py <span class="at">--range</span> main..HEAD</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>통과 3a70f7e: chore(ops): 규칙 검사 도구 ops/rules 추가
 통과 78510c6: chore: 개인 설정 파일을 git 추적에서 제외
 통과 2a9350b: chore: 커밋 메시지 검사 훅 추가
@@ -2701,8 +2721,8 @@ TEST_CHANGED: 동결한 뒤 바뀐 파일이 있다
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb83"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
-<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> ~/kits/Agent_03주차/양식/규칙비교_양식.md docs/운영/규칙비교.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> ~/kits/Agent_03주차/양식/규칙비교_양식.md docs/운영/규칙비교.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="규칙-유무-비교-실행-기록의-분석" class="level3">
 <h3 class="anchored" data-anchor-id="규칙-유무-비교-실행-기록의-분석">10-7. 규칙 유무 비교: 실행 기록의 분석</h3>
@@ -2712,18 +2732,18 @@ TEST_CHANGED: 동결한 뒤 바뀐 파일이 있다
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb84"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-rn</span> <span class="st">"</span><span class="va">$KIT_HOME</span><span class="st">/Agent_03주차"</span> ~/kits/</span>
-<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a><span class="va">R</span><span class="op">=</span>~/kits/Agent_03주차/실행기록</span>
-<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="va">$R</span></span>
-<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/agent-lab/compare <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> ~/agent-lab/compare</span>
-<span id="cb84-5"><a href="#cb84-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone <span class="at">-q</span> <span class="va">$R</span>/no-rules.bundle no-rules</span>
-<span id="cb84-6"><a href="#cb84-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone <span class="at">-q</span> <span class="va">$R</span>/with-rules.bundle with-rules</span>
-<span id="cb84-7"><a href="#cb84-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d <span class="kw">in</span> no-rules with-rules<span class="kw">;</span> <span class="cf">do</span></span>
-<span id="cb84-8"><a href="#cb84-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">(</span><span class="bu">cd</span> <span class="va">$d</span> <span class="kw">&amp;&amp;</span> <span class="ex">python3</span> <span class="at">-m</span> venv .venv <span class="kw">&amp;&amp;</span> <span class="ex">.venv/bin/pip</span> install <span class="at">-q</span> <span class="at">-r</span> requirements.txt<span class="kw">)</span></span>
-<span id="cb84-9"><a href="#cb84-9" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span>
-<span id="cb84-10"><a href="#cb84-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> no-rules/CLAUDE.md with-rules/CLAUDE.md</span>
-<span id="cb84-11"><a href="#cb84-11" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">-C</span> no-rules log <span class="at">--oneline</span> tdd-1..HEAD</span>
-<span id="cb84-12"><a href="#cb84-12" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">-C</span> with-rules log <span class="at">--oneline</span> rules-v1..HEAD</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-rn</span> <span class="st">"</span><span class="va">$KIT_HOME</span><span class="st">/Agent_03주차"</span> ~/kits/</span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="va">R</span><span class="op">=</span>~/kits/Agent_03주차/실행기록</span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="va">$R</span></span>
+<span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/agent-lab/compare <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> ~/agent-lab/compare</span>
+<span id="cb85-5"><a href="#cb85-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone <span class="at">-q</span> <span class="va">$R</span>/no-rules.bundle no-rules</span>
+<span id="cb85-6"><a href="#cb85-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone <span class="at">-q</span> <span class="va">$R</span>/with-rules.bundle with-rules</span>
+<span id="cb85-7"><a href="#cb85-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d <span class="kw">in</span> no-rules with-rules<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb85-8"><a href="#cb85-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">(</span><span class="bu">cd</span> <span class="va">$d</span> <span class="kw">&amp;&amp;</span> <span class="ex">python3</span> <span class="at">-m</span> venv .venv <span class="kw">&amp;&amp;</span> <span class="ex">.venv/bin/pip</span> install <span class="at">-q</span> <span class="at">-r</span> requirements.txt<span class="kw">)</span></span>
+<span id="cb85-9"><a href="#cb85-9" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span>
+<span id="cb85-10"><a href="#cb85-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> no-rules/CLAUDE.md with-rules/CLAUDE.md</span>
+<span id="cb85-11"><a href="#cb85-11" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">-C</span> no-rules log <span class="at">--oneline</span> tdd-1..HEAD</span>
+<span id="cb85-12"><a href="#cb85-12" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">-C</span> with-rules log <span class="at">--oneline</span> rules-v1..HEAD</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>no-rules.bundle  with-rules.bundle  대화_no-rules.txt  대화_with-rules.txt  조건.md
 ls: cannot access 'no-rules/CLAUDE.md': No such file or directory
 with-rules/CLAUDE.md
@@ -2742,9 +2762,9 @@ ad4ba4c 마감 임박 배너
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb86"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
-<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv/bin/python</span> ops/rules/count_violations.py <span class="at">--repo</span> ../compare/no-rules <span class="at">--base</span> tdd-1</span>
-<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv/bin/python</span> ops/rules/count_violations.py <span class="at">--repo</span> ../compare/with-rules <span class="at">--base</span> rules-v1</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv/bin/python</span> ops/rules/count_violations.py <span class="at">--repo</span> ../compare/no-rules <span class="at">--base</span> tdd-1</span>
+<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv/bin/python</span> ops/rules/count_violations.py <span class="at">--repo</span> ../compare/with-rules <span class="at">--base</span> rules-v1</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>R1     0  LLM 호출은 api/llm.py만 거친다
 R2     0  모델 이름을 코드에 적지 않는다
 R3     1  api/·rag/에서 print 대신 logging
@@ -2775,8 +2795,8 @@ R10    0  커밋 메시지가 규약을 따른다
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb88"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="bu">cd</span> ../compare/no-rules <span class="kw">&amp;&amp;</span> <span class="ex">.venv/bin/python</span> <span class="at">-m</span> pytest <span class="at">-q</span> <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-1</span><span class="kw">;</span> <span class="ex">.venv/bin/python</span> tools/test_guard.py check<span class="kw">)</span></span>
-<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="bu">cd</span> ../compare/with-rules <span class="kw">&amp;&amp;</span> <span class="ex">.venv/bin/python</span> <span class="at">-m</span> pytest <span class="at">-q</span> <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-1</span><span class="kw">;</span> <span class="ex">.venv/bin/python</span> tools/test_guard.py check<span class="kw">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="bu">cd</span> ../compare/no-rules <span class="kw">&amp;&amp;</span> <span class="ex">.venv/bin/python</span> <span class="at">-m</span> pytest <span class="at">-q</span> <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-1</span><span class="kw">;</span> <span class="ex">.venv/bin/python</span> tools/test_guard.py check<span class="kw">)</span></span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="bu">cd</span> ../compare/with-rules <span class="kw">&amp;&amp;</span> <span class="ex">.venv/bin/python</span> <span class="at">-m</span> pytest <span class="at">-q</span> <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-1</span><span class="kw">;</span> <span class="ex">.venv/bin/python</span> tools/test_guard.py check<span class="kw">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>57 passed in 3.03s
 TEST_UNCHANGED (tests/.baseline.json 기준, 파일 11개)
 59 passed in 2.16s
@@ -2789,7 +2809,7 @@ TEST_CHANGED: 동결한 뒤 바뀐 파일이 있다
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb90"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv/bin/python</span> ops/rules/count_violations.py <span class="at">--repo</span> ../compare/no-rules <span class="at">--base</span> tdd-1 <span class="at">--markdown</span> <span class="at">--label</span> <span class="st">"규칙 없음"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv/bin/python</span> ops/rules/count_violations.py <span class="at">--repo</span> ../compare/no-rules <span class="at">--base</span> tdd-1 <span class="at">--markdown</span> <span class="at">--label</span> <span class="st">"규칙 없음"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>| 규칙 | 내용 | 위반 수 (규칙 없음) | 예 |
 |---|---|---|---|
 | R1 | LLM 호출은 api/llm.py만 거친다 | 0 |  |
@@ -2804,7 +2824,7 @@ TEST_CHANGED: 동결한 뒤 바뀐 파일이 있다
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb92"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span> <span class="op">&lt;(</span><span class="fu">git</span> <span class="at">-C</span> ../compare/with-rules show rules-v1:CLAUDE.md<span class="op">)</span> CLAUDE.md <span class="kw">|</span> <span class="fu">head</span> <span class="at">-20</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span> <span class="op">&lt;(</span><span class="fu">git</span> <span class="at">-C</span> ../compare/with-rules show rules-v1:CLAUDE.md<span class="op">)</span> CLAUDE.md <span class="kw">|</span> <span class="fu">head</span> <span class="at">-20</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>남은 위반이 자기 규칙에서도 생길 만한지, 자기 규칙에만 있는 줄이 결과를 바꾸었을지를 5절에 한두 문장으로 적는다.</p>
 <ol start="7" type="1">
 <li>6절(규칙에 대한 조치)에 남은 위반마다 9-5의 판단을 적는다. 예를 들어 R9가 남았다면, <code>tests.md</code>가 읽혔는지(시연 화면이나 대화 기록에 <code>Loaded</code> 줄이 있었는가), 문장이 충분히 구체적인지, 6장의 훅으로 옮길 만한지를 적는다.</li>
@@ -2817,8 +2837,8 @@ TEST_CHANGED: 동결한 뒤 바뀐 파일이 있다
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb93"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add docs/운영/규칙비교.md</span>
-<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"docs: 규칙 유무 비교 기록 추가"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add docs/운영/규칙비교.md</span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"docs: 규칙 유무 비교 기록 추가"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="푸시와-pr" class="level3">
 <h3 class="anchored" data-anchor-id="푸시와-pr">10-8. 푸시와 PR</h3>
@@ -2828,17 +2848,20 @@ TEST_CHANGED: 동결한 뒤 바뀐 파일이 있다
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb94"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin chore/team-rules</span>
-<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin rules-v1</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin chore/team-rules</span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin rules-v1</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="2" type="1">
 <li>PR을 연다. 템플릿이 아직 <code>main</code>에 없으므로(8-4) 로컬 파일을 본문의 출발점으로 쓴다. GitHub CLI가 없거나 로그인되어 있지 않으면 브라우저에서 PR을 열고 템플릿 파일의 내용을 본문에 붙여 넣는다.</li>
 </ol>
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb95"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> pr create <span class="at">--base</span> main <span class="at">--title</span> <span class="st">"chore(claude): 팀 규칙 일체 추가 (CLAUDE.md, 설정, 저장소 규약)"</span> <span class="dt">\</span></span>
-<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--template</span> .github/pull_request_template.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> pr create <span class="at">--base</span> main <span class="at">--title</span> <span class="st">"chore(claude): 팀 규칙 일체 추가 (CLAUDE.md, 설정, 저장소 규약)"</span> <span class="dt">\</span></span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--template</span> .github/pull_request_template.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>편집기가 열리면 템플릿의 칸을 채운다. 「어떻게 확인하였는가」에는 <code>pytest -q</code>의 결과 줄, <code>lint_rules.py</code>의 「실패 0건」, <code>check_commits.py</code>의 「위반 0건」을 적는다. 「규칙 파일 변경」에는 이 PR이 무엇을 왜 더하는지 적는다.</p>
+<blockquote class="blockquote">
+<p><strong>[그림 자리: PR의 본문과 Files changed]</strong> 템플릿의 칸이 채워진 PR 본문과, 「Files changed」 목록에 개인 파일이 없는 화면. 찍을 곳: 브라우저의 GitHub PR 화면(2026-11).</p>
+</blockquote>
 <ol start="3" type="1">
 <li><strong>[브라우저]</strong> PR 화면에서 「Files changed」 탭을 열어 바뀐 파일을 모두 읽는다. 개인 파일(<code>CLAUDE.local.md</code>, <code>settings.local.json</code>)이 목록에 없는지 확인한다. <code>CODEOWNERS</code> 파일을 열면 GitHub가 잘못된 줄을 표시해 준다[G5].</li>
 <li>자기 검토를 마치면 병합한다. 개인 저장소에서는 승인할 다른 사람이 없으므로(8-7) 점검표가 승인을 대신한다. 병합한 뒤 <code>main</code>을 받아 온다.</li>
@@ -2846,13 +2869,28 @@ TEST_CHANGED: 동결한 뒤 바뀐 파일이 있다
 <div class="code-label where-server">
 <span>서버 터미널</span>
 </div>
-<div class="sourceCode" id="cb96"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> pr merge <span class="at">--merge</span></span>
-<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch main</span>
-<span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull</span>
-<span id="cb96-4"><a href="#cb96-4" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv/bin/python</span> ops/rules/lint_rules.py <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-1</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> pr merge <span class="at">--merge</span></span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch main</span>
+<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull</span>
+<span id="cb97-4"><a href="#cb97-4" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv/bin/python</span> ops/rules/lint_rules.py <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-1</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>실패 0건, 주의 0건</code></pre>
 <p>이제 <code>main</code>에 템플릿이 있으므로, 다음 PR부터는 본문에 템플릿이 자동으로 채워진다.</p>
 <p><span class="check-badge">확인 25</span> GitHub의 PR 본문에 템플릿의 칸이 모두 채워져 있고, 「Files changed」에 개인 파일이 없으며, 병합한 뒤 <code>main</code>에서 <code>lint_rules.py</code>가 실패 0건이다.</p>
+</section>
+<section id="중심-실습-복기" class="level3">
+<h3 class="anchored" data-anchor-id="중심-실습-복기">10-9. 중심 실습 복기</h3>
+<p>2장에서 사람이 손으로 지키던 규칙이 저장소의 파일이 되었다. 한 일은 세 가지이다.</p>
+<ol type="1">
+<li><strong>규칙을 집행하는 쪽에 따라 나누어 두었다.</strong> 판단이 필요한 지침은 <code>CLAUDE.md</code>와 경로별 규칙에, 예외가 없어야 하는 것은 <code>settings.json</code>의 거부와 확인에, 결과가 들어오는 입구의 약속은 저장소 규약과 커밋 훅에 두었다.</li>
+<li><strong>읽혔는지와 지켜졌는지를 따로 확인하였다.</strong> <code>/context all</code>, <code>Loaded</code> 줄, <code>/status</code>, <code>/permissions</code>로 읽힘을, 판정 사례, 위반 검사기, diff로 지켜짐을 보았다. 둘을 가르지 않으면 규칙을 고칠 곳을 찾지 못한다.</li>
+<li><strong>규칙의 효과를 재고 판을 남겼다.</strong> 같은 요청의 위반 수를 비교해 남은 위반마다 조치를 적었고, 규칙의 첫 판을 <code>rules-v1</code>로 표시하였다.</li>
+</ol>
+<pre class="text"><code>   되짚어 볼 것 · 답은 docs/운영/규칙비교.md 6절 아래에
+   남은 위반 하나를 골라, 다음 판(rules-v2)에서 그 규칙을
+   CLAUDE.md, rules, settings.json, 훅(6장) 가운데 어디로 옮길지 정한다.
+   # 예: R9(요구 마커)가 남았고 Loaded 줄이 있었다 → ③ 갈래.
+   #     문장을 고치거나, 6장의 편집 뒤 검사 훅으로 옮긴다</code></pre>
+<p><strong>저장소에 남은 것</strong> · 10-1의 표에 있는 파일 일체와 태그 <code>rules-v1</code>, 병합된 PR. <strong>다음</strong> · 4장은 이 장에서 둘 곳이 없던 여러 단계의 절차를 스킬로 옮긴다.</p>
 <hr>
 </section>
 </section>
@@ -2941,6 +2979,16 @@ TEST_CHANGED: 동결한 뒤 바뀐 파일이 있다
 <td><code>count_violations.py</code>가 <code>git diff 실패</code>로 멈춘다</td>
 <td><code>--repo</code> 경로나 <code>--base</code>의 태그가 없다</td>
 <td><code>git -C ../compare/no-rules tag -l</code>로 태그를 확인한다</td>
+</tr>
+<tr class="odd">
+<td>Claude가 오래 걸리거나 지시하지 않은 파일을 고치려 한다</td>
+<td>요청의 범위가 넓다</td>
+<td><code>Esc</code>로 멈추고(확인 창에서는 거절과 같다) 파일 하나로 좁혀 다시 요청한다</td>
+</tr>
+<tr class="even">
+<td>세션이 끊겼다</td>
+<td>접속이 끊겼거나 창을 닫았다</td>
+<td><code>claude --continue</code>로 이어 연다. 규칙 파일을 새로 만든 뒤라면 새 세션(<code>claude</code>)으로 연다</td>
 </tr>
 <tr class="odd">
 <td><code>git clone …bundle</code>이 <code>does not look like a v2 or v3 bundle file</code>로 멈춘다</td>

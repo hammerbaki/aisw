@@ -470,6 +470,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <p>명령은 판이 바뀌면 달라진다. 이 카드와 실제 동작이 다르면 각 도구의 도움말(<code>claude --help</code>, <code>claude &lt;하위 명령&gt; --help</code>, Claude Code 안의 <code>/help</code>, <code>git help 명령</code>, <code>gh 명령 --help</code>, <code>pytest --help</code>)과 공식 문서가 우선한다. 경로는 모두 저장소 맨 위(<code>~/agent-lab/jobprep</code>)를 기준으로 적는다.</p>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: 이 카드가 확인한 도구의 판]</strong> 확인할 곳: 서버의 <code>claude --version</code>, <code>git --version</code>, <code>gh --version</code>, <code>.venv/bin/python -m pytest --version</code>, <code>.venv/bin/python -m coverage --version</code>. 2026-11-15 확인 값(집필용 PC): Claude Code 2.1.296, git 2.55.0, GitHub CLI 2.88.1(2026-03-12 배포). pytest 9.2.0과 coverage 7.17.3은 키트가 고정한 판이다. 서버의 판은 1주차 전에 확인하고, 다르면 아래 자리 표시의 문서에서 명령을 다시 확인한다.</p>
+</blockquote>
 <hr>
 <section id="b-1.-claude-code" class="level2">
 <h2 class="anchored" data-anchor-id="b-1.-claude-code">B-1. Claude Code</h2>
@@ -575,6 +578,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>--dangerously-skip-permissions</code>와 <code>--allow-dangerously-skip-permissions</code>는 모든 권한 확인을 건너뛴다. 도움말이 「인터넷이 막힌 샌드박스에서만」 권하는 옵션이므로 실습 서버에서 쓰지 않는다.</li>
 <li><code>claude --help</code>가 모든 옵션을 보이지는 않는다. 예를 들어 <code>--max-turns</code>는 도움말에 없고 CLI 참조 문서에 있다(8장 0-5)[C2].</li>
 </ul>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: <code>claude</code> 시작 옵션]</strong> <code>-w</code>, <code>--agent</code>, <code>--plugin-dir</code>, <code>--mcp-config</code>, <code>--setting-sources</code>, <code>--safe-mode</code>, <code>--permission-mode</code>의 값. 확인할 곳: 서버의 <code>claude --help</code>, <a href="https://code.claude.com/docs/en/cli-reference" class="uri">https://code.claude.com/docs/en/cli-reference</a>. 마지막으로 확인한 날짜와 값: 2026-11-14, Claude Code 2.1.296의 도움말이 본문과 같다. 수업 전에 다시 확인한다.</p>
+</blockquote>
 </section>
 <section id="b-1-2.-헤드리스-실행claude--p" class="level3">
 <h3 class="anchored" data-anchor-id="b-1-2.-헤드리스-실행claude--p">B-1-2. 헤드리스 실행(<code>claude -p</code>)</h3>
@@ -724,6 +730,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <p>종료 코드는 성공 0, 실패는 0이 아니다. 잘못된 옵션은 실행 전에 표준 오류로, 인증 실패처럼 실행 안의 실패는 결과로 표준 출력에 나온다. <code>kill</code>(SIGTERM)로 멈춘 실행은 143으로 끝난다[C2].</p>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: 헤드리스 옵션과 결과 객체의 필드]</strong> 옵션 표, <code>subtype</code>의 값, 종료 코드. 확인할 곳: <a href="https://code.claude.com/docs/en/headless" class="uri">https://code.claude.com/docs/en/headless</a>, <a href="https://code.claude.com/docs/en/cli-reference" class="uri">https://code.claude.com/docs/en/cli-reference</a>, 서버의 <code>claude --help</code>. 마지막으로 확인한 날짜와 값: 2026-11-14, 위 두 표(실제 <code>claude -p</code>는 실행하지 않고 문서와 8장의 가짜 에이전트로 확인). 7·8장 전에 다시 확인한다.</p>
+</blockquote>
 <p><strong>[서버 터미널]</strong> (결과 객체에서 필드를 읽는 꼴. 8장의 가짜 에이전트로 모델 없이 시험할 수 있다)</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">FAKE_SCENARIO</span><span class="op">=</span>digest <span class="ex">python</span> ops/loop/fake_agent.py <span class="at">-p</span> <span class="st">"x"</span> <span class="at">--output-format</span> json <span class="op">&lt;</span> /dev/null <span class="dt">\</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">|</span> <span class="ex">python</span> <span class="at">-c</span> <span class="st">'import json,sys; r=json.load(sys.stdin); print(r["subtype"], r["total_cost_usd"], r["num_turns"], r["session_id"])'</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -839,6 +848,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
+<blockquote class="blockquote">
+<p><strong>[그림 자리: <code>/plugin</code> 화면]</strong> Discover, Installed, Marketplaces 탭과, 4장 실습 뒤 Installed 탭에 <code>jobprep-ops@jobprep-team</code>이 보이는 모습. 찍을 곳: 4장을 마친 저장소의 Claude Code.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: 이 과목에서 쓰는 슬래시 명령]</strong> 확인할 곳: Claude Code 안의 <code>/help</code>, <a href="https://code.claude.com/docs/en/commands" class="uri">https://code.claude.com/docs/en/commands</a>. 마지막으로 확인한 날짜와 값: 2026-11-14, 위 표의 명령(<code>/agents</code>는 2.1.198부터 안내만 보인다, <code>/review</code>는 <code>/code-review</code>의 별칭). 명령은 판마다 더해지거나 이름이 바뀌므로 각 장 전에 다시 확인한다.</p>
+</blockquote>
 </section>
 <section id="b-1-4.-커맨드스킬플러그인" class="level3">
 <h3 class="anchored" data-anchor-id="b-1-4.-커맨드스킬플러그인">B-1-4. 커맨드·스킬·플러그인</h3>
@@ -970,6 +985,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 └── .mcp.json                      (선택) MCP 서버
 .claude-plugin/marketplace.json    저장소 맨 위. 마켓플레이스 이름(jobprep-team)과 플러그인 목록</code></pre>
 <p>구성 요소 폴더(<code>skills/</code> 등)는 <code>.claude-plugin/</code> 안이 아니라 플러그인 폴더 바로 아래에 둔다(4장 9절).</p>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: 스킬 머리말의 필드와 플러그인 구조]</strong> 확인할 곳: <a href="https://code.claude.com/docs/en/skills" class="uri">https://code.claude.com/docs/en/skills</a>, <a href="https://code.claude.com/docs/en/plugins/install" class="uri">https://code.claude.com/docs/en/plugins/install</a>, 서버의 <code>claude plugin validate --help</code>. 마지막으로 확인한 날짜와 값: 2026-11-14, 위 세 표와 폴더 구조(4장의 확인). 4장 전에 다시 확인한다.</p>
+</blockquote>
 <p><strong>플러그인 명령(셸)</strong></p>
 <table class="caption-top table">
 <colgroup>
@@ -1208,6 +1226,9 @@ Validating marketplace manifest: …/.claude-plugin/marketplace.json
 </tr>
 </tbody>
 </table>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: 훅의 사건 이름과 종료 코드의 뜻]</strong> 확인할 곳: <a href="https://code.claude.com/docs/en/hooks" class="uri">https://code.claude.com/docs/en/hooks</a>, Claude Code 안의 <code>/hooks</code>. 마지막으로 확인한 날짜와 값: 2026-11-14, 위 두 표(6장의 확인). 6장 전에 다시 확인한다.</p>
+</blockquote>
 </section>
 <section id="b-1-7.-서브에이전트" class="level3">
 <h3 class="anchored" data-anchor-id="b-1-7.-서브에이전트">B-1-7. 서브에이전트</h3>
@@ -1263,6 +1284,9 @@ Validating marketplace manifest: …/.claude-plugin/marketplace.json
 </tbody>
 </table>
 <p>이 과목의 정의 파일은 6장 <code>reviewer.md</code>(검토 규칙 RV1~RV8, 7장 조립본이 정본), 10장 <code>planner.md</code>, <code>implementer.md</code>, <code>tester.md</code>, 11장 <code>issue-triage.md</code>이다.</p>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: 서브에이전트 정의의 필드와 모델 별칭]</strong> 확인할 곳: <a href="https://code.claude.com/docs/en/sub-agents" class="uri">https://code.claude.com/docs/en/sub-agents</a>, <a href="https://platform.claude.com/docs/en/about-claude/models/overview" class="uri">https://platform.claude.com/docs/en/about-claude/models/overview</a>. 마지막으로 확인한 날짜와 값: 2026-11-14, 위 표의 필드(6장의 확인). 2026-11-15에 확인한 모델 목록의 최신 모델은 Claude Fable 5.2, Opus 5.5, Sonnet 5.5, Haiku 5.5이며, 별칭 <code>fable</code>, <code>opus</code>, <code>sonnet</code>, <code>haiku</code>가 어느 모델을 가리키는지는 판에 따라 바뀐다. 6·10장 전에 다시 확인한다.</p>
+</blockquote>
 </section>
 <section id="b-1-8.-worktree" class="level3">
 <h3 class="anchored" data-anchor-id="b-1-8.-worktree">B-1-8. worktree</h3>
@@ -1306,6 +1330,9 @@ Validating marketplace manifest: …/.claude-plugin/marketplace.json
 <li>대화형 worktree 세션은 끝낼 때 바뀐 것이 없으면 지우고, 있으면 남길지 묻는다. <code>claude -p</code>로 만든 worktree는 지우지 않는다. <code>git worktree remove</code>로 직접 지운다[C4].</li>
 <li><code>.worktreeinclude</code>에 <code>.env</code>를 넣으면 키가 worktree마다 복사된다. 10장의 구현 에이전트는 키가 필요 없으므로 넣지 않는다.</li>
 </ul>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: Claude Code의 worktree 동작]</strong> <code>claude -w</code>의 폴더와 브랜치 이름, <code>.worktreeinclude</code>, <code>worktree.baseRef</code>의 기본값, <code>-p</code>로 만든 worktree의 정리. 확인할 곳: <a href="https://code.claude.com/docs/en/worktrees" class="uri">https://code.claude.com/docs/en/worktrees</a>. 마지막으로 확인한 날짜와 값: 2026-11-14, 위 표와 목록(문서로만 확인). 10장 전에 다시 확인한다.</p>
+</blockquote>
 </section>
 <section id="b-1-9.-권한-모드와-규칙-문법" class="level3">
 <h3 class="anchored" data-anchor-id="b-1-9.-권한-모드와-규칙-문법">B-1-9. 권한 모드와 규칙 문법</h3>
@@ -1395,6 +1422,9 @@ Validating marketplace manifest: …/.claude-plugin/marketplace.json
 </tbody>
 </table>
 <p>판정은 <code>deny</code> → <code>ask</code> → <code>allow</code> 순서로 보고 처음 맞는 것이 결과이다. 여러 설정 파일의 목록은 합쳐진다. <code>deny</code>는 어느 모드에서나 지켜진다. 규칙을 미리 따져 보려면 3장의 <code>python ops/rules/perm_sim.py --settings .claude/settings.json -- "Bash(git push origin main)" "Read(.env)"</code>를 쓴다(학습용 모의기이며 실제 판정은 <code>/permissions</code>와 실행으로 확인한다).</p>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: 권한 모드의 이름, 순환 순서, 시작 모드]</strong> 확인할 곳: <a href="https://code.claude.com/docs/en/permission-modes" class="uri">https://code.claude.com/docs/en/permission-modes</a>, <code>claude --help</code>. 2026-11-15 확인 값: 표시 이름과 설정 값은 Manual(<code>default</code>. CLI는 <code>manual</code>도 받는다), accept edits(<code>acceptEdits</code>), Plan(<code>plan</code>), Auto(<code>auto</code>), don’t ask(<code>dontAsk</code>), Bypass permissions(<code>bypassPermissions</code>)이다. <code>Shift+Tab</code> 순환은 <code>default</code> → <code>acceptEdits</code> → <code>plan</code> 뒤에, 켜 둔 경우 <code>bypassPermissions</code>, 그다음 <code>auto</code>가 오고, <code>dontAsk</code>는 순환에 없다. 터미널 세션은 v2.1.283부터 <code>auto</code>로 시작하고, <code>claude -p</code>와 Agent SDK는 v2.1.302부터 Manual로 시작한다. 규칙 문법은 2026-11-14에 Configure permissions 문서(<a href="https://code.claude.com/docs/en/permissions" class="uri">https://code.claude.com/docs/en/permissions</a>)로 확인하였다. 3·8장 전에 다시 확인한다.</p>
+</blockquote>
 <hr>
 </section>
 </section>
@@ -1975,6 +2005,9 @@ e78f5a4
 </tr>
 </tbody>
 </table>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: 워크플로가 쓰는 액션의 판과 커밋 SHA]</strong> 13장 워크플로가 고정한 액션(<code>actions/checkout</code> 등)의 판과 SHA. 확인할 곳: 각 액션 저장소의 릴리스(<code>gh release list -R actions/checkout -L 3</code>), <code>gh api repos/actions/checkout/commits/&lt;태그&gt; --jq .sha</code>. 마지막으로 확인한 날짜와 값: 2026-11-14, <code>actions/checkout</code> v7.0.1(13장 키트의 머리 주석과 같다). 13장 전에 다시 확인한다.</p>
+</blockquote>
 </section>
 <section id="b-3-6.-비밀-정보" class="level3">
 <h3 class="anchored" data-anchor-id="b-3-6.-비밀-정보">B-3-6. 비밀 정보</h3>
@@ -2814,6 +2847,7 @@ TEST_CHANGED: 동결한 뒤 바뀐 파일이 있다
 </tr>
 </tbody>
 </table>
+<div class="line-block">도구의 판, 권한 모드의 이름·순환·시작 모드, 모델 목록 | 2026-11-15에 집필용 PC의 <code>--version</code>과 공식 문서 Permission modes, Models overview로 다시 확인 | 확인함. 값은 각 절의 최신 자료 자리에 적었다 |</div>
 <hr>
 </section>
 <section id="참고-자료" class="level2">
