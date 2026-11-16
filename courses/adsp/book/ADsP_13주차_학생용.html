@@ -884,7 +884,7 @@ high  low  mid
 <tr class="odd">
 <td><code>aov()</code></td>
 <td>집단 평균을 견주는 분산분석</td>
-<td>13장(이 장 4.5절)</td>
+<td>6장(4.8절, 6.8절), 이 장 4.5절</td>
 </tr>
 <tr class="even">
 <td><code>prcomp()</code>, <code>princomp()</code>, <code>screeplot()</code></td>
@@ -1595,7 +1595,7 @@ mean difference
 </section>
 <section id="집단-평균의-분산분석-summaryaov" class="level3">
 <h3 class="anchored" data-anchor-id="집단-평균의-분산분석-summaryaov">4.5 집단 평균의 분산분석: <code>summary(aov())</code></h3>
-<p><code>aov()</code>는 집단을 나누는 변수(팩터)에 따라 종속 변수의 평균이 다른지를 검정하는 분산분석이다. 앞 장들에서는 회귀 모형의 분산분석표(7장)만 보았고, 집단의 평균을 견주는 분산분석의 출력은 이 장에서 처음 본다. 두 집단의 평균을 견주는 t-검정을 셋 이상의 집단으로 넓힌 것이다. 표의 꼴과 계산은 3.3절의 분산분석표와 같다.</p>
+<p><code>aov()</code>는 집단을 나누는 변수(팩터)에 따라 종속 변수의 평균이 다른지를 검정하는 분산분석이다. 6장 「통계학 개론: 표본, 분포, 추정, 검정」의 4.8절에서 <code>mtcars</code>의 기통 수에 따른 연비로 처음 보았고, 7장에서는 회귀 모형의 분산분석표를 보았다. 두 집단의 평균을 견주는 t-검정을 셋 이상의 집단으로 넓힌 것이다. 표의 꼴과 계산은 3.3절의 분산분석표와 같다.</p>
 <p>사료 여섯 종의 평균 몸무게가 모두 같은지를 <code>summary(aov(weight ~ feed, data = chickwts))</code>로 검정한 출력이다. 귀무 가설은 “모든 집단의 평균이 같다”이다.</p>
 <pre class="text"><code>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
 feed         5 231129   46226   15.37 5.94e-10 ***
@@ -3236,7 +3236,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <li>③ 유의수준 0.01에서도 귀무 가설을 기각한다.</li>
 <li>④ 세 집단의 평균이 서로 모두 다르다는 것이 확인된다.</li>
 </ul>
-<p><code>범위: 데이터분석 &gt; 통계분석 &gt; 기초 통계분석</code> <code>유형: 출력 해석</code> <code>장: 13</code></p>
+<p><code>범위: 데이터분석 &gt; 통계분석 &gt; 기초 통계분석</code> <code>유형: 출력 해석</code> <code>장: 6</code></p>
 <p><strong>문항 12.</strong> 둘째 출력의 값에 대한 설명으로 가장 적절하지 않은 것은?</p>
 <ul>
 <li>① <code>group</code> 줄의 <code>Mean Sq</code> 1.8832는 3.766을 2로 나눈 값이다.</li>
