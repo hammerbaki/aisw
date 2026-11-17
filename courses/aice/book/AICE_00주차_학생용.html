@@ -433,7 +433,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>자료</td>
-<td><code>laptops.csv</code>(사전 진단용)와 <code>customers.csv</code>, <code>loans.csv</code>. 교재 폴더의 <code>courses/aice/kit/data/AICE_공통/</code>에 있다. 노트북에서는 <code>../kit/data/AICE_공통/</code>로 읽는다(부록 A.1)</td>
+<td><code>laptops.csv</code>(사전 진단용)와 <code>customers.csv</code>, <code>loans.csv</code>. 교재 폴더의 <code>과목/2학년 2학기/비즈니스빅데이터분석/kit/data/AICE_공통/</code>에 있다. 노트북에서는 <code>../kit/data/AICE_공통/</code>로 읽는다(부록 A.1)</td>
 </tr>
 <tr class="odd">
 <td>실습 환경</td>
@@ -455,12 +455,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="노트북-열기">0.1 노트북 열기</h3>
 <ol type="1">
 <li>부록 A의 안내에 따라 실습 환경(학교의 Jupyter 서버)에 접속한다.</li>
-<li>파일 목록에서 <code>courses/aice/book/</code> 폴더로 들어가 <code>AICE_00주차_실습_학생용.ipynb</code>를 연다. 파일 이름이 비슷한 <code>AICE_00주차_학생용.md</code>는 이 강의안이며 노트북이 아니다. 노트북 파일의 확장자는 <code>.ipynb</code>이다.</li>
+<li>파일 목록에서 <code>과목/2학년 2학기/비즈니스빅데이터분석/book/</code> 폴더로 들어가 <code>AICE_00주차_실습_학생용.ipynb</code>를 연다. 파일 이름이 비슷한 <code>AICE_00주차_학생용.md</code>는 이 강의안이며 노트북이 아니다. 노트북 파일의 확장자는 <code>.ipynb</code>이다.</li>
 <li>노트북이 열리면 화면 오른쪽 위에 커널(노트북의 코드를 실행하는 파이썬 프로그램)의 이름이 표시된다. 이 이름이 <code>Python 3</code>인지 본다. 커널을 고르라는 창이 나오면 <code>Python 3</code>를 고른다.</li>
 <li>노트북의 맨 위 설명 셀을 읽는다. 사전 진단의 구성(문항 15개), 자료, 시간, 참고할 수 있는 것, 제출 방법이 적혀 있다.</li>
 </ol>
 <blockquote class="blockquote">
-<p><strong>[그림 자리: Jupyter의 파일 목록과 열린 사전 진단 노트북]</strong> 왼쪽은 파일 목록에서 <code>courses/aice/book/</code>을 연 화면이고 <code>AICE_00주차_실습_학생용.ipynb</code>가 강조되어 있다. 오른쪽은 노트북을 연 화면이며 제목 셀 <code># [0장] 사전 진단</code>과 오른쪽 위의 커널 이름 <code>Python 3</code>, 셀 실행 단추(삼각형)에 표시를 한다. 학교 Jupyter 서버에서 찍는다.</p>
+<p><strong>[그림 자리: Jupyter의 파일 목록과 열린 사전 진단 노트북]</strong> 왼쪽은 파일 목록에서 <code>과목/2학년 2학기/비즈니스빅데이터분석/book/</code>을 연 화면이고 <code>AICE_00주차_실습_학생용.ipynb</code>가 강조되어 있다. 오른쪽은 노트북을 연 화면이며 제목 셀 <code># [0장] 사전 진단</code>과 오른쪽 위의 커널 이름 <code>Python 3</code>, 셀 실행 단추(삼각형)에 표시를 한다. 학교 Jupyter 서버에서 찍는다.</p>
 </blockquote>
 <ul>
 <li><span class="check-badge">확인 1</span> 노트북의 첫 셀에 제목 <code>[0장] 사전 진단</code>이 보이고, 그 아래에 구성, 자료, 시간, 참고, 제출의 다섯 항목이 있다.</li>
@@ -554,7 +554,7 @@ tensorflow 2.21.0</code></pre>
 <pre class="text"><code>customers.csv True
 laptops.csv True
 loans.csv True</code></pre>
-<p><code>DATA</code>의 값 <code>"../kit/data/AICE_공통/"</code>은 노트북이 있는 폴더(<code>courses/aice/book/</code>)에서 본 상대 경로이다. <code>..</code>은 한 단계 위의 폴더(<code>courses/aice/</code>)를 뜻하고, 거기서 <code>kit/data/AICE_공통/</code>으로 내려간다. 끝의 <code>/</code>는 뒤에 파일 이름을 이어 붙이기 위한 것이다. <code>os.path.exists</code>는 주어진 경로에 파일이나 폴더가 있으면 <code>True</code>, 없으면 <code>False</code>를 돌려준다. 파일을 열지 않으므로 오류가 나지 않는다.</p>
+<p><code>DATA</code>의 값 <code>"../kit/data/AICE_공통/"</code>은 노트북이 있는 폴더(<code>과목/2학년 2학기/비즈니스빅데이터분석/book/</code>)에서 본 상대 경로이다. <code>..</code>은 한 단계 위의 폴더(<code>과목/2학년 2학기/비즈니스빅데이터분석/</code>)를 뜻하고, 거기서 <code>kit/data/AICE_공통/</code>으로 내려간다. 끝의 <code>/</code>는 뒤에 파일 이름을 이어 붙이기 위한 것이다. <code>os.path.exists</code>는 주어진 경로에 파일이나 폴더가 있으면 <code>True</code>, 없으면 <code>False</code>를 돌려준다. 파일을 열지 않으므로 오류가 나지 않는다.</p>
 <ul>
 <li><span class="check-badge">확인 6</span> 둘째 셀의 출력 세 줄이 모두 <code>True</code>로 끝난다.</li>
 </ul>
