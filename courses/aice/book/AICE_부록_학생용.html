@@ -395,7 +395,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="a.1-파일과-폴더의-구조">A.1 파일과 폴더의 구조</h3>
 <p>교재의 노트북과 실습 자료는 다음 구조로 배포된다. 학교 서버의 주소와 계정, 파일을 받는 방법은 강의에서 안내한다.</p>
 <pre class="text"><code>(교재 폴더)
-└─ 과목/2학년 2학기/비즈니스빅데이터분석/
+└─ 비즈니스빅데이터분석/
     ├─ book/
     │   ├─ AICE_00주차_실습_학생용.ipynb      사전 진단
     │   ├─ AICE_01주차_실습_학생용.ipynb      교재 01의 실습 노트북
@@ -408,7 +408,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>모든 노트북은 자료 폴더의 위치를 첫 부분에서 변수 <code>DATA</code>에 저장하고, 파일 이름을 이어 붙여 읽는다.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>DATA <span class="op">=</span> <span class="st">"../kit/data/AICE_공통/"</span>   <span class="co"># 자료 폴더의 위치</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(DATA <span class="op">+</span> <span class="st">"customers.csv"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><code>..</code>은 한 단계 위의 폴더를 뜻한다. 노트북이 있는 <code>과목/2학년 2학기/비즈니스빅데이터분석/book/</code>에서 한 단계 올라가(<code>과목/2학년 2학기/비즈니스빅데이터분석/</code>) <code>kit/data/AICE_공통/</code>으로 내려가는 경로이다. 끝의 <code>/</code>는 뒤에 파일 이름을 이어 붙이기 위한 것이므로 빼지 않는다. 이 경로는 노트북과 자료가 위의 구조로 놓여 있을 때에만 맞다. 구조를 바꾸었으면 <code>DATA</code> 한 줄만 고친다.</p>
+<p><code>..</code>은 한 단계 위의 폴더를 뜻한다. 노트북이 있는 <code>비즈니스빅데이터분석/book/</code>에서 한 단계 올라가(<code>비즈니스빅데이터분석/</code>) <code>kit/data/AICE_공통/</code>으로 내려가는 경로이다. 끝의 <code>/</code>는 뒤에 파일 이름을 이어 붙이기 위한 것이므로 빼지 않는다. 이 경로는 노트북과 자료가 위의 구조로 놓여 있을 때에만 맞다. 구조를 바꾸었으면 <code>DATA</code> 한 줄만 고친다.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -443,7 +443,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(os.getcwd())          <span class="co"># 지금의 폴더</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(os.listdir(DATA))     <span class="co"># DATA 폴더 안의 파일 목록</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><code>os.getcwd()</code>의 출력은 노트북 파일이 있는 폴더여야 한다. 위의 구조라면 끝이 <code>과목/2학년 2학기/비즈니스빅데이터분석/book</code>(윈도우에서는 <code>과목\2학년 2학기\비즈니스빅데이터분석\book</code>)이다. <code>os.listdir(DATA)</code>가 <code>FileNotFoundError</code>를 내면 <code>DATA</code> 폴더 자체가 없는 것이고, 목록이 나오는데 파일 이름이 다르면 파일 이름의 철자를 고친다.</p>
+<p><code>os.getcwd()</code>의 출력은 노트북 파일이 있는 폴더여야 한다. 위의 구조라면 끝이 <code>비즈니스빅데이터분석/book</code>(윈도우에서는 <code>비즈니스빅데이터분석\book</code>)이다. <code>os.listdir(DATA)</code>가 <code>FileNotFoundError</code>를 내면 <code>DATA</code> 폴더 자체가 없는 것이고, 목록이 나오는데 파일 이름이 다르면 파일 이름의 철자를 고친다.</p>
 <p>세 파일이 있는지는 파일을 열지 않고 다음 셀로 한 번에 확인할 수 있다. 사전 진단 노트북의 2절에 같은 셀이 있다(교재 00의 0.3절).</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
