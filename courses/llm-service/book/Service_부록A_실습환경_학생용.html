@@ -544,6 +544,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>6장</td>
 <td>각 장</td>
 </tr>
+<tr class="odd">
+<td>제출</td>
+<td>장의 산출물을 개인 실습 저장소에 커밋·푸시하고, 그 장을 마친 커밋의 주소(<code>https://github.com/「아이디」/llm-service-lab/commit/「해시」</code>)를 Google 클래스룸의 그 장 과제로 제출한다. 파일은 따로 올리지 않는다</td>
+<td>2장</td>
+<td>A-10-2</td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -911,7 +917,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>GitHub 계정과 2단계 인증</td>
-<td>2장부터 저장소, 3장부터 팀 저장소. 1주차에 사용자 이름을 제출한다</td>
+<td>2장부터 저장소, 3장부터 팀 저장소. 1주차에 사용자 이름을 Google 클래스룸에 제출한다</td>
 <td>무료</td>
 <td>1주차 수업 전</td>
 <td>A-2-2</td>
@@ -965,7 +971,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>브라우저에서 <a href="https://github.com/signup">github.com/signup</a>에 들어가 이메일, 비밀번호, 사용자 이름을 정해 가입한다. 가입 과정에서 이메일 인증을 해야 계정을 쓸 수 있다[H2].</li>
 <li>사용자 이름은 저장소 주소(<code>github.com/사용자이름/저장소</code>)와 커밋 기록에 공개된다. 취업 포트폴리오로도 쓰이므로 본인을 알아볼 수 있는 이름을 권한다.</li>
 <li>2단계 인증(2FA)을 켠다. GitHub 문서는 2단계 인증을 강하게 권장하고[H2], 수업용 조직이 2단계 인증을 요구하도록 설정되어 있으면 켜지 않은 계정은 초대를 받아들일 수 없다[H3]. 인증 앱(OTP 앱)이나 패스키를 쓰고, 복구 코드는 저장소가 아닌 안전한 곳에 보관한다.</li>
-<li>1주차에 GitHub 사용자 이름을 제출한다. 수업용 조직(팀 저장소와 키트 저장소가 있는 곳)에 초대하기 위해서이다.</li>
+<li>1주차에 GitHub 사용자 이름을 Google 클래스룸에 제출한다. 수업용 조직(팀 저장소와 키트 저장소가 있는 곳)에 초대하기 위해서이다.</li>
 </ol>
 <blockquote class="blockquote">
 <p><strong>[최신 자료 자리: GitHub 가입 절차와 2단계 인증 수단]</strong> 가입 화면의 입력 항목, 이메일 인증, 2단계 인증의 수단(인증 앱, 패스키 등). 확인할 곳: <a href="https://docs.github.com/en/get-started/start-your-journey/creating-an-account-on-github" class="uri">https://docs.github.com/en/get-started/start-your-journey/creating-an-account-on-github</a>, <a href="https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa" class="uri">https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa</a>. 마지막으로 확인한 날짜: 2026-11-14(본문의 절차). 수업 전에 다시 확인한다.</p>
@@ -1617,7 +1623,7 @@ $ git status --short
 </section>
 <section id="a-10-2.-개인-저장소의-공개-범위와-pages" class="level3">
 <h3 class="anchored" data-anchor-id="a-10-2.-개인-저장소의-공개-범위와-pages">A-10-2. 개인 저장소의 공개 범위와 Pages</h3>
-<p>2장에서 GitHub에 올리는 개인 실습 저장소 <code>llm-service-lab</code>은 <strong>비공개(Private)</strong>로 만든다. 이 저장소에는 학기 내내의 작업 기록과 평가의 근거가 쌓이고, 실수로 넣은 파일(설정, 기록)이 섞일 수도 있기 때문이다. 교수가 학생의 비공개 저장소를 읽는 방법(협업자 초대 등)은 수업에서 안내한다.</p>
+<p>2장에서 GitHub에 올리는 개인 실습 저장소 <code>llm-service-lab</code>은 <strong>비공개(Private)</strong>로 만든다. 이 저장소에는 학기 내내의 작업 기록과 평가의 근거가 쌓이고, 실수로 넣은 파일(설정, 기록)이 섞일 수도 있기 때문이다. 교수가 학생의 비공개 저장소를 읽는 방법(협업자 초대 등)은 수업에서 안내한다. 장의 산출물은 이 저장소에 푸시한 뒤, 그 장을 마친 커밋의 주소를 Google 클래스룸의 그 장 과제로 제출한다. 주소는 GitHub 웹의 커밋 목록(Commits)에서 그 커밋을 열어 복사하거나, 저장소 폴더의 터미널에서 <code>gh browse "$(git rev-parse HEAD)" -n</code>으로 출력한다(푸시한 뒤에 실행한다).</p>
 <p>비공개로 두면 9장의 GitHub Pages 배포에 요금제 조건이 붙는다.</p>
 <table class="caption-top table">
 <thead>
