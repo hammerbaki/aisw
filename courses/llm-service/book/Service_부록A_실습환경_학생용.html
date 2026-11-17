@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-dcf116883d0d3758c9131f5ede2fa7e1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-36e3eb9e03d26a75fbfd0268be67efbb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -1740,8 +1740,11 @@ $ git status --short
 <div class="sourceCode" id="cb40"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> repo clone 교수계정/키트저장소 ~/kits-repo</span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> ~/kits-repo</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="text"><code>Service_01장</code></pre>
-<p><code>ls</code>에 보이는 폴더는 그때까지 배포된 장의 키트이다. 교수는 장마다 새 키트를 이 저장소에 올리고, 이미 배포한 키트를 고치면 같은 저장소에 커밋한다.</p>
+<pre class="text"><code>(예시)
+Agent_01장  Agent_02장  …  Agent_13장
+README.md
+Service_01장  Service_02장  …  Service_13장</code></pre>
+<p>키트 저장소에는 두 과목 26개 장의 키트가 학기 전에 모두 올라가 있다. 교수가 키트를 고치거나 수업 중에 시연 기록을 올리면 같은 저장소에 커밋하므로, 장마다 <code>git -C ~/kits-repo pull</code>로 받는다(A-12-3).</p>
 </section>
 <section id="a-12-3.-장의-키트-받기-매-장" class="level3">
 <h3 class="anchored" data-anchor-id="a-12-3.-장의-키트-받기-매-장">A-12-3. 장의 키트 받기 (매 장)</h3>
@@ -1767,7 +1770,7 @@ $ git status --short
 <tbody>
 <tr class="odd">
 <td><code>git -C ~/kits-repo pull</code></td>
-<td>지금 폴더가 어디든 <code>~/kits-repo</code> 저장소에서 <code>git pull</code>을 한다. 교수가 올린 새 장과 고친 파일을 받는다</td>
+<td>지금 폴더가 어디든 <code>~/kits-repo</code> 저장소에서 <code>git pull</code>을 한다. 교수가 고친 파일과 수업 중에 올린 시연 기록을 받는다</td>
 </tr>
 <tr class="even">
 <td><code>mkdir -p ~/kits</code></td>
@@ -2909,7 +2912,7 @@ API_KEY_ENV=
 </tr>
 <tr class="odd">
 <td><code>cp: cannot stat '…/Service_NN장'</code></td>
-<td>그 장의 키트가 아직 배포되지 않았거나 <code>git pull</code>을 하지 않았다</td>
+<td>장 번호를 두 자리로 쓰지 않았다(<code>Service_03장</code>)거나 클론이 없다</td>
 <td><code>git -C ~/kits-repo pull</code> 뒤 <code>ls ~/kits-repo</code>로 폴더 이름을 확인한다</td>
 <td>A-12</td>
 </tr>

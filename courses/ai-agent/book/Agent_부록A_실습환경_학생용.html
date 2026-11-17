@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-dcf116883d0d3758c9131f5ede2fa7e1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-36e3eb9e03d26a75fbfd0268be67efbb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -907,7 +907,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>키트 저장소</td>
-<td>장마다 키트 폴더 <code>Agent_NN장/</code>가 올라오는 교수 계정의 공개 저장소</td>
+<td>두 과목의 장별 키트 폴더(<code>Service_NN장/</code>, <code>Agent_NN장/</code>)가 모두 들어 있는 교수 계정의 공개 저장소</td>
 <td>A-7</td>
 </tr>
 </tbody>
@@ -1816,8 +1816,11 @@ init.defaultbranch=main</code></pre>
 </div>
 <div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> repo clone 「교수 계정」/「키트 저장소」 ~/kits-repo</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> ~/kits-repo</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="text"><code>Agent_01장</code></pre>
-<p>위 출력은 예시이다. 키트 저장소에는 학기가 진행되는 대로 장 폴더가 하나씩 올라온다. <code>gh repo clone</code>이 「Could not resolve to a Repository」로 끝나면 저장소 이름이 틀린 것이다. 이름은 Google 클래스룸의 주소와 한 글자씩 대조한다.</p>
+<pre class="text"><code>(예시)
+Agent_01장  Agent_02장  …  Agent_13장
+README.md
+Service_01장  Service_02장  …  Service_13장</code></pre>
+<p>키트 저장소에는 두 과목 26개 장의 키트가 학기 전에 모두 올라가 있다. <code>gh repo clone</code>이 「Could not resolve to a Repository」로 끝나면 저장소 이름이 틀린 것이다. 이름은 Google 클래스룸의 주소와 한 글자씩 대조한다.</p>
 </section>
 <section id="a-7-3.-장의-키트-받기" class="level3">
 <h3 class="anchored" data-anchor-id="a-7-3.-장의-키트-받기">A-7-3. 장의 키트 받기</h3>
@@ -1834,7 +1837,7 @@ Fast-forward
  Agent_03장/README.md | 1 +
  1 file changed, 1 insertion(+)
  create mode 100644 Agent_03장/README.md</code></pre>
-<p>위 출력은 스크래치의 로컬 저장소로 같은 절차를 흉내 내어 2026-11-16에 실행한 결과이다(원격 이름 줄은 줄였다). 새 장 폴더가 올라오면 <code>create mode</code> 줄에 보인다. 바뀐 것이 없으면 <code>Already up to date.</code>가 나온다. Windows에서는 <code>LF will be replaced by CRLF</code> 경고가 함께 나올 수 있다.</p>
+<p>위 출력은 스크래치의 로컬 저장소로 같은 절차를 흉내 내어 2026-11-16에 실행한 결과이다(원격 이름 줄은 줄였다). 교수가 새 파일(고친 키트, 수업 중의 시연 기록)을 올리면 <code>create mode</code> 줄에 보인다. 바뀐 것이 없으면 <code>Already up to date.</code>가 나온다. Windows에서는 <code>LF will be replaced by CRLF</code> 경고가 함께 나올 수 있다.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -3726,7 +3729,7 @@ AGENT_CMD=없음
 </tr>
 <tr class="even">
 <td><code>cp: cannot stat '/c/Users/…/kits-repo/Agent_NN장'</code></td>
-<td>키트 저장소를 최신으로 받지 않았거나 그 장이 아직 올라오지 않았다</td>
+<td>클론이 없거나 장 번호를 두 자리로 쓰지 않았다(<code>Agent_06장</code>)</td>
 <td><code>git -C ~/kits-repo pull</code> 뒤 다시 한다</td>
 <td>A-7-3</td>
 </tr>
