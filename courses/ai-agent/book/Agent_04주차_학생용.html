@@ -1360,7 +1360,7 @@ Validating skill: C:\Users\이름\agent-lab\ops-demo\.claude\skills\log-lines\SK
     └── check_report.py</code></pre>
 <p>세 가지를 지킨다.</p>
 <ol type="1">
-<li><strong>본문에서 가리킨다.</strong> 폴더에 파일을 두는 것만으로는 읽히지 않는다. 본문에 <code>references/보고서서식.md</code>처럼 링크를 두어 언제 그 파일이 필요한지 알린다 [C2].</li>
+<li><strong>본문에서 가리킨다.</strong> 폴더에 파일을 두는 것만으로는 읽히지 않는다. 본문에 <code>references/보고서서식.md</code>를 가리키는 마크다운 링크를 두어 언제 그 파일이 필요한지 알린다(9-4에서 쓰는 <code>SKILL.md</code>의 「출력 서식」 1번이 그 예이다) [C2].</li>
 <li><strong>한 단계만 들어간다.</strong> 참조 파일이 또 다른 참조 파일을 가리키게 하지 않는다. 깊게 이어진 참조는 모델이 앞부분만 훑어보고 지나가게 만든다 [E2][E3].</li>
 <li><strong>실행할지 읽을지를 밝힌다.</strong> 「<code>log_summary.py</code>를 실행한다」와 「<code>log_summary.py</code>의 알고리즘을 참고한다」는 다르다. 대부분의 보조 스크립트는 실행이 낫다 [E3].</li>
 </ol>
