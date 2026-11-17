@@ -504,7 +504,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>키트</td>
-<td>1주차에 Google 클래스룸에 올린 주소로 수업용 조직의 「키트 저장소」를 <code>~/kits-repo</code>로 클론한다. 장마다 <code>git -C ~/kits-repo pull</code> 뒤 <code>cp -rn ~/kits-repo/Service_NN장 ~/kits/</code>로 받는다. 키트는 <code>~/kits/Service_NN장</code>에서 쓰고, 장의 0절이 필요한 파일만 저장소로 옮긴다</td>
+<td>1주차에 Google 클래스룸에 올린 주소로 공개 저장소인 「키트 저장소」를 <code>~/kits-repo</code>로 클론한다. 장마다 <code>git -C ~/kits-repo pull</code> 뒤 <code>cp -rn ~/kits-repo/Service_NN장 ~/kits/</code>로 받는다. 키트는 <code>~/kits/Service_NN장</code>에서 쓰고, 장의 0절이 필요한 파일만 저장소로 옮긴다</td>
 <td>1장</td>
 <td>A-12</td>
 </tr>
@@ -830,7 +830,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>GitHub</td>
-<td>학생 개인 계정. 팀 저장소와 키트 저장소는 수업용 조직(Organization)에 있다</td>
+<td>학생 개인 계정. 팀 저장소는 수업용 조직(Organization)에 있고, 키트 저장소는 교수 계정의 공개 저장소이다</td>
 <td>A-2, A-10, A-11</td>
 </tr>
 <tr class="even">
@@ -971,7 +971,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>브라우저에서 <a href="https://github.com/signup">github.com/signup</a>에 들어가 이메일, 비밀번호, 사용자 이름을 정해 가입한다. 가입 과정에서 이메일 인증을 해야 계정을 쓸 수 있다[H2].</li>
 <li>사용자 이름은 저장소 주소(<code>github.com/사용자이름/저장소</code>)와 커밋 기록에 공개된다. 취업 포트폴리오로도 쓰이므로 본인을 알아볼 수 있는 이름을 권한다.</li>
 <li>2단계 인증(2FA)을 켠다. GitHub 문서는 2단계 인증을 강하게 권장하고[H2], 수업용 조직이 2단계 인증을 요구하도록 설정되어 있으면 켜지 않은 계정은 초대를 받아들일 수 없다[H3]. 인증 앱(OTP 앱)이나 패스키를 쓰고, 복구 코드는 저장소가 아닌 안전한 곳에 보관한다.</li>
-<li>1주차에 GitHub 사용자 이름을 Google 클래스룸에 제출한다. 수업용 조직(팀 저장소와 키트 저장소가 있는 곳)에 초대하기 위해서이다.</li>
+<li>1주차에 GitHub 사용자 이름을 Google 클래스룸에 제출한다. 수업용 조직(팀 저장소가 있는 곳)에 초대하기 위해서이다.</li>
 </ol>
 <blockquote class="blockquote">
 <p><strong>[최신 자료 자리: GitHub 가입 절차와 2단계 인증 수단]</strong> 가입 화면의 입력 항목, 이메일 인증, 2단계 인증의 수단(인증 앱, 패스키 등). 확인할 곳: <a href="https://docs.github.com/en/get-started/start-your-journey/creating-an-account-on-github" class="uri">https://docs.github.com/en/get-started/start-your-journey/creating-an-account-on-github</a>, <a href="https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa" class="uri">https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa</a>. 마지막으로 확인한 날짜: 2026-11-14(본문의 절차). 수업 전에 다시 확인한다.</p>
@@ -1652,9 +1652,9 @@ $ git status --short
 </section>
 <section id="a-11.-수업용-조직의-초대-수락" class="level2">
 <h2 class="anchored" data-anchor-id="a-11.-수업용-조직의-초대-수락">A-11. 수업용 조직의 초대 수락</h2>
-<p>팀 저장소(3장부터)와 키트 저장소(1장부터, A-12)는 수업용 GitHub 조직(Organization)에 있다. 교수가 1주차에 받은 사용자 이름으로 조직에 초대하면, 학생이 초대를 받아들여야 조직의 구성원이 된다[H3]. 키트 저장소를 클론하려면 구성원이어야 하므로 1주차에 받아들인다.</p>
+<p>팀 저장소(3장부터)는 수업용 GitHub 조직(Organization)에 있다. 교수가 1주차에 받은 사용자 이름으로 조직에 초대하면, 학생이 초대를 받아들여야 조직의 구성원이 된다[H3]. 팀 저장소를 쓰는 3장 전까지, 되도록 1주차에 받아들인다. 키트 저장소(A-12)는 공개 저장소이므로 이 초대 없이 받는다.</p>
 <ol type="1">
-<li>GitHub에 등록한 이메일로 초대 링크가 든 메일이 온다[H3]. GitHub에 로그인한 브라우저에서 그 링크를 연다. 조직의 이름(<code>조직이름</code>)은 Google 클래스룸에 올린 키트 저장소 주소에서 <code>github.com/</code> 바로 뒤의 부분이다.</li>
+<li>GitHub에 등록한 이메일로 초대 링크가 든 메일이 온다[H3]. GitHub에 로그인한 브라우저에서 그 링크를 연다. 조직의 이름(<code>조직이름</code>)은 초대 메일에 있고, Google 클래스룸에서도 안내한다.</li>
 <li>초대 화면에서 초대를 받아들인다. 메일을 찾지 못하면 아래의 <code>gh api</code> 명령으로 상태를 확인하고 받아들인다.</li>
 <li>초대는 7일이 지나면 만료된다[H3]. 만료되었으면 교수에게 다시 초대를 요청한다.</li>
 <li>조직이 2단계 인증을 요구하면, 2단계 인증을 켠 뒤에 받아들일 수 있다[H3].</li>
@@ -1710,7 +1710,7 @@ $ git status --short
 </tr>
 <tr class="even">
 <td>키트 저장소 <code>~/kits-repo/</code></td>
-<td>수업용 조직의 키트 저장소를 클론한 것. 받기만 하고 그 안에서 고치지 않는다</td>
+<td>키트 저장소(공개)를 클론한 것. 받기만 하고 그 안에서 고치지 않는다</td>
 </tr>
 <tr class="odd">
 <td>받은 키트 <code>~/kits/</code></td>
@@ -1729,7 +1729,7 @@ $ git status --short
 </section>
 <section id="a-12-2.-키트-저장소-클론-1주차-한-번" class="level3">
 <h3 class="anchored" data-anchor-id="a-12-2.-키트-저장소-클론-1주차-한-번">A-12-2. 키트 저장소 클론 (1주차, 한 번)</h3>
-<p>키트는 수업용 조직의 비공개 저장소(이하 「키트 저장소」)로 배포한다. 저장소의 주소는 Google 클래스룸에 올린다. 주소 <code>https://github.com/조직이름/키트저장소</code>의 두 부분이 아래 명령의 <code>조직이름</code>과 <code>키트저장소</code>이다. A-11의 초대를 받아들인 뒤, 홈 폴더의 <code>kits-repo</code>라는 이름으로 클론한다.</p>
+<p>키트는 교수 계정의 공개 저장소(이하 「키트 저장소」)로 배포한다. 공개 저장소이므로 조직 초대(A-11)를 기다리지 않고 받을 수 있다. 저장소의 주소는 Google 클래스룸에 올린다. 주소 <code>https://github.com/조직이름/키트저장소</code>의 두 부분이 아래 명령의 <code>조직이름</code>과 <code>키트저장소</code>이다. 키트 저장소에서는 앞부분이 수업용 조직이 아니라 교수 계정의 이름이므로, A-11의 조직 이름과 다를 수 있다. 홈 폴더의 <code>kits-repo</code>라는 이름으로 클론한다.</p>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
@@ -2892,7 +2892,7 @@ API_KEY_ENV=
 <td>A-10</td>
 </tr>
 <tr class="odd">
-<td>조직의 저장소(키트 저장소, 팀 저장소)가 보이지 않는다</td>
+<td>조직의 저장소(팀 저장소)가 보이지 않는다</td>
 <td>초대를 받아들이지 않았다(<code>pending</code>) 또는 초대가 만료되었다</td>
 <td>A-11의 <code>gh api</code> 명령으로 상태를 확인한다</td>
 <td>A-11</td>
@@ -3074,7 +3074,7 @@ API_KEY_ENV=
 <tr class="even">
 <td>키트 저장소의 <code>clone</code>, <code>git -C … pull</code>, <code>cp -rn</code>(고친 파일 보존, 새 파일 추가)</td>
 <td>시험용 bare 저장소와 임시 홈 폴더로 Git Bash에서 실행(2026-11-16)</td>
-<td>확인함. 실제 수업용 조직의 저장소로는 하지 않았다</td>
+<td>확인함. 실제 키트 저장소(공개)를 로그인 없이 클론하는 것은 2026-11-17에 확인하였다</td>
 </tr>
 <tr class="odd">
 <td><code>python -m venv</code>, Git Bash에서 <code>source .venv/Scripts/activate</code>, <code>which python</code>, venv의 <code>.gitignore</code></td>

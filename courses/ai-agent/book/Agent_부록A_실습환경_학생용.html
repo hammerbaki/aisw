@@ -544,7 +544,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>키트</td>
-<td>수업용 조직의 비공개 저장소 「키트 저장소」를 <code>~/kits-repo</code>로 한 번 클론하고, 장마다 <code>git -C ~/kits-repo pull</code> 뒤 <code>cp -rn ~/kits-repo/Agent_NN장 ~/kits/</code>. 장의 0절은 <code>~/kits/Agent_NN장</code>에서 읽는다. 키트는 저장소 밖에 두고, 0절이 정한 파일만 저장소로 옮긴다</td>
+<td>교수 계정의 공개 저장소 「키트 저장소」를 <code>~/kits-repo</code>로 한 번 클론하고, 장마다 <code>git -C ~/kits-repo pull</code> 뒤 <code>cp -rn ~/kits-repo/Agent_NN장 ~/kits/</code>. 장의 0절은 <code>~/kits/Agent_NN장</code>에서 읽는다. 키트는 저장소 밖에 두고, 0절이 정한 파일만 저장소로 옮긴다</td>
 <td>1장</td>
 <td>A-7</td>
 </tr>
@@ -819,12 +819,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>계정 이름, 비밀번호, API 키, 토큰의 실제 값은 이 부록에 적지 않는다. GitHub 사용자 이름은 「GitHub 아이디」, 수업용 GitHub 조직의 이름은 「조직 이름」, 그 조직의 키트 저장소 이름은 「키트 저장소」로 적는다. 조직과 저장소의 실제 이름은 Google 클래스룸에 올린 키트 저장소 주소 <code>https://github.com/「조직 이름」/「키트 저장소」</code>에서 읽는다.</p>
+<p>계정 이름, 비밀번호, API 키, 토큰의 실제 값은 이 부록에 적지 않는다. GitHub 사용자 이름은 「GitHub 아이디」, 수업용 GitHub 조직의 이름은 「조직 이름」, 키트 저장소 이름은 「키트 저장소」로 적는다. 키트 저장소의 실제 주소는 Google 클래스룸에 올린 <code>https://github.com/「조직 이름」/「키트 저장소」</code>에서 읽는다. 키트 저장소에서는 앞부분이 수업용 조직이 아니라 교수 계정의 이름이다. 수업용 조직의 실제 이름은 초대 메일에 있고, Google 클래스룸에서도 안내한다.</p>
 <hr>
 </section>
 <section id="a-1.-실습-환경의-구성" class="level2">
 <h2 class="anchored" data-anchor-id="a-1.-실습-환경의-구성">A-1. 실습 환경의 구성</h2>
-<p>파일과 프로그램은 모두 내 PC에 있다. 내 PC의 VS Code에서 터미널 두 개를 열고, 한쪽에서 Claude Code에게 일을 시키고 다른 쪽에서 결과를 직접 실행해 확인한다. 키트는 수업용 GitHub 조직의 비공개 저장소에서 받고, 결과는 자기 GitHub 계정의 비공개 저장소에 올린다.</p>
+<p>파일과 프로그램은 모두 내 PC에 있다. 내 PC의 VS Code에서 터미널 두 개를 열고, 한쪽에서 Claude Code에게 일을 시키고 다른 쪽에서 결과를 직접 실행해 확인한다. 키트는 교수 계정의 공개 저장소에서 받고, 결과는 자기 GitHub 계정의 비공개 저장소에 올린다.</p>
 <pre class="mermaid">flowchart LR
     subgraph PC["내 PC (Windows 11 또는 macOS)"]
         T1["터미널 1&lt;br/&gt;Claude Code"]
@@ -837,7 +837,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         BR["브라우저&lt;br/&gt;localhost:8000, 8100"]
         OR["Orca(10장)"]
     end
-    ORG["GitHub 수업용 조직&lt;br/&gt;「키트 저장소」(비공개)"]
+    ORG["GitHub 교수 계정&lt;br/&gt;「키트 저장소」(공개)"]
     GH["GitHub 내 계정&lt;br/&gt;jobprep(비공개)&lt;br/&gt;Actions, 규칙 집합"]
     AN["Anthropic&lt;br/&gt;내 구독 / (선택) 내 API 키"]
     ORG -- "clone, pull" --&gt; KR
@@ -907,7 +907,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>키트 저장소</td>
-<td>장마다 키트 폴더 <code>Agent_NN장/</code>가 올라오는 수업용 조직의 비공개 저장소</td>
+<td>장마다 키트 폴더 <code>Agent_NN장/</code>가 올라오는 교수 계정의 공개 저장소</td>
 <td>A-7</td>
 </tr>
 </tbody>
@@ -1030,7 +1030,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>수업용 GitHub 조직의 구성원</td>
-<td>키트 저장소, 13장의 짝 리뷰</td>
+<td>13장의 짝 리뷰</td>
 <td>무료</td>
 <td>1주차(초대를 받은 주)</td>
 <td>A-6-3</td>
@@ -1711,7 +1711,7 @@ init.defaultbranch=main</code></pre>
 </section>
 <section id="a-6-3.-수업용-조직의-초대-수락" class="level3">
 <h3 class="anchored" data-anchor-id="a-6-3.-수업용-조직의-초대-수락">A-6-3. 수업용 조직의 초대 수락</h3>
-<p>키트 저장소와 13장의 짝 리뷰는 수업용 GitHub 조직(Organization)에 있다. 교수가 1주차에 Google 클래스룸으로 받은 GitHub 아이디로 조직에 초대하면, 학생이 초대를 받아들여야 조직의 구성원이 되고 키트 저장소를 읽을 수 있다[H7]. 앞 과목의 조직을 이어 쓰면 다시 하지 않는다.</p>
+<p>13장의 짝 리뷰는 수업용 GitHub 조직(Organization)에서 한다. 교수가 1주차에 Google 클래스룸으로 받은 GitHub 아이디로 조직에 초대하면, 학생이 초대를 받아들여야 조직의 구성원이 된다[H7]. 키트 저장소(A-7)는 공개 저장소이므로 이 초대 없이 받는다. 앞 과목의 조직을 이어 쓰면 다시 하지 않는다.</p>
 <ol type="1">
 <li>GitHub에 등록한 이메일로 초대 링크가 든 메일이 온다. GitHub에 로그인한 브라우저에서 그 링크를 열고 초대를 받아들인다.</li>
 <li>초대는 7일이 지나면 만료된다. 만료되었으면 교수에게 다시 초대를 요청한다.</li>
@@ -1809,14 +1809,14 @@ init.defaultbranch=main</code></pre>
 </section>
 <section id="a-7-2.-키트-저장소-클론" class="level3">
 <h3 class="anchored" data-anchor-id="a-7-2.-키트-저장소-클론">A-7-2. 키트 저장소 클론</h3>
-<p>1주차에 한 번 한다. 수업용 조직의 구성원이어야 비공개 저장소를 받을 수 있다(A-6-3). 두 과목의 키트는 하나의 키트 저장소에 과목별 폴더(<code>Service_NN장</code>, <code>Agent_NN장</code>)로 들어 있다. 앞 과목에서 <code>~/kits-repo</code>를 받았다면 다시 클론하지 않고 <code>git -C ~/kits-repo pull</code>만 한다. 처음 받는 학생만 Google 클래스룸에 올린 주소의 두 부분을 넣어 아래 명령으로 클론한다.</p>
+<p>1주차에 한 번 한다. 키트 저장소는 공개 저장소이므로 조직 초대(A-6-3)를 기다리지 않고 받을 수 있다. 두 과목의 키트는 하나의 키트 저장소에 과목별 폴더(<code>Service_NN장</code>, <code>Agent_NN장</code>)로 들어 있다. 앞 과목에서 <code>~/kits-repo</code>를 받았다면 다시 클론하지 않고 <code>git -C ~/kits-repo pull</code>만 한다. 처음 받는 학생만 Google 클래스룸에 올린 주소의 두 부분을 넣어 아래 명령으로 클론한다.</p>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
 <div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> repo clone 「조직 이름」/「키트 저장소」 ~/kits-repo</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> ~/kits-repo</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>Agent_01장</code></pre>
-<p>위 출력은 예시이다. 키트 저장소에는 학기가 진행되는 대로 장 폴더가 하나씩 올라온다. <code>gh repo clone</code>이 「Could not resolve to a Repository」로 끝나면 조직 초대를 받아들이지 않았거나 저장소 이름이 틀린 것이다. 이름은 Google 클래스룸의 주소와 한 글자씩 대조한다.</p>
+<p>위 출력은 예시이다. 키트 저장소에는 학기가 진행되는 대로 장 폴더가 하나씩 올라온다. <code>gh repo clone</code>이 「Could not resolve to a Repository」로 끝나면 저장소 이름이 틀린 것이다. 이름은 Google 클래스룸의 주소와 한 글자씩 대조한다.</p>
 </section>
 <section id="a-7-3.-장의-키트-받기" class="level3">
 <h3 class="anchored" data-anchor-id="a-7-3.-장의-키트-받기">A-7-3. 장의 키트 받기</h3>
@@ -3550,7 +3550,7 @@ AGENT_CMD=없음
 <tr class="odd">
 <td>키트 저장소</td>
 <td><code>키트 저장소 최신</code></td>
-<td>A-7. 조직 초대(A-6-3)와 <code>~/kits-repo</code>의 고친 파일(A-7-4)을 본다</td>
+<td>A-7. 저장소 주소(A-7-2)와 <code>~/kits-repo</code>의 고친 파일(A-7-4)을 본다</td>
 </tr>
 <tr class="even">
 <td><code>API_KEY_ENV=</code></td>
@@ -3719,9 +3719,9 @@ AGENT_CMD=없음
 <tbody>
 <tr class="odd">
 <td><code>gh repo clone</code>이 <code>Could not resolve to a Repository</code></td>
-<td>조직 초대를 받아들이지 않았거나 저장소 이름이 틀렸다</td>
-<td><code>gh api user/memberships/orgs/「조직 이름」 --jq .state</code></td>
-<td>A-6-3, A-7-2</td>
+<td>저장소 이름이 틀렸다</td>
+<td>Google 클래스룸의 주소와 한 글자씩 대조한다</td>
+<td>A-7-2</td>
 </tr>
 <tr class="even">
 <td><code>cp: cannot stat '/c/Users/…/kits-repo/Agent_NN장'</code></td>
@@ -4122,7 +4122,7 @@ AGENT_CMD=없음
 <tr class="even">
 <td>키트 저장소의 <code>git clone</code>, <code>git -C … pull</code>, <code>cp -rn</code>(고친 파일을 덮지 않음)</td>
 <td>스크래치의 로컬 bare 저장소로 흉내 냄(2026-11-16)</td>
-<td>확인함. 실제 조직 저장소와 <code>gh repo clone</code>은 하지 않았다</td>
+<td>확인함. 실제 키트 저장소(공개)를 로그인 없이 <code>git clone</code>하는 것은 2026-11-17에 확인하였다. <code>gh repo clone</code>으로는 하지 않았다</td>
 </tr>
 <tr class="odd">
 <td><code>CLAUDE_CONFIG_DIR</code>로 격리한 <code>claude auth status --text</code>, <code>claude plugin list</code>, 4장 견본 마켓플레이스의 local 범위 등록과 설치</td>
