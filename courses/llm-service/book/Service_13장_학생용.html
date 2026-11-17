@@ -645,7 +645,7 @@ README.md  api  docs  prompts  rag  web
 <p>복사에는 <code>git archive</code>를 쓴다. <code>git archive</code>는 커밋된 파일만 묶어 내보내므로 <code>.env</code>(API 키), <code>.venv</code>, <code>__pycache__</code>가 따라가지 않는다. <code>cp -r</code>로 폴더를 통째로 복사하면 이런 파일까지 팀 저장소로 넘어간다.</p>
 <p>팀 실습 저장소가 내 PC에 없으면 먼저 복제한다(부록 A-12-1의 <code>~/teams/</code> 자리).</p>
 <p><strong>[터미널]</strong> (팀 실습 저장소가 없을 때만)</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> repo clone 「수업용 조직」/<span class="va">$TEAM</span>-lab ~/teams/<span class="va">$TEAM</span>-lab</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> repo clone 「교수 계정」/ict-aisw-2027-<span class="va">$TEAM</span>-lab ~/teams/<span class="va">$TEAM</span>-lab</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
@@ -2048,7 +2048,7 @@ U-07,지역 필터를 적용한 뒤 어떤 조건으로 걸렀는지 화면에 �
 </tr>
 </tbody>
 </table>
-<p>팀 실습 저장소는 수업용 조직의 비공개 저장소이다. 그래도 조직의 구성원은 모두 볼 수 있고, 저장소의 이력은 지워도 남는다. 처음부터 식별할 수 있는 정보를 넣지 않는 것이 유일하게 확실한 방법이다.</p>
+<p>팀 실습 저장소는 교수 계정의 비공개 저장소이다. 그래도 팀원과 교수는 모두 볼 수 있고, 저장소의 이력은 지워도 남는다. 처음부터 식별할 수 있는 정보를 넣지 않는 것이 유일하게 확실한 방법이다.</p>
 <p>참가자의 이름이나 학번이 기록에 들어가지 않았는지는 핵심 실습에서 <code>grep</code>으로 찾는다(11-4의 6).</p>
 <hr>
 </section>
@@ -2598,7 +2598,7 @@ P2,2,4,3,3,2,4,3,4,2,3</code></pre></li>
 <span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">--title</span> <span class="st">"[사용성] </span><span class="va">$ME</span><span class="st">: 요약 중 표시가 없어 요청이 겹친다"</span> <span class="dt">\</span></span>
 <span id="cb83-6"><a href="#cb83-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">--label</span> usability <span class="dt">\</span></span>
 <span id="cb83-7"><a href="#cb83-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">--body-file</span> ~/ch13/이슈1.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="text"><code>https://github.com/「수업용 조직」/team3-lab/issues/7</code></pre>
+<pre class="text"><code>https://github.com/「교수 계정」/ict-aisw-2027-team3-lab/issues/7</code></pre>
 <p>나머지 두 문제도 <code>이슈2.md</code>, <code>이슈3.md</code>로 같은 순서를 밟는다. 이슈 번호는 팀 저장소의 앞선 이슈(3장, 7~8장) 뒤에 이어 매겨진다.</p>
 <div class="code-label where-server">
 <span>터미널</span>

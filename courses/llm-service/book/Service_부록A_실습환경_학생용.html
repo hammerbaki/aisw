@@ -385,7 +385,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#a-10-1.-github-cli-인증" id="toc-a-10-1.-github-cli-인증" class="nav-link" data-scroll-target="#a-10-1.-github-cli-인증">A-10-1. GitHub CLI 인증</a></li>
   <li><a href="#a-10-2.-개인-저장소의-공개-범위와-pages" id="toc-a-10-2.-개인-저장소의-공개-범위와-pages" class="nav-link" data-scroll-target="#a-10-2.-개인-저장소의-공개-범위와-pages">A-10-2. 개인 저장소의 공개 범위와 Pages</a></li>
   </ul></li>
-  <li><a href="#a-11.-수업용-조직의-초대-수락" id="toc-a-11.-수업용-조직의-초대-수락" class="nav-link" data-scroll-target="#a-11.-수업용-조직의-초대-수락">A-11. 수업용 조직의 초대 수락</a></li>
+  <li><a href="#a-11.-팀-저장소의-협업자-초대-수락" id="toc-a-11.-팀-저장소의-협업자-초대-수락" class="nav-link" data-scroll-target="#a-11.-팀-저장소의-협업자-초대-수락">A-11. 팀 저장소의 협업자 초대 수락</a></li>
   <li><a href="#a-12.-작업-폴더와-키트-받기" id="toc-a-12.-작업-폴더와-키트-받기" class="nav-link" data-scroll-target="#a-12.-작업-폴더와-키트-받기">A-12. 작업 폴더와 키트 받기</a>
   <ul class="collapse">
   <li><a href="#a-12-1.-내-pc의-폴더" id="toc-a-12-1.-내-pc의-폴더" class="nav-link" data-scroll-target="#a-12-1.-내-pc의-폴더">A-12-1. 내 PC의 폴더</a></li>
@@ -534,7 +534,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>팀 실습 저장소</td>
-<td>수업용 조직의 <code>&lt;팀&gt;-lab</code>. 클론 위치는 <code>~/teams/&lt;팀&gt;-lab</code>. 리뷰할 산출물은 그 저장소의 <code>reviews/chNN/「아이디」/</code>에 둔다</td>
+<td>교수 계정의 비공개 저장소 <code>ict-aisw-2027-&lt;팀&gt;-lab</code>(줄여 <code>&lt;팀&gt;-lab</code>). 클론 위치는 <code>~/teams/&lt;팀&gt;-lab</code>. 리뷰할 산출물은 그 저장소의 <code>reviews/chNN/「아이디」/</code>에 둔다</td>
 <td>3장</td>
 <td>A-11</td>
 </tr>
@@ -634,8 +634,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>A-11</td>
-<td>수업용 조직의 초대 수락</td>
-<td>1주차(늦어도 3장 전)</td>
+<td>팀 저장소의 협업자 초대 수락</td>
+<td>초대가 온 주(늦어도 3장 전)</td>
 <td>한 번</td>
 </tr>
 <tr class="even">
@@ -753,7 +753,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>계정 이름, 비밀번호, API 키, 토큰의 실제 값은 이 부록에 싣지 않는다. 명령 안의 <code>사용자이름</code>, <code>조직이름</code>, <code>키트저장소</code>는 자기 값 또는 Google 클래스룸에 올린 키트 저장소 주소의 값으로 바꾸어 입력한다.</p>
+<p>계정 이름, 비밀번호, API 키, 토큰의 실제 값은 이 부록에 싣지 않는다. 명령 안의 <code>사용자이름</code>, <code>교수계정</code>, <code>키트저장소</code>, <code>팀이름</code>은 자기 값 또는 Google 클래스룸에서 안내하는 값으로 바꾸어 입력한다.</p>
 <hr>
 </section>
 <section id="a-1.-실습-환경의-구성" class="level2">
@@ -770,7 +770,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         KITS["~/kits&lt;br/&gt;장마다 받은 키트"]
         TEAM["~/teams/팀-lab&lt;br/&gt;팀 실습 저장소"]
     end
-    GH["GitHub&lt;br/&gt;개인 계정, 수업용 조직"]
+    GH["GitHub&lt;br/&gt;개인 계정, 교수 계정의 팀 저장소"]
     AN["Anthropic&lt;br/&gt;Claude 구독, Console(선택)"]
     VS --&gt; T1
     VS --&gt; T2
@@ -830,7 +830,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>GitHub</td>
-<td>학생 개인 계정. 팀 저장소는 수업용 조직(Organization)에 있고, 키트 저장소는 교수 계정의 공개 저장소이다</td>
+<td>학생 개인 계정. 팀 저장소는 교수 계정의 비공개 저장소(협업자로 초대), 키트 저장소는 교수 계정의 공개 저장소이다</td>
 <td>A-2, A-10, A-11</td>
 </tr>
 <tr class="even">
@@ -970,8 +970,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>브라우저에서 <a href="https://github.com/signup">github.com/signup</a>에 들어가 이메일, 비밀번호, 사용자 이름을 정해 가입한다. 가입 과정에서 이메일 인증을 해야 계정을 쓸 수 있다[H2].</li>
 <li>사용자 이름은 저장소 주소(<code>github.com/사용자이름/저장소</code>)와 커밋 기록에 공개된다. 취업 포트폴리오로도 쓰이므로 본인을 알아볼 수 있는 이름을 권한다.</li>
-<li>2단계 인증(2FA)을 켠다. GitHub 문서는 2단계 인증을 강하게 권장하고[H2], 수업용 조직이 2단계 인증을 요구하도록 설정되어 있으면 켜지 않은 계정은 초대를 받아들일 수 없다[H3]. 인증 앱(OTP 앱)이나 패스키를 쓰고, 복구 코드는 저장소가 아닌 안전한 곳에 보관한다.</li>
-<li>1주차에 GitHub 사용자 이름을 Google 클래스룸에 제출한다. 수업용 조직(팀 저장소가 있는 곳)에 초대하기 위해서이다.</li>
+<li>2단계 인증(2FA)을 켠다. GitHub 문서는 2단계 인증을 강하게 권장한다[H2]. 인증 앱(OTP 앱)이나 패스키를 쓰고, 복구 코드는 저장소가 아닌 안전한 곳에 보관한다.</li>
+<li>1주차에 GitHub 사용자 이름을 Google 클래스룸에 제출한다. 교수 계정의 팀 저장소에 협업자로 초대하기 위해서이다(A-11).</li>
 </ol>
 <blockquote class="blockquote">
 <p><strong>[최신 자료 자리: GitHub 가입 절차와 2단계 인증 수단]</strong> 가입 화면의 입력 항목, 이메일 인증, 2단계 인증의 수단(인증 앱, 패스키 등). 확인할 곳: <a href="https://docs.github.com/en/get-started/start-your-journey/creating-an-account-on-github" class="uri">https://docs.github.com/en/get-started/start-your-journey/creating-an-account-on-github</a>, <a href="https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa" class="uri">https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa</a>. 마지막으로 확인한 날짜: 2026-11-14(본문의 절차). 수업 전에 다시 확인한다.</p>
@@ -1650,41 +1650,45 @@ $ git status --short
 <hr>
 </section>
 </section>
-<section id="a-11.-수업용-조직의-초대-수락" class="level2">
-<h2 class="anchored" data-anchor-id="a-11.-수업용-조직의-초대-수락">A-11. 수업용 조직의 초대 수락</h2>
-<p>팀 저장소(3장부터)는 수업용 GitHub 조직(Organization)에 있다. 교수가 1주차에 받은 사용자 이름으로 조직에 초대하면, 학생이 초대를 받아들여야 조직의 구성원이 된다[H3]. 팀 저장소를 쓰는 3장 전까지, 되도록 1주차에 받아들인다. 키트 저장소(A-12)는 공개 저장소이므로 이 초대 없이 받는다.</p>
+<section id="a-11.-팀-저장소의-협업자-초대-수락" class="level2">
+<h2 class="anchored" data-anchor-id="a-11.-팀-저장소의-협업자-초대-수락">A-11. 팀 저장소의 협업자 초대 수락</h2>
+<p>이 과목은 수업용 조직을 쓰지 않는다. 팀 실습 저장소 <code>ict-aisw-2027-&lt;팀&gt;-lab</code>과 프로젝트실습Ⅰ 저장소 <code>ict-aisw-2027-&lt;팀&gt;-project</code>(3장부터)는 교수 계정(이하 <code>교수계정</code>)의 비공개 저장소이다. 교수가 1주차에 받은 사용자 이름으로 학생을 두 저장소의 협업자(collaborator)로 초대하면, 학생이 초대를 받아들여야 저장소를 읽고 푸시할 수 있다[H3]. 팀 저장소를 쓰는 3장 전까지, 되도록 초대가 온 주에 받아들인다. 키트 저장소(A-12)는 공개 저장소이므로 이 초대 없이 받는다.</p>
 <ol type="1">
-<li>GitHub에 등록한 이메일로 초대 링크가 든 메일이 온다[H3]. GitHub에 로그인한 브라우저에서 그 링크를 연다. 조직의 이름(<code>조직이름</code>)은 초대 메일에 있고, Google 클래스룸에서도 안내한다.</li>
-<li>초대 화면에서 초대를 받아들인다. 메일을 찾지 못하면 아래의 <code>gh api</code> 명령으로 상태를 확인하고 받아들인다.</li>
-<li>초대는 7일이 지나면 만료된다[H3]. 만료되었으면 교수에게 다시 초대를 요청한다.</li>
-<li>조직이 2단계 인증을 요구하면, 2단계 인증을 켠 뒤에 받아들일 수 있다[H3].</li>
-<li>조직이 이메일 주소로 초대한 경우에는 그 주소가 내 GitHub 계정에 인증된 이메일이어야 받아들일 수 있다[H3].</li>
+<li>GitHub에 등록한 이메일로 초대 메일이 온다[H3]. GitHub에 로그인한 브라우저에서 메일의 링크를 열고 초대를 받아들인다. 저장소마다 초대가 하나씩 오므로 둘을 모두 받아들인다.</li>
+<li>메일을 찾지 못하면 아래의 <code>gh api</code> 명령으로 받지 않은 초대를 보고 받아들인다.</li>
+<li>초대가 보이지 않거나 만료되었으면 교수에게 다시 초대를 요청한다.</li>
 </ol>
 <blockquote class="blockquote">
-<p><strong>[그림 자리: 수업용 조직의 초대를 받아들이는 화면]</strong> 초대 메일의 링크로 연 GitHub 화면의 조직 이름과 수락 단추, 수락 뒤 조직의 People 탭에 내 계정이 보이는 모습. 찍을 곳: 내 PC의 브라우저. 조직 이름과 다른 학생의 계정은 가린다.</p>
+<p><strong>[그림 자리: 저장소 협업자 초대를 받아들이는 화면]</strong> 초대 메일의 링크로 연 GitHub 화면의 저장소 이름과 수락 단추. 찍을 곳: 내 PC의 브라우저. 교수 계정과 다른 학생의 계정은 가린다.</p>
 </blockquote>
 <blockquote class="blockquote">
-<p><strong>[최신 자료 자리: 조직 초대의 만료 기간과 수락 조건]</strong> 확인할 곳: <a href="https://docs.github.com/en/organizations/managing-membership-in-your-organization/inviting-users-to-join-your-organization" class="uri">https://docs.github.com/en/organizations/managing-membership-in-your-organization/inviting-users-to-join-your-organization</a>. 마지막으로 확인한 날짜와 값: 2026-11-14, 초대는 7일 뒤 만료되고, 조직이 2단계 인증을 요구하면 켠 뒤에 받아들일 수 있다. 수업 전에 다시 확인한다.</p>
+<p><strong>[최신 자료 자리: 저장소 초대의 만료 기간과 수락 방법]</strong> 확인할 곳: <a href="https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository" class="uri">https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository</a>, REST API 「Repository invitations」. 2026-11-17에 확인한 값: 초대는 이메일로 가고 받아들이면 협업자가 된다. 만료 기간은 문서에서 확인하지 못하였다. 수업 전에 다시 확인한다.</p>
 </blockquote>
-<p>조직 구성원이 되었는지는 브라우저에서 조직 화면의 People 탭으로 확인하거나, 터미널에서 GitHub API로 확인한다. <code>state</code>가 <code>active</code>이면 구성원이고, <code>pending</code>이면 초대를 아직 받아들이지 않은 것이다[H5].</p>
+<p>받지 않은 초대는 터미널에서 GitHub API로 본다. 저장소 이름과 초대 번호가 나온다[H5].</p>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> api user/memberships/orgs/조직이름 <span class="at">--jq</span> .state</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="text"><code>active</code></pre>
-<p>위 출력은 REST API 문서에 따른 예시이다. 집필 때 실제 조직으로는 실행하지 않았다.</p>
-<p>초대를 받아들이지 않은 상태(<code>pending</code>)에서는 같은 API에 <code>state</code>를 <code>active</code>로 보내 받아들일 수도 있다[H5]. 브라우저 화면이 열리지 않을 때만 쓴다.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> api user/repository_invitations <span class="at">--jq</span> <span class="st">'.[] | "\(.id) \(.repository.full_name)"'</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>(예시)
+301234567 교수계정/ict-aisw-2027-team01-lab
+301234568 교수계정/ict-aisw-2027-team01-project</code></pre>
+<p>출력이 비어 있으면 받지 않은 초대가 없다. 브라우저 화면이 열리지 않을 때만 초대 번호로 받아들인다[H5].</p>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb37"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> api <span class="at">-X</span> PATCH user/memberships/orgs/조직이름 <span class="at">-f</span> state=active <span class="at">--jq</span> .state</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><span class="check-badge">확인 8</span> <code>gh api user/memberships/orgs/조직이름 --jq .state</code>가 <code>active</code>를 출력한다(1주차, 늦어도 3장 전).</p>
-<p>조직에 들어오면 3장에서 팀 실습 저장소 <code>&lt;팀&gt;-lab</code>을 클론한다. 클론 위치는 <code>~/teams/&lt;팀&gt;-lab</code>으로 정한다. 개인 실습 저장소 안에 클론하지 않는다. 저장소 안에 다른 저장소를 넣으면 바깥 저장소의 <code>git status</code>가 안쪽 저장소를 알 수 없는 변경으로 보이기 때문이다. 팀원이 서로 리뷰할 산출물(7·8·13장)은 팀 실습 저장소의 <code>reviews/chNN/「아이디」/</code>에 올린다. 장과 아이디로 폴더를 나누므로 여러 사람이 같은 파일을 고쳐 충돌하는 일이 없다. 프로젝트실습Ⅰ의 팀 저장소는 같은 조직의 <code>&lt;팀&gt;-project</code>이다(3장 9-5).</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> api <span class="at">-X</span> PATCH user/repository_invitations/초대번호</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>위 출력은 REST API 문서에 따른 예시이다. 집필 때 실제 저장소로는 실행하지 않았다. 받아들였는지는 저장소 정보로 확인한다. 협업자이면 <code>WRITE</code>가 나온다.</p>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb38"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/teams <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> ~/teams</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> repo clone 조직이름/팀이름-lab</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> repo view 교수계정/ict-aisw-2027-팀이름-lab <span class="at">--json</span> viewerPermission <span class="at">--jq</span> .viewerPermission</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><span class="check-badge">확인 8</span> <code>gh api user/repository_invitations</code>의 출력이 비어 있고, 위 명령이 <code>WRITE</code>를 출력한다(초대가 온 주, 늦어도 3장 전).</p>
+<p>3장에서 팀 실습 저장소를 클론한다. 클론 위치는 <code>~/teams/&lt;팀&gt;-lab</code>으로 정한다(GitHub의 이름보다 짧게 클론 폴더의 이름을 정해 준다). 개인 실습 저장소 안에 클론하지 않는다. 저장소 안에 다른 저장소를 넣으면 바깥 저장소의 <code>git status</code>가 안쪽 저장소를 알 수 없는 변경으로 보이기 때문이다. 팀원이 서로 리뷰할 산출물(7·8·13장)은 팀 실습 저장소의 <code>reviews/chNN/「아이디」/</code>에 올린다. 장과 아이디로 폴더를 나누므로 여러 사람이 같은 파일을 고쳐 충돌하는 일이 없다.</p>
+<div class="code-label where-server">
+<span>터미널</span>
+</div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/teams <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> ~/teams</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> repo clone 교수계정/ict-aisw-2027-팀이름-lab 팀이름-lab</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
 <section id="a-12.-작업-폴더와-키트-받기" class="level2">
@@ -1718,7 +1722,7 @@ $ git status --short
 </tr>
 <tr class="even">
 <td>팀 실습 저장소 <code>~/teams/&lt;팀&gt;-lab/</code></td>
-<td>3장부터 수업용 조직의 팀 저장소를 클론하는 자리(A-11)</td>
+<td>3장부터 교수 계정의 팀 저장소를 클론하는 자리(A-11)</td>
 </tr>
 </tbody>
 </table>
@@ -1729,13 +1733,13 @@ $ git status --short
 </section>
 <section id="a-12-2.-키트-저장소-클론-1주차-한-번" class="level3">
 <h3 class="anchored" data-anchor-id="a-12-2.-키트-저장소-클론-1주차-한-번">A-12-2. 키트 저장소 클론 (1주차, 한 번)</h3>
-<p>키트는 교수 계정의 공개 저장소(이하 「키트 저장소」)로 배포한다. 공개 저장소이므로 조직 초대(A-11)를 기다리지 않고 받을 수 있다. 저장소의 주소는 Google 클래스룸에 올린다. 주소 <code>https://github.com/조직이름/키트저장소</code>의 두 부분이 아래 명령의 <code>조직이름</code>과 <code>키트저장소</code>이다. 키트 저장소에서는 앞부분이 수업용 조직이 아니라 교수 계정의 이름이므로, A-11의 조직 이름과 다를 수 있다. 홈 폴더의 <code>kits-repo</code>라는 이름으로 클론한다.</p>
+<p>키트는 교수 계정의 공개 저장소(이하 「키트 저장소」)로 배포한다. 공개 저장소이므로 초대(A-11) 없이 받을 수 있다. 저장소의 주소는 Google 클래스룸에 올린다. 주소 <code>https://github.com/교수계정/키트저장소</code>의 두 부분이 아래 명령의 <code>교수계정</code>과 <code>키트저장소</code>이다. 홈 폴더의 <code>kits-repo</code>라는 이름으로 클론한다.</p>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb39"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> repo clone 조직이름/키트저장소 ~/kits-repo</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> ~/kits-repo</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> repo clone 교수계정/키트저장소 ~/kits-repo</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> ~/kits-repo</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>Service_01장</code></pre>
 <p><code>ls</code>에 보이는 폴더는 그때까지 배포된 장의 키트이다. 교수는 장마다 새 키트를 이 저장소에 올리고, 이미 배포한 키트를 고치면 같은 저장소에 커밋한다.</p>
 </section>
@@ -1745,10 +1749,10 @@ $ git status --short
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb41"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">-C</span> ~/kits-repo pull</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/kits</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-rn</span> ~/kits-repo/Service_NN장 ~/kits/</span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> ~/kits/Service_NN장</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">-C</span> ~/kits-repo pull</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/kits</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-rn</span> ~/kits-repo/Service_NN장 ~/kits/</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> ~/kits/Service_NN장</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -1804,8 +1808,8 @@ $ cat ~/kits/Service_01장/README.md
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb43"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> ~/kits/Service_NN장 ~/kits/Service_NN장_내사본</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-rn</span> ~/kits-repo/Service_NN장 ~/kits/</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> ~/kits/Service_NN장 ~/kits/Service_NN장_내사본</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-rn</span> ~/kits-repo/Service_NN장 ~/kits/</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><code>~/kits-repo</code> 안의 파일은 고치지 않는다. 고치면 다음 <code>git pull</code>이 「로컬 변경이 덮어써진다」며 거절할 수 있다. 거절되면 <code>mv ~/kits-repo ~/kits-repo_old</code>로 옮겨 두고 A-12-2의 클론을 다시 한 뒤, 고친 것이 필요하면 <code>~/kits-repo_old</code>에서 꺼낸다.</li>
 </ul>
@@ -1873,13 +1877,13 @@ $ cat ~/kits/Service_01장/README.md
 <h3 class="anchored" data-anchor-id="a-13-2.-만들기와-설치">A-13-2. 만들기와 설치</h3>
 <p>가상 환경은 2장에서 개인 실습 저장소를 만들 때 처음 만든다(2장 3-4). 그 뒤로는 만들지 않고 패키지만 더 설치한다.</p>
 <p><strong>[터미널]</strong> (Windows)</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> venv .venv</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/Scripts/activate</span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span> python</span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">--version</span></span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install <span class="at">-r</span> ch02/deadline/requirements.txt</span>
-<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip list</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> venv .venv</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/Scripts/activate</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span> python</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">--version</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install <span class="at">-r</span> ch02/deadline/requirements.txt</span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip list</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>/c/Users/사용자이름/llm-service-lab/.venv/Scripts/python
 Python 3.13.7
 ...
@@ -1937,12 +1941,12 @@ pytest     9.2.0
 <li>패키지가 꼬였으면 다음 순서로 처음부터 다시 만든다. 마지막 줄은 저장소 안의 모든 <code>requirements.txt</code>를 찾아 차례로 설치한다. <code>rm -rf .venv</code>는 <code>pwd</code>로 저장소 맨 위인지 확인한 뒤에 실행한다.</li>
 </ul>
 <p><strong>[터미널]</strong> (Windows. macOS는 <code>python3 -m venv</code>, <code>.venv/bin/activate</code>)</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="ex">deactivate</span> <span class="dv">2</span><span class="op">&gt;</span>/dev/null</span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> .venv</span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> venv .venv</span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/Scripts/activate</span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> . <span class="at">-name</span> requirements.txt <span class="at">-not</span> <span class="at">-path</span> <span class="st">"./.venv/*"</span> <span class="at">-exec</span> python <span class="at">-m</span> pip install <span class="at">-q</span> <span class="at">-r</span> {} <span class="dt">\;</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="ex">deactivate</span> <span class="dv">2</span><span class="op">&gt;</span>/dev/null</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> .venv</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> venv .venv</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/Scripts/activate</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> . <span class="at">-name</span> requirements.txt <span class="at">-not</span> <span class="at">-path</span> <span class="st">"./.venv/*"</span> <span class="at">-exec</span> python <span class="at">-m</span> pip install <span class="at">-q</span> <span class="at">-r</span> {} <span class="dt">\;</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>키트에 없는 패키지가 필요하다고 Claude Code가 제안하면, 바로 설치하지 말고 무엇을 왜 설치하는지 읽는다. 설치하기로 했으면 그 장의 <code>requirements.txt</code>에도 판과 함께 적는다. 적지 않으면 다른 사람(또는 다시 만든 가상 환경)에서 같은 코드가 돌지 않는다.</li>
 </ul>
@@ -2010,8 +2014,8 @@ RATE_LIMIT_PER_MIN=10</code></pre>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb48"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/jobprep</span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> .env.example .env</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/jobprep</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> .env.example .env</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="6" type="1">
 <li>VS Code에서 <code>.env</code>를 열어 <code>ANTHROPIC_API_KEY=</code> 뒤에 키를 붙여 넣고 저장한다. 따옴표와 공백 없이 한 줄로 넣는다. 터미널에서 <code>echo "ANTHROPIC_API_KEY=..." &gt;&gt; .env</code>로 넣지 않는다. 명령이 셸의 기록(<code>~/.bash_history</code>)에 키와 함께 남기 때문이다.</li>
 </ol>
@@ -2023,16 +2027,16 @@ RATE_LIMIT_PER_MIN=10</code></pre>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb49"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/jobprep</span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> check-ignore <span class="at">-v</span> .env</span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">--short</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/jobprep</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> check-ignore <span class="at">-v</span> .env</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">--short</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>jobprep/.gitignore:2:.env   .env</code></pre>
 <p><code>git check-ignore -v</code>가 어느 <code>.gitignore</code>의 몇째 줄이 <code>.env</code>를 무시하게 하는지 보여 주면 된다. 위 출력은 10장 키트의 <code>jobprep/.gitignore</code>가 있을 때이고, 그 파일이 없으면 저장소 맨 위의 견본이 잡혀 <code>.gitignore:12:.env  .env</code>처럼 나온다(2026-11-14, git 2.55에서 두 경우를 확인). 아무것도 출력하지 않으면 무시되지 않는 것이므로 커밋하기 전에 <code>.gitignore</code>에 <code>.env</code>를 더한다. <code>git status --short</code>에 <code>.env</code>가 보이면 안 된다.</p>
 <p>실수로 <code>git add</code>까지 했다면, 커밋하기 전에 스테이징에서만 빼낸다. 파일은 지워지지 않는다(2026-11-14, git 2.55에서 확인).</p>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb51"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rm <span class="at">--cached</span> .env</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rm <span class="at">--cached</span> .env</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>$ git status --short
 A  .env
 $ git rm --cached -q .env
@@ -2080,20 +2084,20 @@ $ git status --short
 <div class="code-label where-server">
 <span>파일: jobprep/.claude/settings.json</span>
 </div>
-<div class="sourceCode" id="cb53"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"permissions"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"deny"</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Read(./.env)"</span><span class="ot">,</span></span>
-<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Read(./.env.*)"</span></span>
-<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>    <span class="ot">]</span></span>
-<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
-<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"permissions"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"deny"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Read(./.env)"</span><span class="ot">,</span></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Read(./.env.*)"</span></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>    <span class="ot">]</span></span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>키가 들어갔는지는 값을 출력하지 않고 확인한다. 다음은 키트의 방식처럼 <code>.env</code>를 읽은 뒤 「있음/없음」만 출력하는 확인이다(가상 환경을 켠 터미널).</p>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb54"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/jobprep</span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"from dotenv import load_dotenv; import os; load_dotenv(); print('KEY_SET' if os.getenv('ANTHROPIC_API_KEY') else 'KEY_EMPTY')"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/jobprep</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"from dotenv import load_dotenv; import os; load_dotenv(); print('KEY_SET' if os.getenv('ANTHROPIC_API_KEY') else 'KEY_EMPTY')"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>KEY_EMPTY</code></pre>
 <p>키를 발급하지 않았으면 <code>KEY_EMPTY</code>가, 발급해 넣었으면 <code>KEY_SET</code>이 나온다.</p>
 <p><span class="check-badge">확인 11</span> <code>git check-ignore -v .env</code>가 <code>.gitignore</code>의 줄을 출력하고, <code>git status --short</code>에 <code>.env</code>가 없다(10장 전까지).</p>
@@ -2218,8 +2222,8 @@ LLM_FAKE = 0</code></pre>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb57"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/jobprep</span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="va">LLM_FAKE</span><span class="op">=</span>1 <span class="ex">python</span> <span class="at">-m</span> pytest <span class="at">-q</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/jobprep</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="va">LLM_FAKE</span><span class="op">=</span>1 <span class="ex">python</span> <span class="at">-m</span> pytest <span class="at">-q</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="2" type="1">
 <li><code>.env</code>에 키(A-14)와 <code>LLM_MODEL</code>이 들어 있는지 본다.</li>
 <li>그 장이 안내하는 명령 하나만 <code>LLM_FAKE=0</code>을 붙여 실행한다. 반복문이나 테스트 전체를 실제 호출로 돌리지 않는다.</li>
@@ -2318,8 +2322,8 @@ LLM_FAKE = 0</code></pre>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb58"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> http.server 8100 <span class="at">--bind</span> 127.0.0.1</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> http.server 8100 <span class="at">--bind</span> 127.0.0.1</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>Serving HTTP on 127.0.0.1 port 8100 (http://127.0.0.1:8100/) ...</code></pre>
 <p>위 출력은 집필용 Windows PC의 Git Bash에서 얻은 것이다(2026-11-16, 파이썬 3.13.7). 브라우저에서 <code>http://localhost:8100/</code>을 바로 연다. 포트 전달 같은 단계는 필요 없다.</p>
 <ul>
@@ -2337,12 +2341,12 @@ ERROR:    [Errno 10048] error while attempting to bind on address ('127.0.0.1', 
 Serving HTTP on 127.0.0.1 port 8100 (http://127.0.0.1:8100/) ...</code></pre>
 <p><code>uvicorn</code>은 오류를 내고 멈추지만, Windows의 <code>http.server</code>는 <strong>오류 없이 둘 다 뜬다.</strong> 이때 브라우저가 어느 쪽의 화면을 받을지 알 수 없어, 고친 파일이 반영되지 않은 것처럼 보인다. macOS와 리눅스에서는 두 번째 <code>http.server</code>가 <code>Address already in use</code> 오류를 낸다(리눅스에서 확인, 2026-11-14). 그래서 서버를 띄우기 전과 화면이 이상할 때 그 번호를 누가 쓰는지 본다.</p>
 <p><strong>[터미널]</strong> (Windows의 Git Bash)</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">netstat</span> <span class="at">-ano</span> <span class="kw">|</span> <span class="ex">findstr</span> :8100</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">netstat</span> <span class="at">-ano</span> <span class="kw">|</span> <span class="ex">findstr</span> :8100</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>  TCP    127.0.0.1:8100         0.0.0.0:0              LISTENING       23284
   TCP    127.0.0.1:8100         0.0.0.0:0              LISTENING       39572</code></pre>
 <p>위 출력은 두 <code>http.server</code>를 함께 띄운 상태에서 얻은 것이다(2026-11-16). 줄이 없으면 아무도 쓰지 않는 것이고, <code>LISTENING</code> 줄의 마지막 숫자가 그 포트를 쓰는 프로그램의 번호(PID)이다. <code>findstr</code> 대신 <code>grep ":8100 "</code>을 써도 같다.</p>
 <p><strong>[터미널]</strong> (macOS)</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="ex">lsof</span> <span class="at">-nP</span> <span class="at">-iTCP:8100</span> <span class="at">-sTCP:LISTEN</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="ex">lsof</span> <span class="at">-nP</span> <span class="at">-iTCP:8100</span> <span class="at">-sTCP:LISTEN</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>쓰는 프로그램을 찾았으면 다음 순서로 정리한다.</p>
 <ol type="1">
 <li>내가 띄운 서버이면 그 터미널을 찾아 <code>Ctrl+C</code>를 누른다.</li>
@@ -2398,14 +2402,14 @@ Serving HTTP on 127.0.0.1 port 8100 (http://127.0.0.1:8100/) ...</code></pre>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb65"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/jobprep</span>
-<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="va">EMBED_BACKEND</span><span class="op">=</span>fallback <span class="ex">python</span> <span class="at">-m</span> pytest <span class="at">-q</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/jobprep</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="va">EMBED_BACKEND</span><span class="op">=</span>fallback <span class="ex">python</span> <span class="at">-m</span> pytest <span class="at">-q</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Ollama를 쓰려면(선택).</strong> <a href="https://ollama.com/download" class="uri">https://ollama.com/download</a>에서 자기 운영체제의 설치 파일을 받아 설치한다. Windows의 설치 파일은 관리자 권한 없이 홈 폴더에 설치되며, Windows 10 22H2 이상과 프로그램용 4GB 이상의 디스크가 필요하다[O2]. 모델은 따로 내려받으며 크기가 크다. 설치한 뒤 모델을 받고 동작을 확인한다.</p>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb66"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ollama</span> pull nomic-embed-text</span>
-<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> http://localhost:11434/api/tags <span class="kw">|</span> <span class="fu">head</span> <span class="at">-c</span> 300<span class="kw">;</span> <span class="bu">echo</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ollama</span> pull nomic-embed-text</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> http://localhost:11434/api/tags <span class="kw">|</span> <span class="fu">head</span> <span class="at">-c</span> 300<span class="kw">;</span> <span class="bu">echo</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>{"models":[{"name":"nomic-embed-text:latest", ...}]}</code></pre>
 <p>위 출력은 예시이다(집필용 PC에는 Ollama를 설치하지 않았다). 모델 목록(JSON)이 나오면 Ollama가 동작하는 것이다. 아무것도 나오지 않거나 <code>curl</code>이 연결하지 못하면 Ollama가 꺼진 것이므로 <code>fallback</code>으로 진행한다.</p>
 <blockquote class="blockquote">
@@ -2421,9 +2425,9 @@ Serving HTTP on 127.0.0.1 port 8100 (http://127.0.0.1:8100/) ...</code></pre>
 <li><strong>설치 자리.</strong> 꾸러미는 개인 실습 저장소의 가상 환경(A-13)에 9장 키트의 <code>requirements.txt</code>로 설치하고, 브라우저는 같은 가상 환경의 파이썬으로 받는다. 다른 파이썬으로 받으면 판이 맞지 않아 <code>Executable doesn't exist</code> 오류가 난다.</li>
 </ol>
 <p><strong>[터미널]</strong> (가상 환경을 켠 터미널)</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
-<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install <span class="at">-r</span> 「9장 키트가 안내하는 requirements.txt」</span>
-<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> playwright install <span class="at">--only-shell</span> chromium</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install <span class="at">-r</span> 「9장 키트가 안내하는 requirements.txt」</span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> playwright install <span class="at">--only-shell</span> chromium</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="2" type="1">
 <li><strong>창 없이 실행한다.</strong> 9장의 검사는 브라우저를 창 없이(headless) 띄운다. Playwright의 파이썬 안내는 테스트가 기본적으로 headless로 돌아 브라우저 창이 열리지 않는다고 밝힌다[PW2]. <code>--only-shell</code>은 headless에서만 쓰는 Chromium을 받게 하여, 전체 Chromium을 받지 않아도 되게 한다[PW1]. 검사가 도는 모습을 창으로 보고 싶으면 <code>--only-shell</code>을 빼고 전체 Chromium을 받는다.</li>
 <li><strong>용량과 자리.</strong> 브라우저 파일은 Windows에서 홈 폴더의 <code>AppData\Local\ms-playwright</code>(Git Bash에서 <code>~/AppData/Local/ms-playwright</code>), macOS에서 <code>~/Library/Caches/ms-playwright</code>에 놓인다[PW1]. 집필할 때 잰 크기는 headless 전용 Chromium이 약 278MB, 전체 Chromium이 약 437MB였다(Windows, Playwright 1.64.0, 9장의 측정). 다른 Playwright 판을 설치했다가 지우면, 어느 설치도 쓰지 않는 판의 브라우저는 자동으로 지워진다[PW1].</li>
@@ -2484,8 +2488,8 @@ Serving HTTP on 127.0.0.1 port 8100 (http://127.0.0.1:8100/) ...</code></pre>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb69"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/jobprep/web</span>
-<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> http.server 8100 <span class="at">--bind</span> 127.0.0.1</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/jobprep/web</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> http.server 8100 <span class="at">--bind</span> 127.0.0.1</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol type="1">
 <li>먼저 평소의 브라우저에서 <code>http://localhost:8100/</code>을 열어 공고 목록이 보이는지 본다. 여기서 안 보이면 Aside의 문제가 아니라 웹 서버의 문제다(A-16).</li>
 <li>Aside에서 같은 주소 <code>http://localhost:8100/</code>을 연다.</li>
@@ -2580,7 +2584,7 @@ Serving HTTP on 127.0.0.1 port 8100 (http://127.0.0.1:8100/) ...</code></pre>
 <li>Orca를 실행해 첫 화면이 뜨는지 본다. 처음 실행할 때 운영체제가 보안 경고를 보이면, 내려받은 곳이 위의 공식 주소인지 확인한 뒤 실행을 허용한다.</li>
 </ol>
 <p><strong>[터미널]</strong> (macOS에서 Homebrew를 쓰는 경우)</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> stablyai/orca/orca</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> stablyai/orca/orca</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <blockquote class="blockquote">
 <p><strong>[그림 자리: Orca의 첫 화면]</strong> 설치 직후 Orca를 처음 실행한 창. 왼쪽의 빈 프로젝트 목록과 저장소를 더하는 단추, 설정(Settings) 단추의 위치를 표시한다. 찍을 곳: Windows 11 PC의 Orca.</p>
 </blockquote>
@@ -2648,9 +2652,9 @@ Serving HTTP on 127.0.0.1 port 8100 (http://127.0.0.1:8100/) ...</code></pre>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb71"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
-<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> worktree list</span>
-<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> worktree prune <span class="at">-v</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> worktree list</span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> worktree prune <span class="at">-v</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="a-20-4.-막힐-때" class="level3">
 <h3 class="anchored" data-anchor-id="a-20-4.-막힐-때">A-20-4. 막힐 때</h3>
@@ -2711,11 +2715,11 @@ Serving HTTP on 127.0.0.1 port 8100 (http://127.0.0.1:8100/) ...</code></pre>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb72"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="at">--version</span></span>
-<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> auth status <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-2</span></span>
-<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"API_KEY_ENV=</span><span class="va">${ANTHROPIC_API_KEY</span><span class="op">:+</span>있음<span class="va">}</span><span class="st">"</span></span>
-<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span> python</span>
-<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab <span class="kw">&amp;&amp;</span> <span class="fu">git</span> status <span class="at">-sb</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-3</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="at">--version</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> auth status <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-2</span></span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"API_KEY_ENV=</span><span class="va">${ANTHROPIC_API_KEY</span><span class="op">:+</span>있음<span class="va">}</span><span class="st">"</span></span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span> python</span>
+<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab <span class="kw">&amp;&amp;</span> <span class="fu">git</span> status <span class="at">-sb</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-3</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>2.1.296 (Claude Code)
 github.com
   ✓ Logged in to github.com account 사용자이름 (keyring)
@@ -2892,9 +2896,9 @@ API_KEY_ENV=
 <td>A-10</td>
 </tr>
 <tr class="odd">
-<td>조직의 저장소(팀 저장소)가 보이지 않는다</td>
-<td>초대를 받아들이지 않았다(<code>pending</code>) 또는 초대가 만료되었다</td>
-<td>A-11의 <code>gh api</code> 명령으로 상태를 확인한다</td>
+<td>팀 저장소가 보이지 않는다(<code>Could not resolve to a Repository</code>)</td>
+<td>초대를 받아들이지 않았다 또는 초대가 만료되었다</td>
+<td>A-11의 <code>gh api user/repository_invitations</code>로 확인한다</td>
 <td>A-11</td>
 </tr>
 <tr class="even">
@@ -3107,14 +3111,14 @@ API_KEY_ENV=
 <td>확인함</td>
 </tr>
 <tr class="odd">
-<td>GitHub Pages의 요금제별 조건, 학생 혜택(GitHub Pro)과 신청 조건, 조직 초대</td>
+<td>GitHub Pages의 요금제별 조건, 학생 혜택(GitHub Pro)과 신청 조건, 저장소 협업자 초대</td>
 <td>GitHub Docs와 GitHub Education 페이지(2026-11-14)</td>
 <td>문서로만 확인. 실제 신청과 초대는 하지 않았다</td>
 </tr>
 <tr class="even">
-<td><code>gh auth login</code>의 질문 문구, <code>gh auth status</code> 출력 형식, <code>gh api user/memberships/orgs/…</code></td>
-<td>gh 2.88의 도움말, REST API 문서(2026-11-14)</td>
-<td>문구는 확인함. 실제 로그인과 조직 조회는 하지 않았다</td>
+<td><code>gh auth login</code>의 질문 문구, <code>gh auth status</code> 출력 형식, <code>gh api user/repository_invitations</code></td>
+<td>gh 2.88의 도움말, REST API 문서(2026-11-14, 초대 API는 2026-11-17)</td>
+<td>문구는 확인함. 실제 로그인과 초대 조회·수락은 하지 않았다</td>
 </tr>
 <tr class="odd">
 <td>Claude 요금제의 이름과 요금</td>
@@ -3246,9 +3250,9 @@ API_KEY_ENV=
 </tr>
 <tr class="odd">
 <td>H3</td>
-<td>GitHub Docs: Inviting users to join your organization</td>
-<td><a href="https://docs.github.com/en/organizations/managing-membership-in-your-organization/inviting-users-to-join-your-organization" class="uri">https://docs.github.com/en/organizations/managing-membership-in-your-organization/inviting-users-to-join-your-organization</a></td>
-<td>2026-11-14</td>
+<td>GitHub Docs: Inviting collaborators to a personal repository, Permission levels for a personal account repository</td>
+<td><a href="https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository" class="uri">https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository</a></td>
+<td>2026-11-17</td>
 </tr>
 <tr class="even">
 <td>H4</td>
@@ -3258,9 +3262,9 @@ API_KEY_ENV=
 </tr>
 <tr class="odd">
 <td>H5</td>
-<td>GitHub REST API: Organization members(인증된 사용자의 조직 구성원 상태)</td>
-<td><a href="https://docs.github.com/en/rest/orgs/members" class="uri">https://docs.github.com/en/rest/orgs/members</a></td>
-<td>2026-11-14</td>
+<td>GitHub REST API: Repository invitations(인증된 사용자의 받지 않은 초대 목록과 수락)</td>
+<td><a href="https://docs.github.com/en/rest/collaborators/invitations" class="uri">https://docs.github.com/en/rest/collaborators/invitations</a></td>
+<td>2026-11-17</td>
 </tr>
 <tr class="even">
 <td>H6</td>

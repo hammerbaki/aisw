@@ -370,11 +370,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#a-5-2.-로그인" id="toc-a-5-2.-로그인" class="nav-link" data-scroll-target="#a-5-2.-로그인">A-5-2. 로그인</a></li>
   <li><a href="#a-5-3.-셸에-키를-두지-않는-까닭" id="toc-a-5-3.-셸에-키를-두지-않는-까닭" class="nav-link" data-scroll-target="#a-5-3.-셸에-키를-두지-않는-까닭">A-5-3. 셸에 키를 두지 않는 까닭</a></li>
   </ul></li>
-  <li><a href="#a-6.-git과-github-cli-수업용-조직" id="toc-a-6.-git과-github-cli-수업용-조직" class="nav-link" data-scroll-target="#a-6.-git과-github-cli-수업용-조직">A-6. Git과 GitHub CLI, 수업용 조직</a>
+  <li><a href="#a-6.-git과-github-cli-협업자-초대" id="toc-a-6.-git과-github-cli-협업자-초대" class="nav-link" data-scroll-target="#a-6.-git과-github-cli-협업자-초대">A-6. Git과 GitHub CLI, 협업자 초대</a>
   <ul class="collapse">
   <li><a href="#a-6-1.-git-설정" id="toc-a-6-1.-git-설정" class="nav-link" data-scroll-target="#a-6-1.-git-설정">A-6-1. Git 설정</a></li>
   <li><a href="#a-6-2.-github-cli-로그인" id="toc-a-6-2.-github-cli-로그인" class="nav-link" data-scroll-target="#a-6-2.-github-cli-로그인">A-6-2. GitHub CLI 로그인</a></li>
-  <li><a href="#a-6-3.-수업용-조직의-초대-수락" id="toc-a-6-3.-수업용-조직의-초대-수락" class="nav-link" data-scroll-target="#a-6-3.-수업용-조직의-초대-수락">A-6-3. 수업용 조직의 초대 수락</a></li>
+  <li><a href="#a-6-3.-협업자-초대의-수락" id="toc-a-6-3.-협업자-초대의-수락" class="nav-link" data-scroll-target="#a-6-3.-협업자-초대의-수락">A-6-3. 협업자 초대의 수락</a></li>
   </ul></li>
   <li><a href="#a-7.-키트-받기" id="toc-a-7.-키트-받기" class="nav-link" data-scroll-target="#a-7.-키트-받기">A-7. 키트 받기</a>
   <ul class="collapse">
@@ -504,7 +504,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 <p>이 부록은 실습 환경을 갖추는 절차를 한곳에 모은 것이다. 계정 준비, 내 PC의 도구 설치, 터미널, Claude Code의 로그인, Git과 GitHub CLI, 키트 받기, 기준 저장소, 가상 환경, 포트, 프로덕트의 API 키, 모의 모드, Claude Code 설정 파일의 범위, 헤드리스 실행, Agent SDK, Orca, CI의 비밀 정보와 보조 도구를 차례로 다룬다. 각 장의 0절은 이 절차를 되풀이하지 않고 이 부록을 가리킨다.</p>
 <p>실습은 학생 각자의 계정으로, 개인 노트북(권장) 또는 실습실 PC에서 한다. 학과 실습 서버는 쓰지 않는다(사용자 결정 11, 2026-11-16). 실습실 PC는 Windows 11로 가정하고, 이 부록의 명령은 Windows의 Git Bash를 기준으로 적는다. macOS에서 다른 점은 해당 자리에 짧게 병기한다.</p>
-<p>이 과목은 1학기 「LLM 서비스 개발」의 환경을 그대로 이어 쓴다. 앞 과목에서 이미 한 절차(계정, 도구 설치, Git 설정, GitHub CLI 로그인, 수업용 조직 가입)는 확인만 하고 넘어간다. 처음 갖추는 학습자는 A-2부터 A-6까지를 차례로 한다. 이 과목에서 새로 생기는 것은 세 가지이다. 첫째, 학기 내내 저장소 하나(<code>~/agent-lab/jobprep</code>)를 운영한다. 둘째, Claude Code의 설정과 확장 기능을 직접 만들므로 설정 파일의 위치와 범위를 알아야 한다. 셋째, 사람이 아닌 프로그램이 Claude Code와 모델을 부르는 실습(헤드리스 실행, 루프, 멀티 에이전트, Agent SDK, CI)이 있으므로, 무엇이 어느 인증으로 얼마를 쓰는지를 미리 정해 둔다.</p>
+<p>이 과목은 1학기 「LLM 서비스 개발」의 환경을 그대로 이어 쓴다. 앞 과목에서 이미 한 절차(계정, 도구 설치, Git 설정, GitHub CLI 로그인)는 확인만 하고 넘어간다. 처음 갖추는 학습자는 A-2부터 A-6까지를 차례로 한다. 이 과목에서 새로 생기는 것은 세 가지이다. 첫째, 학기 내내 저장소 하나(<code>~/agent-lab/jobprep</code>)를 운영한다. 둘째, Claude Code의 설정과 확장 기능을 직접 만들므로 설정 파일의 위치와 범위를 알아야 한다. 셋째, 사람이 아닌 프로그램이 Claude Code와 모델을 부르는 실습(헤드리스 실행, 루프, 멀티 에이전트, Agent SDK, CI)이 있으므로, 무엇이 어느 인증으로 얼마를 쓰는지를 미리 정해 둔다.</p>
 <section id="장-사이-약속" class="level2">
 <h2 class="anchored" data-anchor-id="장-사이-약속">장 사이 약속</h2>
 <p>1~13장은 같은 저장소, 같은 가상 환경, 같은 포트 위에서 이어진다. 장마다 다르게 하면 앞 장의 결과를 다음 장의 도구가 찾지 못한다. 모든 장의 강의안과 키트가 지키는 약속은 다음과 같다(2026-11-16 기준).</p>
@@ -656,7 +656,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>A-2</td>
-<td>계정 준비(Claude 구독, GitHub과 학생 혜택, 수업용 조직, 선택하는 Console 키, Orca), 공용 PC에서 끝낼 때</td>
+<td>계정 준비(Claude 구독, GitHub과 학생 혜택, 선택하는 Console 키, Orca), 공용 PC에서 끝낼 때</td>
 <td>1주차 전</td>
 <td>한 번. 로그아웃은 공용 PC에서 매 수업</td>
 </tr>
@@ -680,7 +680,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>A-6</td>
-<td>Git과 GitHub CLI, 수업용 조직</td>
+<td>Git과 GitHub CLI, 협업자 초대</td>
 <td>1주차</td>
 <td>한 번</td>
 </tr>
@@ -819,7 +819,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>계정 이름, 비밀번호, API 키, 토큰의 실제 값은 이 부록에 적지 않는다. GitHub 사용자 이름은 「GitHub 아이디」, 수업용 GitHub 조직의 이름은 「조직 이름」, 키트 저장소 이름은 「키트 저장소」로 적는다. 키트 저장소의 실제 주소는 Google 클래스룸에 올린 <code>https://github.com/「조직 이름」/「키트 저장소」</code>에서 읽는다. 키트 저장소에서는 앞부분이 수업용 조직이 아니라 교수 계정의 이름이다. 수업용 조직의 실제 이름은 초대 메일에 있고, Google 클래스룸에서도 안내한다.</p>
+<p>계정 이름, 비밀번호, API 키, 토큰의 실제 값은 이 부록에 적지 않는다. GitHub 사용자 이름은 「GitHub 아이디」, 교수의 GitHub 계정은 「교수 계정」, 키트 저장소 이름은 「키트 저장소」로 적는다. 키트 저장소의 실제 주소는 Google 클래스룸에 올린 <code>https://github.com/「교수 계정」/「키트 저장소」</code>에서 읽는다. 이 과목은 수업용 조직을 쓰지 않는다.</p>
 <hr>
 </section>
 <section id="a-1.-실습-환경의-구성" class="level2">
@@ -1029,11 +1029,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>A-2-2</td>
 </tr>
 <tr class="even">
-<td>수업용 GitHub 조직의 구성원</td>
+<td>짝의 저장소 협업자</td>
 <td>13장의 짝 리뷰</td>
 <td>무료</td>
-<td>1주차(초대를 받은 주)</td>
-<td>A-6-3</td>
+<td>13장 전(짝이 초대한 주)</td>
+<td>A-6-3, A-8-2</td>
 </tr>
 <tr class="odd">
 <td>Claude Console의 API 키(선택)</td>
@@ -1067,7 +1067,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="a-2-2.-github-계정과-학생-혜택" class="level3">
 <h3 class="anchored" data-anchor-id="a-2-2.-github-계정과-학생-혜택">A-2-2. GitHub 계정과 학생 혜택</h3>
-<p>GitHub 계정이 없으면 <a href="https://github.com/signup" class="uri">https://github.com/signup</a>에서 만든다. 커밋에 쓸 이메일(A-6-1)과 같은 이메일을 계정에 등록해 둔다. 비밀번호는 Claude 계정, PC 계정의 비밀번호와 다르게 정하고, 2단계 인증을 켠다. 수업용 조직이 2단계 인증을 요구할 수 있다(A-6-3).</p>
+<p>GitHub 계정이 없으면 <a href="https://github.com/signup" class="uri">https://github.com/signup</a>에서 만든다. 커밋에 쓸 이메일(A-6-1)과 같은 이메일을 계정에 등록해 둔다. 비밀번호는 Claude 계정, PC 계정의 비밀번호와 다르게 정하고, 2단계 인증을 켠다.</p>
 <p>비공개 저장소는 GitHub Free에서도 만들 수 있다. 다만 이 과목이 쓰는 기능 몇 가지에 요금제 조건이 있다.</p>
 <table class="caption-top table">
 <colgroup>
@@ -1639,8 +1639,8 @@ Anthropic base URL: https://api.anthropic.com</code></pre>
 <hr>
 </section>
 </section>
-<section id="a-6.-git과-github-cli-수업용-조직" class="level2">
-<h2 class="anchored" data-anchor-id="a-6.-git과-github-cli-수업용-조직">A-6. Git과 GitHub CLI, 수업용 조직</h2>
+<section id="a-6.-git과-github-cli-협업자-초대" class="level2">
+<h2 class="anchored" data-anchor-id="a-6.-git과-github-cli-협업자-초대">A-6. Git과 GitHub CLI, 협업자 초대</h2>
 <p>앞 과목에서 한 설정이 그대로 쓰인다. A-6-1과 A-6-2의 확인만 한다.</p>
 <section id="a-6-1.-git-설정" class="level3">
 <h3 class="anchored" data-anchor-id="a-6-1.-git-설정">A-6-1. Git 설정</h3>
@@ -1709,24 +1709,25 @@ init.defaultbranch=main</code></pre>
 <p><strong>[최신 자료 자리: GitHub CLI의 판과 토큰 범위]</strong> 확인할 곳: <code>gh --version</code>, <code>gh auth status</code>, <a href="https://cli.github.com/manual/" class="uri">https://cli.github.com/manual/</a>. 2026-11-16 확인 값: 집필용 PC의 <code>gh version 2.88.1 (2026-03-12)</code>. 13장에 <code>workflow</code> 범위가 필요하다는 점과 <code>gh auth refresh -s workflow</code>는 2026-11-14에 도움말로 확인하였다. 1주차 전에 다시 확인한다.</p>
 </blockquote>
 </section>
-<section id="a-6-3.-수업용-조직의-초대-수락" class="level3">
-<h3 class="anchored" data-anchor-id="a-6-3.-수업용-조직의-초대-수락">A-6-3. 수업용 조직의 초대 수락</h3>
-<p>13장의 짝 리뷰는 수업용 GitHub 조직(Organization)에서 한다. 교수가 1주차에 Google 클래스룸으로 받은 GitHub 아이디로 조직에 초대하면, 학생이 초대를 받아들여야 조직의 구성원이 된다[H7]. 키트 저장소(A-7)는 공개 저장소이므로 이 초대 없이 받는다. 앞 과목의 조직을 이어 쓰면 다시 하지 않는다.</p>
+<section id="a-6-3.-협업자-초대의-수락" class="level3">
+<h3 class="anchored" data-anchor-id="a-6-3.-협업자-초대의-수락">A-6-3. 협업자 초대의 수락</h3>
+<p>이 과목은 수업용 조직을 쓰지 않는다. 키트 저장소(A-7)는 공개 저장소이므로 초대 없이 받는다. 초대가 오는 것은 13장의 짝 리뷰 하나이다. 짝이 자기 비공개 저장소 <code>jobprep</code>에 나를 협업자로 초대하면(A-8-2), 내가 초대를 받아들여야 짝의 저장소를 읽고 리뷰할 수 있다[H7]. 개인 계정 저장소의 협업자는 읽기와 함께 쓰기 권한도 받으므로, 리뷰하는 동안 짝의 저장소에 푸시하지 않는다[H7].</p>
 <ol type="1">
-<li>GitHub에 등록한 이메일로 초대 링크가 든 메일이 온다. GitHub에 로그인한 브라우저에서 그 링크를 열고 초대를 받아들인다.</li>
-<li>초대는 7일이 지나면 만료된다. 만료되었으면 교수에게 다시 초대를 요청한다.</li>
-<li>조직이 2단계 인증을 요구하면, 2단계 인증을 켠 뒤에 받아들일 수 있다[H7].</li>
+<li>GitHub에 등록한 이메일로 초대 메일이 온다. GitHub에 로그인한 브라우저에서 메일의 링크를 열고 초대를 받아들인다.</li>
+<li>메일을 찾지 못하면 아래 명령으로 받지 않은 초대를 보고, 초대 번호로 받아들인다[H8].</li>
 </ol>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> api user/memberships/orgs/「조직 이름」 <span class="at">--jq</span> .state</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="text"><code>active</code></pre>
-<p><code>active</code>이면 구성원이고, <code>pending</code>이면 초대를 아직 받아들이지 않은 것이다[H8]. 위 출력은 REST API 문서에 따른 예시이다. 집필 때 실제 조직으로는 실행하지 않았다. 메일을 찾지 못하면 <code>gh api -X PATCH user/memberships/orgs/「조직 이름」 -f state=active --jq .state</code>로 받아들일 수도 있다[H8].</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> api user/repository_invitations <span class="at">--jq</span> <span class="st">'.[] | "\(.id) \(.repository.full_name)"'</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> api <span class="at">-X</span> PATCH user/repository_invitations/「초대 번호」</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>(예시)
+301234569 「짝의 GitHub 아이디」/jobprep</code></pre>
+<p>위 출력은 REST API 문서에 따른 예시이다. 집필 때 실제 초대로는 실행하지 않았다. 받아들인 뒤에는 첫 명령의 출력이 비어 있다.</p>
 <blockquote class="blockquote">
-<p><strong>[최신 자료 자리: 조직 초대의 만료 기간과 수락 조건]</strong> 확인할 곳: <a href="https://docs.github.com/en/organizations/managing-membership-in-your-organization/inviting-users-to-join-your-organization" class="uri">https://docs.github.com/en/organizations/managing-membership-in-your-organization/inviting-users-to-join-your-organization</a>. 마지막으로 확인한 날짜와 값: 2026-11-14, 초대는 7일 뒤 만료되고, 조직이 2단계 인증을 요구하면 켠 뒤에 받아들일 수 있다. 수업 전에 다시 확인한다.</p>
+<p><strong>[최신 자료 자리: 저장소 초대의 만료 기간]</strong> 확인할 곳: <a href="https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository" class="uri">https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository</a>. 2026-11-17에 만료 기간은 문서에서 확인하지 못하였다. 수업 전에 다시 확인한다.</p>
 </blockquote>
-<p><span class="check-badge">확인 5</span> <code>git config --global --list</code>에 위 네 설정이 있고, <code>gh auth status</code>에 <code>✓ Logged in</code>과 <code>workflow</code> 범위가 보이며, <code>gh api user/memberships/orgs/「조직 이름」 --jq .state</code>가 <code>active</code>를 출력한다.</p>
+<p><span class="check-badge">확인 5</span> <code>git config --global --list</code>에 위 네 설정이 있고, <code>gh auth status</code>에 <code>✓ Logged in</code>과 <code>workflow</code> 범위가 보인다. 13장 전에는 <code>gh api user/repository_invitations</code>의 출력이 비어 있다.</p>
 <hr>
 </section>
 </section>
@@ -1809,11 +1810,11 @@ init.defaultbranch=main</code></pre>
 </section>
 <section id="a-7-2.-키트-저장소-클론" class="level3">
 <h3 class="anchored" data-anchor-id="a-7-2.-키트-저장소-클론">A-7-2. 키트 저장소 클론</h3>
-<p>1주차에 한 번 한다. 키트 저장소는 공개 저장소이므로 조직 초대(A-6-3)를 기다리지 않고 받을 수 있다. 두 과목의 키트는 하나의 키트 저장소에 과목별 폴더(<code>Service_NN장</code>, <code>Agent_NN장</code>)로 들어 있다. 앞 과목에서 <code>~/kits-repo</code>를 받았다면 다시 클론하지 않고 <code>git -C ~/kits-repo pull</code>만 한다. 처음 받는 학생만 Google 클래스룸에 올린 주소의 두 부분을 넣어 아래 명령으로 클론한다.</p>
+<p>1주차에 한 번 한다. 키트 저장소는 공개 저장소이므로 초대 없이 받을 수 있다. 두 과목의 키트는 하나의 키트 저장소에 과목별 폴더(<code>Service_NN장</code>, <code>Agent_NN장</code>)로 들어 있다. 앞 과목에서 <code>~/kits-repo</code>를 받았다면 다시 클론하지 않고 <code>git -C ~/kits-repo pull</code>만 한다. 처음 받는 학생만 Google 클래스룸에 올린 주소의 두 부분을 넣어 아래 명령으로 클론한다.</p>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> repo clone 「조직 이름」/「키트 저장소」 ~/kits-repo</span>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> repo clone 「교수 계정」/「키트 저장소」 ~/kits-repo</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> ~/kits-repo</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>Agent_01장</code></pre>
 <p>위 출력은 예시이다. 키트 저장소에는 학기가 진행되는 대로 장 폴더가 하나씩 올라온다. <code>gh repo clone</code>이 「Could not resolve to a Repository」로 끝나면 저장소 이름이 틀린 것이다. 이름은 Google 클래스룸의 주소와 한 글자씩 대조한다.</p>
@@ -4215,7 +4216,7 @@ AGENT_CMD=없음
 <td>실제 로그인을 하지 않아 화면을 확인하지 못하였다</td>
 </tr>
 <tr class="odd">
-<td>조직 초대 수락, <code>gh repo create --private</code>, 협업자 초대, 규칙 집합 설정</td>
+<td>협업자 초대의 수락, <code>gh repo create --private</code>, 협업자 초대, 규칙 집합 설정</td>
 <td></td>
 <td>GitHub 원격 조작이라 하지 않았다</td>
 </tr>
@@ -4408,15 +4409,15 @@ AGENT_CMD=없음
 </tr>
 <tr class="odd">
 <td>H7</td>
-<td>GitHub Docs: Inviting users to join your organization</td>
-<td><a href="https://docs.github.com/en/organizations/managing-membership-in-your-organization/inviting-users-to-join-your-organization" class="uri">https://docs.github.com/en/organizations/managing-membership-in-your-organization/inviting-users-to-join-your-organization</a></td>
-<td>2026-11-14</td>
+<td>GitHub Docs: Inviting collaborators to a personal repository, Permission levels for a personal account repository</td>
+<td><a href="https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository" class="uri">https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository</a></td>
+<td>2026-11-17</td>
 </tr>
 <tr class="even">
 <td>H8</td>
-<td>GitHub REST API: Organization members(인증된 사용자의 조직 구성원 상태)</td>
-<td><a href="https://docs.github.com/en/rest/orgs/members" class="uri">https://docs.github.com/en/rest/orgs/members</a></td>
-<td>2026-11-14</td>
+<td>GitHub REST API: Repository invitations(받지 않은 초대 목록과 수락)</td>
+<td><a href="https://docs.github.com/en/rest/collaborators/invitations" class="uri">https://docs.github.com/en/rest/collaborators/invitations</a></td>
+<td>2026-11-17</td>
 </tr>
 <tr class="odd">
 <td>H9</td>
