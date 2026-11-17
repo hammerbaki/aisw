@@ -504,7 +504,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>키트</td>
-<td>1주차에 수업용 조직의 「키트 저장소」를 <code>~/kits-repo</code>로 클론한다. 장마다 <code>git -C ~/kits-repo pull</code> 뒤 <code>cp -rn ~/kits-repo/Service_NN장 ~/kits/</code>로 받는다. 키트는 <code>~/kits/Service_NN장</code>에서 쓰고, 장의 0절이 필요한 파일만 저장소로 옮긴다</td>
+<td>1주차에 Google 클래스룸에 올린 주소로 수업용 조직의 「키트 저장소」를 <code>~/kits-repo</code>로 클론한다. 장마다 <code>git -C ~/kits-repo pull</code> 뒤 <code>cp -rn ~/kits-repo/Service_NN장 ~/kits/</code>로 받는다. 키트는 <code>~/kits/Service_NN장</code>에서 쓰고, 장의 0절이 필요한 파일만 저장소로 옮긴다</td>
 <td>1장</td>
 <td>A-12</td>
 </tr>
@@ -747,7 +747,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>계정 이름, 비밀번호, API 키, 토큰의 실제 값은 이 부록에 싣지 않는다. 명령 안의 <code>사용자이름</code>, <code>조직이름</code>, <code>키트저장소</code>는 자기 값 또는 1주차에 안내하는 값으로 바꾸어 입력한다.</p>
+<p>계정 이름, 비밀번호, API 키, 토큰의 실제 값은 이 부록에 싣지 않는다. 명령 안의 <code>사용자이름</code>, <code>조직이름</code>, <code>키트저장소</code>는 자기 값 또는 Google 클래스룸에 올린 키트 저장소 주소의 값으로 바꾸어 입력한다.</p>
 <hr>
 </section>
 <section id="a-1.-실습-환경의-구성" class="level2">
@@ -1648,7 +1648,7 @@ $ git status --short
 <h2 class="anchored" data-anchor-id="a-11.-수업용-조직의-초대-수락">A-11. 수업용 조직의 초대 수락</h2>
 <p>팀 저장소(3장부터)와 키트 저장소(1장부터, A-12)는 수업용 GitHub 조직(Organization)에 있다. 교수가 1주차에 받은 사용자 이름으로 조직에 초대하면, 학생이 초대를 받아들여야 조직의 구성원이 된다[H3]. 키트 저장소를 클론하려면 구성원이어야 하므로 1주차에 받아들인다.</p>
 <ol type="1">
-<li>GitHub에 등록한 이메일로 초대 링크가 든 메일이 온다[H3]. GitHub에 로그인한 브라우저에서 그 링크를 연다. 조직의 이름(<code>조직이름</code>)은 1주차에 안내한다.</li>
+<li>GitHub에 등록한 이메일로 초대 링크가 든 메일이 온다[H3]. GitHub에 로그인한 브라우저에서 그 링크를 연다. 조직의 이름(<code>조직이름</code>)은 Google 클래스룸에 올린 키트 저장소 주소에서 <code>github.com/</code> 바로 뒤의 부분이다.</li>
 <li>초대 화면에서 초대를 받아들인다. 메일을 찾지 못하면 아래의 <code>gh api</code> 명령으로 상태를 확인하고 받아들인다.</li>
 <li>초대는 7일이 지나면 만료된다[H3]. 만료되었으면 교수에게 다시 초대를 요청한다.</li>
 <li>조직이 2단계 인증을 요구하면, 2단계 인증을 켠 뒤에 받아들일 수 있다[H3].</li>
@@ -1723,7 +1723,7 @@ $ git status --short
 </section>
 <section id="a-12-2.-키트-저장소-클론-1주차-한-번" class="level3">
 <h3 class="anchored" data-anchor-id="a-12-2.-키트-저장소-클론-1주차-한-번">A-12-2. 키트 저장소 클론 (1주차, 한 번)</h3>
-<p>키트는 수업용 조직의 비공개 저장소(이하 「키트 저장소」)로 배포한다. 조직과 저장소의 이름은 1주차에 안내한다. A-11의 초대를 받아들인 뒤, 홈 폴더의 <code>kits-repo</code>라는 이름으로 클론한다.</p>
+<p>키트는 수업용 조직의 비공개 저장소(이하 「키트 저장소」)로 배포한다. 저장소의 주소는 Google 클래스룸에 올린다. 주소 <code>https://github.com/조직이름/키트저장소</code>의 두 부분이 아래 명령의 <code>조직이름</code>과 <code>키트저장소</code>이다. A-11의 초대를 받아들인 뒤, 홈 폴더의 <code>kits-repo</code>라는 이름으로 클론한다.</p>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>

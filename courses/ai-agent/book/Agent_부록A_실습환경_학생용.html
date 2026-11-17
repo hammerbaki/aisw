@@ -813,7 +813,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>계정 이름, 비밀번호, API 키, 토큰의 실제 값은 이 부록에 적지 않는다. GitHub 사용자 이름은 「GitHub 아이디」, 수업용 GitHub 조직의 이름은 「조직 이름」, 그 조직의 키트 저장소 이름은 「키트 저장소」로 적는다. 조직과 저장소의 실제 이름은 1주차에 안내한다.</p>
+<p>계정 이름, 비밀번호, API 키, 토큰의 실제 값은 이 부록에 적지 않는다. GitHub 사용자 이름은 「GitHub 아이디」, 수업용 GitHub 조직의 이름은 「조직 이름」, 그 조직의 키트 저장소 이름은 「키트 저장소」로 적는다. 조직과 저장소의 실제 이름은 Google 클래스룸에 올린 키트 저장소 주소 <code>https://github.com/「조직 이름」/「키트 저장소」</code>에서 읽는다.</p>
 <hr>
 </section>
 <section id="a-1.-실습-환경의-구성" class="level2">
@@ -1803,14 +1803,14 @@ init.defaultbranch=main</code></pre>
 </section>
 <section id="a-7-2.-키트-저장소-클론" class="level3">
 <h3 class="anchored" data-anchor-id="a-7-2.-키트-저장소-클론">A-7-2. 키트 저장소 클론</h3>
-<p>1주차에 한 번 한다. 수업용 조직의 구성원이어야 비공개 저장소를 받을 수 있다(A-6-3). 두 과목의 키트는 하나의 키트 저장소에 과목별 폴더(<code>Service_NN장</code>, <code>Agent_NN장</code>)로 들어 있다. 앞 과목에서 <code>~/kits-repo</code>를 받았다면 다시 클론하지 않고 <code>git -C ~/kits-repo pull</code>만 한다. 처음 받는 학생만 아래 명령으로 클론한다.</p>
+<p>1주차에 한 번 한다. 수업용 조직의 구성원이어야 비공개 저장소를 받을 수 있다(A-6-3). 두 과목의 키트는 하나의 키트 저장소에 과목별 폴더(<code>Service_NN장</code>, <code>Agent_NN장</code>)로 들어 있다. 앞 과목에서 <code>~/kits-repo</code>를 받았다면 다시 클론하지 않고 <code>git -C ~/kits-repo pull</code>만 한다. 처음 받는 학생만 Google 클래스룸에 올린 주소의 두 부분을 넣어 아래 명령으로 클론한다.</p>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
 <div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> repo clone 「조직 이름」/「키트 저장소」 ~/kits-repo</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> ~/kits-repo</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>Agent_01장</code></pre>
-<p>위 출력은 예시이다. 키트 저장소에는 학기가 진행되는 대로 장 폴더가 하나씩 올라온다. <code>gh repo clone</code>이 「Could not resolve to a Repository」로 끝나면 조직 초대를 받아들이지 않았거나 저장소 이름이 틀린 것이다.</p>
+<p>위 출력은 예시이다. 키트 저장소에는 학기가 진행되는 대로 장 폴더가 하나씩 올라온다. <code>gh repo clone</code>이 「Could not resolve to a Repository」로 끝나면 조직 초대를 받아들이지 않았거나 저장소 이름이 틀린 것이다. 이름은 Google 클래스룸의 주소와 한 글자씩 대조한다.</p>
 </section>
 <section id="a-7-3.-장의-키트-받기" class="level3">
 <h3 class="anchored" data-anchor-id="a-7-3.-장의-키트-받기">A-7-3. 장의 키트 받기</h3>
