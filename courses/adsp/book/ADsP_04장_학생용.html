@@ -1,0 +1,3365 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>[4장] 표 데이터와 데이터 마트 – 안중호 교수 강의 교재</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../courses/adsp/book/ADsP_05장_학생용.html" rel="next">
+<link href="../../../courses/adsp/book/ADsP_03장_학생용.html" rel="prev">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-dcf116883d0d3758c9131f5ede2fa7e1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">안중호 교수 강의 교재</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="검색"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">커리큘럼</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/semesters/index.html">
+ <span class="dropdown-text">전체 커리큘럼</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../docs/semesters/2026-2/index.html">
+ <span class="dropdown-text">2026년 2학기</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../docs/subjects/llm-ai/index.html">
+ <span class="dropdown-text">교재 · LLM AI 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/subjects/python/index.html">
+ <span class="dropdown-text">교재 · 파이썬 실습</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../courses/index.html">
+ <span class="dropdown-text">2027학년도 교재 (준비 중)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/llm-service/index.html">
+ <span class="dropdown-text">· LLM 서비스 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/office/index.html">
+ <span class="dropdown-text">· 컴퓨터활용</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/adsp/index.html">
+ <span class="dropdown-text">· 빅데이터개론</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/ai-agent/index.html">
+ <span class="dropdown-text">· AI에이전트 기획 및 개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../courses/aice/index.html">
+ <span class="dropdown-text">· 비즈니스빅데이터분석</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/about/교수_소개.html"> 
+<span class="menu-text">교수 소개</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../courses/adsp/book/ADsP_01장_학생용.html">교재</a></li><li class="breadcrumb-item"><a href="../../../courses/adsp/book/ADsP_04장_학생용.html">[4장] 표 데이터와 데이터 마트</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">빅데이터개론</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">교재</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_01장_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[1장] 데이터 이해: 데이터, 빅데이터, 데이터 사이언스</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_02장_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[2장] 분석 기획과 방법론</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_03장_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[3장] 분석 마스터 플랜과 거버넌스</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_04장_학생용.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">[4장] 표 데이터와 데이터 마트</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_05장_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[5장] 결측값·이상값과 기술 통계</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_06장_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[6장] 통계학 개론: 표본, 분포, 추정, 검정</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_07장_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[7장] 상관 분석과 회귀 분석</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_08장_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[8장] 다차원 척도법과 주성분 분석</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_09장_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[9장] 시계열 분석</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_10장_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[10장] 분류 분석 (1): 데이터 분할, 로지스틱 회귀, 의사결정나무</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_11장_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[11장] 분류 분석 (2): 앙상블, 인공신경망, 모형 평가</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_12장_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[12장] 군집 분석과 연관 분석</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_13장_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[13장] R 코드와 출력의 해석</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../courses/adsp/book/ADsP_부록_학생용.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">부록</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">이 장의 차례</h2>
+   
+  <ul>
+  <li><a href="#학습-목표" id="toc-학습-목표" class="nav-link active" data-scroll-target="#학습-목표">학습 목표</a></li>
+  <li><a href="#수업의-흐름" id="toc-수업의-흐름" class="nav-link" data-scroll-target="#수업의-흐름">수업의 흐름</a></li>
+  <li><a href="#준비-사항" id="toc-준비-사항" class="nav-link" data-scroll-target="#준비-사항">준비 사항</a></li>
+  <li><a href="#시작하기" id="toc-시작하기" class="nav-link" data-scroll-target="#시작하기">0. 시작하기</a>
+  <ul class="collapse">
+  <li><a href="#교재-03의-되짚기" id="toc-교재-03의-되짚기" class="nav-link" data-scroll-target="#교재-03의-되짚기">0.1 교재 03의 되짚기</a></li>
+  <li><a href="#노트북-열기와-첫-셀-실행" id="toc-노트북-열기와-첫-셀-실행" class="nav-link" data-scroll-target="#노트북-열기와-첫-셀-실행">0.2 노트북 열기와 첫 셀 실행</a></li>
+  <li><a href="#두-표의-분석-단위" id="toc-두-표의-분석-단위" class="nav-link" data-scroll-target="#두-표의-분석-단위">0.3 두 표의 분석 단위</a></li>
+  </ul></li>
+  <li><a href="#파이썬-기초-표-데이터의-되짚기" id="toc-파이썬-기초-표-데이터의-되짚기" class="nav-link" data-scroll-target="#파이썬-기초-표-데이터의-되짚기">1. 「파이썬 기초」 표 데이터의 되짚기</a>
+  <ul class="collapse">
+  <li><a href="#파일에서-표-읽기" id="toc-파일에서-표-읽기" class="nav-link" data-scroll-target="#파일에서-표-읽기">1.1 파일에서 표 읽기</a></li>
+  <li><a href="#파이썬-기초에서-익힌-연산" id="toc-파이썬-기초에서-익힌-연산" class="nav-link" data-scroll-target="#파이썬-기초에서-익힌-연산">1.2 「파이썬 기초」에서 익힌 연산</a></li>
+  <li><a href="#따라-하기" id="toc-따라-하기" class="nav-link" data-scroll-target="#따라-하기">따라 하기</a></li>
+  </ul></li>
+  <li><a href="#자료-구조-series와-dataframe" id="toc-자료-구조-series와-dataframe" class="nav-link" data-scroll-target="#자료-구조-series와-dataframe">2. 자료 구조: Series와 DataFrame</a>
+  <ul class="collapse">
+  <li><a href="#dataframe과-series" id="toc-dataframe과-series" class="nav-link" data-scroll-target="#dataframe과-series">2.1 DataFrame과 Series</a></li>
+  <li><a href="#열의-자료형" id="toc-열의-자료형" class="nav-link" data-scroll-target="#열의-자료형">2.2 열의 자료형</a></li>
+  <li><a href="#r의-벡터와-데이터-프레임" id="toc-r의-벡터와-데이터-프레임" class="nav-link" data-scroll-target="#r의-벡터와-데이터-프레임">2.3 R의 벡터와 데이터 프레임</a></li>
+  <li><a href="#따라-하기-1" id="toc-따라-하기-1" class="nav-link" data-scroll-target="#따라-하기-1">따라 하기</a></li>
+  </ul></li>
+  <li><a href="#행과-열의-선택" id="toc-행과-열의-선택" class="nav-link" data-scroll-target="#행과-열의-선택">3. 행과 열의 선택</a>
+  <ul class="collapse">
+  <li><a href="#조건에-의한-행의-선택" id="toc-조건에-의한-행의-선택" class="nav-link" data-scroll-target="#조건에-의한-행의-선택">3.1 조건에 의한 행의 선택</a></li>
+  <li><a href="#조건-둘의-결합" id="toc-조건-둘의-결합" class="nav-link" data-scroll-target="#조건-둘의-결합">3.2 조건 둘의 결합</a></li>
+  <li><a href="#loc과-isin" id="toc-loc과-isin" class="nav-link" data-scroll-target="#loc과-isin">3.3 <code>loc</code>과 <code>isin</code></a></li>
+  <li><a href="#따라-하기-2" id="toc-따라-하기-2" class="nav-link" data-scroll-target="#따라-하기-2">따라 하기</a></li>
+  </ul></li>
+  <li><a href="#그룹별-집계와-표의-형태-변환" id="toc-그룹별-집계와-표의-형태-변환" class="nav-link" data-scroll-target="#그룹별-집계와-표의-형태-변환">4. 그룹별 집계와 표의 형태 변환</a>
+  <ul class="collapse">
+  <li><a href="#그룹별-집계" id="toc-그룹별-집계" class="nav-link" data-scroll-target="#그룹별-집계">4.1 그룹별 집계</a></li>
+  <li><a href="#넓은-표와-긴-표" id="toc-넓은-표와-긴-표" class="nav-link" data-scroll-target="#넓은-표와-긴-표">4.2 넓은 표와 긴 표</a></li>
+  <li><a href="#melt-넓은-표를-긴-표로" id="toc-melt-넓은-표를-긴-표로" class="nav-link" data-scroll-target="#melt-넓은-표를-긴-표로">4.3 <code>melt</code>: 넓은 표를 긴 표로</a></li>
+  <li><a href="#두-변환의-관계" id="toc-두-변환의-관계" class="nav-link" data-scroll-target="#두-변환의-관계">4.4 두 변환의 관계</a></li>
+  <li><a href="#pivot과-pivot_table-선택" id="toc-pivot과-pivot_table-선택" class="nav-link" data-scroll-target="#pivot과-pivot_table-선택">4.5 <code>pivot</code>과 <code>pivot_table</code> [선택]</a></li>
+  <li><a href="#따라-하기-3" id="toc-따라-하기-3" class="nav-link" data-scroll-target="#따라-하기-3">따라 하기</a></li>
+  </ul></li>
+  <li><a href="#표의-결합과-데이터-마트" id="toc-표의-결합과-데이터-마트" class="nav-link" data-scroll-target="#표의-결합과-데이터-마트">5. 표의 결합과 데이터 마트</a>
+  <ul class="collapse">
+  <li><a href="#결합-방식" id="toc-결합-방식" class="nav-link" data-scroll-target="#결합-방식">5.1 결합 방식</a></li>
+  <li><a href="#실제-자료의-결합" id="toc-실제-자료의-결합" class="nav-link" data-scroll-target="#실제-자료의-결합">5.2 실제 자료의 결합</a></li>
+  <li><a href="#데이터-마트" id="toc-데이터-마트" class="nav-link" data-scroll-target="#데이터-마트">5.3 데이터 마트</a></li>
+  <li><a href="#요약-변수와-파생-변수" id="toc-요약-변수와-파생-변수" class="nav-link" data-scroll-target="#요약-변수와-파생-변수">5.4 요약 변수와 파생 변수</a></li>
+  <li><a href="#결합-전의-키-점검-선택" id="toc-결합-전의-키-점검-선택" class="nav-link" data-scroll-target="#결합-전의-키-점검-선택">5.5 결합 전의 키 점검 [선택]</a></li>
+  <li><a href="#따라-하기-4" id="toc-따라-하기-4" class="nav-link" data-scroll-target="#따라-하기-4">따라 하기</a></li>
+  </ul></li>
+  <li><a href="#중심-실습-고객별-요약-변수-마트의-작성" id="toc-중심-실습-고객별-요약-변수-마트의-작성" class="nav-link" data-scroll-target="#중심-실습-고객별-요약-변수-마트의-작성">6. 중심 실습: 고객별 요약 변수 마트의 작성</a>
+  <ul class="collapse">
+  <li><a href="#준비" id="toc-준비" class="nav-link" data-scroll-target="#준비">준비</a></li>
+  <li><a href="#절차" id="toc-절차" class="nav-link" data-scroll-target="#절차">절차</a></li>
+  <li><a href="#값을-바꾸어-보기" id="toc-값을-바꾸어-보기" class="nav-link" data-scroll-target="#값을-바꾸어-보기">값을 바꾸어 보기</a></li>
+  <li><a href="#막힐-때" id="toc-막힐-때" class="nav-link" data-scroll-target="#막힐-때">막힐 때</a></li>
+  <li><a href="#완료-기준" id="toc-완료-기준" class="nav-link" data-scroll-target="#완료-기준">완료 기준</a></li>
+  <li><a href="#제출물" id="toc-제출물" class="nav-link" data-scroll-target="#제출물">제출물</a></li>
+  <li><a href="#복기" id="toc-복기" class="nav-link" data-scroll-target="#복기">복기</a></li>
+  </ul></li>
+  <li><a href="#r-출력-해석" id="toc-r-출력-해석" class="nav-link" data-scroll-target="#r-출력-해석">7. R 출력 해석</a>
+  <ul class="collapse">
+  <li><a href="#파이썬과-r의-대응표" id="toc-파이썬과-r의-대응표" class="nav-link" data-scroll-target="#파이썬과-r의-대응표">7.1 파이썬과 R의 대응표</a></li>
+  <li><a href="#같은-일을-하는-r-코드" id="toc-같은-일을-하는-r-코드" class="nav-link" data-scroll-target="#같은-일을-하는-r-코드">7.2 같은 일을 하는 R 코드</a></li>
+  <li><a href="#출력의-해석-1-head와-str" id="toc-출력의-해석-1-head와-str" class="nav-link" data-scroll-target="#출력의-해석-1-head와-str">7.3 출력의 해석 (1): <code>head()</code>와 <code>str()</code></a></li>
+  <li><a href="#출력의-해석-2-벡터와-데이터-프레임" id="toc-출력의-해석-2-벡터와-데이터-프레임" class="nav-link" data-scroll-target="#출력의-해석-2-벡터와-데이터-프레임">7.4 출력의 해석 (2): 벡터와 데이터 프레임</a></li>
+  <li><a href="#출력의-해석-3-aggregate-xtabs-merge-table" id="toc-출력의-해석-3-aggregate-xtabs-merge-table" class="nav-link" data-scroll-target="#출력의-해석-3-aggregate-xtabs-merge-table">7.5 출력의 해석 (3): <code>aggregate()</code>, <code>xtabs()</code>, <code>merge()</code>, <code>table()</code></a></li>
+  <li><a href="#데이터-마트에-쓰는-r-패키지" id="toc-데이터-마트에-쓰는-r-패키지" class="nav-link" data-scroll-target="#데이터-마트에-쓰는-r-패키지">7.6 데이터 마트에 쓰는 R 패키지</a></li>
+  </ul></li>
+  <li><a href="#자주-하는-실수와-오해" id="toc-자주-하는-실수와-오해" class="nav-link" data-scroll-target="#자주-하는-실수와-오해">8. 자주 하는 실수와 오해</a></li>
+  <li><a href="#연습-문제" id="toc-연습-문제" class="nav-link" data-scroll-target="#연습-문제">9. 연습 문제</a></li>
+  <li><a href="#정리" id="toc-정리" class="nav-link" data-scroll-target="#정리">10. 정리</a></li>
+  <li><a href="#참고-자료" id="toc-참고-자료" class="nav-link" data-scroll-target="#참고-자료">11. 참고 자료</a></li>
+  <li><a href="#마무리와-다음-장-안내" id="toc-마무리와-다음-장-안내" class="nav-link" data-scroll-target="#마무리와-다음-장-안내">마무리와 다음 장 안내</a></li>
+  <li><a href="#주간-문항-세트-04" id="toc-주간-문항-세트-04" class="nav-link" data-scroll-target="#주간-문항-세트-04">주간 문항 세트 04</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../courses/adsp/book/ADsP_01장_학생용.html">교재</a></li><li class="breadcrumb-item"><a href="../../../courses/adsp/book/ADsP_04장_학생용.html">[4장] 표 데이터와 데이터 마트</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">[4장] 표 데이터와 데이터 마트</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<header class="chapter-head">
+<p class="chapter-part">빅데이터개론</p>
+<p class="chapter-no"><span class="num">4</span><span class="unit">장</span></p>
+<p class="chapter-title">표 데이터와 데이터 마트</p>
+</header>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>2027학년도 「빅데이터개론」의 준비 중인 교재입니다. 편집 상태를 검토하기 위해 미리 공개한 것으로, 수업 전에 내용과 순서가 바뀔 수 있습니다.</p>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>학사 5주차 · 교재 04 · 3부 데이터 분석 · ADsP 3과목 데이터분석 &gt; R기초와 데이터 마트 (R기초, 데이터 마트)</p>
+</blockquote>
+<p>분석은 표에서 시작한다. 이 장은 표에서 필요한 행과 열을 고르고, 묶어서 집계하고, 표의 형태를 바꾸고, 두 표를 결합하여 분석용 표인 데이터 마트를 만드는 과정을 다룬다. 시험은 이 과정을 실행하는 코드를 쓰게 하지 않는다. R의 자료 구조, 표를 다루는 함수와 패키지의 역할, 요약 변수와 파생 변수의 구분을 묻고, 짧은 코드나 출력을 보고 무슨 일을 한 것인지를 묻는다.</p>
+<p>3부의 첫 장이며 이 과목에서 실습 노트북을 처음 여는 장이다. 학생은 1학기 「파이썬 기초」 12~13장에서 DataFrame을 만들고, 열과 행을 고르고, 기술 통계와 그룹별 집계를 구하였다. 1절은 그 내용을 교재 01에서 표로 읽은 거래 내역으로 되짚고, 파일에서 표를 읽는 <code>read_csv</code>를 더한다. 2~5절은 그 위에서 자료 구조, 조건에 의한 선택, 표의 형태 변환(<code>pivot_table</code>, <code>melt</code>), 결합 방식(<code>merge</code>의 <code>how</code>)을 다룬다. 장의 끝에서는 같은 일을 R로 실행한 출력을 해석한다.</p>
+<hr>
+<section id="학습-목표" class="level2">
+<h2 class="anchored" data-anchor-id="학습-목표">학습 목표</h2>
+<ol type="1">
+<li>CSV 파일을 DataFrame으로 읽고, 「파이썬 기초」에서 익힌 선택, 새 열, 기술 통계, 값별 건수, 그룹별 집계를 거래 자료에 적용한 결과를 해석한다.</li>
+<li>조건 둘을 <code>&amp;</code>와 <code>|</code>로 이은 선택의 결과를 행 수로 설명한다.</li>
+<li>넓은 표와 긴 표를 구분하고, <code>pivot_table</code>과 <code>melt</code>가 서로 반대 방향의 변환임을 출력으로 확인한다.</li>
+<li>결합 방식(inner, left, right, outer)에 따라 남는 행과 결측값이 달라지는 까닭을 설명하고, 키가 중복될 때의 행 수를 예측한다.</li>
+<li>데이터 마트의 뜻을 설명하고 요약 변수와 파생 변수를 구분한다. R의 <code>head</code>, <code>str</code>, <code>aggregate</code>, <code>merge</code>, <code>table</code> 출력을 읽고, 데이터 마트에 쓰는 R 패키지의 역할을 구분한다.</li>
+</ol>
+</section>
+<section id="수업의-흐름" class="level2">
+<h2 class="anchored" data-anchor-id="수업의-흐름">수업의 흐름</h2>
+<ol type="1">
+<li><strong>시작하기(0절).</strong> 교재 03의 결론 셋을 되짚고, 노트북을 열어 첫 코드 셀을 실행한다. 출력된 pandas의 판과 자료 파일의 유무로 실습 환경이 준비되었는지 판단한다. 이어서 두 표의 한 행이 무엇인지를 정한다. 이 장의 모든 연산은 “실행한 뒤 한 행이 무엇이 되는가”로 해석하기 때문이다.</li>
+<li><strong>되짚기와 자료 구조(1~2절).</strong> 「파이썬 기초」에서 익힌 표 연산을 거래 자료에 적용하고, pandas의 Series와 DataFrame을 R의 벡터와 데이터 프레임에 대응시킨다. 시험은 R의 이름으로 묻는다.</li>
+<li><strong>선택, 집계, 형태 변환(3~4절).</strong> 조건으로 행을 고르고, 기준 열로 묶어 집계하고, 같은 집계를 넓은 표와 긴 표 사이에서 바꾼다. 따라 하기마다 실행 전에 결과의 크기를 예상하여 적고, 실행 뒤에 예상과 견준다.</li>
+<li><strong>결합과 데이터 마트(5절).</strong> 결합 방식과 키의 중복에 따라 결과의 행 수가 어떻게 정해지는지를 작은 표로 예상하고 확인한 뒤, 실제 자료에 적용한다. 데이터 마트, 요약 변수, 파생 변수의 뜻을 정리한다.</li>
+<li><strong>중심 실습(6절).</strong> 거래 내역에서 고객 한 명이 한 행인 마트를 만들고 고객 표와 결합한다. 단계마다 예상, 실행, 해석의 순서로 진행하고, 실습 끝의 복기에서 예상과 결과의 차이를 정리한다.</li>
+<li><strong>R 출력 해석과 문항(7절, 주간 문항 세트).</strong> 같은 일을 R로 실행한 출력을 읽고, 주간 문항 세트의 1~10번을 푼다. 연습 문제(9절)와 세트의 11~20번은 수업 뒤에 푼다.</li>
+</ol>
+<p>제목 끝에 <code>[선택]</code>이 붙은 절(4.5절, 5.5절)은 3시간 수업에서 시간이 남을 때 다룬다. 다루지 못하면 혼자 읽고 노트북의 해당 셀을 실행한다.</p>
+</section>
+<section id="준비-사항" class="level2">
+<h2 class="anchored" data-anchor-id="준비-사항">준비 사항</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>실습 노트북</td>
+<td><code>ADsP_04장_실습_학생용.ipynb</code>. 「따라 하기 1」~「따라 하기 5」와 「중심 실습」의 순서로 되어 있다</td>
+</tr>
+<tr class="even">
+<td>자료</td>
+<td><code>transactions.csv</code>(가상 상점의 2026년 거래 428건), <code>customers.csv</code>(고객 60명). 자료 폴더의 위치는 노트북 첫 코드 셀(「0. 시작하기」)의 <code>DATA</code>에 적혀 있다</td>
+</tr>
+<tr class="odd">
+<td>앞 장과의 연계</td>
+<td>교재 01에서 표로 읽은 거래 내역, 교재 02의 분석 과제 정의서에서 쓴 학기 공통 자료와 같은 자료다. 데이터 마트의 정의는 교재 01의 2절에 있다</td>
+</tr>
+<tr class="even">
+<td>앞 과목과의 연계</td>
+<td>「파이썬 기초」 12장(DataFrame의 생성과 선택), 13장(기술 통계와 그룹별 집계). 리스트, <code>for</code> 반복문, 딕셔너리는 같은 과목의 앞 장에서 익혔다</td>
+</tr>
+<tr class="odd">
+<td>실습 환경</td>
+<td>접속과 자료를 받는 방법은 부록 A에 있다</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="시작하기" class="level2">
+<h2 class="anchored" data-anchor-id="시작하기">0. 시작하기</h2>
+<p>이 장은 이 과목에서 실습 노트북을 처음 여는 장이다. 0절은 세 단계로 이루어진다. 교재 03의 결론을 되짚고, 노트북을 열어 첫 코드 셀을 실행하고, 이번 장의 두 표가 무엇을 한 행으로 삼는지 정한다.</p>
+<section id="교재-03의-되짚기" class="level3">
+<h3 class="anchored" data-anchor-id="교재-03의-되짚기">0.1 교재 03의 되짚기</h3>
+<p>교재 03 「분석 마스터 플랜과 거버넌스」의 결론 가운데 이번 장과 이어지는 것은 다음 셋이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>교재 03의 결론</th>
+<th>한 줄 요약</th>
+<th>이번 장과의 연결</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>분석 과제의 우선순위</td>
+<td>시급성과 난이도로 과제를 사분면에 놓고, 현재 시급하고 난이도가 낮은 Ⅲ사분면의 과제를 가장 먼저 추진한다</td>
+<td>난이도를 정하는 요소 가운데 하나가 데이터의 획득·저장·가공 비용이다. 이번 장의 마트 작성이 그 가공에 해당한다</td>
+</tr>
+<tr class="even">
+<td>데이터 거버넌스의 체계</td>
+<td>데이터 표준화, 데이터 관리 체계, 데이터 저장소 관리, 표준화 활동의 넷이다</td>
+<td>두 표가 같은 이름과 같은 형식의 <code>고객ID</code>를 쓰므로 두 표를 결합할 수 있다. 표준화의 효과가 결합에서 드러난다</td>
+</tr>
+<tr class="odd">
+<td>분석 준비도</td>
+<td>분석 업무, 인력과 조직, 분석 기법, 분석 데이터, 분석 문화, IT 인프라의 여섯 영역으로 진단한다</td>
+<td>마트는 분석 데이터 영역에서 “분석에 바로 쓸 수 있게 준비된 데이터”에 해당한다</td>
+</tr>
+</tbody>
+</table>
+<p>교재 03은 과제와 조직의 수준에서 데이터를 다루었다. 이번 장부터는 표 한 장의 수준으로 내려와, 과제 정의서(교재 02)에 적은 분석을 실제로 실행할 수 있는 표를 만든다.</p>
+<ul>
+<li><span class="check-badge">확인 1</span> 교재 03의 정리 표에서 위 세 결론의 행을 찾았고, 가장 먼저 추진하는 사분면이 Ⅲ사분면이며 가장 나중에 추진하는 사분면이 Ⅱ사분면임을 확인하였다.</li>
+</ul>
+</section>
+<section id="노트북-열기와-첫-셀-실행" class="level3">
+<h3 class="anchored" data-anchor-id="노트북-열기와-첫-셀-실행">0.2 노트북 열기와 첫 셀 실행</h3>
+<ol type="1">
+<li>부록 A의 방법으로 실습 환경에 접속하고 <code>ADsP_04장_실습_학생용.ipynb</code>를 연다.</li>
+<li>맨 위의 설명 셀을 읽고, 「0. 시작하기」의 코드 셀을 고른 뒤 <code>Shift+Enter</code>를 누른다. JupyterLab에서 <code>Shift+Enter</code>는 고른 셀을 실행하고 다음 셀로 넘어가는 명령이다. <code>Ctrl+Enter</code>는 실행만 하고 그 셀에 머문다.</li>
+<li>셀 왼쪽의 괄호에 번호가 붙었는지 본다. 번호는 그 셀을 실행한 순서다. 실행 중에는 <code>[*]</code>로 표시된다.</li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">"display.unicode.east_asian_width"</span>, <span class="va">True</span>)   <span class="co"># 한글이 든 표의 줄을 맞추는 설정이다</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">"display.width"</span>, <span class="dv">120</span>)                        <span class="co"># 넓은 표를 한 줄에 이어서 내는 설정이다</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>DATA <span class="op">=</span> <span class="st">"../kit/data/ADsP_공통/"</span>   <span class="co"># 자료 폴더의 위치</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.__version__)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(os.path.exists(DATA <span class="op">+</span> <span class="st">"transactions.csv"</span>), os.path.exists(DATA <span class="op">+</span> <span class="st">"customers.csv"</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>3.0.3
+True True</code></pre>
+<p><code>pd.set_option</code>으로 시작하는 두 줄은 한글이 든 표의 줄을 맞추는 출력 설정이며 분석과 관계가 없다. 출력의 첫 줄은 pandas의 판이다. 이 교재의 출력은 pandas 3.0에서 얻었다. 판이 다르면 자료형의 이름 같은 표기가 조금 다를 수 있다(2.2절). 둘째 줄은 두 자료 파일이 <code>DATA</code>의 위치에 있는지를 차례로 적은 것이다. <code>os.path.exists</code>는 주어진 위치에 파일이 있으면 <code>True</code>를 낸다. <code>False</code>가 나오면 다음 셀부터 <code>FileNotFoundError</code>가 나므로, 이 자리에서 <code>DATA</code> 한 줄을 고친다.</p>
+<blockquote class="blockquote">
+<p><strong>[그림 자리: JupyterLab에서 노트북의 첫 코드 셀을 실행한 화면]</strong> 왼쪽 파일 탐색기에 <code>ADsP_04장_실습_학생용.ipynb</code>가 열려 있고, 「0. 시작하기」 코드 셀의 왼쪽에 실행 번호 <code>[1]</code>이, 셀 아래에 <code>3.0.3</code>과 <code>True True</code>가 출력된 화면. 도구 막대의 실행 단추와 <code>Run</code> 메뉴, <code>Kernel</code> 메뉴의 위치에 표시를 둔다. 찍을 곳: 학교 실습 환경의 JupyterLab(부록 A).</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: 실습 환경의 pandas와 JupyterLab의 판]</strong> 학교 실습 환경에 설치된 pandas와 JupyterLab의 판. 확인할 곳: 노트북 첫 셀의 출력, pandas 공식 문서 https://pandas.pydata.org/docs/ 의 머리, JupyterLab 문서 https://jupyterlab.readthedocs.io/en/stable/ . 2026-11-15에 집필 환경의 pandas는 3.0.3이었고, pandas 공식 문서의 최신 판은 3.1.1, JupyterLab 문서는 4.6 계열이었다. 수업 전에 다시 확인한다.</p>
+</blockquote>
+<p>노트북이 이상하게 동작하면(예: 고친 적 없는 셀이 오류를 낸다) <code>Kernel</code> 메뉴의 커널 재시작으로 메모리를 비우고, <code>Run</code> 메뉴의 모든 셀 실행으로 처음부터 다시 실행한다. JupyterLab의 명령 목록에는 이 둘을 한 번에 하는 명령(커널을 재시작하고 모든 셀을 실행)도 있다. 노트북은 셀을 실행한 순서대로 변수를 기억하므로, 셀의 순서를 건너뛰거나 거꾸로 실행하면 화면의 코드와 메모리의 상태가 어긋난다.</p>
+<ul>
+<li><span class="check-badge">확인 2</span> 첫 코드 셀의 왼쪽에 실행 번호가 붙었고, 출력이 pandas의 판(집필 환경에서는 <code>3.0.3</code>)과 <code>True True</code>였다.</li>
+</ul>
+</section>
+<section id="두-표의-분석-단위" class="level3">
+<h3 class="anchored" data-anchor-id="두-표의-분석-단위">0.3 두 표의 분석 단위</h3>
+<p>이 장에서 가장 자주 하는 물음은 “이 표의 한 행은 무엇인가”이다. 표의 한 행이 나타내는 대상을 분석 단위라 한다. 두 자료의 분석 단위는 다르다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>자료</th>
+<th>한 행</th>
+<th>행의 수</th>
+<th>키가 되는 열</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>transactions.csv</code></td>
+<td>거래 한 건</td>
+<td>거래의 수(428)</td>
+<td><code>거래ID</code>는 한 행에 하나씩 다르다. <code>고객ID</code>는 같은 값이 여러 행에 반복된다</td>
+</tr>
+<tr class="even">
+<td><code>customers.csv</code></td>
+<td>고객 한 명</td>
+<td>고객의 수(60)</td>
+<td><code>고객ID</code>가 한 행에 하나씩 다르다</td>
+</tr>
+</tbody>
+</table>
+<p>준비 사항에 적힌 거래의 수와 고객의 수로부터, 실행하기 전에 두 표의 행 수를 428과 60으로 예상할 수 있다. 1.1절에서 이 예상을 확인한다. 같은 고객의 거래가 여러 행에 걸쳐 있으므로 거래 내역의 <code>고객ID</code>에는 같은 값이 반복된다. 이 차이가 5절의 1:N 결합과 6절의 마트 작성의 출발점이다.</p>
+<ul>
+<li><span class="check-badge">확인 3</span> 두 표의 한 행이 각각 무엇인지와, 어느 표의 <code>고객ID</code>에 같은 값이 반복되는지를 노트의 첫 줄에 적었다.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="파이썬-기초-표-데이터의-되짚기" class="level2">
+<h2 class="anchored" data-anchor-id="파이썬-기초-표-데이터의-되짚기">1. 「파이썬 기초」 표 데이터의 되짚기</h2>
+<p><strong>배경과 쓰임.</strong> 기관과 기업이 표를 주고받을 때 가장 흔히 쓰는 형식이 CSV(comma-separated values)다. CSV 형식의 공통 규칙은 RFC 4180에 정리되어 있다. 한 줄이 레코드(행) 하나이고, 값은 쉼표로 나누며, 줄마다 값의 수가 같아야 한다. 첫 줄에는 열 이름을 둘 수 있다. 값 안에 쉼표나 줄바꿈이 들어 있으면 그 값을 큰따옴표로 감싸고, 값 안의 큰따옴표는 두 번 겹쳐 적는다. 분석의 첫 줄은 대개 파일을 읽는 줄이고, 읽은 직후에는 행과 열의 수(<code>shape</code>)와 앞의 몇 행(<code>head</code>)을 보아 파일이 예상한 대로 읽혔는지를 확인한다. 쉼표가 든 값을 따옴표 없이 적은 파일은 그 줄의 값의 수가 달라져 읽는 단계에서 오류가 나거나 열이 밀리므로, 이 확인이 자료 품질의 첫 점검이 된다. 1절은 이 순서를 따른다.</p>
+<section id="파일에서-표-읽기" class="level3">
+<h3 class="anchored" data-anchor-id="파일에서-표-읽기">1.1 파일에서 표 읽기</h3>
+<p>「파이썬 기초」에서는 딕셔너리나 2차원 리스트로 표를 만들고 <code>pd.DataFrame(...)</code>으로 DataFrame을 얻었다. 분석에 쓰는 표는 대개 파일로 주어진다. <code>pd.read_csv</code>는 쉼표로 구분된 텍스트 파일(CSV)을 읽어 같은 DataFrame을 만든다. 첫 줄은 열 이름으로 쓰고, 둘째 줄부터 한 줄이 한 행이 된다. <code>pd</code>와 <code>DATA</code>는 0.2절의 셀이 정의하였다.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tx <span class="op">=</span> pd.read_csv(DATA <span class="op">+</span> <span class="st">"transactions.csv"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tx.shape)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tx.head(<span class="dv">12</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>(428, 7)
+   거래ID 고객ID      거래일 품목군  수량    금액  결제수단
+0   T0001   C029  2026-01-01   의류     4   93600      카드
+1   T0002   C015  2026-01-02   식품     2   14800      카드
+2   T0003   C054  2026-01-02   도서     1   17000      카드
+3   T0004   C058  2026-01-02   식품     1   11700  간편결제
+4   T0005   C043  2026-01-03   도서     3   49500      카드
+5   T0006   C060  2026-01-03   도서     3   35100      카드
+6   T0007   C013  2026-01-04   식품     1   13900      카드
+7   T0008   C033  2026-01-05   식품     3   45000  간편결제
+8   T0009   C040  2026-01-05   식품     4   32800      카드
+9   T0010   C020  2026-01-06   도서     3   57600      카드
+10  T0011   C001  2026-01-07   의류     2  104600      카드
+11  T0012   C003  2026-01-07   가전     1  232800      카드</code></pre>
+<p><code>DATA + "transactions.csv"</code>는 문자열 둘을 이어 붙여 파일의 위치를 만든 것이다. <code>(428, 7)</code>은 428행 7열이라는 뜻이고, 거래 한 건이 한 행이다. 그 아래의 열두 행은 교재 01에서 표로 읽은 그 열두 행이다. 맨 왼쪽의 0부터 11까지는 자료에 있던 열이 아니라 pandas가 붙인 행 번호(인덱스)다.</p>
+<p>고객 표도 같은 방법으로 읽는다. 고객 표는 60행 5열이고 고객 한 명이 한 행이다.</p>
+<pre class="text"><code>(60, 5)
+  고객ID 성별 연령대  지역      가입일
+0   C001   여   20대  대전  2025-10-21
+1   C002   여   40대  서울  2025-11-08
+2   C003   여   30대  광주  2024-04-09</code></pre>
+<p>두 표에는 <code>고객ID</code> 열이 함께 있다. 이 열이 두 표를 잇는 키가 된다(5절).</p>
+</section>
+<section id="파이썬-기초에서-익힌-연산" class="level3">
+<h3 class="anchored" data-anchor-id="파이썬-기초에서-익힌-연산">1.2 「파이썬 기초」에서 익힌 연산</h3>
+<p>「파이썬 기초」 12~13장의 연산을 거래 내역에 적용하면 다음과 같다. 연산의 이름과 형식은 1학기에 익힌 그대로이며, 달라진 것은 표의 크기뿐이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>연산</th>
+<th>코드</th>
+<th>이 표에서의 뜻</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>열 하나의 선택</td>
+<td><code>tx["금액"]</code></td>
+<td>금액 열. Series다(2절)</td>
+</tr>
+<tr class="even">
+<td>열 여럿의 선택</td>
+<td><code>tx[["고객ID", "품목군", "금액"]]</code></td>
+<td>열 이름의 리스트를 대괄호 안에 넣는다</td>
+</tr>
+<tr class="odd">
+<td>새 열</td>
+<td><code>tx["단가"] = tx["금액"] / tx["수량"]</code></td>
+<td>열끼리 행마다 계산하여 새 열을 만든다</td>
+</tr>
+<tr class="even">
+<td>조건에 의한 선택</td>
+<td><code>tx[tx["결제수단"] == "계좌이체"]</code></td>
+<td>조건이 참인 행만 남긴다(3절)</td>
+</tr>
+<tr class="odd">
+<td>기술 통계</td>
+<td><code>tx["금액"].describe()</code></td>
+<td>건수, 평균, 표준편차, 최솟값, 사분위수, 최댓값</td>
+</tr>
+<tr class="even">
+<td>값별 건수</td>
+<td><code>tx["품목군"].value_counts()</code></td>
+<td>값마다 행의 수. <code>normalize=True</code>이면 비율</td>
+</tr>
+<tr class="odd">
+<td>그룹별 집계의 기본형</td>
+<td><code>tx.groupby("결제수단")["금액"].mean()</code></td>
+<td>결제수단별 금액의 평균</td>
+</tr>
+<tr class="even">
+<td>정렬</td>
+<td><code>tx.sort_values("금액", ascending=False)</code></td>
+<td>금액이 큰 순서</td>
+</tr>
+</tbody>
+</table>
+<p>새 열을 만들고 금액의 기술 통계를 구한 출력은 다음과 같다.</p>
+<pre class="text"><code>(428, 8)
+   수량   금액     단가
+0     4  93600  23400.0
+1     2  14800   7400.0
+2     1  17000  17000.0
+(43, 8)
+count       428.0
+mean      79104.2
+std       61154.7
+min        7500.0
+25%       32800.0
+50%       57600.0
+75%      111950.0
+max      246400.0
+Name: 금액, dtype: float64</code></pre>
+<p>새 열을 더하였으므로 <code>tx</code>는 8열이 되었다. 첫 거래의 단가는 93,600 ÷ 4 = 23,400원이다. 계좌이체로 결제한 거래는 43건이다. 거래 금액의 평균은 79,104.2원이고 중앙값(<code>50%</code>)은 57,600원이다. 평균이 중앙값보다 큰 까닭과 표준편차, 사분위수의 뜻은 교재 05에서 다룬다.</p>
+<p>값별 건수와 결제수단별 평균은 다음과 같다.</p>
+<pre class="text"><code>품목군
+도서    97
+식품    87
+의류    84
+가전    84
+생활    76
+Name: count, dtype: int64
+품목군
+도서    0.227
+식품    0.203
+의류    0.196
+가전    0.196
+생활    0.178
+Name: proportion, dtype: float64
+결제수단
+간편결제    85623.0
+계좌이체    70751.0
+카드        75431.0
+Name: 금액, dtype: float64</code></pre>
+<p><code>value_counts()</code>는 건수가 많은 값부터 적는다. 도서가 97건으로 가장 많고, 비율로는 97 ÷ 428 ≈ 0.227이다. 결제수단별 평균은 간편결제가 85,623원으로 가장 크다. 그룹별 집계의 출력에서 맨 위의 <code>결제수단</code>은 묶는 기준이 된 열의 이름이고, 그 아래 왼쪽의 값들이 그룹이다. 4절은 이 기본형을 집계 방법 여럿, 기준 열 둘로 넓힌다.</p>
+</section>
+<section id="따라-하기" class="level3">
+<h3 class="anchored" data-anchor-id="따라-하기">따라 하기</h3>
+<p><strong>예상.</strong> 실행하기 전에 다음 세 가지를 노트에 적는다.</p>
+<ol type="1">
+<li><code>tx.shape</code>와 <code>cust.shape</code>의 값. 행의 수는 0.3절의 표에서, 열의 수는 1.1절의 열 이름에서 센다.</li>
+<li><code>tx["단가"] = ...</code>을 실행한 뒤의 <code>tx.shape</code>. 새 열은 행을 바꾸지 않고 열을 하나 더한다.</li>
+<li>금액의 평균과 중앙값 가운데 어느 쪽이 클 것인가. 한 건에 20만 원이 넘는 가전 거래가 있다는 점을 근거로 삼는다.</li>
+</ol>
+<p><strong>실행.</strong></p>
+<ol type="1">
+<li>노트북의 「따라 하기 1」 셀을 위에서부터 차례로 실행한다. 「0. 시작하기」의 셀이 <code>pd</code>와 <code>DATA</code>를 정의하므로 그 셀을 먼저 실행한다.</li>
+<li>각 셀의 출력을 위의 출력과 견준다. 다른 값이 나오면 위의 셀을 실행하지 않았거나 자료의 위치(<code>DATA</code>)가 맞지 않는 것이다.</li>
+<li>마지막 셀이 낸 금액 상위 세 건의 품목군을 적는다.</li>
+</ol>
+<p><strong>결과와 해석.</strong></p>
+<ul>
+<li><span class="check-badge">확인 4</span> <code>tx</code>가 <code>(428, 7)</code>, <code>cust</code>가 <code>(60, 5)</code>로 나왔다.</li>
+<li><span class="check-badge">확인 5</span> 새 열을 더한 뒤 <code>tx</code>가 <code>(428, 8)</code>이 되었고, 첫 거래의 <code>단가</code>가 <code>23400.0</code>으로 나왔다.</li>
+<li><span class="check-badge">확인 6</span> 계좌이체 거래가 <code>(43, 8)</code>로, 금액의 <code>mean</code>이 <code>79104.2</code>, <code>50%</code>가 <code>57600.0</code>으로 나왔다.</li>
+<li><span class="check-badge">확인 7</span> <code>value_counts()</code>에서 도서가 <code>97</code>, 비율이 <code>0.227</code>로 나왔고, 금액 상위 세 건이 의류, 의류, 가전(<code>T0174</code>, <code>T0139</code>, <code>T0075</code>)이었다.</li>
+</ul>
+<p><strong>복기.</strong> 새 열을 만들면 열의 수만 하나 늘고, 조건으로 고르면 행의 수만 줄어든다. 표의 크기가 어떻게 바뀌는가는 연산의 종류로 미리 정해진다. 평균(79,104.2원)이 중앙값(57,600원)보다 큰 것은 금액이 큰 거래 몇 건이 평균을 끌어올렸기 때문이며, 이 차이의 뜻은 교재 05에서 다룬다. 금액 상위 세 건 가운데 둘이 의류라는 결과는, 한 건의 평균 금액이 가장 큰 품목군이 가전이라는 4.1절의 결과와 어긋나 보인다. 평균은 품목군 전체의 대표값이고 상위 몇 건은 개별 거래의 값이므로 서로 다른 것을 말한다. 예상과 다른 값이 나왔다면 대부분 셀의 실행 순서 문제이므로, 커널을 재시작하고 처음부터 다시 실행한다(0.2절).</p>
+<hr>
+</section>
+</section>
+<section id="자료-구조-series와-dataframe" class="level2">
+<h2 class="anchored" data-anchor-id="자료-구조-series와-dataframe">2. 자료 구조: Series와 DataFrame</h2>
+<p><strong>배경과 쓰임.</strong> 표를 다루는 도구는 모두 “한 열에는 한 가지 자료형”이라는 약속을 지킨다. 관계형 데이터베이스는 테이블을 만들 때 열마다 자료형을 정하고, R의 데이터 프레임과 pandas의 DataFrame도 열마다 자료형을 하나씩 둔다. 자료형이 정해져야 합계와 평균처럼 수에만 뜻이 있는 계산과, 같은 값끼리 묶어 세는 계산을 구분할 수 있다. 업무에서는 금액처럼 수여야 할 열이 문자열로 읽혀 합계가 구해지지 않거나, 우편번호처럼 문자열이어야 할 열이 수로 읽혀 앞자리의 0이 사라지는 일이 흔하다. pandas는 3.0(2026년 1월 발표)부터 문자열 열을 전용 문자열 자료형 <code>str</code>로 읽는다. 그보다 앞선 판은 같은 열을 <code>object</code>로 표시하였다. 같은 자료라도 판에 따라 출력의 표기가 다를 수 있다는 점이 0.2절에서 판을 확인한 까닭이다.</p>
+<section id="dataframe과-series" class="level3">
+<h3 class="anchored" data-anchor-id="dataframe과-series">2.1 DataFrame과 Series</h3>
+<p>pandas의 자료 구조는 둘이다. 행과 열이 있는 표 전체가 DataFrame이고, 표에서 열 하나를 고른 것이 Series다. DataFrame은 같은 행 번호를 공유하는 Series 여러 개를 옆으로 세운 것이다.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>amount <span class="op">=</span> tx[<span class="st">"금액"</span>]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(tx))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(amount))</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(amount.head(<span class="dv">3</span>))</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(amount.<span class="bu">sum</span>())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>&lt;class 'pandas.DataFrame'&gt;
+&lt;class 'pandas.Series'&gt;
+0    93600
+1    14800
+2    17000
+Name: 금액, dtype: int64
+33856600</code></pre>
+<p>Series를 출력하면 왼쪽에 행 번호, 오른쪽에 값이 나오고, 마지막 줄에 열의 이름(<code>Name</code>)과 자료형(<code>dtype</code>)이 나온다. 2026년 한 해의 거래 금액은 33,856,600원이다.</p>
+<p>Series의 값은 위치로도 꺼낸다. <code>iloc[0]</code>은 첫째 값이고 <code>iloc[-1]</code>은 마지막 값이다.</p>
+<pre class="text"><code>428 93600 120200</code></pre>
+<p><code>len(amount)</code>는 값의 수 428이고, 첫째 값은 93,600, 마지막 값은 120,200이다. 파이썬은 위치를 0부터 센다. R은 1부터 센다(7.4절).</p>
+</section>
+<section id="열의-자료형" class="level3">
+<h3 class="anchored" data-anchor-id="열의-자료형">2.2 열의 자료형</h3>
+<p>한 열에는 한 가지 자료형의 값만 들어간다. <code>dtypes</code>는 열마다의 자료형을 보여 준다.</p>
+<pre class="text"><code>거래ID          str
+고객ID          str
+거래일          str
+품목군          str
+수량          int64
+금액          int64
+결제수단        str
+단가        float64
+dtype: object</code></pre>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>pandas의 자료형</th>
+<th>뜻</th>
+<th>이 표의 열</th>
+<th>R의 자료형</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>int64</code></td>
+<td>정수</td>
+<td><code>수량</code>, <code>금액</code></td>
+<td><code>int</code> (integer)</td>
+</tr>
+<tr class="even">
+<td><code>float64</code></td>
+<td>실수(소수점이 있는 수)</td>
+<td><code>단가</code></td>
+<td><code>num</code> (numeric)</td>
+</tr>
+<tr class="odd">
+<td><code>str</code></td>
+<td>문자열</td>
+<td>나머지 다섯 열</td>
+<td><code>chr</code> (character)</td>
+</tr>
+<tr class="even">
+<td><code>bool</code></td>
+<td>참과 거짓(<code>True</code>, <code>False</code>)</td>
+<td>이 표에는 없다</td>
+<td><code>logi</code> (logical)</td>
+</tr>
+</tbody>
+</table>
+<p>정수를 정수로 나누면 실수가 되므로 <code>단가</code>는 <code>float64</code>다. <code>거래일</code>은 날짜처럼 보이지만 문자열로 읽혀 있다. 문자열 열은 값이 같은 것끼리 묶거나 세는 데 쓰고, 합계와 평균은 수로 된 열에서만 뜻이 있다. pandas 3.0보다 앞선 판에서는 문자열 자료형이 <code>object</code>로 표시된다.</p>
+</section>
+<section id="r의-벡터와-데이터-프레임" class="level3">
+<h3 class="anchored" data-anchor-id="r의-벡터와-데이터-프레임">2.3 R의 벡터와 데이터 프레임</h3>
+<p>시험은 R의 이름으로 묻는다. pandas의 Series에 해당하는 것이 R의 벡터(vector)이고, DataFrame에 해당하는 것이 데이터 프레임(data frame)이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>구분</th>
+<th>pandas</th>
+<th>R</th>
+<th>공통점</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1차원</td>
+<td>Series</td>
+<td>벡터</td>
+<td>한 가지 자료형의 값을 순서대로 담는다</td>
+</tr>
+<tr class="even">
+<td>2차원 표</td>
+<td>DataFrame</td>
+<td>데이터 프레임</td>
+<td>길이가 같은 열을 나란히 세운다. 열마다 자료형이 다를 수 있다</td>
+</tr>
+<tr class="odd">
+<td>위치의 시작</td>
+<td>0</td>
+<td>1</td>
+<td>첫째 값이 파이썬은 <code>iloc[0]</code>, R은 <code>x[1]</code>이다</td>
+</tr>
+<tr class="even">
+<td>결측값의 표기</td>
+<td><code>NaN</code></td>
+<td><code>NA</code></td>
+<td>값이 없다는 표시다</td>
+</tr>
+</tbody>
+</table>
+<p>R에는 이 밖에 행렬(모든 값의 자료형이 같은 2차원 자료)과 리스트(서로 다른 자료 구조를 함께 담는 것), 범주를 담는 팩터(factor)가 있다. 팩터는 7.3절에서, 행렬과 리스트는 교재 13에서 다룬다.</p>
+</section>
+<section id="따라-하기-1" class="level3">
+<h3 class="anchored" data-anchor-id="따라-하기-1">따라 하기</h3>
+<p><strong>예상.</strong> 실행하기 전에 다음 물음에 답을 적는다.</p>
+<ol type="1">
+<li><code>tx["금액"]</code>의 <code>type</code>은 DataFrame인가 Series인가. <code>tx[["금액"]]</code>처럼 열 이름을 리스트로 넣으면 어느 쪽이 될 것인가.</li>
+<li><code>amount.iloc[-1]</code>은 몇 번째 거래의 금액인가. 거래ID로 답한다.</li>
+<li><code>dtypes</code>에서 실수(<code>float64</code>)로 나올 열은 몇 개인가.</li>
+</ol>
+<p><strong>실행.</strong></p>
+<ol type="1">
+<li>노트북의 「따라 하기 2」 셀을 실행한다.</li>
+<li><code>dtypes</code>의 출력에서 수로 된 열과 문자열 열을 나누어 센다.</li>
+</ol>
+<p><strong>결과와 해석.</strong></p>
+<ul>
+<li><span class="check-badge">확인 8</span> <code>type</code>이 <code>pandas.DataFrame</code>과 <code>pandas.Series</code>로 나왔고, 금액의 합계가 <code>33856600</code>으로 나왔다.</li>
+<li><span class="check-badge">확인 9</span> <code>428 93600 120200</code>이 나왔고, <code>dtypes</code>에서 <code>단가</code>만 <code>float64</code>, <code>수량</code>과 <code>금액</code>이 <code>int64</code>였다.</li>
+</ul>
+<p><strong>복기.</strong> 열 이름 하나를 대괄호에 넣으면 Series, 열 이름의 리스트를 넣으면 열이 하나뿐이어도 DataFrame이 된다. 1.1절에서 열 여럿을 고를 때 대괄호를 두 겹으로 쓴 까닭이 이것이다. <code>iloc[-1]</code>은 마지막 행, 곧 428번째 거래(<code>T0428</code>)의 금액이다. 실수 열이 <code>단가</code> 하나뿐인 것은 나눗셈으로 만든 열이기 때문이다. <code>금액</code>과 <code>수량</code>은 파일에 정수로 적혀 있으므로 정수로 읽혔다. 5.1절에서는 정수 열에 결측값이 생기면 실수 열로 바뀌는 것을 본다. 자료형은 파일의 내용뿐 아니라 연산의 결과로도 바뀐다.</p>
+<hr>
+</section>
+</section>
+<section id="행과-열의-선택" class="level2">
+<h2 class="anchored" data-anchor-id="행과-열의-선택">3. 행과 열의 선택</h2>
+<p><strong>배경과 쓰임.</strong> 조건에 의한 선택은 데이터베이스의 SQL 문에서 <code>WHERE</code> 절이 맡는 일이다. pandas 문서의 「SQL과의 비교」는 <code>WHERE</code>에 해당하는 것을 불리언 색인(참·거짓의 Series로 행을 고르는 방법)으로 소개하고, 조건 둘을 <code>&amp;</code>(AND)와 <code>|</code>(OR)로 잇는 예를 든다. 열의 선택은 <code>SELECT</code> 절에 해당한다. 업무의 분석 요청은 “20만 원 이상 구매한 가전 거래”, “도서나 식품을 산 거래”처럼 조건 여럿을 결합한 꼴로 오는 일이 많다. 조건을 잘못 결합하면 오류 메시지 없이 다른 행이 남으므로, 결합한 결과의 행 수를 각 조건의 행 수와 견주어 점검한다. 3.2절의 덧셈과 뺄셈이 그 점검 방법이다.</p>
+<section id="조건에-의한-행의-선택" class="level3">
+<h3 class="anchored" data-anchor-id="조건에-의한-행의-선택">3.1 조건에 의한 행의 선택</h3>
+<p>조건으로 행을 고르는 일은 두 단계로 이루어진다. 먼저 <code>tx["금액"] &gt;= 200000</code>처럼 열에 조건을 적으면 행마다 참(<code>True</code>)인지 거짓(<code>False</code>)인지가 정해진다. 이 참·거짓의 Series를 표의 대괄호 안에 넣으면 참인 행만 남는다.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>limit <span class="op">=</span> <span class="dv">200000</span>     <span class="co"># 바꾸어 볼 값: 금액의 기준. 100000, 230000</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>big <span class="op">=</span> tx[tx[<span class="st">"금액"</span>] <span class="op">&gt;=</span> limit]</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(big.shape)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(big[[<span class="st">"고객ID"</span>, <span class="st">"품목군"</span>, <span class="st">"금액"</span>]].head())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>(32, 8)
+   고객ID 품목군    금액
+11   C003   가전  232800
+34   C013   의류  234800
+56   C017   가전  215400
+57   C060   의류  213600
+64   C015   의류  220400</code></pre>
+<p>428건 가운데 32건이 남았다. <code>big</code>의 열은 8개 그대로이고, 출력할 때에만 셋을 골랐다. 행 번호는 원래 표의 번호가 그대로 남는다. 선택은 표의 내용을 바꾸지 않는다. 있는 행과 열 가운데 일부를 꺼낼 뿐이다.</p>
+</section>
+<section id="조건-둘의-결합" class="level3">
+<h3 class="anchored" data-anchor-id="조건-둘의-결합">3.2 조건 둘의 결합</h3>
+<p>조건을 둘 이상 쓸 때에는 조건마다 괄호로 감싸고 <code>&amp;</code>(그리고)나 <code>|</code>(또는)로 잇는다. 다음은 품목군이 의류이고 금액이 23만 원 이상인 거래다.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>cond <span class="op">=</span> (tx[<span class="st">"품목군"</span>] <span class="op">==</span> <span class="st">"의류"</span>) <span class="op">&amp;</span> (tx[<span class="st">"금액"</span>] <span class="op">&gt;=</span> <span class="dv">230000</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tx[cond])</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>    거래ID 고객ID      거래일 품목군  수량    금액  결제수단     단가
+34   T0035   C013  2026-01-27   의류     4  234800      카드  58700.0
+69   T0070   C044  2026-02-25   의류     4  230800      카드  57700.0
+138  T0139   C044  2026-04-18   의류     4  245200  간편결제  61300.0
+173  T0174   C059  2026-05-16   의류     4  246400      카드  61600.0</code></pre>
+<p>두 결합의 결과를 행 수로 견주면 차이가 분명하다. 노트북은 “가전인가”(<code>c1</code>)와 “금액이 20만 원 이상인가”(<code>c2</code>)의 참인 행 수를 차례로 센다.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>c1 <span class="op">=</span> tx[<span class="st">"품목군"</span>] <span class="op">==</span> <span class="st">"가전"</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>c2 <span class="op">=</span> tx[<span class="st">"금액"</span>] <span class="op">&gt;=</span> <span class="dv">200000</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(c1.<span class="bu">sum</span>(), c2.<span class="bu">sum</span>(), (c1 <span class="op">&amp;</span> c2).<span class="bu">sum</span>(), (c1 <span class="op">|</span> c2).<span class="bu">sum</span>())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>84 32 24 92</code></pre>
+<p>참·거짓의 Series에 <code>sum()</code>을 쓰면 <code>True</code>를 1로 세므로 참인 행의 수가 나온다. 가전은 84건, 20만 원 이상은 32건이고, 둘 다 해당하는 것은 24건이다. <code>|</code>로 이은 결과는 84 + 32 - 24 = 92건이다. 겹치는 24건을 두 번 세지 않도록 한 번 빼는 것이다. 그러므로 <code>&amp;</code>의 결과는 각 조건의 결과보다 많을 수 없고, <code>|</code>의 결과는 각 조건의 결과보다 적을 수 없다. 20만 원 이상인 32건 가운데 24건이 가전이라는 것도 이 출력에서 읽힌다.</p>
+</section>
+<section id="loc과-isin" class="level3">
+<h3 class="anchored" data-anchor-id="loc과-isin">3.3 <code>loc</code>과 <code>isin</code></h3>
+<p><code>loc[행의 조건, 열의 이름]</code>은 행과 열을 한 번에 고른다. 쉼표의 앞이 행, 뒤가 열이다. R의 <code>tx[행, 열]</code>과 같은 형식이다(7.4절). <code>isin</code>은 값이 주어진 목록 안에 있으면 참을 낸다. 같은 열에 대한 <code>|</code> 조건 여럿을 한 번에 쓴 것과 같다.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tx.loc[tx[<span class="st">"금액"</span>] <span class="op">&gt;=</span> <span class="dv">240000</span>, [<span class="st">"거래ID"</span>, <span class="st">"고객ID"</span>, <span class="st">"품목군"</span>, <span class="st">"금액"</span>]])</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tx[tx[<span class="st">"품목군"</span>].isin([<span class="st">"도서"</span>, <span class="st">"식품"</span>])].shape)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>    거래ID 고객ID 품목군    금액
+138  T0139   C044   의류  245200
+173  T0174   C059   의류  246400
+(184, 8)</code></pre>
+<p>24만 원 이상인 거래는 두 건이고 모두 의류다. 도서이거나 식품인 거래는 184건으로, 1.2절의 값별 건수 97 + 87과 같다.</p>
+</section>
+<section id="따라-하기-2" class="level3">
+<h3 class="anchored" data-anchor-id="따라-하기-2">따라 하기</h3>
+<p><strong>예상.</strong> 실행하기 전에 다음 표의 “예상” 열을 채운다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>물음</th>
+<th>예상</th>
+<th>근거로 쓸 것</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>limit</code>을 <code>100000</code>으로 낮추면 <code>big</code>의 행 수는 32보다 많은가 적은가</td>
+<td></td>
+<td>기준이 낮을수록 조건을 만족하는 거래가 많다</td>
+</tr>
+<tr class="even">
+<td><code>(c1 &amp; c2).sum()</code>은 어느 값보다 클 수 없는가</td>
+<td></td>
+<td><code>&amp;</code>는 두 조건을 모두 만족해야 한다</td>
+</tr>
+<tr class="odd">
+<td><code>(c1 \| c2).sum()</code>은 어느 값보다 작을 수 없는가</td>
+<td></td>
+<td><code>\|</code>는 하나만 만족해도 된다</td>
+</tr>
+<tr class="even">
+<td><code>isin(["도서", "식품"])</code>의 행 수</td>
+<td></td>
+<td>1.2절의 값별 건수</td>
+</tr>
+</tbody>
+</table>
+<p><strong>실행.</strong></p>
+<ol type="1">
+<li>노트북의 「따라 하기 3」 셀을 실행하고 출력을 위와 견준다.</li>
+<li><code>limit</code>을 <code>100000</code>으로, 다시 <code>230000</code>으로 바꾸고 그 셀을 실행한다. 행 수를 적은 뒤 <code>200000</code>으로 되돌린다.</li>
+<li><code>(c1 | c2).sum()</code>이 <code>c1.sum() + c2.sum() - (c1 &amp; c2).sum()</code>과 같은지 계산으로 확인한다.</li>
+</ol>
+<p><strong>결과와 해석.</strong></p>
+<ul>
+<li><span class="check-badge">확인 10</span> <code>limit = 200000</code>에서 <code>big</code>이 <code>(32, 8)</code>로 나왔고, 기준을 높이면 행 수가 줄었다.</li>
+<li><span class="check-badge">확인 11</span> <code>84 32 24 92</code>가 나왔고, 84 + 32 - 24 = 92가 성립하였다.</li>
+<li><span class="check-badge">확인 12</span> <code>loc</code>의 결과가 <code>T0139</code>, <code>T0174</code> 두 행이었고, <code>isin</code>의 결과가 <code>(184, 8)</code>이었다.</li>
+</ul>
+<p><strong>복기.</strong> <code>&amp;</code>의 결과(24)는 두 조건 가운데 작은 쪽(32)을 넘지 않고, <code>|</code>의 결과(92)는 큰 쪽(84)보다 작지 않다. 이 두 부등식은 조건을 어떻게 이었는지를 출력만 보고 점검하는 기준이다. 예를 들어 “가전이면서 20만 원 이상”을 구하려 했는데 결과가 92행이라면 <code>&amp;</code> 대신 <code>|</code>를 쓴 것이다. <code>isin</code>의 결과가 97 + 87 = 184와 같다는 것은, 한 거래가 두 품목군에 동시에 속할 수 없기 때문에 겹치는 행이 0이라는 뜻이다. 겹침이 없으면 <code>|</code>의 행 수는 두 조건의 행 수의 합과 같다.</p>
+<hr>
+</section>
+</section>
+<section id="그룹별-집계와-표의-형태-변환" class="level2">
+<h2 class="anchored" data-anchor-id="그룹별-집계와-표의-형태-변환">4. 그룹별 집계와 표의 형태 변환</h2>
+<p><strong>배경과 쓰임.</strong> 그룹별 집계는 SQL의 <code>GROUP BY</code>에 해당하며, 지역별 매출처럼 업무 보고서의 표 대부분이 이 연산으로 만들어진다. 표의 형태 변환은 같은 집계를 사람이 읽기 좋은 넓은 표와 프로그램이 다루기 좋은 긴 표 사이에서 옮기는 일이다. Wickham(2014)은 분석에 알맞은 표의 조건을 “변수 하나가 열 하나, 관측 하나가 행 하나, 관측 단위의 종류 하나가 표 하나”로 정리하고 이 꼴의 자료를 tidy data라 불렀다. 4.1절의 두 기준 집계 결과는 품목군, 결제수단, 금액이 각각 열 하나인 이 꼴이다. 연도나 지역을 열로 펼쳐 놓은 통계표는 사람이 읽기에는 좋으나, 그대로는 연도별로 묶어 집계하거나 연도를 축으로 그림을 그리기 어렵다. 그래서 긴 표로 바꾸어 분석하고, 결과를 보고할 때 다시 넓은 표로 바꾼다. 이 장은 pandas의 변환 함수 가운데 <code>pivot_table</code>과 <code>melt</code>를 쓰고, 4.5절에서 <code>pivot</code>을 견준다.</p>
+<section id="그룹별-집계" class="level3">
+<h3 class="anchored" data-anchor-id="그룹별-집계">4.1 그룹별 집계</h3>
+<p>집계는 여러 행을 하나의 값으로 줄이는 일이다. 그룹별 집계는 세 단계로 이루어진다. 기준 열의 값이 같은 행끼리 나누고(split), 묶음마다 같은 계산을 적용하고(apply), 묶음마다의 결과를 한 표로 합친다(combine). <code>groupby</code>가 나누기를 맡고, 뒤에 붙는 집계 방법이 적용을 맡으며, 합치기는 저절로 된다. 이 세 단계의 이름은 R의 <code>plyr</code> 패키지를 설명하는 말이기도 하다(7.6절).</p>
+<p><code>agg</code>는 집계 방법 여럿을 한 번에 적용한다. 집계 방법의 이름을 리스트로 넘긴다. <code>count</code>는 건수, <code>sum</code>은 합계, <code>mean</code>은 평균이다.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tx.groupby(<span class="st">"품목군"</span>)[<span class="st">"금액"</span>].agg([<span class="st">"count"</span>, <span class="st">"sum"</span>, <span class="st">"mean"</span>]).<span class="bu">round</span>(<span class="dv">0</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>        count       sum      mean
+품목군                           
+가전       84  13987100  166513.0
+도서       97   4377200   45126.0
+생활       76   4285800   56392.0
+식품       87   2716900   31229.0
+의류       84   8489600  101067.0</code></pre>
+<p>428행이 다섯 행으로 줄었다. 묶는 기준인 <code>품목군</code>의 값이 다섯 가지이기 때문이다. 집계 결과의 행 수는 원래 표의 행 수와 관계가 없고, 묶는 기준의 값이 몇 가지인가로 정해진다. <code>count</code> 열의 합은 428이고 <code>sum</code> 열의 합은 2.1절의 전체 합계 33,856,600이다. 건수는 도서가 가장 많고 합계는 가전이 가장 크다. 가전은 한 건의 평균 금액이 166,513원으로 다른 품목군보다 크기 때문이다. 건수, 합계, 평균은 서로 다른 것을 말해 주므로 함께 본다.</p>
+<p>묶는 기준을 둘로 하면 기준 값의 조합마다 한 행이 된다.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> tx.groupby([<span class="st">"품목군"</span>, <span class="st">"결제수단"</span>])[<span class="st">"금액"</span>].<span class="bu">sum</span>()</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(s))</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(s.head(<span class="dv">6</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>15
+품목군  결제수단
+가전    간편결제    6925200
+        계좌이체     709200
+        카드        6352700
+도서    간편결제    1747600
+        계좌이체     530800
+        카드        2098800
+Name: 금액, dtype: int64</code></pre>
+<p>품목군 다섯 가지와 결제수단 세 가지의 조합이므로 5 × 3 = 15행이다. 모든 조합에 거래가 있으므로 15행이 모두 나왔다. 거래가 없는 조합은 이 결과에 행으로 나오지 않는다.</p>
+</section>
+<section id="넓은-표와-긴-표" class="level3">
+<h3 class="anchored" data-anchor-id="넓은-표와-긴-표">4.2 넓은 표와 긴 표</h3>
+<p>같은 내용을 두 가지 형태의 표로 적을 수 있다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>형태</th>
+<th>한 행이 나타내는 것</th>
+<th>열</th>
+<th>쓰임</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>넓은 표(wide)</td>
+<td>대상 하나</td>
+<td>대상의 식별 열과, 항목마다 하나씩의 열</td>
+<td>사람이 읽고 견주기 좋다. 분석 모형의 입력 형태다</td>
+</tr>
+<tr class="even">
+<td>긴 표(long)</td>
+<td>대상과 항목의 조합 하나</td>
+<td>대상의 식별 열, 항목의 이름, 값의 세 열</td>
+<td>묶어 집계하고 그림을 그리기 좋다. 항목이 늘어도 열이 늘지 않는다</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p><strong>[그림 자리: 같은 15개의 합계를 넓은 표와 긴 표로 적은 도식]</strong> 왼쪽에 품목군 5행 × 결제수단 3열의 넓은 표, 오른쪽에 품목군·결제수단·금액 세 열의 15행 긴 표를 두고, 넓은 표의 한 칸(가전·간편결제 6925200)이 긴 표의 한 행으로 옮겨 가는 것을 화살표로 잇는다. 두 표 사이에 <code>melt</code>(넓은 표에서 긴 표로)와 <code>pivot_table</code>(긴 표에서 넓은 표로)의 화살표를 둔다. 그림 안의 글자는 영문(category, payment, amount)으로 쓴다. 만들 곳: 도식 편집기.</p>
+</blockquote>
+<p>4.1절의 두 기준 집계 결과는 품목군과 결제수단의 조합 하나가 한 행이므로 긴 표다. <code>pivot_table</code>은 같은 합계를 넓은 표로 낸다. 품목군을 행에(<code>index</code>), 결제수단을 열에(<code>columns</code>) 놓고, 칸마다 금액(<code>values</code>)의 합계(<code>aggfunc</code>)를 적는다.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>wide <span class="op">=</span> tx.pivot_table(index<span class="op">=</span><span class="st">"품목군"</span>, columns<span class="op">=</span><span class="st">"결제수단"</span>, values<span class="op">=</span><span class="st">"금액"</span>, aggfunc<span class="op">=</span><span class="st">"sum"</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(wide)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>결제수단  간편결제  계좌이체     카드
+품목군                               
+가전       6925200    709200  6352700
+도서       1747600    530800  2098800
+생활       2145200    921900  1218700
+식품       1008100    215900  1492900
+의류       3072300    664500  4752800</code></pre>
+<p>15개의 값은 4.1절의 결과와 같고 배치만 다르다. 가전·간편결제는 두 출력 모두 6,925,200이다. <code>aggfunc</code>를 적지 않으면 평균(<code>"mean"</code>)으로 집계한다. 합계를 원하면 반드시 적는다.</p>
+<p><code>aggfunc="count"</code>로 칸마다 건수를 세고 <code>margins=True</code>로 행과 열의 합계를 붙이면 다음과 같다. <code>pd.crosstab</code>은 두 열의 값의 조합마다 행 수를 센 빈도표를 만들며, 합계 행과 열을 뺀 같은 값을 낸다.</p>
+<pre class="text"><code>결제수단  간편결제  계좌이체  카드  All
+품목군                                 
+가전            39         5    40   84
+도서            35        13    49   97
+생활            37        15    24   76
+식품            33         4    50   87
+의류            30         6    48   84
+All            174        43   211  428</code></pre>
+<p><code>All</code> 행과 <code>All</code> 열이 합계다. 결제수단 합계 174 + 43 + 211 = 428이다. <code>All</code> 열은 1.2절의 품목군별 건수와 같고, 계좌이체의 합계 43은 1.2절에서 고른 계좌이체 거래의 수와 같다. 넓은 표 하나에 행별 합계(품목군별 건수)와 열별 합계(결제수단별 건수)가 함께 들어 있다.</p>
+</section>
+<section id="melt-넓은-표를-긴-표로" class="level3">
+<h3 class="anchored" data-anchor-id="melt-넓은-표를-긴-표로">4.3 <code>melt</code>: 넓은 표를 긴 표로</h3>
+<p><code>melt</code>는 넓은 표를 긴 표로 바꾼다. 그대로 둘 식별 열을 <code>id_vars</code>로 정하면, 나머지 열의 이름은 한 열의 값으로, 칸의 값은 다른 한 열의 값으로 내려간다.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="bu">long</span> <span class="op">=</span> wide.reset_index().melt(id_vars<span class="op">=</span><span class="st">"품목군"</span>, value_name<span class="op">=</span><span class="st">"금액"</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">long</span>.shape)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">long</span>.head(<span class="dv">4</span>))</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">long</span>.tail(<span class="dv">2</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>(15, 3)
+  품목군  결제수단     금액
+0   가전  간편결제  6925200
+1   도서  간편결제  1747600
+2   생활  간편결제  2145200
+3   식품  간편결제  1008100
+   품목군 결제수단     금액
+13   식품     카드  1492900
+14   의류     카드  4752800</code></pre>
+<p><code>reset_index()</code>는 행 이름 자리에 있던 <code>품목군</code>을 보통의 열로 되돌린다. <code>melt</code>의 대상은 열이므로 이 줄이 필요하다. 열 이름이 내려간 열의 이름은 <code>var_name</code>으로 정한다. 정하지 않으면 넓은 표의 열 묶음에 붙어 있던 이름(<code>결제수단</code>)을 쓰고, 그것도 없으면 <code>variable</code>이 된다. 값의 열 이름은 <code>value_name</code>으로 정하며 정하지 않으면 <code>value</code>다.</p>
+<p>긴 표의 행 수는 넓은 표의 행 수에 펼쳐져 있던 열의 수를 곱한 값이다. 5 × 3 = 15다. 열은 식별 열, 항목의 이름, 값의 세 개다. 넓은 표가 대상 4개, 항목 3개라면 긴 표는 12행 3열이 된다.</p>
+</section>
+<section id="두-변환의-관계" class="level3">
+<h3 class="anchored" data-anchor-id="두-변환의-관계">4.4 두 변환의 관계</h3>
+<p>긴 표를 다시 <code>pivot_table</code>로 넓히면 처음의 넓은 표가 된다.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>back <span class="op">=</span> <span class="bu">long</span>.pivot_table(index<span class="op">=</span><span class="st">"품목군"</span>, columns<span class="op">=</span><span class="st">"결제수단"</span>, values<span class="op">=</span><span class="st">"금액"</span>, aggfunc<span class="op">=</span><span class="st">"sum"</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((back <span class="op">==</span> wide).<span class="bu">all</span>().<span class="bu">all</span>())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>True</code></pre>
+<p><code>back == wide</code>는 칸마다 같은지를 참·거짓으로 내고, <code>all()</code>을 두 번 써서 모든 칸이 참인지를 본다. 두 변환은 서로 반대 방향이다. R의 <code>reshape</code> 패키지에서는 넓은 표를 긴 표로 바꾸는 함수가 <code>melt</code>, 긴 표를 원하는 형태의 넓은 표로 다시 짜는 함수가 <code>cast</code>다(7.6절).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>방향</th>
+<th>pandas</th>
+<th>R <code>reshape</code></th>
+<th>행 수의 변화</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>넓은 표 → 긴 표</td>
+<td><code>melt</code></td>
+<td><code>melt</code></td>
+<td>늘어난다(행 수 × 펼친 열의 수)</td>
+</tr>
+<tr class="even">
+<td>긴 표 → 넓은 표</td>
+<td><code>pivot_table</code></td>
+<td><code>cast</code></td>
+<td>줄어든다. 집계 함수를 함께 적용할 수 있다</td>
+</tr>
+</tbody>
+</table>
+<p>거래 내역은 고객 한 명의 거래가 여러 행에 걸쳐 있는 긴 형태의 자료이고, 6절에서 만들 마트는 고객 한 명이 한 행인 넓은 형태의 자료다. 마트를 만드는 일의 상당 부분이 긴 표를 넓은 표로 바꾸는 일이다.</p>
+</section>
+<section id="pivot과-pivot_table-선택" class="level3">
+<h3 class="anchored" data-anchor-id="pivot과-pivot_table-선택">4.5 <code>pivot</code>과 <code>pivot_table</code> [선택]</h3>
+<p>pandas에는 긴 표를 넓은 표로 바꾸는 함수가 둘 있다. pandas 사용자 안내서는 <code>pivot</code>을 집계 없이 값의 자리만 옮기는 함수로, <code>pivot_table</code>을 집계를 함께 하는 함수로 구분한다. 또 <code>pivot</code>은 <code>index</code>와 <code>columns</code>로 정한 조합 하나에 행이 하나뿐일 때에만 쓸 수 있고, 중복이 있으면 <code>pivot_table</code>을 쓰라고 적는다. 거래 내역에서는 품목군과 결제수단의 조합 하나에 거래가 여러 건 있다. 4.2절의 건수 표에 따르면 가전·간편결제만 해도 39건이다. 그러므로 실행하기 전에 다음과 같이 예상할 수 있다. 거래 내역에 <code>pivot</code>을 쓰면 한 칸에 들어갈 값이 여럿이어서 실패하고, 이미 조합마다 한 행으로 집계한 <code>s</code>에 쓰면 성공한다.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    tx.pivot(index<span class="op">=</span><span class="st">"품목군"</span>, columns<span class="op">=</span><span class="st">"결제수단"</span>, values<span class="op">=</span><span class="st">"금액"</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">ValueError</span> <span class="im">as</span> e:</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"ValueError:"</span>, e)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>ValueError: Index contains duplicate entries, cannot reshape</code></pre>
+<p><code>try</code>와 <code>except</code>는 오류가 나도 노트북이 멈추지 않게 하고 오류의 이름과 메시지만 출력하게 하는 구문이다. 이 셀은 오류를 보여 주려고 일부러 실패하는 코드를 넣었다. 메시지는 “색인에 중복된 항목이 있어 형태를 바꿀 수 없다”는 뜻이다. 한 칸에 들어갈 값이 여럿인데, 그것을 하나로 줄이는 방법(집계 함수)이 주어지지 않았기 때문이다. 집계를 마친 긴 표 <code>s</code>에서는 결과가 다르다.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>wide2 <span class="op">=</span> s.reset_index().pivot(index<span class="op">=</span><span class="st">"품목군"</span>, columns<span class="op">=</span><span class="st">"결제수단"</span>, values<span class="op">=</span><span class="st">"금액"</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(wide2.shape)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((wide2 <span class="op">==</span> wide).<span class="bu">all</span>().<span class="bu">all</span>())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>(5, 3)
+True</code></pre>
+<p><code>s</code>는 품목군과 결제수단의 조합마다 한 행뿐이므로 <code>pivot</code>이 칸마다 값 하나를 그대로 옮겨 4.2절의 <code>wide</code>와 같은 표를 만들었다. 정리하면, 거래 단위의 원자료에서 넓은 표를 만들 때에는 집계 함수를 받는 <code>pivot_table</code>을 쓰고, 칸마다 값이 이미 하나인 표의 배치만 바꿀 때에는 <code>pivot</code>을 써도 된다. R <code>reshape</code>의 <code>cast</code>는 집계 함수를 받을 수 있으므로 <code>pivot_table</code>에 가깝다.</p>
+</section>
+<section id="따라-하기-3" class="level3">
+<h3 class="anchored" data-anchor-id="따라-하기-3">따라 하기</h3>
+<p><strong>예상.</strong> 실행하기 전에 다음 표의 “예상” 열을 채운다. 근거는 4.1~4.3절의 두 규칙이다. 집계 결과의 행 수는 묶는 기준의 값이 몇 가지인가로 정해지고, 긴 표의 행 수는 넓은 표의 행 수에 펼친 열의 수를 곱한 값이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>연산</th>
+<th>예상</th>
+<th>실행 결과</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>groupby("품목군")</code> 집계의 행 수</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>groupby(["품목군", "결제수단"])</code> 집계의 길이</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>pivot_table(index="품목군", columns="결제수단", ...)</code>의 크기(행, 열)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>wide.reset_index().melt(...)</code>의 크기(행, 열)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>긴 표를 다시 넓힌 <code>back</code>과 <code>wide</code>를 모든 칸에서 견준 값</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>[선택] 거래 내역에 쓴 <code>pivot</code>의 결과</td>
+<td>성공 또는 오류</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>실행.</strong></p>
+<ol type="1">
+<li>노트북의 「따라 하기 4」 셀을 실행한다.</li>
+<li>두 기준 집계(<code>s</code>)의 값과 <code>pivot_table</code>(<code>wide</code>)의 칸을 하나 골라 같은지 견준다.</li>
+<li><code>margins=True</code>의 출력에서 <code>All</code> 행과 <code>All</code> 열을 1.2절의 출력과 견준다.</li>
+<li>[선택] 「<code>pivot</code>과 <code>pivot_table</code>」의 두 셀을 실행한다.</li>
+</ol>
+<p><strong>결과와 해석.</strong></p>
+<ul>
+<li><span class="check-badge">확인 13</span> 품목군별 집계가 다섯 행으로 나왔고, 도서의 <code>count</code>가 <code>97</code>, 가전의 <code>mean</code>이 <code>166513.0</code>이었다.</li>
+<li><span class="check-badge">확인 14</span> 두 기준 집계의 길이가 <code>15</code>로 나왔고, 가전·간편결제의 합계 <code>6925200</code>이 <code>wide</code>의 같은 칸과 같았다.</li>
+<li><span class="check-badge">확인 15</span> 건수 표의 <code>All</code> 행이 <code>174</code>, <code>43</code>, <code>211</code>, <code>428</code>로 나왔다.</li>
+<li><span class="check-badge">확인 16</span> <code>long</code>이 <code>(15, 3)</code>으로 나왔고, 마지막 행이 의류·카드 <code>4752800</code>이었다.</li>
+<li><span class="check-badge">확인 17</span> 긴 표를 다시 넓힌 결과를 처음의 넓은 표와 견준 값이 <code>True</code>로 나왔다.</li>
+<li><span class="check-badge">확인 18</span> [선택] 거래 내역에 쓴 <code>pivot</code>이 <code>ValueError: Index contains duplicate entries, cannot reshape</code>를 냈고, <code>s</code>로 만든 <code>wide2</code>가 <code>(5, 3)</code>이며 <code>wide</code>와 견준 값이 <code>True</code>였다.</li>
+</ul>
+<p><strong>복기.</strong> 예상 표의 행마다 실행 결과와 견준다. 틀린 행이 있으면 대부분 “한 행이 무엇인가”를 잘못 잡은 것이다. <code>pivot_table</code>의 결과를 15행으로 예상하였다면 긴 표와 넓은 표를 혼동한 것이고, <code>melt</code>의 결과를 5행으로 예상하였다면 펼친 열의 수를 곱하지 않은 것이다. 형태를 바꾸어도 값의 개수(15개)와 값 자체는 바뀌지 않는다. 바뀌는 것은 값이 놓인 자리, 곧 기준 값이 행 이름에 있는가 열 이름에 있는가 값의 열에 있는가뿐이다. 이 사실이 두 변환의 결과를 점검하는 기준이고, <code>back == wide</code>가 <code>True</code>인 것이 그 확인이다. 집계는 이와 달리 값의 개수를 줄인다(428개의 금액이 15개의 합계가 된다). 형태 변환과 집계를 구분하는 것이 <code>pivot</code>과 <code>pivot_table</code>을 구분하는 것과 같은 일이다.</p>
+<hr>
+</section>
+</section>
+<section id="표의-결합과-데이터-마트" class="level2">
+<h2 class="anchored" data-anchor-id="표의-결합과-데이터-마트">5. 표의 결합과 데이터 마트</h2>
+<p><strong>배경과 쓰임.</strong> 업무 자료는 주문, 고객, 상품처럼 시스템마다 따로 저장되고, 분석할 때 키로 결합한다. 결합은 관계형 데이터베이스의 조인(JOIN)과 같은 연산이다. pandas 사용자 안내서의 「Merge, join, concatenate and compare」 장은 <code>merge</code>의 <code>how</code>를 SQL의 조인 이름에 대응시킨다. <code>left</code>는 LEFT OUTER JOIN, <code>right</code>는 RIGHT OUTER JOIN, <code>outer</code>는 FULL OUTER JOIN, <code>inner</code>는 INNER JOIN이다. 같은 장은 키의 조합이 두 표에 모두 여러 번 나오면 결과가 그 행들의 모든 짝(곱집합)이 되어 표의 크기가 크게 늘고, 메모리가 넘칠 수도 있다고 경고한다. 결합의 잘못은 대개 오류 메시지 없이 행 수가 달라지는 꼴로 나타난다. 그러므로 결합하기 전에 결과의 행 수를 예상하고, 결합한 뒤에 실제 행 수와 견주는 것이 결합의 기본 점검이다. 행을 아래로 이어 붙이는 일(같은 열을 가진 두 달치 거래 내역을 하나로 합치는 일)은 결합이 아니라 연결이며, pandas에서는 <code>concat</code>이 맡는다. 연결은 SQL의 <code>UNION ALL</code>에 해당한다.</p>
+<section id="결합-방식" class="level3">
+<h3 class="anchored" data-anchor-id="결합-방식">5.1 결합 방식</h3>
+<p>거래 내역에는 고객의 연령대와 지역이 없고, 고객 표에는 거래 금액이 없다. 두 표를 함께 보려면 결합해야 한다. 두 표에 함께 있는 열을 기준으로 행을 짝짓는데, 이 기준 열을 키(key)라 한다. 결합 방식은 한쪽 표에만 있는 키를 어떻게 다루는가로 나뉜다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>방식 (<code>how</code>)</th>
+<th>남는 행</th>
+<th>짝이 없는 쪽의 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>inner (기본값)</td>
+<td>두 표에 모두 있는 키의 행만 남는다</td>
+<td>해당 없음</td>
+</tr>
+<tr class="even">
+<td>left</td>
+<td>왼쪽 표의 행이 모두 남는다</td>
+<td>오른쪽 표에서 온 열이 결측값이 된다</td>
+</tr>
+<tr class="odd">
+<td>right</td>
+<td>오른쪽 표의 행이 모두 남는다</td>
+<td>왼쪽 표에서 온 열이 결측값이 된다</td>
+</tr>
+<tr class="even">
+<td>outer</td>
+<td>두 표의 행이 모두 남는다</td>
+<td>짝이 없는 쪽의 열이 결측값이 된다</td>
+</tr>
+</tbody>
+</table>
+<p>네 방식의 차이를 작은 표 둘로 확인한다. 「파이썬 기초」에서처럼 딕셔너리로 표를 만든다. 표 <code>b</code>에는 <code>K3</code>이 두 행 있다. 한 고객의 주문이 두 건인 경우다.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> pd.DataFrame({<span class="st">"고객ID"</span>: [<span class="st">"K1"</span>, <span class="st">"K2"</span>, <span class="st">"K3"</span>, <span class="st">"K4"</span>], <span class="st">"지역"</span>: [<span class="st">"서울"</span>, <span class="st">"부산"</span>, <span class="st">"대구"</span>, <span class="st">"광주"</span>]})</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> pd.DataFrame({<span class="st">"고객ID"</span>: [<span class="st">"K2"</span>, <span class="st">"K3"</span>, <span class="st">"K3"</span>, <span class="st">"K5"</span>], <span class="st">"금액"</span>: [<span class="dv">30000</span>, <span class="dv">12000</span>, <span class="dv">8000</span>, <span class="dv">50000</span>]})</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> how <span class="kw">in</span> [<span class="st">"inner"</span>, <span class="st">"left"</span>, <span class="st">"right"</span>, <span class="st">"outer"</span>]:</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(how, pd.merge(a, b, on<span class="op">=</span><span class="st">"고객ID"</span>, how<span class="op">=</span>how).shape)</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.merge(a, b, on<span class="op">=</span><span class="st">"고객ID"</span>, how<span class="op">=</span><span class="st">"outer"</span>, indicator<span class="op">=</span><span class="va">True</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>inner (3, 3)
+left (5, 3)
+right (4, 3)
+outer (6, 3)
+  고객ID  지역     금액      _merge
+0     K1  서울      NaN   left_only
+1     K2  부산  30000.0        both
+2     K3  대구  12000.0        both
+3     K3  대구   8000.0        both
+4     K4  광주      NaN   left_only
+5     K5   NaN  50000.0  right_only</code></pre>
+<blockquote class="blockquote">
+<p><strong>[그림 자리: 결합 방식 넷에 따라 남는 키의 도식]</strong> 작은 표 <code>a</code>(K1~K4)와 <code>b</code>(K2, K3, K3, K5)의 키를 두 열로 나란히 적고, inner, left, right, outer의 네 칸마다 결과에 남는 키를 색으로 칠한 도식. <code>a</code>의 <code>K3</code> 한 행이 <code>b</code>의 <code>K3</code> 두 행과 각각 선으로 이어져 결과에서 두 행이 되는 것을 표시하고, 짝이 없는 칸은 빈칸(NaN)으로 그린다. 그림 안의 글자는 키 이름과 방식 이름(inner, left, right, outer)만 쓴다. 만들 곳: 도식 편집기.</p>
+</blockquote>
+<p><code>pd.merge(왼쪽 표, 오른쪽 표, on=키, how=방식)</code>으로 읽는다. 행 수는 다음과 같이 정해진다.</p>
+<ul>
+<li>inner: 두 표에 모두 있는 키는 <code>K2</code>, <code>K3</code>이다. <code>K3</code>은 <code>b</code>에 두 행이 있으므로 <code>a</code>의 <code>K3</code> 한 행이 두 번 짝지어진다. 1 + 2 = 3행이다.</li>
+<li>left: inner의 3행에 <code>a</code>에만 있는 <code>K1</code>, <code>K4</code>를 더한 5행이다.</li>
+<li>right: inner의 3행에 <code>b</code>에만 있는 <code>K5</code>를 더한 4행이다.</li>
+<li>outer: inner의 3행에 양쪽의 짝 없는 키 셋을 더한 6행이다.</li>
+</ul>
+<p><code>indicator=True</code>는 행마다 출처를 적은 <code>_merge</code> 열을 붙인다. <code>both</code>는 두 표에 모두 있던 키, <code>left_only</code>와 <code>right_only</code>는 한쪽에만 있던 키다. 짝이 없는 칸은 <code>NaN</code>(결측값)이 된다. 정수 열인 <code>금액</code>에 결측값이 생기면 실수 열로 바뀌어 <code>30000.0</code>처럼 적힌다.</p>
+<p>키가 한쪽 표에서 중복되면 결합한 표의 행 수가 늘어난다. 키 하나에 행 하나가 대응하는 결합을 1:1, 한쪽 표의 행 하나에 다른 쪽 표의 행 여럿이 대응하는 결합을 1:N 결합이라 한다. 결합한 뒤에는 행 수가 예상과 같은지를 반드시 확인한다.</p>
+</section>
+<section id="실제-자료의-결합" class="level3">
+<h3 class="anchored" data-anchor-id="실제-자료의-결합">5.2 실제 자료의 결합</h3>
+<p>고객마다 거래 건수(<code>count</code>)와 금액의 합계(<code>sum</code>)를 구한 표 <code>cnt</code>를 만들어 고객 표와 두 방식으로 결합한다.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>cnt <span class="op">=</span> tx.groupby(<span class="st">"고객ID"</span>)[<span class="st">"금액"</span>].agg([<span class="st">"count"</span>, <span class="st">"sum"</span>]).reset_index()</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cnt.shape)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>inner <span class="op">=</span> pd.merge(cust, cnt, on<span class="op">=</span><span class="st">"고객ID"</span>, how<span class="op">=</span><span class="st">"inner"</span>)</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>left <span class="op">=</span> pd.merge(cust, cnt, on<span class="op">=</span><span class="st">"고객ID"</span>, how<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(inner.shape)</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(left.shape)</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(left[left[<span class="st">"count"</span>].isna()])</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>(56, 3)
+(56, 7)
+(60, 7)
+   고객ID 성별 연령대  지역      가입일  count  sum
+11   C012   여   20대  광주  2025-08-23    NaN  NaN
+27   C028   남   30대  대전  2024-04-11    NaN  NaN
+40   C041   여   20대  경기  2024-11-19    NaN  NaN
+55   C056   여   40대  경기  2024-12-17    NaN  NaN</code></pre>
+<p><code>cnt</code>는 56행이다. 고객은 60명인데 집계한 표가 56행이므로 한 해 동안 거래가 없는 고객이 넷 있다. 거래 내역에 한 행도 없는 고객은 집계 결과에도 나오지 않는다. 결합한 표의 열은 고객 표의 5열에 집계한 표의 3열을 더하고 겹치는 키 하나를 뺀 7열이다. inner 방식은 56행, left 방식은 60행이다. left 방식에서는 고객 표의 60명이 모두 남고, 거래가 없는 네 명은 <code>count</code>와 <code>sum</code>이 <code>NaN</code>으로 나온다. <code>isna()</code>는 값이 결측인 행을 참으로 표시한다.</p>
+<p>어느 방식이 옳다고 정해져 있지 않다. 거래가 있는 고객만 분석한다면 inner가 맞고, 거래가 없는 고객도 분석 대상이라면 left가 맞다.</p>
+<p>두 표에서 짝이 없는 행을 방향별로 한 번에 세려면 outer 방식에 <code>indicator=True</code>를 준다. 실행하기 전에 예상해 둔다. 고객 표에만 있는 고객(<code>left_only</code>)은 거래가 없는 네 명이고, 집계한 표에만 있는 고객(<code>right_only</code>)은 거래 내역에는 있으나 고객 표에 없는 고객이다.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>chk <span class="op">=</span> pd.merge(cust, cnt, on<span class="op">=</span><span class="st">"고객ID"</span>, how<span class="op">=</span><span class="st">"outer"</span>, indicator<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(chk.shape)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(chk[<span class="st">"_merge"</span>].value_counts())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>(60, 8)
+_merge
+both          56
+left_only      4
+right_only     0
+Name: count, dtype: int64</code></pre>
+<p>열이 7개에서 8개로 는 것은 <code>_merge</code> 열이 붙었기 때문이다. <code>both</code> 56과 <code>left_only</code> 4는 inner와 left의 결과와 맞는다. <code>right_only</code>가 0이라는 것은 거래 내역에 나오는 고객이 모두 고객 표에 있다는 뜻이다. 거래 내역에 고객 표에 없는 <code>고객ID</code>가 있었다면, 그 거래는 어느 고객의 것인지 알 수 없는 거래이므로 자료 품질의 문제로 따로 기록해야 한다. 이 한 줄의 점검은 교재 05의 데이터 품질 점검으로 이어진다. 이 자료에서 <code>right_only</code>가 0이므로 right 방식은 inner 방식과, outer 방식은 left 방식과 같은 행을 낸다(7.5절의 R 출력에서도 같다).</p>
+<p>거래 내역에 고객의 속성을 붙이는 결합은 1:N 결합이다. 고객 한 명에 거래 여러 건이 대응한다. 결합하기 전에 두 표의 키가 한 번씩만 나오는지를 확인한다. <code>is_unique</code>는 Series의 값이 모두 다르면 <code>True</code>를 낸다.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cust[<span class="st">"고객ID"</span>].is_unique, tx[<span class="st">"고객ID"</span>].is_unique)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>True False</code></pre>
+<p>고객 표의 <code>고객ID</code>는 한 번씩만 나오고 거래 내역의 <code>고객ID</code>에는 같은 값이 반복된다. 그러므로 거래 내역을 왼쪽에 놓고 고객 표를 붙이면, 거래 한 건마다 고객이 정확히 한 명씩 짝지어진다. 결과의 행 수는 왼쪽 표의 428을 유지하고, 열은 겹치는 키 하나를 빼고 더한 8 + 5 - 1 = 12개일 것으로 예상된다.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>txc <span class="op">=</span> pd.merge(tx, cust, on<span class="op">=</span><span class="st">"고객ID"</span>, how<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(txc.shape)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(txc.groupby(<span class="st">"연령대"</span>)[<span class="st">"금액"</span>].agg([<span class="st">"count"</span>, <span class="st">"sum"</span>]))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>(428, 12)
+        count       sum
+연령대                 
+20대      158  10899200
+30대      155  13604300
+40대      103   8161700
+50대       12   1191400</code></pre>
+<p>예상대로 행 수는 428 그대로이고 열은 12개다. 이제 거래 한 건이 한 행인 채로 연령대별 집계를 할 수 있다. 20대의 거래는 158건이다. 이 표는 거래 단위의 표이고, 고객 단위의 표가 아니다. 연령대별 고객 수는 6절의 마트에서 센다.</p>
+</section>
+<section id="데이터-마트" class="level3">
+<h3 class="anchored" data-anchor-id="데이터-마트">5.3 데이터 마트</h3>
+<p>데이터 마트(data mart)는 특정한 주제나 부서의 분석에 맞추어 필요한 자료만 모아 정리해 둔 소규모 저장소다. 회사 전체의 자료를 통합해 쌓아 둔 데이터 웨어하우스에서 필요한 부분을 가져와 만든다(교재 01의 2절). 분석에서는 분석 대상 하나가 한 행이 되도록 변수를 모아 놓은 분석용 표를 데이터 마트라 부른다.</p>
+<p>고객을 분석하려면 고객 한 명이 한 행인 표가 있어야 한다. 거래 내역은 거래 한 건이 한 행이어서(428행), 한 고객의 정보가 여러 행에 흩어져 있다. 이것을 고객 단위로 집계하고 고객의 속성과 결합한 것이 고객별 마트다(60행). 뒤의 장에서 배우는 회귀 분석, 분류 분석, 군집 분석은 모두 이런 형태의 표를 입력으로 받는다.</p>
+</section>
+<section id="요약-변수와-파생-변수" class="level3">
+<h3 class="anchored" data-anchor-id="요약-변수와-파생-변수">5.4 요약 변수와 파생 변수</h3>
+<p>마트의 열(변수)은 만드는 방법에 따라 둘로 나눈다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>구분</th>
+<th>요약 변수</th>
+<th>파생 변수</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>뜻</td>
+<td>수집한 원자료를 분석 목적과 분석 단위에 맞게 종합(집계)한 변수. 건수, 합계, 평균, 최댓값 같은 집계로 만든다</td>
+<td>분석하는 사람이 특정한 조건이나 함수(계산식)를 적용하여 뜻을 부여한 변수</td>
+</tr>
+<tr class="even">
+<td>성격</td>
+<td>기준이 집계 방법뿐이어서 누가 만들어도 값이 같다. 여러 분석 모형에 다시 쓸 수 있다(재활용성이 높다)</td>
+<td>기준을 정하는 사람에 따라 값이 달라질 수 있다(주관적일 수 있다). 기준이 논리적으로 타당해야 한다</td>
+</tr>
+</tbody>
+</table>
+<p>이 장의 상점 자료로 예를 들면 다음과 같다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>변수</th>
+<th>만드는 방법</th>
+<th>구분</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>구매 횟수</td>
+<td>고객별 거래 건수</td>
+<td>요약 변수</td>
+</tr>
+<tr class="even">
+<td>총 구매 금액, 평균 구매 금액</td>
+<td>고객별 금액의 합계, 평균</td>
+<td>요약 변수</td>
+</tr>
+<tr class="odd">
+<td>최근 거래일</td>
+<td>고객별 거래일의 최댓값</td>
+<td>요약 변수</td>
+</tr>
+<tr class="even">
+<td>품목군별 구매 금액</td>
+<td>고객과 품목군별 금액의 합계</td>
+<td>요약 변수</td>
+</tr>
+<tr class="odd">
+<td>우수 고객 여부</td>
+<td>총 구매 금액이 정한 기준 금액 이상인가</td>
+<td>파생 변수</td>
+</tr>
+<tr class="even">
+<td>가전 비중</td>
+<td>가전 구매 금액 ÷ 총 구매 금액</td>
+<td>파생 변수</td>
+</tr>
+<tr class="odd">
+<td>주 구매 품목군</td>
+<td>구매 금액이 가장 큰 품목군</td>
+<td>파생 변수</td>
+</tr>
+</tbody>
+</table>
+<p>구분의 기준은 “집계만 하였는가, 분석하는 사람이 정한 조건이나 계산식이 더해졌는가”다. 우수 고객 여부에는 “얼마 이상을 우수 고객으로 볼 것인가”라는 판단이 들어간다. 가전 비중과 주 구매 품목군은 요약 변수에 계산식을 적용하여 “어떤 성향의 고객인가”라는 뜻을 부여한 것이다. 파생 변수는 특정한 자료에만 맞는 기준이 아니라 다른 자료에도 설명할 수 있는 기준으로 만든다.</p>
+<p>요약 변수와 파생 변수의 구분은 마트를 다시 만들 때의 비용과도 관계가 있다. 요약 변수는 원자료와 집계 방법만 있으면 언제든 같은 값으로 다시 만들어지므로, 분석 과제가 바뀌어도 그대로 쓸 수 있다. 파생 변수는 기준을 바꾸면 값이 바뀌므로, 기준(예: 우수 고객의 기준 금액 50만 원)과 그 기준을 정한 까닭을 마트의 설명 문서에 함께 적어 두어야 한다. 6절의 「값을 바꾸어 보기」 1번이 기준을 바꿀 때 무엇이 바뀌고 무엇이 그대로인지를 보여 준다.</p>
+</section>
+<section id="결합-전의-키-점검-선택" class="level3">
+<h3 class="anchored" data-anchor-id="결합-전의-키-점검-선택">5.5 결합 전의 키 점검 [선택]</h3>
+<p>5.1절에서 보았듯이 결합의 행 수는 키의 중복으로 정해진다. 결합하기 전에 키가 표마다 몇 번씩 나오는지를 확인하면 결합의 결과를 예상할 수 있다.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a[<span class="st">"고객ID"</span>].is_unique, b[<span class="st">"고객ID"</span>].is_unique)</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b[<span class="st">"고객ID"</span>].value_counts())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>True False
+고객ID
+K3    2
+K2    1
+K5    1
+Name: count, dtype: int64</code></pre>
+<p><code>a</code>의 키는 모두 다르고 <code>b</code>의 키에는 <code>K3</code>이 두 번 나온다. 그러므로 <code>a</code>를 왼쪽에 놓은 결합은 1:N 결합이고, <code>K3</code>의 행이 결과에서 두 행이 된다.</p>
+<p><code>merge</code>의 <code>validate</code>는 결합의 종류를 미리 선언하는 인자다. pandas 문서에 따르면 <code>"one_to_one"</code>(또는 <code>"1:1"</code>)은 두 표의 키가 모두 한 번씩만 나오는지를, <code>"one_to_many"</code>(<code>"1:m"</code>)는 왼쪽 표의 키가, <code>"many_to_one"</code>(<code>"m:1"</code>)은 오른쪽 표의 키가 한 번씩만 나오는지를 검사한다. <code>"many_to_many"</code>(<code>"m:m"</code>)는 허용하되 검사하지 않는다. 선언과 다르면 결합하지 않고 <code>MergeError</code>를 낸다.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>    pd.merge(a, b, on<span class="op">=</span><span class="st">"고객ID"</span>, validate<span class="op">=</span><span class="st">"one_to_one"</span>)</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">type</span>(e).<span class="va">__name__</span>)</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">str</span>(e).splitlines()[<span class="dv">0</span>])   <span class="co"># 메시지의 첫 줄만 출력한다</span></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.merge(a, b, on<span class="op">=</span><span class="st">"고객ID"</span>, validate<span class="op">=</span><span class="st">"one_to_many"</span>).shape)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>MergeError
+Merge keys are not unique in right dataset; not a one-to-one merge
+(3, 3)</code></pre>
+<p>1:1로 선언한 결합은 “오른쪽 자료의 키가 고유하지 않으므로 1:1 결합이 아니다”라는 메시지와 함께 멈추었고, 1:N으로 선언한 결합은 5.1절의 inner 결과와 같은 3행을 냈다. 고객 표나 상품 표처럼 키가 한 번씩만 나와야 하는 표를 붙일 때 <code>validate</code>를 적어 두면, 자료에 중복된 키가 섞여 들어왔을 때 행 수가 조용히 늘어나는 대신 오류로 알 수 있다. 예를 들어 거래 내역에 고객 표를 붙이는 결합은 <code>validate="many_to_one"</code>으로 선언할 수 있다. 고객 표에 같은 <code>고객ID</code>가 두 번 들어가면 그 고객의 거래가 모두 두 번씩 세어지는데, 이 선언이 있으면 결합 단계에서 멈춘다.</p>
+</section>
+<section id="따라-하기-4" class="level3">
+<h3 class="anchored" data-anchor-id="따라-하기-4">따라 하기</h3>
+<p><strong>예상.</strong> 실행하기 전에 다음 표의 “예상 행 수” 열을 채운다. 근거는 5.1절의 규칙이다. 결과의 행 수는 짝이 있는 키마다 두 표의 행 수를 곱한 값의 합에, 방식에 따라 남기는 짝 없는 행의 수를 더한 것이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>결합</th>
+<th>예상 행 수</th>
+<th>근거로 쓸 것</th>
+<th>실행 결과</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>merge(a, b, how="inner")</code></td>
+<td></td>
+<td>공통 키 <code>K2</code>, <code>K3</code>과 <code>b</code>에서 <code>K3</code>의 중복</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>merge(a, b, how="left")</code></td>
+<td></td>
+<td>inner에 <code>a</code>에만 있는 키를 더한다</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>merge(a, b, how="right")</code></td>
+<td></td>
+<td>inner에 <code>b</code>에만 있는 키를 더한다</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>merge(a, b, how="outer")</code></td>
+<td></td>
+<td>inner에 양쪽의 짝 없는 키를 더한다</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>merge(cust, cnt, how="inner")</code></td>
+<td></td>
+<td>거래가 있는 고객의 수(<code>cnt</code>의 행 수)</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>merge(cust, cnt, how="left")</code></td>
+<td></td>
+<td>고객 표의 행 수</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>merge(tx, cust, how="left")</code></td>
+<td></td>
+<td>왼쪽 표의 행 수와 고객 표의 키가 한 번씩만 나온다는 점</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>실행.</strong></p>
+<ol type="1">
+<li>노트북의 「따라 하기 5」 셀을 실행한다.</li>
+<li>작은 표 둘의 결합에서 네 방식의 행 수를 출력과 견준다.</li>
+<li><code>chk</code>의 <code>_merge</code>를 세어 짝이 없는 고객의 수를 방향별로 적는다.</li>
+<li><code>txc</code>의 연령대별 <code>count</code>를 더하여 428이 되는지 확인한다.</li>
+<li>[선택] 「결합 전의 키 점검」의 두 셀을 실행한다.</li>
+</ol>
+<p><strong>결과와 해석.</strong></p>
+<ul>
+<li><span class="check-badge">확인 19</span> 네 방식의 결합이 <code>inner (3, 3)</code>, <code>left (5, 3)</code>, <code>right (4, 3)</code>, <code>outer (6, 3)</code>으로 나왔다.</li>
+<li><span class="check-badge">확인 20</span> <code>indicator=True</code>의 출력에서 <code>K3</code>이 두 행으로 나왔고, <code>K5</code>의 <code>_merge</code>가 <code>right_only</code>였다.</li>
+<li><span class="check-badge">확인 21</span> <code>cnt</code>가 <code>(56, 3)</code>, inner가 <code>(56, 7)</code>, left가 <code>(60, 7)</code>로 나왔고, <code>count</code>가 <code>NaN</code>인 고객이 <code>C012</code>, <code>C028</code>, <code>C041</code>, <code>C056</code>이었다.</li>
+<li><span class="check-badge">확인 22</span> outer 결합의 <code>_merge</code>가 <code>both</code> 56, <code>left_only</code> 4, <code>right_only</code> 0으로 나왔다.</li>
+<li><span class="check-badge">확인 23</span> <code>txc</code>가 <code>(428, 12)</code>로 나왔고, 연령대별 <code>count</code>의 합이 158 + 155 + 103 + 12 = 428이었다.</li>
+<li><span class="check-badge">확인 24</span> [선택] <code>validate="one_to_one"</code>이 <code>MergeError</code>를 냈고, <code>validate="one_to_many"</code>의 결과가 <code>(3, 3)</code>이었다.</li>
+</ul>
+<p><strong>복기.</strong> 작은 표의 네 방식에서 가장 자주 틀리는 것은 inner의 행 수다. 공통 키가 둘이므로 2행으로 예상하기 쉬우나, <code>K3</code>이 <code>b</code>에 두 번 나오므로 1 + 2 = 3행이다. 짝이 있는 키마다 두 표의 행 수를 곱한다는 규칙을 쓰면 <code>K2</code>는 1 × 1, <code>K3</code>은 1 × 2다. 실제 자료에서는 고객 표의 키가 한 번씩만 나오므로, 고객 표를 어느 쪽에 놓든 다른 쪽 표의 행 수가 유지된다. <code>cnt</code>와의 결합은 56(inner) 또는 60(left), 거래 내역과의 결합은 428이다. 결합의 결과가 예상과 다르면 먼저 키의 중복(<code>is_unique</code>, <code>value_counts</code>)을 확인하고, 다음으로 짝이 없는 키(<code>indicator=True</code>)를 확인한다. 이 두 가지가 결합의 행 수를 정하는 원인의 전부다.</p>
+<hr>
+</section>
+</section>
+<section id="중심-실습-고객별-요약-변수-마트의-작성" class="level2">
+<h2 class="anchored" data-anchor-id="중심-실습-고객별-요약-변수-마트의-작성">6. 중심 실습: 고객별 요약 변수 마트의 작성</h2>
+<p>거래 내역(거래 한 건이 한 행)에서 고객 한 명이 한 행인 마트를 만들고 고객 표와 결합한다. 3~5절의 선택, 집계, 형태 변환, 결합을 차례로 쓴다. 단계마다 코드를 실행하기 전에 “예상”의 물음에 답을 적고, 실행한 뒤에 출력과 견준다.</p>
+<blockquote class="blockquote">
+<p><strong>[그림 자리: 고객별 마트를 만드는 흐름의 도식]</strong> 왼쪽에서 오른쪽으로 거래 내역(428 rows, one row per transaction) → 고객별 집계 <code>base</code>(56 rows) → 품목군별 금액 <code>by_cat</code>(56 rows)과의 1:1 결합 <code>mart</code>(56 rows, 10 columns) → 파생 변수 세 열(56 rows, 13 columns) → 고객 표(60 rows)와의 left 결합 <code>result</code>(60 rows, 17 columns)를 상자와 화살표로 잇고, 화살표마다 연산의 이름(groupby, pivot_table, merge)을 적는다. 마지막 상자에서 거래가 없는 고객 4명의 행을 다른 색으로 칠한다. 그림 안의 글자는 영문과 수만 쓴다. 만들 곳: 도식 편집기.</p>
+</blockquote>
+<section id="준비" class="level3">
+<h3 class="anchored" data-anchor-id="준비">준비</h3>
+<ol type="1">
+<li>노트북 <code>ADsP_04장_실습_학생용.ipynb</code>에서 「따라 하기 1」~「따라 하기 5」를 모두 실행한 상태에서 시작한다. 중심 실습은 <code>tx</code>와 <code>cust</code>를 그대로 쓴다.</li>
+<li>「중심 실습」 절의 셀을 단계 순서대로 실행하고, 각 단계의 출력을 아래와 견준다.</li>
+</ol>
+</section>
+<section id="절차" class="level3">
+<h3 class="anchored" data-anchor-id="절차">절차</h3>
+<section id="단계-1.-요약-변수의-집계" class="level4">
+<h4 class="anchored" data-anchor-id="단계-1.-요약-변수의-집계">단계 1. 요약 변수의 집계</h4>
+<p><strong>예상.</strong> <code>base</code>의 행 수는 고객 표의 60과 같은가. 5.2절의 <code>cnt</code>를 근거로 답한다. <code>C001</code>의 평균 구매 금액은 총 구매 금액과 구매 횟수로 어떻게 계산되는가.</p>
+<ol type="1">
+<li>거래 내역을 <code>고객ID</code>로 묶어 네 가지를 집계한 표 <code>base</code>를 만든다.</li>
+<li>출력에서 행 수와 <code>C001</code> 고객의 값을 읽는다.</li>
+</ol>
+<div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> tx.groupby(<span class="st">"고객ID"</span>).agg(</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>    구매횟수<span class="op">=</span>(<span class="st">"거래ID"</span>, <span class="st">"count"</span>),</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>    총구매금액<span class="op">=</span>(<span class="st">"금액"</span>, <span class="st">"sum"</span>),</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>    평균구매금액<span class="op">=</span>(<span class="st">"금액"</span>, <span class="st">"mean"</span>),</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>    최근거래일<span class="op">=</span>(<span class="st">"거래일"</span>, <span class="st">"max"</span>),</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>).reset_index()</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>base[<span class="st">"평균구매금액"</span>] <span class="op">=</span> base[<span class="st">"평균구매금액"</span>].<span class="bu">round</span>(<span class="dv">0</span>)</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(base.shape)</span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(base.head(<span class="dv">3</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>(56, 5)
+  고객ID  구매횟수  총구매금액  평균구매금액  최근거래일
+0   C001         8      691500       86438.0  2026-10-27
+1   C002         9      537500       59722.0  2026-12-01
+2   C003        12     1235600      102967.0  2026-12-24</code></pre>
+<p><code>agg</code> 안의 줄은 <code>새 열 이름=("원래 열", "집계 방법")</code>의 형식이다. <code>구매횟수=("거래ID", "count")</code>는 거래ID의 수를 세어 <code>구매횟수</code> 열로 만든다는 뜻이다. 날짜가 <code>연-월-일</code> 형식의 문자열이므로 <code>거래일</code>의 최댓값이 가장 늦은 날짜다. 428행이 56행이 되었다. <code>C001</code> 고객의 평균은 691,500 ÷ 8 ≈ 86,438원이다.</p>
+<ul>
+<li><span class="check-badge">확인 25</span> <code>base</code>가 <code>(56, 5)</code>로 나왔고, <code>C001</code>의 <code>구매횟수</code>가 <code>8</code>, <code>총구매금액</code>이 <code>691500</code>이었다.</li>
+</ul>
+</section>
+<section id="단계-2.-품목군별-구매-금액의-결합" class="level4">
+<h4 class="anchored" data-anchor-id="단계-2.-품목군별-구매-금액의-결합">단계 2. 품목군별 구매 금액의 결합</h4>
+<p><strong>예상.</strong> <code>by_cat</code>은 행과 열이 각각 무엇인 넓은 표인가. <code>base</code>와 <code>by_cat</code>의 결합은 1:1, 1:N 가운데 어느 것이며, <code>mart</code>의 크기는 얼마인가. <code>C001</code>의 품목군별 금액을 모두 더하면 어느 값과 같아야 하는가.</p>
+<ol type="1">
+<li>고객을 행에, 품목군을 열에 놓은 넓은 표 <code>by_cat</code>을 만든다. <code>fill_value=0</code>은 거래가 없는 칸을 0으로 채운다.</li>
+<li><code>고객ID</code>를 키로 하여 <code>base</code>와 결합하여 마트 <code>mart</code>를 만든다.</li>
+</ol>
+<div class="sourceCode" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>by_cat <span class="op">=</span> tx.pivot_table(index<span class="op">=</span><span class="st">"고객ID"</span>, columns<span class="op">=</span><span class="st">"품목군"</span>, values<span class="op">=</span><span class="st">"금액"</span>, aggfunc<span class="op">=</span><span class="st">"sum"</span>, fill_value<span class="op">=</span><span class="dv">0</span>).reset_index()</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(by_cat.head(<span class="dv">3</span>))</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>mart <span class="op">=</span> pd.merge(base, by_cat, on<span class="op">=</span><span class="st">"고객ID"</span>)</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mart.shape)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>품목군 고객ID    가전    도서   생활   식품    의류
+0        C001  223400   65600      0  68200  334300
+1        C002  188400  269100  26800  53200       0
+2        C003  929400  223000      0  83200       0
+(56, 10)</code></pre>
+<p>왼쪽 위의 <code>품목군</code>은 오른쪽의 열 이름들이 품목군의 값이라는 표시다. <code>C001</code> 고객의 다섯 값을 더하면 223,400 + 65,600 + 0 + 68,200 + 334,300 = 691,500으로 총 구매 금액과 같다. 이 결합은 두 표 모두 고객 56명이 한 행씩인 1:1 결합이므로 행 수가 그대로다. <code>mart</code>는 <code>base</code>의 5열에 품목군 다섯 열이 붙어 10열이다.</p>
+<ul>
+<li><span class="check-badge">확인 26</span> <code>mart</code>가 <code>(56, 10)</code>으로 나왔고, <code>C001</code>의 품목군별 금액의 합이 <code>691500</code>이었다.</li>
+</ul>
+</section>
+<section id="단계-3.-파생-변수의-작성" class="level4">
+<h4 class="anchored" data-anchor-id="단계-3.-파생-변수의-작성">단계 3. 파생 변수의 작성</h4>
+<p><strong>예상.</strong> 주 구매 품목군이 가장 많은 고객의 품목군은 건수가 가장 많은 도서일까, 금액의 합계가 가장 큰 가전일까. <code>cut</code>을 높이면 우수 고객의 수는 늘어나는가 줄어드는가.</p>
+<ol type="1">
+<li>기준 금액 <code>cut</code>을 확인한다.</li>
+<li>가전 비중, 우수 고객 여부, 주 구매 품목군의 세 열을 만든다. <code>idxmax(axis=1)</code>은 행마다 값이 가장 큰 열의 이름을 낸다.</li>
+<li>우수 고객의 수와 주 구매 품목군별 고객 수를 읽는다.</li>
+</ol>
+<div class="sourceCode" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>cut <span class="op">=</span> <span class="dv">500000</span>     <span class="co"># 바꾸어 볼 값: 우수 고객의 기준 금액. 300000, 1000000</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>cats <span class="op">=</span> [<span class="st">"가전"</span>, <span class="st">"도서"</span>, <span class="st">"생활"</span>, <span class="st">"식품"</span>, <span class="st">"의류"</span>]</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>mart[<span class="st">"가전비중"</span>] <span class="op">=</span> (mart[<span class="st">"가전"</span>] <span class="op">/</span> mart[<span class="st">"총구매금액"</span>]).<span class="bu">round</span>(<span class="dv">2</span>)</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>mart[<span class="st">"우수고객"</span>] <span class="op">=</span> mart[<span class="st">"총구매금액"</span>] <span class="op">&gt;=</span> cut</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>mart[<span class="st">"주구매품목군"</span>] <span class="op">=</span> mart[cats].idxmax(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mart[[<span class="st">"고객ID"</span>, <span class="st">"총구매금액"</span>, <span class="st">"가전"</span>, <span class="st">"가전비중"</span>, <span class="st">"우수고객"</span>, <span class="st">"주구매품목군"</span>]].head(<span class="dv">3</span>))</span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mart[<span class="st">"우수고객"</span>].value_counts())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>  고객ID  총구매금액    가전  가전비중  우수고객 주구매품목군
+0   C001      691500  223400      0.32      True         의류
+1   C002      537500  188400      0.35      True         도서
+2   C003     1235600  929400      0.75      True         가전
+우수고객
+True     32
+False    24
+Name: count, dtype: int64
+주구매품목군
+가전    24
+의류    14
+도서     9
+생활     7
+식품     2
+Name: count, dtype: int64</code></pre>
+<p><code>C001</code> 고객의 가전 비중은 223,400 ÷ 691,500 ≈ 0.32다. 품목군별 금액 가운데 의류(334,300)가 가장 크므로 주 구매 품목군은 의류다. 기준 금액이 50만 원일 때 우수 고객은 56명 가운데 32명이다. 주 구매 품목군이 가전인 고객이 24명으로 가장 많다. 4.1절에서 가전은 건수로는 1위가 아니었으나 한 건의 금액이 크기 때문이다.</p>
+<ul>
+<li><span class="check-badge">확인 27</span> 우수 고객이 <code>True</code> 32, <code>False</code> 24로 나왔고, 주 구매 품목군이 가전인 고객이 <code>24</code>명이었다.</li>
+</ul>
+</section>
+<section id="단계-4.-고객-표와의-결합" class="level4">
+<h4 class="anchored" data-anchor-id="단계-4.-고객-표와의-결합">단계 4. 고객 표와의 결합</h4>
+<p><strong>예상.</strong> <code>result</code>의 행 수와 열 수를 계산한다. 열 수는 고객 표의 열 수에 마트의 열 수를 더하고 겹치는 키 하나를 뺀 값이다. <code>구매횟수</code>가 결측인 행은 몇 개이며 누구인가.</p>
+<ol type="1">
+<li>결합 방식 <code>how</code>를 확인한다. 고객 표를 왼쪽에 놓는다.</li>
+<li>결합한 표의 크기와 <code>구매횟수</code>가 결측인 행의 수를 읽는다.</li>
+<li><code>구매횟수</code>의 결측값이 아닌 값의 수(<code>count()</code>)와 표의 행 수(<code>len()</code>)를 견준다.</li>
+<li>다음 셀이 꺼낸 네 행의 고객ID를 5.2절의 출력과 견준다.</li>
+</ol>
+<div class="sourceCode" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>how <span class="op">=</span> <span class="st">"left"</span>     <span class="co"># 바꾸어 볼 값: 결합 방식. "inner"</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> pd.merge(cust, mart, on<span class="op">=</span><span class="st">"고객ID"</span>, how<span class="op">=</span>how)</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result.shape)</span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result[<span class="st">"구매횟수"</span>].isna().<span class="bu">sum</span>())</span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result[<span class="st">"구매횟수"</span>].count(), <span class="bu">len</span>(result))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>(60, 17)
+4
+56 60</code></pre>
+<p>결과는 60행 17열이다. 고객 표의 5열에 마트의 13열을 더하고 겹치는 키 하나를 뺀 수다. <code>구매횟수</code>가 결측값인 행은 4개이며 5.2절에서 본 거래가 없는 고객 넷이다. 네 명은 요약 변수뿐 아니라 요약 변수에서 만든 파생 변수도 결측값이다. 실제로는 구매 횟수가 0인 고객이다. 결측값을 0으로 채울지 그대로 둘지는 교재 05에서 다룬다.</p>
+<p><code>count()</code>는 결측값이 아닌 값의 수를 세고 <code>len()</code>은 행의 수를 센다. 둘의 차이 60 - 56 = 4가 결측 수와 같다. pandas 문서의 「SQL과의 비교」도 그룹별 <code>count()</code>가 열마다 결측이 아닌 값의 수를 센다고 적고, 행의 수를 세려면 <code>size()</code>를 쓰라고 한다. 단계 5의 연령대별 고객 수가 56이 되는 까닭이 이것이다.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>none <span class="op">=</span> result[result[<span class="st">"구매횟수"</span>].isna()]</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(none[[<span class="st">"고객ID"</span>, <span class="st">"성별"</span>, <span class="st">"연령대"</span>, <span class="st">"지역"</span>, <span class="st">"가입일"</span>, <span class="st">"구매횟수"</span>, <span class="st">"총구매금액"</span>, <span class="st">"우수고객"</span>]])</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>   고객ID 성별 연령대  지역      가입일  구매횟수  총구매금액 우수고객
+11   C012   여   20대  광주  2025-08-23       NaN         NaN      NaN
+27   C028   남   30대  대전  2024-04-11       NaN         NaN      NaN
+40   C041   여   20대  경기  2024-11-19       NaN         NaN      NaN
+55   C056   여   40대  경기  2024-12-17       NaN         NaN      NaN</code></pre>
+<p>네 명은 5.2절에서 본 고객과 같다. 우수 고객 여부도 <code>NaN</code>이다. 거래가 없으니 우수 고객이 아니라고(<code>False</code>) 볼 수도 있으나, 마트에서는 아직 값이 정해지지 않은 상태로 남아 있다. 결측값을 어떤 값으로 채울지는 그 값의 뜻에 따라 정하며, 교재 05에서 다룬다.</p>
+<ul>
+<li><span class="check-badge">확인 28</span> <code>result</code>가 <code>(60, 17)</code>로 나왔고, <code>구매횟수</code>의 결측 수가 <code>4</code>였다.</li>
+<li><span class="check-badge">확인 29</span> <code>count()</code>와 <code>len()</code>이 <code>56 60</code>으로 나왔고, 결측 행의 고객ID가 <code>C012</code>, <code>C028</code>, <code>C041</code>, <code>C056</code>이었다.</li>
+</ul>
+</section>
+<section id="단계-5.-마트의-확인" class="level4">
+<h4 class="anchored" data-anchor-id="단계-5.-마트의-확인">단계 5. 마트의 확인</h4>
+<p><strong>예상.</strong> 연령대별 <code>count</code>의 합은 60일까 56일까. 단계 4의 <code>count()</code>의 결과를 근거로 답한다. 지역과 우수 고객 여부의 빈도표에서 모든 칸의 합은 얼마일까.</p>
+<ol type="1">
+<li>연령대별 고객 수와 총 구매 금액의 평균을 구한다.</li>
+<li>지역과 우수 고객 여부의 빈도표를 만든다.</li>
+</ol>
+<div class="sourceCode" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result.groupby(<span class="st">"연령대"</span>)[<span class="st">"총구매금액"</span>].agg([<span class="st">"count"</span>, <span class="st">"mean"</span>]).<span class="bu">round</span>(<span class="dv">0</span>))</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.crosstab(result[<span class="st">"지역"</span>], result[<span class="st">"우수고객"</span>]))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>        count      mean
+연령대                 
+20대       18  605511.0
+30대       21  647824.0
+40대       15  544113.0
+50대        2  595700.0
+우수고객  False  True 
+지역                  
+경기          7      7
+광주          4      5
+대전          0      3
+부산          3      4
+서울         10     13</code></pre>
+<p><code>count</code>의 합은 18 + 21 + 15 + 2 = 56이다. 집계는 결측값을 빼고 계산하므로 거래가 없는 네 명은 세지 않았다. 5.2절의 <code>txc</code>에서 20대의 거래는 158건이었고, 여기서 20대 고객은 18명이다. 같은 연령대라도 거래 단위의 표와 고객 단위의 표는 다른 것을 센다. 총 구매 금액의 평균은 30대가 647,824원으로 가장 크다. 50대는 두 명뿐이어서 평균을 다른 연령대와 견주기 어렵다. 빈도표에서 서울의 우수 고객은 13명이고, 표 안의 수를 모두 더하면 56이다.</p>
+<ul>
+<li><span class="check-badge">확인 30</span> 연령대별 <code>count</code>가 18, 21, 15, 2로 합이 56이었고, 30대의 <code>mean</code>이 <code>647824.0</code>이었다.</li>
+<li><span class="check-badge">확인 31</span> 빈도표에서 서울의 <code>True</code>가 <code>13</code>, <code>False</code>가 <code>10</code>이었다.</li>
+</ul>
+</section>
+</section>
+<section id="값을-바꾸어-보기" class="level3">
+<h3 class="anchored" data-anchor-id="값을-바꾸어-보기">값을 바꾸어 보기</h3>
+<p><code># 바꾸어 볼 값</code>이 붙은 두 줄을 고쳐 다시 실행하고 물음에 답한다. 값을 바꾼 셀부터 아래의 셀을 차례로 다시 실행해야 결과가 바뀐다.</p>
+<ol type="1">
+<li><code>cut</code>을 <code>300000</code>으로, 다시 <code>1000000</code>으로 바꾼다. 우수 고객은 각각 몇 명인가. 이때 <code>총구매금액</code> 열과 <code>주구매품목군</code> 열의 값은 바뀌는가.</li>
+<li><code>cut</code>을 <code>500000</code>으로 되돌리고 <code>how</code>를 <code>"inner"</code>로 바꾼다. <code>result</code>는 몇 행인가. <code>구매횟수</code>가 결측값인 행은 몇 개인가. 연령대별 집계와 지역별 빈도표는 <code>"left"</code>일 때와 달라지는가.</li>
+<li>이 상점이 한 해 동안 거래가 없던 고객에게 할인 쿠폰을 보내려고 한다. 보낼 대상을 찾으려면 <code>"left"</code>와 <code>"inner"</code> 가운데 어느 방식으로 결합한 마트를 써야 하는가.</li>
+</ol>
+</section>
+<section id="막힐-때" class="level3">
+<h3 class="anchored" data-anchor-id="막힐-때">막힐 때</h3>
+<p>실습 중에 마주치는 증상과 원인, 조치다. 개념의 오해는 8절에 따로 모았다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>증상</th>
+<th>원인</th>
+<th>조치</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>첫 셀부터 <code>NameError: name 'pd' is not defined</code>나 <code>name 'tx' is not defined</code>가 난다</td>
+<td>「0. 시작하기」의 셀이나 표를 읽는 셀을 실행하지 않았다. 커널을 재시작한 뒤 아래의 셀부터 실행한 경우도 같다</td>
+<td>커널을 재시작하고 모든 셀을 처음부터 실행한다(0.2절)</td>
+</tr>
+<tr class="even">
+<td><code>FileNotFoundError</code>가 나거나 0.2절의 출력이 <code>False False</code>다</td>
+<td><code>DATA</code>에 적힌 자료 폴더의 위치가 노트북의 위치와 맞지 않는다</td>
+<td>부록 A의 폴더 구성을 확인하고 <code>DATA</code> 한 줄만 고친다</td>
+</tr>
+<tr class="odd">
+<td>단계 3에서 <code>KeyError: '가전'</code>이 난다</td>
+<td>단계 2의 셀을 실행하지 않아 <code>mart</code>에 품목군 열이 없다</td>
+<td>단계 1부터 차례로 다시 실행한다</td>
+</tr>
+<tr class="even">
+<td>단계 1이나 단계 3에서 <code>KeyError</code>가 나고 열 이름의 철자가 출력된다</td>
+<td>고치지 말아야 할 줄의 열 이름을 고쳤다(예: <code>총구매금액</code>의 띄어쓰기)</td>
+<td>노트북을 다시 받거나, <code>print(mart.columns)</code>로 열 이름을 확인하고 원래대로 되돌린다</td>
+</tr>
+<tr class="odd">
+<td><code>cut</code>을 바꾸었는데 우수 고객의 수가 그대로다</td>
+<td>바꾼 셀을 실행하지 않았거나, 바꾼 셀만 실행하고 아래의 셀을 다시 실행하지 않았다</td>
+<td>바꾼 셀부터 아래로 차례로 실행한다</td>
+</tr>
+<tr class="even">
+<td>단계 4의 <code>result</code>가 <code>(56, 17)</code>이고 다음 셀이 <code>Empty DataFrame</code>을 낸다</td>
+<td><code>how</code>가 <code>"inner"</code>로 남아 있다</td>
+<td><code>"left"</code>로 되돌리고 단계 4부터 다시 실행한다</td>
+</tr>
+<tr class="odd">
+<td>결합한 표에 이름 끝이 <code>_x</code>, <code>_y</code>인 열이 생긴다</td>
+<td>키가 아닌 같은 이름의 열이 두 표에 함께 있다. pandas는 겹치는 열 이름에 기본으로 <code>_x</code>, <code>_y</code>를 붙인다</td>
+<td>두 표의 열 이름을 <code>columns</code>로 확인하고, 이미 결합한 표를 다시 결합하지 않았는지 본다</td>
+</tr>
+<tr class="even">
+<td>연령대별 <code>count</code>의 합이 60이 아니라 56이다</td>
+<td>오류가 아니다. <code>count</code>는 결측값이 아닌 값만 센다</td>
+<td>단계 4의 <code>count()</code>와 <code>len()</code>의 차이로 해석한다</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="완료-기준" class="level3">
+<h3 class="anchored" data-anchor-id="완료-기준">완료 기준</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>번호</th>
+<th>점검 항목</th>
+<th>점검 방법</th>
+<th>기준 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>요약 변수의 표</td>
+<td>단계 1의 <code>base.shape</code></td>
+<td><code>(56, 5)</code></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>품목군별 금액을 붙인 마트</td>
+<td>단계 2의 <code>mart.shape</code></td>
+<td><code>(56, 10)</code></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>파생 변수</td>
+<td>단계 3의 <code>우수고객</code> 값별 건수</td>
+<td><code>True</code> 32, <code>False</code> 24</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>고객 표와의 결합</td>
+<td>단계 4의 <code>result.shape</code>와 결측 수</td>
+<td><code>(60, 17)</code>, 4</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>마트의 확인</td>
+<td>단계 5의 빈도표</td>
+<td>서울 <code>True</code> 13, 모든 칸의 합 56</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>해석 문장</td>
+<td>「값을 바꾸어 보기」 3번의 답</td>
+<td>결합 방식의 이름과, 두 방식의 행 수 또는 거래가 없는 고객의 수가 들어 있다</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="제출물" class="level3">
+<h3 class="anchored" data-anchor-id="제출물">제출물</h3>
+<ul>
+<li>실행을 마친 노트북(<code>cut</code>을 <code>500000</code>으로, <code>how</code>를 <code>"left"</code>로 되돌려 실행한 것)</li>
+<li>「값을 바꾸어 보기」 3번 물음에 대한 해석 한 문장. 두 방식으로 결합한 마트의 행 수와 거래가 없는 고객의 수를 넣어 쓴다.</li>
+</ul>
+</section>
+<section id="복기" class="level3">
+<h3 class="anchored" data-anchor-id="복기">복기</h3>
+<p>단계마다 실행 전의 예상과 실행 결과를 견주어 정리한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>단계</th>
+<th>예상할 것</th>
+<th>실행 결과</th>
+<th>판단의 근거</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><code>base</code>의 행 수</td>
+<td>56</td>
+<td>거래가 있는 고객만 집계 결과에 나온다(5.2절의 <code>cnt</code>와 같다)</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><code>mart</code>의 크기</td>
+<td><code>(56, 10)</code></td>
+<td>두 표 모두 고객 한 명이 한 행인 1:1 결합이므로 행 수가 그대로이고, 열은 5 + 6 - 1 = 10이다</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>주 구매 품목군이 가장 많은 품목군</td>
+<td>가전 24명</td>
+<td>고객별로 금액이 가장 큰 품목군을 고르므로 건수가 아니라 금액이 큰 품목군이 유리하다</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td><code>result</code>의 크기와 결측 수</td>
+<td><code>(60, 17)</code>, 4</td>
+<td>고객 표를 왼쪽에 둔 left 결합은 60명을 모두 남기고, 거래가 없는 네 명의 마트 열은 결측값이 된다</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>연령대별 <code>count</code>의 합</td>
+<td>56</td>
+<td><code>count</code>는 결측값을 세지 않는다</td>
+</tr>
+</tbody>
+</table>
+<p>이 실습에서 표의 크기는 428행 → 56행 → 60행으로 바뀌었다. 428에서 56으로 준 것은 분석 단위가 거래에서 고객으로 바뀌었기 때문이고, 56에서 60으로 는 것은 거래가 없는 고객을 left 결합으로 되살렸기 때문이다. 마트를 만든 뒤에 확인할 것은 셋이다. 한 행이 무엇인가(고객 한 명), 행이 몇 개여야 하는가(분석 대상의 수), 결측값이 왜 생겼는가(짝이 없는 키)다. 같은 연령대라도 5.2절의 <code>txc</code>는 거래를 세고 단계 5의 <code>result</code>는 고객을 센다. 20대의 거래는 158건이고 20대의 고객은 18명이다. 보고서에 숫자를 옮길 때에는 그 숫자가 어느 단위의 표에서 나왔는지를 함께 적는다.</p>
+<hr>
+</section>
+</section>
+<section id="r-출력-해석" class="level2">
+<h2 class="anchored" data-anchor-id="r-출력-해석">7. R 출력 해석</h2>
+<p>같은 일을 R로 실행한 코드와 출력이다. R을 실행하지 않고 읽는다. 시험은 R의 자료 구조와 함수의 이름으로 묻는다.</p>
+<section id="파이썬과-r의-대응표" class="level3">
+<h3 class="anchored" data-anchor-id="파이썬과-r의-대응표">7.1 파이썬과 R의 대응표</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>하는 일</th>
+<th>파이썬</th>
+<th>R</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CSV 파일 읽기</td>
+<td><code>pd.read_csv("파일")</code></td>
+<td><code>read.csv("파일")</code></td>
+</tr>
+<tr class="even">
+<td>앞의 몇 행</td>
+<td><code>tx.head()</code> (다섯 행)</td>
+<td><code>head(tx)</code> (여섯 행)</td>
+</tr>
+<tr class="odd">
+<td>표의 크기</td>
+<td><code>tx.shape</code></td>
+<td><code>dim(tx)</code>, <code>nrow(tx)</code>, <code>ncol(tx)</code></td>
+</tr>
+<tr class="even">
+<td>열마다의 자료형</td>
+<td><code>tx.dtypes</code></td>
+<td><code>str(tx)</code></td>
+</tr>
+<tr class="odd">
+<td>열 하나의 선택</td>
+<td><code>tx["금액"]</code></td>
+<td><code>tx$금액</code></td>
+</tr>
+<tr class="even">
+<td>열 여럿의 선택</td>
+<td><code>tx[["고객ID", "금액"]]</code></td>
+<td><code>tx[, c("고객ID", "금액")]</code></td>
+</tr>
+<tr class="odd">
+<td>조건에 의한 행의 선택</td>
+<td><code>tx[tx["금액"] &gt;= 200000]</code></td>
+<td><code>tx[tx$금액 &gt;= 200000, ]</code></td>
+</tr>
+<tr class="even">
+<td>그룹별 집계</td>
+<td><code>tx.groupby("품목군")["금액"].sum()</code></td>
+<td><code>aggregate(금액 ~ 품목군, data = tx, FUN = sum)</code></td>
+</tr>
+<tr class="odd">
+<td>두 기준의 그룹별 집계(긴 표)</td>
+<td><code>tx.groupby(["품목군", "결제수단"])["금액"].sum()</code></td>
+<td><code>aggregate(금액 ~ 품목군 + 결제수단, data = tx, FUN = sum)</code></td>
+</tr>
+<tr class="even">
+<td>두 열의 빈도표</td>
+<td><code>pd.crosstab(a, b)</code></td>
+<td><code>table(a, b)</code></td>
+</tr>
+<tr class="odd">
+<td>넓은 표로의 변환</td>
+<td><code>pivot_table(...)</code></td>
+<td><code>xtabs(금액 ~ 품목군 + 결제수단, data = tx)</code>, <code>reshape</code> 패키지의 <code>cast</code></td>
+</tr>
+<tr class="even">
+<td>긴 표로의 변환</td>
+<td><code>melt(...)</code></td>
+<td><code>reshape</code> 패키지의 <code>melt</code></td>
+</tr>
+<tr class="odd">
+<td>결합 (inner)</td>
+<td><code>pd.merge(a, b, on="고객ID", how="inner")</code></td>
+<td><code>merge(a, b, by = "고객ID")</code></td>
+</tr>
+<tr class="even">
+<td>결합 (left)</td>
+<td><code>pd.merge(a, b, on="고객ID", how="left")</code></td>
+<td><code>merge(a, b, by = "고객ID", all.x = TRUE)</code></td>
+</tr>
+<tr class="odd">
+<td>결측값의 판정</td>
+<td><code>isna()</code></td>
+<td><code>is.na()</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="같은-일을-하는-r-코드" class="level3">
+<h3 class="anchored" data-anchor-id="같은-일을-하는-r-코드">7.2 같은 일을 하는 R 코드</h3>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>tx   <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"transactions.csv"</span>, <span class="at">fileEncoding =</span> <span class="st">"UTF-8-BOM"</span>)   <span class="co"># 거래 내역을 읽는다. &lt;- 는 대입이다</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>cust <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"customers.csv"</span>, <span class="at">fileEncoding =</span> <span class="st">"UTF-8-BOM"</span>)      <span class="co"># 고객 표를 읽는다</span></span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tx)                                                  <span class="co"># 앞의 여섯 행</span></span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(tx)                                                   <span class="co"># 표의 구조: 행 수, 열 수, 열마다의 자료형</span></span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> tx<span class="sc">$</span>금액                                              <span class="co"># 금액 열을 꺼낸다. 벡터다</span></span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]                                                    <span class="co"># 벡터의 첫째부터 다섯째까지의 값</span></span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(금액 <span class="sc">~</span> 품목군 <span class="sc">+</span> 결제수단, <span class="at">data =</span> tx, <span class="at">FUN =</span> sum) <span class="co"># 두 기준의 합계. 긴 표로 나온다</span></span>
+<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a><span class="fu">xtabs</span>(금액 <span class="sc">~</span> 품목군 <span class="sc">+</span> 결제수단, <span class="at">data =</span> tx)                <span class="co"># 같은 합계를 넓은 표로 낸다</span></span>
+<span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-11"><a href="#cb61-11" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(금액 <span class="sc">~</span> 고객ID, <span class="at">data =</span> tx, <span class="at">FUN =</span> length)    <span class="co"># 고객별 거래 건수</span></span>
+<span id="cb61-12"><a href="#cb61-12" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(금액 <span class="sc">~</span> 고객ID, <span class="at">data =</span> tx, <span class="at">FUN =</span> sum)       <span class="co"># 고객별 금액의 합계</span></span>
+<span id="cb61-13"><a href="#cb61-13" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(n)[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="st">"구매횟수"</span>                                 <span class="co"># 둘째 열의 이름을 바꾼다</span></span>
+<span id="cb61-14"><a href="#cb61-14" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(s)[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="st">"총구매금액"</span></span>
+<span id="cb61-15"><a href="#cb61-15" aria-hidden="true" tabindex="-1"></a>mart <span class="ot">&lt;-</span> <span class="fu">merge</span>(n, s, <span class="at">by =</span> <span class="st">"고객ID"</span>)                        <span class="co"># 두 표를 고객ID로 결합한다</span></span>
+<span id="cb61-16"><a href="#cb61-16" aria-hidden="true" tabindex="-1"></a>mart<span class="sc">$</span>평균구매금액 <span class="ot">&lt;-</span> <span class="fu">round</span>(mart<span class="sc">$</span>총구매금액 <span class="sc">/</span> mart<span class="sc">$</span>구매횟수)   <span class="co"># 새 열을 만든다</span></span>
+<span id="cb61-17"><a href="#cb61-17" aria-hidden="true" tabindex="-1"></a>mart<span class="sc">$</span>우수고객 <span class="ot">&lt;-</span> mart<span class="sc">$</span>총구매금액 <span class="sc">&gt;=</span> <span class="dv">500000</span>                <span class="co"># 파생 변수. 기준 금액 이상이면 TRUE</span></span>
+<span id="cb61-18"><a href="#cb61-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-19"><a href="#cb61-19" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">merge</span>(cust, mart, <span class="at">by =</span> <span class="st">"고객ID"</span>, <span class="at">all.x =</span> <span class="cn">TRUE</span>)  <span class="co"># 고객 표의 행을 모두 남기고 결합한다 (left)</span></span>
+<span id="cb61-20"><a href="#cb61-20" aria-hidden="true" tabindex="-1"></a>result[<span class="fu">is.na</span>(result<span class="sc">$</span>구매횟수), ]                          <span class="co"># 거래가 없는 고객</span></span>
+<span id="cb61-21"><a href="#cb61-21" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(총구매금액 <span class="sc">~</span> 연령대, <span class="at">data =</span> result, <span class="at">FUN =</span> mean) <span class="co"># 연령대별 평균</span></span>
+<span id="cb61-22"><a href="#cb61-22" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(result<span class="sc">$</span>지역, result<span class="sc">$</span>우수고객)                       <span class="co"># 지역과 우수 고객 여부의 빈도표</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>파일의 폴더 경로는 줄여 적었다. 이 CSV 파일은 한글을 UTF-8로 적고 파일의 맨 앞에 표식(BOM)을 둔 형식이다. R에서는 <code>fileEncoding = "UTF-8-BOM"</code>으로 이 형식을 알려 주어야 첫 열의 이름이 깨지지 않는다. pandas는 이 표식을 스스로 건너뛴다. R의 마트에는 품목군별 금액과 파생 변수 둘을 넣지 않았다. R에서 넓은 표로의 변환은 <code>xtabs</code>나 <code>reshape</code> 패키지로 하며, 이 PC에는 <code>reshape</code>가 설치되어 있지 않다(7.6절).</p>
+</section>
+<section id="출력의-해석-1-head와-str" class="level3">
+<h3 class="anchored" data-anchor-id="출력의-해석-1-head와-str">7.3 출력의 해석 (1): <code>head()</code>와 <code>str()</code></h3>
+<pre class="text"><code>  거래ID 고객ID     거래일 품목군 수량  금액 결제수단
+1  T0001   C029 2026-01-01   의류    4 93600     카드
+2  T0002   C015 2026-01-02   식품    2 14800     카드
+3  T0003   C054 2026-01-02   도서    1 17000     카드
+4  T0004   C058 2026-01-02   식품    1 11700 간편결제
+5  T0005   C043 2026-01-03   도서    3 49500     카드
+6  T0006   C060 2026-01-03   도서    3 35100     카드</code></pre>
+<p><code>head()</code>는 앞의 여섯 행을 보여 준다. 맨 왼쪽의 수는 행 번호이고 <strong>R은 1부터 센다.</strong> pandas의 0번 행이 R의 1번 행이다. 내용은 1.1절의 파이썬 출력과 같다.</p>
+<pre class="text"><code>'data.frame':   428 obs. of  7 variables:
+ $ 거래ID  : chr  "T0001" "T0002" "T0003" "T0004" ...
+ $ 고객ID  : chr  "C029" "C015" "C054" "C058" ...
+ $ 거래일  : chr  "2026-01-01" "2026-01-02" "2026-01-02" "2026-01-02" ...
+ $ 품목군  : chr  "의류" "식품" "도서" "식품" ...
+ $ 수량    : int  4 2 1 1 3 3 1 3 4 3 ...
+ $ 금액    : int  93600 14800 17000 11700 49500 35100 13900 45000 32800 57600 ...
+ $ 결제수단: chr  "카드" "카드" "카드" "간편결제" ...</code></pre>
+<p><code>str()</code>은 표의 구조(structure)를 보여 준다. 표를 눕혀 놓은 형태여서 열 하나가 한 줄로 나온다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>묻는 것</th>
+<th>읽는 자리</th>
+<th>이 출력의 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>자료 구조</td>
+<td>첫 줄의 맨 앞</td>
+<td><code>data.frame</code>. 데이터 프레임이다</td>
+</tr>
+<tr class="even">
+<td>행(관측값)의 수</td>
+<td><code>428 obs.</code></td>
+<td>428</td>
+</tr>
+<tr class="odd">
+<td>열(변수)의 수</td>
+<td><code>of 7 variables</code></td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>열의 이름과 자료형</td>
+<td><code>$</code> 다음의 이름과 쌍점 다음의 약어</td>
+<td><code>chr</code>은 문자, <code>int</code>는 정수, <code>num</code>은 실수다. <code>수량</code>과 <code>금액</code>이 정수다</td>
+</tr>
+<tr class="odd">
+<td>값의 예</td>
+<td>약어 다음</td>
+<td>그 열의 앞의 값 몇 개. <code>...</code>은 뒤에 더 있다는 표시다</td>
+</tr>
+</tbody>
+</table>
+<p>범주가 정해진 열은 팩터(factor)라는 자료형으로 저장하기도 한다. 그때에는 <code>Factor w/ 3 levels "a","b",..: 1 1 2 ...</code>의 형식으로 나온다. <code>3 levels</code>는 범주가 셋이라는 뜻이고, 따옴표 안이 범주의 이름이며, 쌍점 뒤의 수는 행마다 몇 번째 범주인가를 적은 것이다.</p>
+</section>
+<section id="출력의-해석-2-벡터와-데이터-프레임" class="level3">
+<h3 class="anchored" data-anchor-id="출력의-해석-2-벡터와-데이터-프레임">7.4 출력의 해석 (2): 벡터와 데이터 프레임</h3>
+<p><code>&lt;-</code>는 대입이며 파이썬의 등호와 같다. 데이터 프레임에서 <code>$</code>로 열 하나를 꺼내면 벡터다. 다음은 7.2절의 <code>x[1:5]</code>와, 이어서 실행한 <code>x[1]</code>, <code>length(x)</code>의 출력이다.</p>
+<pre class="text"><code>[1] 93600 14800 17000 11700 49500
+[1] 93600
+[1] 428</code></pre>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>읽을 것</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>tx$금액</code></td>
+<td>데이터 프레임 <code>tx</code>의 <code>금액</code> 열. 파이썬의 <code>tx["금액"]</code>에 해당한다</td>
+</tr>
+<tr class="even">
+<td>출력 맨 앞의 <code>[1]</code></td>
+<td>그 줄의 첫 값이 벡터의 몇 번째 값인가를 알려 주는 표시다. 값이 아니다</td>
+</tr>
+<tr class="odd">
+<td><code>x[1]</code></td>
+<td>벡터의 첫째 값. 파이썬의 <code>amount.iloc[0]</code>에 해당한다</td>
+</tr>
+<tr class="even">
+<td><code>x[1:5]</code></td>
+<td><code>1:5</code>는 1부터 5까지의 정수다. 첫째부터 다섯째까지 다섯 값을 고른다</td>
+</tr>
+<tr class="odd">
+<td><code>length(x)</code></td>
+<td>벡터의 길이, 곧 값의 수. 파이썬의 <code>len(amount)</code>에 해당한다</td>
+</tr>
+<tr class="even">
+<td><code>c(...)</code></td>
+<td>값을 묶어 벡터를 만든다. <code>c("고객ID", "금액")</code>은 문자 둘이 든 벡터다</td>
+</tr>
+<tr class="odd">
+<td><code>tx[행, 열]</code></td>
+<td>데이터 프레임에서 행과 열을 고른다. 쉼표의 앞이 행, 뒤가 열이다. 비워 두면 전부다</td>
+</tr>
+</tbody>
+</table>
+<p>벡터는 한 가지 자료형의 값만 담는다. 수와 문자를 함께 넣으면 모두 문자로 바뀐다. 데이터 프레임은 길이가 같은 벡터를 열로 세운 표이며, 열마다 자료형이 다를 수 있다.</p>
+</section>
+<section id="출력의-해석-3-aggregate-xtabs-merge-table" class="level3">
+<h3 class="anchored" data-anchor-id="출력의-해석-3-aggregate-xtabs-merge-table">7.5 출력의 해석 (3): <code>aggregate()</code>, <code>xtabs()</code>, <code>merge()</code>, <code>table()</code></h3>
+<p><code>aggregate(금액 ~ 품목군 + 결제수단, data = tx, FUN = sum)</code>의 출력이다.</p>
+<pre class="text"><code>   품목군 결제수단    금액
+1    가전 간편결제 6925200
+2    도서 간편결제 1747600
+3    생활 간편결제 2145200
+...
+14   식품     카드 1492900
+15   의류     카드 4752800</code></pre>
+<p>물결표의 왼쪽이 집계할 열, 오른쪽이 묶는 기준이다. 기준을 <code>+</code>로 이으면 두 기준의 조합마다 한 행이 된다. 15행 3열의 긴 표이며, 4.3절의 <code>long</code>과 같은 값이 같은 순서로 나온다. 같은 합계를 <code>xtabs(금액 ~ 품목군 + 결제수단, data = tx)</code>로 내면 넓은 표가 된다.</p>
+<pre class="text"><code>      결제수단
+품목군 간편결제 계좌이체    카드
+  가전  6925200   709200 6352700
+  도서  1747600   530800 2098800
+  생활  2145200   921900 1218700
+  식품  1008100   215900 1492900
+  의류  3072300   664500 4752800</code></pre>
+<p>4.2절의 <code>pivot_table</code> 출력과 같은 값이다. 물결표의 오른쪽 첫째 기준이 행에, 둘째 기준이 열에 놓인다.</p>
+<p>다음은 <code>aggregate(총구매금액 ~ 연령대, data = result, FUN = mean)</code>의 출력이다.</p>
+<pre class="text"><code>  연령대 총구매금액
+1   20대   605511.1
+2   30대   647823.8
+3   40대   544113.3
+4   50대   595700.0</code></pre>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>읽을 것</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>총구매금액 ~ 연령대</code></td>
+<td>“총구매금액을 연령대별로”라고 읽는다</td>
+</tr>
+<tr class="even">
+<td><code>FUN = mean</code></td>
+<td>묶음마다 적용할 함수. <code>mean</code>은 평균, <code>sum</code>은 합계, <code>length</code>는 건수, <code>max</code>는 최댓값이다</td>
+</tr>
+<tr class="odd">
+<td>출력의 행 수</td>
+<td>묶는 기준의 값이 몇 가지인가와 같다. 연령대가 네 가지이므로 네 행이다</td>
+</tr>
+<tr class="even">
+<td>출력의 둘째 열</td>
+<td>열 이름은 <code>총구매금액</code>으로 남지만 값은 집계한 결과(평균)다</td>
+</tr>
+</tbody>
+</table>
+<p>6절 단계 5의 파이썬 출력과 같은 값이다. 파이썬에서는 소수점 아래를 반올림하여 <code>647824.0</code>으로 적었을 뿐이다.</p>
+<p>다음은 <code>merge(cust, mart, by = "고객ID", all.x = TRUE)</code>로 결합한 <code>result</code>에서 거래가 없는 고객을 고른 출력이다.</p>
+<pre class="text"><code>   고객ID 성별 연령대 지역     가입일 구매횟수 총구매금액 평균구매금액 우수고객
+12   C012   여   20대 광주 2025-08-23       NA         NA           NA       NA
+28   C028   남   30대 대전 2024-04-11       NA         NA           NA       NA
+41   C041   여   20대 경기 2024-11-19       NA         NA           NA       NA
+56   C056   여   40대 경기 2024-12-17       NA         NA           NA       NA</code></pre>
+<p>R은 결측값을 <code>NA</code>로 적는다. 네 고객은 5.2절의 파이썬 출력과 같고, 행 번호만 1씩 크다. <code>merge()</code>는 인자에 따라 결합 방식이 달라진다. 첫째 표를 <code>x</code>, 둘째 표를 <code>y</code>라 부른다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>R 코드</th>
+<th>방식</th>
+<th>남는 행</th>
+<th>이 자료의 행 수</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>merge(cust, mart, by = "고객ID")</code></td>
+<td>inner</td>
+<td>두 표에 모두 있는 고객</td>
+<td>56</td>
+</tr>
+<tr class="even">
+<td><code>merge(cust, mart, by = "고객ID", all.x = TRUE)</code></td>
+<td>left</td>
+<td>첫째 표(<code>cust</code>)의 고객 모두</td>
+<td>60</td>
+</tr>
+<tr class="odd">
+<td><code>merge(cust, mart, by = "고객ID", all.y = TRUE)</code></td>
+<td>right</td>
+<td>둘째 표(<code>mart</code>)의 고객 모두</td>
+<td>56</td>
+</tr>
+<tr class="even">
+<td><code>merge(cust, mart, by = "고객ID", all = TRUE)</code></td>
+<td>outer</td>
+<td>두 표의 고객 모두</td>
+<td>60</td>
+</tr>
+</tbody>
+</table>
+<p>R 문서에 따르면 <code>all.x</code>의 기본값은 <code>FALSE</code>여서 두 표에 모두 있는 행만 결과에 들어간다. 아무것도 적지 않으면 inner 방식이다. <code>all = TRUE</code>는 <code>all.x = TRUE</code>와 <code>all.y = TRUE</code>를 함께 적은 것이다. 이 자료에서는 마트의 고객 56명이 모두 고객 표에 있으므로 right 방식의 결과가 inner 방식과 같고, outer 방식의 결과가 left 방식과 같다. 다음은 각 방식으로 결합한 표의 <code>dim()</code> 출력이다(차례로 inner, right, outer).</p>
+<pre class="text"><code>[1] 56  9
+[1] 56  9
+[1] 60  9</code></pre>
+<p>다음은 <code>table(result$지역, result$우수고객)</code>의 출력이다.</p>
+<pre class="text"><code>       FALSE TRUE
+  경기     7    7
+  광주     4    5
+  대전     0    3
+  부산     3    4
+  서울    10   13</code></pre>
+<p><code>table()</code>은 값마다의 빈도(행의 수)를 센다. 벡터 둘을 넣으면 첫째가 행에, 둘째가 열에 놓인 빈도표가 나온다. R은 참과 거짓을 <code>TRUE</code>와 <code>FALSE</code>로 적는다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>묻는 것</th>
+<th>읽는 자리</th>
+<th>이 출력의 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>서울의 우수 고객 수</td>
+<td><code>서울</code> 행의 <code>TRUE</code> 열</td>
+<td>13</td>
+</tr>
+<tr class="even">
+<td>대전의 고객 가운데 우수 고객이 아닌 수</td>
+<td><code>대전</code> 행의 <code>FALSE</code> 열</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>우수 고객의 수</td>
+<td><code>TRUE</code> 열의 합</td>
+<td>7 + 5 + 3 + 4 + 13 = 32</td>
+</tr>
+<tr class="even">
+<td>표에 들어간 고객의 수</td>
+<td>모든 칸의 합</td>
+<td>24 + 32 = 56</td>
+</tr>
+</tbody>
+</table>
+<p><code>result</code>는 60행인데 표의 합은 56이다. <code>table()</code>은 결측값(<code>NA</code>)을 세지 않기 때문이다. 결측값도 세려면 <code>useNA = "ifany"</code>를 적는다. 그러면 다음과 같이 <code>&lt;NA&gt;</code> 칸에 4가 나온다.</p>
+<pre class="text"><code>FALSE  TRUE  &lt;NA&gt; 
+   24    32     4 </code></pre>
+<p>파이썬과 R의 출력에서 다른 것은 표기뿐이다. 행 번호는 파이썬이 0부터, R이 1부터 세고, 결측값은 <code>NaN</code>과 <code>NA</code>로, 참과 거짓은 <code>True</code>·<code>False</code>와 <code>TRUE</code>·<code>FALSE</code>로 적는다.</p>
+</section>
+<section id="데이터-마트에-쓰는-r-패키지" class="level3">
+<h3 class="anchored" data-anchor-id="데이터-마트에-쓰는-r-패키지">7.6 데이터 마트에 쓰는 R 패키지</h3>
+<p>R에서 데이터 마트를 만들 때 쓰는 패키지 넷이 출제 범위에 있다. 집필 환경에는 설치되어 있지 않으므로 출력을 싣지 않고 이름과 역할을 정리한다. 역할은 각 패키지의 CRAN 문서로 확인하였다(11절).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>패키지</th>
+<th>역할</th>
+<th>기억할 것</th>
+<th>이 장의 pandas에서는</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>reshape</code></td>
+<td>표의 형태를 바꾸고 집계한다</td>
+<td>CRAN의 설명은 “<code>melt</code>와 <code>cast</code> 두 함수만으로” 자료를 재구성하고 집계한다는 것이다. <code>melt</code>는 식별 변수를 남기고 나머지 열을 변수 이름과 값의 두 열로 풀어 긴 표를 만든다. <code>cast</code>는 긴 표를 원하는 형태의 넓은 표로 다시 짜며, 합계나 평균 같은 집계 함수를 함께 적용할 수 있다</td>
+<td><code>melt</code>, <code>pivot_table</code></td>
+</tr>
+<tr class="even">
+<td><code>sqldf</code></td>
+<td>R의 데이터 프레임을 SQL 문으로 다룬다</td>
+<td>데이터베이스를 내부에서 만들어 데이터 프레임을 옮긴 뒤 SQL 문을 실행하고 결과를 데이터 프레임으로 돌려준다. 기본으로 SQLite를 쓴다. <code>sqldf("select 품목군, sum(금액) from tx group by 품목군")</code>처럼 SQL 문을 문자열로 넘긴다. SQL을 아는 사람이 R의 함수를 몰라도 조회와 집계를 할 수 있다</td>
+<td>대괄호의 조건, <code>groupby</code></td>
+</tr>
+<tr class="odd">
+<td><code>plyr</code></td>
+<td>자료를 나누고(split), 조각마다 함수를 적용하고(apply), 결과를 합친다(combine)</td>
+<td>함수 이름의 첫 글자가 입력, 둘째 글자가 출력의 자료 구조다. <code>a</code>는 배열, <code>l</code>은 리스트, <code>d</code>는 데이터 프레임이고, <code>m</code>은 여러 인자의 입력, <code>r</code>은 반복 실행, <code>_</code>는 출력하지 않음이다. <code>ddply</code>는 데이터 프레임을 받아 데이터 프레임을 내고, <code>ldply</code>는 리스트를 받아 데이터 프레임을 낸다</td>
+<td><code>groupby</code>와 <code>agg</code></td>
+</tr>
+<tr class="even">
+<td><code>data.table</code></td>
+<td>데이터 프레임을 확장한 표. 큰 자료를 빠르게 다룬다</td>
+<td>큰 자료의 집계, 정렬, 결합이 빠르다. <code>setkey</code>로 키를 정하면 표를 그 열의 순서로 정렬해 두고 정렬되었다고 표시하므로, 그 열로 찾을 때 이진 탐색을 쓰고 결합과 그룹별 집계도 빨라진다</td>
+<td>DataFrame, <code>merge</code>, <code>groupby</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>plyr</code>는 개발자가 더는 기능을 더하지 않는 은퇴(retired) 상태이고, 같은 일을 하는 새 패키지가 있다. 시험은 출제 범위에 적힌 네 패키지의 이름과 역할을 묻는다.</p>
+<hr>
+</section>
+</section>
+<section id="자주-하는-실수와-오해" class="level2">
+<h2 class="anchored" data-anchor-id="자주-하는-실수와-오해">8. 자주 하는 실수와 오해</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>증상 또는 오해</th>
+<th>원인</th>
+<th>바로잡기</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>조건 둘을 <code>and</code>로 이었더니 <code>ValueError: The truth value of a Series is ambiguous</code>가 난다</td>
+<td><code>and</code>, <code>or</code>는 값 하나의 참·거짓에 쓰는 연산자다. Series의 행마다 계산하려면 <code>&amp;</code>, <code>|</code>를 쓴다</td>
+<td><code>(조건1) &amp; (조건2)</code>처럼 조건마다 괄호로 감싸고 <code>&amp;</code>나 <code>|</code>로 잇는다</td>
+</tr>
+<tr class="even">
+<td>집계한 결과의 행 수가 원래 표와 같다고 생각한다</td>
+<td>집계는 행을 묶음마다 하나로 줄인다</td>
+<td>행 수는 묶는 기준의 값이 몇 가지인가로 정해진다. 품목군은 5행, 고객은 56행이다</td>
+</tr>
+<tr class="odd">
+<td>결합하면 행 수가 두 표의 합이 된다고 생각한다</td>
+<td>결합은 행을 아래로 잇는 것이 아니라 키가 같은 행을 옆으로 붙이는 것이다</td>
+<td>행 수는 결합 방식과 키의 중복으로 정해진다. 1:N 결합에서는 많은 쪽을 따른다(5.1절)</td>
+</tr>
+<tr class="even">
+<td>left로 결합한 뒤 <code>구매횟수</code>가 <code>8.0</code>으로 나온다</td>
+<td>결측값이 생긴 정수 열은 pandas에서 실수 열로 바뀐다</td>
+<td>값은 같다. R에서는 정수 그대로 나온다</td>
+</tr>
+<tr class="odd">
+<td><code>NaN</code>을 0과 같은 것으로 읽는다</td>
+<td><code>NaN</code>은 값이 없다는 표시다</td>
+<td>구매 횟수를 0으로 채울지는 분석의 목적에 따라 정한다(교재 05)</td>
+</tr>
+<tr class="even">
+<td>R 출력의 <code>[1]</code>을 값으로 읽는다</td>
+<td>줄의 첫 값이 몇 번째 원소인가를 알리는 표시다</td>
+<td><code>[1] 428</code>의 값은 428 하나다</td>
+</tr>
+<tr class="odd">
+<td><code>pivot</code>과 <code>pivot_table</code>은 같은 함수라고 생각한다</td>
+<td><code>pivot</code>은 자리만 옮기고 <code>pivot_table</code>은 집계를 함께 한다</td>
+<td>조합 하나에 값이 여럿이면 <code>pivot</code>은 오류를 낸다(4.5절)</td>
+</tr>
+<tr class="even">
+<td>그룹별 <code>count</code>가 묶음마다 행의 수를 센다고 생각한다</td>
+<td><code>count</code>는 결측값이 아닌 값의 수를 센다</td>
+<td>행의 수는 <code>size()</code>로 센다. 결측값이 없으면 두 값이 같다(6절 단계 4)</td>
+</tr>
+<tr class="odd">
+<td>행을 아래로 이어 붙이는 일도 결합이라고 생각한다</td>
+<td>결합은 키로 옆에 붙이는 일이고, 같은 열을 가진 표를 아래로 잇는 일은 연결이다</td>
+<td>연결은 <code>pd.concat</code>, R의 <code>rbind</code>가 맡는다</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="연습-문제" class="level2">
+<h2 class="anchored" data-anchor-id="연습-문제">9. 연습 문제</h2>
+<p>서술형 연습이다. 답에는 계산의 과정이나 판단의 근거를 함께 쓴다. 주간 문항 세트와 겹치지 않으며, 정답과 채점 기준은 교수가 수업 뒤에 알린다.</p>
+<p><strong>연습 1. (결합의 행 수)</strong> 회원 표 <code>m</code>에는 회원 <code>M1</code>~<code>M5</code>가 한 행씩 있다. 주문 표 <code>o</code>에는 주문 7건이 있으며, 주문한 회원은 <code>M1</code>이 2건, <code>M2</code>가 1건, <code>M4</code>가 3건, <code>M7</code>이 1건이다. <code>M7</code>은 회원 표에 없다. <code>pd.merge(m, o, on="회원ID", how=방식)</code>의 행 수를 inner, left, right, outer의 네 방식에 대하여 계산하고, left 방식의 결과에서 주문 정보가 결측값인 행이 몇 개인지 쓴다. 계산에는 5.1절의 규칙(짝이 있는 키마다 두 표의 행 수의 곱, 방식에 따라 남는 짝 없는 행)을 쓴다.</p>
+<p><strong>연습 2. (형태 변환의 방향과 오류)</strong> 지점 4곳의 1월, 2월, 3월 매출이 지점 한 곳이 한 행인 넓은 표(열: <code>지점</code>, <code>1월</code>, <code>2월</code>, <code>3월</code>)로 주어졌다.</p>
+<ol type="1">
+<li>이 표를 <code>melt(id_vars="지점")</code>으로 바꾼 긴 표의 크기와 열 이름을 쓴다.</li>
+<li>긴 표에 같은 지점·같은 달의 행이 두 개 들어간 사례(입력 실수)가 있다고 하자. 이 긴 표에 <code>pivot(index="지점", columns="variable", values="value")</code>를 쓰면 어떤 결과가 나오며 까닭은 무엇인가. 같은 표에 <code>pivot_table(..., aggfunc="sum")</code>을 쓰면 그 칸의 값은 어떻게 되는가.</li>
+<li>2의 사례에서 <code>pivot_table</code>의 결과가 오류 없이 나왔다는 것만으로 표가 올바르다고 할 수 없는 까닭을 한 문장으로 쓴다.</li>
+</ol>
+<p><strong>연습 3. (출력의 해석)</strong> 6절 단계 4와 단계 5의 출력을 다시 본다. <code>result</code>는 60행인데 연령대별 <code>count</code>의 합은 56이다.</p>
+<ol type="1">
+<li>두 수가 다른 까닭을 <code>count()</code>의 뜻으로 설명한다.</li>
+<li>이 상점이 “연령대별 고객 수”를 보고하려고 한다. 거래가 없는 고객도 고객으로 세어야 한다면, 단계 5의 집계에서 무엇을 바꾸어야 하는가. 방법을 하나 쓰고, 그 방법을 쓸 때 20대의 고객 수가 몇 명이 되는지 5.2절과 6절 단계 4의 출력에서 근거를 찾아 계산한다.</li>
+<li>같은 표에서 “연령대별 평균 구매 금액”을 계산할 때 거래가 없는 고객을 0원으로 넣는 것과 빼는 것은 결과의 뜻이 어떻게 다른가.</li>
+</ol>
+<p><strong>연습 4. (요약 변수와 파생 변수)</strong> 온라인 강의 플랫폼에 수강 기록 표(열: <code>수강생ID</code>, <code>강의ID</code>, <code>수강일</code>, <code>시청시간</code>(분), <code>완료여부</code>)가 있다. 수강생 한 명이 한 행인 마트에 넣을 다음 변수 여섯을 요약 변수와 파생 변수로 나누고, 각각 판단의 근거를 한 줄로 쓴다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>변수</th>
+<th>만드는 방법</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>총 시청 시간</td>
+<td>수강생별 <code>시청시간</code>의 합계</td>
+</tr>
+<tr class="even">
+<td>수강 강의 수</td>
+<td>수강생별 <code>강의ID</code>의 수</td>
+</tr>
+<tr class="odd">
+<td>최근 수강일</td>
+<td>수강생별 <code>수강일</code>의 최댓값</td>
+</tr>
+<tr class="even">
+<td>완료율</td>
+<td>완료한 강의 수 ÷ 수강 강의 수</td>
+</tr>
+<tr class="odd">
+<td>주말형 수강생 여부</td>
+<td>주말에 시청한 시간이 총 시청 시간의 절반 이상인가</td>
+</tr>
+<tr class="even">
+<td>평균 시청 시간</td>
+<td>수강생별 <code>시청시간</code>의 평균</td>
+</tr>
+</tbody>
+</table>
+<p><strong>연습 5. (결합 방식의 판단)</strong> 다음 세 분석 요청마다 고객 표(<code>cust</code>)와 고객별 집계 표(<code>cnt</code>)를 어느 방식으로 결합할지 고르고, 그 방식을 고른 까닭과 결과에서 확인할 값을 쓴다.</p>
+<ol type="1">
+<li>거래가 있는 고객을 대상으로 연령대별 평균 구매 금액을 구한다.</li>
+<li>가입하였으나 한 해 동안 한 번도 구매하지 않은 고객의 목록을 만든다.</li>
+<li>거래 내역에 고객 표에 없는 <code>고객ID</code>가 섞여 있는지 점검한다.</li>
+</ol>
+<hr>
+</section>
+<section id="정리" class="level2">
+<h2 class="anchored" data-anchor-id="정리">10. 정리</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>주제</th>
+<th>기억할 것</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>분석 단위</td>
+<td>표의 한 행이 나타내는 대상. 거래 내역은 거래 한 건, 고객 표와 마트는 고객 한 명. 연산마다 “실행한 뒤 한 행이 무엇인가”를 묻는다</td>
+</tr>
+<tr class="even">
+<td>「파이썬 기초」의 되짚기</td>
+<td><code>read_csv</code>로 파일을 DataFrame으로 읽는다. 열의 선택, 새 열, 조건 선택, <code>describe</code>, <code>value_counts</code>, <code>groupby</code>의 기본형은 1학기에 익힌 그대로다</td>
+</tr>
+<tr class="odd">
+<td>자료 구조</td>
+<td>pandas의 Series와 DataFrame은 R의 벡터와 데이터 프레임에 해당한다. 벡터는 한 가지 자료형, 데이터 프레임은 열마다 다른 자료형. 위치는 파이썬이 0부터, R이 1부터 센다</td>
+</tr>
+<tr class="even">
+<td>선택</td>
+<td>열 이름으로 열을, 조건으로 행을 고른다. <code>&amp;</code>는 둘 다, <code>|</code>는 하나라도. <code>|</code>의 행 수 = 두 조건의 행 수의 합 - 겹치는 행 수</td>
+</tr>
+<tr class="odd">
+<td>그룹별 집계</td>
+<td>나누기, 적용하기, 합치기. 결과의 행 수는 묶는 기준의 값이 몇 가지인가(기준이 둘이면 조합의 수)로 정해진다</td>
+</tr>
+<tr class="even">
+<td>넓은 표와 긴 표</td>
+<td>넓은 표 → 긴 표는 <code>melt</code>, 긴 표 → 넓은 표는 <code>pivot_table</code>(R <code>reshape</code>의 <code>cast</code>). 긴 표의 행 수 = 넓은 표의 행 수 × 펼친 열의 수</td>
+</tr>
+<tr class="odd">
+<td><code>pivot</code>과 <code>pivot_table</code></td>
+<td><code>pivot</code>은 자리만 옮기므로 조합 하나에 값이 하나일 때만 쓴다. 중복이 있으면 <code>ValueError</code>. <code>pivot_table</code>은 집계를 함께 한다</td>
+</tr>
+<tr class="even">
+<td>결합</td>
+<td>키로 행을 짝짓는다. inner는 공통 키만, left는 왼쪽 표 전부, right는 오른쪽 표 전부, outer는 양쪽 전부. 짝이 없는 칸은 결측값. 키가 중복되면 행이 늘어난다. R의 <code>merge</code>는 기본이 inner이고 <code>all.x = TRUE</code>가 left다</td>
+</tr>
+<tr class="odd">
+<td>결합의 점검</td>
+<td>결합 전에 <code>is_unique</code>, <code>value_counts</code>로 키의 중복을 보고, <code>validate</code>로 결합의 종류를 선언할 수 있다. 결합 뒤에 <code>indicator=True</code>로 짝 없는 키를 방향별로 센다</td>
+</tr>
+<tr class="even">
+<td>데이터 마트</td>
+<td>분석 대상 하나가 한 행이 되도록 변수를 모은 분석용 표. 만든 뒤 한 행이 무엇인가, 행이 몇 개여야 하는가, 결측값이 왜 생겼는가를 확인한다</td>
+</tr>
+<tr class="odd">
+<td>요약 변수와 파생 변수</td>
+<td>요약 변수는 원자료를 집계한 변수다. 누가 만들어도 같고 재활용성이 높다. 파생 변수는 조건이나 함수로 뜻을 부여한 변수다. 주관적일 수 있으므로 논리적 타당성이 필요하다</td>
+</tr>
+<tr class="even">
+<td>R 패키지</td>
+<td><code>reshape</code>(<code>melt</code>, <code>cast</code>), <code>sqldf</code>(SQL 문), <code>plyr</code>(나누기·적용·합치기, 함수 이름의 두 글자는 입력과 출력), <code>data.table</code>(빠른 처리, <code>setkey</code>의 키)</td>
+</tr>
+<tr class="odd">
+<td>R 출력</td>
+<td><code>str</code>은 행 수·열 수·자료형, <code>aggregate</code>는 그룹별 집계, <code>table</code>은 빈도(결측값은 세지 않는다), 결측값은 <code>NA</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="참고-자료" class="level2">
+<h2 class="anchored" data-anchor-id="참고-자료">11. 참고 자료</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>자료</th>
+<th>주소</th>
+<th>확인일</th>
+<th>쓴 곳</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>pandas API reference, <code>pandas.merge</code></td>
+<td>https://pandas.pydata.org/docs/reference/api/pandas.merge.html</td>
+<td>2026-11-14</td>
+<td>5.1절 (<code>how</code>의 종류와 기본값, <code>indicator</code>)</td>
+</tr>
+<tr class="even">
+<td>pandas API reference, <code>pandas.melt</code></td>
+<td>https://pandas.pydata.org/docs/reference/api/pandas.melt.html</td>
+<td>2026-11-14</td>
+<td>4.3절 (<code>id_vars</code>, <code>var_name</code>, <code>value_name</code>의 기본값)</td>
+</tr>
+<tr class="odd">
+<td>pandas API reference, <code>DataFrame.pivot_table</code></td>
+<td>https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.pivot_table.html</td>
+<td>2026-11-14</td>
+<td>4.2절 (<code>aggfunc</code>의 기본값, <code>fill_value</code>, <code>margins</code>)</td>
+</tr>
+<tr class="even">
+<td>R Documentation, <code>merge</code> (base)</td>
+<td>https://stat.ethz.ch/R-manual/R-devel/library/base/html/merge.html</td>
+<td>2026-11-14</td>
+<td>7.5절 (<code>all</code>, <code>all.x</code>, <code>all.y</code>의 기본값)</td>
+</tr>
+<tr class="odd">
+<td>CRAN, Package reshape</td>
+<td>https://cran.r-project.org/web/packages/reshape/index.html</td>
+<td>2026-11-14</td>
+<td>7.6절</td>
+</tr>
+<tr class="even">
+<td>CRAN, Package sqldf</td>
+<td>https://cran.r-project.org/web/packages/sqldf/index.html</td>
+<td>2026-11-14</td>
+<td>7.6절</td>
+</tr>
+<tr class="odd">
+<td>CRAN, Package plyr 참조 설명서</td>
+<td>https://cloud.r-project.org/web/packages/plyr/refman/plyr.html</td>
+<td>2026-11-14</td>
+<td>7.6절 (함수 이름의 글자 규칙, <code>ddply</code>)</td>
+</tr>
+<tr class="even">
+<td>plyr 저장소의 README(은퇴 상태)</td>
+<td>https://github.com/hadley/plyr</td>
+<td>2026-11-14</td>
+<td>7.6절</td>
+</tr>
+<tr class="odd">
+<td>H. Wickham, “The Split-Apply-Combine Strategy for Data Analysis”, Journal of Statistical Software 40(1), 2011</td>
+<td>https://www.jstatsoft.org/article/view/v040i01</td>
+<td>2026-11-14</td>
+<td>4.1절, 7.6절</td>
+</tr>
+<tr class="even">
+<td>CRAN, Package data.table</td>
+<td>https://cran.r-project.org/web/packages/data.table/index.html</td>
+<td>2026-11-14</td>
+<td>7.6절</td>
+</tr>
+<tr class="odd">
+<td>data.table 문서, <code>setkey</code></td>
+<td>https://rdatatable.gitlab.io/data.table/reference/setkey.html</td>
+<td>2026-11-14</td>
+<td>7.6절 (키의 정렬과 이진 탐색)</td>
+</tr>
+<tr class="even">
+<td>IT위키, 「파생 변수」</td>
+<td>https://itwiki.kr/w/파생_변수</td>
+<td>2026-11-14</td>
+<td>5.4절 (요약 변수와 파생 변수의 정의와 예)</td>
+</tr>
+<tr class="odd">
+<td>IT위키, 「데이터 마트」</td>
+<td>https://itwiki.kr/w/데이터_마트</td>
+<td>2026-11-14</td>
+<td>5.3절</td>
+</tr>
+<tr class="even">
+<td>pandas User Guide, 「Reshaping and pivot tables」</td>
+<td>https://pandas.pydata.org/docs/user_guide/reshaping.html</td>
+<td>2026-11-15</td>
+<td>4.5절 (<code>pivot</code>은 중복 없는 조합만 다룬다, <code>pivot_table</code>의 집계)</td>
+</tr>
+<tr class="odd">
+<td>pandas User Guide, 「Merge, join, concatenate and compare」</td>
+<td>https://pandas.pydata.org/docs/user_guide/merging.html</td>
+<td>2026-11-15</td>
+<td>5절 배경과 쓰임 (<code>how</code>와 SQL 조인의 대응, 중복 키의 곱집합과 경고, <code>concat</code>)</td>
+</tr>
+<tr class="even">
+<td>pandas API reference, <code>pandas.merge</code>(3.1.1판 문서)</td>
+<td>https://pandas.pydata.org/docs/reference/api/pandas.merge.html</td>
+<td>2026-11-15</td>
+<td>5.5절 (<code>validate</code>의 네 값, <code>suffixes</code>의 기본값 <code>_x</code>, <code>_y</code>)</td>
+</tr>
+<tr class="odd">
+<td>pandas 문서, 「Comparison with SQL」</td>
+<td>https://pandas.pydata.org/docs/getting_started/comparison/comparison_with_sql.html</td>
+<td>2026-11-15</td>
+<td>3절·5절 배경과 쓰임 (<code>WHERE</code>, <code>JOIN</code>, <code>UNION</code>의 대응), 6절 단계 4 (<code>count</code>와 <code>size</code>)</td>
+</tr>
+<tr class="even">
+<td>pandas 3.0.0 릴리스 노트(What’s new in 3.0.0, 2026-01-21)</td>
+<td>https://pandas.pydata.org/docs/whatsnew/v3.0.0.html</td>
+<td>2026-11-15</td>
+<td>2절 배경과 쓰임 (기본 문자열 자료형 <code>str</code>)</td>
+</tr>
+<tr class="odd">
+<td>H. Wickham, “Tidy Data”, Journal of Statistical Software 59(10), 2014</td>
+<td>https://www.jstatsoft.org/article/view/v059i10</td>
+<td>2026-11-15</td>
+<td>4절 배경과 쓰임</td>
+</tr>
+<tr class="even">
+<td>RFC 4180, Common Format and MIME Type for Comma-Separated Values (CSV) Files, 2005</td>
+<td>https://www.rfc-editor.org/rfc/rfc4180</td>
+<td>2026-11-15</td>
+<td>1절 배경과 쓰임</td>
+</tr>
+<tr class="odd">
+<td>JupyterLab 문서, 「Commands」(4.6 계열)</td>
+<td>https://jupyterlab.readthedocs.io/en/stable/user/commands.html</td>
+<td>2026-11-15</td>
+<td>0.2절 (<code>Shift+Enter</code>, <code>Ctrl+Enter</code>, 커널 재시작과 모든 셀 실행)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="마무리와-다음-장-안내" class="level2">
+<h2 class="anchored" data-anchor-id="마무리와-다음-장-안내">마무리와 다음 장 안내</h2>
+<p>이 장에서는 노트북을 처음 열어 실행 환경을 확인하고(0절), 「파이썬 기초」의 표 연산을 거래 자료에 적용하였다(1~2절). 이어서 조건으로 행을 고르고, 묶어서 집계하고, 같은 집계를 넓은 표와 긴 표 사이에서 바꾸고, 두 표를 키로 결합하였다(3~5절). 연산마다 실행 전에 결과의 크기를 예상하고 실행 뒤에 견주었으며, 그 기준은 언제나 “한 행이 무엇인가”였다. 중심 실습에서는 거래 428행을 고객 56행으로 집계하고, 고객 표와 left로 결합하여 고객 60명이 한 행씩인 마트를 만들었다(6절). R 출력 해석에서는 같은 일을 <code>aggregate</code>, <code>xtabs</code>, <code>merge</code>, <code>table</code>로 한 출력을 읽었다(7절).</p>
+<p>기억할 결론은 셋이다. 첫째, 집계는 분석 단위를 바꾸고 형태 변환은 값의 자리만 바꾼다. 둘째, 결합의 행 수는 키의 중복과 짝이 없는 키로 정해지며, 결합한 뒤에는 행 수를 예상과 견준다. 셋째, 요약 변수는 집계만으로 만들어 누가 만들어도 같고, 파생 변수는 기준이 들어가므로 기준을 함께 기록한다.</p>
+<p>이 장의 마트에는 결측값이 남았다. 거래가 없는 고객 네 명의 <code>구매횟수</code>, <code>총구매금액</code>, <code>우수고객</code>이 <code>NaN</code>이다. 다음 장인 교재 05 「결측값·이상값과 기술 통계」는 이런 결측값을 찾고 세는 방법, 지울지 채울지를 정하는 기준, 그리고 값의 분포를 요약하는 기술 통계와 상자그림을 다룬다. 1절의 복기에서 본 “평균이 중앙값보다 크다”는 관찰의 뜻도 교재 05의 2절에서 다룬다. 교재 05의 실습 자료는 대기 질 측정값(<code>airquality.csv</code>)이며, 이 장에서 익힌 <code>isna()</code>, <code>groupby</code>, <code>value_counts</code>를 그대로 쓴다.</p>
+<hr>
+</section>
+<section id="주간-문항-세트-04" class="level2">
+<h2 class="anchored" data-anchor-id="주간-문항-세트-04">주간 문항 세트 04</h2>
+<p>20문항이다. 1~10번은 수업에서 풀고 11~20번은 과제로 푼다. 1~15번은 이 장의 문항이고 16~20번은 교재 01~03의 복습이다. 실전의 문항당 시간으로는 36분이 걸린다. 정답과 풀이는 교수가 수업에서 확인한다.</p>
+<p><strong>문항 1.</strong> 데이터 마트에 대한 설명으로 가장 적절한 것은?</p>
+<ul>
+<li>① 주문과 결제 같은 거래를 건별로 즉시 처리하는 운영 시스템이다.</li>
+<li>② 특정한 주제나 부서의 분석에 맞추어 필요한 자료를 모아 정리한 소규모의 저장소다.</li>
+<li>③ 형식이 정해지지 않은 원자료를 가공하지 않고 그대로 쌓아 두는 저장소다.</li>
+<li>④ 자료의 이름, 뜻, 형식을 적어 둔 자료 사전이다.</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; R기초와 데이터 마트 &gt; 데이터 마트</code> <code>유형: 용어 구분</code> <code>장: 4</code></p>
+<p><strong>문항 2.</strong> 도서 대여점이 대여 기록으로 회원별 분석용 표를 만들고 있다. 다음 중 요약 변수로 가장 적절한 것은?</p>
+<ul>
+<li>① 회원별 최근 1년의 대여 횟수</li>
+<li>② 대여 횟수가 20회 이상이면 ’다독 회원’으로 표시한 변수</li>
+<li>③ 대여 횟수에서 연체 횟수의 두 배를 뺀 ‘신뢰 점수’</li>
+<li>④ 회원마다 가장 많이 빌린 장르를 ’주 대여 장르’로 정한 변수</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; R기초와 데이터 마트 &gt; 데이터 마트</code> <code>유형: 사례 판단</code> <code>장: 4</code></p>
+<p><strong>문항 3.</strong> 파생 변수에 대한 설명으로 가장 적절하지 않은 것은?</p>
+<ul>
+<li>① 분석하는 사람이 특정한 조건이나 계산식을 적용하여 새로 만든 변수다.</li>
+<li>② 만드는 기준이 주관적일 수 있으므로 논리적 타당성을 갖추어야 한다.</li>
+<li>③ 원자료를 단순히 집계한 값이므로 누가 만들어도 값이 같다.</li>
+<li>④ 같은 자료에서도 기준을 달리 정하면 값이 달라질 수 있다.</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; R기초와 데이터 마트 &gt; 데이터 마트</code> <code>유형: 옳지 않은 것 고르기</code> <code>장: 4</code></p>
+<p><strong>문항 4.</strong> R의 자료 구조에 대한 설명으로 가장 적절하지 않은 것은?</p>
+<ul>
+<li>① 벡터는 한 가지 자료형의 값만 담는다.</li>
+<li>② 데이터 프레임은 열마다 자료형이 다를 수 있다.</li>
+<li>③ 데이터 프레임에서 <code>$</code>로 열 하나를 꺼내면 벡터다.</li>
+<li>④ 벡터의 첫째 값의 위치는 0이다.</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; R기초와 데이터 마트 &gt; R기초</code> <code>유형: 옳지 않은 것 고르기</code> <code>장: 4</code></p>
+<p><strong>문항 5.</strong> 다음 R 코드를 실행했을 때 둘째 줄과 셋째 줄의 출력을 순서대로 적은 것은?</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">15</span>, <span class="dv">8</span>, <span class="dv">23</span>, <span class="dv">4</span>, <span class="dv">16</span>)</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">2</span>]</span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>x[x <span class="sc">&gt;</span> <span class="dv">10</span>]</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>① <code>[1] 8</code>과 <code>[1] 15 23 16</code></li>
+<li>② <code>[1] 23</code>과 <code>[1] 15 23 16</code></li>
+<li>③ <code>[1] 8</code>과 <code>[1] 3</code></li>
+<li>④ <code>[1] 23</code>과 <code>[1] 3</code></li>
+</ul>
+<p><code>범위: 데이터분석 &gt; R기초와 데이터 마트 &gt; R기초</code> <code>유형: 출력 해석</code> <code>장: 4</code></p>
+<p><strong>문항 6.</strong> 다음은 R에서 <code>str(iris)</code>를 실행한 출력이다. 이에 대한 설명으로 가장 적절하지 않은 것은?</p>
+<pre class="text"><code>'data.frame':   150 obs. of  5 variables:
+ $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+ $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+ $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+ $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+ $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+<ul>
+<li>① <code>iris</code>는 150행 5열의 데이터 프레임이다.</li>
+<li>② <code>Sepal.Length</code>는 수로 된 열이다.</li>
+<li>③ <code>Species</code>는 범주가 셋인 팩터다.</li>
+<li>④ <code>Species</code> 열의 150개 값은 모두 첫째 범주인 <code>setosa</code>다.</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; R기초와 데이터 마트 &gt; R기초</code> <code>유형: 출력 해석</code> <code>장: 4</code></p>
+<p><strong>문항 7.</strong> 다음은 자동차 32종의 자료 <code>mtcars</code>에서 <code>aggregate(mpg ~ cyl, data = mtcars, FUN = mean)</code>을 실행한 출력이다. <code>mpg</code>는 연비이고 <code>cyl</code>은 실린더의 수다. 이에 대한 설명으로 가장 적절한 것은?</p>
+<pre class="text"><code>  cyl      mpg
+1   4 26.66364
+2   6 19.74286
+3   8 15.10000</code></pre>
+<ul>
+<li>① 자동차를 연비의 크기에 따라 세 집단으로 나눈 결과다.</li>
+<li>② 실린더가 4개인 차들의 평균 연비는 약 26.66이다.</li>
+<li>③ 실린더가 6개인 차는 약 20대다.</li>
+<li>④ 자료에 든 자동차는 모두 3종이다.</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; R기초와 데이터 마트 &gt; R기초</code> <code>유형: 출력 해석</code> <code>장: 4</code></p>
+<p><strong>문항 8.</strong> 다음은 R에서 두 데이터 프레임 <code>a</code>와 <code>b</code>를 차례로 출력한 것이다. <code>merge(a, b, by = "id", all.x = TRUE)</code>를 실행한 결과에 대한 설명으로 가장 적절한 것은?</p>
+<pre class="text"><code>  id name
+1  1  Kim
+2  2  Lee
+3  3 Park
+4  4 Choi
+  id score
+1  2    80
+2  3    95
+3  5    70</code></pre>
+<ul>
+<li>① 결과는 2행이고 <code>score</code>에 <code>NA</code>가 없다.</li>
+<li>② 결과는 4행이고 <code>score</code>가 <code>NA</code>인 행이 둘이다.</li>
+<li>③ 결과는 5행이고 <code>name</code>이 <code>NA</code>인 행이 하나다.</li>
+<li>④ 결과는 3행이고 <code>name</code>이 <code>NA</code>인 행이 하나다.</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; R기초와 데이터 마트 &gt; 데이터 마트</code> <code>유형: 출력 해석</code> <code>장: 4</code></p>
+<p><strong>문항 9.</strong> 회원 표에는 회원 200명이 한 행씩 있다. 주문 내역을 회원별로 집계한 표에는 주문이 있는 회원 170명이 한 행씩 있고, 이 170명은 모두 회원 표에 있다. 회원 표를 왼쪽에 놓고 회원 번호를 키로 하여 left 방식으로 결합한 결과의 행 수는?</p>
+<ul>
+<li>① 30</li>
+<li>② 170</li>
+<li>③ 200</li>
+<li>④ 370</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; R기초와 데이터 마트 &gt; 데이터 마트</code> <code>유형: 계산</code> <code>장: 4</code></p>
+<p><strong>문항 10.</strong> 다음 거래 표를 지점별로 묶어 금액의 합계와 평균을 구했다. 이에 대한 설명으로 가장 적절한 것은?</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>거래</th>
+<th>지점</th>
+<th>금액</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>가</td>
+<td>30</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>나</td>
+<td>50</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>가</td>
+<td>20</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>다</td>
+<td>35</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>나</td>
+<td>30</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>가</td>
+<td>40</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>① 집계한 결과는 6행이다.</li>
+<li>② 합계가 가장 큰 지점과 평균이 가장 큰 지점은 같다.</li>
+<li>③ 나 지점의 평균은 40이다.</li>
+<li>④ 가 지점의 합계는 80이다.</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; R기초와 데이터 마트 &gt; 데이터 마트</code> <code>유형: 계산</code> <code>장: 4</code></p>
+<p><strong>문항 11.</strong> 학생 4명이 한 행씩 있고 열이 <code>이름</code>, <code>국어</code>, <code>영어</code>, <code>수학</code>인 넓은 표가 있다. <code>이름</code>을 식별 변수로 두고 나머지 열을 변수 이름과 값의 두 열로 풀어 긴 표로 바꾸었다. 긴 표의 크기는?</p>
+<ul>
+<li>① 4행 4열</li>
+<li>② 7행 3열</li>
+<li>③ 12행 4열</li>
+<li>④ 12행 3열</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; R기초와 데이터 마트 &gt; 데이터 마트</code> <code>유형: 계산</code> <code>장: 4</code></p>
+<p><strong>문항 12.</strong> R의 <code>reshape</code> 패키지에 대한 설명으로 가장 적절한 것은?</p>
+<ul>
+<li>① <code>melt</code>는 식별 변수를 기준으로 나머지 열을 변수 이름과 값으로 풀어 긴 표를 만들고, <code>cast</code>는 긴 표를 원하는 형태의 넓은 표로 다시 짠다.</li>
+<li>② <code>melt</code>는 두 표를 키로 결합하고, <code>cast</code>는 결합한 표를 다시 둘로 나눈다.</li>
+<li>③ <code>melt</code>는 결측값이 있는 행을 지우고, <code>cast</code>는 결측값을 평균으로 채운다.</li>
+<li>④ <code>melt</code>는 SQL 문으로 표를 조회하고, <code>cast</code>는 조회한 결과를 파일로 저장한다.</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; R기초와 데이터 마트 &gt; 데이터 마트</code> <code>유형: 용어 구분</code> <code>장: 4</code></p>
+<p><strong>문항 13.</strong> 데이터베이스의 SQL에 익숙한 분석가가 R의 데이터 프레임을 <code>select</code>, <code>from</code>, <code>where</code>, <code>group by</code>로 이루어진 문장으로 조회하고 집계하려고 한다. 가장 적절한 패키지는?</p>
+<ul>
+<li>① <code>reshape</code></li>
+<li>② <code>sqldf</code></li>
+<li>③ <code>plyr</code></li>
+<li>④ <code>data.table</code></li>
+</ul>
+<p><code>범위: 데이터분석 &gt; R기초와 데이터 마트 &gt; 데이터 마트</code> <code>유형: 사례 판단</code> <code>장: 4</code></p>
+<p><strong>문항 14.</strong> 데이터 마트를 만들 때 쓰는 R 패키지에 대한 설명으로 가장 적절하지 않은 것은?</p>
+<ul>
+<li>① <code>plyr</code>는 자료를 나누고, 나눈 조각마다 함수를 적용하고, 그 결과를 다시 합치는 방식으로 처리한다.</li>
+<li>② <code>plyr</code>의 <code>ddply</code>는 데이터 프레임을 입력으로 받아 데이터 프레임을 결과로 낸다.</li>
+<li>③ <code>data.table</code>은 키를 정해 두면 그 열로 자료를 찾는 속도가 빠르다.</li>
+<li>④ <code>data.table</code>은 자료가 작을 때에만 쓸 수 있고, 자료가 커지면 데이터 프레임보다 느리다.</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; R기초와 데이터 마트 &gt; 데이터 마트</code> <code>유형: 옳지 않은 것 고르기</code> <code>장: 4</code></p>
+<p><strong>문항 15.</strong> 거래 표에서 품목이 식품인 행은 40행이고, 금액이 20,000 이상인 행은 25행이며, 두 조건에 모두 맞는 행은 10행이다. 두 조건을 ’또는’으로 이어서 고른 행의 수는?</p>
+<ul>
+<li>① 10</li>
+<li>② 55</li>
+<li>③ 65</li>
+<li>④ 75</li>
+</ul>
+<p><code>범위: 데이터분석 &gt; R기초와 데이터 마트 &gt; R기초</code> <code>유형: 계산</code> <code>장: 4</code></p>
+<p><strong>문항 16.</strong> 어느 동호회 앱의 운영사가 회원들 사이의 친구 맺기 기록을 분석하여, 많은 회원과 연결되어 있어 소식이 퍼지는 길목에 있는 회원을 찾았다. 이 분석에 쓰인 빅데이터 활용 기본 테크닉으로 가장 적절한 것은?</p>
+<ul>
+<li>① 연관 규칙 학습</li>
+<li>② 감정 분석</li>
+<li>③ 소셜 네트워크 분석</li>
+<li>④ 유형 분석</li>
+</ul>
+<p><code>범위: 데이터 이해 &gt; 데이터의 가치와 미래 &gt; 비즈니스 모델</code> <code>유형: 사례 판단</code> <code>장: 1</code></p>
+<p><strong>문항 17.</strong> 어느 가구 회사가 인사, 재무, 생산, 구매 부서가 따로 쓰던 시스템을 하나로 통합하여 회사 안의 자원을 한 시스템에서 관리하게 되었다. 이 시스템으로 가장 적절한 것은?</p>
+<ul>
+<li>① ERP</li>
+<li>② CRM</li>
+<li>③ SCM</li>
+<li>④ KMS</li>
+</ul>
+<p><code>범위: 데이터 이해 &gt; 데이터의 이해 &gt; 데이터베이스 활용</code> <code>유형: 사례 판단</code> <code>장: 1</code></p>
+<p><strong>문항 18.</strong> 분석을 기획할 때 고려할 것 가운데 ’장애 요소에 대한 사전 계획’에 해당하는 것으로 가장 적절한 것은?</p>
+<ul>
+<li>① 분석에 쓸 거래 내역과 고객 표가 실제로 모여 있는지 먼저 확인한다.</li>
+<li>② 다른 유통 업종에서 이미 널리 쓰이는 고객 세분화의 해법을 참고한다.</li>
+<li>③ 분석 결과를 현업 담당자가 이해하지 못하여 쓰이지 않을 경우에 대비하여, 설명할 수 있는 방법을 고르고 교육 계획을 세운다.</li>
+<li>④ 분석 주제를 분석의 대상과 방법을 아는지에 따라 네 유형으로 나눈다.</li>
+</ul>
+<p><code>범위: 데이터분석 기획 &gt; 데이터분석 기획의 이해 &gt; 분석 기획 방향성 도출</code> <code>유형: 사례 판단</code> <code>장: 2</code></p>
+<p><strong>문항 19.</strong> 분석 프로젝트는 의도한 결과가 한 번에 나오지 않아 반복이 많고 일정이 늘어나기 쉽다. 이에 대처하여 기간을 먼저 정해 두고 그 안에서 할 일을 조정하는 일정 관리 기법은?</p>
+<ul>
+<li>① 작업 분할 구조도</li>
+<li>② 프로토타입 모델</li>
+<li>③ 기준선 설정</li>
+<li>④ 타임 박싱</li>
+</ul>
+<p><code>범위: 데이터분석 기획 &gt; 데이터분석 기획의 이해 &gt; 분석 프로젝트 관리 방안</code> <code>유형: 용어 구분</code> <code>장: 2</code></p>
+<p><strong>문항 20.</strong> 어느 병원은 같은 검사 항목을 부서마다 ‘BP’, ‘혈압측정값’, ’혈압’으로 다르게 적어 왔다. 이를 하나의 표준 용어와 이름 짓는 규칙으로 정하고 데이터 사전을 만들었다. 데이터 거버넌스 체계 가운데 이 활동에 해당하는 것은?</p>
+<ul>
+<li>① 데이터 표준화</li>
+<li>② 데이터 관리 체계</li>
+<li>③ 데이터 저장소 관리</li>
+<li>④ 표준화 활동</li>
+</ul>
+<p><code>범위: 데이터분석 기획 &gt; 분석 마스터 플랜 &gt; 분석 거버넌스 체계 수립</code> <code>유형: 사례 판단</code> <code>장: 3</code></p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> 맨 위로</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "복사완료!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "복사완료!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../courses/adsp/book/ADsP_03장_학생용.html" class="pagination-link" aria-label="[3장] 분석 마스터 플랜과 거버넌스">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">[3장] 분석 마스터 플랜과 거버넌스</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../courses/adsp/book/ADsP_05장_학생용.html" class="pagination-link" aria-label="[5장] 결측값·이상값과 기술 통계">
+        <span class="nav-page-text">[5장] 결측값·이상값과 기술 통계</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>안중호 교수 강의 교재 · 2026년 2학기판</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
