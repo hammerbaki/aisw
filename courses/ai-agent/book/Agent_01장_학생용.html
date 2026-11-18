@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-e5128435ffcf42630fd9bfc4806fab7a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-0909c821efd4c3a5185b40b87145982e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -833,7 +833,7 @@ PRIVATE</code></pre>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install <span class="at">-r</span> requirements.txt</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="bu">command</span> <span class="at">-v</span> python</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>...
-Successfully installed anthropic-2.8.0 ... fastapi-0.162.7 ... pytest-9.2.0 python-dotenv-1.2.4 ... uvicorn-0.54.0
+Successfully installed anthropic-2.8.0 ... fastapi-0.163.2 ... pytest-9.2.0 python-dotenv-1.2.4 ... uvicorn-0.54.0
 /c/Users/「사용자」/agent-lab/jobprep/.venv/Scripts/python</code></pre>
 <p>설치에는 1~3분이 걸린다. 입력 줄 앞에 <code>(.venv)</code>가 붙고 <code>command -v python</code>이 저장소의 <code>.venv</code> 안을 가리키면 된다. pip의 <code>[notice]</code> 줄은 무시한다.</p>
 <ul>
@@ -844,8 +844,8 @@ Successfully installed anthropic-2.8.0 ... fastapi-0.162.7 ... pytest-9.2.0 pyth
 <div class="code-label where-server">
 <span>파일: requirements.txt</span>
 </div>
-<pre class="text"><code># 직접 쓰는 패키지만 버전을 고정한다(2026-11-14 확인). 의존성 전체의 잠금 파일은 13장에서 만든다.
-fastapi==0.162.7
+<pre class="text"><code># 직접 쓰는 패키지만 버전을 고정한다(2026-11-18 확인). 의존성 전체의 잠금 파일은 13장에서 만든다.
+fastapi==0.163.2
 uvicorn==0.54.0
 anthropic==2.8.0
 python-dotenv==1.2.4
@@ -1694,7 +1694,7 @@ pytest==9.2.0</code></pre>
 <td>모의 모드가 아닌 동안, 시스템은 하루 LLM 토큰 합계를 예산 안에 두어야 한다.</td>
 </tr>
 <tr class="odd">
-<td>이벤트(event-driven)</td>
+<td>사건(event-driven)</td>
 <td>When &lt;trigger&gt;, the &lt;system&gt; shall …</td>
 <td>~하면, (주어)는 ~해야 한다.</td>
 <td>운영 에이전트가 코드를 고치면, 운영 에이전트는 완료를 보고하기 전에 <code>python -m pytest -q</code>를 실행해야 한다.</td>
@@ -1706,9 +1706,9 @@ pytest==9.2.0</code></pre>
 <td>장애 보고 스킬이 설치된 경우, 운영 에이전트는 보고서를 같은 절 구성으로 써야 한다.</td>
 </tr>
 <tr class="odd">
-<td>원치 않는 상황(unwanted behaviour)</td>
+<td>원치 않는 동작(unwanted behaviour)</td>
 <td>If &lt;trigger&gt;, then the &lt;system&gt; shall …</td>
-<td>만약 ~이면, (주어)는 ~해야 한다.</td>
+<td>만약 ~하면, (주어)는 ~해야 한다.</td>
 <td>만약 한 작업에서 테스트가 3회 연속 실패하면, 운영 에이전트는 다시 시도하지 않고 사람에게 실패 보고서를 넘겨야 한다.</td>
 </tr>
 </tbody>
@@ -1721,9 +1721,9 @@ pytest==9.2.0</code></pre>
 <pre class="text"><code>| 문형 | 영문 틀 | 이 명세서의 틀 |
 | 상시 | The system shall ... | 시스템은 ~해야 한다 |
 | 상태 | While ..., the system shall ... | ~인 동안, 시스템은 ~해야 한다 |
-| 이벤트 | When ..., the system shall ... | ~하면, 시스템은 ~해야 한다 |
+| 사건 | When ..., the system shall ... | ~하면, 시스템은 ~해야 한다 |
 | 선택 | Where ..., the system shall ... | ~가 설정된 경우, 시스템은 ~해야 한다 |
-| 원치 않는 상황 | If ..., then the system shall ... | 만약 ~이면, 시스템은 ~해야 한다 |</code></pre>
+| 원치 않는 동작 | If ..., then the system shall ... | 만약 ~하면, 시스템은 ~해야 한다 |</code></pre>
 </section>
 <section id="측정-가능한-요건의-조건" class="level3">
 <h3 class="anchored" data-anchor-id="측정-가능한-요건의-조건">8-2. 측정 가능한 요건의 조건</h3>
@@ -1902,7 +1902,7 @@ pytest==9.2.0</code></pre>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="st">| ID | 분류 | 문형 | 요구 | 측정 방법 | 기준 | 확인하는 장 |</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="st">|---|---|---|---|---|---|---|</span></span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="st">| OR-SEC-01 | 보안 | 상시 | 운영 에이전트는 비밀 정보를 적절히 보호해야 한다. | 사람이 확인한다 | - | 11 |</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="st">| OR-REL-01 | 신뢰성 | 원치 않는 상황 | LLM 호출이 실패하면, 시스템은 503으로 응답해야 한다. | 테스트 | 통과 | 2 |</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="st">| OR-REL-01 | 신뢰성 | 원치 않는 동작 | LLM 호출이 실패하면, 시스템은 503으로 응답해야 한다. | 테스트 | 통과 | 2 |</span></span>
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="st">| OR-REL-02 | 보안 | 상시 | 시스템은 빠르게 응답한다. | | | 12 |</span></span>
 <span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="st">| SEC-02 | 보안 | 상시 | 시스템은 키를 커밋에 넣지 않아야 한다. | `git ls-files` | 0 | 13 |</span></span>
 <span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="st">| OR-REP-01 | 재현성 | 상태 | 시스템은 모의 모드에서 같은 응답을 내야 한다. | `pytest -q` 3회 | 같은 결과 | 2 |</span></span>
@@ -1912,7 +1912,7 @@ pytest==9.2.0</code></pre>
 <pre class="text"><code>연습_초안.md: 요건 4개 (보안 1 · 신뢰성 2 · 일관성 0 · 재현성 1)
   경고 3행 OR-SEC-01: 모호한 말 「적절히」 → 수치나 관찰할 수 있는 조건으로 바꾼다
   경고 5행 OR-REL-02: 모호한 말 「빠르게」 → 수치나 관찰할 수 있는 조건으로 바꾼다
-  오류 4행 OR-REL-01: 원치 않는 상황 문형인데 요구 문장에 「만약 ~이면,」 표지가 없다
+  오류 4행 OR-REL-01: 원치 않는 동작 문형인데 요구 문장에 「만약 ~하면,」 표지가 없다
   오류 5행 OR-REL-02: 분류 칸은 「보안」, ID의 분류는 REL(신뢰성)이다. 둘이 맞지 않는다
   오류 5행 OR-REL-02: 요구 문장이 「~(해)야 한다.」 또는 「~않아야 한다.」로 끝나지 않는다
   오류 5행 OR-REL-02: 측정 방법이 비어 있다
@@ -1928,7 +1928,7 @@ pytest==9.2.0</code></pre>
 <p>줄마다 무엇이 틀렸는지 읽는다.</p>
 <ul>
 <li>3행: 형식은 맞지만 「적절히」가 모호하다. 경고만 내고 통과시킨다. 측정 방법 「사람이 확인한다」도 형식상 빈칸이 아니므로 통과한다. <strong>도구는 이것이 좋은 측정 방법인지 판정하지 못한다.</strong> 무엇을 어떻게 확인하는지 적지 않은 측정 방법은 사람이 걸러야 한다.</li>
-<li>4행: 「원치 않는 상황」인데 「만약」이 없다. 이벤트 문형으로 고치거나 「만약 LLM 호출이 실패하면,」으로 고친다.</li>
+<li>4행: 「원치 않는 동작」인데 「만약」이 없다. 사건 문형으로 고치거나 「만약 LLM 호출이 실패하면,」으로 고친다.</li>
 <li>5행: ID는 신뢰성인데 분류 칸은 보안이다. 요구 문장이 「~한다」로 끝나 의무인지 서술인지 알 수 없다. 측정 방법이 없다.</li>
 <li>6행: ID에 <code>OR-</code>가 없다.</li>
 <li>7행: 「상태」 문형인데 「동안」이 없다. “모의 모드가 설정된 경우,”로 고치면 「선택」 문형이 맞다.</li>
