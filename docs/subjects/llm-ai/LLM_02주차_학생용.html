@@ -468,7 +468,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>실습 자료</strong> <a href="../../../docs/subjects/llm-ai/LLM_02주차_실습자료.html">이 주차 키트 파일 보기 · 내려받기</a></p>
 </div>
 <blockquote class="blockquote">
-<p><strong>현재 실행 기준(v0.70)</strong>: 트랙 선택 없이 예제 넷을 쉬운 재료부터 전원이 순서대로 합니다. A(수영 강좌 찾기, 광주시스포츠헬스센터 수영 프로그램 페이지 URL 하나를 전원이 같이, 8단계) → B(광주시청 채용시험정보 게시판 URL 하나를 전원이 같이, 축약 4단계) → C(근처 맛집, URL로 읽히지 않는 지도 앱 화면을 브라우저 AI Aside가 조작해 관찰하는 교수 데모 5장 + 보충 2장 + 복기, 결과물은 키트 <code>맛집/</code>에) → D(포트폴리오, 공개 저장소의 코드, 7단계). 학생이 손으로 만드는 파일은 없습니다. 0장의 <code>cp -n</code>(양식 복사) 한 번 뒤로 손으로 쓰는 곳은 <code>내소재.md</code>의 칸, 명세서의 <code>← 고침</code> · <code>← 추가</code> 한 줄, 프롬프트의 「 」뿐입니다. URL은 프롬프트에 붙이고, 발전은 명세에 EARS 한 줄을 직접 더한 뒤 프롬프트 하나로 다시 만듭니다(메타프롬프트 없음). 화면 명세(Pencil)는 D의 결과 <code>포트폴리오/rebuild/index.html</code>에 적용하고, <code>.pen</code> 시안은 Claude Code가 pencil MCP로 그린 뒤 사람이 캔버스에서 고칩니다. 명세는 문장(<code>요구사항명세서.md</code>)과 화면(<code>내화면.pen</code>) 두 파일입니다. 덱 v0.34(2026-09-10, 77장 · 최종판)와 전 장 대조로 정합합니다. 키트는 <code>week02/</code>(예제 폴더 넷과 csv · <code>맛집/</code>에 교수 데모 결과물(<code>서비스관찰.md</code> · <code>네이버지도-구조분석.md</code> · <code>캡처/</code> · <code>spec/</code> · <code>rebuild/</code>) · <code>내소재_양식.md</code> · 강의안)입니다. 검증 결과와 남은 리허설은 <code>최종마무리_260909.md</code>에 있습니다. PDF는 교수자가 PowerPoint 최종 수정 후 직접 export합니다.</p>
+<p><strong>이번 주의 진행</strong></p>
+<p>예제 넷을 쉬운 것부터 전원이 같은 순서로 합니다. 트랙을 고르지 않습니다.</p>
+<ul>
+<li><strong>A. 수영 강좌 찾기</strong>: 광주시스포츠헬스센터 수영 프로그램 페이지(URL 하나). 8단계를 모두 합니다.</li>
+<li><strong>B. 채용시험정보</strong>: 광주시청 채용시험정보 게시판(URL 하나). 축약한 4단계로 합니다.</li>
+<li><strong>C. 근처 맛집</strong>: URL로 읽히지 않는 지도 앱 화면. 교수 데모로 봅니다. 결과물은 키트 <code>맛집/</code>에 있습니다.</li>
+<li><strong>D. 포트폴리오</strong>: 공개 저장소의 코드. 7단계로 합니다.</li>
+</ul>
+<p>손으로 만드는 파일은 없습니다. 손으로 쓰는 곳은 세 곳뿐입니다.</p>
+<ol type="1">
+<li><code>내소재.md</code>의 칸</li>
+<li>명세서의 <code>← 고침</code> · <code>← 추가</code> 한 줄</li>
+<li>프롬프트의 「 」</li>
+</ol>
+<p>명세는 <strong>문장</strong>(<code>요구사항명세서.md</code>)과 <strong>화면</strong>(<code>내화면.pen</code>) 두 파일입니다. 키트는 <code>week02/</code>에 있습니다.</p>
 </blockquote>
 <p>1주차에서 AI를 회사에서 믿고 쓸 수 있도록 <strong>개발방법론</strong>으로 통제한다는 원칙을 세웠습니다. 이번 주는 그 방법론의 첫 기술입니다.</p>
 <p>개발 업무는 비즈니스의 니즈에서 “요구사항”이 정리되면, 그 요구사항을 “명세”로 만들어, 결국 “코드로 구현”하는 프로세스입니다. AI에게 회사의 일, 즉 코드 구현 작업을 시키기 위해서는 “요구사항”과 “명세”가 필요합니다.</p>
