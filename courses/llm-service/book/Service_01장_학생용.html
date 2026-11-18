@@ -384,7 +384,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#이-과목의-지도" id="toc-이-과목의-지도" class="nav-link" data-scroll-target="#이-과목의-지도">7. 이 과목의 지도</a>
   <ul class="collapse">
   <li><a href="#개-장의-구성" id="toc-개-장의-구성" class="nav-link" data-scroll-target="#개-장의-구성">7-1. 13개 장의 구성</a></li>
-  <li><a href="#공통-사례-취업-준비-지원-서비스" id="toc-공통-사례-취업-준비-지원-서비스" class="nav-link" data-scroll-target="#공통-사례-취업-준비-지원-서비스">7-2. 공통 사례: 취업 준비 지원 서비스</a></li>
+  <li><a href="#여섯-개의-서비스" id="toc-여섯-개의-서비스" class="nav-link" data-scroll-target="#여섯-개의-서비스">7-2. 여섯 개의 서비스</a></li>
   </ul></li>
   <li><a href="#핵심-실습-한-줄-요청과-요구-목록-요청의-비교와-보강" id="toc-핵심-실습-한-줄-요청과-요구-목록-요청의-비교와-보강" class="nav-link" data-scroll-target="#핵심-실습-한-줄-요청과-요구-목록-요청의-비교와-보강">8. 핵심 실습: 한 줄 요청과 요구 목록 요청의 비교와 보강</a>
   <ul class="collapse">
@@ -639,7 +639,7 @@ README.md  연습  요청문_양식.md  점검_모아보기.sh  점검자료  �
 <h3 class="anchored" data-anchor-id="사례-3-출시-이틀-만에-공격받은-서비스-2025">2-3. 사례 3: 출시 이틀 만에 공격받은 서비스 (2025)</h3>
 <p><strong>요약.</strong> 2025년 3월, 코드를 직접 쓰지 않고 AI 코딩 도구로만 만들었다고 소개된 영업 리드 수집 SaaS 「EnrichLead」의 창업자가 X에 공격을 받고 있다는 글을 올렸다. 보고된 문제는 세 가지였다. 코드에 들어 있던 API 키가 노출되어 사용량이 바닥났고, 유료 구독의 결제 화면을 우회해 기능을 쓰는 사용자가 생겼고, 데이터베이스에 무작위 데이터가 쓰였다. AI 도구로 고치려 할수록 다른 곳이 깨졌고, 서비스는 며칠 만에 닫혔다[I6].</p>
 <p><strong>출처의 한계.</strong> 창업자의 X 원문은 2026-11-14에 열지 못하였다. 위 내용은 사건을 정리한 2차 자료와 그 자료가 인용한 기사로 확인하였다. 세부 기술 원인(키가 정확히 어디에 있었는지)은 1차 자료로 확인하지 못하였다.</p>
-<p><strong>서비스 개발의 관점.</strong> 비밀 키는 브라우저로 내려가는 코드에 두지 않고 서버의 환경 변수에 둔다. 결제와 권한의 판정은 화면이 아니라 서버에서 한다. 데이터베이스에 쓰는 요청에는 인증과 입력 검증을 붙인다. 이 세 가지는 10장에서 공고 요약 API를 만들 때 원칙으로 세운다.</p>
+<p><strong>서비스 개발의 관점.</strong> 비밀 키는 브라우저로 내려가는 코드에 두지 않고 서버의 환경 변수에 둔다. 결제와 권한의 판정은 화면이 아니라 서버에서 한다. 데이터베이스에 쓰는 요청에는 인증과 입력 검증을 붙인다. 이 세 가지는 9장에서 문서 요약 API를 만들 때 원칙으로 세운다.</p>
 </section>
 <section id="사례-4-같은-구멍이-반복된-플랫폼-20252026" class="level3">
 <h3 class="anchored" data-anchor-id="사례-4-같은-구멍이-반복된-플랫폼-20252026">2-4. 사례 4: 같은 구멍이 반복된 플랫폼 (2025~2026)</h3>
@@ -669,7 +669,7 @@ README.md  연습  요청문_양식.md  점검_모아보기.sh  점검자료  �
 <td>1 정부 플랫폼 정보 노출</td>
 <td>API가 내보낼 항목의 명세, 키의 분리</td>
 <td>명세, 설계, 검증</td>
-<td>6장 명세, 10장 키 보안</td>
+<td>4장 명세, 9장 키 보안</td>
 </tr>
 <tr class="even">
 <td>2 운영 DB 삭제</td>
@@ -681,13 +681,13 @@ README.md  연습  요청문_양식.md  점검_모아보기.sh  점검자료  �
 <td>3 출시 직후 공격</td>
 <td>키의 위치, 서버 쪽 판정, 입력 검증</td>
 <td>설계, 구현</td>
-<td>10장 API와 키</td>
+<td>9장 API와 키</td>
 </tr>
 <tr class="even">
 <td>4 반복된 접근 통제 오류</td>
 <td>접근 권한의 명세, 사람의 확인</td>
 <td>명세, 검증</td>
-<td>6장 명세, 9·13장 인수 조건과 평가</td>
+<td>4장 명세, 5·13장 인수 조건과 평가</td>
 </tr>
 </tbody>
 </table>
@@ -713,7 +713,7 @@ README.md  연습  요청문_양식.md  점검_모아보기.sh  점검자료  �
 <p><strong>토큰</strong>(token)은 언어 모델이 글을 다루는 최소 단위이다. 단어 하나일 수도, 단어의 일부나 글자 하나일 수도 있다[A1]. 서비스 개발자에게 토큰이 중요한 까닭은 세 가지이다.</p>
 <ol type="1">
 <li><strong>비용.</strong> API 요금은 입력 토큰과 출력 토큰의 수로 매긴다. 긴 문서를 통째로 넣는 기능은 호출마다 비싸다.</li>
-<li><strong>한도.</strong> 한 번에 다룰 수 있는 양(컨텍스트 윈도우)이 토큰으로 정해진다. 넣을 자료를 골라야 한다(11장의 RAG).</li>
+<li><strong>한도.</strong> 한 번에 다룰 수 있는 양(컨텍스트 윈도우)이 토큰으로 정해진다. 넣을 자료를 골라야 한다(10장의 RAG).</li>
 <li><strong>정확도.</strong> 모델은 글자가 아니라 토큰을 본다. 단어 속의 글자 수 세기나 자릿수가 많은 계산에 약하므로 그런 일은 코드에 맡긴다.</li>
 </ol>
 <p>한국어는 같은 내용에 영어보다 토큰을 더 쓴다. 정확한 비율은 모델마다 다르다.</p>
@@ -729,7 +729,7 @@ README.md  연습  요청문_양식.md  점검_모아보기.sh  점검자료  �
 <section id="확률적-생성" class="level3">
 <h3 class="anchored" data-anchor-id="확률적-생성">3-3. 확률적 생성</h3>
 <p>후보를 고르는 방식을 <strong>샘플링</strong>(sampling)이라 한다. 실제 LLM은 문장 하나를 만들 때 이 선택을 수십에서 수천 번 이어서 하므로, 앞에서 고른 토큰 하나가 달라지면 뒤의 글 전체가 달라진다. 같은 요청을 두 사람이 보내면 다른 프로그램이 나오는 까닭이다.</p>
-<p>샘플링의 무작위성을 조절하는 대표 설정이 <strong>temperature</strong>이다[A1]. 현재 API(2026-10-21 판)는 이 값을 요청 인자로 받지 않으므로[A4], 서비스의 일관성은 지시와 예시, 구조화 출력, 평가로 얻는다(10장). <strong>일정한 답이 맞는 답은 아니다.</strong> 같은 답이 되풀이되어도 그 답이 사실인지는 근거와 검증이 정한다.</p>
+<p>샘플링의 무작위성을 조절하는 대표 설정이 <strong>temperature</strong>이다[A1]. 현재 API(2026-10-21 판)는 이 값을 요청 인자로 받지 않으므로[A4], 서비스의 일관성은 지시와 예시, 구조화 출력, 평가로 얻는다(9장). <strong>일정한 답이 맞는 답은 아니다.</strong> 같은 답이 되풀이되어도 그 답이 사실인지는 근거와 검증이 정한다.</p>
 <blockquote class="blockquote">
 <p><strong>[최신 자료 자리: API 판과 샘플링 인자]</strong> 수업 시점의 기본 API 판과, 그 판이 <code>temperature</code>·<code>top_p</code>·<code>top_k</code>를 받는지 확인한다. 확인할 곳: <a href="https://platform.claude.com/docs/en/api/migration-2026-10-21" class="uri">https://platform.claude.com/docs/en/api/migration-2026-10-21</a>. 2026-11-15에 확인한 내용: 2026-10-21 판에서는 세 인자를 보내면 기본값이라도 400 오류가 나고, 보내지 않으면 temperature 1.0으로 샘플링한다.</p>
 </blockquote>
@@ -879,7 +879,7 @@ README.md  연습  요청문_양식.md  점검_모아보기.sh  점검자료  �
 <tr class="odd">
 <td>Plan (<code>⏸ plan mode on</code>)</td>
 <td>읽고 계획을 제안한다. 소스 파일은 고치지 않는다</td>
-<td>고치기 전에 계획부터 볼 때(2장, 6장)</td>
+<td>고치기 전에 계획부터 볼 때(2장, 4장)</td>
 </tr>
 <tr class="even">
 <td>Auto (<code>⏵⏵ auto mode on</code>)</td>
@@ -1036,32 +1036,32 @@ Mo Tu We Th Fr Sa Su
 <tr class="odd">
 <td>조사</td>
 <td>시장은 얼마나 크고, 누가 이미 무엇을 하고 있으며, 사용자는 실제로 어떻게 행동하는가</td>
-<td>시장 조사 보고, 경쟁 서비스 비교표, 인터뷰 기록</td>
-<td>4장, 5장</td>
+<td>경쟁 서비스 비교표, 인터뷰 기록</td>
+<td>4장, 7장</td>
 </tr>
 <tr class="even">
 <td>정의</td>
 <td>누구의 어떤 문제를 풀 것인가</td>
 <td>페르소나, 문제 정의, 가치 제안</td>
-<td>4장, 5장</td>
+<td>4장, 7장</td>
 </tr>
 <tr class="odd">
 <td>명세</td>
 <td>서비스는 무엇을 해야 하고, 무엇은 하지 않는가</td>
-<td>요구사항 명세서, 추적표</td>
-<td>6장</td>
+<td>요구사항 명세서, API 명세</td>
+<td>4장, 6장, 8장</td>
 </tr>
 <tr class="even">
 <td>설계</td>
 <td>사용자는 어떤 흐름으로 쓰고, 화면은 어떻게 생겼는가</td>
-<td>사용자 여정 지도, 정보 구조, 화면 명세, 프로토타입</td>
-<td>7장, 8장</td>
+<td>사용자 흐름, 화면 명세, 프로토타입</td>
+<td>7장, 11장</td>
 </tr>
 <tr class="odd">
 <td>구현</td>
 <td>명세를 만족하는 프로덕트는 무엇인가</td>
 <td>웹 프로덕트, LLM 기능, RAG 기능, 인수 조건 표</td>
-<td>9~12장</td>
+<td>5장, 8~12장</td>
 </tr>
 <tr class="even">
 <td>평가</td>
@@ -1071,7 +1071,7 @@ Mo Tu We Th Fr Sa Su
 </tr>
 </tbody>
 </table>
-<p>단계는 한 방향으로만 흐르지 않는다. 평가에서 찾은 문제는 명세를 고치게 하고, 때로는 문제의 정의를 다시 하게 한다. 그래서 명세서는 6장에서 쓰고 7장부터 13장까지 장마다 고친다.</p>
+<p>단계는 한 방향으로만 흐르지 않는다. 평가에서 찾은 문제는 명세를 고치게 하고, 때로는 문제의 정의를 다시 하게 한다. 그래서 이 과목은 서비스를 여섯 번 만들며 이 순환을 되풀이하고, 13장에서 앞 서비스 하나의 명세를 고쳐 다시 만든다.</p>
 <hr>
 </section>
 </section>
@@ -1134,7 +1134,7 @@ Mo Tu We Th Fr Sa Su
 </section>
 <section id="리버스-엔지니어링" class="level3">
 <h3 class="anchored" data-anchor-id="리버스-엔지니어링">6-3. 리버스 엔지니어링</h3>
-<p><strong>리버스 엔지니어링</strong>(reverse engineering)은 이미 있는 서비스나 코드를 관찰해 그 구조와 기능을 명세로 되살리는 일이다. 명세 주도 개발이 「명세 → 구현」의 방향이라면 리버스 엔지니어링은 「구현 → 명세」의 방향이다. 4장(경쟁 서비스), 6장(공고 목록 화면), 12장(두 구현의 비교)에서 쓴다.</p>
+<p><strong>리버스 엔지니어링</strong>(reverse engineering)은 이미 있는 서비스나 코드를 관찰해 그 구조와 기능을 명세로 되살리는 일이다. 명세 주도 개발이 「명세 → 구현」의 방향이라면 리버스 엔지니어링은 「구현 → 명세」의 방향이다. 4장(웹 화면), 6장(코드), 7장(네트워크 동작), 11장(데스크톱 앱)에서 대상을 바꾸어 가며 쓴다.</p>
 </section>
 <section id="요구의-네-요소" class="level3">
 <h3 class="anchored" data-anchor-id="요구의-네-요소">6-4. 요구의 네 요소</h3>
@@ -1206,7 +1206,7 @@ Mo Tu We Th Fr Sa Su
 </tr>
 </tbody>
 </table>
-<p>왼쪽 문장을 AI에게 주면 AI가 기준을 대신 정한다. 6장에서는 요구 문장을 <strong>EARS</strong>(Easy Approach to Requirements Syntax)라는 정해진 문형으로 쓴다.</p>
+<p>왼쪽 문장을 AI에게 주면 AI가 기준을 대신 정한다. 4장에서는 요구 문장을 <strong>EARS</strong>(Easy Approach to Requirements Syntax)라는 정해진 문형으로 쓴다.</p>
 <hr>
 </section>
 </section>
@@ -1214,7 +1214,7 @@ Mo Tu We Th Fr Sa Su
 <h2 class="anchored" data-anchor-id="이-과목의-지도">7. 이 과목의 지도</h2>
 <section id="개-장의-구성" class="level3">
 <h3 class="anchored" data-anchor-id="개-장의-구성">7-1. 13개 장의 구성</h3>
-<p>이 과목은 5부 13장으로 이루어진다. 1부에서 개발 환경을 갖추고, 2~5부에서 서비스 기획의 여섯 단계를 차례로 밟는다.</p>
+<p>이 과목은 13개 장으로 이루어진다. 1~3장에서 개발 환경을 갖추고, 4장부터 서비스 여섯 개를 차례로 만든다. 서비스마다 「관찰 → 명세 → 구현 → 검증」을 한 번씩 돈다.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 20%">
@@ -1225,114 +1225,119 @@ Mo Tu We Th Fr Sa Su
 </colgroup>
 <thead>
 <tr class="header">
-<th>부</th>
 <th>장</th>
 <th>제목</th>
-<th>단계</th>
-<th>이 장에서 만드는 것</th>
+<th>만드는 서비스</th>
+<th>리버스 엔지니어링의 대상</th>
+<th>기획 주제</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>1부 개발 환경</td>
 <td>1</td>
 <td>생성형 AI 기반 서비스 개발의 개요</td>
-<td>(전체 개관)</td>
-<td>한 줄 요청과 요구 목록 요청의 비교 기록</td>
+<td>(개관) 채용 공고 마감일 알림</td>
+<td></td>
+<td>요구 목록과 점검표</td>
 </tr>
 <tr class="even">
-<td></td>
 <td>2</td>
 <td>개인 개발 환경: Claude Code와 Git</td>
 <td></td>
-<td>개인 실습 저장소 <code>llm-service-lab</code>과 커밋 기록</td>
+<td></td>
+<td>개인 실습 저장소와 커밋 기록</td>
 </tr>
 <tr class="odd">
-<td></td>
 <td>3</td>
 <td>팀 공동 작업: GitHub 기반 협업 흐름</td>
 <td></td>
-<td>팀 저장소의 이슈, 풀 리퀘스트, 리뷰, 충돌 해결</td>
+<td></td>
+<td>이슈, 풀 리퀘스트, 리뷰</td>
 </tr>
 <tr class="even">
-<td>2부 조사와 정의</td>
 <td>4</td>
-<td>시장 조사와 경쟁 서비스 분석</td>
-<td>조사, 정의</td>
-<td>시장 조사 보고와 경쟁 서비스 비교표</td>
+<td>화면의 리버스 엔지니어링과 요구사항 명세</td>
+<td>서비스 1: 공고 모아보기 웹</td>
+<td>공공 채용 게시판의 화면</td>
+<td>경쟁 서비스 분석, 요구사항 명세(EARS)</td>
 </tr>
 <tr class="odd">
-<td></td>
 <td>5</td>
-<td>사용자 조사와 페르소나 설계</td>
-<td>조사, 정의</td>
-<td>인터뷰 기록, 페르소나, 문제 정의</td>
+<td>명세 기반 구현과 배포</td>
+<td></td>
+<td></td>
+<td>인수 조건, 정적 웹의 배포</td>
 </tr>
 <tr class="even">
-<td></td>
 <td>6</td>
-<td>리버스 엔지니어링과 명세 주도 개발</td>
-<td>명세</td>
-<td>화면 명세의 복원과 재구현, 요구사항 명세서 v1</td>
+<td>코드의 리버스 엔지니어링</td>
+<td>서비스 2: 명령줄 도구</td>
+<td>공개 저장소의 코드</td>
+<td>명세와 코드의 추적</td>
 </tr>
 <tr class="odd">
-<td>3부 설계</td>
 <td>7</td>
-<td>사용자 경험 설계: 사용자 여정과 정보 구조</td>
-<td>설계</td>
-<td>여정 지도, 사이트맵, 사용자 흐름, 명세서 v2</td>
+<td>사용자 조사와 네트워크 동작의 분석</td>
+<td>서비스 3: 예약·일정 웹앱</td>
+<td>웹앱의 네트워크 호출 기록</td>
+<td>사용자 조사, 페르소나, 사용자 흐름</td>
 </tr>
 <tr class="even">
-<td></td>
 <td>8</td>
-<td>UI 설계와 프로토타이핑</td>
-<td>설계</td>
-<td>화면 명세와 클릭 가능한 HTML 프로토타입</td>
+<td>API 명세와 웹앱의 구현</td>
+<td></td>
+<td></td>
+<td>API 명세, 서버 쪽 판정</td>
 </tr>
 <tr class="odd">
-<td>4부 구현</td>
 <td>9</td>
-<td>웹 프로덕트의 구현과 배포</td>
-<td>구현</td>
-<td>공고 모아보기 웹과 GitHub Pages 배포</td>
+<td>LLM 기능의 설계와 API 연동</td>
+<td>서비스 4: 문서 요약과 질의응답</td>
+<td>기존 서비스의 응답</td>
+<td>프롬프트 설계, 구조화 출력, 키의 보안</td>
 </tr>
 <tr class="even">
-<td></td>
 <td>10</td>
-<td>LLM 기능의 통합: API 연동과 프롬프트 설계</td>
-<td>구현</td>
-<td>공고 요약 API와 프롬프트 판본 비교</td>
+<td>검색 증강 생성(RAG)</td>
+<td></td>
+<td></td>
+<td>근거의 표시, 평가 문항</td>
 </tr>
 <tr class="odd">
-<td></td>
 <td>11</td>
-<td>검색 증강 생성(RAG) 기능의 구현</td>
-<td>구현</td>
-<td>근거를 밝혀 답하는 취업 자료 질의응답</td>
+<td>애플리케이션의 분석과 UI 설계</td>
+<td>서비스 5: 데스크톱 앱의 기능 하나</td>
+<td>오픈소스 데스크톱 앱</td>
+<td>화면 명세, 프로토타입</td>
 </tr>
 <tr class="even">
-<td></td>
 <td>12</td>
-<td>다중 프로덕트의 비교 구현</td>
-<td>구현</td>
-<td>같은 명세로 만든 두 구현의 비교표</td>
+<td>비교 구현</td>
+<td></td>
+<td></td>
+<td>같은 명세로 만든 두 구현의 비교</td>
 </tr>
 <tr class="odd">
-<td>5부 평가</td>
 <td>13</td>
 <td>사용성 평가와 서비스 개선</td>
-<td>평가</td>
-<td>사용성 평가 기록과 개선 풀 리퀘스트</td>
+<td>서비스 6: 앞 서비스 하나의 개선판</td>
+<td>자기 결과물</td>
+<td>사용성 평가, 회귀 확인</td>
 </tr>
 </tbody>
 </table>
 <p>8주차는 중간시험(1~6장), 16주차는 기말시험(7~13장 중심)이다.</p>
 </section>
-<section id="공통-사례-취업-준비-지원-서비스" class="level3">
-<h3 class="anchored" data-anchor-id="공통-사례-취업-준비-지원-서비스">7-2. 공통 사례: 취업 준비 지원 서비스</h3>
-<p>4장부터 13장까지는 하나의 공통 사례 위에서 진행한다. 사례는 <strong>「취업 준비 지원 서비스」</strong>이고, 대상 사용자는 <strong>전문대학 2학년 취업 준비생</strong>이다.</p>
-<p>학습자 자신이 대상 사용자이므로 5장에서 동료를 실제로 인터뷰할 수 있고, 견줄 서비스가 많으며, LLM 기능(공고 요약, 취업 자료 질의응답)이 자연스럽게 들어간다. 이 장의 마감일 알림은 이 사례의 가장 작은 조각이며, 9장의 「지원 일정 관리」가 같은 기능을 웹 화면으로 다시 만든다.</p>
-<p>학습자가 주제를 고르는 수업은 두지 않는다. 같은 절차를 팀이 고른 주제에 적용하는 일은 같은 학기의 프로젝트실습Ⅰ이 맡는다. 그래서 조사와 명세(4~6장)를 중간시험 전에 둔다.</p>
+<section id="여섯-개의-서비스" class="level3">
+<h3 class="anchored" data-anchor-id="여섯-개의-서비스">7-2. 여섯 개의 서비스</h3>
+<p>한 학기에 서비스 하나를 길게 만들지 않고, 한두 주마다 다른 서비스를 만든다. 까닭은 세 가지이다.</p>
+<ol type="1">
+<li><strong>한 바퀴를 여러 번 돈다.</strong> 구현의 비용이 내려갔으므로 익힐 것은 관찰, 명세, 구현, 검증의 순환이다. 서비스가 여섯이면 이 순환을 여섯 번 한다.</li>
+<li><strong>대상마다 읽는 방법이 다르다.</strong> 웹 화면, 코드, 네트워크 호출, 데스크톱 앱은 리버스 엔지니어링의 방법과 도구가 다르다.</li>
+<li><strong>단원이 독립적이다.</strong> 앞 단원의 산출물이 없어도 다음 서비스를 시작할 수 있다.</li>
+</ol>
+<p>리버스 엔지니어링의 대상은 공개된 화면, 오픈소스 소프트웨어, 학습자 자신의 결과물로 한정한다. 이용 약관이나 사용권이 분석을 금지하는 대상은 다루지 않는다.</p>
+<p>이 장의 마감일 알림은 서비스 1(공고 모아보기)의 가장 작은 조각이다. 서비스 하나를 길게 키우는 일은 같은 학기의 프로젝트실습Ⅰ이 팀의 주제로 맡는다.</p>
 <hr>
 </section>
 </section>
@@ -1537,7 +1542,7 @@ job_deadline.py
 </tr>
 </tbody>
 </table>
-<p>「O의 수」에는 <code>O</code>만 센다. <code>△</code>는 어긋난 곳이 근거 칸에 있어야 하며, 그 항목이 6장에서 요구 문장을 고칠 후보가 된다.</p>
+<p>「O의 수」에는 <code>O</code>만 센다. <code>△</code>는 어긋난 곳이 근거 칸에 있어야 하며, 그 항목이 4장에서 요구 문장을 고칠 후보가 된다.</p>
 <p><strong>점검 1·4~7. 기본 자료.</strong> 묻는 말 없이 목록이 나오면 1번은 <code>O</code>이다. 이 출력으로 4번(정렬), 5번(<code>D-DAY</code>와 칸 순서), 6번(<code>[임박]</code> 세 줄), 7번(지난 공고 제외와 <code>지난 공고 2건</code>)을 함께 판정한다. 점검 2는 기준일만 <code>--today 2027-03-01</code>로 바꾸어 가람소프트가 <code>D-2</code>에서 <code>D-11</code>로 바뀌는지 본다. 기준일을 고정할 수 없는 프로그램은 실행하는 날마다 결과가 달라져 점검 결과를 다시 확인할 수 없다.</p>
 <div class="code-label where-server">
 <span>터미널</span>
@@ -1715,7 +1720,7 @@ $ python 다_보강/dday.py 점검자료/공고_모두지남.csv --today 2027-03
 <p>이 실험에는 한계가 있다.</p>
 <ol type="1">
 <li><strong>한 번의 시도이다.</strong> 같은 요청을 다시 보내면 다른 결과가 나온다. 반 전체의 결과를 모아야 믿을 만한 비교가 된다.</li>
-<li><strong>요구 목록을 학습자가 쓰지 않았다.</strong> 요구를 찾아내고 문장으로 쓰는 일은 4~6장에서 한다.</li>
+<li><strong>요구 목록을 학습자가 쓰지 않았다.</strong> 요구를 찾아내고 문장으로 쓰는 일은 4장부터 한다.</li>
 <li><strong>판정자가 결과를 알고 있다.</strong> 통과 기준을 미리 적어 둔 것은 이 치우침을 줄이기 위해서이다.</li>
 <li><strong>(가)를 불리하게 잰다.</strong> 이 실험이 보이려는 것은 (가)의 품질이 아니라, 요청에 없는 기준은 결과에 반영되지 않는다는 것이다.</li>
 </ol>
@@ -1779,7 +1784,7 @@ $ python 다_보강/dday.py 점검자료/공고_모두지남.csv --today 2027-03
 <tr class="odd">
 <td>(다)에서 13번이 풀렸는데 다른 항목이 <code>X</code>가 되었다</td>
 <td>다시 만든 판이 요구가 정하지 않은 것을 다르게 정하였다(회귀)</td>
-<td>고치지 않는다. 5부의 「회귀」 칸에 번호와 출력을 적는다. 그 항목의 요구 문장이 무엇을 정하지 않았는지가 6장의 재료이다</td>
+<td>고치지 않는다. 5부의 「회귀」 칸에 번호와 출력을 적는다. 그 항목의 요구 문장이 무엇을 정하지 않았는지가 4장의 재료이다</td>
 </tr>
 </tbody>
 </table>
@@ -1899,7 +1904,7 @@ $ python 다_보강/dday.py 점검자료/공고_모두지남.csv --today 2027-03
 <td>Claude API 문서 「Migrating to API version 2026-10-21」(샘플링 값의 제거)</td>
 <td><a href="https://platform.claude.com/docs/en/api/migration-2026-10-21" class="uri">https://platform.claude.com/docs/en/api/migration-2026-10-21</a></td>
 <td>2026-11-14</td>
-<td>10장의 A9와 같은 자료</td>
+<td></td>
 </tr>
 <tr class="odd">
 <td>H1</td>
