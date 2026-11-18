@@ -2208,7 +2208,7 @@ pytest    9.2.0</code></pre>
 <ul>
 <li><code>pip</code>를 <code>python -m pip</code>로 부르는 까닭은 그 파이썬에 딸린 <code>pip</code>를 확실히 쓰기 위해서이다.</li>
 <li>설치가 끝난 뒤 <code>[notice] A new release of pip is available</code> 안내가 나올 수 있다. 수업에서는 무시해도 된다.</li>
-<li>설치 중에 이미 있던 패키지를 다른 판으로 바꾼다는 줄(<code>Successfully uninstalled 패키지-판</code>)이 나오면, 두 장의 키트가 같은 패키지를 다른 판으로 고정한 것이다. 2026-11-18 현재 8장 키트는 <code>fastapi==0.163.2</code>, 9장 키트는 <code>fastapi==0.162.7</code>을 고정하므로, 8장 뒤에 9장의 패키지를 설치하면 <code>Uninstalling fastapi-0.163.2:</code>와 <code>Successfully uninstalled fastapi-0.163.2</code>가 나온다(집필용 PC에서 확인). 그대로 진행하고, 그 장의 테스트가 통과하는지 본다. 8장의 서버를 다시 돌릴 때는 8장의 <code>requirements.txt</code>를 다시 설치한다.</li>
+<li>키트들은 같은 패키지를 같은 판으로 고정한다(2026-11-18 현재 <code>fastapi</code> 0.163.2, <code>uvicorn</code> 0.54.0, <code>httpx</code> 0.28.1, <code>pytest</code> 9.2.0). 그래서 한 가상 환경에 장마다 차례로 설치해도 이미 있던 패키지의 판이 바뀌지 않는다. 집필용 PC에서 8장 뒤에 9장의 패키지를 설치했을 때 <code>Uninstalling</code> 줄은 나오지 않았고, 새로 들어온 것은 <code>anthropic</code> 등 9장에만 있는 패키지였다. 설치 중에 <code>Successfully uninstalled 패키지-판</code>이 나오면 어느 키트가 다른 판을 고정한 것이므로 교수에게 알린다. 그대로 진행해도 되지만, 그 장의 테스트가 통과하는지 본다.</li>
 </ul>
 </section>
 <section id="a-13-3.-가상-환경을-다루는-규칙" class="level3">
@@ -2226,7 +2226,7 @@ pytest    9.2.0</code></pre>
 <span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> venv .venv</span>
 <span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/Scripts/activate</span>
 <span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> ~/llm-service-lab ~/kits <span class="at">-name</span> requirements.txt <span class="at">-not</span> <span class="at">-path</span> <span class="st">"*/.venv/*"</span> <span class="at">-exec</span> python <span class="at">-m</span> pip install <span class="at">-q</span> <span class="at">-r</span> {} <span class="dt">\;</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>집필용 PC에서 1~13장의 키트를 모두 받고 <code>ch09/</code>, <code>ch10/</code>을 복사한 시험용 홈 폴더로 이 순서를 실행하였다(2026-11-18). <code>find</code>가 찾은 파일은 열세 개였고(저장소의 <code>ch09/</code>, <code>ch10/</code>과 키트의 열한 개), 설치에 약 7분이 걸렸다. 끝난 뒤 <code>anthropic 2.8.0</code>, <code>numpy 2.5.4</code>, <code>playwright 1.64.0</code>, <code>pytest 9.2.0</code>이 있었고, <code>fastapi</code>는 나중에 설치된 9장의 판(0.162.7)이었다. 처음 설치할 때 패키지를 내려받으므로 네트워크가 느리면 더 걸린다.</p>
+<p>집필용 PC에서 1~13장의 키트를 모두 받고 <code>ch09/</code>, <code>ch10/</code>을 복사한 시험용 홈 폴더로 이 순서를 실행하였다(2026-11-18). <code>find</code>가 찾은 파일은 열세 개였고(저장소의 <code>ch09/</code>, <code>ch10/</code>과 키트의 열한 개), 설치에 약 7분이 걸렸다(fastapi의 판을 맞춘 뒤 다시 실행했을 때는 내려받아 둔 패키지가 있어 약 4분. 이미 있던 패키지를 지우는 <code>Uninstalling</code> 줄은 나오지 않았다). 끝난 뒤 <code>anthropic 2.8.0</code>, <code>numpy 2.5.4</code>, <code>playwright 1.64.0</code>, <code>pytest 9.2.0</code>이 있었고, <code>fastapi</code>는 8·9장이 함께 고정한 0.163.2였다. 처음 설치할 때 패키지를 내려받으므로 네트워크가 느리면 더 걸린다.</p>
 <ul>
 <li>키트에 없는 패키지가 필요하다고 Claude Code가 제안하면, 바로 설치하지 말고 무엇을 왜 설치하는지 읽는다. 설치하기로 했으면 그 장의 <code>requirements.txt</code>에도 판과 함께 적는다. 적지 않으면 다른 사람(또는 다시 만든 가상 환경)에서 같은 코드가 돌지 않는다.</li>
 </ul>
@@ -3532,9 +3532,9 @@ API_KEY_ENV=
 <td>A-16</td>
 </tr>
 <tr class="odd">
-<td><code>pip install</code> 중에 <code>Successfully uninstalled fastapi-…</code>가 나온다</td>
-<td>두 장의 키트가 같은 패키지를 다른 판으로 고정하였다(8장과 9장의 <code>fastapi</code>)</td>
-<td>그대로 진행한다. 그 장의 테스트가 통과하는지 본다</td>
+<td><code>pip install</code> 중에 <code>Successfully uninstalled 패키지-판</code>이 나온다</td>
+<td>두 키트가 같은 패키지를 다른 판으로 고정하였다(키트를 고칠 일이다)</td>
+<td>그대로 진행하고 교수에게 알린다. 그 장의 테스트가 통과하는지 본다</td>
 <td>A-13-2</td>
 </tr>
 <tr class="even">
@@ -3700,7 +3700,7 @@ API_KEY_ENV=
 <td>확인함. macOS의 <code>.venv/bin/</code> 경로는 확인하지 못하였다</td>
 </tr>
 <tr class="even">
-<td>8장 뒤 9장의 패키지를 설치할 때 <code>fastapi</code> 0.163.2 → 0.162.7, 가상 환경을 지우고 <code>find ~/llm-service-lab ~/kits …</code>로 다시 설치(13개 파일, 약 7분)</td>
+<td>8장 뒤 9장의 패키지를 설치할 때 판이 바뀌지 않음(두 키트 모두 <code>fastapi</code> 0.163.2. 처음에는 9장이 0.162.7이어서 판이 내려갔으나 9장 키트를 0.163.2로 올리고 다시 실행), 가상 환경을 지우고 <code>find ~/llm-service-lab ~/kits …</code>로 다시 설치(13개 파일, 약 7분, 다시 실행 때 약 4분, <code>Uninstalling</code> 없음, 끝난 뒤 <code>fastapi</code> 0.163.2)</td>
 <td>시험용 홈 폴더(2026-11-18)</td>
 <td>확인함</td>
 </tr>

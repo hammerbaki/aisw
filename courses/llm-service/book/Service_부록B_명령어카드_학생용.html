@@ -2932,11 +2932,11 @@ $ python -m pytest
 <p><strong>[터미널]</strong> (API 터미널)</p>
 <div class="sourceCode" id="cb47"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/ch09</span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> uvicorn api.app:app <span class="at">--port</span> 8000</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="text"><code>INFO:     Started server process [43212]
+<pre class="text"><code>INFO:     Started server process [8832]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)</code></pre>
-<p>(2026-11-18, 9장 키트, FastAPI 0.162.7, uvicorn 0.54.0. 프로세스 번호는 실행마다 다르다.) 서버가 도는 동안 그 터미널은 다른 명령을 받지 않는다. 확인은 다른 터미널에서 한다. <code>uvicorn</code>은 <code>--host</code>를 주지 않으면 <code>127.0.0.1</code>에서만 받는다.</p>
+<p>(2026-11-18, 9장 키트, FastAPI 0.163.2, uvicorn 0.54.0. 프로세스 번호는 실행마다 다르다.) 서버가 도는 동안 그 터미널은 다른 명령을 받지 않는다. 확인은 다른 터미널에서 한다. <code>uvicorn</code>은 <code>--host</code>를 주지 않으면 <code>127.0.0.1</code>에서만 받는다.</p>
 </section>
 <section id="b-5-4.-api를-셸에서-부르기curl" class="level3">
 <h3 class="anchored" data-anchor-id="b-5-4.-api를-셸에서-부르기curl">B-5-4. API를 셸에서 부르기(curl)</h3>
@@ -2995,7 +2995,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)</code>
 status 400
 {"summary":{"핵심업무":["(모의) 공고에서 주요 업무 칸을 찾지 못함"],"자격요건":[],"마감일":null,"주의점":[]},"meta":{"model":"claude-haiku-5-5 (모의)","fake":true,"prompt":"v3","input_tokens":931,"output_tokens":60,"cached":false}}
 status 200</code></pre>
-<p><code>--data-binary</code>로 보낸 쪽의 응답(<code>summary</code>)은 모의 모드의 고정 응답이다. 본문이 서버에 제대로 닿았다는 것만 보인다. heredoc(<code>--data-binary @-</code>)으로 보내도 같은 200이었다. 다음은 2026-11-17에 받은 글자 수를 돌려주는 시험용 API에 heredoc으로 보낸 결과이다.</p>
+<p><code>--data-binary</code>로 보낸 쪽의 응답(<code>summary</code>)은 모의 모드의 고정 응답이다. 본문이 서버에 제대로 닿았다는 것만 보인다. heredoc(<code>--data-binary @-</code>)으로 보내도 같은 200이었다. 다음은 받은 글자 수를 돌려주는 시험용 API에 heredoc으로 보낸 결과이다.</p>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
@@ -3006,7 +3006,7 @@ status 200</code></pre>
 <span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="op">JSON</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>{"detail":"There was an error parsing the body"}
 {"q":"인턴","len":2}</code></pre>
-<p>첫째(<code>-d</code>)는 400, 둘째(heredoc)는 200이었다(2026-11-17, curl 8.21.0, FastAPI 0.162.7, uvicorn 0.54.0). macOS에서는 두 방법이 모두 된다.</p>
+<p>첫째(<code>-d</code>)는 400, 둘째(heredoc)는 200이었다(2026-11-18, curl 8.21.0, FastAPI 0.163.2, uvicorn 0.54.0). macOS에서는 두 방법이 모두 된다.</p>
 </section>
 <section id="b-5-5.-포트를-누가-쓰는가" class="level3">
 <h3 class="anchored" data-anchor-id="b-5-5.-포트를-누가-쓰는가">B-5-5. 포트를 누가 쓰는가</h3>
@@ -4304,7 +4304,7 @@ remote: error: Changes must be made through a pull request.
 </tr>
 <tr class="even">
 <td><code>uvicorn</code> 8000의 시작 줄, curl GET·응답 코드, <code>-d</code> 한글 400과 heredoc 200, <code>netstat</code>·<code>tasklist</code>·<code>taskkill</code></td>
-<td>FastAPI 0.162.7, uvicorn 0.54.0, curl 8.21.0, 시험용 API(2026-11-17)</td>
+<td>FastAPI 0.163.2, uvicorn 0.54.0, curl 8.21.0, 시험용 API(2026-11-17에 0.162.7로, 2026-11-18에 0.163.2로 다시 실행. 다시 실행할 때는 9장 서버와 겹치지 않게 포트만 8001로 바꿈. 결과 같음)</td>
 <td>확인함. <code>taskkill</code>의 출력은 cp949를 풀어 옮겼다</td>
 </tr>
 <tr class="odd">
@@ -4319,7 +4319,7 @@ remote: error: Changes must be made through a pull request.
 </tr>
 <tr class="odd">
 <td>9장 키트의 <code>uvicorn api.app:app --port 8000</code>(모의 모드), <code>/api/health</code>, <code>-d</code> 한글 400과 <code>--data-binary @파일</code>·<code>@-</code> 200, <code>pytest.ini</code>의 <code>-q</code>와 겹친 <code>-q</code></td>
-<td>9장 키트를 스크래치에 복사, FastAPI 0.162.7, uvicorn 0.54.0, pytest 9.2.0(2026-11-18)</td>
+<td>9장 키트를 스크래치에 복사, FastAPI 0.163.2, uvicorn 0.54.0, pytest 9.2.0(2026-11-18)</td>
 <td>확인함. 모의 모드라 모델을 부르지 않았다</td>
 </tr>
 <tr class="even">
@@ -4349,7 +4349,7 @@ remote: error: Changes must be made through a pull request.
 </tr>
 <tr class="odd">
 <td>Pages를 「Deploy from a branch」로 켜도 Actions의 실행으로 배포되는지</td>
-<td>GitHub DocsH2</td>
+<td>GitHub Docs[H2], 2026-11-18</td>
 <td>문서로 확인. <code>gh run list</code>의 실제 출력은 확인하지 못하였다</td>
 </tr>
 <tr class="even">

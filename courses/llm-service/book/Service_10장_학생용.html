@@ -1073,7 +1073,7 @@ FAILED tests/rag/test_rag_search.py::test_혼합_검색은_두_순위를_합친�
 </section>
 <section id="명세-쓰기" class="level3">
 <h3 class="anchored" data-anchor-id="명세-쓰기">8-2. 명세 쓰기</h3>
-<p>키트의 <code>docs/요구사항명세서_양식.md</code>에 서비스 4의 질의응답 요구 11개가 EARS 문형으로 적혀 있고, 다섯 자리가 「 」로 비어 있다. EARS는 요구를 「항상」, 「사건(…하면)」, 「상태(…하는 동안)」, 「선택 기능(…가 있는 곳에서는)」, 「원치 않는 상황(만약 …이면)」의 다섯 문형으로 쓰는 방식이다(4장)[E1]. 양식을 복사하고 이 장에서 정한 값을 채운다.</p>
+<p>키트의 <code>docs/요구사항명세서_양식.md</code>에 서비스 4의 질의응답 요구 11개가 EARS 문형으로 적혀 있고, 다섯 자리가 「 」로 비어 있다. EARS는 요구를 「상시」, 「사건(…하면)」, 「상태(…인 동안)」, 「선택(…인 경우)」, 「원치 않는 동작(만약 …하면)」의 다섯 문형으로 쓰는 방식이다(4장)[E1]. 요구의 형식과 문형의 이름은 4장의 명세서와 같으므로(<code>- **REQ-01** [문형] 문장. (관련: …)</code>), 4장의 EARS 검사기로 그대로 점검할 수 있다. 양식을 복사하고 이 장에서 정한 값을 채운다.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -1118,11 +1118,14 @@ FAILED tests/rag/test_rag_search.py::test_혼합_검색은_두_순위를_합친�
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-c</span> <span class="st">"「  」"</span> docs/요구사항명세서.md            <span class="co"># 채우기 전</span></span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 편집기로 다섯 자리를 채우고 저장한 뒤</span></span>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-c</span> <span class="st">"「  」"</span> docs/요구사항명세서.md            <span class="co"># 0이어야 한다</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-c</span> <span class="st">"^- REQ-[01][0-9] "</span> docs/요구사항명세서.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-c</span> <span class="st">"^- \*\*REQ-[01][0-9]\*\*"</span> docs/요구사항명세서.md</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> ~/kits/Service_04장/도구/ears_check.py docs/요구사항명세서.md <span class="at">--id</span> <span class="st">"REQ-\d{2}"</span> <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-2</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>5
 0
-11</code></pre>
-<p>요구 하나하나 끝의 괄호에는 그 요구를 구현하는 함수가 적혀 있다. 「완성되어 있음」이 붙은 요구(임베딩 경로, 주석 걷어 내기, 기준값 판정, 모의 모드)는 키트가 이미 구현하였고, 나머지가 이 실습에서 완성할 네 함수이다.</p>
+11
+문형 분포: 상시 5, 사건 1, 상태 1, 선택 1, 원치 않는 동작 3, 복합 0
+요약: 요구 11개, 수용 기준 0개, 오류 0건, 경고 0건</code></pre>
+<p>검사기의 마지막 줄이 <code>오류 0건</code>이면 채우는 동안 문장을 망가뜨리지 않은 것이다. 요구 하나하나 끝의 <code>(관련: …)</code>에는 그 요구를 구현하는 함수가 적혀 있다. 「완성되어 있음」이 붙은 요구(임베딩 경로, 주석 걷어 내기, 기준값 판정, 모의 모드)는 키트가 이미 구현하였고, 나머지가 이 실습에서 완성할 네 함수이다.</p>
 <ul>
 <li><span class="check-badge">확인 4</span> <code>docs/요구사항명세서.md</code>에 <code>REQ-01</code>부터 <code>REQ-11</code>까지 11개가 있고, 「 」가 남아 있지 않다.</li>
 </ul>
