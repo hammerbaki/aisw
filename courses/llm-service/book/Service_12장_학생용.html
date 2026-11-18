@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-0909c821efd4c3a5185b40b87145982e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-e5128435ffcf42630fd9bfc4806fab7a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -373,6 +373,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#작업-트리와-브랜치의-정리" id="toc-작업-트리와-브랜치의-정리" class="nav-link" data-scroll-target="#작업-트리와-브랜치의-정리">7-3. 작업 트리와 브랜치의 정리</a></li>
   <li><a href="#태그의-푸시" id="toc-태그의-푸시" class="nav-link" data-scroll-target="#태그의-푸시">7-4. 태그의 푸시</a></li>
   <li><a href="#보존한-변형을-다시-보기" id="toc-보존한-변형을-다시-보기" class="nav-link" data-scroll-target="#보존한-변형을-다시-보기">7-5. 보존한 변형을 다시 보기</a></li>
+  <li><a href="#따라-하기-연습-저장소에서-변형-둘을-합치고-보존하기" id="toc-따라-하기-연습-저장소에서-변형-둘을-합치고-보존하기" class="nav-link" data-scroll-target="#따라-하기-연습-저장소에서-변형-둘을-합치고-보존하기">7-6. 따라 하기: 연습 저장소에서 변형 둘을 합치고 보존하기</a></li>
   </ul></li>
   <li><a href="#핵심-실습-같은-명세로-만든-두-구현의-비교와-선택" id="toc-핵심-실습-같은-명세로-만든-두-구현의-비교와-선택" class="nav-link" data-scroll-target="#핵심-실습-같은-명세로-만든-두-구현의-비교와-선택">8. 핵심 실습: 같은 명세로 만든 두 구현의 비교와 선택</a>
   <ul class="collapse">
@@ -437,7 +438,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>학사 14주차 · 교재 12 · 서비스 5: 데스크톱 앱의 기능 하나 (2/2)</p>
 </blockquote>
 <blockquote class="blockquote">
-<p><strong>개편 초안 2판(2026-11-18).</strong> 예시를 11장의 FromScratch 자동 저장으로 바꾸었다. 키트(<code>Service_12장</code>)의 테스트와 도구, 핵심 실습의 git 명령(태그, 작업 트리 둘, 커밋, 규모, 명세 보강, 병합, 보존, 정리)은 Windows 11의 Git Bash(git 2.55.0, Python 3.13.7)에서 교수용 견본 구현으로 끝까지 실행해 출력을 실었다. 두 구현을 실제로 만드는 Orca의 작업 공간과 Claude Code 두 세션은 「실행 결과 자리」로 남겼다. 교수가 실습실 PC에서 리허설한 뒤 채운다.</p>
+<p><strong>개편 초안 2판(2026-11-18).</strong> 예시를 11장의 FromScratch 자동 저장으로 바꾸었다. 키트(<code>Service_12장</code>)의 테스트와 도구, 핵심 실습의 git 명령(태그, 작업 트리 둘, 커밋, 규모, 명세 보강, 병합, 보존, 정리)은 Windows 11의 Git Bash(git 2.55.0, Python 3.13.7)에서 교수용 견본 구현으로 끝까지 실행해 출력을 실었다. 두 구현을 실제로 만드는 Orca의 작업 공간과 Claude Code 두 세션은 「실행 결과 자리」로 남겼다. 교수가 실습실 PC에서 리허설한 뒤 채운다. 2026-11-19에 7-6(연습 저장소의 작업 트리와 보존 태그, 따라 하기)을 더하였다.</p>
 </blockquote>
 <p>지금까지는 명세 하나에서 구현 하나를 얻었다. 명세가 정하지 않은 곳은 Claude Code가 정했고, 그 결정이 좋은지 나쁜지는 견줄 대상이 없어 판단하기 어려웠다. 이 장은 <strong>같은 명세에서 구현을 둘</strong> 만든다. 11장의 기능 명세와 화면 명세를 두 에이전트에게 주고, 한 가지만 다르게 지시한다. 두 구현은 에이전트 개발 환경 Orca에서 내 PC의 작업 공간 두 개로 나란히 만든다. 작업 공간마다 git 작업 트리와 브랜치가 하나씩이고, 그 안에서 Claude Code 세션이 하나씩 돈다.</p>
 <p>두 구현을 같은 기준으로 재어 기준표를 채운다. 두 구현이 서로 다르게 정한 곳이 명세의 빈틈이며, 그 빈틈을 명세에 보강한다. 끝으로 어느 구현을 택했는지와 그 까닭을 결정 기록(ADR)으로 남기고, 택한 구현을 <code>main</code>에 병합하며, 택하지 않은 구현은 태그로 보존한다.</p>
@@ -1215,6 +1216,61 @@ fatal: 'variant-x' is already used by worktree at 'C:/Users/아이디/demo/lab-x
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">-c</span> variant-b-2 kept-variant-b</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>첫 명령은 파일 하나를 꺼내지 않고 출력한다. 둘째는 태그를 작업 트리로 꺼낸다(브랜치가 아니므로 「detached HEAD」 상태가 된다). 셋째는 태그에서 새 브랜치를 만들어 이어서 개발한다. 13장의 사용성 평가에서 버린 변형의 장점이 다시 필요해지면 셋째 방법으로 되살린다.</p>
 </section>
+<section id="따라-하기-연습-저장소에서-변형-둘을-합치고-보존하기" class="level3">
+<h3 class="anchored" data-anchor-id="따라-하기-연습-저장소에서-변형-둘을-합치고-보존하기">7-6. 따라 하기: 연습 저장소에서 변형 둘을 합치고 보존하기</h3>
+<p>핵심 실습의 8-7은 3절과 7절의 명령을 자기 변형에 그대로 쓴다. 그 전에 버려도 되는 연습 저장소에서 같은 순서를 한 번 쳐 본다. 연습 저장소는 개인 실습 저장소 밖(<code>~/ch12_연습</code>)에 만든다. 파일은 한 줄짜리 <code>status.txt</code> 하나이고, 두 변형은 그 한 줄을 서로 다르게 고친다.</p>
+<p><strong>[터미널] · 출발점의 태그와 작업 트리 둘</strong></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/ch12_연습 <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> ~/ch12_연습</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init <span class="at">-q</span> <span class="at">-b</span> main lab <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> lab</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">printf</span> <span class="st">'저장 상태: 없음\n'</span> <span class="op">&gt;</span> status.txt</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add status.txt <span class="kw">&amp;&amp;</span> <span class="fu">git</span> commit <span class="at">-qm</span> <span class="st">"명세의 시작 파일"</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> tag <span class="at">-a</span> spec-practice <span class="at">-m</span> <span class="st">"두 변형의 공통 출발점"</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> worktree add ../lab-a <span class="at">-b</span> variant-a spec-practice</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> worktree add ../lab-b <span class="at">-b</span> variant-b spec-practice</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> worktree list</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>Preparing worktree (new branch 'variant-a')
+HEAD is now at fa4e810 명세의 시작 파일
+Preparing worktree (new branch 'variant-b')
+HEAD is now at fa4e810 명세의 시작 파일
+C:/Users/아이디/ch12_연습/lab   fa4e810 [main]
+C:/Users/아이디/ch12_연습/lab-a fa4e810 [variant-a]
+C:/Users/아이디/ch12_연습/lab-b fa4e810 [variant-b]</code></pre>
+<p>두 작업 트리가 같은 커밋(<code>fa4e810</code>)에서 출발하였다. 핵심 실습에서 두 에이전트가 같은 명세의 같은 판에서 시작해야 하는 까닭이 이것이다(8-2).</p>
+<p><strong>[터미널] · 변형마다 커밋하고, 하나를 합치고, 다른 하나를 보존한다</strong></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../lab-a</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">printf</span> <span class="st">'저장 상태: 글 아래에 늘 보이는 표시\n'</span> <span class="op">&gt;</span> status.txt</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-qam</span> <span class="st">"변형 a: 늘 보이는 표시"</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../lab-b</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="bu">printf</span> <span class="st">'저장 상태: 저장할 때 잠깐 뜨는 알림\n'</span> <span class="op">&gt;</span> status.txt</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-qam</span> <span class="st">"변형 b: 잠깐 뜨는 알림"</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../lab</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge <span class="at">--no-ff</span> variant-a <span class="at">-m</span> <span class="st">"변형 a를 선택"</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> tag <span class="at">-a</span> kept-variant-b variant-b <span class="at">-m</span> <span class="st">"택하지 않은 변형 b"</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> worktree remove ../lab-a</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> worktree remove ../lab-b</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-d</span> variant-a</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-d</span> variant-b</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-D</span> variant-b</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> show kept-variant-b:status.txt</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span> <span class="at">--graph</span> <span class="at">--all</span> <span class="at">--decorate</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>Merge made by the 'ort' strategy.
+ status.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+Deleted branch variant-a (was d7a7f81).
+error: the branch 'variant-b' is not fully merged
+hint: If you are sure you want to delete it, run 'git branch -D variant-b'
+hint: Disable this message with "git config set advice.forceDeleteBranch false"
+Deleted branch variant-b (was 1e3f6cf).
+저장 상태: 저장할 때 잠깐 뜨는 알림
+*   bb9cbb0 (HEAD -&gt; main) 변형 a를 선택
+|\  
+| * d7a7f81 변형 a: 늘 보이는 표시
+|/  
+| * 1e3f6cf (tag: kept-variant-b) 변형 b: 잠깐 뜨는 알림
+|/  
+* fa4e810 (tag: spec-practice) 명세의 시작 파일</code></pre>
+<p>위 출력은 집필용 PC의 Git Bash(git 2.55.0)에서 얻은 것이다(2026-11-19). 커밋 번호는 실행할 때마다 다르다. Windows에서는 <code>printf</code> 뒤에 <code>LF will be replaced by CRLF</code> 경고가 보일 수 있으며, 결과에는 영향이 없다. 읽을 곳은 셋이다. 첫째, <code>git branch -d variant-b</code>가 거부되었다(7-3). 병합하지 않은 브랜치이기 때문이다. 둘째, <code>-D</code>로 브랜치를 지운 뒤에도 <code>git show kept-variant-b:status.txt</code>가 변형 b의 내용을 보인다. 태그가 커밋을 가리키고 있기 때문이다. 셋째, 그래프에서 변형 b의 커밋은 <code>main</code>에 이어지지 않고 태그만 붙어 있다. 7-4의 <code>--follow-tags</code>가 이 태그를 보내지 않는 까닭이다. 연습이 끝나면 <code>rm -rf ~/ch12_연습</code>으로 지운다.</p>
+</section>
 </section>
 <section id="핵심-실습-같은-명세로-만든-두-구현의-비교와-선택" class="level2">
 <h2 class="anchored" data-anchor-id="핵심-실습-같은-명세로-만든-두-구현의-비교와-선택">8. 핵심 실습: 같은 명세로 만든 두 구현의 비교와 선택</h2>
@@ -1301,25 +1357,25 @@ fatal: 'variant-x' is already used by worktree at 'C:/Users/아이디/demo/lab-x
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ch12/변형지시</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ch11/기능명세.md ch11/화면명세.md ch12/</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="va">KIT</span><span class="op">=</span>~/kits/Service_12장</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> <span class="st">"</span><span class="va">$KIT</span><span class="st">"</span>/비교구현_양식.md ch12/비교구현.md</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> <span class="st">"</span><span class="va">$KIT</span><span class="st">"</span>/결정기록_양식.md ch12/결정기록.md</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> <span class="st">"</span><span class="va">$KIT</span><span class="st">"</span>/변형지시_공통_양식.md ch12/변형지시/공통.md</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> <span class="st">"</span><span class="va">$KIT</span><span class="st">"</span>/명세점검표_양식.md ch12/점검표_a.md</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> <span class="st">"</span><span class="va">$KIT</span><span class="st">"</span>/명세점검표_양식.md ch12/점검표_b.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ch12/변형지시</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ch11/기능명세.md ch11/화면명세.md ch12/</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="va">KIT</span><span class="op">=</span>~/kits/Service_12장</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> <span class="st">"</span><span class="va">$KIT</span><span class="st">"</span>/비교구현_양식.md ch12/비교구현.md</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> <span class="st">"</span><span class="va">$KIT</span><span class="st">"</span>/결정기록_양식.md ch12/결정기록.md</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> <span class="st">"</span><span class="va">$KIT</span><span class="st">"</span>/변형지시_공통_양식.md ch12/변형지시/공통.md</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> <span class="st">"</span><span class="va">$KIT</span><span class="st">"</span>/명세점검표_양식.md ch12/점검표_a.md</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> <span class="st">"</span><span class="va">$KIT</span><span class="st">"</span>/명세점검표_양식.md ch12/점검표_b.md</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>공통.md</code>의 「」 자리를 채우고, <code>a.md</code>와 <code>b.md</code>에 축의 값만 한 줄씩 쓴다(키트의 <code>변형지시_변형_양식.md</code>에 예가 있다). 비교 기준은 구현을 보기 전에 정한다. <code>비교구현.md</code>의 1절(비교 조건)과 2절의 「재는 법」, 「넘으면 안 되는 선」을 채운다. 그다음 명세와 지시문을 커밋하고 태그를 단다. 두 작업 공간이 이 태그에서 출발한다.</p>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span> ch12/변형지시/a.md ch12/변형지시/b.md</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add ch12</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"12장 비교 구현의 명세, 변형 지시문, 기준표 양식"</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> tag <span class="at">-a</span> spec-ch12 <span class="at">-m</span> <span class="st">"12장 비교 구현의 출발점"</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">--short</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> tag</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span> ch12/변형지시/a.md ch12/변형지시/b.md</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add ch12</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"12장 비교 구현의 명세, 변형 지시문, 기준표 양식"</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> tag <span class="at">-a</span> spec-ch12 <span class="at">-m</span> <span class="st">"12장 비교 구현의 출발점"</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">--short</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> tag</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>1c1
 &lt; 저장 상태를 글 아래에 늘 표시한다. 문구는 화면 명세의 상태 표를 따른다.
 ---
@@ -1343,11 +1399,11 @@ spec-ch12</code></pre>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> worktree add ../lab-a <span class="at">-b</span> variant-a spec-ch12</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> worktree add ../lab-b <span class="at">-b</span> variant-b spec-ch12</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> worktree list</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">-1</span> <span class="at">--format</span><span class="op">=</span>%h spec-ch12</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> worktree add ../lab-a <span class="at">-b</span> variant-a spec-ch12</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> worktree add ../lab-b <span class="at">-b</span> variant-b spec-ch12</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> worktree list</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">-1</span> <span class="at">--format</span><span class="op">=</span>%h spec-ch12</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>Preparing worktree (new branch 'variant-a')
 HEAD is now at 1a9f864 12장 비교 구현의 명세, 변형 지시문, 기준표 양식
 Preparing worktree (new branch 'variant-b')
@@ -1373,9 +1429,9 @@ C:/Users/아이디/lab-b           1a9f864 [variant-b]
 <p>두 계획을 나란히 읽는다. 명세에 없는 기능을 더하려 하는가, <code>ch12/app/</code> 밖을 고치려 하는가를 본다. 한쪽에 지적하면 같은 지적이 다른 쪽에도 해당하는지 보고, 해당하면 같은 문장으로 보낸다. 한쪽에만 도움을 주면 비교가 성립하지 않는다.</p>
 <p>보고의 ③을 두 세션 것 모두 <code>ch12/비교구현.md</code>의 4절에 옮겨 적는다. 빈틈을 찾는 첫 재료이다. 이어서 사람이 직접 확인하고 커밋한다.</p>
 <p><strong>[터미널]</strong> (작업 공간마다. <code>variant-b</code>에서는 메시지의 이름을 바꾼다)</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">--short</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add ch12/app</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"variant-a: 자동 저장 구현"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">--short</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add ch12/app</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"variant-a: 자동 저장 구현"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>?? ch12/app/
 [variant-a 061e7eb] variant-a: 자동 저장 구현
  3 files changed, 79 insertions(+)
@@ -1392,8 +1448,8 @@ C:/Users/아이디/lab-b           1a9f864 [variant-b]
 <h3 class="anchored" data-anchor-id="점검과-기준표">8-5. 점검과 기준표</h3>
 <p>두 구현을 로컬 서버로 띄워 같은 순서로 써 본다. 포트를 다르게 주면 브라우저 저장소도 따로 생긴다(5-5).</p>
 <p><strong>[터미널]</strong> (작업 공간마다. <code>variant-b</code>는 8102)</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ch12/app</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> http.server 8101 <span class="at">--bind</span> 127.0.0.1</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ch12/app</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> http.server 8101 <span class="at">--bind</span> 127.0.0.1</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>브라우저에서 <code>http://localhost:8101/</code>을 열고 요구마다 써 본다. 「처음」 상태는 그 출처의 저장소를 지운 뒤 본다. 저장 실패는 화면에서 만들기 어렵다. <code>?state=error</code>나 실패를 흉내 내는 주소를 구현이 두었는지 보고, 없으면 「미충족」과 「판정 못함: 까닭」으로 적는다. 판정과 근거를 <code>점검표_a.md</code>, <code>점검표_b.md</code>에 채운다. 견본 구현을 점검한 표의 일부는 다음과 같다.</p>
 <p><strong>[파일: ch12/점검표_b.md]</strong> (견본의 일부)</p>
 <pre class="text"><code>| REQ-05 | 바뀐 동안 「저장 안 됨」 | 미충족 | 입력 직후 상태가 보이지 않음 |
@@ -1401,12 +1457,12 @@ C:/Users/아이디/lab-b           1a9f864 [variant-b]
 | REQ-08 | 상태를 보조 기술에 알림 | 부분 | role="status"이나 평소 hidden. 숨겼다 보인 영역을 화면 낭독기가 읽는지는 확인하지 못함 |</code></pre>
 <p>점검표를 집계하고, HTML 점검과 코드 규모를 잰다.</p>
 <p><strong>[터미널]</strong> (주 작업 트리에서)</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> ~/kits/Service_12장/도구/spec_checklist.py ch12/점검표_a.md ch12/점검표_b.md</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> ~/kits/Service_11장/tools/html_check.py ../lab-a/ch12/app</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> ~/kits/Service_11장/tools/html_check.py ../lab-b/ch12/app</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff <span class="at">--shortstat</span> spec-ch12...variant-a <span class="at">--</span> ch12/app</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff <span class="at">--shortstat</span> spec-ch12...variant-b <span class="at">--</span> ch12/app</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> ~/kits/Service_12장/도구/spec_checklist.py ch12/점검표_a.md ch12/점검표_b.md</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> ~/kits/Service_11장/tools/html_check.py ../lab-a/ch12/app</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> ~/kits/Service_11장/tools/html_check.py ../lab-b/ch12/app</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff <span class="at">--shortstat</span> spec-ch12...variant-a <span class="at">--</span> ch12/app</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff <span class="at">--shortstat</span> spec-ch12...variant-b <span class="at">--</span> ch12/app</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>점검표_a.md: 충족 6 · 부분 1 · 미충족 0 · 해당없음 1 → 충족률 92.9%
 점검표_b.md: 충족 4 · 부분 2 · 미충족 1 · 해당없음 1 → 충족률 71.4%
 
@@ -1436,10 +1492,10 @@ C:/Users/아이디/lab-b           1a9f864 [variant-b]
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-c</span> <span class="st">"← 추가"</span> ch12/기능명세.md</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add ch12/기능명세.md</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"12장 명세 보강: 빈 글, 닫기 직전 저장"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-c</span> <span class="st">"← 추가"</span> ch12/기능명세.md</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add ch12/기능명세.md</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"12장 명세 보강: 빈 글, 닫기 직전 저장"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><span class="check-badge">확인 9</span> <code>비교구현.md</code>의 5절에 서로 다른 결정이 셋 이상 있고, 각각 「사용자가 관찰할 수 있는가」와 처리가 적혀 있다.</li>
 <li><span class="check-badge">확인 10</span> <code>grep -c "← 추가" ch12/기능명세.md</code>가 2 이상이고, 그 커밋이 <code>main</code>에 있다.</li>
@@ -1452,14 +1508,14 @@ C:/Users/아이디/lab-b           1a9f864 [variant-b]
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add ch12/결정기록.md ch12/비교구현.md ch12/점검표_a.md ch12/점검표_b.md</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"12장 비교 기준표와 결정 기록"</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge <span class="at">--no-ff</span> variant-a <span class="at">-m</span> <span class="st">"12장: variant-a 병합(결정 기록 참조)"</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> tag <span class="at">-a</span> kept-variant-b variant-b <span class="at">-m</span> <span class="st">"택하지 않은 변형의 보존"</span></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span> <span class="at">--graph</span> <span class="at">-6</span></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin spec-ch12 kept-variant-b</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add ch12/결정기록.md ch12/비교구현.md ch12/점검표_a.md ch12/점검표_b.md</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"12장 비교 기준표와 결정 기록"</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge <span class="at">--no-ff</span> variant-a <span class="at">-m</span> <span class="st">"12장: variant-a 병합(결정 기록 참조)"</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> tag <span class="at">-a</span> kept-variant-b variant-b <span class="at">-m</span> <span class="st">"택하지 않은 변형의 보존"</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span> <span class="at">--graph</span> <span class="at">-6</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin spec-ch12 kept-variant-b</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>Merge made by the 'ort' strategy.
  ch12/app/app.js     | 46 ++++++++++++++++++++++++++++++++++++++++++++++
  ch12/app/index.html | 23 +++++++++++++++++++++++
@@ -1485,13 +1541,13 @@ C:/Users/아이디/lab-b           1a9f864 [variant-b]
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> worktree remove ../lab-a</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> worktree remove ../lab-b</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-d</span> variant-a</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-d</span> variant-b</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-D</span> variant-b</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> worktree list</span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> show kept-variant-b:ch12/app/app.js <span class="kw">|</span> <span class="fu">head</span> <span class="at">-2</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> worktree remove ../lab-a</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> worktree remove ../lab-b</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-d</span> variant-a</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-d</span> variant-b</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-D</span> variant-b</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> worktree list</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> show kept-variant-b:ch12/app/app.js <span class="kw">|</span> <span class="fu">head</span> <span class="at">-2</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>Deleted branch variant-a (was 061e7eb).
 error: the branch 'variant-b' is not fully merged
 hint: If you are sure you want to delete it, run 'git branch -D variant-b'

@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-0909c821efd4c3a5185b40b87145982e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-e5128435ffcf42630fd9bfc4806fab7a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -693,7 +693,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>심사에 시간이 걸리므로 이 장의 수업보다 앞서 신청한다. 인증키에는 조건이 붙는다. 다른 기관에 넘길 수 없고, 개발명세서에 적힌 형식과 목적에 맞게 써야 한다[A1]. 교육과 비영리 목적의 이용은 가능하다(사용자 확인, 2026-11-18).</p>
 <blockquote class="blockquote">
-<p><strong>[최신 자료 자리: 인증키의 신청 자격과 심사 기간]</strong> 소개 쪽에는 「OPEN-API는 고용24 기업회원 전용 서비스」라고 적혀 있다[A1]. 학생이 개인회원으로 신청할 수 있는지, 신청서에 무엇을 적는지, 심사에 며칠이 걸리는지를 교수가 먼저 신청해 보고 확인한다. 2026-11-18에는 신청해 보지 않았다. 학생이 받을 수 없으면 교수가 받은 응답을 키트로 제공한다.</p>
+<p><strong>[최신 자료 자리: 인증키의 신청 자격과 심사 기간]</strong> 소개 쪽에는 「OPEN-API는 고용24 기업회원 전용 서비스」라고 적혀 있다[A1]. 학생이 개인회원으로 신청할 수 있는지, 신청서에 무엇을 적는지, 심사에 며칠이 걸리는지를 교수가 먼저 신청해 보고 확인한다. 2026-11-18에는 신청해 보지 않았다. 학생이 받을 수 없으면 교수가 받은 응답 파일을 Google 클래스룸으로 나누어 준다. 키트 저장소는 공개 저장소이므로 실제 응답을 넣지 않는다.</p>
 </blockquote>
 <ul>
 <li><span class="check-badge">확인 2</span> 고용24의 「신청현황」에 채용정보 API의 신청이 보인다(승인 전이면 신청 상태를 적는다).</li>
@@ -1468,7 +1468,7 @@ REQ-05   [원치 않는 동작] 통과
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"ch04/응답_견본.xml"</span> <span class="op">&gt;&gt;</span> ~/llm-service-lab/.gitignore</span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> <span class="st">"https://www.work24.go.kr/cm/openApi/call/wk/callOpenApiSvcInfo210L01.do?authKey=</span><span class="va">$WORK24_KEY</span><span class="st">&amp;callTp=L&amp;returnType=XML&amp;startPage=1&amp;display=10"</span> <span class="op">&gt;</span> 응답_견본.xml</span>
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-c</span> 600 응답_견본.xml</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>첫 줄의 <code>여기에_발급받은_인증키</code>를 자기 인증키로 바꾼다. <code>.gitignore</code>에 응답 파일을 먼저 적고 받는다. <code>head -c 600</code>은 파일의 앞 600바이트를 보인다. 공고의 항목 이름(<code>company</code>, <code>title</code> 등)이 보이면 받은 것이다. 오류 안내가 보이면 인증키와 요청 변수를 확인한다. 인증키가 아직 발급되지 않았으면 교수가 나누어 주는 응답 파일을 <code>응답_견본.xml</code>로 저장해 진행한다. 그것도 없으면 키트의 지어낸 견본을 복사해(<code>cp ~/kits/Service_04장/견본/응답_지어낸것.xml 응답_견본.xml</code>) 절차만 익히고, 자료 항목표에 「지어낸 견본으로 채움」이라고 적는다.</p>
+<p>첫 줄의 <code>여기에_발급받은_인증키</code>를 자기 인증키로 바꾼다. <code>.gitignore</code>에 응답 파일을 먼저 적고 받는다. <code>head -c 600</code>은 파일의 앞 600바이트를 보인다. 공고의 항목 이름(<code>company</code>, <code>title</code> 등)이 보이면 받은 것이다. 오류 안내가 보이면 인증키와 요청 변수를 확인한다. 인증키가 아직 발급되지 않았으면 교수가 Google 클래스룸에 올린 응답 파일을 <code>응답_견본.xml</code>로 저장해 진행한다. 그것도 없으면 키트의 지어낸 견본을 복사해(<code>cp ~/kits/Service_04장/견본/응답_지어낸것.xml 응답_견본.xml</code>) 절차만 익히고, 자료 항목표에 「지어낸 견본으로 채움」이라고 적는다.</p>
 <blockquote class="blockquote">
 <p><strong>[실행 결과 자리: 고용24 채용정보 목록의 실제 응답]</strong> 위 명령의 <code>head -c 600</code> 출력(인증키는 가린다). 바깥 요소의 이름, <code>total</code>의 값, 첫 공고의 항목 순서와 날짜의 꼴을 싣는다. 실행할 곳: 인증키를 받은 교수 PC. 2026-11-18에는 인증키가 없어 받지 못하였다. 응답이 키트의 견본과 구조가 다르면 견본과 5장의 변환 프로그램을 고친다.</p>
 </blockquote>
@@ -1709,7 +1709,7 @@ REQ-05   [원치 않는 동작] 통과
 <tr class="even">
 <td>응답에 공고가 없고 오류 안내만 있다</td>
 <td>인증키가 틀렸거나 아직 승인되지 않았다</td>
-<td>「신청현황」에서 상태를 본다. 승인 전이면 교수가 주는 응답 파일로 진행한다</td>
+<td>「신청현황」에서 상태를 본다. 승인 전이면 교수가 Google 클래스룸에 올린 응답 파일로 진행한다</td>
 </tr>
 <tr class="odd">
 <td>인증키가 든 파일을 커밋하였다</td>
