@@ -1458,11 +1458,11 @@ REQ-05   [원치 않는 동작] 통과
 </section>
 <section id="응답-받기와-자료-항목표" class="level3">
 <h3 class="anchored" data-anchor-id="응답-받기와-자료-항목표">7-3. 응답 받기와 자료 항목표</h3>
-<p>인증키를 저장소 밖의 파일에 적고, 그 파일을 읽어 API를 한 번 부른다. 받은 응답을 파일로 저장한다.</p>
+<p>인증키를 저장소 밖의 파일에 적고, 그 파일을 읽어 API를 한 번 부른다. 인증키를 <code>echo</code>로 적으면 셸의 명령 기록(<code>~/.bash_history</code>)에 남으므로 편집기로 적는다(부록 A-14-5). 받은 응답을 파일로 저장한다.</p>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'export WORK24_KEY=여기에_발급받은_인증키'</span> <span class="op">&gt;</span> ~/work24.env</span>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">code</span> ~/work24.env     <span class="co"># 편집기가 열리면 export WORK24_KEY=발급받은_인증키 한 줄을 적고 저장한다</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/work24.env</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/ch04</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"ch04/응답_견본.xml"</span> <span class="op">&gt;&gt;</span> ~/llm-service-lab/.gitignore</span>

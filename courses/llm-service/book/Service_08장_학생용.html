@@ -1674,13 +1674,15 @@ DELETE /api/reservations/{reservation_id} ['204', '422']</code></pre>
 </section>
 <section id="끝점-목록-1" class="level3">
 <h3 class="anchored" data-anchor-id="끝점-목록-1">7-3. 끝점 목록</h3>
-<p>키트의 스크립트 둘을 내 폴더로 복사하고, 내 HAR로 <code>har_list.py</code>를 실행한다(1-6). 이어서 REA 또는 Claude Code에게 분석을 맡긴 뒤(1-7), 둘을 대조해 <code>ch08/끝점목록.md</code>를 쓴다(1-8).</p>
+<p>키트의 스크립트 둘과 양식 둘(부록 C-8)을 내 폴더로 복사하고, 내 HAR로 <code>har_list.py</code>를 실행한다(1-6). 이어서 REA 또는 Claude Code에게 분석을 맡긴 뒤(1-7), 둘을 대조해 <code>ch08/끝점목록.md</code>를 쓴다(1-8).</p>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
 <div class="sourceCode" id="cb37"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/ch08</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> ~/kits/Service_08장/har_list.py ~/kits/Service_08장/replay.py .</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> har_list.py session.har</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> ~/kits/Service_08장/양식/끝점목록_양식.md 끝점목록.md</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> ~/kits/Service_08장/양식/API명세_양식.md API명세.md</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> har_list.py session.har</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>「추측」으로 적힌 행은 둘 가운데 하나로 바꾼다. 조작을 한 번 더 해 기록으로 확인하거나(「확인」), 확인할 수 없으면 「모른다」로 적는다. 화면이 막아서 기록할 수 없는 경우는 「모른다」로 둔다(1-8).</p>
 <ul>
 <li><span class="check-badge">확인 8</span> <code>끝점목록.md</code>에 여섯 행 이상이 있고 모든 행에 근거(요청의 번호)와 구분이 있으며, 「추측」이 남아 있지 않다.</li>
