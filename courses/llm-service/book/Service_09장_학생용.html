@@ -355,10 +355,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#요금은-입력과-출력에-따로-붙는다" id="toc-요금은-입력과-출력에-따로-붙는다" class="nav-link" data-scroll-target="#요금은-입력과-출력에-따로-붙는다">3-1. 요금은 입력과 출력에 따로 붙는다</a></li>
   <li><a href="#무제한-소비의-위험" id="toc-무제한-소비의-위험" class="nav-link" data-scroll-target="#무제한-소비의-위험">3-2. 무제한 소비의 위험</a></li>
   </ul></li>
-  <li><a href="#샘플링과-일관성-환각" id="toc-샘플링과-일관성-환각" class="nav-link" data-scroll-target="#샘플링과-일관성-환각">4. 샘플링과 일관성, 환각</a>
-  <ul class="collapse">
-  <li><a href="#환각" id="toc-환각" class="nav-link" data-scroll-target="#환각">4-1. 환각</a></li>
-  </ul></li>
+  <li><a href="#환각" id="toc-환각" class="nav-link" data-scroll-target="#환각">4. 환각</a></li>
   <li><a href="#구조화-출력" id="toc-구조화-출력" class="nav-link" data-scroll-target="#구조화-출력">5. 구조화 출력</a>
   <ul class="collapse">
   <li><a href="#왜-json으로-받는가" id="toc-왜-json으로-받는가" class="nav-link" data-scroll-target="#왜-json으로-받는가">5-1. 왜 JSON으로 받는가</a></li>
@@ -375,16 +372,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#fastapi-요약-api" id="toc-fastapi-요약-api" class="nav-link" data-scroll-target="#fastapi-요약-api">8. FastAPI 요약 API</a>
   <ul class="collapse">
-  <li><a href="#따라-하기-3-모의-모드로-api-서버-띄우기" id="toc-따라-하기-3-모의-모드로-api-서버-띄우기" class="nav-link" data-scroll-target="#따라-하기-3-모의-모드로-api-서버-띄우기">8-1. 따라 하기 3: 모의 모드로 API 서버 띄우기</a></li>
+  <li><a href="#따라-하기-2-모의-모드로-api-서버-띄우기" id="toc-따라-하기-2-모의-모드로-api-서버-띄우기" class="nav-link" data-scroll-target="#따라-하기-2-모의-모드로-api-서버-띄우기">8-1. 따라 하기 2: 모의 모드로 API 서버 띄우기</a></li>
+  <li><a href="#잘못된-요청과-오류의-갈래" id="toc-잘못된-요청과-오류의-갈래" class="nav-link" data-scroll-target="#잘못된-요청과-오류의-갈래">8-2. 잘못된 요청과 오류의 갈래</a></li>
   </ul></li>
-  <li><a href="#출력의-안전한-표시" id="toc-출력의-안전한-표시" class="nav-link" data-scroll-target="#출력의-안전한-표시">9. 출력의 안전한 표시</a>
-  <ul class="collapse">
-  <li><a href="#모델-출력은-신뢰하지-않는-입력이다" id="toc-모델-출력은-신뢰하지-않는-입력이다" class="nav-link" data-scroll-target="#모델-출력은-신뢰하지-않는-입력이다">9-1. 모델 출력은 신뢰하지 않는 입력이다</a></li>
-  </ul></li>
-  <li><a href="#api-키-보안" id="toc-api-키-보안" class="nav-link" data-scroll-target="#api-키-보안">10. API 키 보안</a>
-  <ul class="collapse">
-  <li><a href="#키-노출-검사-스크립트" id="toc-키-노출-검사-스크립트" class="nav-link" data-scroll-target="#키-노출-검사-스크립트">10-1. 키 노출 검사 스크립트</a></li>
-  </ul></li>
+  <li><a href="#출력의-안전한-표시" id="toc-출력의-안전한-표시" class="nav-link" data-scroll-target="#출력의-안전한-표시">9. 출력의 안전한 표시</a></li>
+  <li><a href="#api-키-보안" id="toc-api-키-보안" class="nav-link" data-scroll-target="#api-키-보안">10. API 키 보안</a></li>
   <li><a href="#핵심-실습-프롬프트-판본의-비교와-채택" id="toc-핵심-실습-프롬프트-판본의-비교와-채택" class="nav-link" data-scroll-target="#핵심-실습-프롬프트-판본의-비교와-채택">11. 핵심 실습: 프롬프트 판본의 비교와 채택</a>
   <ul class="collapse">
   <li><a href="#실습의-목표와-완료-기준" id="toc-실습의-목표와-완료-기준" class="nav-link" data-scroll-target="#실습의-목표와-완료-기준">11-1. 실습의 목표와 완료 기준</a></li>
@@ -447,45 +439,59 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>학사 11주차 · 교재 09 · 서비스 4: 문서 요약과 질의응답 (1/2)</p>
 </blockquote>
 <blockquote class="blockquote">
-<p><strong>개편 초안(2026-11-18).</strong> 이 장은 <code>plan/개편안.md</code>의 단원형 구성에 따라 옛 10장을 줄인 초안이다. 남긴 절의 실행 출력은 옛 키트(<code>Service_10장</code>)에서 확인한 것이다. 「실행 전」이라고 적은 곳은 새로 쓴 것이며 실행으로 확인하지 않았다. 키트와 작업 폴더의 이름(<code>jobprep</code>), 자료(가상의 채용 공고)는 옛 구성의 것을 그대로 쓴다. 웹 화면과의 연결(옛 11-5~11-7)은 뺐다. 2026-11-18에 소절 열일곱 개를 더 빼 줄였다. FastAPI의 구조와 상태 코드, 키의 자리는 8장으로 옮겼고, 실제 호출의 확인(옛 11-7)은 교수 시연으로 돌렸다. 이 단원의 자료를 공개 API로 받은 문서(후보: 고용24 직업정보)로 바꾸는 일은 새 키트를 만들 때 함께 한다(<code>plan/개편안.md</code> 9절).</p>
+<p><strong>개편 초안 2판(2026-11-18).</strong> 이 장은 옛 10장을 줄인 것이다. 키트는 새 장 번호의 <code>Service_09장</code>이고 작업 폴더는 <code>~/llm-service-lab/ch09/</code>이다. 앞 장의 산출물 없이 시작한다. 이 장의 명령과 출력은 모두 2026-11-18에 Windows 11의 Git Bash와 Python 3.13.7에서 모의 모드(<code>LLM_FAKE=1</code>)로 실행해 얻은 것이다. 실제 모델의 호출(키가 필요한 것)은 실행하지 않았고 「실행 결과 자리」로 남겼다. 자료는 옛 구성의 가상 채용 공고 10건을 그대로 쓴다.</p>
 </blockquote>
-<p>8장에서 서버가 규칙을 판정하는 웹앱을 만들었다. 이 장부터 두 주 동안 서버에 LLM을 붙인다. 서비스 4는 <strong>문서 요약과 질의응답</strong>이다. 이 장에서 문서를 정해진 형식으로 요약하는 API를 만들고, 10장에서 문서에 근거해 답하는 질의응답을 더한다. 문서는 가상의 채용 공고를 쓴다. 긴 공고에서 핵심 업무, 자격 요건, 마감일, 주의점을 뽑는 기능이다.</p>
-<p>LLM 기능을 서비스에 넣는 일은 채팅 창에 질문을 넣는 일과 성격이 다르다. 사용자가 버튼을 누를 때마다 우리 프로그램이 모델을 부르고, 그 호출마다 요금이 나가며, 모델의 답이 화면에 그대로 들어간다. 그래서 이 장은 세 가지를 함께 다룬다. 첫째는 구조이다. 브라우저, 우리 서버, Claude API가 각각 무엇을 맡고 API 키는 어디에 있어야 하는가. 둘째는 비용과 품질이다. 토큰 단가로 기능 하나의 월 비용을 계산하고, 모델이 지어낸 마감일이 화면에 나가지 않게 하는 장치를 둔다. 셋째는 프롬프트의 관리이다. 프롬프트를 파일로 두고 판본을 매긴 뒤, 같은 평가 문항으로 판본을 비교해 하나를 채택한다.</p>
-<p>이 장에서 만드는 것은 하나이다. <strong>프롬프트 판본 세 개를 평가 문항 10개로 비교해 하나를 채택한 기록(<code>jobprep/docs/프롬프트비교.md</code>)을 남긴다.</strong> 키가 저장소와 브라우저 코드에 없다는 것도 검사 스크립트로 확인한다. 해결하는 문제는 <strong>점수만으로는 보이지 않는 오답의 원인을 응답 원문에서 찾는 것</strong>이다.</p>
-<p>모든 실습은 모의 모드(<code>LLM_FAKE=1</code>)로 키 없이 끝까지 돌아간다. 실제 모델의 응답은 두 길로 본다. Claude Console에서 각자 키를 발급한 학생은 요청 한 번(<code>tools/first_call.py</code>)을 직접 실제로 보내 볼 수 있고, 판본 비교처럼 호출을 수십 번 되풀이하는 측정은 교수가 시연하고 그 실행 기록을 배포한다. 키는 선택이다.</p>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: 서비스 4의 자료]</strong> 이 단원의 자료를 공개 API로 받은 문서(후보: 고용24 직업정보의 직업정보 상세와 직업사전)로 바꿀지 정하지 않았다. 개발명세서의 응답 항목을 확인한 뒤 정한다(<code>plan/개편안.md</code> 9절의 26, U9). 2026-11-18에는 가상 채용 공고를 쓴다.</p>
+</blockquote>
+<p>8장에서 서버가 규칙을 판정하는 API를 만들었다. 이 장부터 두 주 동안 서버에 LLM을 붙인다. 서비스 4는 <strong>문서 요약과 질의응답</strong>이다. 이 장에서는 문서를 정해진 형식으로 요약하는 API를 만들고, 10장에서는 문서에 근거해 답하는 질의응답을 만든다. 이 장의 문서는 가상의 채용 공고이다. 긴 공고에서 핵심 업무, 자격 요건, 마감일, 주의점을 뽑아 정해진 형식으로 돌려준다.</p>
+<p>LLM 기능을 서비스에 넣는 일은 채팅 창에 질문을 넣는 일과 성격이 다르다. 사용자가 버튼을 누를 때마다 우리 프로그램이 모델을 부르고, 호출마다 요금이 나가며, 모델의 답이 화면에 그대로 들어간다. 그래서 이 장은 구조(키는 어디에 있어야 하는가), 비용과 품질(월 비용의 계산과 환각을 막는 장치), 프롬프트의 관리(판본을 매기고 평가로 고르기)를 함께 다룬다.</p>
+<p>이 장에서 만드는 것은 <strong>프롬프트 판본 세 개를 평가 문항 10개로 비교해 하나를 채택한 기록(<code>ch09/docs/프롬프트비교.md</code>)</strong>이다. 키가 저장소에 없다는 것은 검사 스크립트로 확인한다. 해결하는 문제는 <strong>점수만으로는 보이지 않는 오답의 원인을 응답 원문에서 찾는 것</strong>이다.</p>
+<p>모든 실습은 모의 모드(<code>LLM_FAKE=1</code>)로 키 없이 끝까지 돌아간다. Claude Console에서 각자 키를 발급한 학생은 요청 한 번(<code>tools/first_call.py</code>)을 실제로 보내 볼 수 있다. 판본 비교처럼 호출을 수십 번 되풀이하는 측정은 교수가 시연하고 그 실행 기록을 배포한다. 키는 선택이다.</p>
 <hr>
 <section id="학습-목표" class="level2">
 <h2 class="anchored" data-anchor-id="학습-목표">학습 목표</h2>
 <ul>
-<li><strong>LLM 호출의 구조를 설명한다.</strong> 브라우저, 우리 API 서버, Claude API의 세 층에서 키가 서버에만 있어야 하는 까닭을 설명한다.</li>
-<li><strong>비용과 품질을 숫자로 다룬다.</strong> 입력·출력 토큰 단가로 기능 하나의 월 비용을 추정하고, 환각을 줄이는 장치(근거 제한, 모르면 null, 형식 강제와 검증)를 고른다.</li>
-<li><strong>프롬프트를 판본으로 관리하고 평가로 고른다.</strong> 프롬프트를 파일로 두고 한 번에 한 가지씩 바꾼 판본을 만든 뒤, 규칙 기반 채점으로 비교해 채택한다.</li>
-<li><strong>LLM 기능을 서버에 안전하게 둔다.</strong> FastAPI로 요약 API를 띄우고, 모델 출력을 신뢰하지 않는 입력으로 다루며, 키가 저장소와 브라우저 코드에 없음을 검사한다.</li>
+<li><strong>LLM 호출의 구조를 설명한다.</strong> 브라우저, 우리 API 서버, Claude API의 세 층에서 키가 서버에만 있어야 하는 까닭을 설명한다.
+<ul>
+<li>예시: 키를 브라우저 코드에 넣으면 개발자 도구로 누구나 복사해 쓸 수 있고, 요금은 키 주인에게 청구된다.</li>
+<li>활용: 프로젝트실습에서 LLM 기능을 붙일 때 서버의 환경 변수에만 키를 둔다.</li>
+</ul></li>
+<li><strong>비용과 품질을 숫자로 다룬다.</strong> 입력·출력 토큰 단가로 기능 하나의 월 비용을 추정하고, 환각을 줄이는 장치(근거 제한, 모르면 null, 형식 강제와 검증)를 고른다.
+<ul>
+<li>예시: 사용자 300명이 하루 네 번 요약하면 월 3만 6천 호출이고, 판본에 따라 월 4.89달러와 6.23달러로 갈린다.</li>
+<li>활용: 기능을 제안할 때 월 비용의 어림을 함께 적는다.</li>
+</ul></li>
+<li><strong>프롬프트를 판본으로 관리하고 평가로 고른다.</strong> 프롬프트를 파일로 두고 한 번에 한 가지씩 바꾼 판본을 만든 뒤, 규칙 기반 채점으로 비교해 채택한다.
+<ul>
+<li>예시: v2에 예시 두 건만 더한 v3가 마감일 항목을 7/10에서 10/10으로 올렸다.</li>
+<li>활용: 프롬프트를 고칠 때마다 같은 문항으로 다시 재어 회귀를 막는다.</li>
+</ul></li>
+<li><strong>LLM 기능을 서버에 안전하게 둔다.</strong> FastAPI로 요약 API를 띄우고, 모델 출력을 신뢰하지 않는 입력으로 다루며, 키가 저장소에 없음을 검사한다.
+<ul>
+<li>예시: 모델이 옮긴 문장에 <code>&lt;img onerror=…&gt;</code>가 섞여도 <code>textContent</code>로 넣으면 실행되지 않는다.</li>
+<li>활용: 커밋 전에 <code>check_secrets.py</code>를 돌리는 습관을 들인다.</li>
+</ul></li>
 </ul>
 <hr>
 </section>
 <section id="시작하기" class="level2">
 <h2 class="anchored" data-anchor-id="시작하기">0. 시작하기</h2>
-<p>수업의 시작 순서(VS Code, 터미널 두 개, 가상 환경 켜기)는 부록 A-21을 따른다. 키트를 받는 법은 A-12, 가상 환경은 A-13, 프로덕트의 API 키(선택)는 A-14, 모의 모드와 모델 변수는 A-15, 포트는 A-16에 있다. 이 장의 <code>python</code>으로 시작하는 명령은 가상 환경을 켠 터미널을 전제로 한다. 이 절은 이 장의 키트를 받아 작업 폴더에 놓고, 테스트가 모의 모드로 통과하는지 확인하는 데까지 한다.</p>
-<p><strong>이 장의 실행 상한.</strong> Claude Code 대화형의 지시는 이 장의 핵심 실습에 없다. 프로덕트의 실제 호출(<code>LLM_FAKE=0</code>)은 Console 키를 발급한 학생만 <code>tools/first_call.py</code> 1회이다. 판본 비교의 실제 측정(호출 90회)과 같은 판본의 반복 실행은 교수 시연이며, 학생은 그 실행 기록을 읽는다.</p>
+<p>수업의 시작 순서(VS Code, 터미널 두 개, 가상 환경 켜기)는 부록 A-22를 따른다. 키트를 받는 법은 A-12, 가상 환경은 A-13, 프로덕트의 API 키(선택)는 A-14, 모의 모드와 모델 변수는 A-15, 포트는 A-16에 있다. <code>python</code>으로 시작하는 명령은 가상 환경을 켠 터미널을 전제로 한다.</p>
+<p><strong>이 장의 실행 상한.</strong> Claude Code 대화형의 지시는 이 장의 핵심 실습에 없다. 프로덕트의 실제 호출(<code>LLM_FAKE=0</code>)은 Console 키를 발급한 학생만 <code>tools/first_call.py</code> 1회이다. 판본 비교의 실제 측정(호출 90회)은 교수 시연이며, 학생은 그 실행 기록을 읽는다.</p>
 <section id="키트-받기와-작업-폴더" class="level3">
 <h3 class="anchored" data-anchor-id="키트-받기와-작업-폴더">0-1. 키트 받기와 작업 폴더</h3>
-<p>키트는 키트 저장소에서 받아 저장소 밖의 <code>~/kits/</code>에 둔다(부록 A-12-3). 이 장의 작업 폴더는 <code>~/llm-service-lab/jobprep/</code>이다. 키트의 기준 산출물(공고를 보여 주는 정적 웹)과 키트의 내용을 그 폴더에 복사한다.</p>
+<p>키트는 키트 저장소에서 받아 저장소 밖의 <code>~/kits/</code>에 둔다(부록 A-12-3). 이 장의 작업 폴더는 개인 실습 저장소 안의 <code>ch09/</code>이다. 키트의 <code>ch09/</code>를 그대로 복사한다. 앞 장의 결과는 필요하지 않다.</p>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">-C</span> ~/kits-repo pull</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/kits</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-rn</span> ~/kits-repo/Service_10장 ~/kits/</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">--short</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> jobprep</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-rn</span> ~/kits/Service_10장/기준산출물/jobprep/web jobprep/</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-rn</span> ~/kits/Service_10장/jobprep/. jobprep/</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-a</span> jobprep</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="text"><code>.  ..  .env.example  .gitignore  CLAUDE.md  api  docs  eval  prompts  prototype  pytest.ini  requirements.txt  tests  tools  web</code></pre>
-<p>위 목록은 옛 구성에서 얻은 것이다. 새 폴더에서 시작하면 <code>CLAUDE.md</code>, <code>docs</code>, <code>prototype</code>의 유무가 다를 수 있다(실행 전). <code>git status --short</code>가 아무것도 출력하지 않아야 한다. 경로 끝의 <code>/.</code>은 「폴더 안의 모든 것」을, <code>-n</code>은 이미 있는 파일을 덮어쓰지 않음을 뜻한다.</p>
-<p>키트의 구성은 다음과 같다.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">-C</span> ~/kits-repo pull <span class="kw">&amp;&amp;</span> <span class="fu">cp</span> <span class="at">-rn</span> ~/kits-repo/Service_09장 ~/kits/</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">--short</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-rn</span> ~/kits/Service_09장/ch09 .</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-a</span> ch09</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>.  ..  .env.example  .gitignore  api  docs  eval  prompts  pytest.ini  requirements.txt  tests  tools</code></pre>
+<p><code>git status --short</code>가 아무것도 출력하지 않아야 한다. 앞 장의 작업이 커밋되지 않은 채 남아 있으면 먼저 커밋한다. <code>cp</code>의 <code>-n</code>은 이미 있는 파일을 덮어쓰지 않는다는 뜻이다.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -499,68 +505,59 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>jobprep/api/</code></td>
+<td><code>ch09/api/</code></td>
 <td>요약 API. <code>app.py</code>(FastAPI), <code>llm.py</code>(호출을 한 곳에 모음), <code>schema.py</code>(요약 형식), <code>prompts.py</code>(판본 파일 읽기), <code>fake.py</code>(모의 요약기)</td>
 </tr>
 <tr class="even">
-<td><code>jobprep/prompts/</code></td>
+<td><code>ch09/prompts/</code></td>
 <td>프롬프트 판본 <code>v1.md</code>, <code>v2.md</code>, <code>v3.md</code></td>
 </tr>
 <tr class="odd">
-<td><code>jobprep/eval/</code></td>
+<td><code>ch09/eval/</code></td>
 <td>평가 문항(가상 공고 10건, 정답), 채점기, 판본 비교 실행기, 모의 응답</td>
 </tr>
 <tr class="even">
-<td><code>jobprep/tools/</code></td>
+<td><code>ch09/tools/</code></td>
 <td>요청 구조 보기, 토큰 세기, 월 비용 어림, 키 노출 검사</td>
 </tr>
 <tr class="odd">
-<td><code>jobprep/tests/</code></td>
+<td><code>ch09/tests/</code></td>
 <td>pytest 테스트 42개</td>
 </tr>
 <tr class="even">
-<td><code>jobprep/docs/프롬프트비교_양식.md</code></td>
+<td><code>ch09/docs/프롬프트비교_양식.md</code></td>
 <td>판본 비교 기록의 양식</td>
-</tr>
-<tr class="odd">
-<td><code>jobprep/web/</code></td>
-<td>공고를 보여 주는 정적 웹의 견본(기준 산출물)</td>
 </tr>
 </tbody>
 </table>
-<p><span class="check-badge">확인 1</span> <code>ls -a jobprep</code>에 <code>web</code>과 키트의 <code>api</code>, <code>eval</code>, <code>prompts</code>, <code>tools</code>, <code>tests</code>가 함께 보인다.</p>
+<p><span class="check-badge">확인 1</span> <code>ls -a ch09</code>에 <code>.env.example</code>, <code>api</code>, <code>eval</code>, <code>prompts</code>, <code>tools</code>, <code>tests</code>가 보인다.</p>
 </section>
 <section id="패키지-설치와-테스트" class="level3">
 <h3 class="anchored" data-anchor-id="패키지-설치와-테스트">0-2. 패키지 설치와 테스트</h3>
-<p>가상 환경은 저장소 맨 위에 하나 두는 <code>~/llm-service-lab/.venv</code>를 쓴다(부록 A-13). 두 터미널 모두 가상 환경을 켠 상태에서 이 장의 고정된 버전의 패키지를 설치한다. 이어 견본 <code>.env.example</code>을 복사해 <code>.env</code>를 만든다. 견본은 <code>LLM_FAKE=1</code>이므로 이 상태에서는 어떤 코드도 API를 부르지 않는다.</p>
+<p>가상 환경은 저장소 맨 위에 하나 두는 <code>~/llm-service-lab/.venv</code>를 쓴다(부록 A-13). 이 장의 고정된 판의 패키지를 설치하고, 견본 <code>.env.example</code>을 복사해 <code>.env</code>를 만든다. 견본은 <code>LLM_FAKE=1</code>이므로 이 상태에서는 어떤 코드도 API를 부르지 않는다.</p>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install <span class="at">-r</span> jobprep/requirements.txt</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> jobprep</span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install <span class="at">-q</span> <span class="at">-r</span> ch09/requirements.txt</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip list <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-i</span> <span class="at">-E</span> <span class="st">"^(anthropic|fastapi|uvicorn|pydantic|python-dotenv|httpx|pytest) "</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ch09</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> .env.example .env</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pytest</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="text"><code>Successfully installed anthropic-2.8.0 fastapi-0.162.7 ... pytest-9.2.0 ...
+<pre class="text"><code>anthropic         2.8.0
+fastapi           0.162.7
+httpx             0.28.1
+pydantic          2.14.3
+pytest            9.2.0
+python-dotenv     1.2.4
+uvicorn           0.54.0
 ..........................................                               [100%]
-42 passed in 9.84s</code></pre>
-<p>이 장의 명령은 모두 <code>jobprep/</code> 폴더에서 실행한다. 가상 환경을 켜지 않은 터미널에서 실행하면 <code>No module named 'fastapi'</code>가 나온다(「자주 하는 실수와 해결」).</p>
-<p><code>requirements.txt</code>가 고정한 패키지는 일곱 개이다.</p>
-<ul>
-<li><code>anthropic==2.8.0</code>: Claude API의 파이썬 SDK. 요청을 JSON으로 바꾸어 보내고 응답을 객체로 돌려준다.</li>
-<li><code>fastapi==0.162.7</code>: 웹 API를 함수로 정의하는 프레임워크.</li>
-<li><code>uvicorn==0.54.0</code>: FastAPI 앱을 실제로 띄우는 서버 프로그램.</li>
-<li><code>pydantic==2.14.3</code>: 요청과 응답의 형식을 클래스로 적고 검사한다.</li>
-<li><code>python-dotenv==1.2.4</code>: <code>.env</code> 파일을 읽어 환경 변수로 넣는다.</li>
-<li><code>httpx==0.28.1</code>: FastAPI의 테스트 클라이언트가 쓴다[A12].</li>
-<li><code>pytest==9.2.0</code>: 테스트 실행기.</li>
-</ul>
+42 passed in 31.89s</code></pre>
+<p><code>anthropic</code>은 Claude API의 파이썬 SDK이고, <code>fastapi</code>와 <code>uvicorn</code>은 웹 API를 정의하고 띄우며, <code>httpx</code>는 FastAPI의 테스트 클라이언트가 쓴다[A12]. 판을 고정하는 까닭은 같은 키트가 학생마다 같게 동작하게 하기 위해서이다. 특히 <code>anthropic</code>은 1.x에서 2.x로 바뀌면서 보내는 API 버전과 받는 인자가 달라졌다. 이 장의 명령은 모두 <code>ch09/</code> 폴더에서 실행한다.</p>
 <blockquote class="blockquote">
-<p><strong>[최신 자료 자리: SDK와 패키지의 판]</strong> <code>anthropic</code>의 최신 판과 그 판이 보내는 API 버전, 나머지 여섯 패키지의 판. 확인할 곳 <a href="https://pypi.org/project/anthropic/" class="uri">https://pypi.org/project/anthropic/</a>, <code>pip index versions anthropic</code>. 2026-11-16에 집필 PC의 새 가상 환경에 위 판을 설치해 <code>42 passed</code>를 다시 얻었고, 2026-11-17에 키트 저장소에서 받은 키트로 다시 얻었다. 판을 올리면 <code>requirements.txt</code>와 4-1을 함께 고친다.</p>
+<p><strong>[최신 자료 자리: SDK와 패키지의 판]</strong> <code>anthropic</code>의 최신 판과 그 판이 보내는 API 버전, 나머지 패키지의 판. 확인할 곳 <a href="https://pypi.org/project/anthropic/" class="uri">https://pypi.org/project/anthropic/</a>, <code>pip index versions anthropic</code>. 2026-11-18에 위 판을 집필 PC의 새 가상 환경에 설치해 <code>42 passed</code>를 얻었다. 판을 올리면 <code>requirements.txt</code>와 2-1을 함께 고친다.</p>
 </blockquote>
-<p>버전을 고정하는 까닭은 같은 키트가 학기 내내, 그리고 학생마다 같게 동작하게 하기 위해서이다. 특히 <code>anthropic</code>은 1.x에서 2.x로 바뀌면서 보내는 API 버전과 받는 인자가 달라졌다(4절). 버전을 적지 않으면 설치하는 날에 따라 다른 SDK가 깔리고, 이 교재의 코드가 그 SDK에서 돌지 않을 수 있다.</p>
-<p>테스트 42개는 모두 모의 모드에서 돈다. <code>tests/conftest.py</code>가 테스트마다 <code>LLM_FAKE=1</code>을 넣고 <code>ANTHROPIC_API_KEY</code>를 지우기 때문에, <code>.env</code>에 키가 있어도 테스트는 API를 부르지 않는다.</p>
-<p><span class="check-badge">확인 2</span> <code>python -m pytest</code>의 마지막 줄이 <code>42 passed</code>이다.</p>
+<p>테스트 42개는 모두 모의 모드에서 돈다. <code>tests/conftest.py</code>가 테스트마다 <code>LLM_FAKE=1</code>을 넣고 <code>ANTHROPIC_API_KEY</code>를 지우므로, <code>.env</code>에 키가 있어도 테스트는 API를 부르지 않는다.</p>
+<p><span class="check-badge">확인 2</span> <code>pip list</code>에 일곱 패키지가 위 판으로 보이고, <code>python -m pytest</code>의 마지막 줄이 <code>42 passed</code>이다.</p>
 </section>
 <section id="env와-저장소-상태" class="level3">
 <h3 class="anchored" data-anchor-id="env와-저장소-상태">0-3. <code>.env</code>와 저장소 상태</h3>
@@ -569,15 +566,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">--short</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> check-ignore <span class="at">-v</span> jobprep/.env</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="text"><code>?? jobprep/.env.example
-?? jobprep/.gitignore
-?? jobprep/api/
-?? jobprep/eval/
-...
-jobprep/.gitignore:2:.env   jobprep/.env</code></pre>
-<p>새로 생긴 폴더가 <code>??</code>(아직 추적하지 않는 파일)로 보인다. <code>.venv/</code>와 <code>.env</code>가 목록에 없어야 한다. <code>git check-ignore -v</code>는 어느 <code>.gitignore</code>의 몇째 줄이 그 파일을 제외하는지 알려 준다. 위 출력은 키트의 <code>jobprep/.gitignore</code>가 복사된 경우이다. 아무것도 출력하지 않으면 <code>.env</code>가 커밋될 수 있는 상태이므로, 저장소 맨 위의 <code>.gitignore</code>에 <code>.env</code> 한 줄을 더하고 다시 확인한다(부록 A-14-3).</p>
-<p><span class="check-badge">확인 3</span> <code>git status --short</code>에 <code>.env</code>와 <code>.venv/</code>가 보이지 않고, <code>git check-ignore -v jobprep/.env</code>가 한 줄을 출력한다.</p>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> check-ignore <span class="at">-v</span> ch09/.env</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>?? ch09/
+ch09/.gitignore:2:.env  ch09/.env</code></pre>
+<p><code>??</code>는 아직 추적하지 않는 파일이다. <code>git check-ignore -v</code>는 어느 <code>.gitignore</code>의 몇째 줄이 그 파일을 제외하는지 알려 준다. 아무것도 출력하지 않으면 <code>.env</code>가 커밋될 수 있는 상태이므로, 저장소 맨 위의 <code>.gitignore</code>에 <code>.env</code> 한 줄을 더하고 다시 확인한다(부록 A-14-3).</p>
+<p><span class="check-badge">확인 3</span> <code>git check-ignore -v ch09/.env</code>가 한 줄을 출력한다.</p>
 <hr>
 </section>
 </section>
@@ -585,9 +578,9 @@ jobprep/.gitignore:2:.env   jobprep/.env</code></pre>
 <h2 class="anchored" data-anchor-id="llm-호출의-구조">1. LLM 호출의 구조</h2>
 <section id="세-층-브라우저-우리-서버-claude-api" class="level3">
 <h3 class="anchored" data-anchor-id="세-층-브라우저-우리-서버-claude-api">1-1. 세 층: 브라우저, 우리 서버, Claude API</h3>
-<p>2026년 2학기판에서는 실습 서버의 터미널에서 학생이 실행한 파이썬 스크립트가 Claude API를 직접 불렀다. 프로그램을 실행하는 사람과 키를 가진 사람이 같았으므로 문제가 없었다. 웹 서비스에서는 다르다. 「요약 보기」 버튼을 누르는 사람은 불특정 다수이고, 그 사람의 브라우저에서 도는 자바스크립트는 누구나 열어 볼 수 있다. 그래서 LLM 기능은 세 층으로 나뉜다.</p>
+<p>2026년 2학기판에서는 학생이 실행한 파이썬 스크립트가 Claude API를 직접 불렀다. 프로그램을 실행하는 사람과 키를 가진 사람이 같았으므로 문제가 없었다. 웹 서비스에서는 다르다. 「요약 보기」 버튼을 누르는 사람은 불특정 다수이고, 그 사람의 브라우저에서 도는 자바스크립트는 누구나 열어 볼 수 있다. 그래서 LLM 기능은 세 층으로 나뉜다.</p>
 <pre class="mermaid">graph LR
-    B["브라우저&lt;br/&gt;web/js/summary.js&lt;br/&gt;(키 없음)"] --&gt;|"POST /api/summary&lt;br/&gt;{text: 공고 본문}"| S["우리 API 서버&lt;br/&gt;jobprep/api (FastAPI)&lt;br/&gt;키: .env의 ANTHROPIC_API_KEY"]
+    B["브라우저&lt;br/&gt;(키 없음)"] --&gt;|"POST /api/summary&lt;br/&gt;{text: 공고 본문}"| S["우리 API 서버&lt;br/&gt;ch09/api (FastAPI)&lt;br/&gt;키: .env의 ANTHROPIC_API_KEY"]
     S --&gt;|"Messages API 요청&lt;br/&gt;헤더에 키"| C["Claude API&lt;br/&gt;api.anthropic.com"]
     C --&gt;|"content, usage,&lt;br/&gt;stop_reason"| S
     S --&gt;|"검사한 요약 JSON"| B
@@ -618,7 +611,7 @@ jobprep/.gitignore:2:.env   jobprep/.env</code></pre>
 <td>우리 API 서버</td>
 <td>입력 검사, 프롬프트 조립, 모델 호출, 출력 검사, 요청 제한, 캐시</td>
 <td>API 키, 프롬프트 원문</td>
-<td>볼 수 없다(서버 안에서 돈다)</td>
+<td>볼 수 없다</td>
 </tr>
 <tr class="odd">
 <td>Claude API</td>
@@ -628,12 +621,12 @@ jobprep/.gitignore:2:.env   jobprep/.env</code></pre>
 </tr>
 </tbody>
 </table>
-<p>키가 브라우저 코드에 들어가면 누구나 개발자 도구의 네트워크 탭에서 그 키를 복사할 수 있다. 복사한 키로 보낸 요청의 요금은 키 주인에게 청구된다. 서버가 가운데에 있으면 키는 서버의 환경 변수에만 있고, 브라우저는 우리 서버의 주소(<code>/api/summary</code>)만 안다. 서버는 그 사이에서 공고 길이를 제한하고, 같은 접속지의 요청 횟수를 제한하고, 모델 출력이 정해진 형식인지 검사한 뒤에 돌려준다. 이 검사들은 브라우저에 두면 사용자가 지워 버릴 수 있으므로 서버에 있어야 의미가 있다.</p>
+<p>키가 브라우저 코드에 들어가면 누구나 개발자 도구에서 그 키를 복사할 수 있고, 그 키로 보낸 요청의 요금은 키 주인에게 청구된다. 서버가 가운데에 있으면 키는 서버의 환경 변수에만 있고, 브라우저는 우리 서버의 주소(<code>/api/summary</code>)만 안다. 길이 제한, 요청 횟수 제한, 형식 검사도 브라우저에 두면 사용자가 지워 버릴 수 있으므로 서버에 둔다. 이 장은 서버까지 만들고, 화면은 <code>curl</code>로 대신한다.</p>
 </section>
 <section id="모의-모드의-설계" class="level3">
 <h3 class="anchored" data-anchor-id="모의-모드의-설계">1-2. 모의 모드의 설계</h3>
 <p>이 장의 모든 코드는 <code>api/llm.py</code>의 <code>complete()</code> 함수 하나로만 모델을 부른다. 요약 API도, 판본 비교 실행기도, 요청 구조 보기 도구도 이 함수를 거친다. 그래서 모의 모드를 한 곳에서 켜고 끌 수 있다.</p>
-<p><strong>[파일: jobprep/api/llm.py] (발췌)</strong></p>
+<p><strong>[파일: ch09/api/llm.py] (발췌)</strong></p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> is_fake() <span class="op">-&gt;</span> <span class="bu">bool</span>:</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> os.environ.get(<span class="st">"LLM_FAKE"</span>, <span class="st">""</span>) <span class="op">==</span> <span class="st">"1"</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -648,9 +641,7 @@ jobprep/.gitignore:2:.env   jobprep/.env</code></pre>
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>                         model<span class="op">=</span>request[<span class="st">"model"</span>] <span class="op">+</span> <span class="st">" (모의)"</span>, fake<span class="op">=</span><span class="va">True</span>, request<span class="op">=</span>request)</span>
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> _call_real(request)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>모의 모드에는 두 종류가 있다. 요약 API는 <code>fake.py</code>가 공고의 <code>[주요 업무]</code>, <code>[자격 요건]</code>, <code>[접수 기간]</code>, <code>[유의 사항]</code> 칸을 규칙으로 옮겨 적은 요약을 낸다. 판본 비교 실행기는 <code>eval/모의응답/</code>에 미리 적어 둔 응답을 재생한다. 두 경우 모두 응답은 실제 모델의 출력이 아니다.</p>
-<p>모의 모드로 확인할 수 있는 것은 코드의 흐름이다. 요청이 정해진 모양으로 만들어지는가, 응답을 검사하고 화면에 그리는 흐름이 맞는가, 형식 위반과 API 실패와 요청 제한을 제대로 처리하는가, 채점기와 비교 실행기가 동작하는가를 키 없이 확인한다. 확인할 수 없는 것은 모델에 관한 사실이다. 모델이 그 프롬프트로 실제로 무엇을 내놓는가, 판본 사이의 실제 점수 차는 얼마인가, 실제 토큰 수와 요금과 응답 시간은 얼마인가는 실제 호출로만 알 수 있다. 모의 모드의 토큰 수는 글자 수에 0.8을 곱한 어림값이다.</p>
-<p>모의 모드로 흐름을 끝까지 맞춘 뒤, 실제 호출은 이 장의 실습에서 하지 않는다. 교수가 수업에서 한 번 시연한다. 키가 없거나 한도에 닿아도 이 장의 실습은 모의 모드로 끝낼 수 있다.</p>
-<p>구조의 첫 원칙(브라우저 코드에 Claude API의 주소도, 키 모양의 문자열도 없다)은 10절의 <code>check_secrets.py</code>가 파일로 검사하고, 핵심 실습의 검사 단계에서 다시 확인한다.</p>
+<p>모의 모드로 확인할 수 있는 것은 코드의 흐름(요청의 모양, 오류 처리, 채점기의 동작)이다. 모델이 실제로 무엇을 내놓는가, 판본 사이의 실제 점수 차, 실제 토큰 수와 요금은 실제 호출로만 알 수 있다. 모의 모드의 토큰 수는 글자 수에 0.8을 곱한 어림값이다.</p>
 <hr>
 </section>
 </section>
@@ -658,8 +649,7 @@ jobprep/.gitignore:2:.env   jobprep/.env</code></pre>
 <h2 class="anchored" data-anchor-id="messages-api">2. Messages API</h2>
 <section id="요청-하나-응답-하나" class="level3">
 <h3 class="anchored" data-anchor-id="요청-하나-응답-하나">2-1. 요청 하나, 응답 하나</h3>
-<p>Claude API에서 모델을 부르는 모든 기능은 하나의 주소 <code>POST /v1/messages</code>, 곧 Messages API를 거친다[A1]. 요약, 분류, 추출, 질의응답이 모두 이 주소로 가고, 다른 점은 요청에 무엇을 담는가뿐이다. 파이썬에서는 SDK인 <code>anthropic</code> 패키지의 <code>client.messages.create(...)</code>가 이 요청을 보낸다.</p>
-<p>요청의 필수 항목은 셋이다.</p>
+<p>Claude API에서 모델을 부르는 모든 기능은 하나의 주소 <code>POST /v1/messages</code>, 곧 Messages API를 거친다[A1]. 요약, 분류, 추출, 질의응답이 모두 이 주소로 가고, 다른 점은 요청에 무엇을 담는가뿐이다. 파이썬에서는 SDK의 <code>client.messages.create(...)</code>가 이 요청을 보낸다.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -668,7 +658,7 @@ jobprep/.gitignore:2:.env   jobprep/.env</code></pre>
 </colgroup>
 <thead>
 <tr class="header">
-<th>항목</th>
+<th>필수 항목</th>
 <th>뜻</th>
 <th>이 장의 값</th>
 </tr>
@@ -694,9 +684,8 @@ jobprep/.gitignore:2:.env   jobprep/.env</code></pre>
 <blockquote class="blockquote">
 <p><strong>[최신 자료 자리: 기본 모델의 이름과 성질]</strong> <code>LLM_MODEL</code>의 기본값 <code>claude-haiku-5-5</code>, 이 모델의 사고 방식(적응형)과 기본 effort. 확인할 곳 <a href="https://platform.claude.com/docs/en/about-claude/models/overview" class="uri">https://platform.claude.com/docs/en/about-claude/models/overview</a>. 2026-11-16의 값은 <code>claude-haiku-5-5</code>, 적응형 사고, 기본 effort <code>medium</code>이다.</p>
 </blockquote>
-<p>선택 항목 가운데 이 장에서 쓰는 것은 둘이다. <code>system</code>은 시스템 프롬프트로, 역할, 규칙, 출력 형식처럼 모든 호출에 같이 적용할 지시를 담는다. 이 장에서는 프롬프트 판본 파일의 <code>## system</code> 부분이 들어간다. <code>output_config</code>는 출력에 관한 설정으로, <code>effort</code>(생각의 깊이)와 <code>format</code>(구조화 출력의 JSON 스키마)을 담는다. 이 장에서는 <code>effort</code>를 <code>low</code>로, <code>format</code>을 5절의 요약 스키마로 둔다.</p>
-<p><code>system</code>은 <code>messages</code> 목록 안이 아니라 밖의 별도 항목이다. 2026년판에서 <code>role</code>에 <code>system</code>을 넣으면 오류가 났던 것과 같은 구조이다. 시스템 프롬프트를 사용자 메시지와 분리해 두면, 공고 본문 안에 지시처럼 보이는 문장이 섞여 있어도 모델이 그것을 서비스의 규칙과 구분하기 쉬워진다(6절).</p>
-<p>응답에서 읽는 항목은 셋이다[A1].</p>
+<p>선택 항목 가운데 이 장에서 쓰는 것은 둘이다. <code>system</code>은 모든 호출에 같이 적용할 지시(역할, 규칙, 출력 형식)이며 <code>messages</code> 밖의 별도 항목이므로, 공고 본문 안의 지시 같은 문장과 서비스의 규칙이 구분된다. <code>output_config</code>는 <code>effort</code>(생각의 깊이, 이 장은 <code>low</code>)와 <code>format</code>(구조화 출력의 스키마, 5절)을 담는다. 키트가 쓰는 API 버전 <code>2026-10-21</code>에서는 <code>temperature</code>, <code>top_p</code>, <code>top_k</code> 같은 샘플링 값을 보낼 수 없다[A9]. 그래서 같은 입력에 같은 답을 기대하는 일관성은 샘플링 값이 아니라 구조화 출력, 명확한 지시와 예시, 캐시, 평가로 설계한다.</p>
+<p>응답에서 읽는 항목은 셋이다[A1]. <code>content</code>는 응답 블록의 목록이고 글 답은 <code>type</code>이 <code>text</code>인 블록에 있다. 사고 블록이 앞에 올 수 있으므로 위치가 아니라 <code>type</code>으로 고른다. <code>usage</code>는 <code>input_tokens</code>와 <code>output_tokens</code>로 요금 계산의 근거가 된다. <code>stop_reason</code>은 생성을 멈춘 이유이다(2026-11-14, API 참조 문서 기준).</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -705,39 +694,7 @@ jobprep/.gitignore:2:.env   jobprep/.env</code></pre>
 </colgroup>
 <thead>
 <tr class="header">
-<th>항목</th>
-<th>뜻</th>
-<th>읽는 법</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>content</code></td>
-<td>응답 블록의 목록. 블록마다 <code>type</code>이 있다. 글 답은 <code>type</code>이 <code>text</code>인 블록에 있다</td>
-<td><code>type</code>으로 골라 읽는다</td>
-</tr>
-<tr class="even">
-<td><code>usage</code></td>
-<td>이 호출의 토큰 사용량. <code>input_tokens</code>, <code>output_tokens</code> 등</td>
-<td>요금 계산의 근거(3절)</td>
-</tr>
-<tr class="odd">
-<td><code>stop_reason</code></td>
-<td>생성을 멈춘 이유</td>
-<td><code>end_turn</code>이 정상. <code>max_tokens</code>면 잘렸다</td>
-</tr>
-</tbody>
-</table>
-<p><code>stop_reason</code>의 값은 다음과 같다(2026-11-14, API 참조 문서 기준)[A1].</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>값</th>
+<th><code>stop_reason</code></th>
 <th>뜻</th>
 <th>요약 API의 처리</th>
 </tr>
@@ -751,43 +708,33 @@ jobprep/.gitignore:2:.env   jobprep/.env</code></pre>
 <tr class="even">
 <td><code>max_tokens</code></td>
 <td><code>max_tokens</code>에 닿아 잘렸다</td>
-<td>JSON이 중간에 끊기므로 형식 검사에서 실패한다(502)</td>
+<td>JSON이 끊기므로 형식 검사에서 실패한다(502)</td>
 </tr>
 <tr class="odd">
-<td><code>stop_sequence</code></td>
-<td>요청에 적은 멈춤 문자열이 나왔다</td>
-<td>쓰지 않는다</td>
-</tr>
-<tr class="even">
-<td><code>tool_use</code></td>
-<td>모델이 도구를 부르려 한다</td>
-<td>쓰지 않는다</td>
-</tr>
-<tr class="odd">
-<td><code>pause_turn</code></td>
-<td>오래 걸리는 차례를 잠시 멈췄다</td>
-<td>쓰지 않는다</td>
-</tr>
-<tr class="even">
 <td><code>refusal</code></td>
 <td>안전 분류기가 요청을 거절했다</td>
 <td>502와 「요약을 만들 수 없는 공고이다」</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>model_context_window_exceeded</code></td>
 <td>모델의 컨텍스트 창을 넘었다</td>
 <td>공고 길이를 6,000자로 제한해 막는다</td>
+</tr>
+<tr class="odd">
+<td><code>stop_sequence</code>, <code>tool_use</code>, <code>pause_turn</code></td>
+<td>멈춤 문자열, 도구 호출, 긴 차례의 일시 정지</td>
+<td>쓰지 않는다</td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="따라-하기-1-모의-모드로-요청-한-번-보기" class="level3">
 <h3 class="anchored" data-anchor-id="따라-하기-1-모의-모드로-요청-한-번-보기">2-2. 따라 하기 1: 모의 모드로 요청 한 번 보기</h3>
-<p><code>tools/first_call.py</code>는 공고 파일 하나로 요청을 만들어 보내고, 보낸 요청 본문(키 제외)과 받은 결과를 차례로 찍는다. 모의 모드로 실행한다. 명령 앞의 <code>LLM_FAKE=1</code>은 <code>.env</code>의 값과 같지만, 이 명령이 API를 부르지 않는다는 것을 눈에 보이게 적은 것이다(부록 A-15-3).</p>
+<p><code>tools/first_call.py</code>는 공고 파일 하나로 요청을 만들어 보내고, 보낸 요청 본문(키 제외)과 받은 결과를 차례로 찍는다. 명령 앞의 <code>LLM_FAKE=1</code>은 <code>.env</code>의 값과 같지만, 이 명령이 API를 부르지 않는다는 것을 눈에 보이게 적은 것이다(부록 A-15-3).</p>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/jobprep</span>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/ch09</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="va">LLM_FAKE</span><span class="op">=</span>1 <span class="ex">python</span> tools/first_call.py eval/공고/P04.txt <span class="at">--schema</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>① 보낸 요청 (키는 요청 본문이 아니라 헤더로 간다)
 {
@@ -812,16 +759,18 @@ jobprep/.gitignore:2:.env   jobprep/.env</code></pre>
 {"핵심업무": ["모바일 앱의 기능 시험 수행", "결함 보고서 작성과 재현 절차 기록"], "자격요건": ["소프트웨어 테스트 관련 교육 이수자", "문서 작성에 능숙한 자"], "마감일": "2027-06-14", "주의점": ["면접 일정은 변경할 수 없다"]}
 ③ 사용량  input_tokens=1105  output_tokens=120  stop_reason=end_turn  모의=True
 ④ 형식 검사 통과</code></pre>
-<p>출력을 표와 맞춰 읽는다. ①의 <code>model</code>, <code>max_tokens</code>, <code>messages</code>가 필수 세 항목이고, <code>system</code>과 <code>output_config</code>가 선택 항목이다. 요청 본문에 키는 없다. SDK는 키를 HTTP 헤더에 넣어 보낸다. 이 장에서 쓰는 SDK 2.8.0은 키를 <code>Authorization: Bearer</code> 헤더로, API 버전을 <code>anthropic-version: 2026-10-21</code> 헤더로 보낸다(2026-11-14, 설치한 SDK의 기본 헤더에서 확인)[A9]. ③의 토큰 수는 모의 모드의 어림값이다. 실제 호출이었다면 응답의 <code>usage</code>에서 온 값이다.</p>
-<p>①의 <code>output_config.format.type</code>이 <code>json_schema</code>인 것은 5절의 구조화 출력이 요청에 들어갔다는 뜻이다. <code>--schema</code>를 빼고 실행하면 <code>format</code>이 빠진다.</p>
-<p><span class="check-badge">확인 4</span> ①에 <code>model</code>, <code>max_tokens</code>, <code>messages</code>, <code>system</code>, <code>output_config</code>(그 안의 <code>format.type</code>이 <code>json_schema</code>)가 보이고, 요청 본문 어디에도 키가 없으며, ④가 「형식 검사 통과」이다.</p>
+<p>①의 <code>model</code>, <code>max_tokens</code>, <code>messages</code>가 필수 세 항목이고, <code>system</code>과 <code>output_config</code>가 선택 항목이다. 요청 본문에 키는 없다. SDK 2.8.0은 키를 <code>Authorization: Bearer</code> 헤더로, API 버전을 <code>anthropic-version: 2026-10-21</code> 헤더로 보낸다(2026-11-14, 설치한 SDK의 기본 헤더에서 확인)[A9]. ③의 토큰 수는 모의 모드의 어림값이다. <code>--schema</code>를 빼고 실행하면 <code>output_config</code>에서 <code>format</code>이 빠진다.</p>
+<p><span class="check-badge">확인 4</span> ①에 필수 세 항목과 <code>system</code>, <code>output_config</code>(그 안의 <code>format.type</code>이 <code>json_schema</code>)가 보이고, 요청 본문 어디에도 키가 없으며, ④가 「형식 검사 통과」이다.</p>
+<blockquote class="blockquote">
+<p><strong>[실행 결과 자리: 실제 호출 한 번]</strong> 명령 <code>LLM_FAKE=0 python tools/first_call.py eval/공고/P04.txt --schema</code>. 실행할 곳: Console 키를 <code>.env</code>에 넣은 교수 PC(또는 키를 발급한 학생의 PC). 실을 것: ②의 실제 응답, ③의 실제 <code>input_tokens</code>(모의 어림 1105와 비교)와 <code>stop_reason</code>, 응답에 사고 블록이 있었는지. 집필 환경에서는 실제 모델을 부르지 않으므로 실행하지 않았다.</p>
+</blockquote>
 </section>
 </section>
 <section id="토큰과-비용" class="level2">
 <h2 class="anchored" data-anchor-id="토큰과-비용">3. 토큰과 비용</h2>
 <section id="요금은-입력과-출력에-따로-붙는다" class="level3">
 <h3 class="anchored" data-anchor-id="요금은-입력과-출력에-따로-붙는다">3-1. 요금은 입력과 출력에 따로 붙는다</h3>
-<p>모델은 글자가 아니라 토큰 단위로 읽고 쓴다. 토큰은 모델이 쓰는 사전의 조각이며, 한국어 한 글자가 한 토큰이 되기도 하고 몇 글자가 한 토큰이 되기도 한다. 2026년판 5주차의 실측에서 같은 뜻의 인사말이 한국어로는 영어의 약 3배 토큰이었다. 요금은 토큰 수에 단가를 곱해 정한다.</p>
+<p>모델은 글자가 아니라 토큰 단위로 읽고 쓴다. 토큰은 모델이 쓰는 사전의 조각이며, 한국어 한 글자가 한 토큰이 되기도 하고 몇 글자가 한 토큰이 되기도 한다. 2026년판 5주차의 실측에서 같은 뜻의 인사말이 한국어로는 영어의 약 3배 토큰이었다.</p>
 <pre class="text"><code>호출 1회 요금 = input_tokens × 입력 단가 + output_tokens × 출력 단가
 월 요금       = 호출 1회 요금 × 월 호출 수</code></pre>
 <p>단가는 모델마다 다르고, 출력 단가가 입력 단가보다 높다. 2026-11-14에 공식 가격표에서 확인한 값은 다음과 같다(100만 토큰당 달러)[A7].</p>
@@ -873,20 +822,14 @@ jobprep/.gitignore:2:.env   jobprep/.env</code></pre>
 </tr>
 </tbody>
 </table>
-<p>이 장의 기본 모델은 표의 첫 줄이다. 공식 모델 목록은 Haiku 5.5를 분류, 추출, 라우팅처럼 양이 많고 빠른 응답이 필요한 일에 쓰는 모델로 소개한다[A4]. 공고 요약은 공고에 적힌 내용을 정해진 칸으로 옮기는 추출에 가까우므로 이 모델에서 시작한다. 가격은 바뀐다. 계산하기 전에 가격표를 다시 열어 확인하고, 확인한 날짜를 기록에 적는다.</p>
+<p>이 장의 기본 모델은 첫 줄이다. 공식 모델 목록은 Haiku 5.5를 분류, 추출처럼 양이 많고 빠른 응답이 필요한 일에 쓰는 모델로 소개한다[A4]. 공고 요약은 추출에 가깝다. 결과를 바로 받지 않아도 되는 일은 일괄 처리(Batch API)로 보내면 반값이고, 매번 같은 긴 시스템 프롬프트는 프롬프트 캐시로 읽으면 입력 단가의 10%이다[A7].</p>
 <blockquote class="blockquote">
 <p><strong>[최신 자료 자리: 모델 단가]</strong> 위 표의 단가, Haiku 5.5의 긴 프롬프트 기준(10만 토큰), 일괄 처리 할인, 캐시 읽기 배율. 확인할 곳 <a href="https://platform.claude.com/docs/en/about-claude/pricing" class="uri">https://platform.claude.com/docs/en/about-claude/pricing</a>. 2026-11-16에 다시 확인한 값은 표와 같고, 일괄 처리는 50% 할인, Haiku 5.5의 캐시 읽기는 100만 토큰당 0.01달러다.</p>
 </blockquote>
-<p>가격표에서 함께 읽어 둘 사항이 셋 있다[A7].</p>
-<ul>
-<li><strong>일괄 처리(Batch API)는 50% 할인이다.</strong> 결과를 바로 받지 않아도 되는 일(예: 밤사이 공고 전체를 미리 요약)은 일괄 처리로 보내면 입력과 출력 모두 반값이다.</li>
-<li><strong>프롬프트 캐시를 읽으면 입력 단가의 10%이다.</strong> 매번 똑같이 보내는 앞부분(긴 시스템 프롬프트)을 서버가 저장해 두고 다음 호출부터 싸게 계산한다. Haiku 5.5는 512토큰 이상인 앞부분부터 캐시할 수 있다[A4].</li>
-<li><strong>사고 토큰은 출력으로 과금된다.</strong> <code>effort</code>를 낮추면 사고가 줄고 출력 토큰도 준다.</li>
-</ul>
 </section>
 <section id="무제한-소비의-위험" class="level3">
 <h3 class="anchored" data-anchor-id="무제한-소비의-위험">3-2. 무제한 소비의 위험</h3>
-<p>OWASP는 LLM 응용의 10대 위험 가운데 하나로 「무제한 소비」(Unbounded Consumption. 2025년판 LLM10 / 2026년판 LLM06)를 꼽는다[A6][A6-26]. 사용자가 제한 없이 추론을 일으킬 수 있으면 서비스 거부, 경제적 손실, 서비스 품질 저하가 생긴다. 사용량만큼 요금을 내는 구조를 노려 운영자에게 감당할 수 없는 비용을 지우는 공격을 「지갑 거부」(Denial of Wallet)라고 부른다[A6-10]. OWASP가 권하는 대책은 입력 크기의 제한, 요청 횟수의 제한과 할당량, 처리 시간의 제한, 사용량의 감시이다.</p>
+<p>OWASP는 LLM 응용의 10대 위험 가운데 하나로 「무제한 소비」(Unbounded Consumption. 2025년판 LLM10 / 2026년판 LLM06)를 꼽는다[A6][A6-26]. 사용량만큼 요금을 내는 구조를 노려 운영자에게 감당할 수 없는 비용을 지우는 공격을 「지갑 거부」(Denial of Wallet)라고 부른다. OWASP의 대책과 요약 API의 구현을 맞추어 보면 다음과 같다.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -928,7 +871,7 @@ jobprep/.gitignore:2:.env   jobprep/.env</code></pre>
 </tr>
 <tr class="even">
 <td>지출의 상한</td>
-<td>키가 속한 작업 공간의 월 지출 한도(교수 시연의 키, 키를 발급한 학생은 자기 작업 공간)</td>
+<td>키가 속한 작업 공간의 월 지출 한도</td>
 <td>Claude Console</td>
 </tr>
 </tbody>
@@ -943,29 +886,25 @@ jobprep/.gitignore:2:.env   jobprep/.env</code></pre>
 <hr>
 </section>
 </section>
-<section id="샘플링과-일관성-환각" class="level2">
-<h2 class="anchored" data-anchor-id="샘플링과-일관성-환각">4. 샘플링과 일관성, 환각</h2>
-<section id="환각" class="level3">
-<h3 class="anchored" data-anchor-id="환각">4-1. 환각</h3>
-<p>환각(hallucination)은 사실과 다르거나 주어진 자료와 맞지 않는 내용을 그럴듯하게 만들어 내는 현상이다[A10]. 모델은 “모른다”가 아니라 “다음에 올 법한 토큰”을 계산하므로, 자료에 없는 마감일을 물어도 그럴듯한 날짜를 만들어 낼 수 있다. 공고 요약에서 환각이 가장 위험한 자리는 다음과 같다.</p>
-<ul>
-<li><strong>마감일.</strong> 상시 채용 공고에 날짜를 지어내거나, 면접일을 마감일로 옮긴다. 사용자는 이미 지난 공고로 오인해 지원하지 않거나 마감을 놓친다.</li>
-<li><strong>자격 요건.</strong> 우대 사항을 필수로 옮기거나 공고에 없는 자격증을 더한다. 사용자는 지원할 수 있는데도 포기한다.</li>
-<li><strong>근무 조건.</strong> 공고에 없는 연봉, 재택 근무, 정규직 전환 보장을 쓴다. 사용자는 사실과 다른 기대로 지원한다.</li>
-</ul>
-<p>키트의 모의 응답 v1에 이런 예가 들어 있다. P10 공고에는 연봉이 적혀 있지 않은데, v1의 모의 응답은 연봉을 말한다(읽기).</p>
+<section id="환각" class="level2">
+<h2 class="anchored" data-anchor-id="환각">4. 환각</h2>
+<p>환각(hallucination)은 사실과 다르거나 주어진 자료와 맞지 않는 내용을 그럴듯하게 만들어 내는 현상이다[A10]. 모델은 “모른다”가 아니라 “다음에 올 법한 토큰”을 계산하므로, 자료에 없는 마감일을 물어도 그럴듯한 날짜를 만들어 낼 수 있다. 공고 요약에서 환각이 가장 위험한 자리는 셋이다. 마감일을 지어내거나 면접일을 마감일로 옮기면 사용자는 마감을 놓친다. 우대 사항을 필수 자격으로 옮기면 사용자는 지원할 수 있는데도 포기한다. 공고에 없는 연봉이나 정규직 전환 보장을 쓰면 사용자는 사실과 다른 기대로 지원한다.</p>
+<p>키트의 모의 응답 v1에 이런 예가 들어 있다. P10 공고에는 연봉이 적혀 있지 않은데, v1의 모의 응답은 연봉을 말한다.</p>
+<div class="code-label where-server">
+<span>터미널</span>
+</div>
 <div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-o</span> <span class="st">'"P10": "[^"]*"'</span> eval/모의응답/v1.json</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-c</span> <span class="st">"연봉"</span> eval/공고/P10.txt</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>"P10": "정보보안 관제 요원 신입을 뽑는 공고입니다. 3교대 근무가 가능해야 하며 접수는 2027년 9월 3일까지입니다. 연봉은 업계 평균 수준으로 보입니다."
 0</code></pre>
-<p>첫 명령은 v1의 P10 응답을, 둘째 명령은 공고 원문에서 「연봉」이 나온 줄의 수를 보인다. 공고 원문에서 「연봉」은 0번 나오는데 응답에는 나온다. 이 응답은 수업용으로 만든 예시이지만, 모델이 실제로 이런 문장을 만들 수 있다는 점은 공식 문서가 인정하는 사실이다. 환각은 모델이 좋아져도 줄어들 뿐 없어지지 않는다. 공식 안내도 대책들이 환각을 크게 줄이지만 없애지는 못하며, 중요한 정보는 늘 검증하라고 적는다[A10].</p>
-</section>
+<p>첫 명령은 v1의 P10 응답을, 둘째 명령은 공고 원문에서 「연봉」이 나온 줄의 수를 보인다. 이 응답은 수업용으로 만든 예시이지만, 모델이 실제로 이런 문장을 만들 수 있다는 점은 공식 문서가 인정한다. 공식 안내는 근거를 주고 “모르면 모른다고 말하게” 하는 대책들이 환각을 크게 줄이지만 없애지는 못하며, 중요한 정보는 늘 검증하라고 적는다[A10]. 이 장의 장치는 셋이다. 프롬프트로 근거를 공고 안으로 제한하고(6절), 마감일이 없으면 <code>null</code>을 쓰게 하며(5절), 평가 문항으로 그 장치가 통하는지 잰다(7절).</p>
+<p><span class="check-badge">확인 5</span> v1의 P10 응답에 「연봉」이 있고, 공고 원문에서 「연봉」의 수가 <code>0</code>이다.</p>
 </section>
 <section id="구조화-출력" class="level2">
 <h2 class="anchored" data-anchor-id="구조화-출력">5. 구조화 출력</h2>
 <section id="왜-json으로-받는가" class="level3">
 <h3 class="anchored" data-anchor-id="왜-json으로-받는가">5-1. 왜 JSON으로 받는가</h3>
-<p>요약 결과는 사람이 읽기 전에 프로그램이 먼저 읽는다. 웹의 자바스크립트는 마감일을 따로 꺼내 강조하고, 자격 요건을 목록으로 그린다. 그러려면 응답이 이름(키)으로 값을 꺼낼 수 있는 JSON이어야 한다. 이 장의 요약 형식은 네 필드이다.</p>
+<p>요약 결과는 사람이 읽기 전에 프로그램이 먼저 읽는다. 화면은 마감일을 따로 꺼내 강조하고, 자격 요건을 목록으로 그린다. 그러려면 응답이 이름(키)으로 값을 꺼낼 수 있는 JSON이어야 한다.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -1002,13 +941,12 @@ jobprep/.gitignore:2:.env   jobprep/.env</code></pre>
 </tr>
 </tbody>
 </table>
-<p>필드 이름은 한국어 그대로 쓴다. 파이썬과 자바스크립트 모두 한국어 이름을 키로 쓸 수 있고, 프롬프트, 채점기, 화면이 같은 이름을 쓰므로 번역하며 생기는 어긋남이 없다.</p>
-<p>프롬프트로 “JSON으로 답하라”고 지시하는 것만으로는 형식이 지켜지지 않는다. 2026년판 4주차의 실습에서 v3 지시문은 출력 형식만 JSON으로 바꾸었는데, 20건 모두 코드 울타리(```)로 감싸여 채점기가 하나도 읽지 못했다. 사람의 눈에는 맞아 보여도 프로그램은 읽지 못한다.</p>
+<p>프롬프트로 “JSON으로 답하라”고 지시하는 것만으로는 형식이 지켜지지 않는다. 2026년판 4주차의 실습에서 출력 형식만 JSON으로 바꾼 지시문은 20건 모두 코드 울타리(```)로 감싸여 채점기가 하나도 읽지 못했다.</p>
 </section>
 <section id="형식을-api로-강제하기" class="level3">
 <h3 class="anchored" data-anchor-id="형식을-api로-강제하기">5-2. 형식을 API로 강제하기</h3>
 <p>Claude API의 구조화 출력(structured outputs)은 JSON 스키마를 주면 응답이 그 스키마를 따르게 한다. 요청의 <code>output_config.format</code>에 <code>type: "json_schema"</code>와 스키마를 넣는다. 2026-11 기준 Haiku 5.5를 포함한 현행 모델이 이 기능을 지원한다[A3].</p>
-<p><strong>[파일: jobprep/api/schema.py] (발췌)</strong></p>
+<p><strong>[파일: ch09/api/schema.py] (발췌)</strong></p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>SUMMARY_SCHEMA <span class="op">=</span> {</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"type"</span>: <span class="st">"object"</span>,</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"properties"</span>: {</span>
@@ -1024,11 +962,6 @@ jobprep/.gitignore:2:.env   jobprep/.env</code></pre>
 <span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"required"</span>: <span class="bu">list</span>(FIELDS),</span>
 <span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"additionalProperties"</span>: <span class="va">False</span>,</span>
 <span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>요청에는 다음처럼 들어간다(2-2의 출력 ①에서 본 모양이다).</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>request[<span class="st">"output_config"</span>] <span class="op">=</span> {</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"effort"</span>: <span class="st">"low"</span>,</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"format"</span>: {<span class="st">"type"</span>: <span class="st">"json_schema"</span>, <span class="st">"schema"</span>: SUMMARY_SCHEMA},</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>구조화 출력의 스키마에는 제약이 있다. 공식 문서가 밝힌 것 가운데 이 장과 관련된 것을 옮긴다[A3].</p>
 <table class="caption-top table">
 <colgroup>
@@ -1060,20 +993,19 @@ jobprep/.gitignore:2:.env   jobprep/.env</code></pre>
 </tr>
 </tbody>
 </table>
-<p>그래서 「핵심업무는 1~5개」 같은 개수 제약은 스키마에 적지 못하고 설명(<code>description</code>)으로만 전한다. 지원하지 않는 기능을 스키마에 넣으면 400 오류가 난다. 파이썬 SDK의 <code>client.messages.parse()</code>에 Pydantic 모델을 주면 SDK가 지원하지 않는 제약을 설명으로 옮기고 응답을 원래 제약으로 검사해 주지만[A3], 이 장은 요청과 검사의 단계를 눈으로 보기 위해 스키마를 직접 쓰고 검사도 직접 한다.</p>
+<p>그래서 「핵심업무는 1~5개」 같은 개수 제약은 설명(<code>description</code>)으로만 전한다. 지원하지 않는 기능을 넣으면 400 오류가 난다. 형식을 설명하는 시스템 프롬프트가 더해지므로 입력 토큰도 는다[A3]. 형식은 이렇게 강제되지만 내용(마감일이 맞는가, 우대 사항이 섞였는가)은 강제되지 않는다. 그래서 서버는 응답을 <code>Summary</code> 모델로 다시 검사하고(8절), 내용은 평가 문항으로 잰다(7절).</p>
 <blockquote class="blockquote">
 <p><strong>[최신 자료 자리: 구조화 출력의 지원 모델과 스키마 제약]</strong> 지원 모델 목록과 위 표의 지원·미지원 항목. 확인할 곳 [A3]. 2026-11-14 집필 때의 문서 기준이다.</p>
 </blockquote>
-<p>구조화 출력에는 비용이 따른다. 공식 문서에 따르면 형식을 설명하는 시스템 프롬프트가 추가되어 입력 토큰이 늘고, 새 스키마의 첫 요청은 문법을 만드는 시간이 더 걸린다. 만든 문법은 마지막 사용부터 24시간 저장된다[A3].</p>
 </section>
 </section>
 <section id="프롬프트-설계-기법" class="level2">
 <h2 class="anchored" data-anchor-id="프롬프트-설계-기법">6. 프롬프트 설계 기법</h2>
 <section id="세-판본-읽기" class="level3">
 <h3 class="anchored" data-anchor-id="세-판본-읽기">6-1. 세 판본 읽기</h3>
-<p>키트의 판본 세 개를 차례로 읽는다. VS Code에서 <code>prompts/v1.md</code>~<code>v3.md</code>를 열어 아래와 나란히 놓는다. 판본 파일의 형식은 다음과 같다. 머리의 <code>판본</code>과 <code>바꾼 점</code>은 사람이 읽는 기록이고, <code>## system</code> 아래가 시스템 프롬프트, <code>## user</code> 아래가 사용자 메시지의 틀이다. 틀의 <code>{공고}</code> 자리에 공고 본문이 들어간다.</p>
+<p>VS Code에서 <code>prompts/v1.md</code>~<code>v3.md</code>를 열어 아래와 나란히 놓는다. 머리의 <code>판본</code>과 <code>바꾼 점</code>은 사람이 읽는 기록이고, <code>## system</code> 아래가 시스템 프롬프트, <code>## user</code> 아래가 사용자 메시지의 틀이다. 틀의 <code>{공고}</code> 자리에 공고 본문이 들어간다.</p>
 <div class="code-label where-server">
-<span>파일: jobprep/prompts/v1.md</span>
+<span>파일: ch09/prompts/v1.md</span>
 </div>
 <pre class="text"><code>---
 판본: v1
@@ -1086,9 +1018,9 @@ jobprep/.gitignore:2:.env   jobprep/.env</code></pre>
 다음 채용 공고를 요약해 JSON으로 답하라.
 
 {공고}</code></pre>
-<p>v1은 1장에서 본 「한 줄 요청」에 해당하는 기준선이다. 무엇을 요약할지(필드), 어떤 형식으로(키 이름과 날짜 형식), 무엇을 빼고(우대 사항, 공고에 없는 정보), 없으면 어떻게(마감일 null) 할지가 모두 빠져 있다. 빠진 자리는 모델이 추측으로 채운다.</p>
+<p>v1은 1장의 「한 줄 요청」에 해당하는 기준선이다. 필드, 형식, 뺄 것, 없을 때의 처리가 모두 빠져 있고, 빠진 자리는 모델이 추측으로 채운다.</p>
 <div class="code-label where-server">
-<span>파일: jobprep/prompts/v2.md</span>
+<span>파일: ch09/prompts/v2.md</span>
 </div>
 <pre class="text"><code>---
 판본: v2
@@ -1117,7 +1049,7 @@ jobprep/.gitignore:2:.env   jobprep/.env</code></pre>
 &lt;공고&gt;
 {공고}
 &lt;/공고&gt;</code></pre>
-<p>v2의 각 부분을 프롬프트 설계의 기법과 맞추어 본다.</p>
+<p>v2의 각 부분을 프롬프트 설계의 기법과 맞추어 본다[A2].</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -1169,9 +1101,12 @@ jobprep/.gitignore:2:.env   jobprep/.env</code></pre>
 </tr>
 </tbody>
 </table>
-<p>v1에서 v2로 가면서 여러 가지를 한꺼번에 바꾸었다. v1은 「설계하지 않은 프롬프트」의 기준선이므로, v2와의 비교는 「설계한 프롬프트 전체」의 효과를 보는 것이다. 어느 규칙이 얼마나 기여했는지 알려면 규칙을 하나씩 빼거나 더한 판본을 따로 만들어 재야 한다. v2에서 v3로는 한 가지만 바꾸었다. 두 파일의 차이를 보면 다음과 같다(읽기).</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff <span class="at">--no-index</span> <span class="at">--stat</span> prompts/v2.md prompts/v3.md</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff <span class="at">--no-index</span> prompts/v2.md prompts/v3.md <span class="kw">|</span> <span class="fu">grep</span> <span class="st">"^[+-]"</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-12</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>v1에서 v2로는 여러 가지를 한꺼번에 바꾸었으므로, 둘의 비교는 「설계한 프롬프트 전체」의 효과를 보는 것이다. 어느 규칙이 얼마나 기여했는지 알려면 규칙을 하나씩 빼거나 더한 판본을 따로 재야 한다. v2에서 v3로는 한 가지만 바꾸었다. 두 파일의 차이를 본다.</p>
+<div class="code-label where-server">
+<span>터미널</span>
+</div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff <span class="at">--no-index</span> <span class="at">--stat</span> prompts/v2.md prompts/v3.md</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff <span class="at">--no-index</span> prompts/v2.md prompts/v3.md <span class="kw">|</span> <span class="fu">grep</span> <span class="st">"^[+-]"</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-12</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code> prompts/{v2.md =&gt; v3.md} | 35 +++++++++++++++++++++++++++++++++--
  1 file changed, 33 insertions(+), 2 deletions(-)
 --- a/prompts/v2.md
@@ -1186,8 +1121,7 @@ jobprep/.gitignore:2:.env   jobprep/.env</code></pre>
 +[주요 업무]
 +- 엑셀 매크로 유지보수
 +[자격 요건]</code></pre>
-<p><code>git diff --no-index</code>는 저장소에 올리지 않은 두 파일도 비교한다. 지운 줄(<code>-</code>)은 머리의 기록 두 줄뿐이고, 나머지는 모두 더한 줄(<code>+</code>)이다. 곧 v3는 v2에 <code>&lt;예시&gt;</code> 블록 하나를 더한 것이다. 예시 두 건은 평가 문항의 공고와 다른 문장으로 썼다. 평가 문항을 예시로 넣으면 그 문항의 점수는 오르지만, 처음 보는 공고도 맞힐지는 알 수 없게 된다. 예시는 경계(날짜가 둘인 공고, 상시 채용)를 보여 주고, 평가 문항은 그 경계를 익혔는지 잰다.</p>
-<p>예시에는 부작용도 있다. 모델은 예시의 내용뿐 아니라 겉모양까지 따라 하는 경향이 있다. 예시의 핵심업무가 모두 한 항목이면 실제 공고에서도 핵심업무를 한 항목으로 줄일 수 있고, 예시의 주의점이 빈 목록이면 주의점을 덜 쓸 수 있다. 공식 지침이 예시를 「다양하게」 만들라고 하는 까닭이다[A2]. v3의 예시 두 건은 하나는 주의점이 비고 하나는 차 있게 만들었지만, 둘 다 핵심업무가 한 항목이라는 점에서 다양하지 않다. 이런 치우침은 평가 문항의 점수로는 드러나지 않을 수 있으므로, 응답 원문을 읽을 때 「예시를 흉내 낸 흔적」이 있는지도 함께 본다. 예시는 호출마다 입력 토큰으로 함께 보내진다는 점도 잊지 않는다. 판본 비교에서 보는 v2와 v3의 토큰 차이가 예시 두 건의 값이다.</p>
+<p><code>git diff --no-index</code>는 저장소에 올리지 않은 두 파일도 비교한다. Windows에서는 <code>LF will be replaced by CRLF</code>라는 줄 끝 안내가 함께 나올 수 있으며 결과와 관계없다. 지운 줄(<code>-</code>)은 머리의 기록 두 줄뿐이므로 v3는 v2에 <code>&lt;예시&gt;</code> 블록 하나를 더한 것이다. 예시는 평가 문항과 다른 문장으로 썼다. 평가 문항을 예시로 넣으면 그 문항의 점수는 오르지만 처음 보는 공고도 맞힐지는 알 수 없다. 모델은 예시의 겉모양까지 따라 하는 경향이 있으므로 공식 지침은 예시를 다양하게 만들라고 한다[A2]. v3의 예시 둘은 핵심업무가 모두 한 항목이라 다양하지 않다. 예시는 호출마다 입력 토큰으로 함께 가므로 비용도 는다.</p>
 </section>
 </section>
 <section id="프롬프트-판본-관리와-평가" class="level2">
@@ -1261,18 +1195,10 @@ jobprep/.gitignore:2:.env   jobprep/.env</code></pre>
 </tr>
 </tbody>
 </table>
-<p>정답 파일은 문항마다 다섯 가지를 적는다.</p>
-<p><strong>[파일: jobprep/eval/정답.json] (한 문항)</strong></p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span><span class="dt">"id"</span><span class="fu">:</span> <span class="st">"P04"</span><span class="fu">,</span> <span class="dt">"마감일"</span><span class="fu">:</span> <span class="st">"2027-06-14"</span><span class="fu">,</span> <span class="dt">"자격요건_포함"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"테스트"</span><span class="ot">]</span><span class="fu">,</span> <span class="dt">"자격요건_제외"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"ISTQB"</span><span class="ot">]</span><span class="fu">,</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a> <span class="dt">"금지어"</span><span class="fu">:</span> <span class="ot">[]</span><span class="fu">,</span> <span class="dt">"확인점"</span><span class="fu">:</span> <span class="st">"면접일이 아니라 접수 마감일을 고르는가"</span><span class="fu">}</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><code>자격요건_포함</code>은 자격요건에 반드시 들어가야 할 말, <code>자격요건_제외</code>는 우대 사항에만 있으므로 자격요건에 들어가면 안 되는 말, <code>금지어</code>는 공고에 없으므로 응답 어디에도 나오면 안 되는 말이다. 정답을 요약문 전체로 적지 않고 이렇게 쪼갠 까닭은, 요약의 문장은 매번 달라도 되지만 이 다섯 가지는 달라지면 안 되기 때문이다. 채점은 사람의 인상이 아니라 이 규칙으로만 한다.</p>
-<p>평가 문항을 만들 때 지킨 원칙은 다음과 같다.</p>
-<ol type="1">
-<li><strong>경계 사례를 일부러 넣는다.</strong> 쉬운 공고만 있으면 모든 판본이 만점을 받아 비교가 되지 않는다.</li>
-<li><strong>실제 사용과 닮게 한다.</strong> 공고의 칸 이름과 날짜 표기는 국내 채용 공고에서 흔히 보는 모양을 본떴다.</li>
-<li><strong>예시와 겹치지 않게 한다.</strong> v3의 예시 두 건과 같은 문장을 쓰지 않는다.</li>
-<li><strong>개인 정보와 실제 회사를 쓰지 않는다.</strong> 회사 이름은 모두 지어냈다.</li>
-</ol>
+<p><strong>[파일: ch09/eval/정답.json] (한 문항)</strong></p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span><span class="dt">"id"</span><span class="fu">:</span> <span class="st">"P04"</span><span class="fu">,</span> <span class="dt">"마감일"</span><span class="fu">:</span> <span class="st">"2027-06-14"</span><span class="fu">,</span> <span class="dt">"자격요건_포함"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"테스트"</span><span class="ot">]</span><span class="fu">,</span> <span class="dt">"자격요건_제외"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"ISTQB"</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a> <span class="dt">"금지어"</span><span class="fu">:</span> <span class="ot">[]</span><span class="fu">,</span> <span class="dt">"확인점"</span><span class="fu">:</span> <span class="st">"면접일이 아니라 접수 마감일을 고르는가"</span><span class="fu">}</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>자격요건_포함</code>은 자격요건에 반드시 들어갈 말, <code>자격요건_제외</code>는 우대 사항에만 있어 자격요건에 들어가면 안 되는 말, <code>금지어</code>는 공고에 없어 응답 어디에도 나오면 안 되는 말이다. 요약의 문장은 매번 달라도 되지만 이 값들은 달라지면 안 되므로 정답을 이렇게 쪼갰다. 쉬운 공고만 있으면 모든 판본이 만점을 받으므로 경계 사례를 일부러 넣었다.</p>
 </section>
 <section id="규칙-기반-채점" class="level3">
 <h3 class="anchored" data-anchor-id="규칙-기반-채점">7-2. 규칙 기반 채점</h3>
@@ -1318,50 +1244,59 @@ jobprep/.gitignore:2:.env   jobprep/.env</code></pre>
 </tr>
 </tbody>
 </table>
-<p><code>json</code>이 실패하면 나머지 네 항목도 실패로 센다. 프로그램이 읽지 못하는 답은 내용이 맞아도 서비스에 쓸 수 없기 때문이다. 채점기의 동작은 테스트로 고정되어 있다. 0-2의 42개에 들어 있는 채점기와 판본의 테스트만 골라 돌리면 다음과 같다(읽기).</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pytest tests/test_grader.py tests/test_prompts.py</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>json</code>이 실패하면 나머지 네 항목도 실패로 센다. 프로그램이 읽지 못하는 답은 내용이 맞아도 서비스에 쓸 수 없기 때문이다. 채점기의 동작은 테스트로 고정되어 있다.</p>
+<div class="code-label where-server">
+<span>터미널</span>
+</div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pytest tests/test_grader.py tests/test_prompts.py</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>...............                                                          [100%]
 15 passed in 1.19s</code></pre>
-<p>채점기 테스트 9개는 만점, 코드 울타리, 앞 문장, 틀린 마감일, null 마감일, 우대 사항 섞임, 공고에 없는 말, 틀린 키, 틀린 날짜 형식을 각각 한 번씩 넣어 본다. 판본 테스트 6개는 세 판본이 읽히는지, v2가 규칙을 더했는지, v3가 v2에 예시만 더한 것인지를 본다. 앞의 6-1에서 눈으로 확인한 「v3 = v2 + 예시」를 테스트가 다시 확인하므로, 누군가 v3를 고치면서 다른 줄까지 바꾸면 테스트가 실패한다.</p>
+<p>채점기 테스트 9개는 만점, 코드 울타리, 틀린 마감일, 우대 사항 섞임 같은 경우를 한 번씩 넣어 본다. 판본 테스트 6개는 「v3 = v2 + 예시」를 다시 확인하므로, 누군가 v3를 고치면서 다른 줄까지 바꾸면 실패한다.</p>
+<p><span class="check-badge">확인 6</span> 채점기와 판본의 테스트가 <code>15 passed</code>이다.</p>
 </section>
 </section>
 <section id="fastapi-요약-api" class="level2">
 <h2 class="anchored" data-anchor-id="fastapi-요약-api">8. FastAPI 요약 API</h2>
-<section id="따라-하기-3-모의-모드로-api-서버-띄우기" class="level3">
-<h3 class="anchored" data-anchor-id="따라-하기-3-모의-모드로-api-서버-띄우기">8-1. 따라 하기 3: 모의 모드로 API 서버 띄우기</h3>
-<p>API 서버는 도는 동안 터미널 하나를 계속 차지한다. 부록 A-4-3의 두 터미널(Claude Code 터미널과 확인 터미널)은 그대로 두고, 터미널 패널의 분할 아이콘으로 세 번째 터미널을 연다. 이 장에서는 이것을 「API 터미널」이라 부른다. API 터미널에서도 가상 환경을 켠 뒤 서버를 띄운다.</p>
+<section id="따라-하기-2-모의-모드로-api-서버-띄우기" class="level3">
+<h3 class="anchored" data-anchor-id="따라-하기-2-모의-모드로-api-서버-띄우기">8-1. 따라 하기 2: 모의 모드로 API 서버 띄우기</h3>
+<p>API 서버는 도는 동안 터미널 하나를 계속 차지한다. 부록 A-4-3의 두 터미널은 그대로 두고, 터미널 패널의 분할 아이콘으로 세 번째 터미널을 연다. 이것을 「API 터미널」이라 부른다. API 터미널에서도 가상 환경을 켠 뒤 서버를 띄운다.</p>
 <p><strong>[터미널]</strong> (API 터미널)</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/jobprep</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> uvicorn api.app:app <span class="at">--port</span> 8000</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="text"><code>INFO:     Started server process [13248]
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/ch09</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> uvicorn api.app:app <span class="at">--port</span> 8000</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>INFO:     Started server process [36476]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)</code></pre>
-<p><code>api.app:app</code>은 「<code>api/app.py</code> 파일의 <code>app</code>이라는 객체」라는 뜻이다. <code>.env</code>의 <code>LLM_FAKE=1</code>을 앱이 읽으므로 명령 앞에 붙이지 않아도 모의 모드이다. 포트는 API 8000으로 고정한다(부록 A-16). <code>--host</code>를 주지 않으면 uvicorn은 <code>127.0.0.1</code>, 곧 내 PC 안에서 오는 요청만 받는다. 8000을 이미 다른 프로그램이 쓰면 <code>[Errno 10048]</code>(macOS는 <code>Address already in use</code>)을 내고 멈춘다. 그때는 부록 A-16-1로 그 번호를 누가 쓰는지 본다.</p>
-<p>확인 터미널에서 상태를 묻는다.</p>
+<p><code>api.app:app</code>은 「<code>api/app.py</code> 파일의 <code>app</code>이라는 객체」라는 뜻이다. 앱이 <code>.env</code>의 <code>LLM_FAKE=1</code>을 읽으므로 모의 모드이다. 포트는 API 8000으로 고정한다(부록 A-16). <code>--host</code>를 주지 않으면 uvicorn은 <code>127.0.0.1</code>, 곧 내 PC 안에서 오는 요청만 받는다. 확인 터미널에서 상태를 묻고, 공고 하나를 두 번 요약하게 한다. 공고 파일을 JSON 본문으로 바꾸는 데는 파이썬 한 줄을 쓴다. 한국어와 줄바꿈이 섞인 글을 셸에서 직접 JSON으로 적으면 틀리기 쉽고, Git Bash의 <code>curl</code>은 명령줄의 한글을 UTF-8로 보내지 않기 때문이다(부록 A-3-4).</p>
 <p><strong>[터미널]</strong> (확인 터미널)</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> http://127.0.0.1:8000/api/health</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="text"><code>{"ok":true,"fake":true,"model":"claude-haiku-5-5","prompt":"v3"}</code></pre>
-<p><code>fake</code>가 <code>true</code>이면 모의 모드이다. 이 값은 <code>.env</code>에서 온다. 서버를 띄운 뒤 <code>.env</code>를 고치면 서버를 다시 띄워야 반영된다.</p>
-<p>이어서 공고 하나를 요약하게 한다. 공고 파일을 JSON 본문으로 바꾸는 데는 파이썬 한 줄을 쓴다. 한국어와 줄바꿈이 섞인 글을 셸에서 직접 JSON으로 적으면 따옴표와 줄바꿈 처리에서 틀리기 쉽기 때문이다.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> http://127.0.0.1:8000/api/health<span class="kw">;</span> <span class="bu">echo</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> 1 2<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">python</span> <span class="at">-c</span> <span class="st">'import json; print(json.dumps({"text": open("eval/공고/P02.txt", encoding="utf-8").read()}))'</span> <span class="dt">\</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">|</span> <span class="ex">curl</span> <span class="at">-s</span> <span class="at">-X</span> POST http://127.0.0.1:8000/api/summary <span class="at">-H</span> <span class="st">"Content-Type: application/json"</span> <span class="at">--data-binary</span> @-</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="bu">echo</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>{"ok":true,"fake":true,"model":"claude-haiku-5-5","prompt":"v3"}
+{"summary":{"핵심업무":["쇼핑몰 상품 상세 화면의 HTML·CSS 수정","자바스크립트로 장바구니 화면의 오류 수정"],"자격요건":["HTML, CSS, 자바스크립트 기초 지식","주 5일 출근 가능자"],"마감일":"2027-05-07","주의점":["포트폴리오 주소를 지원서에 반드시 적는다"]},"meta":{"model":"claude-haiku-5-5 (모의)","fake":true,"prompt":"v3","input_tokens":1115,"output_tokens":139,"cached":false}}
+{"summary":{"핵심업무":["쇼핑몰 상품 상세 화면의 HTML·CSS 수정","자바스크립트로 장바구니 화면의 오류 수정"],"자격요건":["HTML, CSS, 자바스크립트 기초 지식","주 5일 출근 가능자"],"마감일":"2027-05-07","주의점":["포트폴리오 주소를 지원서에 반드시 적는다"]},"meta":{"model":"claude-haiku-5-5 (모의)","fake":true,"prompt":"v3","input_tokens":1115,"output_tokens":139,"cached":true}}</code></pre>
+<p><code>fake</code>가 <code>true</code>이면 모의 모드이다. <code>.env</code>를 고치면 서버를 다시 띄워야 반영된다. <code>--data-binary @-</code>는 표준 입력을 그대로 본문으로 보낸다. 응답의 <code>summary</code>는 요약이고 <code>meta</code>는 모델, 판본, 토큰 수, 캐시 여부이다. 두 번째 응답의 <code>cached</code>가 <code>true</code>인 것은 저장해 둔 결과를 돌려주었기 때문이다(3-2).</p>
+<p><span class="check-badge">확인 7</span> API 터미널에 <code>Uvicorn running on http://127.0.0.1:8000</code>이 보이고, <code>/api/health</code>가 <code>"fake":true</code>이며, 요약 응답에 <code>"마감일":"2027-05-07"</code>이 있고 두 번째 응답이 <code>"cached":true</code>이다.</p>
+</section>
+<section id="잘못된-요청과-오류의-갈래" class="level3">
+<h3 class="anchored" data-anchor-id="잘못된-요청과-오류의-갈래">8-2. 잘못된 요청과 오류의 갈래</h3>
+<p>이번에는 일부러 틀린 요청 둘을 보낸다. 하나는 너무 짧은 본문이고, 하나는 주소에서 <code>/api</code>를 뺀 것이다.</p>
 <p><strong>[터미널]</strong> (확인 터미널)</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/jobprep</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">'import json; print(json.dumps({"text": open("eval/공고/P02.txt", encoding="utf-8").read()}))'</span> <span class="dt">\</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">|</span> <span class="ex">curl</span> <span class="at">-s</span> <span class="at">-X</span> POST http://127.0.0.1:8000/api/summary <span class="at">-H</span> <span class="st">"Content-Type: application/json"</span> <span class="at">--data-binary</span> @-</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="text"><code>{"summary":{"핵심업무":["쇼핑몰 상품 상세 화면의 HTML·CSS 수정","자바스크립트로 장바구니 화면의 오류 수정"],"자격요건":["HTML, CSS, 자바스크립트 기초 지식","주 5일 출근 가능자"],"마감일":"2027-05-07","주의점":["포트폴리오 주소를 지원서에 반드시 적는다"]},"meta":{"model":"claude-haiku-5-5 (모의)","fake":true,"prompt":"v3","input_tokens":1115,"output_tokens":139,"cached":false}}</code></pre>
-<p><code>--data-binary @-</code>는 표준 입력으로 받은 내용을 그대로 본문으로 보낸다는 뜻이다. 응답의 <code>summary</code>는 네 필드의 요약이고, <code>meta</code>는 모델, 모의 여부, 판본, 토큰 수, 캐시 여부이다. 같은 명령을 한 번 더 실행하면 <code>cached</code>가 <code>true</code>가 된다.</p>
-<p>요청 형식이 틀리면 422가 온다.</p>
-<p><strong>[터미널]</strong> (확인 터미널)</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> <span class="at">-o</span> /dev/null <span class="at">-w</span> <span class="st">"%{http_code}\n"</span> <span class="at">-X</span> POST http://127.0.0.1:8000/api/summary <span class="dt">\</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">-H</span> <span class="st">"Content-Type: application/json"</span> <span class="at">-d</span> <span class="st">'{"text":"short"}'</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="text"><code>422</code></pre>
-<p><code>-o /dev/null</code>은 응답 본문을 버리고, <code>-w "%{http_code}\n"</code>은 상태 코드만 찍는다. 본문을 보면 <code>string_too_short</code>(20자 미만)라는 이유가 들어 있다. API 터미널에는 요청마다 기록이 한 줄씩 찍힌다.</p>
-<pre class="text"><code>INFO:     127.0.0.1:64466 - "GET /api/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:64467 - "POST /api/summary HTTP/1.1" 200 OK
-INFO:     127.0.0.1:64468 - "POST /api/summary HTTP/1.1" 200 OK
-INFO:     127.0.0.1:64469 - "POST /api/summary HTTP/1.1" 422 Unprocessable Content</code></pre>
-<p><span class="check-badge">확인 5</span> API 터미널에 <code>Uvicorn running on http://127.0.0.1:8000</code>이 보이고, <code>/api/health</code>가 <code>"fake":true</code>를 보이며, 요약 응답에 <code>"마감일":"2027-05-07"</code>이 있고 같은 명령의 두 번째 응답이 <code>"cached":true</code>이며, 짧은 본문의 상태 코드가 <code>422</code>이다.</p>
-<p><code>curl</code>의 결과로 갈래를 가린다. 아래는 2026-11-16에 집필 PC에서 같은 명령을 실행해 얻은 것이다(429는 <code>RATE_LIMIT_PER_MIN=2</code>, 503은 <code>LLM_FAKE=0</code>이고 키가 빈 상태). 11절에서 화면의 오류를 진단할 때도 이 표를 쓴다.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> <span class="at">-o</span> /dev/null <span class="at">-w</span> <span class="st">"%{http_code}\n"</span> <span class="at">-X</span> POST http://127.0.0.1:8000/api/summary <span class="dt">\</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">-H</span> <span class="st">"Content-Type: application/json"</span> <span class="at">-d</span> <span class="st">'{"text":"short"}'</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> <span class="at">-X</span> POST http://127.0.0.1:8000/summary <span class="at">-H</span> <span class="st">"Content-Type: application/json"</span> <span class="at">-d</span> <span class="st">'{"text":"short"}'</span><span class="kw">;</span> <span class="bu">echo</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>422
+{"detail":"Not Found"}</code></pre>
+<p><code>-o /dev/null</code>은 본문을 버리고 <code>-w</code>는 상태 코드만 찍는다. 422의 본문에는 <code>string_too_short</code>(20자 미만)라는 이유가 있다. API 터미널에는 요청마다 요청한 곳, 방식과 주소, 상태 코드가 한 줄씩 찍힌다.</p>
+<pre class="text"><code>INFO:     127.0.0.1:56563 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56564 - "POST /api/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56565 - "POST /api/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56566 - "POST /api/summary HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:56568 - "POST /summary HTTP/1.1" 404 Not Found</code></pre>
+<p><code>curl</code>의 결과와 API 터미널의 기록으로 갈래를 가린다. 아래 표의 다섯 줄은 2026-11-18에 집필 PC에서 실행해 얻은 것이다(429는 <code>RATE_LIMIT_PER_MIN=2</code>로 띄운 서버에 세 번째 요청, 503은 <code>LLM_FAKE=0</code>이고 키가 빈 서버).</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
@@ -1385,8 +1320,8 @@ INFO:     127.0.0.1:64469 - "POST /api/summary HTTP/1.1" 422 Unprocessable Conte
 <td>API 터미널의 <code>Uvicorn running</code> 줄과 포트를 본다</td>
 </tr>
 <tr class="even">
-<td><code>{"detail":"Method Not Allowed"}</code></td>
-<td><code>"POST /summary HTTP/1.1" 405</code></td>
+<td><code>{"detail":"Not Found"}</code></td>
+<td><code>"POST /summary HTTP/1.1" 404 Not Found</code></td>
 <td>주소에서 <code>/api</code>가 빠졌다</td>
 <td>주소를 <code>/api/summary</code>로 고친다</td>
 </tr>
@@ -1410,68 +1345,47 @@ INFO:     127.0.0.1:64469 - "POST /api/summary HTTP/1.1" 422 Unprocessable Conte
 </tr>
 </tbody>
 </table>
-<p>API 터미널의 기록 한 줄(<code>INFO:     127.0.0.1:62729 - "POST /api/summary HTTP/1.1" 429 Too Many Requests</code>)은 요청한 곳, 방식과 주소, 상태 코드의 순서다. 웹 화면의 오류를 볼 때도 이 기록을 함께 보면 브라우저가 무엇을 보냈는지 알 수 있다. 거꾸로, 화면에는 오류가 났는데 API 터미널에 그 시각의 기록이 <strong>없으면</strong> 요청이 이 서버에 닿지 않은 것이다.</p>
+<p>거꾸로, 오류가 났는데 API 터미널에 그 시각의 기록이 <strong>없으면</strong> 요청이 이 서버에 닿지 않은 것이다. 10장 뒤에 화면을 붙일 때도 이 표와 기록을 같은 방법으로 읽는다.</p>
+<p><span class="check-badge">확인 8</span> 짧은 본문의 상태 코드가 <code>422</code>이고, <code>/summary</code>의 응답이 <code>{"detail":"Not Found"}</code>이며, API 터미널에 두 요청의 기록(<code>422</code>, <code>404</code>)이 보인다.</p>
 </section>
 </section>
 <section id="출력의-안전한-표시" class="level2">
 <h2 class="anchored" data-anchor-id="출력의-안전한-표시">9. 출력의 안전한 표시</h2>
-<section id="모델-출력은-신뢰하지-않는-입력이다" class="level3">
-<h3 class="anchored" data-anchor-id="모델-출력은-신뢰하지-않는-입력이다">9-1. 모델 출력은 신뢰하지 않는 입력이다</h3>
-<p>OWASP의 LLM 응용 10대 위험 가운데 「부적절한 출력 처리」(Improper Output Handling. 2025년판 LLM05 / 2026년판 LLM10)는 LLM이 만든 글을 다른 구성 요소에 넘기기 전에 검증하고 정리하지 않는 문제이다. 프롬프트로 출력을 움직일 수 있으므로, 공격자는 모델을 통해 간접적으로 시스템에 닿을 수 있다. 대표적인 결과가 XSS이다. 모델이 만든 자바스크립트나 HTML을 정리하지 않고 화면에 넣으면 그 코드가 사용자의 브라우저에서 실행된다. OWASP는 모델을 다른 사용자와 똑같이 취급하고, 웹에 넣을 때는 HTML 인코딩을 하라고 권한다[A6-5].</p>
-<p>공고 요약에서 이 위험은 가상의 이야기가 아니다. 공고 본문에는 누구든 무엇이든 적을 수 있고, 모델은 공고의 문장을 요약에 옮긴다. 공고의 유의 사항 칸에 <code>&lt;img src=x onerror="..."&gt;</code> 같은 문자열이 있으면, 그것이 요약의 주의점으로 옮겨질 수 있다.</p>
-<p>화면에 글을 넣는 방법은 둘이다. <code>element.innerHTML = 문자열</code>은 문자열을 HTML로 해석해 요소를 만든다. <code>element.textContent = 문자열</code>은 문자열을 해석하지 않고 글자 그대로 넣는다. 모델 출력에는 뒤의 것만 쓴다.</p>
-<p>MDN은 <code>innerHTML</code>을 XSS의 가장 흔한 통로로 꼽는다. <code>&lt;script&gt;</code> 요소는 <code>innerHTML</code>로 넣어도 실행되지 않지만, <code>&lt;img src='x' onerror='alert(1)'&gt;</code>처럼 다른 요소의 이벤트 속성으로 자바스크립트를 실행할 수 있다. 사용자에게서 온 글이 단순한 글이어야 할 때는 <code>textContent</code>를 쓰라고 권한다[W1].</p>
-<p>두 방법의 차이는 교수가 화면에서 시연한다. 8-1의 서버가 떠 있는 상태에서 브라우저로 <code>http://localhost:8000/detail.html?id=JOB-001</code>을 열고, 개발자 도구(F12)의 「콘솔」 탭에 다음 두 줄을 차례로 넣는다. 시간이 남으면 같은 화면에서 직접 해 본다([선택]).</p>
+<p>OWASP의 「부적절한 출력 처리」(Improper Output Handling. 2025년판 LLM05 / 2026년판 LLM10)는 LLM이 만든 글을 검증하지 않고 다른 구성 요소에 넘기는 문제이며, 대표적인 결과가 XSS이다. OWASP는 모델을 다른 사용자와 똑같이 취급하고 웹에 넣을 때 HTML 인코딩을 하라고 권한다[A6]. 공고 본문에는 누구든 무엇이든 적을 수 있고 모델은 그 문장을 요약에 옮기므로, 유의 사항 칸의 <code>&lt;img src=x onerror="..."&gt;</code>가 요약의 주의점으로 옮겨질 수 있다. 화면에 글을 넣는 방법은 둘이다. <code>element.innerHTML = 문자열</code>은 문자열을 HTML로 해석해 요소를 만들고, <code>element.textContent = 문자열</code>은 해석하지 않고 글자 그대로 넣는다. MDN은 <code>innerHTML</code>을 XSS의 가장 흔한 통로로 꼽고, 사용자에게서 온 글이 단순한 글이어야 할 때는 <code>textContent</code>를 쓰라고 권한다[W1].</p>
+<p>두 방법의 차이는 교수가 화면에서 시연한다. 8-1의 서버가 떠 있는 상태에서 브라우저로 자동 문서 <code>http://127.0.0.1:8000/docs</code>를 열고, 개발자 도구(F12)의 「콘솔」 탭에 다음을 넣는다. 시간이 남으면 직접 해 본다([선택]).</p>
 <p><strong>[브라우저]</strong> (개발자 도구의 콘솔)</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> d <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"div"</span>)<span class="op">;</span> <span class="bu">document</span><span class="op">.</span><span class="at">body</span><span class="op">.</span><span class="fu">append</span>(d)<span class="op">;</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>d<span class="op">.</span><span class="at">innerHTML</span> <span class="op">=</span> <span class="st">'&lt;img src=x onerror="document.title=</span><span class="sc">\'</span><span class="st">HACKED</span><span class="sc">\'</span><span class="st">"&gt;'</span><span class="op">;</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>브라우저 탭의 제목이 <code>HACKED</code>로 바뀐다. 글자를 넣었을 뿐인데 그 안의 코드가 실행된 것이다. 이번에는 같은 문자열을 <code>textContent</code>로 넣는다.</p>
-<div class="code-label where-server">
-<span>브라우저</span>
-</div>
-<div class="sourceCode" id="cb32"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>location<span class="op">.</span><span class="fu">reload</span>()<span class="op">;</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb33"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> d <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"div"</span>)<span class="op">;</span> <span class="bu">document</span><span class="op">.</span><span class="at">body</span><span class="op">.</span><span class="fu">append</span>(d)<span class="op">;</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>d<span class="op">.</span><span class="at">textContent</span> <span class="op">=</span> <span class="st">'&lt;img src=x onerror="document.title=</span><span class="sc">\'</span><span class="st">HACKED</span><span class="sc">\'</span><span class="st">"&gt;'</span><span class="op">;</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>페이지 아래에 <code>&lt;img src=x ...&gt;</code>라는 글자가 그대로 보이고, 탭 제목은 바뀌지 않는다. 문자열이 HTML로 해석되지 않았기 때문이다(2026-11-14, 실습 견본으로 확인). 둘째 블록 앞에 새로 고침을 하는 까닭은 <code>const d</code>를 같은 페이지에서 두 번 선언하면 오류가 나기 때문이다.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> d <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"div"</span>)<span class="op">;</span> <span class="bu">document</span><span class="op">.</span><span class="at">body</span><span class="op">.</span><span class="fu">append</span>(d)<span class="op">;</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>d<span class="op">.</span><span class="at">innerHTML</span> <span class="op">=</span> <span class="st">'&lt;img src=x onerror="document.title=</span><span class="sc">\'</span><span class="st">HACKED</span><span class="sc">\'</span><span class="st">"&gt;'</span><span class="op">;</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co">// 탭 제목이 HACKED로 바뀐다. 새로 고침(F5) 뒤 같은 첫 줄과 다음 줄을 넣는다</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>d<span class="op">.</span><span class="at">textContent</span> <span class="op">=</span> <span class="st">'&lt;img src=x onerror="document.title=</span><span class="sc">\'</span><span class="st">HACKED</span><span class="sc">\'</span><span class="st">"&gt;'</span><span class="op">;</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>innerHTML</code>로 넣으면 탭의 제목이 <code>HACKED</code>로 바뀐다. 글자를 넣었을 뿐인데 그 안의 코드가 실행된 것이다. 새로 고침 뒤 <code>textContent</code>로 넣으면 페이지 아래에 <code>&lt;img src=x ...&gt;</code>라는 글자가 그대로 보이고 탭 제목은 바뀌지 않는다. 새로 고침을 하는 까닭은 <code>const d</code>를 같은 페이지에서 두 번 선언하면 오류가 나기 때문이다.</p>
 <blockquote class="blockquote">
-<p><strong>[그림 자리: innerHTML과 textContent의 차이]</strong> 탭 제목이 <code>HACKED</code>로 바뀐 화면과, 같은 문자열이 글자 그대로 보이고 제목이 그대로인 화면. 상세 화면의 개발자 도구 콘솔에서 찍는다.</p>
+<p><strong>[그림 자리: innerHTML과 textContent의 차이]</strong> 탭 제목이 <code>HACKED</code>로 바뀐 화면과, 같은 문자열이 글자 그대로 보이고 제목이 그대로인 화면. <code>http://127.0.0.1:8000/docs</code>의 개발자 도구 콘솔에서 찍는다.</p>
 </blockquote>
-<p><code>js/summary.js</code>를 쓸 때의 원칙은 셋이다.</p>
-<ol type="1">
-<li>모델 출력은 <code>textContent</code>로만 넣는다. 목록이 필요하면 <code>document.createElement("li")</code>로 요소를 만들고 그 요소의 <code>textContent</code>에 넣는다.</li>
-<li>서버가 돌려준 오류 문구(<code>detail</code>)도 <code>textContent</code>로 넣는다. 오류 문구에도 사용자가 보낸 글이 섞일 수 있다.</li>
-<li><code>innerHTML</code>, <code>insertAdjacentHTML</code>, <code>document.write</code>를 쓰지 않는다.</li>
-</ol>
-<p>같은 원칙이 화면 밖에도 적용된다. 모델 출력을 데이터베이스 질의에 넣을 때는 매개변수화한 질의를 쓰고, 셸 명령에 넣지 않는다[A6-5]. 이 장의 요약 API는 출력을 화면에만 보내지만, 뒤 과목에서 모델 출력을 다른 프로그램에 넘기게 되면 같은 질문을 다시 던진다. 이 출력이 코드로 해석될 수 있는 자리에 들어가는가.</p>
+<p>모델 출력을 화면에 넣을 때의 원칙은 셋이다. 모델 출력은 <code>textContent</code>로만 넣고, 목록이 필요하면 <code>document.createElement("li")</code>로 요소를 만들어 그 요소의 <code>textContent</code>에 넣는다. 서버가 돌려준 오류 문구(<code>detail</code>)도 <code>textContent</code>로 넣는다. <code>innerHTML</code>, <code>insertAdjacentHTML</code>, <code>document.write</code>를 쓰지 않는다. 같은 원칙이 화면 밖에도 적용된다. 모델 출력을 데이터베이스 질의에 넣을 때는 매개변수화한 질의를 쓰고, 셸 명령에 넣지 않는다[A6].</p>
 <hr>
-</section>
 </section>
 <section id="api-키-보안" class="level2">
 <h2 class="anchored" data-anchor-id="api-키-보안">10. API 키 보안</h2>
-<p>키가 있어야 하는 자리와 새는 경로는 8장 3-5에서 다루었다. 요약하면 키는 저장소에 들어가지 않는 <code>jobprep/.env</code> 한 곳에만 있고, 서버 프로그램만 읽으며, 코드와 브라우저와 문서에는 없어야 한다. 이 절은 그것이 지켜졌는지를 검사 스크립트로 확인한다.</p>
-<section id="키-노출-검사-스크립트" class="level3">
-<h3 class="anchored" data-anchor-id="키-노출-검사-스크립트">10-1. 키 노출 검사 스크립트</h3>
-<p>눈으로 확인하는 것은 한 번은 되지만 매번 되지는 않는다. 키트의 <code>tools/check_secrets.py</code>는 다음 네 가지를 검사한다.</p>
+<p>키가 있어야 하는 자리와 새는 경로는 8장 3-5에서 다루었다. 요약하면 키는 저장소에 들어가지 않는 <code>ch09/.env</code> 한 곳에만 있고, 서버 프로그램만 읽으며, 코드와 브라우저와 문서에는 없어야 한다. 눈으로 확인하는 것은 한 번은 되지만 매번 되지는 않으므로, 키트의 <code>tools/check_secrets.py</code>가 네 가지를 검사한다.</p>
 <ol type="1">
 <li><strong>키 모양.</strong> <code>sk-ant-</code>로 시작하는 문자열이 <code>.env</code> 밖의 파일에 있는가.</li>
-<li><strong>값이 적힌 변수.</strong> <code>.env</code> 밖의 파일에서 <code>ANTHROPIC_API_KEY</code> 뒤에 값이 적혀 있는가. <code>.env.example</code>은 이름만 있고 값이 비어 있어야 한다.</li>
-<li><strong>브라우저의 직접 호출.</strong> <code>web/</code> 아래 코드에 <code>api.anthropic.com</code>, <code>x-api-key</code>, <code>anthropic-version</code>이 있는가.</li>
-<li><strong>git의 제외.</strong> <code>.env</code>가 git에 올라가 있는가, <code>.gitignore</code>로 제외되는가. 제외 여부는 <code>git check-ignore</code>로 git에게 직접 물으므로 상위 폴더의 <code>.gitignore</code>까지 반영된다.</li>
+<li><strong>값이 적힌 변수.</strong> <code>.env</code> 밖의 파일(특히 <code>.env.example</code>)에서 <code>ANTHROPIC_API_KEY</code> 뒤에 값이 적혀 있는가.</li>
+<li><strong>브라우저의 직접 호출.</strong> <code>web/</code> 아래 코드에 <code>api.anthropic.com</code> 같은 주소가 있는가. 화면을 붙인 뒤에 쓰인다.</li>
+<li><strong>git의 제외.</strong> <code>.env</code>가 git에 올라가 있는가, <code>git check-ignore</code>로 제외되는가.</li>
 </ol>
-<p>찾은 값은 앞 일곱 글자만 보이고 나머지는 가린다. 검사 결과를 화면에 띄우는 순간 키가 다시 노출되면 안 되기 때문이다. 검사기는 핵심 실습의 11-5에서 실행한다. 정상이면 다음 두 줄이 나온다.</p>
-<pre class="text"><code>검사한 폴더: jobprep  문제 0건
-KEY_CHECK_OK</code></pre>
-<p>검사기가 실수를 잡는 모습은 다음과 같다. <code>.env</code>가 git에 올라간 경우를 일부러 만들고, 커밋하지 않고 스테이징에만 올렸다가 바로 내린 것이다(읽기. 교수 화면에서 시연한다).</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add <span class="at">-f</span> .env</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> tools/check_secrets.py</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rm <span class="at">-q</span> <span class="at">--cached</span> .env</span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">--short</span> .env</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>찾은 값은 앞 일곱 글자만 보이고 나머지는 가린다. 검사 결과를 띄우는 순간 키가 다시 노출되면 안 되기 때문이다. 검사기가 실수를 잡는 모습은 교수가 <code>.env</code>를 스테이징에만 올렸다가 바로 내려 시연한다.</p>
+<div class="code-label where-prof">
+<span>교수 화면</span>
+</div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add <span class="at">-f</span> .env</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> tools/check_secrets.py</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rm <span class="at">-q</span> <span class="at">--cached</span> .env</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">--short</span> .env</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>문제: .env 가 git에 올라가 있음 (git rm --cached .env 로 내리고 키를 폐기한다)
-검사한 폴더: jobprep  문제 1건
+검사한 폴더: ch09  문제 1건
 KEY_CHECK_FAIL</code></pre>
-<p><code>git add -f</code>의 <code>-f</code>는 <code>.gitignore</code>가 제외한 파일도 강제로 올린다는 뜻이다. 실수는 대개 이렇게 일어난다. <code>git rm --cached</code>는 스테이징에서만 빼고 파일은 남긴다. 마지막 <code>git status --short .env</code>가 아무것도 출력하지 않으면 원래 상태로 돌아온 것이다.</p>
-<p>검사기 자신의 동작도 테스트로 고정되어 있다. <code>tests/test_secrets.py</code>는 가짜 키를 실행 중에 만들어 브라우저 코드에 심고, 검사기가 그것을 찾아내되 출력에는 가린 값만 보이는지 확인한다. 가짜 키를 파일에 그대로 적어 두지 않는 까닭은, 그 테스트 파일 자체가 검사에 걸리기 때문이다.</p>
-</section>
+<p><code>git add -f</code>는 <code>.gitignore</code>가 제외한 파일도 강제로 올린다. 실수는 대개 이렇게 일어난다. <code>git rm --cached</code>는 스테이징에서만 빼고 파일은 남기며, 마지막 줄이 빈 출력이면 원래 상태로 돌아온 것이다. 검사기 자신의 동작은 <code>tests/test_secrets.py</code>가 가짜 키로 고정한다.</p>
 </section>
 <section id="핵심-실습-프롬프트-판본의-비교와-채택" class="level2">
 <h2 class="anchored" data-anchor-id="핵심-실습-프롬프트-판본의-비교와-채택">11. 핵심 실습: 프롬프트 판본의 비교와 채택</h2>
@@ -1504,18 +1418,18 @@ KEY_CHECK_FAIL</code></pre>
 <td>11-3 오답 읽기</td>
 <td>(기록은 11-4에)</td>
 <td>오답 두 건의 응답 원문에서 어긴 값이 공고의 어느 칸에서 왔는지 찾았다</td>
-<td>10분</td>
+<td>15분</td>
 </tr>
 <tr class="odd">
 <td>11-4 채택과 기록</td>
 <td><code>docs/프롬프트비교.md</code> 1~6절, <code>.env</code>의 <code>PROMPT_VERSION</code></td>
 <td>양식의 칸이 채워졌고, 채택 근거에 점수와 비용이 함께 있다</td>
-<td>15분</td>
+<td>20분</td>
 </tr>
 <tr class="even">
 <td>11-5 검사</td>
 <td>(출력)</td>
-<td><code>42 passed</code>, <code>KEY_CHECK_OK</code>, 웹 코드에 Claude API 없음</td>
+<td><code>42 passed</code>, <code>KEY_CHECK_OK</code></td>
 <td>5분</td>
 </tr>
 <tr class="odd">
@@ -1529,13 +1443,13 @@ KEY_CHECK_FAIL</code></pre>
 </section>
 <section id="판본-비교-실행" class="level3">
 <h3 class="anchored" data-anchor-id="판본-비교-실행">11-2. 판본 비교 실행</h3>
-<p><code>eval/run_compare.py</code>는 판본마다 평가 문항 10건을 실행하고 채점해 결과 폴더를 만든다. 모의 모드에서는 <code>eval/모의응답/</code>의 응답을 재생한다. 7-2의 채점기를 문항마다 부르는 것이다. API 서버는 띄워 둔 채로 두고, 확인 터미널에서 실행한다.</p>
+<p><code>eval/run_compare.py</code>는 판본마다 평가 문항 10건을 실행하고 7-2의 채점기로 채점해 결과 폴더를 만든다. 모의 모드에서는 <code>eval/모의응답/</code>의 응답을 재생한다. API 서버는 띄워 둔 채로 두고 확인 터미널에서 실행한다.</p>
 <p><strong>[터미널]</strong> (확인 터미널)</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/jobprep</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> eval.run_compare v1 v2 v3</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/ch09</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> eval.run_compare v1 v2 v3</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code># 판본 비교 결과
 
-- 실행: 2026-11-17 01:13
+- 실행: 2026-11-18 20:12
 - 방식: 모의 응답 재생(실제 모델 출력 아님)
 - 형식 강제: 아니오(프롬프트만)
 - 단가: 입력 $0.1, 출력 $0.5 / 100만 토큰 (Claude Haiku 5.5, 프롬프트 10만 토큰 이하, 2026-11-14 확인. 쓰기 전에 공식 가격표에서 다시 확인한다)
@@ -1545,125 +1459,80 @@ KEY_CHECK_FAIL</code></pre>
 | v1 | 6 | 2 | 2 | 3 | 4 | 17/50 | 226.9 | 109.9 | 0.0776 |
 | v2 | 9 | 9 | 7 | 8 | 9 | 42/50 | 689.1 | 133.9 | 0.1359 |
 | v3 | 10 | 10 | 10 | 9 | 10 | 49/50 | 1085.1 | 128.9 | 0.1730 |</code></pre>
-<p>항목별 숫자는 10문항 가운데 그 항목을 통과한 문항 수이다. 이 표를 위에서 아래로 읽는다.</p>
-<ul>
-<li><strong>v1 → v2.</strong> JSON이 6에서 9로, 형식이 2에서 9로 올랐다. 필드 이름과 출력 형식을 정해 준 효과이다. 마감일은 2에서 7로 올랐지만 아직 세 문항을 틀린다.</li>
-<li><strong>v2 → v3.</strong> 바꾼 것은 예시 두 건뿐인데 마감일이 7에서 10이 되었다. 예시가 보여 준 경계(날짜가 둘인 공고, 상시 채용)가 평가 문항의 같은 경계(P04, P03)에 통했다. 대신 평균 입력 토큰이 약 400 늘었다. 예시는 호출마다 함께 보내지는 입력이다.</li>
-<li><strong>v3에 남은 것.</strong> 자격 항목이 9이다. 한 문항이 남았다.</li>
-</ul>
-<p>같은 명령을 다시 실행하면 「<code>results\v1 가 이미 있다. 다시 재려면 --overwrite 를 붙인다.</code>」라는 안내와 함께 멈춘다(macOS는 <code>results/v1</code>). 이전 결과를 덮지 않기 위해서이다. 다시 재려면 <code>--overwrite</code>를 붙인다. 이전 결과는 <code>results/_이전/</code> 아래로 옮겨지며, 이 폴더는 <code>.gitignore</code>가 커밋에서 뺀다.</p>
-<p><span class="check-badge">확인 6</span> <code>results/비교표.md</code>가 생겼고, 표의 합계가 v1 17, v2 42, v3 49로 v1 &lt; v2 &lt; v3이다.</p>
+<p>숫자는 10문항 가운데 그 항목을 통과한 문항 수이다. v1에서 v2로 JSON과 형식이 크게 올랐다(필드와 출력 형식을 정한 효과). v2에서 v3로는 예시만 더했는데 마감일이 7에서 10이 되었다. 예시의 경계(날짜가 둘인 공고, 상시 채용)가 평가 문항의 같은 경계(P04, P03)에 통했고, 대신 평균 입력 토큰이 약 400 늘었다.</p>
+<p>같은 명령을 다시 실행하면 「<code>results\v1 가 이미 있다. 다시 재려면 --overwrite 를 붙인다.</code>」와 함께 멈춘다. <code>--overwrite</code>를 붙이면 이전 결과는 커밋에서 빠지는 <code>results/_이전/</code>으로 옮겨진다.</p>
+<p><span class="check-badge">확인 9</span> <code>results/비교표.md</code>가 생겼고, 표의 합계가 v1 17, v2 42, v3 49이다.</p>
+<blockquote class="blockquote">
+<p><strong>[실행 결과 자리: 판본 비교의 실제 측정]</strong> 명령 <code>LLM_FAKE=0 python ~/kits/Service_09장/교수/make_run_record.py --out ~/실행기록_09장</code>(판본 3개 × 문항 10건 × 3회 = 호출 90회). 실행할 곳: 교수 PC와 교수의 Console 키. 실을 것: 세 번 실행한 판본별 합계의 범위, P04의 실제 입력 토큰, 모의 결과와 순위가 같은지. 교수가 수업 전에 키트 저장소에 <code>Service_09장_실행기록/</code>으로 올리고, 학생은 <code>git -C ~/kits-repo pull &amp;&amp; cp -rn ~/kits-repo/Service_09장_실행기록 ~/kits/</code>로 받는다. 집필 환경에서는 같은 명령을 <code>LLM_FAKE=1</code>로만 실행해 기록 폴더가 만들어지는 것을 확인하였다.</p>
+</blockquote>
 </section>
 <section id="오답의-원문-읽기" class="level3">
 <h3 class="anchored" data-anchor-id="오답의-원문-읽기">11-3. 오답의 원문 읽기</h3>
 <p>점수만 보고 채택하지 않는다. 틀린 문항의 응답 원문을 열어, 채점기가 왜 틀렸다고 했는지 사람이 확인한다. 먼저 판본별로 하나라도 틀린 문항의 수를 센다. <code>responses.jsonl</code>은 한 줄에 한 문항씩 JSON으로 적힌 파일이다.</p>
 <p><strong>[터미널]</strong> (확인 터미널)</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> v <span class="kw">in</span> v1 v2 v3<span class="kw">;</span> <span class="cf">do</span> <span class="bu">echo</span> <span class="st">"</span><span class="va">$v</span><span class="st">: </span><span class="va">$(</span><span class="fu">grep</span> <span class="at">-vc</span> <span class="st">'"점수": 5'</span> results/<span class="va">$v</span>/responses.jsonl<span class="va">)</span><span class="st">건"</span><span class="kw">;</span> <span class="cf">done</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> v <span class="kw">in</span> v1 v2 v3<span class="kw">;</span> <span class="cf">do</span> <span class="bu">echo</span> <span class="st">"</span><span class="va">$v</span><span class="st">: </span><span class="va">$(</span><span class="fu">grep</span> <span class="at">-vc</span> <span class="st">'"점수": 5'</span> results/<span class="va">$v</span>/responses.jsonl<span class="va">)</span><span class="st">건"</span><span class="kw">;</span> <span class="cf">done</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>v1: 9건
 v2: 4건
 v3: 1건</code></pre>
-<p><code>grep -v</code>는 맞지 않는 줄을, <code>-c</code>는 그 수를 센다. 5점이 아닌 문항, 곧 하나라도 틀린 문항의 수이다. 이어서 v2의 P04와 v3의 P08을 연다. 파이썬의 출력을 파이프(<code>|</code>)로 받는 명령이므로 Windows의 Git Bash에서는 앞에 <code>PYTHONUTF8=1</code>을 붙인다. 붙이지 않으면 한국어 키를 읽지 못해 <code>KeyError</code>가 난다(2026-11-17 집필 PC에서 확인, 부록 A).</p>
+<p><code>grep -v</code>는 맞지 않는 줄을, <code>-c</code>는 그 수를 센다. 5점이 아닌 문항, 곧 하나라도 틀린 문항의 수이다. 이어서 v2의 P04와 v3의 P08을 연다. 파이썬이 파이프로 받은 한국어를 읽으므로, 부록 A-3-4의 <code>PYTHONUTF8=1</code>을 등록하지 않았다면 명령 앞에 붙인다. 붙이지 않으면 한국어 키를 읽지 못해 <code>KeyError</code>가 난다.</p>
 <p><strong>[터미널]</strong> (확인 터미널)</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">'"id": "P04"'</span> results/v2/responses.jsonl <span class="kw">|</span> <span class="va">PYTHONUTF8</span><span class="op">=</span>1 <span class="ex">python</span> <span class="at">-c</span> <span class="st">"import json,sys; r=json.loads(sys.stdin.read()); print(r['점수'], r['사유']); print(r['응답'])"</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">'"id": "P08"'</span> results/v3/responses.jsonl <span class="kw">|</span> <span class="va">PYTHONUTF8</span><span class="op">=</span>1 <span class="ex">python</span> <span class="at">-c</span> <span class="st">"import json,sys; r=json.loads(sys.stdin.read()); print(r['점수'], r['사유']); print(r['응답'])"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">'"id": "P04"'</span> results/v2/responses.jsonl <span class="kw">|</span> <span class="va">PYTHONUTF8</span><span class="op">=</span>1 <span class="ex">python</span> <span class="at">-c</span> <span class="st">"import json,sys; r=json.loads(sys.stdin.read()); print(r['점수'], r['사유']); print(r['응답'])"</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">'"id": "P08"'</span> results/v3/responses.jsonl <span class="kw">|</span> <span class="va">PYTHONUTF8</span><span class="op">=</span>1 <span class="ex">python</span> <span class="at">-c</span> <span class="st">"import json,sys; r=json.loads(sys.stdin.read()); print(r['점수'], r['사유']); print(r['응답'])"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>4 마감일 '2027-06-21' ≠ 정답 '2027-06-14'
 {"핵심업무": ["모바일 앱의 기능 시험 수행", "결함 보고서 작성과 재현 절차 기록"], "자격요건": ["소프트웨어 테스트 관련 교육 이수자", "문서 작성에 능숙한 자"], "마감일": "2027-06-21", "주의점": ["면접 일정은 변경할 수 없다"]}
 4 우대 사항이 섞임: ['정보처리기능사']
 {"핵심업무": ["디자인 시안을 HTML·CSS로 구현", "웹 접근성 점검과 수정"], "자격요건": ["HTML과 CSS로 반응형 화면을 만들 수 있는 자", "정보처리기능사 보유자"], "마감일": "2027-07-23", "주의점": ["작업물 3건 이상을 첨부해야 한다"]}</code></pre>
-<p>응답을 공고 원문(<code>eval/공고/P04.txt</code>, <code>P08.txt</code>)과 나란히 놓고, 채점기가 지적한 값(<code>2027-06-21</code>, <code>정보처리기능사 보유자</code>)이 공고의 어느 칸에 있는지 찾는다. VS Code의 찾기(<code>Ctrl+F</code>)로 그 값을 공고 파일에서 찾으면 된다. 둘 다 형식은 완벽하므로, 형식 검사만 하는 서비스였다면 그대로 화면에 나갔을 오류이다. 찾은 칸 이름은 11-4에서 기록의 4절에 적는다.</p>
+<p>응답을 공고 원문(<code>eval/공고/P04.txt</code>, <code>P08.txt</code>)과 나란히 놓고, 채점기가 지적한 값(<code>2027-06-21</code>, <code>정보처리기능사 보유자</code>)이 공고의 어느 칸에 있는지 VS Code의 찾기(<code>Ctrl+F</code>)로 찾는다. 둘 다 형식은 완벽하므로, 형식 검사만 하는 서비스였다면 그대로 사용자에게 나갔을 오류이다. 찾은 칸 이름은 11-4에서 기록의 4절에 적는다.</p>
+<p><span class="check-badge">확인 10</span> 두 오답의 값이 온 공고의 칸 이름(P04는 면접일이 적힌 칸, P08은 우대 사항 칸)을 말할 수 있다.</p>
 </section>
 <section id="채택과-기록" class="level3">
 <h3 class="anchored" data-anchor-id="채택과-기록">11-4. 채택과 기록</h3>
-<p>양식을 복사해 비교 기록을 쓰고, 두 판본의 월 비용을 도구로 계산한다(월 요청 수에 요청 한 건의 입력과 출력 토큰 요금을 곱한다).</p>
+<p>양식을 복사해 비교 기록을 쓰고, 두 판본의 월 비용을 도구로 계산한다.</p>
 <p><strong>[터미널]</strong> (확인 터미널)</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> docs/프롬프트비교_양식.md docs/프롬프트비교.md</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> tools/cost_estimate.py <span class="at">--from</span> results/v3/summary.json <span class="at">--users</span> 300 <span class="at">--per-user</span> 4</span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> tools/cost_estimate.py <span class="at">--from</span> results/v2/summary.json <span class="at">--users</span> 300 <span class="at">--per-user</span> 4</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> docs/프롬프트비교_양식.md docs/프롬프트비교.md</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> tools/cost_estimate.py <span class="at">--from</span> results/v3/summary.json <span class="at">--users</span> 300 <span class="at">--per-user</span> 4</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> tools/cost_estimate.py <span class="at">--from</span> results/v2/summary.json <span class="at">--users</span> 300 <span class="at">--per-user</span> 4 <span class="kw">|</span> <span class="fu">grep</span> 월</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>호출 수   : 300명 × 4.0회/일 × 30일 = 36,000회
 토큰      : 입력 1,085 + 출력 129 (호출 1회 평균)
 단가      : 입력 $0.1 / 출력 $0.5 (100만 토큰당)
 월 비용   : $6.23
 출력 몫   : 37% (출력 단가가 입력의 5배)
-...
-월 비용   : $4.89
-...</code></pre>
-<p><code>docs/프롬프트비교.md</code>를 VS Code에서 열어 1~6절의 「 」 자리를 채운다(7절은 이 장에서 쓰지 않는다).</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>절</th>
-<th>가져올 곳</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1. 고정한 조건</td>
-<td><code>results/v3/metadata.json</code></td>
-</tr>
-<tr class="even">
-<td>2. 결과</td>
-<td><code>results/비교표.md</code>를 그대로 붙인다</td>
-</tr>
-<tr class="odd">
-<td>3. 판본마다 바꾼 것</td>
-<td>판본 파일 머리의 <code>바꾼 점</code>과 비교표</td>
-</tr>
-<tr class="even">
-<td>4. 오답 두 건</td>
-<td>11-3에서 찾은 값과 공고의 칸 이름</td>
-</tr>
-<tr class="odd">
-<td>5. 채택</td>
-<td>비교표와 <code>cost_estimate.py</code>의 결과</td>
-</tr>
-<tr class="even">
-<td>6. 한계</td>
-<td>모의 모드라는 것, 한 번 실행한 결과라는 것. 실제 호출은 하지 않았다고 적는다</td>
-</tr>
-</tbody>
-</table>
+월 비용   : $4.89</code></pre>
+<p><code>docs/프롬프트비교.md</code>를 VS Code에서 열어 1~6절의 「 」 자리를 채운다. 1절은 <code>results/v3/metadata.json</code>, 2절은 <code>results/비교표.md</code>, 3절은 판본 파일 머리의 <code>바꾼 점</code>과 비교표, 4절은 11-3에서 찾은 값과 공고의 칸 이름, 5절은 비교표와 <code>cost_estimate.py</code>의 결과에서 가져온다. 6절에는 모의 모드라는 것과 한 번 실행한 결과라는 것을 적는다.</p>
 <p>채택 근거는 점수와 비용을 함께 적는다. 예를 들어 v3를 채택한다면 「마감일 10/10(v2는 7/10), 월 비용은 v2보다 약 1.3달러 많다(6.23 대 4.89달러, 월 3만 6천 건 가정)」처럼 쓴다. 마감일은 지원 여부를 바꾸는 필드이므로, 한 달 1.3달러로 마감일 오류 세 건을 없앤다면 받아들일 만하다는 판단이 붙는다. 이 판단은 숫자가 대신해 주지 않는다. 숫자는 판단의 근거를 보이게 할 뿐이다.</p>
 <p>채택한 판본을 서비스에 적용한다. <code>.env</code>의 <code>PROMPT_VERSION</code>을 채택 판본으로 둔다. 키트의 기본값이 <code>v3</code>이므로 v3를 채택했으면 고칠 것이 없다. 다른 판본을 채택했으면 그 줄을 고치고 API 터미널에서 <code>Ctrl+C</code>로 서버를 끈 뒤 8-1의 명령으로 다시 띄운다.</p>
 <p><strong>[터미널]</strong> (확인 터미널)</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> PROMPT_VERSION .env</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> http://127.0.0.1:8000/api/health</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> PROMPT_VERSION .env</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> http://127.0.0.1:8000/api/health<span class="kw">;</span> <span class="bu">echo</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>PROMPT_VERSION=v3
 {"ok":true,"fake":true,"model":"claude-haiku-5-5","prompt":"v3"}</code></pre>
-<p><code>.env</code>를 <code>grep</code>으로 볼 때는 <code>PROMPT_VERSION</code> 줄만 보고, 파일 전체를 <code>cat</code>으로 화면에 띄우지 않는다. 키가 들어 있을 수 있기 때문이다.</p>
-<p><span class="check-badge">확인 7</span> <code>docs/프롬프트비교.md</code>의 1~5절 「 」 자리가 모두 채워졌고, 4절에 두 오답의 값이 온 공고의 칸(면접일이 적힌 칸, 우대 사항 칸)이 적혀 있으며, 5절의 근거에 점수와 월 비용이 함께 있고, <code>/api/health</code>의 <code>prompt</code>가 기록한 채택 판본과 같다.</p>
+<p><code>.env</code>를 볼 때는 <code>PROMPT_VERSION</code> 줄만 <code>grep</code>으로 보고, 파일 전체를 <code>cat</code>으로 화면에 띄우지 않는다. 키가 들어 있을 수 있기 때문이다.</p>
+<p><span class="check-badge">확인 11</span> <code>docs/프롬프트비교.md</code>의 1~5절 「 」 자리가 모두 채워졌고, 5절의 근거에 점수와 월 비용이 함께 있으며, <code>/api/health</code>의 <code>prompt</code>가 기록한 채택 판본과 같다.</p>
 </section>
 <section id="검사" class="level3">
 <h3 class="anchored" data-anchor-id="검사">11-5. 검사</h3>
-<p>커밋하기 전에 테스트와 키 검사를 다시 돌린다. 1절의 첫 원칙(브라우저 코드에 Claude API가 없다)도 <code>grep</code>으로 함께 본다.</p>
+<p>커밋하기 전에 테스트와 키 검사를 다시 돌린다.</p>
 <p><strong>[터미널]</strong> (확인 터미널)</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/jobprep</span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pytest</span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> tools/check_secrets.py</span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-rn</span> <span class="st">"anthropic\|sk-ant"</span> web/ <span class="kw">||</span> <span class="bu">echo</span> <span class="st">"웹 코드에 없음"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pytest</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> tools/check_secrets.py</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>..........................................                               [100%]
-42 passed in 36.67s
-검사한 폴더: jobprep  문제 0건
-KEY_CHECK_OK
-웹 코드에 없음</code></pre>
-<p><code>grep</code>이 아무것도 찾지 못하면 실패 코드를 돌려주므로 <code>||</code> 뒤의 <code>echo</code>가 실행된다. 걸린 시간은 PC마다 다르다.</p>
-<p><span class="check-badge">확인 8</span> <code>42 passed</code>, <code>KEY_CHECK_OK</code>, <code>웹 코드에 없음</code>이 함께 나온다.</p>
+42 passed in 10.48s
+검사한 폴더: ch09  문제 0건
+KEY_CHECK_OK</code></pre>
+<p><span class="check-badge">확인 12</span> <code>42 passed</code>와 <code>KEY_CHECK_OK</code>가 함께 나온다.</p>
 </section>
 <section id="커밋" class="level3">
 <h3 class="anchored" data-anchor-id="커밋">11-6. 커밋</h3>
-<p>이 장의 변경을 한 커밋으로 남긴다. 판본 파일, 측정 결과, 비교 기록이 함께 들어가야 「어느 판본을 어떤 근거로 채택했는가」가 한 커밋에서 읽힌다. <code>git add .</code>나 <code>git add -A</code>를 쓰지 않고 폴더를 골라 올리는 까닭은 <code>.env</code>를 실수로 올리는 일을 한 번 더 막기 위해서이다.</p>
+<p>이 장의 변경을 한 커밋으로 남긴다. 판본 파일, 측정 결과, 비교 기록이 함께 들어가야 「어느 판본을 어떤 근거로 채택했는가」가 한 커밋에서 읽힌다. API 서버는 <code>Ctrl+C</code>로 끈다. <code>git add .</code>나 <code>git add -A</code>를 쓰지 않고 폴더를 골라 올리는 까닭은 <code>.env</code>를 실수로 올리는 일을 한 번 더 막기 위해서이다.</p>
 <p><strong>[터미널]</strong> (확인 터미널)</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add jobprep/api jobprep/prompts jobprep/eval jobprep/tools jobprep/tests <span class="dt">\</span></span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>        jobprep/results jobprep/docs jobprep/web <span class="dt">\</span></span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>        jobprep/requirements.txt jobprep/pytest.ini jobprep/.env.example jobprep/.gitignore</span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">--short</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-E</span> <span class="st">"\.env$|\.venv"</span> <span class="kw">||</span> <span class="bu">echo</span> <span class="st">".env와 .venv 없음"</span></span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"9장: 문서 요약 API, 프롬프트 판본 v1~v3 비교 후 채택"</span></span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><span class="check-badge">확인 9</span> <code>git log origin/main --oneline -1</code>에 이 장의 커밋이 보이고, 커밋에 <code>.env</code>와 <code>.venv/</code>가 없다(<code>git show --stat HEAD | grep -E "\.env$|\.venv"</code>가 빈 출력).</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add ch09/api ch09/prompts ch09/eval ch09/tools ch09/tests ch09/results ch09/docs <span class="dt">\</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>        ch09/requirements.txt ch09/pytest.ini ch09/.env.example ch09/.gitignore</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">--short</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-E</span> <span class="st">"\.env$|\.venv"</span> <span class="kw">||</span> <span class="bu">echo</span> <span class="st">".env와 .venv 없음"</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"9장: 공고 요약 API, 프롬프트 판본 v1~v3 비교 후 채택"</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>.env와 .venv 없음</code></pre>
+<p><span class="check-badge">확인 13</span> <code>git log origin/main --oneline -1</code>에 이 장의 커밋이 보이고, <code>git show --stat HEAD | grep -E "\.env$|\.venv"</code>가 빈 출력이다.</p>
 </section>
 </section>
 <section id="자주-하는-실수와-해결" class="level2">
@@ -1684,8 +1553,8 @@ KEY_CHECK_OK
 <tbody>
 <tr class="odd">
 <td><code>ModuleNotFoundError: No module named 'api'</code></td>
-<td><code>jobprep</code> 폴더가 아닌 곳에서 실행했다</td>
-<td><code>cd ~/llm-service-lab/jobprep</code> 뒤에 다시 실행한다. <code>-m eval.run_compare</code>처럼 모듈로 실행하는 명령은 <code>jobprep</code>에서만 된다</td>
+<td><code>ch09</code> 폴더가 아닌 곳에서 실행했다</td>
+<td><code>cd ~/llm-service-lab/ch09</code> 뒤에 다시 실행한다. <code>-m eval.run_compare</code>처럼 모듈로 실행하는 명령은 <code>ch09</code>에서만 된다</td>
 </tr>
 <tr class="even">
 <td><code>ModuleNotFoundError: No module named 'fastapi'</code></td>
@@ -1693,49 +1562,24 @@ KEY_CHECK_OK
 <td><code>which python</code>이 <code>~/llm-service-lab/.venv/…</code>를 가리키는지 본다. 아니면 <code>source ~/llm-service-lab/.venv/Scripts/activate</code>(macOS는 <code>bin/activate</code>) 뒤 다시 실행한다(부록 A-13)</td>
 </tr>
 <tr class="odd">
-<td><code>pytest</code>가 <code>42 passed</code>가 아니고 실패가 있다</td>
-<td>키트 파일을 고쳤다</td>
-<td>실패한 테스트 이름을 보고 <code>git diff</code>로 바뀐 파일을 찾는다. 키트 원본은 <code>~/kits/Service_10장</code>에 있다</td>
-</tr>
-<tr class="even">
 <td>uvicorn이 <code>[Errno 10048]</code>(macOS는 <code>Address already in use</code>)로 멈춘다</td>
 <td>앞서 띄운 내 서버나 다른 프로그램이 8000을 쓴다</td>
 <td><code>netstat -ano \| findstr :8000</code>으로 쓰는 프로그램을 본다(부록 A-16-1). 내 서버가 남았으면 그 터미널에서 <code>Ctrl+C</code></td>
 </tr>
-<tr class="odd">
-<td>브라우저에서 <code>localhost:8000</code>이 열리지 않는다</td>
-<td>API 서버가 떠 있지 않다. 또는 API 터미널을 닫아 서버가 꺼졌다</td>
-<td>API 터미널의 <code>Uvicorn running on http://127.0.0.1:8000</code> 줄을 본다. 없으면 8-1의 명령으로 다시 띄운다</td>
-</tr>
 <tr class="even">
-<td><code>/api/health</code>의 <code>fake</code>가 <code>false</code>인데 키가 없다</td>
-<td><code>export LLM_FAKE=0</code>이 터미널에 남아 있다</td>
-<td><code>echo "$LLM_FAKE"</code>로 보고 <code>unset LLM_FAKE</code>(부록 A-15-3)</td>
-</tr>
-<tr class="odd">
 <td>실제 호출에서 <code>요청 형식 오류(400)</code></td>
 <td>모델이 <code>effort</code>나 구조화 출력을 지원하지 않는다. 또는 크레딧이나 지출 한도</td>
 <td><code>LLM_MODEL</code>이 안내받은 모델인지 본다. 한도면 모의 모드로 진행한다(부록 A-15-4)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>python -c "…r['점수']…"</code>가 <code>KeyError</code>를 낸다</td>
 <td>Windows의 Git Bash에서 파이썬이 파이프로 받은 한국어를 cp949로 읽었다</td>
-<td>명령의 <code>python</code> 앞에 <code>PYTHONUTF8=1</code>을 붙인다(11-3, 부록 A)</td>
-</tr>
-<tr class="odd">
-<td><code>run_compare</code>가 <code>이미 있다</code>며 멈춘다</td>
-<td>이전 결과를 보호한다</td>
-<td>다시 재려면 <code>--overwrite</code></td>
+<td>명령의 <code>python</code> 앞에 <code>PYTHONUTF8=1</code>을 붙인다(부록 A-3-4)</td>
 </tr>
 <tr class="even">
 <td><code>run_compare</code>가 <code>키가 없다</code>며 멈춘다</td>
 <td><code>LLM_FAKE</code>가 1이 아니어서 실제 호출을 하려 했는데 키가 없다</td>
 <td><code>.env</code>의 <code>LLM_FAKE=1</code>을 확인하거나 명령 앞에 <code>LLM_FAKE=1</code>을 붙인다. 이때 결과 폴더는 남지 않는다</td>
-</tr>
-<tr class="odd">
-<td><code>check_secrets.py</code>가 <code>.gitignore 로 제외되지 않음</code></td>
-<td>저장소의 <code>.gitignore</code>에 <code>.env</code>가 없다</td>
-<td>저장소 맨 위 <code>.gitignore</code>에 <code>.env</code> 한 줄을 더한다</td>
 </tr>
 </tbody>
 </table>
@@ -1745,10 +1589,6 @@ KEY_CHECK_OK
 <h2 class="anchored" data-anchor-id="제출물">제출물</h2>
 <p>장의 산출물은 개인 실습 저장소 <code>llm-service-lab</code>의 커밋으로 남는다.</p>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>경로(<code>~/llm-service-lab/</code> 기준)</th>
@@ -1757,41 +1597,49 @@ KEY_CHECK_OK
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>jobprep/api/</code></td>
+<td><code>ch09/api/</code></td>
 <td>요약 API(키트)</td>
 </tr>
 <tr class="even">
-<td><code>jobprep/prompts/v1.md</code>~<code>v3.md</code></td>
+<td><code>ch09/prompts/v1.md</code>~<code>v3.md</code></td>
 <td>프롬프트 판본</td>
 </tr>
 <tr class="odd">
-<td><code>jobprep/results/</code></td>
+<td><code>ch09/results/</code></td>
 <td>판본 비교 결과와 <code>비교표.md</code></td>
 </tr>
 <tr class="even">
-<td><code>jobprep/docs/프롬프트비교.md</code></td>
-<td>비교 기록과 채택 근거(1~5절), 실제 호출의 기록(6절)</td>
+<td><code>ch09/docs/프롬프트비교.md</code></td>
+<td>비교 기록과 채택 근거(1~6절)</td>
 </tr>
 <tr class="odd">
-<td><code>jobprep/.env.example</code>, <code>.gitignore</code></td>
+<td><code>ch09/.env.example</code>, <code>.gitignore</code></td>
 <td>키 없는 견본과 제외 목록</td>
 </tr>
 </tbody>
 </table>
-<p>완료 기준은 판본 세 개를 평가 문항 10개로 비교해 하나를 채택한 기록이 있고, 키가 저장소와 브라우저 코드에 없음이 검사로 확인되는 것이다.</p>
+<p>완료 기준은 판본 세 개를 평가 문항 10개로 비교해 하나를 채택한 기록이 있고, 키가 저장소에 없음이 검사로 확인되는 것이다.</p>
 <hr>
 </section>
 <section id="정리" class="level2">
 <h2 class="anchored" data-anchor-id="정리">정리</h2>
 <ul>
-<li>브라우저, 우리 API 서버, Claude API의 세 층에서 키는 서버의 <code>.env</code>에만 있다. 브라우저는 <code>/api/summary</code>만 부른다.</li>
-<li>Messages API는 <code>model</code>, <code>max_tokens</code>, <code>messages</code>가 필수이고 <code>system</code>은 <code>messages</code> 밖에 있다. 응답의 블록은 위치가 아니라 <code>type</code>으로 고른다.</li>
-<li>요금은 입력과 출력 토큰에 각각 단가를 곱한 합이다. 모델 등급, 출력 길이, 매번 보내는 입력, 반복 요청이 비용을 정하고, 넷 모두 설계로 바꿀 수 있다.</li>
-<li>API 버전 <code>2026-10-21</code>에서 <code>temperature</code>는 보낼 수 없다. 일관성은 구조화 출력, 명확한 지시와 예시, 캐시, 평가로 설계한다. 환각은 근거 제한과 「모르면 null」로 줄이고 평가와 화면 안내로 관리한다.</li>
-<li>형식은 구조화 출력으로 강제하고 서버에서 다시 검사한다. 내용(마감일, 우대 사항)은 강제되지 않으므로 평가 문항으로 잰다.</li>
-<li>프롬프트는 파일로 두고 한 번에 한 가지씩 바꾼 판본을 같은 문항, 같은 채점기로 비교해 점수와 비용을 근거로 채택한다.</li>
-<li>모델 출력은 신뢰하지 않는 입력이다. 화면에는 <code>textContent</code>로만 넣는다.</li>
+<li>키는 서버의 <code>.env</code>에만 있고, 브라우저는 우리 서버의 <code>/api/summary</code>만 부른다.</li>
+<li>Messages API의 필수 항목은 <code>model</code>, <code>max_tokens</code>, <code>messages</code>이고, 응답의 블록은 <code>type</code>으로 고른다.</li>
+<li>요금은 입력과 출력 토큰에 각각 단가를 곱한 합이며, 모델 등급, 출력 길이, 반복 요청은 설계로 바꿀 수 있다.</li>
+<li>일관성은 샘플링 값이 아니라 구조화 출력, 지시와 예시, 캐시, 평가로 설계한다. 환각은 근거 제한과 「모르면 null」로 줄인다.</li>
+<li>형식은 API로 강제하고 서버에서 다시 검사하며, 내용은 평가 문항으로 잰다.</li>
+<li>판본은 한 번에 한 가지씩 바꾸고, 점수와 비용과 오답의 원문을 근거로 채택한다.</li>
+<li>모델 출력은 신뢰하지 않는 입력이므로 화면에는 <code>textContent</code>로만 넣는다.</li>
 </ul>
+<p><strong>개념 점검.</strong></p>
+<ol type="1">
+<li>키를 브라우저 코드에 두면 안 되는 까닭을 요금과 관련지어 설명하라.</li>
+<li><code>stop_reason</code>이 <code>max_tokens</code>일 때 요약 API가 502를 내는 까닭은 무엇인가.</li>
+<li>구조화 출력으로 형식을 강제해도 평가 문항이 필요한 까닭은 무엇인가.</li>
+<li>v2와 v3의 비교가 「예시의 효과」를 보여 준다고 말할 수 있는 근거는 무엇인가.</li>
+<li>합계 점수가 가장 높은 판본을 채택하기 전에 오답의 원문을 읽어야 하는 까닭은 무엇인가.</li>
+</ol>
 <hr>
 </section>
 <section id="참고-자료" class="level2">
@@ -1826,41 +1674,47 @@ KEY_CHECK_OK
 </tr>
 <tr class="even">
 <td>A4</td>
-<td>Claude API 문서: Models overview, Claude Haiku 5.5 개요(모델 이름, 적응형 사고, 기본 effort, 샘플링 값 생략)</td>
+<td>Claude API 문서: Models overview, Claude Haiku 5.5 개요(모델 이름, 적응형 사고, 기본 effort)</td>
 <td><a href="https://platform.claude.com/docs/en/about-claude/models/overview" class="uri">https://platform.claude.com/docs/en/about-claude/models/overview</a>, <a href="https://platform.claude.com/docs/en/models/haiku-5-5/overview" class="uri">https://platform.claude.com/docs/en/models/haiku-5-5/overview</a></td>
 <td>2026-11-14(2026-11-16 다시 확인)</td>
 </tr>
 <tr class="odd">
 <td>A6</td>
-<td>OWASP Top 10 for LLM Applications 2025(LLM01 프롬프트 주입, LLM09 잘못된 정보 포함)</td>
+<td>OWASP Top 10 for LLM Applications 2025(LLM05 부적절한 출력 처리, LLM10 무제한 소비)</td>
 <td><a href="https://genai.owasp.org/llm-top-10/" class="uri">https://genai.owasp.org/llm-top-10/</a></td>
 <td>2026-11-14</td>
 </tr>
 <tr class="even">
+<td>A6-26</td>
+<td>OWASP GenAI LLM Top 10 2026(2026-08-03. 두 판의 번호 대응은 「AI에이전트 기획 및 개발」 10장 2-1절의 표를 따름)</td>
+<td><a href="https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/" class="uri">https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/</a></td>
+<td>2026-11-15</td>
+</tr>
+<tr class="odd">
 <td>A7</td>
 <td>Claude API 문서: Pricing(모델별 단가, 일괄 처리, 캐시, 긴 프롬프트 요금)</td>
 <td><a href="https://platform.claude.com/docs/en/about-claude/pricing" class="uri">https://platform.claude.com/docs/en/about-claude/pricing</a></td>
 <td>2026-11-14(2026-11-16 다시 확인)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>A9</td>
 <td>Claude API 문서: Migrating to API version 2026-10-21(샘플링 값 제거, SDK 버전)</td>
 <td><a href="https://platform.claude.com/docs/en/api/migration-2026-10-21" class="uri">https://platform.claude.com/docs/en/api/migration-2026-10-21</a></td>
 <td>2026-11-14</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>A10</td>
 <td>Claude API 문서: Reduce hallucinations</td>
 <td><a href="https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations" class="uri">https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations</a></td>
 <td>2026-11-14</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>A12</td>
 <td>FastAPI 자습서: Testing(TestClient)</td>
 <td><a href="https://fastapi.tiangolo.com/tutorial/testing/" class="uri">https://fastapi.tiangolo.com/tutorial/testing/</a></td>
 <td>2026-11-14</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>W1</td>
 <td>MDN: Element.innerHTML(보안 고려 사항, textContent 권장)</td>
 <td><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML" class="uri">https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML</a></td>
@@ -1872,7 +1726,7 @@ KEY_CHECK_OK
 </section>
 <section id="다음-장-안내" class="level2">
 <h2 class="anchored" data-anchor-id="다음-장-안내">다음 장 안내</h2>
-<p>10장 「검색 증강 생성(RAG)」은 이 장의 API에 질의응답 기능을 더한다. 자료를 색인하고, 질문에 맞는 조각을 찾아 근거로 주고, 자료에 없는 질문에는 「자료에 없다」고 답하게 한다. 검색의 품질은 재현율로 잰다.</p>
+<p>10장 「검색 증강 생성(RAG)」은 서비스 4에 질의응답 기능을 더한다. 문서를 색인하고, 질문에 맞는 조각을 찾아 근거로 주고, 자료에 없는 질문에는 「자료에 없다」고 답하게 한다. 검색의 품질은 재현율로 잰다. 10장은 새 작업 폴더 <code>ch10/</code>에서 시작하며 이 장의 결과가 없어도 된다.</p>
 
 
 </section>

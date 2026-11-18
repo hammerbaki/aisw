@@ -1317,7 +1317,7 @@ index 0e12864..f4bdb36 100644
 <ol type="1">
 <li><strong>키를 먼저 폐기하고 새로 발급한다.</strong> GitHub Docs는 비밀 정보가 커밋되었을 때 첫 단계로 그 비밀을 폐기하거나 교체하라고 하며, 교체만으로 충분한 경우가 많다고 적는다[H7]. 기록에서 지우는 일보다 먼저다. 이 과목의 API 키는 각자 Claude Console에서 발급하는 선택 사항이므로, 폐기도 각자 Console에서 한다(부록 A-14).</li>
 <li>추적에서 뺀다. <code>git rm --cached .env</code>는 파일을 디스크에 남긴 채 다음 커밋부터 기록에서 뺀다. <code>.gitignore</code>에 <code>.env</code>를 넣어 함께 커밋한다.</li>
-<li>앞선 커밋에는 여전히 남아 있다는 것을 안다. 이 절차를 따른 뒤 <code>git log --oneline --all -- .env</code>를 치면 「.env를 추적에서 뺌」 커밋 아래에 「실수로 .env 커밋」이 그대로 보이고, 그 커밋을 꺼내 보면 키가 그대로 있다. 기록에서 완전히 지우려면 기록을 고쳐 쓰는 별도 도구가 필요하고, 이미 푸시했다면 복제한 모든 사람에게 영향을 준다. 그래서 1번이 먼저다. 키를 다루는 9장 전에 3-3의 <code>.gitignore</code>가 <code>.env</code>를 막고 있는지 다시 확인한다.</li>
+<li>앞선 커밋에는 여전히 남아 있다는 것을 안다. 이 절차를 따른 뒤 <code>git log --oneline --all -- .env</code>를 치면 「.env를 추적에서 뺌」 커밋 아래에 「실수로 .env 커밋」이 그대로 보이고, 그 커밋을 꺼내 보면 키가 그대로 있다. 기록에서 완전히 지우려면 기록을 고쳐 쓰는 별도 도구가 필요하고, 이미 푸시했다면 복제한 모든 사람에게 영향을 준다. 그래서 1번이 먼저다. 고용24 인증키를 받는 4장 전에 3-3의 <code>.gitignore</code>가 <code>.env</code>를 막고 있는지 다시 확인한다.</li>
 </ol>
 <hr>
 </section>
@@ -1327,7 +1327,7 @@ index 0e12864..f4bdb36 100644
 <section id="github에-저장소-만들기" class="level3">
 <h3 class="anchored" data-anchor-id="github에-저장소-만들기">9-1. GitHub에 저장소 만들기</h3>
 <p>이미 커밋이 있는 로컬 저장소를 올리므로, GitHub의 저장소는 비어 있어야 한다. GitHub Docs는 오류를 피하려면 README, 라이선스, <code>.gitignore</code>로 새 저장소를 초기화하지 말라고 적는다[H1]. 초기화하면 원격에 내가 모르는 첫 커밋이 생겨, 첫 푸시가 거부된다.</p>
-<p><strong>웹에서 만들기.</strong> 오른쪽 위의 <code>+</code> → New repository를 누른다. Owner는 자기 계정, Repository name은 <code>llm-service-lab</code>, 공개 범위는 Private(비공개)로 한다. 이 저장소에는 학기 내내의 작업 기록과 평가의 근거가 쌓이기 때문이다. 교수가 비공개 저장소를 읽는 방법(협업자 초대 등)은 수업에서 안내한다. 비공개 저장소에서 5장의 GitHub Pages를 여는 조건은 부록 A-10-2에 있다. README, <code>.gitignore</code>, 라이선스의 초기화 항목은 모두 비워 둔다. 「Create repository」를 누르면 Quick setup 화면에 저장소 주소 <code>https://github.com/「사용자이름」/llm-service-lab.git</code>이 나온다[H2].</p>
+<p><strong>웹에서 만들기.</strong> 오른쪽 위의 <code>+</code> → New repository를 누른다. Owner는 자기 계정, Repository name은 <code>llm-service-lab</code>, 공개 범위는 Private(비공개)로 한다. 이 저장소에는 학기 내내의 작업 기록과 평가의 근거가 쌓이기 때문이다. 교수가 비공개 저장소를 읽는 방법(협업자 초대 등)은 수업에서 안내한다. 5장에서 GitHub Pages로 배포할 때는 공개 저장소를 따로 만든다(부록 A-10-2). README, <code>.gitignore</code>, 라이선스의 초기화 항목은 모두 비워 둔다. 「Create repository」를 누르면 Quick setup 화면에 저장소 주소 <code>https://github.com/「사용자이름」/llm-service-lab.git</code>이 나온다[H2].</p>
 <blockquote class="blockquote">
 <p><strong>[그림 자리: GitHub의 새 저장소 화면]</strong> 「Create a new repository」 화면에서 이름 <code>llm-service-lab</code>, 공개 범위 Private, README·<code>.gitignore</code>·라이선스의 초기화 항목이 비어 있는 상태. 찍을 곳: github.com의 <code>+</code> → New repository. 메뉴 이름은 2026-11-14에 문서로 확인한 것이며 수업 전에 화면과 대조한다.</p>
 </blockquote>
