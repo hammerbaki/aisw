@@ -107,6 +107,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <style>html{ scroll-behavior: smooth; }</style>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({
+    startOnLoad: true,
+    securityLevel: "loose",
+    theme: "neutral",
+    fontFamily: '"Pretendard Variable", Pretendard, "Malgun Gothic", sans-serif'
+  });
+</script>
 
 
 </head>
@@ -332,12 +341,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#github-spec-kit의-단계" id="toc-github-spec-kit의-단계" class="nav-link" data-scroll-target="#github-spec-kit의-단계">1-2. GitHub Spec Kit의 단계</a></li>
   <li><a href="#claude-code의-계획-모드" id="toc-claude-code의-계획-모드" class="nav-link" data-scroll-target="#claude-code의-계획-모드">1-3. Claude Code의 계획 모드</a></li>
   </ul></li>
-  <li><a href="#재구현과-비교" id="toc-재구현과-비교" class="nav-link" data-scroll-target="#재구현과-비교">2. 재구현과 비교</a>
+  <li><a href="#api의-자료를-화면에-넣는-길" id="toc-api의-자료를-화면에-넣는-길" class="nav-link" data-scroll-target="#api의-자료를-화면에-넣는-길">2. API의 자료를 화면에 넣는 길</a>
   <ul class="collapse">
-  <li><a href="#원본을-보지-못한-구현자" id="toc-원본을-보지-못한-구현자" class="nav-link" data-scroll-target="#원본을-보지-못한-구현자">2-1. 원본을 보지 못한 구현자</a></li>
-  <li><a href="#차이의-원인-다섯-가지" id="toc-차이의-원인-다섯-가지" class="nav-link" data-scroll-target="#차이의-원인-다섯-가지">2-2. 차이의 원인 다섯 가지</a></li>
-  <li><a href="#실행-결과의-갈래" id="toc-실행-결과의-갈래" class="nav-link" data-scroll-target="#실행-결과의-갈래">2-3. 실행 결과의 갈래</a></li>
-  <li><a href="#원본에-직접-묻기" id="toc-원본에-직접-묻기" class="nav-link" data-scroll-target="#원본에-직접-묻기">2-4. 원본에 직접 묻기</a></li>
+  <li><a href="#브라우저에서-api를-바로-부르지-않는-까닭" id="toc-브라우저에서-api를-바로-부르지-않는-까닭" class="nav-link" data-scroll-target="#브라우저에서-api를-바로-부르지-않는-까닭">2-1. 브라우저에서 API를 바로 부르지 않는 까닭</a></li>
+  <li><a href="#화면에-쓸-항목만-남기기" id="toc-화면에-쓸-항목만-남기기" class="nav-link" data-scroll-target="#화면에-쓸-항목만-남기기">2-2. 화면에 쓸 항목만 남기기</a></li>
+  <li><a href="#출처와-받은-시각의-표시" id="toc-출처와-받은-시각의-표시" class="nav-link" data-scroll-target="#출처와-받은-시각의-표시">2-3. 출처와 받은 시각의 표시</a></li>
   </ul></li>
   <li><a href="#구현-지시문의-구성" id="toc-구현-지시문의-구성" class="nav-link" data-scroll-target="#구현-지시문의-구성">3. 구현 지시문의 구성</a>
   <ul class="collapse">
@@ -364,17 +372,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#브라우저-에이전트" id="toc-브라우저-에이전트" class="nav-link" data-scroll-target="#브라우저-에이전트">7-1. 브라우저 에이전트</a></li>
   <li><a href="#지켜야-할-세-가지" id="toc-지켜야-할-세-가지" class="nav-link" data-scroll-target="#지켜야-할-세-가지">7-2. 지켜야 할 세 가지</a></li>
+  <li><a href="#판정을-직접-확인하기" id="toc-판정을-직접-확인하기" class="nav-link" data-scroll-target="#판정을-직접-확인하기">7-3. 판정을 직접 확인하기</a></li>
   </ul></li>
-  <li><a href="#핵심-실습-명세만으로-만든-공고-모아보기-웹의-검사와-배포" id="toc-핵심-실습-명세만으로-만든-공고-모아보기-웹의-검사와-배포" class="nav-link" data-scroll-target="#핵심-실습-명세만으로-만든-공고-모아보기-웹의-검사와-배포">8. 핵심 실습: 명세만으로 만든 공고 모아보기 웹의 검사와 배포</a>
+  <li><a href="#핵심-실습-고용24의-자료로-채운-공고-모아보기-웹" id="toc-핵심-실습-고용24의-자료로-채운-공고-모아보기-웹" class="nav-link" data-scroll-target="#핵심-실습-고용24의-자료로-채운-공고-모아보기-웹">8. 핵심 실습: 고용24의 자료로 채운 공고 모아보기 웹</a>
   <ul class="collapse">
   <li><a href="#완료-기준과-진행-순서" id="toc-완료-기준과-진행-순서" class="nav-link" data-scroll-target="#완료-기준과-진행-순서">8-1. 완료 기준과 진행 순서</a></li>
-  <li><a href="#명세만으로-재구현" id="toc-명세만으로-재구현" class="nav-link" data-scroll-target="#명세만으로-재구현">8-2. 명세만으로 재구현</a></li>
-  <li><a href="#원본과-비교" id="toc-원본과-비교" class="nav-link" data-scroll-target="#원본과-비교">8-3. 원본과 비교</a></li>
-  <li><a href="#빈틈을-명세로-되돌리기" id="toc-빈틈을-명세로-되돌리기" class="nav-link" data-scroll-target="#빈틈을-명세로-되돌리기">8-4. 빈틈을 명세로 되돌리기</a></li>
-  <li><a href="#같은-명세로-정적-웹-만들기-실행-전" id="toc-같은-명세로-정적-웹-만들기-실행-전" class="nav-link" data-scroll-target="#같은-명세로-정적-웹-만들기-실행-전">8-5. 같은 명세로 정적 웹 만들기 (실행 전)</a></li>
-  <li><a href="#인수-조건-표와-점검-실행-전" id="toc-인수-조건-표와-점검-실행-전" class="nav-link" data-scroll-target="#인수-조건-표와-점검-실행-전">8-6. 인수 조건 표와 점검 (실행 전)</a></li>
+  <li><a href="#자료-파일-만들기" id="toc-자료-파일-만들기" class="nav-link" data-scroll-target="#자료-파일-만들기">8-2. 자료 파일 만들기</a></li>
+  <li><a href="#계획과-구현-실행-전" id="toc-계획과-구현-실행-전" class="nav-link" data-scroll-target="#계획과-구현-실행-전">8-3. 계획과 구현 (실행 전)</a></li>
+  <li><a href="#인수-조건-표와-손-점검-실행-전" id="toc-인수-조건-표와-손-점검-실행-전" class="nav-link" data-scroll-target="#인수-조건-표와-손-점검-실행-전">8-4. 인수 조건 표와 손 점검 (실행 전)</a></li>
+  <li><a href="#에이전트의-점검과-대조-실행-전" id="toc-에이전트의-점검과-대조-실행-전" class="nav-link" data-scroll-target="#에이전트의-점검과-대조-실행-전">8-5. 에이전트의 점검과 대조 (실행 전)</a></li>
+  <li><a href="#빈틈의-보강-실행-전" id="toc-빈틈의-보강-실행-전" class="nav-link" data-scroll-target="#빈틈의-보강-실행-전">8-6. 빈틈의 보강 (실행 전)</a></li>
   <li><a href="#배포-실행-전" id="toc-배포-실행-전" class="nav-link" data-scroll-target="#배포-실행-전">8-7. 배포 (실행 전)</a></li>
-  <li><a href="#둘째-빈틈의-보강과-커밋-실행-전" id="toc-둘째-빈틈의-보강과-커밋-실행-전" class="nav-link" data-scroll-target="#둘째-빈틈의-보강과-커밋-실행-전">8-8. 둘째 빈틈의 보강과 커밋 (실행 전)</a></li>
   </ul></li>
   <li><a href="#자주-하는-실수와-해결" id="toc-자주-하는-실수와-해결" class="nav-link" data-scroll-target="#자주-하는-실수와-해결">자주 하는 실수와 해결</a></li>
   <li><a href="#제출물" id="toc-제출물" class="nav-link" data-scroll-target="#제출물">제출물</a></li>
@@ -429,19 +437,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>학사 6주차 · 교재 05 · 서비스 1: 공고 모아보기 웹 (2/2)</p>
 </blockquote>
 <blockquote class="blockquote">
-<p><strong>개편 초안(2026-11-18).</strong> 이 장은 <code>plan/개편안.md</code>의 단원형 구성에 따라 다시 엮은 초안이다. 옛 6장과 9장의 본문에서 옮긴 절의 실행 출력은 옛 키트(<code>Service_06장</code>)에서 확인한 것이다. 「실행 전」이라고 적은 절은 공식 문서를 근거로 새로 쓴 것이며 명령과 출력을 실행으로 확인하지 않았다. 키트와 작업 폴더의 이름은 아직 옛 장 번호를 쓴다.</p>
+<p><strong>개편 초안 2판(2026-11-18).</strong> 서비스 1의 방향을 「참고 프로덕트의 구성 + 공개 API의 자료」로 바꾸어 다시 썼다(<code>plan/개편안.md</code> 9절). 명령줄 재구현과 원본 비교(옛 2절, 옛 8-2~8-4)는 뺐다. 1, 3, 4, 5, 6, 7절은 앞 판에서 옮긴 것이다. 2절과 핵심 실습은 새로 썼다. 8-2의 변환 프로그램은 항목 이름만 개발명세서와 같고 값은 지어낸 견본으로 실행해 확인하였다(2026-11-18, Linux, Python 3.13.18). 실제 응답으로는 확인하지 않았다. 「실행 전」이라고 적은 단계는 실행하지 않은 것이다.</p>
 </blockquote>
-<p>4장에서 공공 채용 게시판의 목록 화면을 관찰해 요구사항 명세서를 썼다. 이 장은 그 명세<strong>만으로</strong> 구현한다. 원본을 보지 못한 구현자(새 세션의 Claude Code)가 명세만 읽고 만든 결과를 원본과 견주면, 둘이 갈라지는 자리에서 명세의 빈틈이 드러난다. 빈틈은 코드가 아니라 명세를 고쳐 메운다.</p>
-<p>구현은 두 번 한다. 먼저 명령줄 프로그램으로 빠르게 한 바퀴를 돌아 빈틈을 찾고, 이어서 같은 명세를 정적 웹으로 구현해 인수 조건으로 검사하고 GitHub Pages에 배포한다. 이것이 <strong>명세 주도 개발(SDD, Spec-Driven Development)</strong>의 최소 단위이다. 명세가 구현의 입력이고 검사의 기준이다.</p>
+<p>4장에서 요구사항 명세서를 썼다. 화면의 구성은 참고 프로덕트(잡코리아)를 관찰해 정했고, 화면에 채울 자료는 고용24 OPEN-API의 채용정보로 정했다. 이 장은 그 명세로 서비스를 만든다. 고용24에서 받은 응답을 화면이 읽을 수 있는 파일로 바꾸고, 명세를 Claude Code에 주어 정적 웹으로 구현하고, 인수 조건으로 검사한 뒤 GitHub Pages에 배포한다.</p>
+<p>구현은 Claude Code가 한다. 사람이 하는 일은 세 가지이다. 구현 전에 계획을 읽고 명세에 없는 것을 빼는 일, 구현 뒤에 인수 조건을 화면에서 직접 확인하는 일, 명세가 정하지 않아 생긴 빈틈을 명세에 되돌리는 일이다. 이것이 <strong>명세 주도 개발(SDD, Spec-Driven Development)</strong>의 가장 작은 한 바퀴이다.</p>
+<p>인수 조건의 점검은 브라우저 에이전트(Aside)에게도 맡겨 본다. 에이전트의 판정은 그대로 쓰지 않는다. 내가 화면에서 직접 확인한 결과와 맞대어 본다. <strong>AI가 알려 준 것은 내 눈과 손으로 확인한 뒤에 쓴다</strong>(1장).</p>
 <hr>
 <section id="학습-목표" class="level2">
 <h2 class="anchored" data-anchor-id="학습-목표">학습 목표</h2>
 <ul>
-<li><strong>명세만으로 재구현한 결과를 원본과 비교해 차이의 원인을 분류하고, 명세 빈틈을 명세에 되돌릴 수 있다.</strong></li>
 <li><strong>명세 주도 개발의 단계를 Claude Code의 계획 모드로 수행할 수 있다.</strong></li>
-<li><strong>요구에서 인수 조건(Given-When-Then)을 쓰고, 자동 확인과 손 점검을 구분할 수 있다.</strong></li>
-<li><strong>정적 웹을 로컬 서버로 확인하고 GitHub Pages에 배포하며, 공개되는 것의 범위를 설명할 수 있다.</strong></li>
-<li><strong>브라우저 에이전트의 판정을 근거와 대조할 수 있다.</strong></li>
+<li><strong>공개 API의 응답을 화면용 자료 파일로 바꾸고, 인증키와 받은 자료가 공개되는 범위를 설명할 수 있다.</strong></li>
+<li><strong>요구에서 인수 조건(Given-When-Then)을 쓰고 화면에서 점검할 수 있다.</strong></li>
+<li><strong>브라우저 에이전트의 판정을 내가 직접 확인한 결과와 대조할 수 있다.</strong></li>
+<li><strong>정적 웹을 로컬 서버로 확인하고 GitHub Pages에 배포할 수 있다.</strong></li>
 </ul>
 <hr>
 </section>
@@ -452,14 +461,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>터미널</span>
 </div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> ch06/복원</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">--short</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="text"><code>(예시)
-관찰기록.md  구조분석.md  복원명세.md  비교표_양식.md  채용.csv  페이지.html</code></pre>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> ch04</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">--short</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> check-ignore <span class="at">-v</span> ch04/응답_견본.xml</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>ls ch04</code>에 <code>관찰기록.md</code>, <code>자료항목표.md</code>, <code>조사.md</code>, <code>요구사항명세서.md</code>, <code>응답_견본.xml</code>이 보여야 한다. 마지막 명령은 <code>.gitignore</code>의 규칙 한 줄을 출력해야 한다. 아무것도 출력하지 않으면 응답 파일이 저장소에 올라갈 수 있는 상태이므로 4장 7-3으로 돌아간다.</p>
 <ul>
-<li><p><strong>이 장의 실행 상한.</strong> 실제 모델은 Claude Code 대화형으로만 부른다. 프롬프트는 단계마다 한 번, 고쳐 보내기는 한 번까지이다.</p></li>
-<li><p><strong>키트.</strong> 옛 6장의 키트(<code>Service_06장</code>)를 4장에 이어 쓴다. 정적 웹의 검사 도구는 아직 키트에 없으므로 이 장의 검사는 인수 조건 표와 손 점검으로 한다.</p></li>
-<li><p><span class="check-badge">확인 1</span> <code>ch06/복원/</code>에 <code>복원명세.md</code>와 <code>채용.csv</code>가 있고 <code>git status --short</code>에 4장의 커밋하지 않은 변경이 없다.</p></li>
+<li><p><strong>이 장의 실행 상한.</strong> Claude Code는 대화형으로만 쓴다. 프롬프트는 단계마다 한 번, 고쳐 보내기는 한 번까지이다. Aside의 점검은 한 번이다.</p></li>
+<li><p><strong>API 호출.</strong> 이 장에서는 API를 새로 부르지 않는다. 4장에서 받은 <code>응답_견본.xml</code>을 쓴다. 인증키가 늦게 발급되어 4장에서 받지 못했으면 이 장을 시작할 때 4장 7-3의 명령으로 한 번 받는다.</p></li>
+<li><p><strong>키트.</strong> 4장에 이어 <code>Service_06장</code>(EARS 검사기)을 쓴다.</p></li>
+<li><p><span class="check-badge">확인 1</span> <code>ch04/</code>에 <code>요구사항명세서.md</code>와 <code>응답_견본.xml</code>이 있고, <code>git check-ignore</code>가 규칙 한 줄을 출력하며, <code>git status --short</code>에 4장의 커밋하지 않은 변경이 없다.</p></li>
 </ul>
 </section>
 <section id="명세-주도-개발" class="level2">
@@ -656,23 +666,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Yes, manually approve edits</strong>: 계획을 승인하고 편집을 하나씩 확인한다. 파일을 저장하게 할 때 쓴다.</li>
 <li><strong>No, keep planning</strong>: 계획 모드에 머물며 무엇을 바꿀지 말한다. 계획을 검토만 할 때 쓴다.</li>
 </ul>
-<p>계획 모드의 쓰임은 「파일이 바뀌면 안 되는 분석 단계」를 보호하는 것이다. 4장의 구조 분석은 남의 서비스를 읽기만 하는 단계이므로 계획 모드에서 한다. 저장은 계획 모드를 나온 뒤에 따로 시킨다. 이렇게 단계를 나누면, 분석 결과를 읽고 고칠 기회가 저장 전에 한 번 생긴다. 한 번만 계획을 받고 싶으면 「<code>/plan 복원명세.md를 읽고 명세가 정하지 않은 상황을 세 개 제안하라</code>」처럼 프롬프트 앞에 <code>/plan</code>을 붙인다.</p>
+<p>계획 모드의 쓰임은 「파일이 바뀌면 안 되는 분석 단계」를 보호하는 것이다. 4장에서 응답 파일을 읽혀 항목표의 초안을 받은 것처럼, 읽기만 하는 단계는 계획 모드에서 한다. 저장은 계획 모드를 나온 뒤에 따로 시킨다. 이렇게 단계를 나누면, 분석 결과를 읽고 고칠 기회가 저장 전에 한 번 생긴다. 한 번만 계획을 받고 싶으면 「<code>/plan 복원명세.md를 읽고 명세가 정하지 않은 상황을 세 개 제안하라</code>」처럼 프롬프트 앞에 <code>/plan</code>을 붙인다.</p>
 <p>승인 질문에서 무심코 <code>Enter</code>를 누르면 첫 선택지가 골라질 수 있으므로 상태 표시줄을 보는 습관을 들인다. 받은 계획은 세션 동안 <code>~/.claude/plans/</code> 아래에 파일로 남는다[S5].</p>
 <blockquote class="blockquote">
-<p><strong>[그림 자리: 계획 모드의 상태 표시줄과 승인 질문]</strong> 두 장을 나란히 둔다. 왼쪽은 입력 창 아래 상태 표시줄의 <code>⏸ plan mode on</code>, 오른쪽은 계획이 준비된 뒤의 승인 질문(Yes, manually approve edits / No, keep planning 등). 찍을 곳: 내 PC(Windows, VS Code의 Git Bash 터미널)의 Claude Code, 4장의 구조 분석 프롬프트를 보낸 화면. 선택지 이름은 판에 따라 다르므로 수업 직전의 판으로 찍는다.</p>
+<p><strong>[그림 자리: 계획 모드의 상태 표시줄과 승인 질문]</strong> 두 장을 나란히 둔다. 왼쪽은 입력 창 아래 상태 표시줄의 <code>⏸ plan mode on</code>, 오른쪽은 계획이 준비된 뒤의 승인 질문(Yes, manually approve edits / No, keep planning 등). 찍을 곳: 내 PC(Windows, VS Code의 Git Bash 터미널)의 Claude Code, 4장의 항목표 프롬프트를 보낸 화면. 선택지 이름은 판에 따라 다르므로 수업 직전의 판으로 찍는다.</p>
 </blockquote>
 <p><strong>따라 하기 2: 계획 모드에서 받고 저장하지 않기.</strong> 핵심 실습은 계획 모드에서 분석을 받고 모드를 나온 뒤에 저장하는 일을 되풀이한다. 그 순서를 한 번 해 본다. 먼저 <code>[터미널]</code>에서 지금의 저장소 상태를 적어 둔다.</p>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">--short</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">--short</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>(예시)
-?? ch06/</code></pre>
+(4장을 커밋하였으면 아무것도 나오지 않는다)</code></pre>
 <p>출력은 저장소의 상태에 따라 다르다. 4장의 산출물을 모두 커밋했으면 빈 출력이다. 이어서 Claude Code 터미널에서 시작한다.</p>
 <p><strong>[터미널]</strong> (Claude Code 터미널)</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol type="1">
 <li><code>Shift+Tab</code>을 눌러 상태 표시줄에 <code>⏸ plan mode on</code>이 보이게 한다. 지나쳤으면 한 바퀴 더 돈다.</li>
 <li>다음 프롬프트를 보낸다.</li>
@@ -680,7 +690,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-label where-claude">
 <span>Claude Code</span>
 </div>
-<pre class="text"><code>ch06/복원/복원명세.md를 읽고, 명세가 정하지 않은 상황을 세 개 한 줄씩 제안하라. 파일은 만들지 마라.</code></pre>
+<pre class="text"><code>ch04/요구사항명세서.md를 읽고, 명세가 정하지 않은 상황을 세 개 한 줄씩 제안하라. 파일은 만들지 마라.</code></pre>
 <ol start="3" type="1">
 <li>계획이 나오고 승인 질문이 뜨면 <strong>No, keep planning</strong>을 고른 뒤 <code>Esc</code>로 닫는다. 첫 선택지에서 <code>Enter</code>를 누르지 않는다.</li>
 <li>승인 질문이 닫힌 상태에서 <code>Shift+Tab</code>을 눌러 <code>plan mode on</code>이 사라지는 것을 본다. <code>/exit</code>로 나온다.</li>
@@ -692,117 +702,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </section>
 </section>
-<section id="재구현과-비교" class="level2">
-<h2 class="anchored" data-anchor-id="재구현과-비교">2. 재구현과 비교</h2>
-<p>4장에서 본 절차의 여섯 단계 가운데 ⑤ 재구현과 ⑥ 비교는 리버스 엔지니어링을 명세의 검사로 바꾸는 단계다. 명세만 받은 구현자가 무엇을 만드는지 보면, 명세가 무엇을 정했고 무엇을 정하지 않았는지가 결과의 차이로 드러난다. 이 절은 핵심 실습의 8-2~8-4에서 쓰는 규칙과 분류를 정리한다.</p>
-<section id="원본을-보지-못한-구현자" class="level3">
-<h3 class="anchored" data-anchor-id="원본을-보지-못한-구현자">2-1. 원본을 보지 못한 구현자</h3>
-<p>재구현 폴더에는 명세와 자료만 넣는다. 원본의 주소, 받은 HTML(<code>페이지.html</code>), 구조 분석 파일은 넣지 않는다. 재구현하는 AI가 원본을 볼 수 있으면 명세의 빈틈을 원본으로 메워 버리고, 빈틈이 드러나지 않는다. 같은 까닭으로 구조를 분석한 세션을 쓰지 않고 새 세션을 연다. Claude Code의 세션은 대화 기록을 맥락으로 가지므로, 원본을 읽은 세션은 원본을 읽은 기억을 갖고 있다. 원본을 분석한 쪽과 명세만 받아 구현하는 쪽 사이에 오가는 것이 명세뿐이어야 한다.</p>
-<p>재구현을 맡길 때는 「명세가 정하지 않아 네가 정한 것을 목록으로 보고하라」를 함께 요구한다. AI는 정보가 비어 있으면 그럴듯한 값으로 채우므로, 그 목록이 곧 명세의 빈틈 후보다. 명세가 「범위를 넘는 쪽 번호」를 정하지 않았다면 AI는 빈 목록, 마지막 쪽, 오류 가운데 하나를 스스로 고르고, 그 결정이 목록에 한 줄로 나온다. 그러므로 재구현이 원본과 똑같으면 잘한 것이 아니라 분리가 무너졌는지 먼저 의심한다.</p>
+<section id="api의-자료를-화면에-넣는-길" class="level2">
+<h2 class="anchored" data-anchor-id="api의-자료를-화면에-넣는-길">2. API의 자료를 화면에 넣는 길</h2>
+<section id="브라우저에서-api를-바로-부르지-않는-까닭" class="level3">
+<h3 class="anchored" data-anchor-id="브라우저에서-api를-바로-부르지-않는-까닭">2-1. 브라우저에서 API를 바로 부르지 않는 까닭</h3>
+<p>화면(브라우저)에서 고용24의 API를 직접 부르면 구조가 가장 단순하다. 그러나 이 서비스는 그렇게 하지 않는다. 까닭은 두 가지이다.</p>
+<ol type="1">
+<li><strong>인증키가 드러난다.</strong> 브라우저가 API를 부르려면 자바스크립트 코드에 인증키가 들어 있어야 한다. 브라우저로 받은 코드는 누구나 읽을 수 있다. 개발자 도구의 Network 탭에 요청 주소가 인증키와 함께 그대로 보인다. 인증키는 양도할 수 없다[A1].</li>
+<li><strong>브라우저가 막을 수 있다.</strong> 브라우저는 다른 출처(주소의 앞부분이 다른 곳)로 보낸 요청의 응답을, 그쪽 서버가 허용한 경우에만 코드에 넘긴다(CORS). 고용24의 API가 이것을 허용하는지는 확인하지 않았다.</li>
+</ol>
+<p>그래서 이 장은 다음 길을 쓴다.</p>
+<pre class="mermaid">flowchart LR
+    A["고용24 OPEN-API"] -- "내 PC에서 한 번 호출&lt;br/&gt;(인증키 사용)" --&gt; B["응답_견본.xml&lt;br/&gt;저장소에 올리지 않음"]
+    B -- "변환 프로그램" --&gt; C["web/data/jobs.json&lt;br/&gt;화면에 쓸 항목만"]
+    C -- "fetch (같은 출처)" --&gt; D["정적 웹&lt;br/&gt;index.html, app.js"]
+</pre>
+<p>인증키는 내 PC에서 API를 부를 때만 쓰이고 화면에는 가지 않는다. 화면은 미리 받아 둔 자료 파일만 읽는다.</p>
+<p>이 길의 약점은 자료가 받은 시점에 멈춘다는 것이다. 오늘 받은 공고는 내일이면 일부가 마감된다. 그래서 화면에 「자료를 받은 날짜와 시각」을 보이게 한다. 사용자가 호출할 때마다 새 자료를 받는 구조는 서버가 필요하며 8장에서 다룬다.</p>
 </section>
-<section id="차이의-원인-다섯-가지" class="level3">
-<h3 class="anchored" data-anchor-id="차이의-원인-다섯-가지">2-2. 차이의 원인 다섯 가지</h3>
-<p>비교는 기능마다 원본과 재구현이 어떻게 하는지 적고, 다르면 그 원인을 다섯 가지로 분류한다. 원인에 따라 명세에 할 일이 다르다.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>원인</th>
-<th>뜻</th>
-<th>명세 조치</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>① 명세 빈틈</td>
-<td>명세가 정하지 않아 재구현이 임의로 정했다</td>
-<td>명세에 요구를 더하거나 열린 질문으로 남긴다</td>
-</tr>
-<tr class="even">
-<td>② 매체 차이</td>
-<td>웹 화면과 명령줄의 차이(단추와 옵션, 색과 글자)</td>
-<td>명세는 그대로. 배치와 모양은 11장의 화면 명세가 맡는다</td>
-</tr>
-<tr class="odd">
-<td>③ 데이터 한계</td>
-<td><code>채용.csv</code>에 없는 정보(상세 원문, 전체 76쪽)</td>
-<td>명세는 그대로. 자료 범위를 명세의 맨 위에 밝힌다</td>
-</tr>
-<tr class="even">
-<td>④ 의도한 차이</td>
-<td>원본보다 낫게 정한 것</td>
-<td>명세에 그대로 두고, 비교표에 「의도」로 적는다</td>
-</tr>
-<tr class="odd">
-<td>⑤ 범위 밖</td>
-<td>처음부터 복원하지 않기로 한 것</td>
-<td>「복원하지 않은 것」 절에 있는지 확인한다</td>
-</tr>
-</tbody>
-</table>
-<p>명세 빈틈만 명세로 되돌린다. 매체 차이와 데이터 한계는 명세를 고칠 일이 아니다. 예를 들어 원본은 쪽 번호 단추를 보이고 재구현은 <code>--page</code> 옵션을 받는다면 ②이다. 이것을 명세 빈틈으로 보고 「쪽 번호 단추를 1~10까지 보여야 한다」를 명세에 넣으면, 문장 명세가 화면의 모양까지 정하게 된다. 그것은 11장 화면 명세의 몫이다.</p>
-<p>복원은 복제가 아니다. 원본이 결과가 없을 때 빈 표만 보인다면, 복원 명세는 그것을 결함으로 보고 안내를 일부러 정할 수 있다(④). 원본의 구조를 이해한 위에서 더 나은 명세를 쓰는 것이 리버스 엔지니어링이 경쟁 분석에 쓰일 때의 본래 목적이다.</p>
+<section id="화면에-쓸-항목만-남기기" class="level3">
+<h3 class="anchored" data-anchor-id="화면에-쓸-항목만-남기기">2-2. 화면에 쓸 항목만 남기기</h3>
+<p>API의 응답에는 화면에 쓰지 않는 항목이 있다. 4장의 자료 항목표에서 「쓰지 않는다」고 정한 항목은 자료 파일에 넣지 않는다. 까닭은 다음과 같다.</p>
+<ul>
+<li>자료 파일은 배포하면 누구나 내려받을 수 있다. 화면에 보이지 않는 항목도 파일에 있으면 공개된 것이다.</li>
+<li>응답에는 사업자등록번호(<code>busino</code>) 같은 항목이 있다. 서비스에 필요하지 않은 항목을 다시 공개할 까닭이 없다.</li>
+<li>항목이 적으면 명세와 구현을 맞대어 보기 쉽다.</li>
+</ul>
 </section>
-<section id="실행-결과의-갈래" class="level3">
-<h3 class="anchored" data-anchor-id="실행-결과의-갈래">2-3. 실행 결과의 갈래</h3>
-<p>재구현 프로그램을 실행한 직후에는 정답 화면을 맞히지 않는다. 자기 화면이 다음 가운데 어느 갈래인지 찾는다. 오른쪽 열이 비교와 되돌리기(8-3, 8-4)에서 할 일이다.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>프로그램의 상태</th>
-<th>명세에서 본 원인</th>
-<th>10-6·8-4에서 할 일</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>상태나 검색어를 줄 방법이 없고 전체 목록만 나온다</td>
-<td>사건 문형의 요구가 없거나 「고르면」이 빠졌다</td>
-<td>① 명세 빈틈. 사건 요구를 더한다</td>
-</tr>
-<tr class="even">
-<td>없는 상태 이름을 주면 <code>error: argument --state: invalid choice</code> 같은 사용법 오류로 끝난다</td>
-<td>잘못된 입력에 대한 원치 않는 동작 요구가 없어, 쓴 도구(argparse 등)의 기본 동작이 그대로 나왔다</td>
-<td>① 명세 빈틈. 원치 않는 동작 요구를 더할지 정한다</td>
-</tr>
-<tr class="odd">
-<td>결과가 없을 때 아무것도 보이지 않는다</td>
-<td>「결과가 없으면」의 원치 않는 동작 요구가 없다</td>
-<td>① 명세 빈틈</td>
-</tr>
-<tr class="even">
-<td>표가 아니라 세로 막대로 나눈 글자로 나온다</td>
-<td>매체를 명세가 정하지 않았다. 명령줄은 4장에서 정한 매체이다</td>
-<td>② 매체 차이. 명세는 그대로 둔다</td>
-</tr>
-<tr class="odd">
-<td>명세에 있는 열(예: 상세 내용)이 나오지 않는다</td>
-<td><code>채용.csv</code>에 그 정보가 없다</td>
-<td>③ 데이터 한계. 명세 맨 위의 자료 범위를 확인한다</td>
-</tr>
-<tr class="even">
-<td>명세의 요구가 모두 동작한다</td>
-<td>문형이 고르게 있었다</td>
-<td>「명세가 정하지 않아 정한 것」 목록에서 빈틈을 찾는다</td>
-</tr>
-</tbody>
-</table>
-<p>둘째 행의 문구는 견본 프로그램에 없는 상태 이름(<code>--state 모집중</code>)을 주어 실제로 얻은 것이다(종료 코드 2). 오류로 끝나는 것 자체가 결함이 아니라, 명세가 그 상황을 정하지 않았다는 것이 요점이다.</p>
-</section>
-<section id="원본에-직접-묻기" class="level3">
-<h3 class="anchored" data-anchor-id="원본에-직접-묻기">2-4. 원본에 직접 묻기</h3>
-<p>「결과가 없을 때」와 「범위를 넘는 쪽 번호」는 화면에서 만들기 번거롭다. 3-3처럼 질의 문자열로 상태를 주소에 담을 수 있으면 원본에 직접 물어볼 수 있다. 빈 결과는 접수예정 공고가 없는 날의 <code>stateCode=0</code>이나 없는 검색어(<code>searchType=E_TITLE&amp;searchTxt=없는검색어123</code>, 한글은 퍼센트 부호로 바뀐다)로, 범위를 넘는 쪽은 <code>page=999</code>로 만든다. 2026-11-14에는 <code>stateCode=0</code>이 0행, 11-16과 11-17에는 1행이었고 없는 검색어는 늘 0행이었다. 그래서 8-3은 두 방법을 모두 시험해 0행이 나오는 쪽을 쓴다.</p>
-<p>이렇게 확인한 원본의 동작은 비교표의 「원본」 칸에 「관찰」로 적는다. 원본의 동작이 사용자에게 좋지 않아 보여도, 비교표에는 있는 그대로 적고 판단은 「원인」 칸(④)과 「명세 조치」 칸에서 한다.</p>
-<hr>
+<section id="출처와-받은-시각의-표시" class="level3">
+<h3 class="anchored" data-anchor-id="출처와-받은-시각의-표시">2-3. 출처와 받은 시각의 표시</h3>
+<p>공개 API의 자료를 쓰는 서비스는 자료의 출처를 화면에 보인다. 이 서비스는 화면 아래에 「자료: 고용24 OPEN-API 채용정보, 받은 시각」을 적고, 공고마다 고용24의 원문 주소(<code>wantedInfoUrl</code>)로 가는 연결을 둔다. 지원은 원문에서 하게 한다.</p>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: 고용24 자료의 이용 조건]</strong> 받은 채용정보를 공개 웹에 다시 보이는 것이 허용되는지, 출처 표시의 문구가 정해져 있는지. 확인할 곳: 고용24 OPEN-API 소개 쪽과 인증키 신청 화면의 이용 약관[A1]. 교육과 비영리 이용은 가능하다는 것이 담당 교수의 확인이다. 수업 전에 약관의 해당 조항을 옮겨 적는다. 확인하기 전에는 8-7의 방법대로 견본 자료로 배포한다.</p>
+</blockquote>
 </section>
 </section>
 <section id="구현-지시문의-구성" class="level2">
@@ -930,8 +862,8 @@ URL scheme "file" is not supported.</code></pre>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/jobprep/web</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> http.server 8100 <span class="at">--bind</span> 127.0.0.1</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/jobprep/web</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> http.server 8100 <span class="at">--bind</span> 127.0.0.1</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>Serving HTTP on 127.0.0.1 port 8100 (http://127.0.0.1:8100/) ...</code></pre>
 <p>이 터미널은 서버가 돌고 있으므로 다른 명령을 받지 않는다. 멈출 때는 <code>Ctrl+C</code>를 누른다. 브라우저에서 <code>http://localhost:8100/</code>을 바로 연다. 서버를 띄운 터미널에는 브라우저가 요청한 파일마다 한 줄씩 기록이 찍힌다. 이 기록이 “브라우저가 무엇을 요청했고 서버가 무엇을 답했는가”의 증거다. 다음은 집필용 Windows PC에서 요청 세 개를 보낸 기록이다(2026-11-17).</p>
 <pre class="text"><code>127.0.0.1 - - [17/Nov/2026 01:04:10] "GET / HTTP/1.1" 200 -
@@ -991,7 +923,7 @@ URL scheme "file" is not supported.</code></pre>
 </tr>
 </tbody>
 </table>
-<p>인수 조건은 테스트와 다르다. 테스트는 인수 조건을 확인하는 수단의 하나다. 같은 인수 조건을 사람이 화면에서 손으로 확인할 수도 있고, 이 장의 자동 검사처럼 기계가 확인할 수도 있다. 이 과목은 인수 조건을 쓰고 기계로 확인하는 데까지 다룬다. 테스트를 먼저 쓰고 구현을 그에 맞추어 키우는 테스트 주도 개발(TDD)은 「AI에이전트 기획 및 개발」 2장이 다룬다.</p>
+<p>인수 조건은 테스트와 다르다. 테스트는 인수 조건을 확인하는 수단의 하나다. 같은 인수 조건을 사람이 화면에서 손으로 확인할 수도 있고, 코드로 쓴 검사가 확인할 수도 있다. 이 장은 사람이 화면에서 확인하고, 브라우저 에이전트의 판정을 그 결과에 맞대어 본다. 코드로 쓴 검사는 8장에서 다룬다. 테스트를 먼저 쓰고 구현을 그에 맞추어 키우는 테스트 주도 개발(TDD)은 「AI에이전트 기획 및 개발」 2장이 다룬다.</p>
 </section>
 <section id="given-when-then" class="level3">
 <h3 class="anchored" data-anchor-id="given-when-then">5-2. Given-When-Then</h3>
@@ -1097,13 +1029,13 @@ URL scheme "file" is not supported.</code></pre>
 <tbody>
 <tr class="odd">
 <td>파일의 위치</td>
-<td>내 PC의 <code>jobprep/web/</code></td>
+<td>내 PC의 <code>ch05/web/</code></td>
 <td>GitHub Pages 서버</td>
 </tr>
 <tr class="even">
 <td>주소</td>
 <td><code>http://localhost:8100/</code></td>
-<td><code>https://아이디.github.io/llm-service-lab/</code></td>
+<td><code>https://아이디.github.io/jobs-board/</code></td>
 </tr>
 <tr class="odd">
 <td>보는 사람</td>
@@ -1157,12 +1089,48 @@ URL scheme "file" is not supported.</code></pre>
 <li><strong>개인 정보를 입력하게 하지 않는다.</strong> 에이전트의 AI 모델은 화면의 내용과 지시를 읽는다. 입력값은 인수 조건 표에 적힌 값만 쓰게 한다. 에이전트가 다른 사이트로 가거나 승인을 요청하면 지시를 벗어난 것이므로 거절한다.</li>
 </ol>
 </section>
+<section id="판정을-직접-확인하기" class="level3">
+<h3 class="anchored" data-anchor-id="판정을-직접-확인하기">7-3. 판정을 직접 확인하기</h3>
+<p>에이전트의 판정은 세 가지 방식으로 틀릴 수 있다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>틀리는 방식</th>
+<th>예</th>
+<th>확인하는 방법</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>보지 않고 「통과」라고 한다</td>
+<td>근거 칸에 「정상적으로 표시됨」만 있다</td>
+<td>근거에 화면의 글자나 개수가 없으면 내가 직접 본다</td>
+</tr>
+<tr class="even">
+<td>다른 것을 보고 판정한다</td>
+<td>「광주」로 걸렀는지 묻는데 전체 목록의 개수를 적었다</td>
+<td>근거의 수를 화면의 수와 맞대어 본다</td>
+</tr>
+<tr class="odd">
+<td>사람과 다른 길로 한다</td>
+<td>단추를 누르지 않고 주소를 고쳐 조건을 걸었다</td>
+<td>서버의 요청 기록과 에이전트의 조작 설명을 본다</td>
+</tr>
+</tbody>
+</table>
+<p>그래서 에이전트에게 맡긴 행도 모두 내가 화면에서 한 번 확인한다. 두 판정을 표에 나란히 적고, 다르면 화면을 다시 보아 어느 쪽이 맞는지 적는다. 에이전트의 판정이 내 것과 같았던 행의 수를 세어 두면, 다음에 이 도구를 어디까지 믿을지의 기준이 된다. 13장에서 같은 방법으로 사용성 점검의 보고를 확인한다.</p>
 </section>
-<section id="핵심-실습-명세만으로-만든-공고-모아보기-웹의-검사와-배포" class="level2">
-<h2 class="anchored" data-anchor-id="핵심-실습-명세만으로-만든-공고-모아보기-웹의-검사와-배포">8. 핵심 실습: 명세만으로 만든 공고 모아보기 웹의 검사와 배포</h2>
+</section>
+<section id="핵심-실습-고용24의-자료로-채운-공고-모아보기-웹" class="level2">
+<h2 class="anchored" data-anchor-id="핵심-실습-고용24의-자료로-채운-공고-모아보기-웹">8. 핵심 실습: 고용24의 자료로 채운 공고 모아보기 웹</h2>
 <ul>
-<li><strong>만드는 것.</strong> <code>ch06/복원/재구현/</code>의 명령줄 프로그램과 <code>비교.md</code>, <code>ch05/web/</code>의 정적 웹, <code>ch05/인수조건.md</code>, 공개 주소.</li>
-<li><strong>해결하는 문제.</strong> 재구현이 원본과 갈라지는 자리에서 명세의 빈틈 둘을 찾아, 코드가 아니라 명세를 고쳐 구현이 따라 바뀌게 한다.</li>
+<li><strong>만드는 것.</strong> <code>ch05/</code>의 변환 프로그램, 자료 파일, 정적 웹, 인수 조건 표. 공개 주소.</li>
+<li><strong>해결하는 문제.</strong> 4장의 명세대로 만든 웹이 인수 조건을 통과하고, 인증키와 쓰지 않는 항목이 공개되지 않은 채로 남의 기기에서 열린다.</li>
 </ul>
 <section id="완료-기준과-진행-순서" class="level3">
 <h3 class="anchored" data-anchor-id="완료-기준과-진행-순서">8-1. 완료 기준과 진행 순서</h3>
@@ -1182,262 +1150,244 @@ URL scheme "file" is not supported.</code></pre>
 <tbody>
 <tr class="odd">
 <td>1</td>
-<td><code>비교.md</code>의 표에 기능 6행 이상이 원인 번호와 함께 있다</td>
-<td>파일을 읽는다</td>
+<td><code>jobs.json</code>에 화면에 쓰는 항목만 있고 인증키가 어느 파일에도 없다</td>
+<td>8-2의 <code>grep</code></td>
 </tr>
 <tr class="even">
 <td>2</td>
-<td>복원 명세에 <code>← 추가</code>가 붙은 요구가 둘 이상이고 검사기의 오류가 0건이다</td>
-<td>검사기</td>
+<td>계획에서 「명세가 정하지 않아 정한 것」을 받아 적었다</td>
+<td><code>ch05/빈틈.md</code></td>
 </tr>
 <tr class="odd">
 <td>3</td>
-<td>정적 웹이 로컬 서버에서 열리고 인수 조건 표의 모든 행에 결과가 있다</td>
-<td><code>ch05/인수조건.md</code></td>
+<td>로컬 주소에서 목록이 보이고 화면에 출처와 받은 시각이 있다</td>
+<td>브라우저</td>
 </tr>
 <tr class="even">
 <td>4</td>
-<td>공개 주소가 내 폰에서 열린다</td>
-<td>폰의 브라우저</td>
+<td>인수 조건 여섯 행 이상의 모든 행에 내 판정이 있고, 에이전트에게 맡긴 행에는 두 판정이 나란히 있다</td>
+<td><code>ch05/인수조건.md</code></td>
 </tr>
 <tr class="odd">
 <td>5</td>
-<td>공개 저장소에 <code>페이지.html</code>, 명세, 비밀 정보가 없다</td>
-<td>저장소의 파일 목록</td>
+<td>빈틈 하나를 명세에 되돌렸고 명세의 커밋이 구현의 커밋보다 먼저이다</td>
+<td><code>git log</code></td>
 </tr>
 <tr class="even">
 <td>6</td>
-<td>커밋이 원격에 있다</td>
-<td><code>git log origin/main</code></td>
+<td>공개 주소가 폰에서 열린다</td>
+<td>폰</td>
 </tr>
 </tbody>
 </table>
-<p>순서는 재구현(8-2) → 비교(8-3) → 빈틈 되돌리기(8-4) → 정적 웹(8-5) → 인수 조건과 점검(8-6) → 배포(8-7) → 둘째 빈틈과 커밋(8-8)이다. 앞의 세 단계는 40분 안에 마친다.</p>
+<p>순서는 자료 파일 만들기(8-2, 15분) → 계획과 구현(8-3, 30분) → 인수 조건 표와 손 점검(8-4, 20분) → 에이전트의 점검과 대조(8-5, 15분) → 빈틈의 보강(8-6, 20분) → 배포(8-7, 15분)이다.</p>
 </section>
-<section id="명세만으로-재구현" class="level3">
-<h3 class="anchored" data-anchor-id="명세만으로-재구현">8-2. 명세만으로 재구현</h3>
-<p>재구현 폴더에 명세와 자료만 넣고 새 세션을 연다(2-1). 앞의 Claude Code 세션은 <code>/exit</code>로 닫는다.</p>
-<p><strong>[터미널]</strong> (Claude Code 터미널)</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/ch06/복원</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> 재구현</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> 복원명세.md 채용.csv 재구현/</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> 재구현</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="text"><code>복원명세.md  채용.csv</code></pre>
-<p>새 폴더이므로 신뢰를 묻는다. 상태 표시줄에 <code>plan mode on</code>이 없는지 확인하고 보낸다.</p>
-<div class="code-label where-claude">
-<span>Claude Code</span>
+<section id="자료-파일-만들기" class="level3">
+<h3 class="anchored" data-anchor-id="자료-파일-만들기">8-2. 자료 파일 만들기</h3>
+<p>응답 파일(XML)을 화면용 자료 파일(JSON)로 바꾼다. 아래 프로그램을 <code>ch05/xml2json.py</code>로 저장한다. <code>KEEP</code>의 목록은 자기 자료 항목표의 「내 서비스에서」 칸에 맞추어 고친다. 이 파일은 새 키트(<code>Service_05장</code>)에 넣을 예정이며 지금은 키트에 없다.</p>
+<div class="code-label where-server">
+<span>파일: ch05/xml2json.py</span>
 </div>
-<pre class="text"><code>이 폴더의 복원명세.md만을 근거로, python 하나로 실행되는 명령줄 프로그램을 구현하라. 데이터는 같은 폴더의 채용.csv를 읽는다. 표준 라이브러리만 쓴다.
-- 명세에 없는 기능을 만들지 마라
-- 명세가 정하지 않아 네가 정한 것은 목록으로 보고하라(무엇을, 어떻게 정했는지)
-- 질문의 답을 기다리지 말고 명세에 있는 것만으로 구현하라
-- 마지막에 실행 명령의 예를 세 개 보여라</code></pre>
-<pre class="text"><code>● 명세가 정하지 않아 정한 것:
-  1. 상태와 검색어를 함께 주면 둘 다 만족하는 공고만 보인다
-  2. 범위를 넘는 쪽 번호를 주면 빈 목록을 보인다
-  3. 검색어의 대소문자와 앞뒤 공백은 그대로 비교한다
-● 목록.py를 만들었습니다.
-  python 목록.py
-  python 목록.py --state 접수중
-  python 목록.py --field 모집기관 --query 공사</code></pre>
-<p>위는 응답의 예시다. <strong>「명세가 정하지 않아 정한 것」 목록이 이 단계의 핵심 산출물</strong>이다. 비교표 양식을 복사해 <code>비교.md</code>를 만들고, 양식의 「재구현이 정한 것」 절에 목록을 붙인다.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">"""고용24 채용정보 목록 응답(XML)을 화면용 JSON으로 바꾼다.</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">쓰는 법: python xml2json.py 응답.xml jobs.json</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xml.etree.ElementTree <span class="im">as</span> ET</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 화면에 쓰는 항목만 남긴다. 자료 항목표의 「내 서비스에서」 칸을 따른다.</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>KEEP <span class="op">=</span> [<span class="st">"wantedAuthNo"</span>, <span class="st">"company"</span>, <span class="st">"title"</span>, <span class="st">"salTpNm"</span>, <span class="st">"sal"</span>, <span class="st">"region"</span>,</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">"career"</span>, <span class="st">"minEdubg"</span>, <span class="st">"regDt"</span>, <span class="st">"closeDt"</span>, <span class="st">"wantedInfoUrl"</span>]</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> main(src, dst):</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    root <span class="op">=</span> ET.parse(src).getroot()</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    jobs <span class="op">=</span> []</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> el <span class="kw">in</span> root.<span class="bu">iter</span>():</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 공고 한 건: wantedAuthNo를 자식으로 가진 요소</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> el.find(<span class="st">"wantedAuthNo"</span>) <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>            <span class="cf">continue</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>        job <span class="op">=</span> {k: (el.findtext(k) <span class="kw">or</span> <span class="st">""</span>).strip() <span class="cf">for</span> k <span class="kw">in</span> KEEP}</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>        jobs.append(job)</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> {</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>        <span class="st">"source"</span>: <span class="st">"고용24 OPEN-API 채용정보"</span>,</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>        <span class="st">"fetched"</span>: datetime.fromtimestamp(os.path.getmtime(src)).strftime(<span class="st">"%Y-%m-</span><span class="sc">%d</span><span class="st"> %H:%M"</span>),</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>        <span class="st">"count"</span>: <span class="bu">len</span>(jobs),</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>        <span class="st">"jobs"</span>: jobs,</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(dst, <span class="st">"w"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>        json.dump(out, f, ensure_ascii<span class="op">=</span><span class="va">False</span>, indent<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>    empty <span class="op">=</span> {k: <span class="bu">sum</span>(<span class="dv">1</span> <span class="cf">for</span> j <span class="kw">in</span> jobs <span class="cf">if</span> <span class="kw">not</span> j[k]) <span class="cf">for</span> k <span class="kw">in</span> KEEP}</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"공고 </span><span class="sc">{</span><span class="bu">len</span>(jobs)<span class="sc">}</span><span class="ss">건 → </span><span class="sc">{</span>dst<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"빈 값:"</span>, {k: v <span class="cf">for</span> k, v <span class="kw">in</span> empty.items() <span class="cf">if</span> v} <span class="kw">or</span> <span class="st">"없음"</span>)</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"날짜가 아닌 closeDt:"</span>, <span class="bu">sorted</span>({j[<span class="st">"closeDt"</span>] <span class="cf">for</span> j <span class="kw">in</span> jobs <span class="cf">if</span> <span class="kw">not</span> j[<span class="st">"closeDt"</span>][:<span class="dv">2</span>].isdigit()}) <span class="kw">or</span> <span class="st">"없음"</span>)</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(sys.argv) <span class="op">!=</span> <span class="dv">3</span>:</span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>        sys.exit(__doc__)</span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>    main(sys.argv[<span class="dv">1</span>], sys.argv[<span class="dv">2</span>])</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>프로그램은 응답의 바깥 구조를 가정하지 않는다. <code>wantedAuthNo</code>(구인인증번호)를 자식으로 가진 요소를 공고 한 건으로 본다. 목록 응답의 공고마다 이 항목이 있기 때문이다[A3].</p>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/ch06/복원</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> 비교표_양식.md 비교.md</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> 재구현</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> 목록.py <span class="at">--state</span> 접수중</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> 목록.py <span class="at">--field</span> 모집기관 <span class="at">--query</span> 공사</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="text"><code>목록.py  복원명세.md  채용.csv
-현재 쪽 1 / 전체 쪽 1
-757 | 2026년 제5차 광주도시관리공사 직원채용 공고 | 광주도시관리공사 | 접수중 | 2026-11-09 ~ 2026-11-26 | 552 | 2026-11-10
-현재 쪽 1 / 전체 쪽 1
-757 | 2026년 제5차 광주도시관리공사 직원채용 공고 | 광주도시관리공사 | 접수중 | 2026-11-09 ~ 2026-11-26 | 552 | 2026-11-10
-752 | 2026년 하반기 광주도시관리공사 정규직 직원 채용 공고 안내 | 광주도시관리공사 | 마감 | 2026-09-23 ~ 2026-10-08 | 2318 | 2026-09-18</code></pre>
-<p>위 실행 결과는 교수용 견본 프로그램(키트 <code>교수/복원_예시/재구현/목록.py</code>)에서 REQ-09를 반영하기 전의 판으로 실제로 낸 것이다(2026-11-17). 각자의 프로그램은 옵션 이름과 출력 모양이 다르다. 실행 명령은 응답에 나온 것을 쓰고, 자기 화면이 2-3의 갈래표 가운데 어느 갈래인지 찾는다.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ch05/web/data</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> ch05/xml2json.py ch04/응답_견본.xml ch05/web/data/jobs.json</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>지어낸 공고 3건으로 만든 견본 파일로 실행한 출력은 다음과 같다(2026-11-18, Linux, Python 3.13.18). 실제 응답으로 실행하면 건수와 값이 다르다.</p>
+<pre class="text"><code>공고 3건 → jobs.json
+빈 값: 없음
+날짜가 아닌 closeDt: ['채용시까지']</code></pre>
+<p>출력의 둘째, 셋째 줄을 4장의 자료 항목표와 맞대어 본다. 빈 값이 있는 항목과, 마감일(<code>closeDt</code>)에 날짜가 아닌 값이 있는지가 항목표에 적은 것과 같아야 한다. 다르면 항목표를 고치고, 그 항목에 대한 「원치 않는 동작」 요구가 명세에 있는지 확인한다. 「공고 0건」이 나오면 응답 파일이 오류 안내일 수 있다. <code>head -c 300 ch04/응답_견본.xml</code>로 내용을 본다.</p>
+<p>이어서 인증키와 쓰지 않는 항목이 <code>ch05/</code>에 없는지 확인한다.</p>
+<div class="code-label where-server">
+<span>터미널</span>
+</div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/work24.env</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-rc</span> <span class="st">"</span><span class="va">$WORK24_KEY</span><span class="st">"</span> ch05/ <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-v</span> <span class="st">":0"</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-c</span> <span class="st">"busino"</span> ch05/web/data/jobs.json</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>첫 명령은 아무것도 출력하지 않아야 한다(인증키가 든 파일이 없다). 둘째 명령은 0을 출력해야 한다. 견본으로 실행한 결과는 0이었다.</p>
 <ul>
-<li><span class="check-badge">확인 3</span> <code>재구현/</code>의 프로그램이 응답에 나온 명령으로 실행되어 목록을 출력하고, <code>비교.md</code>의 「재구현이 정한 것」 아래에 Claude Code가 보고한 「명세가 정하지 않아 정한 것」 목록이 있다.</li>
+<li><span class="check-badge">확인 3</span> <code>jobs.json</code>의 <code>count</code>가 1 이상이고, <code>fetched</code>에 받은 날짜와 시각이 있으며, 위 두 <code>grep</code>의 결과가 「출력 없음」과 <code>0</code>이다.</li>
 </ul>
 </section>
-<section id="원본과-비교" class="level3">
-<h3 class="anchored" data-anchor-id="원본과-비교">8-3. 원본과 비교</h3>
-<p><code>비교.md</code>의 표를 채운다. 기능마다 원본과 재구현이 어떻게 하는지 적고, 다르면 원인을 2-2의 다섯 가지로 분류한다. 화면으로 확인하기 어려운 두 경우는 원본에 직접 묻는다(2-4). 접수예정 공고가 있는 날에는 첫 줄이 0이 아니므로 둘째 줄(없는 검색어)을 쓴다.</p>
+<section id="계획과-구현-실행-전" class="level3">
+<h3 class="anchored" data-anchor-id="계획과-구현-실행-전">8-3. 계획과 구현 (실행 전)</h3>
+<p>구현할 폴더에 명세를 복사하고 Claude Code를 <code>ch05</code>에서 계획 모드로 연다. 참고 프로덕트의 화면은 주지 않는다. 화면의 구성은 명세에 적힌 만큼만 전한다. 명세가 전하지 못한 것이 빈틈으로 드러나게 하려는 것이다.</p>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/ch06/복원</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="va">U</span><span class="op">=</span><span class="st">"https://www.gjcity.go.kr/portal/examInfo/list.do?mId=0202050000"</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> <span class="st">"</span><span class="va">$U</span><span class="st">&amp;stateCode=0"</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-c</span> <span class="st">'&lt;td class="num"&gt;'</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> <span class="st">"</span><span class="va">$U</span><span class="st">&amp;searchType=E_TITLE&amp;searchTxt=%EC%97%86%EB%8A%94%EA%B2%80%EC%83%89%EC%96%B4123"</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-c</span> <span class="st">'&lt;td class="num"&gt;'</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> <span class="st">"</span><span class="va">$U</span><span class="st">&amp;page=999"</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-o</span> <span class="st">'현재 페이지 &lt;em&gt;[0-9]*&lt;/em&gt; / 전체 페이지 [0-9]*'</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> 재구현/목록.py <span class="at">--state</span> 접수예정</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> 재구현/목록.py <span class="at">--page</span> 999 <span class="at">--size</span> 3</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="text"><code>1
-0
-현재 페이지 &lt;em&gt;999&lt;/em&gt; / 전체 페이지 76
-현재 쪽 1 / 전체 쪽 1
-검색 결과가 없다.
-현재 쪽 999 / 전체 쪽 4
-검색 결과가 없다.</code></pre>
-<p>위 출력은 2026-11-17에 얻은 것이다. 앞 세 줄은 원본에서, 뒤의 네 줄은 REQ-09를 더하기 전의 견본 재구현에서 나왔다. 원본은 결과가 없을 때 안내 없이 빈 표를, 범위를 넘는 쪽에는 「999 / 76」과 빈 표를 보였다. 재구현은 결과가 없을 때 명세의 REQ-08대로 안내를 보였고(④ 의도한 차이), 범위를 넘는 쪽은 명세가 정하지 않아 AI가 정한 대로 빈 목록과 「결과가 없다」를 보였다(① 명세 빈틈). 그 안내가 쪽 번호를 잘못 준 사용자에게 맞는 말인지도 따져 볼 일이다.</p>
-<p><strong>[파일: ch06/복원/비교.md]</strong> (표의 예)</p>
-<pre class="text"><code>| 기능 | 원본 | 재구현 | 같은가 | 원인 | 명세 조치 |
-|---|---|---|---|---|---|
-| 목록과 정렬 | 번호 내림차순 10행 | 같다 | 같다 | | |
-| 상태 거르기 | 선택 상자 + 검색 단추 | --state 선택지 | 기능은 같다 | ② | 없음 |
-| 결과가 없을 때 | 빈 표(안내 없음) | 「검색 결과가 없다.」 | 다르다 | ④ | REQ-08로 이미 정함 |
-| 범위를 넘는 쪽 | 「999 / 76」과 빈 표 | 「999 / 4」와 「검색 결과가 없다.」 | 비슷하다 | ① | REQ-09 추가 |
-| 상세 보기 | 제목을 누르면 상세 | 없다 | 다르다 | ③⑤ | 복원하지 않음 |
-| 검색어 공백 처리 | 모른다 | 그대로 비교 | 모른다 | ① | 열린 질문 |</code></pre>
-<p>표를 다 채웠으면 「찾은 빈틈과 처리」에 ①로 분류한 항목을 옮기고, 각각을 명세에 더할지 열린 질문으로 남길지 정한다. 8-2에서 붙인 「재구현이 정한 것」 목록과 ①의 항목을 견주어 본다. 대부분 겹친다. AI가 스스로 보고한 빈틈과 사람이 비교로 찾은 빈틈이 다르면, 그 차이가 이 실습에서 가장 배울 것이 많은 자리다.</p>
-<ul>
-<li><span class="check-badge">확인 4</span> <code>비교.md</code>의 표에 기능 6행 이상이 원인 번호와 함께 채워져 있고, ① 명세 빈틈으로 분류한 항목이 하나 이상 「찾은 빈틈과 처리」에 옮겨져 있다.</li>
-</ul>
-</section>
-<section id="빈틈을-명세로-되돌리기" class="level3">
-<h3 class="anchored" data-anchor-id="빈틈을-명세로-되돌리기">8-4. 빈틈을 명세로 되돌리기</h3>
-<p>①로 분류한 빈틈 하나를 골라 명세에 요구 한 줄을 더한다. <strong>코드를 고치지 않고 명세를 고친다.</strong> 고친 명세를 재구현 폴더에 다시 복사하고, 재구현 세션을 이어서 반영하게 한다.</p>
-<p><strong>[파일: ch06/복원/복원명세.md]</strong> (끝에 한 줄을 더한다)</p>
-<pre class="text"><code>- **REQ-09** [원치 않는 동작] 만약 사용자가 전체 쪽 수보다 큰 쪽 번호를 고르면, 시스템은 마지막 쪽을 표시해야 한다. (관찰: 원본은 「현재 페이지 999 / 전체 페이지 76」과 빈 표) ← 추가</code></pre>
-<div class="code-label where-server">
-<span>터미널</span>
-</div>
-<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/ch06/복원</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> ~/kits/Service_06장/도구/ears_check.py 복원명세.md <span class="at">--id</span> <span class="st">"REQ-\d{2}"</span> <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-2</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> 복원명세.md 재구현/</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="text"><code>문형 분포: 상시 3, 사건 3, 상태 1, 선택 0, 원치 않는 동작 2, 복합 0
-요약: 요구 9개, 수용 기준 0개, 오류 0건, 경고 0건</code></pre>
-<p>Claude Code 터미널에서 재구현 세션을 이어 연다. <code>claude --continue</code>는 이 폴더에서 마지막으로 쓴 세션을 이어 연다[S4]. 8-2의 재구현 세션이 이어지므로 원본을 본 기억이 없다.</p>
-<p><strong>[터미널]</strong> (Claude Code 터미널)</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/ch06/복원/재구현</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="at">--continue</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="code-label where-claude">
-<span>Claude Code</span>
-</div>
-<pre class="text"><code>복원명세.md에 ← 추가 표시가 붙은 요구가 생겼다. 그 요구만 반영해 프로그램을 고쳐라. 다른 동작은 바꾸지 마라. 바꾼 함수와 반영한 REQ ID를 보고하라.</code></pre>
-<p><code>/exit</code>로 나와 <code>[터미널]</code>에서 다시 실행한다.</p>
-<div class="code-label where-server">
-<span>터미널</span>
-</div>
-<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/ch06/복원/재구현</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> 목록.py <span class="at">--page</span> 999 <span class="at">--size</span> 3</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="text"><code>현재 쪽 4 / 전체 쪽 4
-748 | 2026년도 제4회(재공고) 광주시 임기제공무원 채용시험 최종합격자 공고 | 광주시 | 결과공고 | - | 716 | 2026-09-04</code></pre>
-<p>코드를 고친 사람 없이, 명세에 한 줄을 더하자 프로그램이 따라 바뀌었다. 「변경은 명세에서 시작한다」의 최소 단위이고, 이 실습이 해결한 첫째 문제다.</p>
-<p>앞부분의 결과를 한 커밋으로 남긴다.</p>
-<div class="code-label where-server">
-<span>터미널</span>
-</div>
-<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">--short</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add ch06/복원/비교.md ch06/복원/복원명세.md ch06/복원/재구현</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"6장 명세 복원: 채용시험정보 목록의 구조 분석, 복원 명세, 재구현, 비교"</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">--short</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="text"><code> M .gitignore
-?? ch06/
-[main d92c70c] 6장 명세 복원: 채용시험정보 목록의 구조 분석, 복원 명세, 재구현, 비교
- 12 files changed, 295 insertions(+)
- ...</code></pre>
-<p>위는 출력의 예시이다. 해시와 파일 수는 학습자마다 다르다. <code>ch04</code>, <code>ch05</code>가 이미 커밋되어 있으면 둘째 <code>git add</code>는 아무 일도 하지 않는다. Windows에서 나오는 <code>LF will be replaced by CRLF</code> 경고는 커밋에 지장이 없다. 커밋 뒤의 <code>git status --short</code>가 빈 출력이면 <code>페이지.html</code>이 제외 규칙으로 빠진 것이다.</p>
-<ul>
-<li><span class="check-badge">확인 5</span> <code>복원명세.md</code>에 <code>← 추가</code>가 붙은 요구가 있고 검사기가 <code>오류 0건</code>이며, 다시 실행한 프로그램이 그 요구대로 동작한다(예: 범위를 넘는 쪽 번호에 마지막 쪽). 커밋 뒤 <code>git status --short</code>가 빈 출력이다.</li>
-</ul>
-</section>
-<section id="같은-명세로-정적-웹-만들기-실행-전" class="level3">
-<h3 class="anchored" data-anchor-id="같은-명세로-정적-웹-만들기-실행-전">8-5. 같은 명세로 정적 웹 만들기 (실행 전)</h3>
-<p>명령줄 프로그램으로 찾은 빈틈을 되돌린 명세를 정적 웹으로 다시 구현한다. 구현자는 이번에도 원본을 보지 못한다. 폴더에는 명세와 자료만 넣는다. 자료는 브라우저가 읽을 수 있게 JSON으로 바꾼다.</p>
-<div class="code-label where-server">
-<span>터미널</span>
-</div>
-<div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ch05/web/data</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ch06/복원/복원명세.md ch05/</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"import csv,json; rows=list(csv.DictReader(open('ch06/복원/채용.csv',encoding='utf-8-sig'))); json.dump(rows,open('ch05/web/data/jobs.json','w',encoding='utf-8'),ensure_ascii=False,indent=2); print(len(rows))"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>출력은 행의 수(10)이다. Claude Code 터미널을 <code>ch05</code>에서 계획 모드로 연다.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ch04/요구사항명세서.md ch05/</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ch05 <span class="kw">&amp;&amp;</span> <span class="ex">claude</span> <span class="at">--permission-mode</span> plan</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>[Claude Code]</strong> (계획 모드)</p>
-<pre class="text"><code>이 폴더의 복원명세.md만을 근거로 web/ 폴더에 정적 웹(index.html, style.css, app.js)을 구현할 계획을 세워라.
-- 자료는 web/data/jobs.json을 fetch로 읽는다. 경로는 상대 경로만 쓴다.
-- 서버 프로그램, 외부 라이브러리, 외부 글꼴을 쓰지 않는다.
-- 명세에 없는 기능을 만들지 않는다.
-- 요구마다 어느 파일의 어느 부분이 맡는지 REQ ID로 보여라.
-- 명세가 정하지 않아 네가 정해야 하는 것을 목록으로 먼저 보여라.</code></pre>
-<p>계획을 읽고 「명세가 정하지 않은 것」 목록을 <code>ch06/복원/비교.md</code>의 「재구현이 정한 것」에 더한다. 계획에 명세에 없는 기능이 있으면 빼라고 고쳐 보낸다. 승인한 뒤 구현하게 하고, <code>[터미널]</code>에서 로컬 서버로 연다(4-3).</p>
+<pre class="text"><code>[참조] 이 폴더의 요구사항명세서.md만을 근거로 한다. 자료는 web/data/jobs.json이다(먼저 읽어 구조를 확인하라).
+[범위] web/ 폴더에 index.html, style.css, app.js를 만든다. 다른 파일은 고치지 않는다.
+[금지] 서버 프로그램, 외부 라이브러리, 외부 글꼴, 외부 주소로의 요청을 쓰지 않는다. 경로는 상대 경로만 쓴다.
+       명세에 없는 기능을 만들지 않는다. 자료 파일을 고치지 않는다. innerHTML에 자료의 값을 넣지 않는다.
+[완료 조건] 요구마다 어느 파일의 어느 부분이 맡는지 REQ ID로 보인다.
+           화면 아래에 자료의 출처(source)와 받은 시각(fetched)을 보인다.
+[모호할 때] 명세가 정하지 않아 네가 정해야 하는 것을 구현 전에 목록으로 먼저 보여라. 조용히 정하지 마라.
+이 조건으로 구현 계획을 세워라.</code></pre>
+<p>계획을 읽는다. 볼 것은 세 가지이다.</p>
+<ol type="1">
+<li><strong>명세에 없는 기능이 있는가.</strong> 있으면 빼라고 고쳐 보낸다.</li>
+<li><strong>요구마다 맡는 곳이 있는가.</strong> REQ ID가 빠진 요구가 있으면 묻는다.</li>
+<li><strong>「명세가 정하지 않아 정해야 하는 것」의 목록.</strong> 그대로 <code>ch05/빈틈.md</code>에 옮겨 적는다. 8-6에서 쓴다.</li>
+</ol>
+<p><strong>[파일: ch05/빈틈.md]</strong> (예)</p>
+<pre class="text"><code>| 번호 | 명세가 정하지 않은 것 | Claude Code가 정한 것 | 내 판단 |
+|---|---|---|---|
+| G-01 | 마감일이 「채용시까지」인 공고의 정렬 위치 | 목록의 맨 뒤 | (8-6에서 적는다) |
+| G-02 | 한 화면에 보이는 공고의 수 | 모두 보인다 | |
+| G-03 | 급여 항목이 빈 공고의 표시 | 「회사 내규」 | |</code></pre>
+<p>계획을 승인하고(<strong>Yes, manually approve edits</strong>) 구현하게 한다. 끝나면 <code>[터미널]</code>에서 로컬 서버로 연다(4-3).</p>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/ch05/web</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> http.server 8100</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/ch05/web</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> http.server 8100 <span class="at">--bind</span> 127.0.0.1</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>브라우저에서 <code>http://localhost:8100/</code>을 연다. 목록이 보이지 않으면 개발자 도구의 Console과 Network에서 <code>jobs.json</code>의 요청을 본다.</p>
 <ul>
-<li><span class="check-badge">확인 6</span> <code>http://localhost:8100/</code>에서 공고 10행이 보이고, 「명세가 정하지 않아 정한 것」이 <code>비교.md</code>에 있다.</li>
+<li><span class="check-badge">확인 4</span> <code>http://localhost:8100/</code>에서 공고 목록이 보이고, 화면 아래에 출처와 받은 시각이 있으며, <code>빈틈.md</code>에 두 줄 이상이 있다.</li>
 </ul>
 </section>
-<section id="인수-조건-표와-점검-실행-전" class="level3">
-<h3 class="anchored" data-anchor-id="인수-조건-표와-점검-실행-전">8-6. 인수 조건 표와 점검 (실행 전)</h3>
-<p>복원 명세의 수용 기준을 인수 조건 표로 옮긴다(5-2). 여섯 행 이상을 쓰고, 행마다 확인 방법을 「손 점검」 또는 「에이전트」로 적는다. 키보드만으로 쓰기와 실제 폰은 손 점검이다.</p>
-<p><strong>[파일: ch05/인수조건.md]</strong> (예)</p>
-<pre class="text"><code>| 번호 | 요구 | Given (전제) | When (행동) | Then (기대 결과) | 확인 방법 | 결과 |
-|---|---|---|---|---|---|---|
-| AC-01-1 | REQ-01 | 자료에 공고 10건이 있다 | 목록 화면을 연다 | 10행이 번호 내림차순으로 보인다 | 에이전트 | |
-| AC-04-1 | REQ-04 | 목록 화면을 열었다 | 상태에서 「접수중」을 고르고 검색을 누른다 | 상태가 접수중인 행만 보인다 | 에이전트 | |
-| AC-08-1 | REQ-08 | 목록 화면을 열었다 | 어떤 공고에도 없는 검색어를 넣고 검색을 누른다 | 행이 0개이고 결과가 없다는 안내가 보인다 | 손 점검 | |</code></pre>
-<p>손 점검을 먼저 하고 결과 칸을 채운다. 이어서 로컬 서버를 둔 채 같은 주소를 Aside에게 점검하게 한다(부록 A-19). 판정 선택지에 「판정 못함」을 넣는 것이 요점이다(7-2).</p>
+<section id="인수-조건-표와-손-점검-실행-전" class="level3">
+<h3 class="anchored" data-anchor-id="인수-조건-표와-손-점검-실행-전">8-4. 인수 조건 표와 손 점검 (실행 전)</h3>
+<p>명세의 수용 기준을 인수 조건 표로 옮긴다(5-2). 여섯 행 이상을 쓴다. 기대 결과에는 자기 <code>jobs.json</code>에서 직접 센 수와 값을 적는다. 「맞게 보인다」는 기대 결과가 아니다.</p>
+<p><strong>[파일: ch05/인수조건.md]</strong> (예. 수와 값은 자기 자료의 것으로 적는다)</p>
+<pre class="text"><code>| 번호 | 요구 | Given (전제) | When (행동) | Then (기대 결과) | 내 판정 | 에이전트 | 다르면 까닭 |
+|---|---|---|---|---|---|---|---|
+| AC-01-1 | REQ-01 | 자료에 공고 10건이 있다 | 목록 화면을 연다 | 10건이 보이고 건마다 회사명, 제목, 지역, 마감일이 있다 | | | |
+| AC-02-1 | REQ-02 | 목록 화면을 열었다 | 마감일 순으로 정렬한다 | 첫 줄의 마감일이 자료에서 가장 이른 날짜이다 | | | |
+| AC-04-1 | REQ-04 | 목록 화면을 열었다 | 지역을 「광주」로 거른다 | 지역에 「광주」가 든 공고 4건만 보인다 | | | |
+| AC-06-1 | REQ-06 | 목록 화면을 열었다 | 「개발」로 검색한다 | 제목이나 회사명에 「개발」이 든 공고 2건만 보인다 | | | |
+| AC-08-1 | REQ-08 | 목록 화면을 열었다 | 자료에 없는 말로 검색한다 | 0건이고 결과가 없다는 안내가 보인다 | | (맡기지 않음) | |
+| AC-09-1 | REQ-09 | 마감일이 「채용시까지」인 공고가 있다 | 목록 화면을 연다 | 그 공고의 마감 표시가 「상시」이다 | | | |</code></pre>
+<p>기대 결과의 수는 자료 파일에서 직접 센다. 예를 들어 지역에 「광주」가 든 공고의 수는 다음과 같이 센다.</p>
+<div class="code-label where-server">
+<span>터미널</span>
+</div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/ch05</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"import json; d=json.load(open('web/data/jobs.json',encoding='utf-8')); print(sum('광주' in j['region'] for j in d['jobs']))"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>견본 파일로 실행한 출력은 <code>2</code>였다. 화면에서 행마다 직접 해 보고 「내 판정」 칸에 통과 또는 실패를 적는다. 키보드만으로 쓰기와 실제 폰에서 보기는 사람이 한다.</p>
+<ul>
+<li><span class="check-badge">확인 5</span> <code>인수조건.md</code>에 여섯 행 이상이 있고, 기대 결과마다 수나 값이 있으며, 「내 판정」 칸이 모두 채워져 있다.</li>
+</ul>
+</section>
+<section id="에이전트의-점검과-대조-실행-전" class="level3">
+<h3 class="anchored" data-anchor-id="에이전트의-점검과-대조-실행-전">8-5. 에이전트의 점검과 대조 (실행 전)</h3>
+<p>로컬 서버를 켠 채로 같은 표를 Aside에게 준다(부록 A-19). 내 판정 칸은 지우고 준다. 내 판정을 보면 에이전트가 그것을 따라 적을 수 있다.</p>
 <div class="code-label where-server">
 <span>Aside</span>
 </div>
 <pre class="text"><code>http://localhost:8100/ 에 열린 정적 웹을 아래 인수 조건 표로 점검해 줘.
 - 이 주소와 그 아래 경로만 연다. 다른 사이트로 가지 않는다.
 - 로그인, 결제, 메시지 보내기, 파일 내려받기, 브라우저 설정 바꾸기를 하지 않는다.
-- 행마다 판정을 「통과」, 「실패」, 「판정 못함」 가운데 하나로 정하고, 근거로 화면에서 본 것(글자, 개수)을 한 줄 적는다.
+- 행마다 판정을 「통과」, 「실패」, 「판정 못함」 가운데 하나로 정한다.
+- 행마다 한 조작(누른 것, 입력한 것)과 근거(화면에서 본 글자와 개수)를 한 줄씩 적는다.
 - 확인할 방법이 없으면 추측하지 말고 「판정 못함」과 그 까닭을 적는다.
 
-(여기에 ch05/인수조건.md 의 「에이전트」 행을 붙인다)</code></pre>
-<p>에이전트의 판정을 내 손 점검과 서버의 요청 기록(로컬 서버를 띄운 터미널)에 대조한다. 판정이 다르면 화면을 다시 보고 어느 쪽이 맞는지 적는다.</p>
+(여기에 ch05/인수조건.md 의 행을 붙인다. 「내 판정」 칸은 비운다)</code></pre>
+<p>에이전트의 판정을 「에이전트」 칸에 옮기고 내 판정과 견준다(7-3). 다른 행은 화면에서 다시 해 보고 「다르면 까닭」에 어느 쪽이 맞았는지 적는다. 근거에 수가 없는 「통과」는 같은 판정이어도 표시해 둔다. 표 아래에 한 줄로 센다. 「맡긴 행 N개: 같음 a, 다름 b, 판정 못함 c」.</p>
 <ul>
-<li><span class="check-badge">확인 7</span> <code>ch05/인수조건.md</code>에 여섯 행 이상이 있고 모든 행의 결과 칸이 채워져 있으며, 에이전트의 판정과 내 판정이 다른 행(없으면 「없음」)이 적혀 있다.</li>
+<li><span class="check-badge">확인 6</span> 맡긴 모든 행에 두 판정이 나란히 있고, 다른 행마다 까닭이 있으며(없으면 「없음」), 표 아래에 센 수가 있다.</li>
+</ul>
+</section>
+<section id="빈틈의-보강-실행-전" class="level3">
+<h3 class="anchored" data-anchor-id="빈틈의-보강-실행-전">8-6. 빈틈의 보강 (실행 전)</h3>
+<p><code>빈틈.md</code>의 「내 판단」 칸을 채운다. Claude Code가 정한 것을 그대로 둘지, 다르게 정할지를 적는다. 그 가운데 하나를 골라 명세에 되돌린다. 후보는 타겟 페르소나에게 영향이 큰 것, 인수 조건에서 실패한 것이다.</p>
+<p>명세(<code>ch05/요구사항명세서.md</code>)에 요구 한 줄을 더하고 인수 조건 한 행을 더한다. <strong>명세를 먼저 커밋한다.</strong></p>
+<p><strong>[파일: ch05/요구사항명세서.md]</strong> (더한 예)</p>
+<pre class="text"><code>- **REQ-10** [원치 않는 동작] 만약 마감일이 날짜가 아니면, 시스템은 마감일 순 정렬에서 그 공고를 날짜가 있는 공고의 뒤에 두어야 한다. (정함: G-01. 마감이 가까운 공고를 먼저 보이려는 것이다) ← 추가</code></pre>
+<div class="code-label where-server">
+<span>터미널</span>
+</div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> ~/kits/Service_06장/도구/ears_check.py ch05/요구사항명세서.md <span class="at">--id</span> <span class="st">"REQ-\d{2}"</span> <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-2</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ch05/요구사항명세서.md ch04/요구사항명세서.md</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add ch04/요구사항명세서.md ch05/요구사항명세서.md ch05/인수조건.md ch05/빈틈.md</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"5장 명세 보강: REQ-10 날짜가 아닌 마감일의 정렬 (G-01)"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>구현 세션에서 그 요구만 반영하게 한다.</p>
+<p><strong>[Claude Code]</strong> (<code>ch05</code>에서)</p>
+<pre class="text"><code>요구사항명세서.md에 REQ-10이 더해졌다(← 추가). 그 요구만 반영해 web/ 의 구현을 고쳐라.
+- 다른 요구의 동작은 바꾸지 마라.
+- 바꾼 파일과 함수를 보고하라.</code></pre>
+<p>고친 뒤 인수 조건 표의 모든 행을 다시 점검한다. 새로 더한 행만 보지 않는다. 구현을 따로 커밋한다.</p>
+<div class="code-label where-server">
+<span>터미널</span>
+</div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add ch05/xml2json.py ch05/web ch05/인수조건.md</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"5장 공고 모아보기 웹: 정적 웹 구현, 인수 조건 점검"</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><span class="check-badge">확인 7</span> 명세에 <code>← 추가</code>가 붙은 요구가 하나 이상이고 검사기의 오류가 0건이다. <code>git log --oneline -3</code>에서 명세의 커밋이 구현의 커밋보다 먼저이다.</li>
 </ul>
 </section>
 <section id="배포-실행-전" class="level3">
 <h3 class="anchored" data-anchor-id="배포-실행-전">8-7. 배포 (실행 전)</h3>
-<p>개인 실습 저장소는 비공개이므로 Pages용 공개 저장소를 따로 만들어 <code>web/</code>의 내용만 올린다. 공개 저장소에 올린 파일은 누구나 읽는다. 공개 저장소에는 명세, 관찰 기록, <code>페이지.html</code>을 올리지 않는다.</p>
-<blockquote class="blockquote">
-<p><strong>[최신 자료 자리: 목록 자료의 이용 조건]</strong> <code>채용.csv</code>는 공공 기관의 목록에서 옮긴 자료이다. 공개 전에 그 누리집의 저작권 정책(공공누리 유형)을 교수가 확인한다. 확인할 곳: 대상 누리집의 「저작권 정책」. 확인하기 전에는 <code>jobs.json</code>의 제목과 기관 이름을 지어낸 견본 값으로 바꾸어 공개하고, 화면 아래에 「연습용 자료」라고 적는다.</p>
-</blockquote>
+<p>개인 실습 저장소는 비공개이므로 Pages용 공개 저장소를 따로 만들어 <code>web/</code>의 내용만 올린다. 공개 저장소에 올린 파일은 누구나 읽는다. 명세, 관찰 기록, 응답 파일, 변환 프로그램은 올리지 않는다.</p>
+<p>고용24 자료의 이용 조건을 확인하기 전에는(2-3) 실제 자료를 공개하지 않는다. <code>jobs.json</code>의 회사명과 제목을 지어낸 값으로 바꾼 견본을 올리고, 화면 아래의 출처를 「연습용 견본 자료」로 적는다. 교수가 이용 조건을 확인해 알린 뒤에 실제 자료로 바꾼다.</p>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~ <span class="kw">&amp;&amp;</span> <span class="ex">gh</span> repo create jobs-board <span class="at">--public</span> <span class="at">--clone</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-r</span> ~/llm-service-lab/ch05/web/. ~/jobs-board/</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/jobs-board <span class="kw">&amp;&amp;</span> <span class="fu">ls</span> <span class="at">-a</span></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add index.html style.css app.js data/jobs.json</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"공고 모아보기 웹"</span></span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>브라우저에서 <code>jobs-board</code> 저장소의 <strong>Settings → Pages</strong>를 열고 Source를 <strong>Deploy from a branch</strong>, 브랜치 <code>main</code>, 폴더 <code>/ (root)</code>로 둔다. 잠시 뒤 같은 화면 위쪽에 공개 주소(<code>https://아이디.github.io/jobs-board/</code>)가 나타난다. 그 주소를 내 폰에서 연다. 내 브라우저에서 되는 것은 증거가 아니다.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~ <span class="kw">&amp;&amp;</span> <span class="ex">gh</span> repo create jobs-board <span class="at">--public</span> <span class="at">--clone</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-r</span> ~/llm-service-lab/ch05/web/. ~/jobs-board/</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/jobs-board <span class="kw">&amp;&amp;</span> <span class="fu">ls</span> <span class="at">-a</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/work24.env <span class="kw">&amp;&amp;</span> <span class="fu">grep</span> <span class="at">-rc</span> <span class="st">"</span><span class="va">$WORK24_KEY</span><span class="st">"</span> . <span class="at">--exclude-dir</span><span class="op">=</span>.git <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-v</span> <span class="st">":0"</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add index.html style.css app.js data/jobs.json</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"공고 모아보기 웹"</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>grep</code>은 아무것도 출력하지 않아야 한다. 출력이 있으면 푸시하지 않고 그 파일에서 인증키를 지운다. 이미 푸시하였다면 고용24에서 인증키를 다시 발급받아야 한다. 저장소에서 지워도 이력에 남기 때문이다(3장).</p>
+<p>브라우저에서 <code>jobs-board</code> 저장소의 <strong>Settings → Pages</strong>를 열고 Source를 <strong>Deploy from a branch</strong>, 브랜치 <code>main</code>, 폴더 <code>/ (root)</code>로 둔다. 잠시 뒤 같은 화면 위쪽에 공개 주소(<code>https://아이디.github.io/jobs-board/</code>)가 나타난다. 그 주소를 내 폰에서 연다. 내 PC의 브라우저에서 열리는 것은 배포의 증거가 아니다.</p>
 <blockquote class="blockquote">
 <p><strong>[그림 자리: 저장소의 Pages 설정]</strong> Settings → Pages에서 Source를 Deploy from a branch, 브랜치 main, 폴더 / (root)로 고른 화면. GitHub 웹에서 찍는다.</p>
 </blockquote>
 <ul>
 <li><span class="check-badge">확인 8</span> 폰에서 공개 주소가 열려 목록이 보이고, <code>jobs-board</code> 저장소의 파일 목록에 <code>index.html</code>, <code>style.css</code>, <code>app.js</code>, <code>data/jobs.json</code>만 있다.</li>
-</ul>
-</section>
-<section id="둘째-빈틈의-보강과-커밋-실행-전" class="level3">
-<h3 class="anchored" data-anchor-id="둘째-빈틈의-보강과-커밋-실행-전">8-8. 둘째 빈틈의 보강과 커밋 (실행 전)</h3>
-<p>정적 웹에서 찾은 빈틈 하나를 더 명세에 되돌린다. 후보는 8-5의 「명세가 정하지 않아 정한 것」 목록과 8-6에서 실패하거나 판정하지 못한 행이다. <code>ch05/복원명세.md</code>에 요구 한 줄을 <code>← 추가</code>와 함께 더하고, 구현 세션을 이어 그 요구만 반영하게 한 뒤(8-4의 방법), 인수 조건 한 행을 더해 다시 점검한다. 고친 명세는 <code>ch06/복원/복원명세.md</code>에도 복사한다.</p>
-<div class="code-label where-server">
-<span>터미널</span>
-</div>
-<div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> ~/kits/Service_06장/도구/ears_check.py ch05/복원명세.md <span class="at">--id</span> <span class="st">"REQ-\d{2}"</span> <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-2</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ch05/복원명세.md ch06/복원/복원명세.md</span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add ch05/복원명세.md ch05/인수조건.md ch05/web ch06/복원/복원명세.md ch06/복원/비교.md</span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"5장 공고 모아보기 웹: 정적 웹 구현, 인수 조건, 둘째 빈틈 보강"</span></span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li><span class="check-badge">확인 9</span> <code>ch05/복원명세.md</code>에 <code>← 추가</code>가 붙은 요구가 둘 이상이고 검사기의 오류가 0건이며, 고친 화면이 공개 주소에 반영되었다(<code>jobs-board</code>에 다시 복사해 푸시한다).</li>
 </ul>
 </section>
 </section>
@@ -1458,34 +1408,44 @@ URL scheme "file" is not supported.</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td>재구현 세션이 원본의 내용을 안다</td>
-<td>재구현을 분석한 세션에서 했거나, 재구현 폴더에 <code>구조분석.md</code>가 있다</td>
-<td>새 터미널, 새 세션에서 다시 한다(2-1)</td>
+<td>변환 프로그램이 「공고 0건」을 출력한다</td>
+<td>응답 파일이 오류 안내이거나 공고의 항목 이름이 다르다</td>
+<td><code>head -c 300</code>으로 응답을 본다. 인증키와 요청 변수를 확인하고 4장 7-3으로 다시 받는다</td>
 </tr>
 <tr class="even">
-<td><code>claude --continue</code>가 엉뚱한 세션을 연다</td>
-<td>그 명령을 다른 폴더에서 실행했다</td>
-<td>이어 열리는 세션은 그 폴더의 마지막 세션이다. 구현한 폴더로 옮겨 다시 실행한다</td>
+<td>변환 프로그램이 <code>ParseError</code>를 낸다</td>
+<td>응답이 XML이 아니다(HTML 오류 쪽 등)</td>
+<td>응답 파일의 첫 줄을 본다</td>
 </tr>
 <tr class="odd">
-<td>프로그램 실행이 <code>can't open file</code>을 낸다</td>
-<td>파일 이름은 AI가 지으므로 사람마다 다르다</td>
-<td><code>ls</code>로 본 이름으로 실행한다</td>
+<td>한글이 깨져 보인다</td>
+<td>Windows에서 파이썬의 출력이 시스템 기본 인코딩으로 나갔다</td>
+<td>터미널에서 <code>export PYTHONUTF8=1</code>을 한 번 한다(부록 A)</td>
 </tr>
 <tr class="even">
-<td>재구현 프로그램의 한글 오류 메시지가 알아볼 수 없는 글자로 깨진다</td>
-<td>Windows에서 파이썬이 오류 출력을 시스템 기본 인코딩(cp949)으로 내보내는데, 터미널은 UTF-8로 읽었다. 파이프(<code>|</code>)로 넘길 때도 생긴다</td>
-<td>터미널마다 <code>export PYTHONUTF8=1</code>을 한 번 하거나 명령 앞에 <code>PYTHONUTF8=1</code>을 붙인다(0절). 키트의 검사기는 스스로 UTF-8로 출력하므로 해당하지 않는다</td>
-</tr>
-<tr class="odd">
 <td>화면에 목록이 없고 Console에 CORS 오류가 보인다</td>
 <td><code>index.html</code>을 <code>file://</code>로 열었다</td>
 <td>로컬 서버로 연다(4-2)</td>
 </tr>
+<tr class="odd">
+<td>구현에 명세에 없는 기능(즐겨찾기 등)이 있다</td>
+<td>계획을 읽지 않고 승인하였다</td>
+<td>그 기능을 빼라고 한 번 고쳐 보낸다. 넣고 싶으면 명세에 요구를 먼저 더한다</td>
+</tr>
 <tr class="even">
+<td>에이전트의 판정이 모두 「통과」이고 근거에 수가 없다</td>
+<td>지시에 근거를 적으라는 줄이 빠졌다</td>
+<td>8-5의 지시문으로 다시 맡긴다. 그래도 같으면 내 판정만 쓴다</td>
+</tr>
+<tr class="odd">
 <td>공개 주소에서만 목록이 없다</td>
 <td>경로가 <code>/</code>로 시작하거나 파일 이름의 대소문자가 다르다</td>
 <td>Network 탭에서 404가 난 주소를 보고 상대 경로로 고친다</td>
+</tr>
+<tr class="even">
+<td>인증키가 저장소에 올라갔다</td>
+<td>인증키를 코드나 명령 기록 파일에 적었다</td>
+<td>인증키를 다시 발급받는다. 인증키는 <code>~/work24.env</code>에만 둔다</td>
 </tr>
 </tbody>
 </table>
@@ -1494,8 +1454,8 @@ URL scheme "file" is not supported.</code></pre>
 <h2 class="anchored" data-anchor-id="제출물">제출물</h2>
 <p>개인 실습 저장소의 커밋과 공개 주소로 제출한다.</p>
 <pre class="text"><code>llm-service-lab/
-  ch06/복원/비교.md, 복원명세.md, 재구현/
-  ch05/복원명세.md, 인수조건.md, web/
+  ch05/xml2json.py, 요구사항명세서.md, 빈틈.md, 인수조건.md, web/
+  ch04/요구사항명세서.md (보강한 것)
 공개 주소: https://아이디.github.io/jobs-board/</code></pre>
 <p>판정 기준은 8-1의 완료 기준 여섯 개이다.</p>
 </section>
@@ -1503,11 +1463,11 @@ URL scheme "file" is not supported.</code></pre>
 <h2 class="anchored" data-anchor-id="정리">정리</h2>
 <ul>
 <li>명세 주도 개발은 명세를 구현의 입력이자 검사의 기준으로 삼는다. Spec Kit의 단계는 Claude Code의 계획 모드와 마크다운 파일로 같은 순서를 밟을 수 있다.</li>
-<li>재구현한 결과가 원본과 다른 자리는 명세 빈틈, 매체 차이, 데이터 한계, 의도한 차이, 범위 밖으로 나뉜다. 명세 빈틈만 명세로 되돌린다.</li>
-<li>구현자가 원본을 볼 수 있으면 빈틈이 드러나지 않는다. 분석한 쪽과 구현하는 쪽 사이에 오가는 것은 명세뿐이어야 한다.</li>
-<li>인수 조건은 요구를 구체적인 전제, 행동, 기대 결과로 옮긴 것이다. 기계가 확인할 것과 사람이 볼 것을 나눈다.</li>
+<li>인증키가 필요한 API는 화면에서 바로 부르지 않는다. 내 PC에서 받아 화면에 쓸 항목만 남긴 자료 파일로 바꾼다. 화면에는 출처와 받은 시각을 보인다.</li>
+<li>구현 전에 계획을 읽어 명세에 없는 기능을 빼고, 「명세가 정하지 않아 정한 것」을 받아 적는다. 그 목록이 명세의 빈틈이다.</li>
+<li>인수 조건은 요구를 구체적인 전제, 행동, 기대 결과로 옮긴 것이다. 기대 결과에는 자료에서 직접 센 수를 적는다.</li>
+<li>브라우저 에이전트의 판정은 내가 화면에서 직접 확인한 결과와 맞대어 본다. 「판정 못함」을 고를 수 있게 지시하고, 근거가 없는 「통과」는 믿지 않는다.</li>
 <li>배포는 남의 기기에서 열리는 것이 기준이다. 공개 저장소에 올린 것은 모두 공개된다.</li>
-<li>브라우저 에이전트의 판정은 근거와 대조한다. 「판정 못함」을 고를 수 있게 지시한다.</li>
 </ul>
 </section>
 <section id="참고-자료" class="level2">
@@ -1630,12 +1590,24 @@ URL scheme "file" is not supported.</code></pre>
 <td><a href="https://code.claude.com/docs/en/common-workflows" class="uri">https://code.claude.com/docs/en/common-workflows</a></td>
 <td>2026-11-14</td>
 </tr>
+<tr class="odd">
+<td>A1</td>
+<td>고용24 OPEN-API 소개(이용 절차, 인증키의 양도 금지, 제공 형식)</td>
+<td><a href="https://m.work24.go.kr/cm/e/a/0110/selectOpenApiIntro.do" class="uri">https://m.work24.go.kr/cm/e/a/0110/selectOpenApiIntro.do</a></td>
+<td>2026-11-18</td>
+</tr>
+<tr class="even">
+<td>A3</td>
+<td>고용24 OPEN-API 채용정보 개발명세서(요청 변수, 목록 출력 항목)</td>
+<td><a href="https://www.work24.go.kr/cm/e/a/0110/selectOpenApiSvcInfo.do?fullApiSvcId=000000000000000000000000000000" class="uri">https://www.work24.go.kr/cm/e/a/0110/selectOpenApiSvcInfo.do?fullApiSvcId=000000000000000000000000000000</a></td>
+<td>2026-11-18</td>
+</tr>
 </tbody>
 </table>
 </section>
 <section id="다음-장-안내" class="level2">
 <h2 class="anchored" data-anchor-id="다음-장-안내">다음 장 안내</h2>
-<p>6장 「코드의 리버스 엔지니어링」은 대상을 화면에서 코드로 바꾼다. 공개 저장소의 작은 명령줄 프로그램에서 명세를 뽑고, 그 명세만으로 다시 구현해 원본과 출력을 대조한다. 중간시험(8주차)의 범위는 1~6장이다.</p>
+<p>6장 「코드의 리버스 엔지니어링」은 대상을 화면에서 코드로 바꾼다. 공개 저장소의 작은 명령줄 프로그램에서 명세를 뽑고, 그 명세만으로 다시 구현해 원본과 출력을 대조한다. 6장의 끝에는 공개 API로 만들 수 있는 서비스의 예를 모아 두었다. 중간시험(8주차)의 범위는 1~6장이다.</p>
 
 
 </section>

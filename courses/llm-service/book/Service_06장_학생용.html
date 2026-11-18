@@ -358,6 +358,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#명세와-코드의-추적" id="toc-명세와-코드의-추적" class="nav-link" data-scroll-target="#명세와-코드의-추적">6. 명세와 코드의 추적</a></li>
   <li><a href="#핵심-실습-json.tool의-명세-추출과-재구현-대조" id="toc-핵심-실습-json.tool의-명세-추출과-재구현-대조" class="nav-link" data-scroll-target="#핵심-실습-json.tool의-명세-추출과-재구현-대조">7. 핵심 실습: json.tool의 명세 추출과 재구현 대조</a></li>
+  <li><a href="#읽을거리-공개-api로-만들-수-있는-서비스의-예" id="toc-읽을거리-공개-api로-만들-수-있는-서비스의-예" class="nav-link" data-scroll-target="#읽을거리-공개-api로-만들-수-있는-서비스의-예">8. 읽을거리: 공개 API로 만들 수 있는 서비스의 예</a>
+  <ul class="collapse">
+  <li><a href="#서비스-아이디어-열-가지" id="toc-서비스-아이디어-열-가지" class="nav-link" data-scroll-target="#서비스-아이디어-열-가지">8-1. 서비스 아이디어 열 가지</a></li>
+  <li><a href="#아이디어를-고르는-물음" id="toc-아이디어를-고르는-물음" class="nav-link" data-scroll-target="#아이디어를-고르는-물음">8-2. 아이디어를 고르는 물음</a></li>
+  </ul></li>
   <li><a href="#자주-하는-실수와-해결" id="toc-자주-하는-실수와-해결" class="nav-link" data-scroll-target="#자주-하는-실수와-해결">자주 하는 실수와 해결</a></li>
   <li><a href="#제출물" id="toc-제출물" class="nav-link" data-scroll-target="#제출물">제출물</a></li>
   <li><a href="#정리" id="toc-정리" class="nav-link" data-scroll-target="#정리">정리</a></li>
@@ -411,7 +416,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>학사 7주차 · 교재 06 · 서비스 2: 명령줄 도구</p>
 </blockquote>
 <blockquote class="blockquote">
-<p><strong>개편 초안(2026-11-18).</strong> 이 장은 <code>plan/개편안.md</code>의 단원형 구성에 따라 새로 쓴 초안이다. 명령의 출력은 집필 환경(Linux, Python 3.13.18)에서 2026-11-18에 실제로 실행해 얻은 것이며, 실습실 PC(Windows 11, Git Bash)에서는 아직 확인하지 않았다. 「실행 전」이라고 적은 곳의 Claude Code 프롬프트는 응답을 확인하지 않았다. 키트는 아직 없다.</p>
+<p><strong>개편 초안(2026-11-18).</strong> 이 장은 <code>plan/개편안.md</code>의 단원형 구성에 따라 새로 쓴 초안이다. 명령의 출력은 집필 환경(Linux, Python 3.13.18)에서 2026-11-18에 실제로 실행해 얻은 것이며, 실습실 PC(Windows 11, Git Bash)에서는 아직 확인하지 않았다. 「실행 전」이라고 적은 곳의 Claude Code 프롬프트는 응답을 확인하지 않았다. 키트는 아직 없다. 8절(공개 API로 만들 수 있는 서비스의 예)은 2026-11-18에 더한 읽을거리이며, API의 항목과 이용 조건은 확인하지 않았다.</p>
 </blockquote>
 <p>4~5장에서는 화면을 관찰해 명세를 되살렸다. 화면은 보이는 것만 말한다. 화면 뒤의 규칙은 추측으로 남았다. 이 장은 대상을 <strong>코드</strong>로 바꾼다. 코드는 동작의 조건과 결과를 줄 번호와 함께 말해 주므로, 명세의 문장마다 근거를 댈 수 있다. 대신 코드는 왜 그렇게 만들었는지를 말하지 않는다.</p>
 <p>대상은 파이썬 표준 라이브러리의 명령줄 도구 <code>python -m json.tool</code>이다. JSON을 검사하고 보기 좋게 다시 찍는 90줄짜리 프로그램이다. 이 프로그램에서 명세를 뽑고, 명세만으로 다시 구현해 원본과 <strong>출력을 대조</strong>한다. 화면의 비교는 사람의 눈으로 하였으나 명령줄 프로그램의 비교는 명령으로 한다. 마지막에 요구, 코드의 위치, 확인 명령을 한 표로 잇는다.</p>
@@ -936,6 +941,158 @@ JSON이 아니다: Illegal trailing comma before end of object: line 1 column 8 
 <li><span class="check-badge">확인 11</span> 완료 기준 여섯 개를 충족하고, <code>git log origin/main --oneline -1</code>에 이 장의 커밋이 보인다.</li>
 </ul>
 </section>
+<section id="읽을거리-공개-api로-만들-수-있는-서비스의-예" class="level2">
+<h2 class="anchored" data-anchor-id="읽을거리-공개-api로-만들-수-있는-서비스의-예">8. 읽을거리: 공개 API로 만들 수 있는 서비스의 예</h2>
+<p>서비스 1은 「참고 프로덕트의 화면 구성 + 공개 API의 자료」로 만들었다. 같은 방법으로 만들 수 있는 서비스의 예를 모았다. 졸업 프로젝트와 프로젝트실습의 주제를 정할 때 출발점으로 쓴다. 이 절은 읽기만 하며 실습은 없다.</p>
+<p>API의 이름은 공개 목록 <code>public-apis-4Kr</code>에 적힌 것이다[Y1]. 이 목록은 한국의 공개 API를 36개 분류로 모은 것으로, API마다 설명과 인증 방식이 표로 정리되어 있다(마지막 갱신 2026-09-07). 아래의 예는 아이디어이다. 각 API가 어떤 항목을 주는지, 인증키가 필요한지, 받은 자료를 공개 서비스에 써도 되는지는 확인하지 않았다. 주제로 정하기 전에 제공 기관의 개발 문서와 이용 조건에서 직접 확인한다(4장 3절).</p>
+<section id="서비스-아이디어-열-가지" class="level3">
+<h3 class="anchored" data-anchor-id="서비스-아이디어-열-가지">8-1. 서비스 아이디어 열 가지</h3>
+<p><strong>① 등하교 공기 알림판</strong></p>
+<ul>
+<li>쓰는 API: 에어코리아 실시간 대기오염정보, 기상청 동네예보</li>
+<li>참고할 화면: 날씨 앱의 첫 화면(오늘의 상태를 한 문장과 색으로 보이는 구성)</li>
+<li>기능: 학교나 집의 위치를 고르면 등교와 하교 시각의 미세먼지와 비 예보를 한 줄로 보인다. 「마스크 필요」, 「우산 필요」를 표시한다.</li>
+<li>타겟: 초등학생 자녀를 둔 보호자</li>
+<li>해결하는 불편: 아침마다 날씨 앱과 미세먼지 앱을 따로 열어 수치를 읽고 판단해야 한다.</li>
+<li>기대효과: 판단에 필요한 정보가 한 화면에 모이고, 수치를 해석하지 않아도 된다.</li>
+</ul>
+<p><strong>② 지금 여는 응급실과 약국</strong></p>
+<ul>
+<li>쓰는 API: 중앙응급의료센터, 카카오맵</li>
+<li>참고할 화면: 지도 앱의 장소 목록(지도와 거리 순 목록을 나란히 보이는 구성)</li>
+<li>기능: 현재 위치에서 가까운 응급실과 지금 영업하는 약국을 거리 순으로 보인다. 전화 걸기 단추를 둔다.</li>
+<li>타겟: 밤이나 휴일에 아이가 아픈 보호자, 혼자 사는 대학생</li>
+<li>해결하는 불편: 급할 때 검색 결과에서 「지금 여는 곳」을 골라내기 어렵다.</li>
+<li>기대효과: 찾는 시간이 줄고, 닫은 곳으로 가는 헛걸음이 준다.</li>
+<li>주의: 의료 정보는 안내일 뿐이다. 화면에 119와 응급 상황의 안내를 먼저 보인다.</li>
+</ul>
+<p><strong>③ 빈 충전기 찾기</strong></p>
+<ul>
+<li>쓰는 API: 전기차충전기정보, 네이버 지도 또는 카카오맵</li>
+<li>참고할 화면: 주차장 찾기 앱(지도 위에 빈자리의 수를 표시하는 구성)</li>
+<li>기능: 주변 충전소를 충전기의 종류(급속, 완속)와 사용 가능 여부로 걸러 보인다.</li>
+<li>타겟: 집에 충전기가 없는 전기차 운전자</li>
+<li>해결하는 불편: 충전소에 도착해서야 모두 사용 중이거나 고장인 것을 안다.</li>
+<li>기대효과: 출발 전에 갈 곳을 정할 수 있다.</li>
+</ul>
+<p><strong>④ 자취생 장바구니 물가</strong></p>
+<ul>
+<li>쓰는 API: 한국소비자원 참가격, KAMIS(농산물 유통 정보)</li>
+<li>참고할 화면: 가격 비교 사이트의 상품 목록(품목마다 최저가와 가격의 변화를 보이는 구성)</li>
+<li>기능: 자주 사는 품목 열 개를 고르면 지역의 판매점별 가격과 지난주 대비 변화를 보인다.</li>
+<li>타겟: 식비를 줄이려는 자취 대학생</li>
+<li>해결하는 불편: 어느 가게가 싼지, 지금이 비싼 때인지 알 방법이 없다.</li>
+<li>기대효과: 장보는 곳과 때를 근거를 가지고 정한다.</li>
+</ul>
+<p><strong>⑤ 이번 주말 공연과 전시</strong></p>
+<ul>
+<li>쓰는 API: KOPIS 공연예술통합전산망, 한국문화정보원</li>
+<li>참고할 화면: 예매 사이트의 목록(포스터 카드, 날짜와 지역 거르기)</li>
+<li>기능: 이번 주말에 우리 지역에서 하는 공연과 전시를 날짜, 장르, 가격대로 걸러 보인다. 예매는 원래의 쪽으로 보낸다.</li>
+<li>타겟: 주말에 할 일을 찾는 대학생과 직장인</li>
+<li>해결하는 불편: 예매 사이트마다 따로 찾아야 하고, 지역의 작은 공연은 찾기 어렵다.</li>
+<li>기대효과: 한곳에서 견주어 고른다. 지역 공연이 눈에 띈다.</li>
+</ul>
+<p><strong>⑥ 대중교통 당일 여행</strong></p>
+<ul>
+<li>쓰는 API: 한국관광공사 TourAPI 4.0, 기상청 동네예보, ODsay 대중교통 API</li>
+<li>참고할 화면: 여행 일정 앱(하루의 장소를 시간 순으로 늘어놓은 구성)</li>
+<li>기능: 출발지를 넣으면 대중교통으로 갈 수 있는 관광지를 이동 시간 순으로 보이고, 그날의 날씨를 함께 보인다.</li>
+<li>타겟: 차가 없는 대학생</li>
+<li>해결하는 불편: 관광 정보, 교통편, 날씨를 따로 찾아 맞추어 보아야 한다.</li>
+<li>기대효과: 갈 수 있는 곳의 범위를 한 번에 안다.</li>
+</ul>
+<p><strong>⑦ 첫 자취방 시세 보기</strong></p>
+<ul>
+<li>쓰는 API: 아파트 전월세 실거래가, 브이월드</li>
+<li>참고할 화면: 부동산 앱의 지도(동네마다 가격을 표시하는 구성)</li>
+<li>기능: 동네를 고르면 최근 전월세 실거래의 보증금과 월세의 범위를 보인다.</li>
+<li>타겟: 처음 방을 구하는 사회 초년생</li>
+<li>해결하는 불편: 매물의 호가만 보여서 실제로 얼마에 계약되는지 모른다.</li>
+<li>기대효과: 제시된 가격이 높은지 낮은지를 견줄 기준이 생긴다.</li>
+<li>주의: 아파트의 자료이다. 원룸과 오피스텔은 다른 자료가 필요하다.</li>
+</ul>
+<p><strong>⑧ 식단의 영양 기록</strong></p>
+<ul>
+<li>쓰는 API: 식품영양성분 데이터베이스</li>
+<li>참고할 화면: 식단 기록 앱(끼니마다 음식을 더하고 하루의 합계를 보이는 구성)</li>
+<li>기능: 먹은 음식을 검색해 더하면 하루의 열량과 단백질의 합계를 보인다.</li>
+<li>타겟: 운동을 시작한 대학생</li>
+<li>해결하는 불편: 한국 음식의 영양 정보를 하나씩 검색해 손으로 더한다.</li>
+<li>기대효과: 기록에 드는 시간이 줄어 기록을 이어 갈 수 있다.</li>
+</ul>
+<p><strong>⑨ 학과에서 직업까지</strong></p>
+<ul>
+<li>쓰는 API: 커리어넷, 대학알리미, 고용24 채용정보</li>
+<li>참고할 화면: 채용 사이트의 직무 소개 쪽(직무의 설명 아래에 관련 공고를 붙인 구성)</li>
+<li>기능: 학과를 고르면 관련 직업의 설명을 보이고, 그 직업의 지금 채용 공고를 함께 보인다.</li>
+<li>타겟: 진로를 정하지 못한 전문대 신입생</li>
+<li>해결하는 불편: 학과와 직업의 설명은 추상적이고, 실제로 어떤 공고가 나오는지는 따로 찾아야 한다.</li>
+<li>기대효과: 직업의 설명과 실제 공고를 나란히 보고 판단한다.</li>
+</ul>
+<p><strong>⑩ 지역화폐 쓸 수 있는 곳</strong></p>
+<ul>
+<li>쓰는 API: 지역화폐 가맹점 현황, 카카오맵</li>
+<li>참고할 화면: 지도 앱의 업종별 검색(업종 단추와 지도)</li>
+<li>기능: 현재 위치 주변의 가맹점을 업종별로 지도에 보인다.</li>
+<li>타겟: 지역화폐를 받은 주민과 대학생</li>
+<li>해결하는 불편: 가게에 들어가 물어보기 전에는 쓸 수 있는지 모른다.</li>
+<li>기대효과: 쓸 곳을 미리 정하고 간다.</li>
+</ul>
+</section>
+<section id="아이디어를-고르는-물음" class="level3">
+<h3 class="anchored" data-anchor-id="아이디어를-고르는-물음">8-2. 아이디어를 고르는 물음</h3>
+<p>아이디어를 주제로 정하기 전에 다음 다섯 가지에 답한다. 답하지 못하는 물음이 있으면 그 물음부터 조사한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>물음</th>
+<th>확인하는 곳</th>
+<th>이 과목에서 다룬 곳</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>그 불편을 겪는 사람이 실제로 있는가</td>
+<td>주변의 그 사람 둘에게 묻는다</td>
+<td>4장(타겟 페르소나), 7장(인터뷰)</td>
+</tr>
+<tr class="even">
+<td>같은 일을 하는 서비스가 이미 있는가. 있다면 무엇이 다른가</td>
+<td>deep research와 화면의 직접 확인</td>
+<td>4장</td>
+</tr>
+<tr class="odd">
+<td>API가 그 화면에 필요한 항목을 주는가</td>
+<td>개발 문서, 응답을 한 번 받아 본다</td>
+<td>4장(자료 항목표)</td>
+</tr>
+<tr class="even">
+<td>인증키를 받을 수 있고, 받은 자료를 공개해도 되는가</td>
+<td>제공 기관의 이용 조건</td>
+<td>4장, 5장</td>
+</tr>
+<tr class="odd">
+<td>위치, 건강처럼 조심해야 할 정보를 다루는가</td>
+<td>무엇을 저장하고 무엇을 저장하지 않을지 정한다</td>
+<td>프로젝트실습에서 다룬다</td>
+</tr>
+</tbody>
+</table>
+<p>아이디어 하나는 다음 여섯 줄로 적어 견준다.</p>
+<pre class="text"><code>서비스 이름:
+쓰는 API (제공 기관):
+참고 프로덕트 (구성을 참고할 화면):
+기능 (셋 이내):
+타겟 (한 사람):
+해결하는 불편과 기대효과:</code></pre>
+</section>
+</section>
 <section id="자주-하는-실수와-해결" class="level2">
 <h2 class="anchored" data-anchor-id="자주-하는-실수와-해결">자주 하는 실수와 해결</h2>
 <table class="caption-top table">
@@ -1028,6 +1185,12 @@ JSON이 아니다: Illegal trailing comma before end of object: line 1 column 8 
 <td>CPython 저장소, <code>Lib/json/tool.py</code></td>
 <td><a href="https://github.com/python/cpython/blob/3.13/Lib/json/tool.py" class="uri">https://github.com/python/cpython/blob/3.13/Lib/json/tool.py</a></td>
 <td>열지 않음. 설치된 Python 3.13.18의 파일(90줄)로 확인</td>
+</tr>
+<tr class="even">
+<td>Y1</td>
+<td>yybmion/public-apis-4Kr: 한국의 공개 API 목록(36개 분류, API·설명·인증의 표, MIT 사용권, 마지막 갱신 2026-09-07)</td>
+<td><a href="https://github.com/yybmion/public-apis-4Kr" class="uri">https://github.com/yybmion/public-apis-4Kr</a></td>
+<td>2026-11-18</td>
 </tr>
 </tbody>
 </table>
