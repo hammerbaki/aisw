@@ -268,13 +268,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../courses/llm-service/book/Service_07장_학생용.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[7장] 사용자 조사와 네트워크 동작의 분석</span></a>
+ <span class="menu-text">[7장] 사용자 조사와 문제 정의</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../courses/llm-service/book/Service_08장_학생용.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[8장] API 명세와 웹앱의 구현</span></a>
+ <span class="menu-text">[8장] 네트워크 동작의 분석과 API 구현</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -732,9 +732,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="출처와-받은-시각의-표시" class="level3">
 <h3 class="anchored" data-anchor-id="출처와-받은-시각의-표시">2-3. 출처와 받은 시각의 표시</h3>
 <p>공개 API의 자료를 쓰는 서비스는 자료의 출처를 화면에 보인다. 이 서비스는 화면 아래에 「자료: 고용24 OPEN-API 채용정보, 받은 시각」을 적고, 공고마다 고용24의 원문 주소(<code>wantedInfoUrl</code>)로 가는 연결을 둔다. 지원은 원문에서 하게 한다.</p>
-<blockquote class="blockquote">
-<p><strong>[최신 자료 자리: 고용24 자료의 이용 조건]</strong> 받은 채용정보를 공개 웹에 다시 보이는 것이 허용되는지, 출처 표시의 문구가 정해져 있는지. 확인할 곳: 고용24 OPEN-API 소개 쪽과 인증키 신청 화면의 이용 약관[A1]. 교육과 비영리 이용은 가능하다는 것이 담당 교수의 확인이다. 수업 전에 약관의 해당 조항을 옮겨 적는다. 확인하기 전에는 8-7의 방법대로 견본 자료로 배포한다.</p>
-</blockquote>
+<p>고용24의 자료는 교육과 비영리 목적으로 쓸 수 있다(담당 교수의 확인). 이 과목의 서비스는 수업의 결과물로 공개하며 돈을 받지 않는다. 인증키는 양도할 수 없으므로[A1] 공개하는 것은 받은 자료이고 인증키가 아니다.</p>
 </section>
 </section>
 <section id="구현-지시문의-구성" class="level2">
@@ -1184,7 +1182,7 @@ URL scheme "file" is not supported.</code></pre>
 </section>
 <section id="자료-파일-만들기" class="level3">
 <h3 class="anchored" data-anchor-id="자료-파일-만들기">8-2. 자료 파일 만들기</h3>
-<p>응답 파일(XML)을 화면용 자료 파일(JSON)로 바꾼다. 아래 프로그램을 <code>ch05/xml2json.py</code>로 저장한다. <code>KEEP</code>의 목록은 자기 자료 항목표의 「내 서비스에서」 칸에 맞추어 고친다. 이 파일은 새 키트(<code>Service_05장</code>)에 넣을 예정이며 지금은 키트에 없다.</p>
+<p>응답 파일(XML)을 화면용 자료 파일(JSON)로 바꾼다. 아래 프로그램을 신규 키트에서 <code>ch05/xml2json.py</code>로 복사한다(<code>cp -rn ~/kits-repo/신규 ~/kits/</code> 뒤 <code>cp ~/kits/신규/05장_자료변환/xml2json.py ch05/</code>). <code>KEEP</code>의 목록은 자기 자료 항목표의 「내 서비스에서」 칸에 맞추어 고친다. 인증키가 아직 없으면 같은 폴더의 <code>응답_견본_지어낸것.xml</code>로 먼저 실행해 본다.</p>
 <div class="code-label where-server">
 <span>파일: ch05/xml2json.py</span>
 </div>
@@ -1370,7 +1368,7 @@ URL scheme "file" is not supported.</code></pre>
 <section id="배포-실행-전" class="level3">
 <h3 class="anchored" data-anchor-id="배포-실행-전">8-7. 배포 (실행 전)</h3>
 <p>개인 실습 저장소는 비공개이므로 Pages용 공개 저장소를 따로 만들어 <code>web/</code>의 내용만 올린다. 공개 저장소에 올린 파일은 누구나 읽는다. 명세, 관찰 기록, 응답 파일, 변환 프로그램은 올리지 않는다.</p>
-<p>고용24 자료의 이용 조건을 확인하기 전에는(2-3) 실제 자료를 공개하지 않는다. <code>jobs.json</code>의 회사명과 제목을 지어낸 값으로 바꾼 견본을 올리고, 화면 아래의 출처를 「연습용 견본 자료」로 적는다. 교수가 이용 조건을 확인해 알린 뒤에 실제 자료로 바꾼다.</p>
+<p><code>jobs.json</code>은 그대로 공개된다. 화면에 쓰는 항목만 들어 있는지(8-2), 화면 아래에 출처와 받은 시각이 보이는지(2-3)를 올리기 전에 한 번 더 본다.</p>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>

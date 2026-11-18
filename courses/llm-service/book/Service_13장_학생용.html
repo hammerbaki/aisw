@@ -268,13 +268,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../courses/llm-service/book/Service_07장_학생용.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[7장] 사용자 조사와 네트워크 동작의 분석</span></a>
+ <span class="menu-text">[7장] 사용자 조사와 문제 정의</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../courses/llm-service/book/Service_08장_학생용.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[8장] API 명세와 웹앱의 구현</span></a>
+ <span class="menu-text">[8장] 네트워크 동작의 분석과 API 구현</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1384,7 +1384,7 @@ T3. (과업 카드의 문장)
 <tr class="odd">
 <td>1</td>
 <td>과업 셋에 화면의 단추 이름이 없고 성공 기준이 있다. 내가 직접 한 결과와 찾은 문제가 있다</td>
-<td><code>ch13/과업.md</code>, <code>ch13/내점검.md</code></td>
+<td><code>ch13/과업.md</code></td>
 </tr>
 <tr class="even">
 <td>2</td>
@@ -1428,16 +1428,23 @@ T3. (과업 카드의 문장)
 </div>
 <div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ch13</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> http.server 8100 <span class="at">--bind</span> 127.0.0.1 <span class="at">--directory</span> ch05/web</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-rn</span> ~/kits-repo/신규 ~/kits/</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="va">K</span><span class="op">=</span>~/kits/신규/13장_AI점검</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> <span class="va">$K</span>/과업_양식.md ch13/과업.md</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> <span class="va">$K</span>/검증표_양식.md ch13/검증표.md</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> <span class="va">$K</span>/문제목록_양식.md ch13/문제목록.md</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> <span class="va">$K</span>/개선문서_양식.md ch13/개선문서.md</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-n</span> <span class="va">$K</span>/회귀확인_양식.md ch13/회귀확인.md</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> http.server 8100 <span class="at">--bind</span> 127.0.0.1 <span class="at">--directory</span> ch05/web</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>[파일: ch13/과업.md]</strong> (예)</p>
 <pre class="text"><code>| 과업 | 과업 카드 | 성공 기준 |
 |---|---|---|
 | T1 | 광주에서 일하는 신입 공고 가운데 마감이 가장 가까운 것을 찾아, 회사 이름을 말하세요 | 맞는 회사 이름을 말한다 |
 | T2 | 제목에 「개발」이 들어간 공고 하나를 골라, 급여와 마감일을 말하세요 | 그 공고의 급여와 마감일을 맞게 말한다 |
 | T3 | 조건에 맞는 공고가 하나도 없을 때 어떻게 되는지 확인하고, 전체 목록으로 돌아오세요 | 결과가 없다는 것을 알고 전체 목록을 다시 본다 |</code></pre>
-<p>AI의 보고를 받기 전에 내가 먼저 과업 셋을 한다. AI의 보고를 먼저 읽으면 그 목록에 있는 문제만 눈에 들어온다. 브라우저의 시크릿 창에서 <code>http://localhost:8100/</code>을 열고, 과업마다 결과(6-2의 수준)와 막힌 곳을 <code>ch13/내점검.md</code>에 적는다. 문제는 3-2의 꼴(위치, 한 조작, 나온 것, 휴리스틱 번호, 심각도)로 적는다. 두 번째로 할 때는 빈 값을 넣고, 단추를 빠르게 두 번 누르고, 창을 좁혀 본다.</p>
+<p>AI의 보고를 받기 전에 내가 먼저 과업 셋을 한다. AI의 보고를 먼저 읽으면 그 목록에 있는 문제만 눈에 들어온다. 브라우저의 시크릿 창에서 <code>http://localhost:8100/</code>을 열고, 과업마다 결과(6-2의 수준)와 막힌 곳을 <code>ch13/과업.md</code>의 「내 점검」 절에 적는다. 문제는 3-2의 꼴(위치, 한 조작, 나온 것, 휴리스틱 번호, 심각도)로 적는다. 두 번째로 할 때는 빈 값을 넣고, 단추를 빠르게 두 번 누르고, 창을 좁혀 본다.</p>
 <ul>
-<li><span class="check-badge">확인 3</span> <code>과업.md</code>의 카드 셋에 화면의 단추 이름이 없고, <code>내점검.md</code>에 과업 셋의 결과와 문제 둘 이상이 있다. <code>내점검.md</code>를 커밋한 뒤에 다음 단계로 간다.</li>
+<li><span class="check-badge">확인 3</span> <code>과업.md</code>의 카드 셋에 화면의 단추 이름이 없고, <code>과업.md</code>의 「내 점검」 절에 과업 셋의 결과와 문제 둘 이상이 있다. <code>과업.md</code>를 커밋한 뒤에 다음 단계로 간다.</li>
 </ul>
 </section>
 <section id="ai의-점검" class="level3">
@@ -1470,7 +1477,7 @@ T3. (과업 카드의 문장)
 </section>
 <section id="문제-목록과-개선안" class="level3">
 <h3 class="anchored" data-anchor-id="문제-목록과-개선안">9-5. 문제 목록과 개선안</h3>
-<p>「재현됨」인 항목과 <code>내점검.md</code>의 문제를 <code>ch13/문제목록.md</code>로 합친다(7-1). 같은 문제는 한 줄로 합친다. 심각도는 내가 다시 매기고 빈도를 붙여 점수로 줄을 세운다(7-2).</p>
+<p>「재현됨」인 항목과 <code>과업.md</code>의 「내 점검」 절의 문제를 <code>ch13/문제목록.md</code>로 합친다(7-1). 같은 문제는 한 줄로 합친다. 심각도는 내가 다시 매기고 빈도를 붙여 점수로 줄을 세운다(7-2).</p>
 <p>맨 위의 문제 하나를 골라 Claude Code에게 개선안을 묻는다(6-6).</p>
 <p><strong>[Claude Code]</strong> (<code>~/llm-service-lab</code>에서. 실행 전)</p>
 <pre class="text"><code>ch13/문제목록.md의 U-01을 다룬다. ch04/요구사항명세서.md와 ch05/web/ 을 읽어라.
@@ -1589,7 +1596,7 @@ T3. (과업 카드의 문장)
 <section id="제출물" class="level2">
 <h2 class="anchored" data-anchor-id="제출물">제출물</h2>
 <ol type="1">
-<li><strong>개인 실습 저장소 <code>ch13/</code></strong>: <code>과업.md</code>, <code>내점검.md</code>, <code>AI보고.md</code>, <code>검증표.md</code>, <code>문제목록.md</code>, <code>개선문서.md</code>, <code>회귀확인.md</code></li>
+<li><strong>개인 실습 저장소 <code>ch13/</code></strong>: <code>과업.md</code>, <code>AI보고.md</code>, <code>검증표.md</code>, <code>문제목록.md</code>, <code>개선문서.md</code>, <code>회귀확인.md</code></li>
 <li><strong>개인 실습 저장소 <code>ch04/</code>, <code>ch05/</code></strong>: 고친 명세와 인수 조건(명세의 커밋이 구현의 커밋보다 먼저), 고친 구현</li>
 <li><strong>팀 실습 저장소의 이슈 하나</strong>: 재현 절차, 근거(검증표의 번호와 내가 본 것), 관련 요구 ID, 고친 뒤의 확인 댓글</li>
 </ol>

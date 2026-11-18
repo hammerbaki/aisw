@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>[8장] API 명세와 웹앱의 구현 – 안중호 교수 강의 교재</title>
+<title>[8장] 네트워크 동작의 분석과 API 구현 – 안중호 교수 강의 교재</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -107,6 +107,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <style>html{ scroll-behavior: smooth; }</style>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({
+    startOnLoad: true,
+    securityLevel: "loose",
+    theme: "neutral",
+    fontFamily: '"Pretendard Variable", Pretendard, "Malgun Gothic", sans-serif'
+  });
+</script>
 
 
 </head>
@@ -193,7 +202,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../courses/llm-service/book/Service_01장_학생용.html">교재</a></li><li class="breadcrumb-item"><a href="../../../courses/llm-service/book/Service_08장_학생용.html">[8장] API 명세와 웹앱의 구현</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../courses/llm-service/book/Service_01장_학생용.html">교재</a></li><li class="breadcrumb-item"><a href="../../../courses/llm-service/book/Service_08장_학생용.html">[8장] 네트워크 동작의 분석과 API 구현</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -259,13 +268,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../courses/llm-service/book/Service_07장_학생용.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[7장] 사용자 조사와 네트워크 동작의 분석</span></a>
+ <span class="menu-text">[7장] 사용자 조사와 문제 정의</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../courses/llm-service/book/Service_08장_학생용.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">[8장] API 명세와 웹앱의 구현</span></a>
+ <span class="menu-text">[8장] 네트워크 동작의 분석과 API 구현</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -326,39 +335,53 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#학습-목표" id="toc-학습-목표" class="nav-link active" data-scroll-target="#학습-목표">학습 목표</a></li>
   <li><a href="#시작하기" id="toc-시작하기" class="nav-link" data-scroll-target="#시작하기">0. 시작하기</a></li>
-  <li><a href="#api-명세" id="toc-api-명세" class="nav-link" data-scroll-target="#api-명세">1. API 명세</a>
+  <li><a href="#네트워크-호출의-기록과-분석" id="toc-네트워크-호출의-기록과-분석" class="nav-link" data-scroll-target="#네트워크-호출의-기록과-분석">1. 네트워크 호출의 기록과 분석</a>
   <ul class="collapse">
-  <li><a href="#끝점-목록에서-명세로" id="toc-끝점-목록에서-명세로" class="nav-link" data-scroll-target="#끝점-목록에서-명세로">1-1. 끝점 목록에서 명세로</a></li>
-  <li><a href="#명세의-예" id="toc-명세의-예" class="nav-link" data-scroll-target="#명세의-예">1-2. 명세의 예</a></li>
-  <li><a href="#상태-코드의-선택" id="toc-상태-코드의-선택" class="nav-link" data-scroll-target="#상태-코드의-선택">1-3. 상태 코드의 선택</a></li>
+  <li><a href="#무엇을-분석해도-되는가" id="toc-무엇을-분석해도-되는가" class="nav-link" data-scroll-target="#무엇을-분석해도-되는가">1-1. 무엇을 분석해도 되는가</a></li>
+  <li><a href="#브라우저와-서버가-주고받는-것" id="toc-브라우저와-서버가-주고받는-것" class="nav-link" data-scroll-target="#브라우저와-서버가-주고받는-것">1-2. 브라우저와 서버가 주고받는 것</a></li>
+  <li><a href="#har-파일" id="toc-har-파일" class="nav-link" data-scroll-target="#har-파일">1-3. HAR 파일</a></li>
+  <li><a href="#har에서-요청-목록-뽑기" id="toc-har에서-요청-목록-뽑기" class="nav-link" data-scroll-target="#har에서-요청-목록-뽑기">1-4. HAR에서 요청 목록 뽑기</a></li>
+  <li><a href="#rea로-분석하기-실행-전" id="toc-rea로-분석하기-실행-전" class="nav-link" data-scroll-target="#rea로-분석하기-실행-전">1-5. REA로 분석하기 (실행 전)</a></li>
+  <li><a href="#끝점-목록" id="toc-끝점-목록" class="nav-link" data-scroll-target="#끝점-목록">1-6. 끝점 목록</a></li>
   </ul></li>
-  <li><a href="#서버-쪽-판정" id="toc-서버-쪽-판정" class="nav-link" data-scroll-target="#서버-쪽-판정">2. 서버 쪽 판정</a>
+  <li><a href="#api-명세" id="toc-api-명세" class="nav-link" data-scroll-target="#api-명세">2. API 명세</a>
   <ul class="collapse">
-  <li><a href="#브라우저의-검사는-편의이다" id="toc-브라우저의-검사는-편의이다" class="nav-link" data-scroll-target="#브라우저의-검사는-편의이다">2-1. 브라우저의 검사는 편의이다</a></li>
-  <li><a href="#입력의-검증과-업무-규칙의-판정" id="toc-입력의-검증과-업무-규칙의-판정" class="nav-link" data-scroll-target="#입력의-검증과-업무-규칙의-판정">2-2. 입력의 검증과 업무 규칙의 판정</a></li>
-  <li><a href="#겹침의-판정" id="toc-겹침의-판정" class="nav-link" data-scroll-target="#겹침의-판정">2-3. 겹침의 판정</a></li>
+  <li><a href="#끝점-목록에서-명세로" id="toc-끝점-목록에서-명세로" class="nav-link" data-scroll-target="#끝점-목록에서-명세로">2-1. 끝점 목록에서 명세로</a></li>
+  <li><a href="#명세의-예" id="toc-명세의-예" class="nav-link" data-scroll-target="#명세의-예">2-2. 명세의 예</a></li>
+  <li><a href="#상태-코드의-선택" id="toc-상태-코드의-선택" class="nav-link" data-scroll-target="#상태-코드의-선택">2-3. 상태 코드의 선택</a></li>
   </ul></li>
-  <li><a href="#따라-하기-예약-api" id="toc-따라-하기-예약-api" class="nav-link" data-scroll-target="#따라-하기-예약-api">3. 따라 하기: 예약 API</a>
+  <li><a href="#서버-쪽-판정" id="toc-서버-쪽-판정" class="nav-link" data-scroll-target="#서버-쪽-판정">3. 서버 쪽 판정</a>
   <ul class="collapse">
-  <li><a href="#서버의-코드-읽기" id="toc-서버의-코드-읽기" class="nav-link" data-scroll-target="#서버의-코드-읽기">3-1. 서버의 코드 (읽기)</a></li>
-  <li><a href="#서버-띄우기와-요청-보내기" id="toc-서버-띄우기와-요청-보내기" class="nav-link" data-scroll-target="#서버-띄우기와-요청-보내기">3-2. 서버 띄우기와 요청 보내기</a></li>
-  <li><a href="#거절되는-요청" id="toc-거절되는-요청" class="nav-link" data-scroll-target="#거절되는-요청">3-3. 거절되는 요청</a></li>
-  <li><a href="#자동-문서" id="toc-자동-문서" class="nav-link" data-scroll-target="#자동-문서">3-4. 자동 문서</a></li>
+  <li><a href="#브라우저의-검사는-편의이다" id="toc-브라우저의-검사는-편의이다" class="nav-link" data-scroll-target="#브라우저의-검사는-편의이다">3-1. 브라우저의 검사는 편의이다</a></li>
+  <li><a href="#입력의-검증과-업무-규칙의-판정" id="toc-입력의-검증과-업무-규칙의-판정" class="nav-link" data-scroll-target="#입력의-검증과-업무-규칙의-판정">3-2. 입력의 검증과 업무 규칙의 판정</a></li>
+  <li><a href="#겹침의-판정" id="toc-겹침의-판정" class="nav-link" data-scroll-target="#겹침의-판정">3-3. 겹침의 판정</a></li>
+  <li><a href="#공개-api는-서버가-부른다" id="toc-공개-api는-서버가-부른다" class="nav-link" data-scroll-target="#공개-api는-서버가-부른다">3-4. 공개 API는 서버가 부른다</a></li>
+  <li><a href="#인증키의-자리와-새는-경로" id="toc-인증키의-자리와-새는-경로" class="nav-link" data-scroll-target="#인증키의-자리와-새는-경로">3-5. 인증키의 자리와 새는 경로</a></li>
   </ul></li>
-  <li><a href="#테스트와-대조" id="toc-테스트와-대조" class="nav-link" data-scroll-target="#테스트와-대조">4. 테스트와 대조</a>
+  <li><a href="#따라-하기-예약-api" id="toc-따라-하기-예약-api" class="nav-link" data-scroll-target="#따라-하기-예약-api">4. 따라 하기: 예약 API</a>
   <ul class="collapse">
-  <li><a href="#경우-하나에-테스트-하나" id="toc-경우-하나에-테스트-하나" class="nav-link" data-scroll-target="#경우-하나에-테스트-하나">4-1. 경우 하나에 테스트 하나</a></li>
-  <li><a href="#기록의-재생" id="toc-기록의-재생" class="nav-link" data-scroll-target="#기록의-재생">4-2. 기록의 재생</a></li>
+  <li><a href="#서버의-코드-읽기" id="toc-서버의-코드-읽기" class="nav-link" data-scroll-target="#서버의-코드-읽기">4-1. 서버의 코드 (읽기)</a></li>
+  <li><a href="#서버-띄우기와-요청-보내기" id="toc-서버-띄우기와-요청-보내기" class="nav-link" data-scroll-target="#서버-띄우기와-요청-보내기">4-2. 서버 띄우기와 요청 보내기</a></li>
+  <li><a href="#거절되는-요청" id="toc-거절되는-요청" class="nav-link" data-scroll-target="#거절되는-요청">4-3. 거절되는 요청</a></li>
+  <li><a href="#자동-문서" id="toc-자동-문서" class="nav-link" data-scroll-target="#자동-문서">4-4. 자동 문서</a></li>
   </ul></li>
-  <li><a href="#명세-주도-도구의-시연-moai-adk-교수-시연-실행-전" id="toc-명세-주도-도구의-시연-moai-adk-교수-시연-실행-전" class="nav-link" data-scroll-target="#명세-주도-도구의-시연-moai-adk-교수-시연-실행-전">5. 명세 주도 도구의 시연: MoAI-ADK (교수 시연, 실행 전)</a></li>
-  <li><a href="#핵심-실습-끝점-목록에서-api-명세-서버-대조까지" id="toc-핵심-실습-끝점-목록에서-api-명세-서버-대조까지" class="nav-link" data-scroll-target="#핵심-실습-끝점-목록에서-api-명세-서버-대조까지">6. 핵심 실습: 끝점 목록에서 API 명세, 서버, 대조까지</a>
+  <li><a href="#테스트와-대조" id="toc-테스트와-대조" class="nav-link" data-scroll-target="#테스트와-대조">5. 테스트와 대조</a>
   <ul class="collapse">
-  <li><a href="#완료-기준과-진행-순서" id="toc-완료-기준과-진행-순서" class="nav-link" data-scroll-target="#완료-기준과-진행-순서">6-1. 완료 기준과 진행 순서</a></li>
-  <li><a href="#api-명세-1" id="toc-api-명세-1" class="nav-link" data-scroll-target="#api-명세-1">6-2. API 명세</a></li>
-  <li><a href="#구현" id="toc-구현" class="nav-link" data-scroll-target="#구현">6-3. 구현</a></li>
-  <li><a href="#테스트" id="toc-테스트" class="nav-link" data-scroll-target="#테스트">6-4. 테스트</a></li>
-  <li><a href="#대조" id="toc-대조" class="nav-link" data-scroll-target="#대조">6-5. 대조</a></li>
-  <li><a href="#커밋" id="toc-커밋" class="nav-link" data-scroll-target="#커밋">6-6. 커밋</a></li>
+  <li><a href="#경우-하나에-테스트-하나" id="toc-경우-하나에-테스트-하나" class="nav-link" data-scroll-target="#경우-하나에-테스트-하나">5-1. 경우 하나에 테스트 하나</a></li>
+  <li><a href="#기록의-재생" id="toc-기록의-재생" class="nav-link" data-scroll-target="#기록의-재생">5-2. 기록의 재생</a></li>
+  </ul></li>
+  <li><a href="#명세-주도-도구의-시연-moai-adk-교수-시연-실행-전" id="toc-명세-주도-도구의-시연-moai-adk-교수-시연-실행-전" class="nav-link" data-scroll-target="#명세-주도-도구의-시연-moai-adk-교수-시연-실행-전">6. 명세 주도 도구의 시연: MoAI-ADK (교수 시연, 실행 전)</a></li>
+  <li><a href="#핵심-실습-끝점-목록에서-api-명세-서버-대조까지" id="toc-핵심-실습-끝점-목록에서-api-명세-서버-대조까지" class="nav-link" data-scroll-target="#핵심-실습-끝점-목록에서-api-명세-서버-대조까지">7. 핵심 실습: 끝점 목록에서 API 명세, 서버, 대조까지</a>
+  <ul class="collapse">
+  <li><a href="#완료-기준과-진행-순서" id="toc-완료-기준과-진행-순서" class="nav-link" data-scroll-target="#완료-기준과-진행-순서">7-1. 완료 기준과 진행 순서</a></li>
+  <li><a href="#호출의-기록" id="toc-호출의-기록" class="nav-link" data-scroll-target="#호출의-기록">7-2. 호출의 기록</a></li>
+  <li><a href="#끝점-목록-1" id="toc-끝점-목록-1" class="nav-link" data-scroll-target="#끝점-목록-1">7-3. 끝점 목록</a></li>
+  <li><a href="#api-명세-1" id="toc-api-명세-1" class="nav-link" data-scroll-target="#api-명세-1">7-4. API 명세</a></li>
+  <li><a href="#구현" id="toc-구현" class="nav-link" data-scroll-target="#구현">7-5. 구현</a></li>
+  <li><a href="#테스트" id="toc-테스트" class="nav-link" data-scroll-target="#테스트">7-6. 테스트</a></li>
+  <li><a href="#대조" id="toc-대조" class="nav-link" data-scroll-target="#대조">7-7. 대조</a></li>
+  <li><a href="#커밋" id="toc-커밋" class="nav-link" data-scroll-target="#커밋">7-8. 커밋</a></li>
+  <li><a href="#더-해-보기-공개-api의-끝점-선택-실행-전" id="toc-더-해-보기-공개-api의-끝점-선택-실행-전" class="nav-link" data-scroll-target="#더-해-보기-공개-api의-끝점-선택-실행-전">7-9. 더 해 보기: 공개 API의 끝점 (선택, 실행 전)</a></li>
   </ul></li>
   <li><a href="#자주-하는-실수와-해결" id="toc-자주-하는-실수와-해결" class="nav-link" data-scroll-target="#자주-하는-실수와-해결">자주 하는 실수와 해결</a></li>
   <li><a href="#제출물" id="toc-제출물" class="nav-link" data-scroll-target="#제출물">제출물</a></li>
@@ -375,9 +398,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../courses/llm-service/book/Service_01장_학생용.html">교재</a></li><li class="breadcrumb-item"><a href="../../../courses/llm-service/book/Service_08장_학생용.html">[8장] API 명세와 웹앱의 구현</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../courses/llm-service/book/Service_01장_학생용.html">교재</a></li><li class="breadcrumb-item"><a href="../../../courses/llm-service/book/Service_08장_학생용.html">[8장] 네트워크 동작의 분석과 API 구현</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">[8장] API 명세와 웹앱의 구현</h1>
+<h1 class="title">[8장] 네트워크 동작의 분석과 API 구현</h1>
 </div>
 
 
@@ -397,7 +420,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header class="chapter-head">
 <p class="chapter-part">LLM 서비스 개발</p>
 <p class="chapter-no"><span class="num">8</span><span class="unit">장</span></p>
-<p class="chapter-title">API 명세와 웹앱의 구현</p>
+<p class="chapter-title">네트워크 동작의 분석과 API 구현</p>
 </header>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
@@ -413,14 +436,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>학사 10주차 · 교재 08 · 서비스 3: 예약·일정 웹앱 (2/2)</p>
 </blockquote>
 <blockquote class="blockquote">
-<p><strong>개편 초안(2026-11-18).</strong> 이 장은 <code>plan/개편안.md</code>의 단원형 구성에 따라 새로 쓴 초안이다. 서버의 코드와 출력은 집필 환경(Linux, Python 3.13.18, FastAPI 0.163.2, Pydantic 2.14.3, Uvicorn 0.54.0, pytest 9.2.0)에서 2026-11-18에 실제로 실행해 얻은 것이며, 실습실 PC(Windows 11, Git Bash)에서는 아직 확인하지 않았다. 「실행 전」이라고 적은 곳은 실행으로 확인하지 않았다. 키트와 예제 웹앱은 아직 없다.</p>
+<p><strong>개편 초안(2026-11-18).</strong> 이 장은 <code>plan/개편안.md</code>의 단원형 구성에 따라 새로 쓴 초안이다. 서버의 코드와 출력은 집필 환경(Linux, Python 3.13.18, FastAPI 0.163.2, Pydantic 2.14.3, Uvicorn 0.54.0, pytest 9.2.0)에서 2026-11-18에 실제로 실행해 얻은 것이며, 실습실 PC(Windows 11, Git Bash)에서는 아직 확인하지 않았다. 「실행 전」이라고 적은 곳은 실행으로 확인하지 않았다. 키트와 예제 웹앱은 아직 없다. 3-4(공개 API는 서버가 부른다)는 2026-11-18에 더하였다. 코드와 테스트는 견본 XML을 가짜 응답으로 써서 집필 환경에서 실행하였고, 실제 고용24 API로는 실행하지 않았다. 1절(네트워크 호출의 기록과 분석)과 실습 7-2, 7-3은 7장에서 옮겼고, 3-5(인증키의 자리와 새는 경로)는 9장의 10-1과 10-3을 이 장에 맞게 고쳐 옮겼다(2026-11-18). 옮기면서 명령의 경로 <code>ch07/</code>을 <code>ch08/</code>로 바꾸었다. 바꾼 경로로는 다시 실행하지 않았다.</p>
 </blockquote>
-<p>7장에서 예제 웹앱의 호출을 기록해 끝점 목록을 만들었다. 이 장은 그 목록을 <strong>API 명세</strong>로 고쳐 쓰고, 명세만으로 서버를 구현한다. 5장의 정적 웹에는 서버가 없었다. 예약 서비스에는 서버가 있어야 한다. 겹치는 예약을 막는 판정은 여러 사용자의 예약을 모두 아는 쪽만 할 수 있기 때문이다.</p>
-<p>구현한 서버가 명세대로인지는 두 가지로 확인한다. 하나는 테스트이다. 다른 하나는 <strong>대조</strong>이다. 7장에서 기록한 요청을 내 서버에 같은 순서로 보내 응답의 상태 코드를 견준다. 6장에서 명령줄 프로그램의 출력을 대조한 방법을 서버에 적용한 것이다.</p>
+<p>7장에서 사람을 조사해 문제를 정의하였다. 이 장은 <strong>이미 있는 웹앱</strong>에서 명세의 재료를 모은다. 키트의 예제 웹앱을 내 PC에서 실행해 브라우저와 서버가 주고받는 호출을 기록하고, 그 기록에서 끝점(endpoint)의 목록을 뽑는다. 4장은 화면을, 6장은 코드를 읽었고 이 장은 호출을 읽는다. 이어서 그 목록을 <strong>API 명세</strong>로 고쳐 쓰고, 명세만으로 서버를 구현한다. 5장의 정적 웹에는 서버가 없었다. 예약 서비스에는 서버가 있어야 한다. 겹치는 예약을 막는 판정은 여러 사용자의 예약을 모두 아는 쪽만 할 수 있기 때문이다.</p>
+<p>구현한 서버가 명세대로인지는 두 가지로 확인한다. 하나는 테스트이다. 다른 하나는 <strong>대조</strong>이다. 앞에서 기록한 요청을 내 서버에 같은 순서로 보내 응답의 상태 코드를 견준다. 6장에서 명령줄 프로그램의 출력을 대조한 방법을 서버에 적용한 것이다.</p>
 <hr>
 <section id="학습-목표" class="level2">
 <h2 class="anchored" data-anchor-id="학습-목표">학습 목표</h2>
 <ul>
+<li><strong>브라우저의 개발자 도구로 네트워크 호출을 HAR 파일로 기록하고, 민감한 정보가 들어가지 않게 다룰 수 있다.</strong></li>
+<li><strong>HAR 기록에서 끝점 목록을 뽑고, 확인한 것과 추측한 것을 구분할 수 있다.</strong></li>
 <li><strong>끝점 목록에서 API 명세(요청, 응답, 오류)를 쓰고, 기록에 없던 경우를 열린 질문으로 남기거나 정할 수 있다.</strong></li>
 <li><strong>판정을 서버 쪽에 두어야 하는 까닭을 설명하고, 입력의 검증과 업무 규칙의 판정을 구분해 구현할 수 있다.</strong></li>
 <li><strong>상태 코드를 실패의 원인에 따라 고를 수 있다.</strong></li>
@@ -431,12 +456,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="시작하기" class="level2">
 <h2 class="anchored" data-anchor-id="시작하기">0. 시작하기</h2>
-<p>부록 A의 시작 순서(A-21)를 따른다. 7장의 끝점 목록과 호출 기록이 있는지 확인하고, 이 장의 패키지를 가상 환경에 설치한다.</p>
+<p>부록 A의 시작 순서(A-21)를 따른다. 7장의 문제 정의가 있는지 확인하고, 이 장의 패키지를 가상 환경에 설치한다.</p>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> ch07/끝점목록.md ch07/session.har</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> ch07/문제정의.md</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ch08 <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> ch08</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install <span class="at">-q</span> fastapi uvicorn httpx pytest</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip list <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-i</span> <span class="at">-E</span> <span class="st">"^(fastapi|uvicorn|pydantic|httpx|pytest) "</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -449,13 +474,175 @@ uvicorn           0.54.0</code></pre>
 <ul>
 <li><p><strong>이 장의 실행 상한.</strong> 실제 모델은 Claude Code 대화형으로만 부른다. 프로덕트 코드의 LLM 호출은 없다.</p></li>
 <li><p><strong>포트.</strong> 예제 웹앱은 8200, 내 서버는 8300을 쓴다.</p></li>
-<li><p><span class="check-badge">확인 1</span> <code>ch07/끝점목록.md</code>와 <code>ch07/session.har</code>가 있고, <code>pip list</code>에 <code>fastapi</code>와 <code>pytest</code>가 보인다.</p></li>
+<li><p><strong>분석의 대상.</strong> 네트워크 호출의 기록과 분석은 키트의 예제 웹앱과 자기 결과물에만 한다. 남의 서비스의 호출을 기록해 분석하지 않는다(1-1).</p></li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: 예제 웹앱과 REA의 준비]</strong> 이 장은 키트의 예제 웹앱(스터디룸 예약, 주소 <code>http://localhost:8200/</code>)과 REA의 설치(부록 A에 더할 절차)를 전제한다. 2026-11-18에 예제 웹앱은 아직 만들지 않았고 REA는 설치해 보지 않았다. 확인할 곳: <code>plan/개편안.md</code> 8절, <a href="https://github.com/morluto/rea" class="uri">https://github.com/morluto/rea</a>.</p>
+</blockquote>
+<ul>
+<li><span class="check-badge">확인 1</span> <code>ch07/문제정의.md</code>가 있고, <code>pip list</code>에 <code>fastapi</code>와 <code>pytest</code>가 보인다.</li>
 </ul>
 </section>
+<section id="네트워크-호출의-기록과-분석" class="level2">
+<h2 class="anchored" data-anchor-id="네트워크-호출의-기록과-분석">1. 네트워크 호출의 기록과 분석</h2>
+<section id="무엇을-분석해도-되는가" class="level3">
+<h3 class="anchored" data-anchor-id="무엇을-분석해도-되는가">1-1. 무엇을 분석해도 되는가</h3>
+<p>네트워크 호출의 분석은 화면의 관찰보다 깊이 들어간다. 로그인한 상태의 호출에는 쿠키와 토큰이 들어 있고, 응답에는 다른 사용자의 정보가 들어 있을 수 있다. 서비스의 이용 약관이 자동화된 접근이나 분석을 금지하는 경우도 있다. 이 과목은 대상을 다음으로 한정한다.</p>
+<ol type="1">
+<li>키트가 제공하는 예제 웹앱(내 PC에서 실행한다).</li>
+<li>자기가 만든 서비스.</li>
+</ol>
+<p>REA의 저장소도 쓰임을 합법적인 연구와 교육, 상호 운용성, 자기 소유이거나 살펴볼 권한이 있는 소프트웨어의 분석으로 적고 있다 [H1]. 이 절은 법률 자문이 아니다.</p>
+</section>
+<section id="브라우저와-서버가-주고받는-것" class="level3">
+<h3 class="anchored" data-anchor-id="브라우저와-서버가-주고받는-것">1-2. 브라우저와 서버가 주고받는 것</h3>
+<p>웹앱의 화면은 브라우저가 서버에 <strong>요청</strong>을 보내고 <strong>응답</strong>을 받아 그린다. 요청 하나는 다음으로 이루어진다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>요소</th>
+<th>뜻</th>
+<th>예</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>메서드</td>
+<td>무엇을 하려는가</td>
+<td><code>GET</code>(읽기), <code>POST</code>(만들기), <code>DELETE</code>(지우기)</td>
+</tr>
+<tr class="even">
+<td>경로</td>
+<td>무엇에 대해</td>
+<td><code>/api/reservations</code></td>
+</tr>
+<tr class="odd">
+<td>질의 문자열</td>
+<td>읽을 조건</td>
+<td><code>?date=2027-05-17</code></td>
+</tr>
+<tr class="even">
+<td>본문</td>
+<td>보낼 자료(JSON)</td>
+<td><code>{"room_id": 1, "start": "10:00"}</code></td>
+</tr>
+</tbody>
+</table>
+<p>응답은 <strong>상태 코드</strong>와 본문이다. 상태 코드의 첫 자리가 결과의 갈래를 말한다. <code>2xx</code>는 성공, <code>4xx</code>는 요청한 쪽의 잘못, <code>5xx</code>는 서버의 잘못이다. 메서드와 경로의 한 쌍을 <strong>끝점</strong>이라 부른다. 웹앱의 서버가 하는 일은 끝점의 목록으로 정리된다.</p>
+<p>화면에는 「예약할 수 없습니다」라는 한 줄만 보여도, 호출에는 서버가 무엇을 거절하였는지가 상태 코드와 본문으로 남는다. 겹치는 예약의 거절처럼 <strong>서버가 판정하는 규칙</strong>은 화면의 관찰로는 추측이지만 호출의 기록으로는 확인이다.</p>
+</section>
+<section id="har-파일" class="level3">
+<h3 class="anchored" data-anchor-id="har-파일">1-3. HAR 파일</h3>
+<p>HAR(HTTP Archive)는 브라우저가 주고받은 요청과 응답을 JSON 한 파일로 저장하는 형식이다. Chrome의 개발자 도구에서 만든다.</p>
+<ol type="1">
+<li>예제 웹앱을 연 탭에서 <code>F12</code>로 개발자 도구를 열고 <strong>Network</strong> 탭을 고른다.</li>
+<li><strong>Preserve log</strong>를 켠다. 화면이 바뀌어도 기록이 지워지지 않는다.</li>
+<li>기록할 조작을 한다(7-2).</li>
+<li>Network 탭의 내보내기 단추(아래 화살표)에서 <strong>Export HAR (sanitized)</strong>를 골라 저장한다.</li>
+</ol>
+<p>Chrome은 130판부터 HAR를 내보낼 때 <code>Cookie</code>, <code>Set-Cookie</code>, <code>Authorization</code> 헤더를 기본으로 뺀다 [H2][H3]. 민감한 정보를 넣어 내보내는 선택지는 개발자 도구의 설정에서 「Allow to generate HAR with sensitive data」를 켜야 나타난다 [H2]. 이 과목에서는 그 설정을 켜지 않는다.</p>
+<blockquote class="blockquote">
+<p><strong>[그림 자리: Network 탭의 내보내기]</strong> Chrome 개발자 도구의 Network 탭에서 Preserve log를 켜고 내보내기 단추를 눌러 「Export HAR (sanitized)」가 보이는 화면. 내 PC의 Chrome에서 예제 웹앱을 연 상태로 찍는다.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: Chrome 개발자 도구의 HAR 내보내기 메뉴]</strong> 메뉴와 설정의 이름. 확인할 곳: Chrome DevTools 문서의 Network 참조. 2026-11-18에 그 문서는 열지 못하였고, 이름은 [H2]와 [H3]으로 확인하였다. 실제 화면은 보지 못하였다.</p>
+</blockquote>
+<p>걸러서 내보낸 HAR에도 주소, 질의 문자열, 요청과 응답의 본문은 그대로 들어 있다. 본문에 이름이나 연락처를 넣었다면 그것도 들어간다. 그래서 기록할 때는 지어낸 값만 입력하고, HAR 파일은 저장소에 커밋하지 않는다.</p>
+</section>
+<section id="har에서-요청-목록-뽑기" class="level3">
+<h3 class="anchored" data-anchor-id="har에서-요청-목록-뽑기">1-4. HAR에서 요청 목록 뽑기</h3>
+<p>HAR는 JSON이므로 프로그램으로 읽을 수 있다. 요청은 <code>log.entries</code> 배열에 시간 순서로 들어 있고, 항목마다 <code>request</code>(메서드, 주소, 본문)와 <code>response</code>(상태 코드, 본문)가 있다. 다음 스크립트는 <code>/api/</code>로 시작하는 요청만 골라 순서대로 보이고, 끝에 (메서드, 경로, 상태 코드)로 묶어 센다.</p>
+<div class="code-label where-server">
+<span>파일: ch08/har_list.py</span>
+</div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">"""HAR 파일의 요청을 (메서드, 경로, 상태 코드)로 묶어 센다. 표준 라이브러리만 쓴다."""</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> collections</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> urllib.parse <span class="im">import</span> urlsplit</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>har <span class="op">=</span> json.load(<span class="bu">open</span>(sys.argv[<span class="dv">1</span>], encoding<span class="op">=</span><span class="st">"utf-8"</span>))</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>count <span class="op">=</span> collections.Counter()</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, e <span class="kw">in</span> <span class="bu">enumerate</span>(har[<span class="st">"log"</span>][<span class="st">"entries"</span>]):</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    u <span class="op">=</span> urlsplit(e[<span class="st">"request"</span>][<span class="st">"url"</span>])</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> u.path.startswith(<span class="st">"/api/"</span>):</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    count[(e[<span class="st">"request"</span>][<span class="st">"method"</span>], u.path, e[<span class="st">"response"</span>][<span class="st">"status"</span>])] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>i<span class="sc">:&gt;3}</span><span class="ss"> </span><span class="sc">{</span>e[<span class="st">"request"</span>][<span class="st">"method"</span>]<span class="sc">:&lt;6}</span><span class="ss"> </span><span class="sc">{</span>u<span class="sc">.</span>path<span class="sc">}{</span><span class="st">"?"</span> <span class="op">+</span> u<span class="sc">.</span>query <span class="cf">if</span> u<span class="sc">.</span>query <span class="cf">else</span> <span class="st">""</span><span class="sc">}</span><span class="ss"> -&gt; </span><span class="sc">{</span>e[<span class="st">"response"</span>][<span class="st">"status"</span>]<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"--- 묶음"</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (m, p, s), n <span class="kw">in</span> <span class="bu">sorted</span>(count.items(), key<span class="op">=</span><span class="kw">lambda</span> x: (x[<span class="dv">0</span>][<span class="dv">1</span>], x[<span class="dv">0</span>][<span class="dv">0</span>], x[<span class="dv">0</span>][<span class="dv">2</span>])):</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>m<span class="sc">:&lt;6}</span><span class="ss"> </span><span class="sc">{</span>p<span class="sc">:&lt;28}</span><span class="ss"> </span><span class="sc">{</span>s<span class="sc">}</span><span class="ss">  </span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">회"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-label where-server">
+<span>터미널</span>
+</div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> har_list.py session.har</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>  2 GET    /api/rooms -&gt; 200
+  3 GET    /api/reservations?date=2027-05-17 -&gt; 200
+  4 POST   /api/reservations -&gt; 201
+  5 GET    /api/reservations?date=2027-05-17 -&gt; 200
+  6 POST   /api/reservations -&gt; 409
+  7 DELETE /api/reservations/1 -&gt; 204
+  8 DELETE /api/reservations/1 -&gt; 404
+--- 묶음
+GET    /api/reservations            200  2회
+POST   /api/reservations            201  1회
+POST   /api/reservations            409  1회
+DELETE /api/reservations/1          204  1회
+DELETE /api/reservations/1          404  1회
+GET    /api/rooms                   200  1회</code></pre>
+<p>위 출력은 집필 환경에서 손으로 만든 견본 HAR(요청 9건)로 2026-11-18에 실제로 얻은 것이다. 예제 웹앱에서 내보낸 HAR의 출력이 아니다. 읽을 것은 셋이다.</p>
+<ul>
+<li><p>같은 끝점(<code>POST /api/reservations</code>)이 201과 409를 냈다. 두 요청의 본문을 견주면 서버가 무엇을 거절하는지 보인다.</p></li>
+<li><p>같은 요청(<code>DELETE /api/reservations/1</code>)을 두 번 보내자 둘째는 404이다. 이미 지운 것을 다시 지우면 어떻게 되는지를 서버가 정해 두었다.</p></li>
+<li><p>기록에 없는 것은 알 수 없다. 잘못된 날짜 형식을 보내면 무엇이 오는지는 그 조작을 하지 않았으므로 기록에 없다.</p></li>
+<li><p><span class="check-badge">확인 2</span> <code>har_list.py</code>를 저장해 내 HAR 파일로 실행하였고, 「묶음」에 끝점이 넷 이상 보인다.</p></li>
+</ul>
+</section>
+<section id="rea로-분석하기-실행-전" class="level3">
+<h3 class="anchored" data-anchor-id="rea로-분석하기-실행-전">1-5. REA로 분석하기 (실행 전)</h3>
+<p>REA(Reverse Engineer Anything)는 AI 에이전트가 리버스 엔지니어링을 하도록 돕는 도구 모음이다. 분석은 내 PC에서 실행되고, 에이전트는 도구의 결과를 받는다 [H1]. 저장소의 안내에 따르면 웹사이트의 분석(쪽의 구조, 스크립트, 네트워크 관찰)과 저장된 캡처(HAR)의 분석을 지원하고, Node.js 22 이상이 필요하다 [H1]. 이 장은 HAR의 분석에 쓴다.</p>
+<p><strong>[터미널]</strong> (실행 전. 설치는 부록 A에 더할 절차를 따른다)</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">node</span> <span class="at">--version</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">npx</span> rea-agents setup</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>npx rea-agents setup</code>은 Claude Code를 비롯한 에이전트에 REA를 등록한다 [H1]. 등록한 뒤 Claude Code를 <code>ch08</code>에서 열고 다음 프롬프트를 보낸다. 저장소의 안내에는 HAR 분석의 프롬프트 예가 없으므로, 아래는 이 과목이 정한 문장이다.</p>
+<p><strong>[Claude Code]</strong> (실행 전: 응답을 확인하지 않은 프롬프트이다)</p>
+<pre class="text"><code>REA 도구로 이 폴더의 session.har를 분석해 끝점 목록을 만들어라.
+- 대상은 /api/ 로 시작하는 요청뿐이다.
+- 끝점마다 메서드, 경로, 질의 문자열 또는 요청 본문의 항목, 관찰된 상태 코드, 응답 본문의 항목을 표로 정리한다.
+- 항목마다 근거가 된 요청의 번호(entries의 순서)를 적는다.
+- 기록에서 확인한 것은 「확인」, 기록에 없어 추론한 것은 「추측」으로 표시한다.
+- 서버가 판정한 것으로 보이는 규칙(거절된 요청)을 따로 목록으로 적는다.
+파일은 만들지 마라.</code></pre>
+<p>응답을 1-4의 스크립트 출력과 대조한다. 스크립트의 「묶음」에 있는 끝점이 모두 들어 있는가. 스크립트에 없는 끝점이 「확인」으로 적혀 있으면 근거가 된 요청의 번호를 묻는다. REA를 쓸 수 없는 PC에서는 같은 프롬프트에서 첫 줄을 「이 폴더의 session.har를 읽고」로 바꾸어 보낸다. HAR 파일이 크면 Claude Code가 한 번에 읽지 못하므로 <code>har_list.py</code>의 출력을 함께 준다.</p>
+<blockquote class="blockquote">
+<p><strong>[최신 자료 자리: REA의 설치 명령과 지원 범위]</strong> 수업 전에 저장소의 안내를 다시 읽고 설치 명령, 필요한 Node.js의 판, HAR 분석의 사용법을 확인한다. 확인할 곳: <a href="https://github.com/morluto/rea" class="uri">https://github.com/morluto/rea</a>. 2026-11-18에 읽은 값: Node.js 22.x(22.23.4 이상), 24.x(24.22.1 이상) 또는 26.12.1 이상, <code>npx rea-agents setup</code>, 저장된 캡처로 HAR와 Fiddler의 SAZ를 받는다. 설치와 실행은 해 보지 않았다.</p>
+</blockquote>
+</section>
+<section id="끝점-목록" class="level3">
+<h3 class="anchored" data-anchor-id="끝점-목록">1-6. 끝점 목록</h3>
+<p>분석의 결과는 끝점 목록으로 남긴다. 8장의 API 명세가 이 표에서 출발한다.</p>
+<p><strong>[파일: ch08/끝점목록.md]</strong> (예)</p>
+<pre class="text"><code>| 끝점 | 요청 | 응답 | 근거 | 구분 |
+|---|---|---|---|---|
+| GET /api/rooms | 없음 | 200, 방의 목록(id, name, capacity) | 요청 2 | 확인 |
+| GET /api/reservations | date(질의 문자열) | 200, 그날의 예약 목록 | 요청 3, 5 | 확인 |
+| POST /api/reservations | room_id, date, start, end, name | 201, 만든 예약의 id | 요청 4 | 확인 |
+| POST /api/reservations | 같은 방의 겹치는 시간 | 409, 안내 문구 | 요청 6 | 확인 |
+| DELETE /api/reservations/{id} | 경로의 id | 204, 본문 없음 | 요청 7 | 확인 |
+| DELETE /api/reservations/{id} | 없는 id | 404 | 요청 8 | 확인 |
+| POST /api/reservations | 끝 시각이 시작 시각보다 이르다 | 모른다 | 기록에 없음 | 추측하지 않음 |</code></pre>
+<p>마지막 행처럼 기록에 없는 경우를 「모른다」로 적는다. 그 행이 8장의 열린 질문이 된다.</p>
+</section>
+</section>
 <section id="api-명세" class="level2">
-<h2 class="anchored" data-anchor-id="api-명세">1. API 명세</h2>
+<h2 class="anchored" data-anchor-id="api-명세">2. API 명세</h2>
 <section id="끝점-목록에서-명세로" class="level3">
-<h3 class="anchored" data-anchor-id="끝점-목록에서-명세로">1-1. 끝점 목록에서 명세로</h3>
+<h3 class="anchored" data-anchor-id="끝점-목록에서-명세로">2-1. 끝점 목록에서 명세로</h3>
 <p>끝점 목록은 관찰한 것의 기록이다. 명세는 구현이 지켜야 할 약속이다. 둘의 차이는 <strong>기록에 없던 경우</strong>에 있다. 목록의 「모른다」를 명세는 정하거나 열린 질문으로 남겨야 한다. 정하지 않으면 구현하는 쪽이 정한다.</p>
 <p>API 명세는 끝점마다 다음을 적는다.</p>
 <table class="caption-top table">
@@ -484,13 +671,13 @@ uvicorn           0.54.0</code></pre>
 </tr>
 <tr class="odd">
 <td>근거</td>
-<td>7장의 끝점 목록의 행, 또는 「정함」과 그 까닭</td>
+<td>끝점 목록(1-6)의 행, 또는 「정함」과 그 까닭</td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="명세의-예" class="level3">
-<h3 class="anchored" data-anchor-id="명세의-예">1-2. 명세의 예</h3>
+<h3 class="anchored" data-anchor-id="명세의-예">2-2. 명세의 예</h3>
 <p><strong>[파일: ch08/API명세.md]</strong> (일부)</p>
 <pre class="text"><code>
 ## POST /api/reservations  예약을 만든다
@@ -517,7 +704,7 @@ uvicorn           0.54.0</code></pre>
 <p>REQ-04는 기록에 없던 경우이다. 「겹친다」는 말은 끝과 시작이 맞닿은 경우를 정하지 않는다. 정하지 않으면 <code>&lt;</code>와 <code>&lt;=</code> 가운데 하나를 구현하는 쪽이 고른다. 명세가 정해야 할 경계이다.</p>
 </section>
 <section id="상태-코드의-선택" class="level3">
-<h3 class="anchored" data-anchor-id="상태-코드의-선택">1-3. 상태 코드의 선택</h3>
+<h3 class="anchored" data-anchor-id="상태-코드의-선택">2-3. 상태 코드의 선택</h3>
 <p>브라우저 쪽의 코드는 상태 코드를 보고 무엇을 할지 정한다. 실패의 원인에 따라 코드를 나눈다.</p>
 <table class="caption-top table">
 <colgroup>
@@ -577,9 +764,9 @@ uvicorn           0.54.0</code></pre>
 </section>
 </section>
 <section id="서버-쪽-판정" class="level2">
-<h2 class="anchored" data-anchor-id="서버-쪽-판정">2. 서버 쪽 판정</h2>
+<h2 class="anchored" data-anchor-id="서버-쪽-판정">3. 서버 쪽 판정</h2>
 <section id="브라우저의-검사는-편의이다" class="level3">
-<h3 class="anchored" data-anchor-id="브라우저의-검사는-편의이다">2-1. 브라우저의 검사는 편의이다</h3>
+<h3 class="anchored" data-anchor-id="브라우저의-검사는-편의이다">3-1. 브라우저의 검사는 편의이다</h3>
 <p>화면에서 끝 시각을 시작 시각보다 앞으로 고르지 못하게 막을 수 있다. 그것은 사용자의 편의를 위한 것이며 보호가 아니다. 서버의 주소를 아는 사람은 화면을 거치지 않고 요청을 직접 보낼 수 있다. 7장에서 본 대로 요청은 메서드, 경로, 본문일 뿐이고, <code>curl</code> 한 줄로 만들 수 있다. 그러므로 지켜야 하는 규칙은 서버가 판정한다.</p>
 <table class="caption-top table">
 <colgroup>
@@ -613,13 +800,13 @@ uvicorn           0.54.0</code></pre>
 <tr class="even">
 <td>내 예약만 지울 수 있는가</td>
 <td>할 수 없다</td>
-<td><strong>한다</strong>(이 장의 범위 밖. 6-1)</td>
+<td><strong>한다</strong>(이 장의 범위 밖. 7-1)</td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="입력의-검증과-업무-규칙의-판정" class="level3">
-<h3 class="anchored" data-anchor-id="입력의-검증과-업무-규칙의-판정">2-2. 입력의 검증과 업무 규칙의 판정</h3>
+<h3 class="anchored" data-anchor-id="입력의-검증과-업무-규칙의-판정">3-2. 입력의 검증과 업무 규칙의 판정</h3>
 <p>서버의 판정은 두 층으로 나뉜다.</p>
 <ul>
 <li><strong>입력의 검증.</strong> 요청 하나만 보고 판정할 수 있다. 형식, 필수, 범위. 틀리면 422이다.</li>
@@ -628,99 +815,250 @@ uvicorn           0.54.0</code></pre>
 <p>FastAPI는 요청 본문의 모양을 Pydantic 모델로 적으면 입력의 검증을 대신 해 준다 [X3]. 업무 규칙은 함수 안에 직접 쓴다.</p>
 </section>
 <section id="겹침의-판정" class="level3">
-<h3 class="anchored" data-anchor-id="겹침의-판정">2-3. 겹침의 판정</h3>
-<p>두 구간 [s1, e1)과 [s2, e2)가 겹치는 조건은 <code>s1 &lt; e2</code>이고 <code>s2 &lt; e1</code>인 것이다. 끝과 시작이 같은 경우(<code>e1 == s2</code>)는 둘째 조건이 거짓이므로 겹치지 않는다. 1-2의 REQ-04가 정한 대로이다. 조건을 <code>&lt;=</code>로 쓰면 맞닿은 예약이 거절된다. 글자 하나가 명세의 경계를 정한다.</p>
+<h3 class="anchored" data-anchor-id="겹침의-판정">3-3. 겹침의 판정</h3>
+<p>두 구간 [s1, e1)과 [s2, e2)가 겹치는 조건은 <code>s1 &lt; e2</code>이고 <code>s2 &lt; e1</code>인 것이다. 끝과 시작이 같은 경우(<code>e1 == s2</code>)는 둘째 조건이 거짓이므로 겹치지 않는다. 2-2의 REQ-04가 정한 대로이다. 조건을 <code>&lt;=</code>로 쓰면 맞닿은 예약이 거절된다. 글자 하나가 명세의 경계를 정한다.</p>
+</section>
+<section id="공개-api는-서버가-부른다" class="level3">
+<h3 class="anchored" data-anchor-id="공개-api는-서버가-부른다">3-4. 공개 API는 서버가 부른다</h3>
+<p>5장의 서비스 1은 고용24의 자료를 미리 받아 파일로 두었다. 화면에서 API를 바로 부르면 인증키가 드러나기 때문이었다. 서버가 있으면 다른 길이 생긴다. 화면은 내 서버에 묻고, 내 서버가 인증키를 가지고 공개 API를 부른다.</p>
+<pre class="mermaid">flowchart LR
+    B["브라우저"] -- "GET /api/jobs&lt;br/&gt;(인증키 없음)" --&gt; S["내 서버"]
+    S -- "인증키와 함께 호출" --&gt; A["고용24 OPEN-API"]
+    A -- "XML" --&gt; S
+    S -- "쓸 항목만 JSON으로" --&gt; B
+</pre>
+<p>서비스 3에서는 이 길로 「예약할 대상」을 채운다. 예를 들어 채용 공고를 고른 뒤 그 공고에 대한 취업 상담 시간을 예약하는 서비스라면, 공고의 목록은 <code>/api/jobs</code>가 주고 예약은 <code>/api/reservations</code>가 받는다. 화면의 구성은 키트의 예제 웹앱을 참고하고, 화면에 채울 자료는 공개 API에서 온다. 서비스 1과 같은 방향이다.</p>
+<p>서버가 공개 API를 부를 때 지킬 것은 네 가지이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>지킬 것</th>
+<th>까닭</th>
+<th>아래 코드에서</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>인증키는 환경 변수에서 읽는다</td>
+<td>코드에 적으면 저장소에 올라간다</td>
+<td><code>os.environ.get("WORK24_KEY")</code></td>
+</tr>
+<tr class="even">
+<td>받은 것을 그대로 넘기지 않는다</td>
+<td>쓰지 않는 항목과 인증키가 든 주소가 응답에 섞일 수 있다</td>
+<td><code>KEEP</code>의 항목만 남긴다</td>
+</tr>
+<tr class="odd">
+<td>같은 자료를 잠시 기억해 둔다</td>
+<td>사용자가 새로 고칠 때마다 공개 API를 부르면 호출 한도를 넘긴다</td>
+<td><code>TTL</code>과 <code>_cache</code></td>
+</tr>
+<tr class="even">
+<td>공개 API의 실패를 내 오류로 바꾼다</td>
+<td>받은 오류를 그대로 넘기면 주소와 인증키가 드러날 수 있다</td>
+<td>502와 정해 둔 문구</td>
+</tr>
+</tbody>
+</table>
+<p><strong>[파일: jobs_api.py]</strong> (읽기)</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">"""고용24 채용정보를 서버에서 불러 화면에 넘기는 끝점.</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">인증키는 환경 변수 WORK24_KEY에서 읽는다. 브라우저에는 가지 않는다.</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xml.etree.ElementTree <span class="im">as</span> ET</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> httpx</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastapi <span class="im">import</span> FastAPI, HTTPException</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>URL <span class="op">=</span> <span class="st">"https://www.work24.go.kr/cm/openApi/call/wk/callOpenApiSvcInfo210L01.do"</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>KEEP <span class="op">=</span> [<span class="st">"wantedAuthNo"</span>, <span class="st">"company"</span>, <span class="st">"title"</span>, <span class="st">"region"</span>, <span class="st">"career"</span>, <span class="st">"closeDt"</span>, <span class="st">"wantedInfoUrl"</span>]</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>TTL <span class="op">=</span> <span class="dv">600</span>  <span class="co"># 초. 같은 자료를 10분 동안 다시 부르지 않는다</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> FastAPI()</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> httpx.Client(timeout<span class="op">=</span><span class="fl">5.0</span>)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>_cache <span class="op">=</span> {<span class="st">"at"</span>: <span class="fl">0.0</span>, <span class="st">"jobs"</span>: <span class="va">None</span>}</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> parse(xml_text):</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    root <span class="op">=</span> ET.fromstring(xml_text)</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [{k: (el.findtext(k) <span class="kw">or</span> <span class="st">""</span>).strip() <span class="cf">for</span> k <span class="kw">in</span> KEEP}</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> el <span class="kw">in</span> root.<span class="bu">iter</span>() <span class="cf">if</span> el.find(<span class="st">"wantedAuthNo"</span>) <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>]</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="at">@app.get</span>(<span class="st">"/api/jobs"</span>)</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> jobs():</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>    key <span class="op">=</span> os.environ.get(<span class="st">"WORK24_KEY"</span>)</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> key:</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> HTTPException(<span class="dv">503</span>, <span class="st">"서버에 인증키가 설정되지 않았다"</span>)</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>    now <span class="op">=</span> time.time()</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> _cache[<span class="st">"jobs"</span>] <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span> <span class="kw">and</span> now <span class="op">-</span> _cache[<span class="st">"at"</span>] <span class="op">&lt;</span> TTL:</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> {<span class="st">"cached"</span>: <span class="va">True</span>, <span class="st">"count"</span>: <span class="bu">len</span>(_cache[<span class="st">"jobs"</span>]), <span class="st">"jobs"</span>: _cache[<span class="st">"jobs"</span>]}</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>        r <span class="op">=</span> client.get(URL, params<span class="op">=</span>{<span class="st">"authKey"</span>: key, <span class="st">"callTp"</span>: <span class="st">"L"</span>, <span class="st">"returnType"</span>: <span class="st">"XML"</span>,</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">"startPage"</span>: <span class="dv">1</span>, <span class="st">"display"</span>: <span class="dv">10</span>})</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>        r.raise_for_status()</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>        found <span class="op">=</span> parse(r.text)</span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> (httpx.HTTPError, ET.ParseError):</span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> HTTPException(<span class="dv">502</span>, <span class="st">"공고 자료를 받지 못했다"</span>)</span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>    _cache.update(at<span class="op">=</span>now, jobs<span class="op">=</span>found)</span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="st">"cached"</span>: <span class="va">False</span>, <span class="st">"count"</span>: <span class="bu">len</span>(found), <span class="st">"jobs"</span>: found}</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>공개 API를 실제로 부르지 않고도 이 끝점을 검사할 수 있다. 테스트에서 <code>client</code>를 가짜 응답을 돌려주는 것으로 바꾸면 된다. 아래는 5장의 견본 XML(지어낸 공고 3건)을 가짜 응답으로 쓴 테스트 다섯 개의 실행 결과이다(2026-11-18, Linux, Python 3.13.18, FastAPI 0.163.2, httpx 0.28.1, pytest 9.1.1). 실제 고용24 API로는 실행하지 않았다.</p>
+<p><strong>[터미널]</strong> (읽기)</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pytest <span class="at">-q</span> test_jobs_api.py</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>.....                                                                    [100%]
+5 passed in 0.69s</code></pre>
+<p>테스트 다섯 개가 확인한 것은 다음과 같다. 공고 3건을 돌려준다. 응답에 인증키와 <code>busino</code>가 없다. 두 번째 요청은 공개 API를 다시 부르지 않는다. 인증키가 없으면 공개 API를 부르지 않고 503을 낸다. 공개 API가 실패하면 502를 내고 응답에 인증키가 없다. 두 파일과 견본 XML은 신규 키트의 <code>08장_공개API/</code>에 있다(<code>cp -rn ~/kits-repo/신규 ~/kits/</code>로 받는다).</p>
+</section>
+<section id="인증키의-자리와-새는-경로" class="level3">
+<h3 class="anchored" data-anchor-id="인증키의-자리와-새는-경로">3-5. 인증키의 자리와 새는 경로</h3>
+<p>인증키와 API 키는 서비스에서 가장 조심해야 하는 자격 증명이다. OWASP는 「민감 정보 노출」에 보안 자격 증명을 포함하고, 꼭 필요한 곳에서만 접근하게 하라고 권한다[O1]. 이 소절의 내용은 고용24의 인증키와 9장의 Claude API 키에 똑같이 적용된다.</p>
+<p>키가 있어야 하는 자리는 하나이다. 저장소에 들어가지 않는 파일(<code>.env</code> 또는 저장소 밖의 <code>~/work24.env</code>)에 두고 서버 프로그램만 읽는다. <code>.env.example</code>에는 변수의 이름만 적고 값은 비운다. 이 파일은 커밋되어 어떤 변수가 필요한지를 다른 사람에게 알린다.</p>
+<p>나머지 자리에는 키가 없어야 한다. 파이썬 코드에는 쓸 까닭이 없다. 환경 변수에서 읽기 때문이다. 브라우저로 가는 자바스크립트는 누구나 열어 본다. 문서와 커밋 메시지는 저장소에 남는다. 키가 저장소에 한 번 커밋되면 다음 커밋에서 지워도 이력에 남는다. 푸시까지 했다면 그 키는 샌 것으로 보고 바로 폐기하고 새로 발급받는다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>새는 경로</th>
+<th>막는 장치</th>
+<th>확인 방법</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>키가 든 파일을 커밋한다</td>
+<td><code>.gitignore</code>에 그 파일을 적는다</td>
+<td><code>git check-ignore -v .env</code></td>
+</tr>
+<tr class="even">
+<td>코드에 키를 붙여 넣는다</td>
+<td>환경 변수에서 읽는다</td>
+<td><code>grep -rc "$WORK24_KEY" .</code>(5장 8-2)</td>
+</tr>
+<tr class="odd">
+<td>브라우저의 코드가 공개 API를 직접 부른다</td>
+<td>브라우저는 내 서버만 부른다(3-4)</td>
+<td>개발자 도구의 Network 탭에 공개 API의 주소가 없다</td>
+</tr>
+<tr class="even">
+<td>공개 API의 오류가 그대로 화면에 나간다</td>
+<td>오류를 내 문구로 바꾼다</td>
+<td>3-4의 다섯째 테스트</td>
+</tr>
+<tr class="odd">
+<td>Claude Code가 키 파일을 읽어 대화에 남긴다</td>
+<td>설정에서 그 파일의 읽기를 막는다</td>
+<td>부록 A-14-4</td>
+</tr>
+<tr class="even">
+<td>화면 공유 중에 키 파일을 연다</td>
+<td>키는 「있음/없음」으로만 확인한다</td>
+<td><code>test -n "$WORK24_KEY" &amp;&amp; echo 있음</code></td>
+</tr>
+</tbody>
+</table>
+<p>9장에서는 이 확인을 검사 스크립트로 매번 하게 한다.</p>
 </section>
 </section>
 <section id="따라-하기-예약-api" class="level2">
-<h2 class="anchored" data-anchor-id="따라-하기-예약-api">3. 따라 하기: 예약 API</h2>
+<h2 class="anchored" data-anchor-id="따라-하기-예약-api">4. 따라 하기: 예약 API</h2>
 <section id="서버의-코드-읽기" class="level3">
-<h3 class="anchored" data-anchor-id="서버의-코드-읽기">3-1. 서버의 코드 (읽기)</h3>
-<p>다음은 1-2의 명세로 만든 서버의 견본이다. 각자의 서버는 핵심 실습에서 Claude Code로 만든다. 자료는 메모리에 두므로 서버를 끄면 사라진다.</p>
+<h3 class="anchored" data-anchor-id="서버의-코드-읽기">4-1. 서버의 코드 (읽기)</h3>
+<p>다음은 2-2의 명세로 만든 서버의 견본이다. 각자의 서버는 핵심 실습에서 Claude Code로 만든다. 자료는 메모리에 두므로 서버를 끄면 사라진다.</p>
 <p><strong>[파일: ch08/app.py]</strong> (읽기. 교수용 견본)</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">"""스터디룸 예약 API. 자료는 메모리에 둔다(서버를 끄면 사라진다)."""</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> date, time</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastapi <span class="im">import</span> FastAPI, HTTPException</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydantic <span class="im">import</span> BaseModel, Field</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> FastAPI(title<span class="op">=</span><span class="st">"예약 API"</span>)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>ROOMS <span class="op">=</span> [</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"id"</span>: <span class="dv">1</span>, <span class="st">"name"</span>: <span class="st">"스터디룸 A"</span>, <span class="st">"capacity"</span>: <span class="dv">4</span>},</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"id"</span>: <span class="dv">2</span>, <span class="st">"name"</span>: <span class="st">"스터디룸 B"</span>, <span class="st">"capacity"</span>: <span class="dv">8</span>},</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>RESERVATIONS: <span class="bu">list</span>[<span class="bu">dict</span>] <span class="op">=</span> []</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>NEXT_ID <span class="op">=</span> {<span class="st">"value"</span>: <span class="dv">1</span>}</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ReservationIn(BaseModel):</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    room_id: <span class="bu">int</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    date: date</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    start: time</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    end: time</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    name: <span class="bu">str</span> <span class="op">=</span> Field(min_length<span class="op">=</span><span class="dv">1</span>, max_length<span class="op">=</span><span class="dv">20</span>)</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="at">@app.get</span>(<span class="st">"/api/rooms"</span>)</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> list_rooms():</span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ROOMS</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="at">@app.get</span>(<span class="st">"/api/reservations"</span>)</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> list_reservations(date: date):</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [r <span class="cf">for</span> r <span class="kw">in</span> RESERVATIONS <span class="cf">if</span> r[<span class="st">"date"</span>] <span class="op">==</span> date]</span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="at">@app.post</span>(<span class="st">"/api/reservations"</span>, status_code<span class="op">=</span><span class="dv">201</span>)</span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> create_reservation(body: ReservationIn):</span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">any</span>(room[<span class="st">"id"</span>] <span class="op">==</span> body.room_id <span class="cf">for</span> room <span class="kw">in</span> ROOMS):</span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> HTTPException(status_code<span class="op">=</span><span class="dv">404</span>, detail<span class="op">=</span><span class="st">"없는 방이다"</span>)</span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> body.end <span class="op">&lt;=</span> body.start:</span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> HTTPException(status_code<span class="op">=</span><span class="dv">422</span>, detail<span class="op">=</span><span class="st">"끝 시각은 시작 시각보다 뒤여야 한다"</span>)</span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> r <span class="kw">in</span> RESERVATIONS:</span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>        same <span class="op">=</span> r[<span class="st">"room_id"</span>] <span class="op">==</span> body.room_id <span class="kw">and</span> r[<span class="st">"date"</span>] <span class="op">==</span> body.date</span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> same <span class="kw">and</span> body.start <span class="op">&lt;</span> r[<span class="st">"end"</span>] <span class="kw">and</span> r[<span class="st">"start"</span>] <span class="op">&lt;</span> body.end:</span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> HTTPException(status_code<span class="op">=</span><span class="dv">409</span>, detail<span class="op">=</span><span class="st">"겹치는 예약이 있다"</span>)</span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    new <span class="op">=</span> {<span class="st">"id"</span>: NEXT_ID[<span class="st">"value"</span>], <span class="op">**</span>body.model_dump()}</span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    NEXT_ID[<span class="st">"value"</span>] <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>    RESERVATIONS.append(new)</span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> new</span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="at">@app.delete</span>(<span class="st">"/api/reservations/</span><span class="sc">{reservation_id}</span><span class="st">"</span>, status_code<span class="op">=</span><span class="dv">204</span>)</span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> delete_reservation(reservation_id: <span class="bu">int</span>):</span>
-<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> r <span class="kw">in</span> RESERVATIONS:</span>
-<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> r[<span class="st">"id"</span>] <span class="op">==</span> reservation_id:</span>
-<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>            RESERVATIONS.remove(r)</span>
-<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span></span>
-<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> HTTPException(status_code<span class="op">=</span><span class="dv">404</span>, detail<span class="op">=</span><span class="st">"없는 예약이다"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><code>ReservationIn</code>이 입력의 검증이고, <code>create_reservation</code> 안의 세 판정이 업무 규칙이다. 겹침의 조건은 2-3의 식 그대로이다.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">"""스터디룸 예약 API. 자료는 메모리에 둔다(서버를 끄면 사라진다)."""</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> date, time</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastapi <span class="im">import</span> FastAPI, HTTPException</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydantic <span class="im">import</span> BaseModel, Field</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> FastAPI(title<span class="op">=</span><span class="st">"예약 API"</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>ROOMS <span class="op">=</span> [</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"id"</span>: <span class="dv">1</span>, <span class="st">"name"</span>: <span class="st">"스터디룸 A"</span>, <span class="st">"capacity"</span>: <span class="dv">4</span>},</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"id"</span>: <span class="dv">2</span>, <span class="st">"name"</span>: <span class="st">"스터디룸 B"</span>, <span class="st">"capacity"</span>: <span class="dv">8</span>},</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>RESERVATIONS: <span class="bu">list</span>[<span class="bu">dict</span>] <span class="op">=</span> []</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>NEXT_ID <span class="op">=</span> {<span class="st">"value"</span>: <span class="dv">1</span>}</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ReservationIn(BaseModel):</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    room_id: <span class="bu">int</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    date: date</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    start: time</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    end: time</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    name: <span class="bu">str</span> <span class="op">=</span> Field(min_length<span class="op">=</span><span class="dv">1</span>, max_length<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="at">@app.get</span>(<span class="st">"/api/rooms"</span>)</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> list_rooms():</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ROOMS</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="at">@app.get</span>(<span class="st">"/api/reservations"</span>)</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> list_reservations(date: date):</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [r <span class="cf">for</span> r <span class="kw">in</span> RESERVATIONS <span class="cf">if</span> r[<span class="st">"date"</span>] <span class="op">==</span> date]</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="at">@app.post</span>(<span class="st">"/api/reservations"</span>, status_code<span class="op">=</span><span class="dv">201</span>)</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> create_reservation(body: ReservationIn):</span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">any</span>(room[<span class="st">"id"</span>] <span class="op">==</span> body.room_id <span class="cf">for</span> room <span class="kw">in</span> ROOMS):</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> HTTPException(status_code<span class="op">=</span><span class="dv">404</span>, detail<span class="op">=</span><span class="st">"없는 방이다"</span>)</span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> body.end <span class="op">&lt;=</span> body.start:</span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> HTTPException(status_code<span class="op">=</span><span class="dv">422</span>, detail<span class="op">=</span><span class="st">"끝 시각은 시작 시각보다 뒤여야 한다"</span>)</span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> r <span class="kw">in</span> RESERVATIONS:</span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>        same <span class="op">=</span> r[<span class="st">"room_id"</span>] <span class="op">==</span> body.room_id <span class="kw">and</span> r[<span class="st">"date"</span>] <span class="op">==</span> body.date</span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> same <span class="kw">and</span> body.start <span class="op">&lt;</span> r[<span class="st">"end"</span>] <span class="kw">and</span> r[<span class="st">"start"</span>] <span class="op">&lt;</span> body.end:</span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> HTTPException(status_code<span class="op">=</span><span class="dv">409</span>, detail<span class="op">=</span><span class="st">"겹치는 예약이 있다"</span>)</span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>    new <span class="op">=</span> {<span class="st">"id"</span>: NEXT_ID[<span class="st">"value"</span>], <span class="op">**</span>body.model_dump()}</span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>    NEXT_ID[<span class="st">"value"</span>] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a>    RESERVATIONS.append(new)</span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> new</span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a><span class="at">@app.delete</span>(<span class="st">"/api/reservations/</span><span class="sc">{reservation_id}</span><span class="st">"</span>, status_code<span class="op">=</span><span class="dv">204</span>)</span>
+<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> delete_reservation(reservation_id: <span class="bu">int</span>):</span>
+<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> r <span class="kw">in</span> RESERVATIONS:</span>
+<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> r[<span class="st">"id"</span>] <span class="op">==</span> reservation_id:</span>
+<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a>            RESERVATIONS.remove(r)</span>
+<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span></span>
+<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> HTTPException(status_code<span class="op">=</span><span class="dv">404</span>, detail<span class="op">=</span><span class="st">"없는 예약이다"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>ReservationIn</code>이 입력의 검증이고, <code>create_reservation</code> 안의 세 판정이 업무 규칙이다. 겹침의 조건은 3-3의 식 그대로이다.</p>
 </section>
 <section id="서버-띄우기와-요청-보내기" class="level3">
-<h3 class="anchored" data-anchor-id="서버-띄우기와-요청-보내기">3-2. 서버 띄우기와 요청 보내기</h3>
+<h3 class="anchored" data-anchor-id="서버-띄우기와-요청-보내기">4-2. 서버 띄우기와 요청 보내기</h3>
 <p><code>[터미널]</code> 하나에서 서버를 띄운다. 끌 때는 <code>Ctrl+C</code>를 누른다.</p>
 <p><strong>[터미널]</strong> (서버용)</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/ch08</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> uvicorn app:app <span class="at">--port</span> 8300</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab/ch08</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> uvicorn app:app <span class="at">--port</span> 8300</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>다른 <code>[터미널]</code>에서 요청을 보낸다. <code>-w</code>는 응답 뒤에 상태 코드를 붙여 보인다.</p>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="va">B</span><span class="op">=</span><span class="st">'{"room_id": 1, "date": "2027-05-17", "start": "10:00", "end": "11:00", "name": "연습"}'</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> http://localhost:8300/api/rooms<span class="kw">;</span> <span class="bu">echo</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> <span class="at">-w</span> <span class="st">"\n상태 코드 %{http_code}\n"</span> <span class="at">-X</span> POST http://localhost:8300/api/reservations <span class="at">-H</span> <span class="st">"Content-Type: application/json"</span> <span class="at">-d</span> <span class="st">"</span><span class="va">$B</span><span class="st">"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="va">B</span><span class="op">=</span><span class="st">'{"room_id": 1, "date": "2027-05-17", "start": "10:00", "end": "11:00", "name": "연습"}'</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> http://localhost:8300/api/rooms<span class="kw">;</span> <span class="bu">echo</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> <span class="at">-w</span> <span class="st">"\n상태 코드 %{http_code}\n"</span> <span class="at">-X</span> POST http://localhost:8300/api/reservations <span class="at">-H</span> <span class="st">"Content-Type: application/json"</span> <span class="at">-d</span> <span class="st">"</span><span class="va">$B</span><span class="st">"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>[{"id":1,"name":"스터디룸 A","capacity":4},{"id":2,"name":"스터디룸 B","capacity":8}]
 {"id":1,"room_id":1,"date":"2027-05-17","start":"10:00:00","end":"11:00:00","name":"연습"}
 상태 코드 201</code></pre>
 <p>보낸 시각은 <code>10:00</code>인데 응답은 <code>10:00:00</code>이다. 명세는 시각의 형식을 <code>HH:MM</code>이라고만 적었고 응답의 형식은 정하지 않았다. 구현이 정한 것이다. 화면이 이 값을 그대로 보이면 초가 붙어 보인다. 명세의 빈틈 하나이다.</p>
 <ul>
-<li><span class="check-badge">확인 2</span> 서버가 떠 있는 동안 <code>GET /api/rooms</code>가 방의 목록을 돌려주고, <code>POST /api/reservations</code>가 상태 코드 201과 <code>id</code>가 든 본문을 돌려준다.</li>
+<li><span class="check-badge">확인 3</span> 서버가 떠 있는 동안 <code>GET /api/rooms</code>가 방의 목록을 돌려주고, <code>POST /api/reservations</code>가 상태 코드 201과 <code>id</code>가 든 본문을 돌려준다.</li>
 </ul>
 </section>
 <section id="거절되는-요청" class="level3">
-<h3 class="anchored" data-anchor-id="거절되는-요청">3-3. 거절되는 요청</h3>
+<h3 class="anchored" data-anchor-id="거절되는-요청">4-3. 거절되는 요청</h3>
 <p>겹치는 시간과 틀린 형식을 보낸다.</p>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> <span class="at">-w</span> <span class="st">"\n상태 코드 %{http_code}\n"</span> <span class="at">-X</span> POST http://localhost:8300/api/reservations <span class="at">-H</span> <span class="st">"Content-Type: application/json"</span> <span class="at">-d</span> <span class="st">'{"room_id": 1, "date": "2027-05-17", "start": "10:30", "end": "11:30", "name": "연습"}'</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> <span class="at">-w</span> <span class="st">"\n상태 코드 %{http_code}\n"</span> <span class="at">-X</span> POST http://localhost:8300/api/reservations <span class="at">-H</span> <span class="st">"Content-Type: application/json"</span> <span class="at">-d</span> <span class="st">'{"room_id": 1, "date": "5월 17일", "start": "10:00", "end": "11:00", "name": ""}'</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> <span class="at">-w</span> <span class="st">"\n상태 코드 %{http_code}\n"</span> <span class="at">-X</span> POST http://localhost:8300/api/reservations <span class="at">-H</span> <span class="st">"Content-Type: application/json"</span> <span class="at">-d</span> <span class="st">'{"room_id": 1, "date": "2027-05-17", "start": "10:30", "end": "11:30", "name": "연습"}'</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> <span class="at">-w</span> <span class="st">"\n상태 코드 %{http_code}\n"</span> <span class="at">-X</span> POST http://localhost:8300/api/reservations <span class="at">-H</span> <span class="st">"Content-Type: application/json"</span> <span class="at">-d</span> <span class="st">'{"room_id": 1, "date": "5월 17일", "start": "10:00", "end": "11:00", "name": ""}'</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>{"detail":"겹치는 예약이 있다"}
 상태 코드 409
 {"detail":[{"type":"date_from_datetime_parsing","loc":["body","date"],"msg":"Input should be a valid date or datetime, invalid character in year","input":"5월 17일","ctx":{"error":"invalid character in year"}},{"type":"string_too_short","loc":["body","name"],"msg":"String should have at least 1 character","input":"","ctx":{"min_length":1}}]}
@@ -730,117 +1068,117 @@ uvicorn           0.54.0</code></pre>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> <span class="at">-o</span> /dev/null <span class="at">-w</span> <span class="st">"상태 코드 %{http_code}\n"</span> <span class="at">-X</span> DELETE http://localhost:8300/api/reservations/1</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> <span class="at">-w</span> <span class="st">"\n상태 코드 %{http_code}\n"</span> <span class="at">-X</span> DELETE http://localhost:8300/api/reservations/1</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> <span class="at">-o</span> /dev/null <span class="at">-w</span> <span class="st">"상태 코드 %{http_code}\n"</span> <span class="at">-X</span> DELETE http://localhost:8300/api/reservations/1</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> <span class="at">-w</span> <span class="st">"\n상태 코드 %{http_code}\n"</span> <span class="at">-X</span> DELETE http://localhost:8300/api/reservations/1</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>상태 코드 204
 {"detail":"없는 예약이다"}
 상태 코드 404</code></pre>
 <ul>
-<li><span class="check-badge">확인 3</span> 겹치는 예약이 409, 틀린 형식이 422, 이미 지운 예약의 삭제가 404로 응답한다.</li>
+<li><span class="check-badge">확인 4</span> 겹치는 예약이 409, 틀린 형식이 422, 이미 지운 예약의 삭제가 404로 응답한다.</li>
 </ul>
 </section>
 <section id="자동-문서" class="level3">
-<h3 class="anchored" data-anchor-id="자동-문서">3-4. 자동 문서</h3>
-<p>FastAPI는 코드에서 대화형 문서를 만든다. 서버가 떠 있는 동안 브라우저에서 <code>http://localhost:8300/docs</code>를 열면 끝점 넷과 요청 본문의 모양이 보인다. 이 문서는 구현에서 나온 것이다. 1-2의 명세와 나란히 놓으면 구현이 명세와 다른 곳(항목의 이름, 필수 여부)을 찾을 수 있다. 6장에서 말한 의도(명세)와 사실(구현)의 대조이다.</p>
+<h3 class="anchored" data-anchor-id="자동-문서">4-4. 자동 문서</h3>
+<p>FastAPI는 코드에서 대화형 문서를 만든다. 서버가 떠 있는 동안 브라우저에서 <code>http://localhost:8300/docs</code>를 열면 끝점 넷과 요청 본문의 모양이 보인다. 이 문서는 구현에서 나온 것이다. 2-2의 명세와 나란히 놓으면 구현이 명세와 다른 곳(항목의 이름, 필수 여부)을 찾을 수 있다. 6장에서 말한 의도(명세)와 사실(구현)의 대조이다.</p>
 <blockquote class="blockquote">
 <p><strong>[그림 자리: FastAPI의 자동 문서]</strong> <code>http://localhost:8300/docs</code>에서 <code>POST /api/reservations</code>를 펼쳐 요청 본문의 모양이 보이는 화면. 내 PC의 브라우저에서 찍는다.</p>
 </blockquote>
 </section>
 </section>
 <section id="테스트와-대조" class="level2">
-<h2 class="anchored" data-anchor-id="테스트와-대조">4. 테스트와 대조</h2>
+<h2 class="anchored" data-anchor-id="테스트와-대조">5. 테스트와 대조</h2>
 <section id="경우-하나에-테스트-하나" class="level3">
-<h3 class="anchored" data-anchor-id="경우-하나에-테스트-하나">4-1. 경우 하나에 테스트 하나</h3>
+<h3 class="anchored" data-anchor-id="경우-하나에-테스트-하나">5-1. 경우 하나에 테스트 하나</h3>
 <p>명세의 「응답」 표의 행마다 테스트를 하나 쓴다. 테스트는 서버를 띄우지 않고 요청을 보내는 <code>TestClient</code>로 쓴다 [X1]. 경계(맞닿은 예약)의 테스트를 반드시 넣는다.</p>
 <div class="code-label where-server">
 <span>파일: ch08/test_app.py</span>
 </div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastapi.testclient <span class="im">import</span> TestClient</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> app <span class="im">as</span> m</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> TestClient(m.app)</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>BODY <span class="op">=</span> {<span class="st">"room_id"</span>: <span class="dv">1</span>, <span class="st">"date"</span>: <span class="st">"2027-05-17"</span>, <span class="st">"start"</span>: <span class="st">"10:00"</span>, <span class="st">"end"</span>: <span class="st">"11:00"</span>, <span class="st">"name"</span>: <span class="st">"연습"</span>}</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> setup_function():</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    m.RESERVATIONS.clear()</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    m.NEXT_ID[<span class="st">"value"</span>] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_create_and_list():</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> client.post(<span class="st">"/api/reservations"</span>, json<span class="op">=</span>BODY).status_code <span class="op">==</span> <span class="dv">201</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    got <span class="op">=</span> client.get(<span class="st">"/api/reservations"</span>, params<span class="op">=</span>{<span class="st">"date"</span>: <span class="st">"2027-05-17"</span>}).json()</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">len</span>(got) <span class="op">==</span> <span class="dv">1</span> <span class="kw">and</span> got[<span class="dv">0</span>][<span class="st">"name"</span>] <span class="op">==</span> <span class="st">"연습"</span></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_overlap_is_rejected():</span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    client.post(<span class="st">"/api/reservations"</span>, json<span class="op">=</span>BODY)</span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> client.post(<span class="st">"/api/reservations"</span>, json<span class="op">=</span>{<span class="op">**</span>BODY, <span class="st">"start"</span>: <span class="st">"10:30"</span>, <span class="st">"end"</span>: <span class="st">"11:30"</span>})</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> r.status_code <span class="op">==</span> <span class="dv">409</span></span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_touching_is_allowed():</span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    client.post(<span class="st">"/api/reservations"</span>, json<span class="op">=</span>BODY)</span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> client.post(<span class="st">"/api/reservations"</span>, json<span class="op">=</span>{<span class="op">**</span>BODY, <span class="st">"start"</span>: <span class="st">"11:00"</span>, <span class="st">"end"</span>: <span class="st">"12:00"</span>})</span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> r.status_code <span class="op">==</span> <span class="dv">201</span></span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_end_before_start():</span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> client.post(<span class="st">"/api/reservations"</span>, json<span class="op">=</span>{<span class="op">**</span>BODY, <span class="st">"start"</span>: <span class="st">"11:00"</span>, <span class="st">"end"</span>: <span class="st">"10:00"</span>})</span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> r.status_code <span class="op">==</span> <span class="dv">422</span></span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_delete_twice():</span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>    client.post(<span class="st">"/api/reservations"</span>, json<span class="op">=</span>BODY)</span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> client.delete(<span class="st">"/api/reservations/1"</span>).status_code <span class="op">==</span> <span class="dv">204</span></span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> client.delete(<span class="st">"/api/reservations/1"</span>).status_code <span class="op">==</span> <span class="dv">404</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastapi.testclient <span class="im">import</span> TestClient</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> app <span class="im">as</span> m</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> TestClient(m.app)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>BODY <span class="op">=</span> {<span class="st">"room_id"</span>: <span class="dv">1</span>, <span class="st">"date"</span>: <span class="st">"2027-05-17"</span>, <span class="st">"start"</span>: <span class="st">"10:00"</span>, <span class="st">"end"</span>: <span class="st">"11:00"</span>, <span class="st">"name"</span>: <span class="st">"연습"</span>}</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> setup_function():</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    m.RESERVATIONS.clear()</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    m.NEXT_ID[<span class="st">"value"</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_create_and_list():</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> client.post(<span class="st">"/api/reservations"</span>, json<span class="op">=</span>BODY).status_code <span class="op">==</span> <span class="dv">201</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    got <span class="op">=</span> client.get(<span class="st">"/api/reservations"</span>, params<span class="op">=</span>{<span class="st">"date"</span>: <span class="st">"2027-05-17"</span>}).json()</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">len</span>(got) <span class="op">==</span> <span class="dv">1</span> <span class="kw">and</span> got[<span class="dv">0</span>][<span class="st">"name"</span>] <span class="op">==</span> <span class="st">"연습"</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_overlap_is_rejected():</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>    client.post(<span class="st">"/api/reservations"</span>, json<span class="op">=</span>BODY)</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> client.post(<span class="st">"/api/reservations"</span>, json<span class="op">=</span>{<span class="op">**</span>BODY, <span class="st">"start"</span>: <span class="st">"10:30"</span>, <span class="st">"end"</span>: <span class="st">"11:30"</span>})</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> r.status_code <span class="op">==</span> <span class="dv">409</span></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_touching_is_allowed():</span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>    client.post(<span class="st">"/api/reservations"</span>, json<span class="op">=</span>BODY)</span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> client.post(<span class="st">"/api/reservations"</span>, json<span class="op">=</span>{<span class="op">**</span>BODY, <span class="st">"start"</span>: <span class="st">"11:00"</span>, <span class="st">"end"</span>: <span class="st">"12:00"</span>})</span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> r.status_code <span class="op">==</span> <span class="dv">201</span></span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_end_before_start():</span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> client.post(<span class="st">"/api/reservations"</span>, json<span class="op">=</span>{<span class="op">**</span>BODY, <span class="st">"start"</span>: <span class="st">"11:00"</span>, <span class="st">"end"</span>: <span class="st">"10:00"</span>})</span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> r.status_code <span class="op">==</span> <span class="dv">422</span></span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_delete_twice():</span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a>    client.post(<span class="st">"/api/reservations"</span>, json<span class="op">=</span>BODY)</span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> client.delete(<span class="st">"/api/reservations/1"</span>).status_code <span class="op">==</span> <span class="dv">204</span></span>
+<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> client.delete(<span class="st">"/api/reservations/1"</span>).status_code <span class="op">==</span> <span class="dv">404</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pytest <span class="at">-q</span> <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span> <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-1</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pytest <span class="at">-q</span> <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span> <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-1</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>5 passed, 1 warning in 0.28s</code></pre>
 <p>시간은 실행마다 다르다. 경고 한 건은 테스트 도구가 쓰는 패키지(<code>httpx</code>)의 교체를 알리는 것이며 결과와 무관하다. <code>setup_function</code>이 테스트마다 자료를 비운다. 비우지 않으면 앞 테스트가 만든 예약이 남아 뒤 테스트의 결과를 바꾼다.</p>
 <p><code>test_touching_is_allowed</code>가 REQ-04를 지킨다. 누군가 겹침의 조건을 <code>&lt;=</code>로 바꾸면 이 테스트가 실패한다.</p>
 <ul>
-<li><span class="check-badge">확인 4</span> <code>python -m pytest -q</code>의 마지막 줄이 <code>5 passed</code>로 시작한다.</li>
+<li><span class="check-badge">확인 5</span> <code>python -m pytest -q</code>의 마지막 줄이 <code>5 passed</code>로 시작한다.</li>
 </ul>
 </section>
 <section id="기록의-재생" class="level3">
-<h3 class="anchored" data-anchor-id="기록의-재생">4-2. 기록의 재생</h3>
+<h3 class="anchored" data-anchor-id="기록의-재생">5-2. 기록의 재생</h3>
 <p>7장의 HAR에는 예제 웹앱이 받은 요청과 낸 응답이 순서대로 들어 있다. 같은 요청을 내 서버에 같은 순서로 보내면, 내 서버가 예제와 같은 응답을 내는지 견줄 수 있다.</p>
 <div class="code-label where-server">
 <span>파일: ch08/replay.py</span>
 </div>
-<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">"""HAR에 기록된 /api/ 요청을 내 서버에 같은 순서로 보내고 상태 코드를 견준다."""</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> urllib.error</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> urllib.request</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> urllib.parse <span class="im">import</span> urlsplit</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>har, base <span class="op">=</span> sys.argv[<span class="dv">1</span>], sys.argv[<span class="dv">2</span>].rstrip(<span class="st">"/"</span>)</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>same <span class="op">=</span> diff <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, e <span class="kw">in</span> <span class="bu">enumerate</span>(json.load(<span class="bu">open</span>(har, encoding<span class="op">=</span><span class="st">"utf-8"</span>))[<span class="st">"log"</span>][<span class="st">"entries"</span>]):</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    req <span class="op">=</span> e[<span class="st">"request"</span>]</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    u <span class="op">=</span> urlsplit(req[<span class="st">"url"</span>])</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> u.path.startswith(<span class="st">"/api/"</span>):</span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> req.get(<span class="st">"postData"</span>, {}).get(<span class="st">"text"</span>)</span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> urllib.request.Request(</span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>        base <span class="op">+</span> u.path <span class="op">+</span> (<span class="st">"?"</span> <span class="op">+</span> u.query <span class="cf">if</span> u.query <span class="cf">else</span> <span class="st">""</span>),</span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>        data<span class="op">=</span>data.encode(<span class="st">"utf-8"</span>) <span class="cf">if</span> data <span class="cf">else</span> <span class="va">None</span>,</span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>        method<span class="op">=</span>req[<span class="st">"method"</span>],</span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>        headers<span class="op">=</span>{<span class="st">"Content-Type"</span>: <span class="st">"application/json"</span>} <span class="cf">if</span> data <span class="cf">else</span> {},</span>
-<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
-<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>        got <span class="op">=</span> urllib.request.urlopen(r).status</span>
-<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> urllib.error.HTTPError <span class="im">as</span> err:</span>
-<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>        got <span class="op">=</span> err.code</span>
-<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>    want <span class="op">=</span> e[<span class="st">"response"</span>][<span class="st">"status"</span>]</span>
-<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>    mark <span class="op">=</span> <span class="st">"같다"</span> <span class="cf">if</span> got <span class="op">==</span> want <span class="cf">else</span> <span class="st">"다르다"</span></span>
-<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>    same, diff <span class="op">=</span> same <span class="op">+</span> (got <span class="op">==</span> want), diff <span class="op">+</span> (got <span class="op">!=</span> want)</span>
-<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>i<span class="sc">:&gt;3}</span><span class="ss"> </span><span class="sc">{</span>mark<span class="sc">}</span><span class="ss"> | 기록 </span><span class="sc">{</span>want<span class="sc">}</span><span class="ss">, 내 서버 </span><span class="sc">{</span>got<span class="sc">}</span><span class="ss"> | </span><span class="sc">{</span>req[<span class="st">"method"</span>]<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>u<span class="sc">.</span>path<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"같다 </span><span class="sc">{</span>same<span class="sc">}</span><span class="ss">건, 다르다 </span><span class="sc">{</span>diff<span class="sc">}</span><span class="ss">건"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">"""HAR에 기록된 /api/ 요청을 내 서버에 같은 순서로 보내고 상태 코드를 견준다."""</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> urllib.error</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> urllib.request</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> urllib.parse <span class="im">import</span> urlsplit</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>har, base <span class="op">=</span> sys.argv[<span class="dv">1</span>], sys.argv[<span class="dv">2</span>].rstrip(<span class="st">"/"</span>)</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>same <span class="op">=</span> diff <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, e <span class="kw">in</span> <span class="bu">enumerate</span>(json.load(<span class="bu">open</span>(har, encoding<span class="op">=</span><span class="st">"utf-8"</span>))[<span class="st">"log"</span>][<span class="st">"entries"</span>]):</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>    req <span class="op">=</span> e[<span class="st">"request"</span>]</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>    u <span class="op">=</span> urlsplit(req[<span class="st">"url"</span>])</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> u.path.startswith(<span class="st">"/api/"</span>):</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> req.get(<span class="st">"postData"</span>, {}).get(<span class="st">"text"</span>)</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> urllib.request.Request(</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>        base <span class="op">+</span> u.path <span class="op">+</span> (<span class="st">"?"</span> <span class="op">+</span> u.query <span class="cf">if</span> u.query <span class="cf">else</span> <span class="st">""</span>),</span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>        data<span class="op">=</span>data.encode(<span class="st">"utf-8"</span>) <span class="cf">if</span> data <span class="cf">else</span> <span class="va">None</span>,</span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>        method<span class="op">=</span>req[<span class="st">"method"</span>],</span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>        headers<span class="op">=</span>{<span class="st">"Content-Type"</span>: <span class="st">"application/json"</span>} <span class="cf">if</span> data <span class="cf">else</span> {},</span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>        got <span class="op">=</span> urllib.request.urlopen(r).status</span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> urllib.error.HTTPError <span class="im">as</span> err:</span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>        got <span class="op">=</span> err.code</span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>    want <span class="op">=</span> e[<span class="st">"response"</span>][<span class="st">"status"</span>]</span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>    mark <span class="op">=</span> <span class="st">"같다"</span> <span class="cf">if</span> got <span class="op">==</span> want <span class="cf">else</span> <span class="st">"다르다"</span></span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>    same, diff <span class="op">=</span> same <span class="op">+</span> (got <span class="op">==</span> want), diff <span class="op">+</span> (got <span class="op">!=</span> want)</span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>i<span class="sc">:&gt;3}</span><span class="ss"> </span><span class="sc">{</span>mark<span class="sc">}</span><span class="ss"> | 기록 </span><span class="sc">{</span>want<span class="sc">}</span><span class="ss">, 내 서버 </span><span class="sc">{</span>got<span class="sc">}</span><span class="ss"> | </span><span class="sc">{</span>req[<span class="st">"method"</span>]<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>u<span class="sc">.</span>path<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"같다 </span><span class="sc">{</span>same<span class="sc">}</span><span class="ss">건, 다르다 </span><span class="sc">{</span>diff<span class="sc">}</span><span class="ss">건"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>서버를 껐다가 다시 띄워 자료를 비운 뒤 실행한다.</p>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> replay.py ../ch07/session.har http://localhost:8300</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> replay.py session.har http://localhost:8300</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>  2 같다 | 기록 200, 내 서버 200 | GET /api/rooms
   3 같다 | 기록 200, 내 서버 200 | GET /api/reservations
   4 같다 | 기록 201, 내 서버 201 | POST /api/reservations
@@ -849,20 +1187,20 @@ uvicorn           0.54.0</code></pre>
   7 같다 | 기록 204, 내 서버 204 | DELETE /api/reservations/1
   8 같다 | 기록 404, 내 서버 404 | DELETE /api/reservations/1
 같다 7건, 다르다 0건</code></pre>
-<p>위 출력은 7장의 견본 HAR(손으로 만든 요청 9건)와 3-1의 견본 서버로 2026-11-18에 실제로 얻은 것이다. 예제 웹앱의 기록으로 얻은 것이 아니다.</p>
+<p>위 출력은 7장의 견본 HAR(손으로 만든 요청 9건)와 4-1의 견본 서버로 2026-11-18에 실제로 얻은 것이다. 예제 웹앱의 기록으로 얻은 것이 아니다.</p>
 <p>이 대조에는 세 가지 한계가 있다.</p>
 <ol type="1">
-<li><strong>상태 코드만 본다.</strong> 본문의 항목과 형식은 견주지 않았다. 3-2에서 본 <code>10:00:00</code>은 이 대조로 드러나지 않는다.</li>
+<li><strong>상태 코드만 본다.</strong> 본문의 항목과 형식은 견주지 않았다. 4-2에서 본 <code>10:00:00</code>은 이 대조로 드러나지 않는다.</li>
 <li><strong>기록에 있는 요청만 본다.</strong> 7장에서 하지 않은 조작은 견줄 수 없다. 맞닿은 예약은 기록에 없었다.</li>
 <li><strong>순서와 상태에 기댄다.</strong> 서버에 앞선 자료가 남아 있으면 <code>id</code>가 달라져 삭제의 요청이 다른 예약을 가리킨다. 그래서 서버를 다시 띄운 뒤에 실행한다.</li>
 </ol>
 <ul>
-<li><span class="check-badge">확인 5</span> 서버를 다시 띄운 뒤 <code>replay.py</code>의 마지막 줄이 「다르다 0건」이거나, 다른 행마다 까닭을 <code>ch08/대조.md</code>에 적었다.</li>
+<li><span class="check-badge">확인 6</span> 서버를 다시 띄운 뒤 <code>replay.py</code>의 마지막 줄이 「다르다 0건」이거나, 다른 행마다 까닭을 <code>ch08/대조.md</code>에 적었다.</li>
 </ul>
 </section>
 </section>
 <section id="명세-주도-도구의-시연-moai-adk-교수-시연-실행-전" class="level2">
-<h2 class="anchored" data-anchor-id="명세-주도-도구의-시연-moai-adk-교수-시연-실행-전">5. 명세 주도 도구의 시연: MoAI-ADK (교수 시연, 실행 전)</h2>
+<h2 class="anchored" data-anchor-id="명세-주도-도구의-시연-moai-adk-교수-시연-실행-전">6. 명세 주도 도구의 시연: MoAI-ADK (교수 시연, 실행 전)</h2>
 <p>4~5장과 이 장에서 명세 → 계획 → 구현 → 검사의 순서를 Claude Code와 마크다운 파일로 밟았다. 같은 순서를 단계로 고정해 주는 도구가 있다. MoAI-ADK는 Claude Code를 감싸는 에이전트 하네스이다. 저장소의 안내에 따르면 작업을 <code>/moai plan</code>(명세) → <code>/moai run</code>(구현) → <code>/moai sync</code>(문서와 정리)의 세 단계로 진행하고, 완료의 주장을 실제로 실행한 명령과 출력에 묶는다 [X2].</p>
 <p>이 절은 교수 화면의 시연으로 10분 동안 보고, 학습자는 설치하지 않는다. 시연에서 볼 것은 둘이다.</p>
 <table class="caption-top table">
@@ -897,14 +1235,14 @@ uvicorn           0.54.0</code></pre>
 </blockquote>
 </section>
 <section id="핵심-실습-끝점-목록에서-api-명세-서버-대조까지" class="level2">
-<h2 class="anchored" data-anchor-id="핵심-실습-끝점-목록에서-api-명세-서버-대조까지">6. 핵심 실습: 끝점 목록에서 API 명세, 서버, 대조까지</h2>
+<h2 class="anchored" data-anchor-id="핵심-실습-끝점-목록에서-api-명세-서버-대조까지">7. 핵심 실습: 끝점 목록에서 API 명세, 서버, 대조까지</h2>
 <ul>
-<li><strong>만드는 것.</strong> <code>ch08/</code>의 API 명세, 서버, 테스트, 대조 기록.</li>
-<li><strong>해결하는 문제.</strong> 기록에 없던 경우 둘을 명세로 정하고, 그 가운데 하나를 테스트가 지키게 한다.</li>
+<li><strong>만드는 것.</strong> <code>ch08/</code>의 끝점 목록, API 명세, 서버, 테스트, 대조 기록.</li>
+<li><strong>해결하는 문제.</strong> 끝점 목록에서 「추측」을 「확인」 또는 「모른다」로 바꾸고, 기록에 없던 경우 둘을 명세로 정하고, 그 가운데 하나를 테스트가 지키게 한다.</li>
 </ul>
 <p>이 실습의 Claude Code 단계는 실행으로 확인하지 않았다(실행 전).</p>
 <section id="완료-기준과-진행-순서" class="level3">
-<h3 class="anchored" data-anchor-id="완료-기준과-진행-순서">6-1. 완료 기준과 진행 순서</h3>
+<h3 class="anchored" data-anchor-id="완료-기준과-진행-순서">7-1. 완료 기준과 진행 순서</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -921,44 +1259,77 @@ uvicorn           0.54.0</code></pre>
 <tbody>
 <tr class="odd">
 <td>1</td>
-<td><code>API명세.md</code>에 끝점 넷의 요청, 성공 응답, 오류 응답이 근거와 함께 있다</td>
-<td>파일을 읽는다</td>
+<td>HAR 파일이 커밋되지 않았고, 끝점 목록에 여섯 행 이상이 근거와 구분(확인, 추측, 모른다)과 함께 있다</td>
+<td><code>git check-ignore</code>, 파일을 읽는다</td>
 </tr>
 <tr class="even">
 <td>2</td>
-<td>근거가 「정함」인 행이 둘 이상이고 까닭이 적혀 있다</td>
+<td><code>API명세.md</code>에 끝점 넷의 요청, 성공 응답, 오류 응답이 근거와 함께 있다</td>
 <td>파일을 읽는다</td>
 </tr>
 <tr class="odd">
 <td>3</td>
-<td>서버가 뜨고 테스트가 다섯 개 이상 통과한다</td>
-<td><code>python -m pytest -q</code></td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td>경계의 경우(맞닿은 예약)를 지키는 테스트가 있다</td>
-<td>조건을 <code>&lt;=</code>로 바꾸면 실패한다</td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td><code>replay.py</code>의 결과와 다른 행의 까닭이 <code>대조.md</code>에 있다</td>
+<td>근거가 「정함」인 행이 둘 이상이고 까닭이 적혀 있다</td>
 <td>파일을 읽는다</td>
 </tr>
 <tr class="even">
+<td>4</td>
+<td>서버가 뜨고 테스트가 다섯 개 이상 통과한다</td>
+<td><code>python -m pytest -q</code></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>경계의 경우(맞닿은 예약)를 지키는 테스트가 있다</td>
+<td>조건을 <code>&lt;=</code>로 바꾸면 실패한다</td>
+</tr>
+<tr class="even">
 <td>6</td>
+<td><code>replay.py</code>의 결과와 다른 행의 까닭이 <code>대조.md</code>에 있다</td>
+<td>파일을 읽는다</td>
+</tr>
+<tr class="odd">
+<td>7</td>
 <td>커밋이 원격에 있다</td>
 <td><code>git log origin/main</code></td>
 </tr>
 </tbody>
 </table>
 <p>이 장의 범위 밖은 로그인과 「내 예약만 지울 수 있다」는 권한, 자료의 영구 저장이다. 명세의 「범위 밖」에 적는다.</p>
-<p>순서는 명세(6-2) → 구현(6-3) → 테스트(6-4) → 대조(6-5) → 커밋(6-6)이다.</p>
+<p>순서는 호출의 기록(7-2, 15분) → 끝점 목록(7-3, 20분) → 명세(7-4, 25분) → 구현(7-5, 25분) → 테스트(7-6, 20분) → 대조(7-7, 15분) → 커밋(7-8)이다. 시간이 남으면 공개 API의 끝점(7-9)을 더한다.</p>
+</section>
+<section id="호출의-기록" class="level3">
+<h3 class="anchored" data-anchor-id="호출의-기록">7-2. 호출의 기록</h3>
+<p>예제 웹앱을 키트의 안내대로 내 PC에서 실행하고 Chrome으로 연다. 개발자 도구의 Network 탭을 열고 Preserve log를 켠 뒤(1-3) 다음 조작을 차례로 한다. 입력값은 지어낸 값만 쓴다.</p>
+<ol type="1">
+<li>날짜를 고른다.</li>
+<li>방 하나를 골라 10:00~11:00으로 예약한다. 이름 칸에는 「연습」이라고 쓴다.</li>
+<li>같은 방의 10:30~11:30을 예약한다.</li>
+<li>2에서 만든 예약을 취소한다.</li>
+<li>7장에서 그린 예외 흐름에 해당하는 조작을 하나 더 한다.</li>
+</ol>
+<p>「Export HAR (sanitized)」로 <code>ch08/session.har</code>에 저장하고, 저장소에 들어가지 않게 한다.</p>
+<div class="code-label where-server">
+<span>터미널</span>
+</div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"ch08/session.har"</span> <span class="op">&gt;&gt;</span> .gitignore</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> check-ignore <span class="at">-v</span> ch08/session.har</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><span class="check-badge">확인 7</span> <code>git check-ignore -v</code>가 규칙 한 줄을 출력하고, HAR를 만들 때 실명, 연락처, 실제 계정을 입력하지 않았다.</li>
+</ul>
+</section>
+<section id="끝점-목록-1" class="level3">
+<h3 class="anchored" data-anchor-id="끝점-목록-1">7-3. 끝점 목록</h3>
+<p><code>har_list.py</code>를 실행하고(1-4), REA 또는 Claude Code에게 분석을 맡긴 뒤(1-5), 둘을 대조해 <code>ch08/끝점목록.md</code>를 쓴다(1-6). 「추측」으로 적힌 행은 둘 가운데 하나로 바꾼다. 조작을 한 번 더 해 기록으로 확인하거나(「확인」), 확인할 수 없으면 「모른다」로 적는다.</p>
+<ul>
+<li><span class="check-badge">확인 8</span> <code>끝점목록.md</code>에 여섯 행 이상이 있고 모든 행에 근거(요청의 번호)와 구분이 있으며, 「추측」이 남아 있지 않다.</li>
+</ul>
 </section>
 <section id="api-명세-1" class="level3">
-<h3 class="anchored" data-anchor-id="api-명세-1">6-2. API 명세</h3>
+<h3 class="anchored" data-anchor-id="api-명세-1">7-4. API 명세</h3>
 <p>Claude Code를 <code>ch08</code>에서 계획 모드로 열고 초안을 받는다.</p>
 <p><strong>[Claude Code]</strong> (계획 모드. 실행 전)</p>
-<pre class="text"><code>../ch07/끝점목록.md와 ../ch07/문제정의.md를 읽고 API 명세의 초안을 써라.
+<pre class="text"><code>끝점목록.md와 ../ch07/문제정의.md를 읽고 API 명세의 초안을 써라.
 - 끝점마다 요청(항목, 형식, 필수, 범위), 성공 응답, 오류 응답을 표로 적는다.
 - 행마다 근거를 끝점 목록의 행 번호로 적는다. 끝점 목록에 없어 네가 정한 것은 「정함」이라 쓰고 까닭을 적는다.
 - 끝점 목록에서 「모른다」인 경우를 따로 모아, 경우마다 정할 수 있는 선택지를 둘씩 보여라. 네가 고르지 마라.
@@ -966,11 +1337,11 @@ uvicorn           0.54.0</code></pre>
 파일은 만들지 마라.</code></pre>
 <p>「모른다」의 선택지를 읽고 직접 고른다. 고를 때는 7장의 페르소나와 문제 정의를 근거로 삼는다. 예를 들어 인터뷰에서 「연달아 두 시간을 잡으려다 막혔다」는 말이 있었다면 맞닿은 예약은 허용해야 한다. 고른 것을 명세에 「정함」과 까닭으로 적고 <code>API명세.md</code>로 저장하게 한다.</p>
 <ul>
-<li><span class="check-badge">확인 6</span> <code>API명세.md</code>에 「정함」이 둘 이상이고, 그 가운데 하나 이상의 까닭이 7장의 문제 정의나 인터뷰 기록을 가리킨다.</li>
+<li><span class="check-badge">확인 9</span> <code>API명세.md</code>에 「정함」이 둘 이상이고, 그 가운데 하나 이상의 까닭이 7장의 문제 정의나 인터뷰 기록을 가리킨다.</li>
 </ul>
 </section>
 <section id="구현" class="level3">
-<h3 class="anchored" data-anchor-id="구현">6-3. 구현</h3>
+<h3 class="anchored" data-anchor-id="구현">7-5. 구현</h3>
 <p>새 세션을 열어 명세만으로 구현하게 한다. 견본(<code>app.py</code>)을 복사하지 않는다.</p>
 <p><strong>[Claude Code]</strong> (새 세션. 실행 전)</p>
 <pre class="text"><code>이 폴더의 API명세.md만을 근거로 FastAPI 서버를 app.py 한 파일로 구현하라.
@@ -981,39 +1352,61 @@ uvicorn           0.54.0</code></pre>
 - 완료 조건: python -m uvicorn app:app --port 8300 으로 뜨고, 명세의 응답 표의 경우마다 curl 명령과 기대하는 상태 코드를 보여라.</code></pre>
 <p>서버를 띄우고 보고에 나온 <code>curl</code> 명령을 직접 실행해 상태 코드를 본다. 「구현했습니다」라는 말은 근거가 아니다.</p>
 <ul>
-<li><span class="check-badge">확인 7</span> 서버가 8300에서 뜨고, 명세의 응답 표에서 고른 세 경우의 상태 코드를 <code>curl</code>로 직접 확인하였다.</li>
+<li><span class="check-badge">확인 10</span> 서버가 8300에서 뜨고, 명세의 응답 표에서 고른 세 경우의 상태 코드를 <code>curl</code>로 직접 확인하였다.</li>
 </ul>
 </section>
 <section id="테스트" class="level3">
-<h3 class="anchored" data-anchor-id="테스트">6-4. 테스트</h3>
-<p><code>test_app.py</code>를 4-1의 견본에서 시작해 자기 명세의 경우에 맞게 고친다. 「정함」으로 적은 경우마다 테스트를 하나 더한다. 테스트가 실제로 규칙을 지키는지 확인한다. 겹침의 조건을 일부러 <code>&lt;=</code>로 바꾸어 테스트가 실패하는 것을 보고 되돌린다.</p>
+<h3 class="anchored" data-anchor-id="테스트">7-6. 테스트</h3>
+<p><code>test_app.py</code>를 5-1의 견본에서 시작해 자기 명세의 경우에 맞게 고친다. 「정함」으로 적은 경우마다 테스트를 하나 더한다. 테스트가 실제로 규칙을 지키는지 확인한다. 겹침의 조건을 일부러 <code>&lt;=</code>로 바꾸어 테스트가 실패하는 것을 보고 되돌린다.</p>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pytest <span class="at">-q</span> <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span> <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-1</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff <span class="at">--stat</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pytest <span class="at">-q</span> <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span> <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-1</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff <span class="at">--stat</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li><span class="check-badge">확인 8</span> 조건을 바꾸었을 때 테스트가 실패하였고, 되돌린 뒤 모두 통과하며 <code>git diff --stat</code>에 <code>app.py</code>의 변경이 남아 있지 않다.</li>
+<li><span class="check-badge">확인 11</span> 조건을 바꾸었을 때 테스트가 실패하였고, 되돌린 뒤 모두 통과하며 <code>git diff --stat</code>에 <code>app.py</code>의 변경이 남아 있지 않다.</li>
 </ul>
 </section>
 <section id="대조" class="level3">
-<h3 class="anchored" data-anchor-id="대조">6-5. 대조</h3>
-<p>서버를 다시 띄우고 <code>replay.py</code>를 실행한다(4-2). 「다르다」인 행마다 원인을 5장의 다섯 가지로 나누어 <code>ch08/대조.md</code>에 적는다. 내 명세가 일부러 다르게 정한 것이면 「의도한 차이」이다. 이어서 대조가 보지 못한 것 하나를 손으로 견준다. 예제 웹앱과 내 서버에 같은 요청을 <code>curl</code>로 보내 본문을 나란히 놓고 본다.</p>
+<h3 class="anchored" data-anchor-id="대조">7-7. 대조</h3>
+<p>서버를 다시 띄우고 <code>replay.py</code>를 실행한다(5-2). 「다르다」인 행마다 원인을 5장의 다섯 가지로 나누어 <code>ch08/대조.md</code>에 적는다. 내 명세가 일부러 다르게 정한 것이면 「의도한 차이」이다. 이어서 대조가 보지 못한 것 하나를 손으로 견준다. 예제 웹앱과 내 서버에 같은 요청을 <code>curl</code>로 보내 본문을 나란히 놓고 본다.</p>
 <ul>
-<li><span class="check-badge">확인 9</span> <code>대조.md</code>에 <code>replay.py</code>의 마지막 줄과, 손으로 견준 본문의 차이 하나(없으면 견준 요청)가 적혀 있다.</li>
+<li><span class="check-badge">확인 12</span> <code>대조.md</code>에 <code>replay.py</code>의 마지막 줄과, 손으로 견준 본문의 차이 하나(없으면 견준 요청)가 적혀 있다.</li>
 </ul>
 </section>
 <section id="커밋" class="level3">
-<h3 class="anchored" data-anchor-id="커밋">6-6. 커밋</h3>
+<h3 class="anchored" data-anchor-id="커밋">7-8. 커밋</h3>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add ch08/API명세.md ch08/app.py ch08/test_app.py ch08/replay.py ch08/대조.md</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"8장 예약 API의 명세, 서버, 테스트, 대조"</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/llm-service-lab</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .gitignore ch08/har_list.py ch08/끝점목록.md ch08/API명세.md ch08/app.py ch08/test_app.py ch08/replay.py ch08/대조.md</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"8장 예약 API의 명세, 서버, 테스트, 대조"</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li><span class="check-badge">확인 10</span> <code>git log origin/main --oneline -1</code>에 이 장의 커밋이 보인다.</li>
+<li><span class="check-badge">확인 13</span> <code>git log origin/main --oneline -1</code>에 이 장의 커밋이 보인다.</li>
+</ul>
+</section>
+<section id="더-해-보기-공개-api의-끝점-선택-실행-전" class="level3">
+<h3 class="anchored" data-anchor-id="더-해-보기-공개-api의-끝점-선택-실행-전">7-9. 더 해 보기: 공개 API의 끝점 (선택, 실행 전)</h3>
+<p>시간이 남으면 내 서버에 3-4의 <code>/api/jobs</code>를 더한다. 예약 화면에서 예약할 대상을 고용24의 공고 목록으로 채우기 위한 끝점이다.</p>
+<p><strong>[Claude Code]</strong> (<code>ch08</code>에서)</p>
+<pre class="text"><code>app.py에 GET /api/jobs 끝점을 더하라. 교재 3-4의 jobs_api.py와 같은 규칙을 따른다.
+- 인증키는 환경 변수 WORK24_KEY에서만 읽는다. 코드와 응답과 오류 문구에 인증키를 넣지 않는다.
+- 응답에는 wantedAuthNo, company, title, region, career, closeDt, wantedInfoUrl만 넣는다.
+- 같은 자료를 10분 동안 기억해 공개 API를 다시 부르지 않는다.
+- 테스트에서는 공개 API를 부르지 않는다. httpx의 가짜 응답으로 바꾸어 다섯 경우를 테스트한다.
+- 예약 끝점과 그 테스트는 고치지 마라.</code></pre>
+<p>테스트가 통과한 뒤에 실제 인증키로 한 번만 불러 본다.</p>
+<div class="code-label where-server">
+<span>터미널</span>
+</div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/work24.env <span class="kw">&amp;&amp;</span> <span class="bu">export</span> <span class="va">WORK24_KEY</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pytest <span class="at">-q</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="ex">uvicorn</span> app:app <span class="at">--port</span> 8300</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>다른 터미널에서 <code>curl -s http://localhost:8300/api/jobs | head -c 300</code>으로 응답을 보고, 응답에 인증키가 없는지 <code>curl -s http://localhost:8300/api/jobs | grep -c "$WORK24_KEY"</code>로 확인한다. 0이 나와야 한다.</p>
+<ul>
+<li><span class="check-badge">확인 14</span> (선택) 예약의 테스트와 <code>/api/jobs</code>의 테스트가 모두 통과하고, 실제 응답에 인증키가 없다.</li>
 </ul>
 </section>
 </section>
@@ -1034,26 +1427,41 @@ uvicorn           0.54.0</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
+<td>HAR에 <code>/api/</code> 요청이 없다</td>
+<td>개발자 도구를 조작한 뒤에 열었거나 Preserve log를 켜지 않았다</td>
+<td>도구를 먼저 열고 조작을 다시 한다</td>
+</tr>
+<tr class="even">
+<td>내보내기 메뉴에 「with sensitive data」가 보인다</td>
+<td>개발자 도구의 설정에서 민감한 정보의 내보내기를 켰다</td>
+<td>설정을 끄고 「sanitized」로 내보낸다</td>
+</tr>
+<tr class="odd">
+<td><code>npx rea-agents setup</code>이 실패한다</td>
+<td>Node.js의 판이 낮다</td>
+<td><code>node --version</code>을 보고 부록 A의 절차로 올린다. 되지 않으면 REA 없이 진행한다(1-5)</td>
+</tr>
+<tr class="even">
 <td><code>Address already in use</code></td>
 <td>앞에서 띄운 서버가 아직 떠 있다</td>
 <td>그 터미널에서 <code>Ctrl+C</code>로 끄거나 다른 포트를 쓴다</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>curl</code>의 한글이 깨진다</td>
 <td>Windows의 터미널 인코딩</td>
 <td>Git Bash에서 실행하고, 본문을 파일로 두고 <code>-d @body.json</code>으로 보낸다</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>replay.py</code>의 삭제가 404로 다르다</td>
 <td>서버에 앞선 예약이 남아 <code>id</code>가 다르다</td>
 <td>서버를 껐다가 다시 띄운 뒤 실행한다</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>테스트가 따로 돌리면 통과하고 함께 돌리면 실패한다</td>
 <td>테스트 사이에 자료가 남는다</td>
 <td><code>setup_function</code>에서 자료를 비운다</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>화면에서 막았는데 잘못된 예약이 들어간다</td>
 <td>판정이 브라우저에만 있다</td>
 <td>서버에 같은 판정을 넣고 테스트를 더한다</td>
@@ -1065,18 +1473,22 @@ uvicorn           0.54.0</code></pre>
 <h2 class="anchored" data-anchor-id="제출물">제출물</h2>
 <p>개인 실습 저장소의 커밋으로 제출한다.</p>
 <pre class="text"><code>llm-service-lab/ch08/
+  har_list.py, 끝점목록.md        ← session.har는 올리지 않는다
   API명세.md, app.py, test_app.py, replay.py, 대조.md</code></pre>
-<p>판정 기준은 6-1의 완료 기준 여섯 개이다.</p>
+<p>판정 기준은 7-1의 완료 기준 일곱 개이다.</p>
 </section>
 <section id="정리" class="level2">
 <h2 class="anchored" data-anchor-id="정리">정리</h2>
 <ul>
+<li>화면에 보이지 않는 서버의 규칙은 네트워크 호출의 응답에 드러난다. 끝점은 메서드와 경로의 한 쌍이다.</li>
+<li>HAR는 걸러서 내보내도 주소와 본문이 그대로 들어 있다. 지어낸 값만 입력하고 저장소에 올리지 않는다.</li>
 <li>끝점 목록은 관찰의 기록이고 API 명세는 약속이다. 기록에 없던 경우를 명세가 정하지 않으면 구현하는 쪽이 정한다.</li>
 <li>지켜야 하는 규칙은 서버가 판정한다. 브라우저의 검사는 편의이다.</li>
 <li>입력의 검증은 요청 하나만 보고, 업무 규칙의 판정은 저장된 자료와 견주어 한다. 상태 코드가 그 차이를 알린다.</li>
 <li>경계의 경우는 글자 하나로 갈린다. 명세가 정하고 테스트가 지킨다.</li>
 <li>기록의 재생은 상태 코드, 기록에 있는 요청, 같은 순서만 본다. 대조가 본 것을 함께 적는다.</li>
 <li>명세 주도 도구는 단계를 고정해 주지만 명세의 빈틈은 사람이 찾는다.</li>
+<li>인증키가 필요한 공개 API는 서버가 부른다. 인증키는 환경 변수에 두고, 쓸 항목만 넘기고, 잠시 기억해 두고, 공개 API의 실패를 내 오류로 바꾼다.</li>
 </ul>
 </section>
 <section id="참고-자료" class="level2">
@@ -1108,6 +1520,30 @@ uvicorn           0.54.0</code></pre>
 <td>FastAPI 자습서: Handling Errors(HTTPException, 검증 오류의 응답)</td>
 <td><a href="https://fastapi.tiangolo.com/tutorial/handling-errors/" class="uri">https://fastapi.tiangolo.com/tutorial/handling-errors/</a></td>
 <td>2026-11-18에는 열지 못하였다. 응답의 모양은 FastAPI 0.163.2의 실행으로 확인하였다</td>
+</tr>
+<tr class="even">
+<td>H1</td>
+<td>REA 저장소의 안내(쓰임의 범위, 분석 대상, 설치, 필요한 Node.js의 판, 사용권 MIT)</td>
+<td><a href="https://github.com/morluto/rea" class="uri">https://github.com/morluto/rea</a></td>
+<td>2026-11-18. 설치와 실행은 해 보지 않았다</td>
+</tr>
+<tr class="odd">
+<td>H2</td>
+<td>Chromium devtools-frontend의 변경 기록, 「Export sanitized HARs by default」(기본으로 거른 HAR를 내보내고, 설정을 켜야 민감한 정보를 넣는 선택지가 나타남)</td>
+<td><a href="https://chromium.googlesource.com/devtools/devtools-frontend/+/acd96a60464188fbf7c4476ec883ec65bba3dfdf" class="uri">https://chromium.googlesource.com/devtools/devtools-frontend/+/acd96a60464188fbf7c4476ec883ec65bba3dfdf</a></td>
+<td>2026-11-18 (검색 결과로 확인)</td>
+</tr>
+<tr class="even">
+<td>H3</td>
+<td>Posit Support, 「What is a HAR file?」(Chromium 계열 130판부터 민감한 정보를 기본으로 거름)</td>
+<td><a href="https://support.posit.co/hc/en-us/articles/4413166624279" class="uri">https://support.posit.co/hc/en-us/articles/4413166624279</a></td>
+<td>2026-11-18 (검색 결과로 확인)</td>
+</tr>
+<tr class="odd">
+<td>O1</td>
+<td>OWASP Top 10 for LLM Applications, LLM02 Sensitive Information Disclosure(자격 증명의 노출)</td>
+<td>9장의 참고 자료 [A6-2]와 같은 자료</td>
+<td>9장에서 확인한 날짜를 따른다</td>
 </tr>
 </tbody>
 </table>
@@ -1526,8 +1962,8 @@ uvicorn           0.54.0</code></pre>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../courses/llm-service/book/Service_07장_학생용.html" class="pagination-link" aria-label="[7장] 사용자 조사와 네트워크 동작의 분석">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">[7장] 사용자 조사와 네트워크 동작의 분석</span>
+      <a href="../../../courses/llm-service/book/Service_07장_학생용.html" class="pagination-link" aria-label="[7장] 사용자 조사와 문제 정의">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">[7장] 사용자 조사와 문제 정의</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
