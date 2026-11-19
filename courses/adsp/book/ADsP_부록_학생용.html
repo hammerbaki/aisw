@@ -621,29 +621,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td><code>read.csv("파일")</code></td>
 </tr>
 <tr class="even">
-<td>앞의 몇 행</td>
-<td><code>tx.head()</code> (다섯 행)</td>
-<td><code>head(tx)</code> (여섯 행)</td>
-</tr>
-<tr class="odd">
 <td>표의 크기</td>
 <td><code>tx.shape</code></td>
 <td><code>dim(tx)</code>, <code>nrow(tx)</code>, <code>ncol(tx)</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>열마다의 자료형</td>
 <td><code>tx.dtypes</code></td>
 <td><code>str(tx)</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>열 하나의 선택</td>
 <td><code>tx["금액"]</code></td>
 <td><code>tx$금액</code></td>
-</tr>
-<tr class="even">
-<td>열 여럿의 선택</td>
-<td><code>tx[["고객ID", "금액"]]</code></td>
-<td><code>tx[, c("고객ID", "금액")]</code></td>
 </tr>
 <tr class="odd">
 <td>조건에 의한 행의 선택</td>
@@ -715,54 +705,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td><code>summary(airquality)</code></td>
 </tr>
 <tr class="even">
-<td>칸이 비어 있는가</td>
-<td><code>air.isna()</code></td>
-<td><code>is.na(airquality)</code></td>
-</tr>
-<tr class="odd">
 <td>열마다의 결측 수</td>
 <td><code>air.isna().sum()</code></td>
 <td><code>colSums(is.na(airquality))</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>결측값이 없는 행인가</td>
 <td><code>~air.isna().any(axis=1)</code></td>
 <td><code>complete.cases(airquality)</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>결측값이 있는 행 지우기</td>
 <td><code>air.dropna()</code></td>
 <td><code>na.omit(airquality)</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>결측값을 빼고 평균 구하기</td>
 <td><code>x.mean()</code> (기본으로 뺀다)</td>
 <td><code>mean(x, na.rm = TRUE)</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>사분위수</td>
 <td><code>x.quantile(0.25)</code></td>
 <td><code>quantile(x, na.rm = TRUE)</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>이상값</td>
 <td>조건으로 고른다 (4.2절)</td>
 <td><code>boxplot.stats(x)$out</code></td>
 </tr>
-<tr class="odd">
-<td>상자그림</td>
-<td><code>plt.boxplot(x)</code></td>
-<td><code>boxplot(x)</code></td>
-</tr>
 <tr class="even">
-<td>히스토그램</td>
-<td><code>plt.hist(x)</code></td>
-<td><code>hist(x)</code></td>
-</tr>
-<tr class="odd">
-<td>줄기-잎 그림</td>
-<td>기본 함수가 없다</td>
-<td><code>stem(x)</code></td>
+<td>상자그림, 히스토그램</td>
+<td><code>plt.boxplot(x)</code>, <code>plt.hist(x)</code></td>
+<td><code>boxplot(x)</code>, <code>hist(x)</code></td>
 </tr>
 </tbody>
 </table>
@@ -784,59 +759,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>이항 분포, 포아송 분포의 확률</td>
-<td><code>stats.binom.pmf(3, 10, 0.5)</code>, <code>stats.poisson.pmf(0, 2)</code></td>
-<td><code>dbinom(3, 10, 0.5)</code>, <code>dpois(0, 2)</code></td>
-</tr>
-<tr class="even">
-<td>정규 분포의 누적 확률, 분위수</td>
-<td><code>stats.norm.cdf(x)</code>, <code>stats.norm.ppf(p)</code></td>
-<td><code>pnorm(x)</code>, <code>qnorm(p)</code></td>
-</tr>
-<tr class="odd">
-<td>t 분포의 분위수</td>
-<td><code>stats.t.ppf(p, df)</code></td>
-<td><code>qt(p, df)</code></td>
-</tr>
-<tr class="even">
 <td>독립 표본 t-검정(웰치)</td>
-<td><code>stats.ttest_ind(a, b, equal_var=False)</code></td>
-<td><code>t.test(mpg ~ am, data = mtcars)</code></td>
-</tr>
-<tr class="odd">
-<td>독립 표본 t-검정(등분산 가정)</td>
-<td><code>stats.ttest_ind(a, b)</code></td>
-<td><code>t.test(mpg ~ am, data = mtcars, var.equal = TRUE)</code></td>
+<td><code>ttest_ind(a, b, equal_var=False)</code></td>
+<td><code>t.test(mpg ~ am)</code></td>
 </tr>
 <tr class="even">
-<td>등분산 검정(F 검정)</td>
-<td>분산의 비와 <code>stats.f.cdf()</code></td>
-<td><code>var.test(mpg ~ am, data = mtcars)</code></td>
+<td>등분산을 가정한 t-검정</td>
+<td><code>ttest_ind(a, b)</code></td>
+<td><code>t.test(..., var.equal = TRUE)</code></td>
 </tr>
 <tr class="odd">
-<td>일표본 t-검정</td>
-<td><code>stats.ttest_1samp(x, 20)</code></td>
-<td><code>t.test(x, mu = 20)</code></td>
+<td>등분산 검정</td>
+<td>분산의 비</td>
+<td><code>var.test()</code></td>
 </tr>
 <tr class="even">
-<td>대응 표본 t-검정</td>
-<td><code>stats.ttest_rel(a, b)</code></td>
-<td><code>t.test(a, b, paired = TRUE)</code> 또는 <code>t.test(Pair(a, b) ~ 1)</code></td>
+<td>일표본, 대응 표본 t-검정</td>
+<td><code>ttest_1samp()</code>, <code>ttest_rel()</code></td>
+<td><code>t.test(x, mu = 20)</code>, <code>t.test(a, b, paired = TRUE)</code></td>
 </tr>
 <tr class="odd">
-<td>단측 검정</td>
-<td><code>alternative="greater"</code> 또는 <code>"less"</code></td>
-<td><code>alternative = "greater"</code> 또는 <code>"less"</code></td>
+<td>비모수 검정</td>
+<td><code>wilcoxon()</code>, <code>mannwhitneyu()</code></td>
+<td><code>wilcox.test()</code></td>
 </tr>
 <tr class="even">
-<td>윌콕슨의 부호 순위 검정</td>
-<td><code>stats.wilcoxon(a, b)</code></td>
-<td><code>wilcox.test(a, b, paired = TRUE)</code></td>
+<td>카이제곱 검정</td>
+<td><code>chi2_contingency()</code>, <code>chisquare()</code></td>
+<td><code>chisq.test()</code></td>
 </tr>
 <tr class="odd">
-<td>윌콕슨의 순위합 검정(만-위트니)</td>
-<td><code>stats.mannwhitneyu(a, b)</code></td>
-<td><code>wilcox.test(mpg ~ am, data = mtcars)</code></td>
+<td>일원 분산분석</td>
+<td><code>f_oneway()</code>, <code>anova_lm()</code></td>
+<td><code>summary(aov())</code></td>
 </tr>
 </tbody>
 </table>
@@ -1100,16 +1055,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td><code>print(fit)</code></td>
 </tr>
 <tr class="odd">
-<td>나무 그림</td>
-<td><code>plot_tree(tree)</code></td>
-<td><code>plot(fit)</code>, <code>text(fit)</code></td>
-</tr>
-<tr class="even">
 <td>범주의 예측</td>
 <td><code>tree.predict(X_valid)</code></td>
 <td><code>predict(fit, valid, type = "class")</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>교차표</td>
 <td><code>pd.crosstab(실제, 예측)</code></td>
 <td><code>table(실제, 예측)</code></td>
@@ -1198,49 +1148,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td><code>hc$merge</code> (음수는 개체, 양수는 앞 단계의 군집), <code>hc$height</code></td>
 </tr>
 <tr class="odd">
-<td>덴드로그램</td>
-<td><code>dendrogram(link)</code></td>
-<td><code>plot(hc)</code></td>
-</tr>
-<tr class="even">
 <td>군집의 수로 자르기</td>
 <td><code>fcluster(link, t=4, criterion="maxclust")</code></td>
 <td><code>cutree(hc, k = 4)</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>높이로 자르기</td>
 <td><code>fcluster(link, t=10, criterion="distance")</code></td>
 <td><code>cutree(hc, h = 10)</code></td>
-</tr>
-<tr class="even">
-<td>덴드로그램에 군집 표시</td>
-<td><code>color_threshold</code>로 색을 나눈다</td>
-<td><code>rect.hclust(hc, k = 4)</code></td>
 </tr>
 <tr class="odd">
 <td>k-평균 군집</td>
 <td><code>KMeans(n_clusters=4, n_init=25).fit(Z)</code></td>
 <td><code>kmeans(x, centers = 4, nstart = 25)</code></td>
-</tr>
-<tr class="even">
-<td>군집의 번호</td>
-<td><code>km.labels_</code> (0부터)</td>
-<td><code>km$cluster</code> (1부터)</td>
-</tr>
-<tr class="odd">
-<td>군집의 중심</td>
-<td><code>km.cluster_centers_</code></td>
-<td><code>km$centers</code></td>
-</tr>
-<tr class="even">
-<td>집단 내 제곱합의 합계</td>
-<td><code>km.inertia_</code></td>
-<td><code>km$tot.withinss</code></td>
-</tr>
-<tr class="odd">
-<td>교차표</td>
-<td><code>pd.crosstab(a, b)</code></td>
-<td><code>table(a, b)</code></td>
 </tr>
 <tr class="even">
 <td>연관 규칙</td>
@@ -1283,7 +1203,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>활용 시스템</td>
-<td>OLTP(거래 처리), OLAP(다차원 분석), CRM(고객), SCM(공급망), ERP(회사 안의 자원), KMS(지식), BI(현황 보고), BA(분석과 예측)</td>
+<td>OLTP(거래 처리), OLAP(다차원 분석), CRM, SCM, ERP, KMS, BI, BA</td>
 </tr>
 <tr class="odd">
 <td>빅데이터의 특성과 변화</td>
@@ -1295,7 +1215,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>위기 요인과 통제 방안</td>
-<td>사생활 침해↔︎동의에서 책임으로, 책임 원칙 훼손↔︎결과 기반 책임 원칙, 데이터 오용↔︎알고리즘 접근 허용. 비식별 기법은 가명처리, 총계처리, 데이터 삭제, 데이터 범주화, 데이터 마스킹</td>
+<td>사생활 침해↔︎동의에서 책임으로, 책임 원칙 훼손↔︎결과 기반 책임 원칙, 데이터 오용↔︎알고리즘 접근 허용. 비식별 다섯 기법, 데이터 3법의 가명정보</td>
 </tr>
 <tr class="even">
 <td>미래의 빅데이터</td>
@@ -1303,19 +1223,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>데이터 사이언스</td>
-<td>일차원적 분석은 업무의 효율, 가치 기반 분석은 사업의 방향. 분석, IT, 비즈니스 분석의 세 영역. 가치 패러다임은 디지털화→연결→에이전시</td>
-</tr>
-<tr class="even">
-<td>데이터 사이언티스트</td>
-<td>하드 스킬(이론적 지식, 분석 기술의 숙련), 소프트 스킬(통찰력 있는 분석, 설득력 있는 전달, 다분야 간 협력)</td>
-</tr>
-<tr class="odd">
-<td>공공 부문의 사례</td>
-<td>공공데이터법(2013)과 공공데이터포털(파일, 오픈 API), KOSIS(요약된 통계표), 등록센서스(행정자료로 전수 집계하되 20% 표본 조사는 남음), 실험적 통계(“국가승인통계가 아님”을 밝혀 공개)</td>
-</tr>
-<tr class="even">
-<td>데이터 3법 [선택]</td>
-<td>2020년 8월 5일 시행. 가명정보의 정의, 통계 작성·과학적 연구·공익적 기록 보존은 동의 없이 처리, 결합은 전문기관에서, 감독은 개인정보보호위원회로 일원화</td>
+<td>일차원적 분석과 가치 기반 분석. 분석, IT, 비즈니스 분석의 세 영역. 하드 스킬 둘과 소프트 스킬 셋. 디지털화→연결→에이전시</td>
 </tr>
 </tbody>
 </table>
@@ -1343,48 +1251,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>과제 중심적 접근은 속도와 시험, 빠른 성과, 문제 해결. 장기적 마스터 플랜 접근은 정확도와 전개, 장기적 관점, 문제 정의</td>
 </tr>
 <tr class="odd">
-<td>기획에서 고려할 것</td>
-<td>가용 데이터, 적절한 활용 사례, 장애 요소에 대한 사전 계획</td>
+<td>방법론의 모델</td>
+<td>폭포수(순차), 프로토타입(먼저 만들고 고침), 나선형(반복과 점증)</td>
 </tr>
 <tr class="even">
-<td>방법론의 구성과 모델</td>
-<td>절차, 방법, 도구와 기법, 템플릿과 산출물. 폭포수(순차), 프로토타입(먼저 만들고 고침), 나선형(반복과 점증)</td>
-</tr>
-<tr class="odd">
 <td>KDD</td>
 <td>데이터 선택 → 전처리 → 변환 → 데이터 마이닝 → 해석과 평가. 업무 이해와 전개에 대응하는 단계가 없다</td>
 </tr>
-<tr class="even">
-<td>CRISP-DM</td>
-<td>업무 이해 → 데이터 이해 → 데이터 준비 → 모델링 → 평가 → 전개. 네 수준. 단계 사이를 오간다. 데이터 준비에 시간이 가장 많이 든다</td>
-</tr>
 <tr class="odd">
-<td>단계별 산출물</td>
-<td>단계는 산출물이 남을 때 끝난다. 업무 이해에는 업무 성공 기준과 데이터 마이닝 성공 기준이 따로 있다. 품질 보고서는 데이터 이해, 정제는 데이터 준비. 전개의 경험의 기록이 다음 프로젝트로 넘어간다</td>
+<td>CRISP-DM</td>
+<td>업무 이해 → 데이터 이해 → 데이터 준비 → 모델링 → 평가 → 전개. 네 수준. 단계 사이를 오간다. 업무 성공 기준과 데이터 마이닝 성공 기준</td>
 </tr>
 <tr class="even">
 <td>빅데이터 분석 방법론</td>
 <td>단계, 태스크, 스텝의 세 계층. 분석 기획 → 데이터 준비 → 데이터 분석 → 시스템 구현 → 평가 및 전개</td>
 </tr>
 <tr class="odd">
-<td>하향식 접근</td>
-<td>문제 탐색 → 문제 정의 → 해결 방안 탐색 → 타당성 검토. 문제 탐색의 다섯 영역은 업무, 제품, 고객, 규제와 감사, 지원 인프라</td>
+<td>하향식과 상향식</td>
+<td>문제 탐색 → 문제 정의 → 해결 방안 탐색 → 타당성 검토. 다섯 영역은 업무, 제품, 고객, 규제와 감사, 지원 인프라. 상향식은 데이터에서 출발하여 비지도 학습과 프로토타이핑을 쓴다</td>
 </tr>
 <tr class="even">
-<td>상향식 접근</td>
-<td>데이터에서 출발. 비지도 학습, 프로토타이핑, 디자인 싱킹의 발산</td>
-</tr>
-<tr class="odd">
 <td>분석 과제 정의서</td>
 <td>소스 데이터, 분석 방법, 난이도, 수행 주기, 검증 책임, 상세 분석 과정</td>
 </tr>
-<tr class="even">
-<td>분석 과제의 관리 영역</td>
-<td>데이터 크기, 데이터 복잡도, 속도, 분석 복잡도, 정확도와 정밀도</td>
-</tr>
 <tr class="odd">
-<td>프로젝트 관리의 주제 그룹</td>
-<td>통합, 이해관계자, 범위, 자원, 시간, 원가, 리스크, 품질, 조달, 의사소통</td>
+<td>관리 영역과 주제 그룹</td>
+<td>데이터 크기, 데이터 복잡도, 속도, 분석 복잡도, 정확도와 정밀도. 통합, 이해관계자, 범위, 자원, 시간, 원가, 리스크, 품질, 조달, 의사소통</td>
 </tr>
 </tbody>
 </table>
@@ -1417,15 +1309,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>포트폴리오 사분면</td>
-<td>Ⅰ 현재·어려움, Ⅱ 미래·어려움, Ⅲ 현재·쉬움, Ⅳ 미래·쉬움. 가장 먼저 Ⅲ, 가장 나중 Ⅱ</td>
-</tr>
-<tr class="odd">
-<td>추진 순서</td>
-<td>시급성 기준 Ⅲ → Ⅳ → Ⅱ. 난이도 기준 Ⅲ → Ⅰ → Ⅱ. Ⅰ의 과제는 범위를 줄여 Ⅲ으로 옮길 수 있다</td>
-</tr>
-<tr class="even">
-<td>사분면 판단의 절차</td>
-<td>시급성은 목표와 시기의 단서, 난이도는 데이터(얻고 저장하고 가공하는 비용)와 기법(분석 수준)의 단서로 판단한다. 근거를 적고, 같은 칸의 순서는 기한, 다른 과제의 입력, 쓰이는 범위로 정한다</td>
+<td>Ⅰ 현재·어려움, Ⅱ 미래·어려움, Ⅲ 현재·쉬움, Ⅳ 미래·쉬움. 가장 먼저 Ⅲ, 가장 나중 Ⅱ. 시급성 기준 Ⅲ → Ⅳ → Ⅱ, 난이도 기준 Ⅲ → Ⅰ → Ⅱ. Ⅰ의 과제는 범위를 줄여 Ⅲ으로 옮길 수 있다</td>
 </tr>
 <tr class="odd">
 <td>이행 계획</td>
@@ -1436,16 +1320,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>조직, 프로세스, 시스템, 데이터, 인력</td>
 </tr>
 <tr class="odd">
-<td>분석 준비도</td>
-<td>분석 업무 파악, 인력 및 조직, 분석 기법, 분석 데이터, 분석 문화, IT 인프라</td>
-</tr>
-<tr class="even">
-<td>분석 성숙도</td>
-<td>도입 → 활용 → 확산 → 최적화. CMMI 바탕. 비즈니스, 조직·역량, IT의 세 부문</td>
-</tr>
-<tr class="odd">
-<td>네 유형</td>
-<td>준비형(준비도 낮음, 성숙도 낮음), 정착형(낮음, 높음), 도입형(높음, 낮음), 확산형(높음, 높음)</td>
+<td>준비도, 성숙도, 네 유형</td>
+<td>준비도는 분석 업무 파악, 인력 및 조직, 분석 기법, 분석 데이터, 분석 문화, IT 인프라. 성숙도는 도입 → 활용 → 확산 → 최적화(CMMI 바탕, 세 부문). 준비형, 정착형, 도입형, 확산형</td>
 </tr>
 <tr class="even">
 <td>분석 지원 인프라</td>
@@ -1453,19 +1329,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>데이터 거버넌스</td>
-<td>구성 요소는 원칙, 조직, 프로세스. 체계는 데이터 표준화, 데이터 관리 체계, 데이터 저장소 관리, 표준화 활동</td>
+<td>구성 요소는 원칙, 조직, 프로세스. 체계는 데이터 표준화, 데이터 관리 체계, 데이터 저장소 관리, 표준화 활동. 공공 기관은 공공데이터법과 데이터베이스 표준화 지침으로 구현한다</td>
 </tr>
 <tr class="even">
-<td>공공 부문의 데이터 거버넌스</td>
-<td>공공데이터법(제12조 제공책임관, 제22조 품질관리, 제23조 표준화)과 데이터베이스 표준화 지침(데이터 표준사전, 표준용어 = 표준단어 + 표준도메인, 메타데이터 관리시스템, 해마다의 자체 점검)</td>
-</tr>
-<tr class="odd">
-<td>분석 조직 구조</td>
-<td>집중(전담 조직이 맡음, 이원화 가능성), 기능(전담 조직 없음, 전사 분석이 어려움), 분산(전담 인력을 현업에 배치, 신속한 적용)</td>
-</tr>
-<tr class="even">
-<td>과제 관리와 교육</td>
-<td>과제 발굴(아이디어 발굴, 후보 제안, 확정)과 과제 수행(팀 구성, 실행, 진행 관리, 결과 공유와 개선). 교육은 역량의 확보가 목표이고 계속적인 변화 관리가 따른다</td>
+<td>분석 조직과 과제 관리</td>
+<td>집중, 기능, 분산 구조. 과제 발굴(아이디어 발굴, 후보 제안, 확정)과 과제 수행(팀 구성, 실행, 진행 관리, 결과 공유와 개선). 교육과 계속적인 변화 관리</td>
 </tr>
 </tbody>
 </table>
@@ -1486,55 +1354,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td>분석 단위</td>
-<td>표의 한 행이 나타내는 대상. 거래 내역은 거래 한 건, 고객 표와 마트는 고객 한 명. 연산마다 “실행한 뒤 한 행이 무엇인가”를 묻는다</td>
+<td>표의 한 행이 나타내는 대상. 집계는 분석 단위를 바꾸고 형태 변환은 값의 자리만 바꾼다</td>
 </tr>
 <tr class="even">
-<td>「파이썬 기초」의 되짚기</td>
-<td><code>read_csv</code>로 파일을 DataFrame으로 읽는다. 열의 선택, 새 열, 조건 선택, <code>describe</code>, <code>value_counts</code>, <code>groupby</code>의 기본형은 1학기에 익힌 그대로다</td>
-</tr>
-<tr class="odd">
 <td>자료 구조</td>
-<td>pandas의 Series와 DataFrame은 R의 벡터와 데이터 프레임에 해당한다. 벡터는 한 가지 자료형, 데이터 프레임은 열마다 다른 자료형. 위치는 파이썬이 0부터, R이 1부터 센다</td>
-</tr>
-<tr class="even">
-<td>선택</td>
-<td>열 이름으로 열을, 조건으로 행을 고른다. <code>&amp;</code>는 둘 다, <code>|</code>는 하나라도. <code>|</code>의 행 수 = 두 조건의 행 수의 합 - 겹치는 행 수</td>
+<td>Series와 DataFrame은 R의 벡터와 데이터 프레임에 해당한다. 벡터는 한 가지 자료형, 데이터 프레임은 열마다 다른 자료형. 위치는 파이썬이 0부터, R이 1부터 센다</td>
 </tr>
 <tr class="odd">
-<td>그룹별 집계</td>
-<td>나누기, 적용하기, 합치기. 결과의 행 수는 묶는 기준의 값이 몇 가지인가(기준이 둘이면 조합의 수)로 정해진다</td>
+<td>선택</td>
+<td><code>&amp;</code>는 둘 다, <code>|</code>는 하나라도. <code>|</code>의 행 수 = 두 조건의 행 수의 합 - 겹치는 행 수</td>
 </tr>
 <tr class="even">
+<td>그룹별 집계</td>
+<td>나누기, 적용하기, 합치기. 결과의 행 수는 묶는 기준의 값(조합)의 가짓수다</td>
+</tr>
+<tr class="odd">
 <td>넓은 표와 긴 표</td>
 <td>넓은 표 → 긴 표는 <code>melt</code>, 긴 표 → 넓은 표는 <code>pivot_table</code>(R <code>reshape</code>의 <code>cast</code>). 긴 표의 행 수 = 넓은 표의 행 수 × 펼친 열의 수</td>
 </tr>
-<tr class="odd">
-<td><code>pivot</code>과 <code>pivot_table</code></td>
-<td><code>pivot</code>은 자리만 옮기므로 조합 하나에 값이 하나일 때만 쓴다. 중복이 있으면 <code>ValueError</code>. <code>pivot_table</code>은 집계를 함께 한다</td>
-</tr>
 <tr class="even">
 <td>결합</td>
-<td>키로 행을 짝짓는다. inner는 공통 키만, left는 왼쪽 표 전부, right는 오른쪽 표 전부, outer는 양쪽 전부. 짝이 없는 칸은 결측값. 키가 중복되면 행이 늘어난다. R의 <code>merge</code>는 기본이 inner이고 <code>all.x = TRUE</code>가 left다</td>
+<td>inner는 공통 키만, left·right는 한쪽 표 전부, outer는 양쪽 전부. 짝이 없는 칸은 결측값, 키가 중복되면 행이 는다. R의 <code>merge</code>는 기본이 inner, <code>all.x = TRUE</code>가 left다</td>
 </tr>
 <tr class="odd">
-<td>결합의 점검</td>
-<td>결합 전에 <code>is_unique</code>, <code>value_counts</code>로 키의 중복을 보고, <code>validate</code>로 결합의 종류를 선언할 수 있다. 결합 뒤에 <code>indicator=True</code>로 짝 없는 키를 방향별로 센다</td>
-</tr>
-<tr class="even">
 <td>데이터 마트</td>
-<td>분석 대상 하나가 한 행이 되도록 변수를 모은 분석용 표. 만든 뒤 한 행이 무엇인가, 행이 몇 개여야 하는가, 결측값이 왜 생겼는가를 확인한다</td>
-</tr>
-<tr class="odd">
-<td>요약 변수와 파생 변수</td>
-<td>요약 변수는 원자료를 집계한 변수다. 누가 만들어도 같고 재활용성이 높다. 파생 변수는 조건이나 함수로 뜻을 부여한 변수다. 주관적일 수 있으므로 논리적 타당성이 필요하다</td>
+<td>분석 대상 하나가 한 행이 되도록 변수를 모은 분석용 표</td>
 </tr>
 <tr class="even">
-<td>R 패키지</td>
-<td><code>reshape</code>(<code>melt</code>, <code>cast</code>), <code>sqldf</code>(SQL 문), <code>plyr</code>(나누기·적용·합치기, 함수 이름의 두 글자는 입력과 출력), <code>data.table</code>(빠른 처리, <code>setkey</code>의 키)</td>
+<td>요약 변수와 파생 변수</td>
+<td>요약 변수는 원자료를 집계한 변수로 재활용성이 높다. 파생 변수는 조건이나 함수로 뜻을 부여한 변수로 주관적일 수 있어 논리적 타당성이 필요하다</td>
 </tr>
 <tr class="odd">
-<td>R 출력</td>
-<td><code>str</code>은 행 수·열 수·자료형, <code>aggregate</code>는 그룹별 집계, <code>table</code>은 빈도(결측값은 세지 않는다), 결측값은 <code>NA</code></td>
+<td>R 패키지</td>
+<td><code>reshape</code>(<code>melt</code>, <code>cast</code>), <code>sqldf</code>(SQL 문), <code>plyr</code>(나누기·적용·합치기, 함수 이름의 두 글자는 입력과 출력), <code>data.table</code>(빠른 처리, <code>setkey</code>)</td>
 </tr>
 </tbody>
 </table>
@@ -1554,16 +1406,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>히스토그램</td>
-<td>구간별 관측값의 수를 막대로 나타낸다. 중심, 흩어진 정도, 치우침을 읽는다. 구간의 수에 따라 인상이 달라진다</td>
-</tr>
-<tr class="even">
 <td>상자그림</td>
 <td>상자의 양 끝은 Q1과 Q3, 안의 선은 중앙값(평균이 아니다), 수염은 1.5 × IQR 안의 가장 먼 관측값까지, 수염 밖의 점은 이상값</td>
-</tr>
-<tr class="odd">
-<td>줄기-잎 그림</td>
-<td>값을 줄기와 잎으로 나누어 적은 그림. 분포와 원래 값을 함께 본다</td>
 </tr>
 <tr class="even">
 <td>중심의 통계량</td>
@@ -1574,42 +1418,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>분산, 표준편차(분산의 제곱근), 범위(최댓값 - 최솟값), 사분위수 범위(Q3 - Q1), 변동 계수(표준편차 ÷ 평균, 단위 없음)</td>
 </tr>
 <tr class="even">
-<td>왜도</td>
-<td>양수이면 오른쪽 긴 꼬리이고 최빈값 &lt; 중앙값 &lt; 평균. 음수이면 왼쪽 긴 꼬리이고 평균 &lt; 중앙값 &lt; 최빈값</td>
-</tr>
-<tr class="odd">
-<td>첨도</td>
-<td>정규 분포는 3(3을 빼는 방식에서는 0). 클수록 봉우리가 뾰족하고 꼬리가 두껍다</td>
-</tr>
-<tr class="even">
-<td>결측값의 확인</td>
-<td>파이썬 <code>isna().sum()</code>, R <code>colSums(is.na())</code>, <code>complete.cases()</code>, <code>summary()</code>의 <code>NAs</code>(<code>NA's</code>) 줄</td>
+<td>왜도와 첨도</td>
+<td>왜도가 양수이면 오른쪽 긴 꼬리이고 최빈값 &lt; 중앙값 &lt; 평균, 음수이면 그 반대. 첨도는 정규 분포가 3(3을 빼는 방식에서는 0)</td>
 </tr>
 <tr class="odd">
 <td>결측의 유형</td>
-<td>MCAR(어떤 값과도 무관), MAR(관측된 다른 변수에 따라 다름), MNAR(비어 있는 값 자체나 관측되지 않은 요인에 따라 다름). 자료로는 MCAR이 아님만 보일 수 있고 MNAR은 측정 과정의 지식으로 판단한다</td>
+<td>MCAR(어떤 값과도 무관)은 완전 사례 분석도 치우침이 없다. MAR(관측된 다른 변수에 따라 다름)은 그 변수를 조건으로 대치하거나 다중 대치를 쓴다. MNAR(비어 있는 값 자체에 따라 다름)은 원인을 조사하고 민감도 분석을 한다</td>
 </tr>
 <tr class="even">
-<td>유형에 따른 선택</td>
-<td>MCAR이면 완전 사례 분석도 치우침이 없다. MAR이면 빈칸과 관계있는 변수를 조건으로 대치하거나 다중 대치를 쓴다. MNAR이면 어떤 대치도 치우침을 없애지 못하므로 원인을 조사하고 민감도 분석을 한다</td>
-</tr>
-<tr class="odd">
 <td>결측값의 처리</td>
-<td>완전 사례 분석(행 삭제), 평균 대치법(비조건부, 조건부), 단순 확률 대치법(핫덱, 최근접 이웃), 다중 대치법(대치 → 분석 → 결합)</td>
-</tr>
-<tr class="even">
-<td>평균 대치법의 약점</td>
-<td>평균은 유지되나 흩어진 정도가 실제보다 작게 나와 표준 오차가 작게 추정된다</td>
+<td>완전 사례 분석, 평균 대치법(비조건부, 조건부), 단순 확률 대치법(핫덱, 최근접 이웃), 다중 대치법(대치 → 분석 → 결합). 평균 대치법은 표준 오차를 작게 추정한다</td>
 </tr>
 <tr class="odd">
-<td>이상값의 판정</td>
-<td>평균 ± 3 × 표준편차 밖(ESD), 또는 Q1 - 1.5 × IQR 미만이거나 Q3 + 1.5 × IQR 초과</td>
+<td>이상값</td>
+<td>평균 ± 3 × 표준편차 밖(ESD), 또는 Q1 - 1.5 × IQR 미만이거나 Q3 + 1.5 × IQR 초과. 절단은 지우고 조정은 경계값으로 바꾼다. 이상값이 모두 오류는 아니다</td>
 </tr>
 <tr class="even">
-<td>이상값의 처리</td>
-<td>절단은 지우고, 조정은 하한·상한의 값으로 바꾼다. 이상값이 모두 오류는 아니다</td>
-</tr>
-<tr class="odd">
 <td>R 함수</td>
 <td><code>mean()</code>은 결측값이 있으면 <code>NA</code>이므로 <code>na.rm = TRUE</code>. <code>boxplot.stats()$out</code>은 이상값. <code>DMwR</code>의 <code>centralImputation</code>, <code>knnImputation</code>, <code>Amelia</code>의 <code>amelia</code></td>
 </tr>
@@ -1631,72 +1455,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>모수와 통계량</td>
-<td>모수는 모집단의 값(정해져 있으나 모른다), 통계량은 표본에서 계산한 값(표본마다 달라진다)</td>
+<td>표본</td>
+<td>모수는 모집단의 값, 통계량은 표본의 값. 층화는 모든 층에서, 집락은 일부 집락만</td>
 </tr>
 <tr class="even">
-<td>표본 추출 방법</td>
-<td>단순 임의, 계통(일정 간격), 층화(모든 층에서 뽑는다. 층 안은 비슷하다), 집락(일부 집락만 뽑는다. 집락 안은 섞여 있다)</td>
+<td>오차와 척도</td>
+<td>표본 오차는 표본이 크면 준다. 척도는 명목, 서열, 등간, 비율</td>
 </tr>
 <tr class="odd">
-<td>표본 오차와 비표본 오차</td>
-<td>표본 오차는 일부만 조사해서 생기고 표본이 크면 준다. 비표본 오차는 조사 과정에서 생기고 전수 조사에도 있다</td>
+<td>확률 분포</td>
+<td>이항(평균 np), 포아송(평균 = 분산), 지수(대기 시간), t, 카이제곱, F</td>
 </tr>
 <tr class="even">
-<td>측정 척도</td>
-<td>명목(구분), 서열(순서), 등간(간격, 덧셈과 뺄셈), 비율(절대적인 0, 곱셈과 나눗셈). 자료형과 척도는 다르다</td>
+<td>추정</td>
+<td>표준 오차 = 모표준편차 ÷ √n.&nbsp;신뢰수준은 방법이 모수를 맞히는 비율</td>
 </tr>
 <tr class="odd">
-<td>이산 분포</td>
-<td>베르누이(한 번의 성공 여부), 이항(n번 가운데 성공 횟수, 평균 np), 기하(첫 성공까지의 횟수), 포아송(단위 시간의 발생 횟수, 평균 = 분산)</td>
-</tr>
-<tr class="even">
-<td>연속 분포</td>
-<td>균등, 정규, 지수(대기 시간), t(평균의 검정), 카이제곱(분산, 범주형 자료), F(분산의 비, 분산분석)</td>
-</tr>
-<tr class="odd">
-<td>중심극한정리</td>
-<td>모집단의 모양과 관계없이 n이 크면 표본 평균의 분포는 정규 분포에 가까워진다. 표준 오차 = 모표준편차 ÷ √n</td>
-</tr>
-<tr class="even">
-<td>표준편차와 표준 오차</td>
-<td>표준편차는 자료 하나하나의 흩어짐, 표준 오차는 통계량(표본 평균)의 흩어짐이다. 표본 평균 1,000개의 표준편차가 표준 오차다</td>
-</tr>
-<tr class="odd">
-<td>오차 한계와 표본의 크기</td>
-<td>오차 한계 = (분포에서 읽은 값) × 표준 오차. 필요한 n = (값 × 모표준편차 ÷ 오차 한계)². 오차 한계를 절반으로 하려면 n은 네 배</td>
-</tr>
-<tr class="even">
-<td>좋은 추정량</td>
-<td>불편성(기댓값이 모수), 효율성(분산이 작다), 일치성(n이 크면 모수에 가까워진다), 충족성(정보를 다 쓴다). 표본 분산은 n - 1로 나누어야 불편이다</td>
-</tr>
-<tr class="odd">
-<td>신뢰 구간</td>
-<td>신뢰수준 95%는 같은 방법으로 구간을 여러 번 만들면 약 95%가 모수를 포함한다는 뜻이다. 신뢰수준을 높이면 길어지고, 표본이 크면 짧아진다</td>
-</tr>
-<tr class="even">
-<td>오류</td>
-<td>제1종 오류는 참인 귀무 가설을 기각. 제2종 오류는 거짓인 귀무 가설을 기각하지 못함. 검정력 = 1 - β</td>
-</tr>
-<tr class="odd">
-<td>판정</td>
-<td>유의 확률 &lt; 유의수준이면 귀무 가설을 기각한다. 유의 확률은 귀무 가설이 참일 확률이 아니다</td>
-</tr>
-<tr class="even">
-<td>기각역과 임계값</td>
-<td>임계값 바깥이 기각역이다. 검정 통계량이 기각역에 드는 것과 유의 확률 &lt; 유의수준은 같은 판정이다</td>
-</tr>
-<tr class="odd">
-<td>검정력</td>
-<td>거짓인 귀무 가설을 기각할 확률. 실제 차이가 클수록, 표본이 클수록, 유의수준이 느슨할수록 높다. 검정력이 낮으면 기각하지 못한 결론이 자주 틀린다</td>
+<td>검정</td>
+<td>제1종 오류는 참인 귀무 가설을 기각. 유의 확률 &lt; 유의수준이면 기각</td>
 </tr>
 <tr class="even">
 <td>t-검정</td>
-<td>일표본(한 집단과 정해진 값), 대응 표본(같은 대상을 두 번. 차이의 일표본 검정), 독립 표본(서로 다른 두 집단. 웰치는 등분산을 가정하지 않는다)</td>
+<td>일표본, 대응 표본, 독립 표본(웰치). 비모수 검정은 순위나 부호를 쓴다</td>
 </tr>
 <tr class="odd">
-<td>비모수 검정</td>
-<td>분포를 가정하지 않고 순위나 부호를 쓴다. 부호 검정, 윌콕슨의 부호 순위 검정과 순위합 검정, 만-위트니 U 검정, 런 검정</td>
+<td>카이제곱, 분산분석</td>
+<td>기대도수 = 행 합 × 열 합 ÷ 전체. F = 집단 간 평균 제곱 ÷ 집단 내 평균 제곱</td>
 </tr>
 </tbody>
 </table>
@@ -1725,61 +1509,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>상관 계수의 검정</td>
-<td>귀무 가설은 “모집단의 상관 계수는 0이다”. t 분포(자유도 n - 2). 단순 회귀의 기울기 검정과 같다</td>
+<td>귀무 가설은 “모집단의 상관 계수는 0이다”. t 분포(자유도 n - 2)</td>
 </tr>
 <tr class="even">
 <td>상관과 인과</td>
-<td>상관이 있다고 인과가 있는 것은 아니다. 상관 계수 0이 관계 없음을 뜻하지도 않는다</td>
+<td>상관은 인과가 아니다. 상관 계수 0이 관계 없음을 뜻하지도 않는다</td>
 </tr>
 <tr class="odd">
 <td>최소제곱법</td>
-<td>잔차 제곱합을 가장 작게 하는 계수. 기울기 = 공분산 ÷ x의 분산. 잔차의 합은 0이다</td>
+<td>잔차 제곱합을 가장 작게 하는 계수. 기울기 = 공분산 ÷ x의 분산 = 상관 계수 × (y의 표준편차 ÷ x의 표준편차)</td>
 </tr>
 <tr class="even">
 <td>결과표를 읽는 순서</td>
-<td>F의 유의 확률(모형) → t의 유의 확률(계수) → 결정 계수(설명력)</td>
+<td>F의 유의 확률(모형) → t의 유의 확률(계수) → 결정 계수(설명력). t 값 = 계수 ÷ 표준 오차</td>
 </tr>
 <tr class="odd">
 <td>계수의 해석</td>
-<td>다른 변수가 같을 때, 그 변수가 1 늘면 종속 변수가 평균 계수만큼 변한다. t 값 = 계수 ÷ 표준 오차</td>
+<td>다른 변수가 같을 때 그 변수가 1 늘면 종속 변수가 평균 계수만큼 변한다</td>
 </tr>
 <tr class="even">
-<td>결과표 전의 예상</td>
-<td>단순 회귀의 기울기 = 상관 계수 × (y의 표준편차 ÷ x의 표준편차). 결정 계수 = 상관 계수의 제곱. 상관된 변수를 더하면 계수가 줄어든다</td>
+<td>결정 계수</td>
+<td>SSR ÷ SST = 1 - SSE ÷ SST. 단순 회귀에서는 상관 계수의 제곱이고 F = t²</td>
 </tr>
 <tr class="odd">
-<td>결정 계수</td>
-<td>SSR ÷ SST = 1 - SSE ÷ SST. 단순 회귀에서는 상관 계수의 제곱. 단순 회귀에서 F = t²</td>
-</tr>
-<tr class="even">
 <td>수정된 결정 계수</td>
 <td>1 - (1 - 결정 계수) × (n - 1) ÷ (n - k - 1). 변수의 수가 다른 모형을 견줄 때 쓴다</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>분산분석표</td>
 <td>SST = SSR + SSE, 평균 제곱 = 제곱합 ÷ 자유도, F = MSR ÷ MSE. 자유도는 k, n - k - 1, n - 1</td>
-</tr>
-<tr class="even">
-<td>순차 제곱합</td>
-<td><code>anova()</code>, <code>anova_lm()</code>의 변수별 줄은 앞의 변수가 들어간 뒤 더 설명한 몫이다. 순서를 바꾸면 줄의 값이 바뀐다</td>
 </tr>
 <tr class="odd">
 <td>가정과 진단</td>
 <td>선형성, 독립성, 등분산성(잔차 그림), 비상관성(더빈-왓슨, 2 근처), 정상성(Q-Q 그림, 샤피로-윌크)</td>
 </tr>
 <tr class="even">
-<td>잔차 그림의 세 유형</td>
-<td>고르게 흩어짐(정상), 휜 모양(선형성), 나팔 모양(등분산성)</td>
+<td>다중공선성</td>
+<td>독립 변수끼리 상관이 강한 상태. VIF = 1 ÷ (1 - R²), 10 이상이면 심하다</td>
 </tr>
 <tr class="odd">
-<td>다중공선성</td>
-<td>독립 변수끼리 상관이 강한 상태. 표준 오차가 커지고 계수가 불안정해진다. VIF = 1 ÷ (1 - R²), 10 이상이면 심하다</td>
+<td>변수 선택</td>
+<td>전진 선택, 후진 제거, 단계별, 모든 조합. AIC와 BIC는 작을수록 좋다</td>
 </tr>
 <tr class="even">
-<td>변수 선택</td>
-<td>전진 선택, 후진 제거, 단계별, 모든 조합. AIC와 BIC는 작을수록 좋다. 방법에 따라 최종 모형이 다를 수 있다</td>
-</tr>
-<tr class="odd">
 <td>벌점 회귀</td>
 <td>라쏘(L1, 계수를 0으로 만들 수 있다), 릿지(L2, 0에 가깝게 줄인다), 엘라스틱넷(둘 다)</td>
 </tr>
@@ -1805,14 +1577,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>정보를 될 수 있는 대로 잃지 않으면서 변수의 수를 줄인다. 변수 선택은 고르고, 변수 추출은 결합하여 새로 만든다</td>
 </tr>
 <tr class="even">
-<td>축의 회전</td>
-<td>주성분은 점 구름의 가장 긴 방향으로 좌표축을 돌린 것이다. 점은 그대로이고 분산의 합도 같으며, 분산의 몫만 앞쪽 주성분으로 몰린다</td>
-</tr>
-<tr class="odd">
-<td>잃은 정보</td>
-<td>주성분 k개만 남기면 잃는 비율은 1 - (k번째까지의 누적 기여율)이며, 되돌린 값과 원래 값의 차이로 직접 잴 수 있다</td>
-</tr>
-<tr class="even">
 <td>다차원 척도법</td>
 <td>개체 사이의 거리(비유사성)를 낮은 차원의 좌표로 나타낸다. 축의 방향과 부호에는 뜻이 없다. 계량적은 거리 값(<code>cmdscale</code>), 비계량적은 서열 척도의 순서(<code>isoMDS</code>)를 쓴다</td>
 </tr>
@@ -1822,39 +1586,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>주성분 분석</td>
-<td>상관이 있는 변수들을 서로 상관이 없는 소수의 주성분으로 요약한다. 주성분은 원래 변수의 선형 결합이며 종속 변수가 없다</td>
+<td>상관이 있는 변수들을 서로 상관이 없는 소수의 주성분으로 요약한다. 주성분은 원래 변수의 선형 결합이며 종속 변수가 없다. 좌표축을 점 구름의 긴 방향으로 돌린 것이다</td>
 </tr>
 <tr class="odd">
 <td>표준화</td>
-<td>단위가 다르거나 분산이 크게 다르면 표준화한다(상관행렬). 표준화한 변수의 공분산행렬은 상관행렬이다</td>
+<td>단위가 다르거나 분산이 크게 다르면 표준화한다(상관행렬)</td>
 </tr>
 <tr class="even">
-<td>고윳값, 분산 설명 비율, 누적 기여율</td>
+<td>고윳값과 비율</td>
 <td>고윳값은 주성분의 분산이며 표준편차의 제곱이다. 표준화한 경우 고윳값의 합은 변수의 수다. 분산 설명 비율 = 고윳값 ÷ 고윳값의 합</td>
 </tr>
 <tr class="odd">
 <td>주성분 수의 기준</td>
-<td>누적 기여율 70~90%, 스크리 그림에서 완만해지기 시작하는 곳의 바로 앞, 고윳값 1 이상. 기준끼리 답이 엇갈릴 수 있다</td>
+<td>누적 기여율 70~90%, 스크리 그림에서 완만해지기 시작하는 곳의 바로 앞, 고윳값 1 이상. 기준끼리 엇갈릴 수 있다. 잃는 비율은 1 - 누적 기여율이다</td>
 </tr>
 <tr class="even">
 <td>적재값</td>
-<td>주성분의 식의 계수. 한 열의 제곱합은 1이다. 절댓값이 큰 변수로 주성분을 해석한다. 부호는 프로그램에 따라 뒤집힌다</td>
+<td>주성분의 식의 계수. 한 열의 제곱합은 1이다. 절댓값이 큰 변수로 해석하고, 부호는 프로그램에 따라 뒤집힌다</td>
 </tr>
 <tr class="odd">
 <td>주성분 점수와 행렬도</td>
-<td>주성분 점수는 개체마다 계산한 주성분의 값이며 서로 상관이 없다. 행렬도는 주성분 점수와 적재값을 한 장에 그린 그림이다</td>
+<td>주성분 점수는 서로 상관이 없다. 행렬도는 주성분 점수와 적재값을 한 장에 그린 그림이다</td>
 </tr>
 <tr class="even">
 <td>요인 분석과의 차이</td>
-<td>주성분은 관측 변수의 선형 결합이고 순서가 있다. 요인 분석은 변수가 잠재 요인과 오차로 이루어진다고 가정하고, 요인을 회전하여 이름을 붙인다</td>
+<td>주성분은 관측 변수의 선형 결합이고 순서가 있다. 요인 분석은 변수가 잠재 요인과 오차로 이루어진다고 가정하고 요인을 회전한다</td>
 </tr>
 <tr class="odd">
-<td>R 출력의 세 줄</td>
-<td><code>Standard deviation</code>(제곱하면 고윳값), <code>Proportion of Variance</code>(분산 설명 비율), <code>Cumulative Proportion</code>(누적 기여율)</td>
-</tr>
-<tr class="even">
-<td><code>prcomp()</code>와 <code>princomp()</code></td>
-<td>표준화는 <code>scale = TRUE</code>와 <code>cor = TRUE</code>. 나누는 수는 n - 1과 n.&nbsp;상관행렬로 분석하면 결과가 같다</td>
+<td>R 출력</td>
+<td>세 줄은 <code>Standard deviation</code>, <code>Proportion of Variance</code>, <code>Cumulative Proportion</code>. 표준화는 <code>prcomp()</code>의 <code>scale = TRUE</code>, <code>princomp()</code>의 <code>cor = TRUE</code></td>
 </tr>
 </tbody>
 </table>
@@ -1874,80 +1634,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>시계열 자료</td>
-<td>시간의 순서대로 관측한 자료. 순서가 정보이며 가까운 시점의 값끼리 닮는다</td>
-</tr>
-<tr class="even">
 <td>정상성</td>
-<td>평균이 일정하다, 분산이 일정하다, 공분산이 시점이 아니라 시차에만 의존한다</td>
-</tr>
-<tr class="odd">
-<td>정상 시계열로의 변환</td>
-<td>평균이 일정하지 않으면 차분, 분산이 일정하지 않으면 변환(로그). 변환을 먼저 한다</td>
+<td>평균 일정, 분산 일정, 공분산이 시차에만 의존</td>
 </tr>
 <tr class="even">
-<td>차분</td>
-<td>일반 차분은 바로 앞 시점의 값을 빼어 추세를 없앤다. 계절 차분은 한 주기 앞의 값을 빼어 계절성을 없앤다</td>
+<td>정상 시계열로의 변환</td>
+<td>평균에는 차분, 분산에는 변환(로그). 변환을 먼저 한다. 일반 차분은 추세를, 계절 차분은 계절성을 없앤다</td>
 </tr>
 <tr class="odd">
 <td>백색잡음</td>
-<td>평균 0, 분산 일정, 자기상관 없음. 모형의 오차항이며, 잘 적합된 모형의 잔차가 따라야 할 모양이다</td>
+<td>평균 0, 분산 일정, 자기상관 없음. 모형의 오차항이며 잘 적합된 모형의 잔차가 따를 모양이다</td>
 </tr>
 <tr class="even">
 <td>분해 시계열</td>
-<td>추세, 계절, 순환, 불규칙. 계절은 주기가 고정되어 있고 순환은 그렇지 않다. 순환은 흔히 추세에 묶는다</td>
+<td>추세, 계절, 순환, 불규칙. 계절은 주기가 고정되어 있고 순환은 그렇지 않다</td>
 </tr>
 <tr class="odd">
 <td>가법 모형과 승법 모형</td>
-<td>가법은 성분의 합, 승법은 성분의 곱. 계절 변동의 폭이 수준에 비례하면 승법 모형이다. 로그를 씌우면 승법이 가법이 된다</td>
+<td>성분의 합과 곱. 계절 변동의 폭이 수준에 비례하면 승법이다</td>
 </tr>
 <tr class="even">
-<td>고전적 분해</td>
-<td>중심화 이동평균으로 추세를 구하고, 같은 달끼리 평균하여 계절 성분을 구한다. 처음과 끝의 여섯 달은 추세가 없다</td>
-</tr>
-<tr class="odd">
 <td>이동평균법과 지수평활법</td>
-<td>이동평균법은 일정 기간의 값에 같은 가중치를 준다. 지수평활법은 모든 과거 값을 쓰고 최근의 값에 큰 가중치를 준다</td>
+<td>같은 가중치의 기간 평균과, 최근 값에 큰 가중치를 주는 가중 평균</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>ACF와 PACF</td>
-<td>ACF는 시차 k만큼 떨어진 값 사이의 상관. PACF는 사이에 낀 값들의 영향을 없앤 상관</td>
-</tr>
-<tr class="odd">
-<td>자기상관 그림과 정상성</td>
-<td>ACF가 아주 천천히 줄어들면 비정상 시계열이다. 빠르게 0에 가까워지면 정상 시계열로 본다</td>
+<td>시차 k의 상관과, 사이에 낀 값의 영향을 없앤 상관. ACF가 아주 천천히 줄면 비정상이다</td>
 </tr>
 <tr class="even">
-<td>AR(p)</td>
-<td>과거 p 시점의 값으로 설명한다. ACF는 서서히 줄고 PACF는 p 시차 뒤에 끊긴다</td>
-</tr>
-<tr class="odd">
-<td>MA(q)</td>
-<td>과거 q 시점의 오차로 설명한다. ACF는 q 시차 뒤에 끊기고 PACF는 서서히 준다. 언제나 정상성을 만족한다</td>
-</tr>
-<tr class="even">
-<td>ARMA(p, q)</td>
-<td>AR과 MA를 합친 모형. ACF와 PACF가 모두 서서히 준다</td>
+<td>AR(p), MA(q), ARMA(p, q)</td>
+<td>AR은 PACF가 p 뒤에 끊기고, MA는 ACF가 q 뒤에 끊기며, ARMA는 둘 다 서서히 준다. MA는 언제나 정상성을 만족한다</td>
 </tr>
 <tr class="odd">
 <td>ARIMA(p, d, q)</td>
-<td>d번 차분하면 ARMA(p, q)를 따른다. d는 차분의 횟수다</td>
+<td>d번 차분하면 ARMA(p, q)를 따른다</td>
 </tr>
 <tr class="even">
+<td>모형의 선택과 진단</td>
+<td>AIC는 작을수록 좋고 같은 차분의 모형끼리 견준다. 융-박스 검정은 유의 확률이 0.05보다 커야 통과한다</td>
+</tr>
+<tr class="odd">
 <td><code>arima()</code> 출력</td>
-<td>계수와 <code>s.e.</code>, <code>sigma^2</code>, <code>log likelihood</code>, <code>aic</code>. 추정값 ÷ 표준 오차로 유의성을, AIC로 모형을 견준다</td>
-</tr>
-<tr class="odd">
-<td>모형의 식별과 선택</td>
-<td>끊기는 그림이 있으면 그 그림에서 차수를 읽는다. 둘 다 서서히 줄면 ARMA로 보고 후보를 AIC로 견준다. AIC는 같은 차분을 한 모형끼리만 견준다</td>
+<td>추정값과 <code>s.e.</code>, <code>sigma^2</code>, <code>log likelihood</code>, <code>aic</code>. 추정값 ÷ 표준 오차로 유의성을 본다</td>
 </tr>
 <tr class="even">
-<td>융-박스 검정</td>
-<td>귀무 가설은 “잔차가 백색잡음이다”. 유의 확률이 0.05보다 크면 진단을 통과한다. 월별 자료는 시차 24까지 본다</td>
-</tr>
-<tr class="odd">
 <td>계절조정 계열</td>
-<td>승법 모형이면 관측값 ÷ 계절 성분. 공공 통계는 원계열과 함께 공표하며, 계절조정 계열은 전월과, 원계열은 전년 같은 달과 견준다</td>
+<td>승법 모형이면 관측값 ÷ 계절 성분. 전월과 견준다</td>
 </tr>
 </tbody>
 </table>
@@ -1979,28 +1711,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>목적 설정 → 데이터 준비 → 데이터 가공 → 기법 적용 → 검증</td>
 </tr>
 <tr class="even">
-<td>자료의 역할</td>
-<td>훈련용은 모형을 만들고, 검증용은 과대적합을 확인하여 조정하고, 평가용은 마지막 성능을 평가한다</td>
-</tr>
-<tr class="odd">
 <td>나누는 방법</td>
 <td>홀드아웃(한 번 나눈다), k-겹 교차 검증(k번 되풀이하여 평균한다), 붓스트랩(복원 추출. 약 63.2%가 훈련용에 들어간다)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>과대적합</td>
-<td>훈련용 성능은 높고 검증용 성능은 뚜렷이 낮다. 모형이 지나치게 복잡하다</td>
-</tr>
-<tr class="odd">
-<td>로지스틱 회귀</td>
-<td>종속 변수가 범주형. 오즈 = p ÷ (1 - p)의 로그인 로짓을 선형식으로 나타낸다. 최대우도법으로 추정한다</td>
+<td>훈련용 성능은 높고 검증용 성능은 뚜렷이 낮다. 둘 다 낮으면 과소적합이다</td>
 </tr>
 <tr class="even">
-<td>오즈비</td>
-<td>exp(계수). 독립 변수가 1 늘면 오즈가 exp(계수)배가 된다. 계수가 양수이면 오즈비는 1보다 크다</td>
+<td>로지스틱 회귀</td>
+<td>종속 변수가 범주형. 로짓(오즈의 로그)을 선형식으로 나타내고 최대우도법으로 추정한다</td>
 </tr>
 <tr class="odd">
-<td>이탈도</td>
-<td>-2 × 로그 우도. 작을수록 잘 맞는다. R 출력의 <code>Null deviance</code>와 <code>Residual deviance</code></td>
+<td>오즈비</td>
+<td>exp(계수). 독립 변수가 1 늘면 오즈가 exp(계수)배가 된다. 확률의 배수가 아니다</td>
 </tr>
 <tr class="even">
 <td>분리 기준</td>
@@ -2008,35 +1732,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>지니 지수</td>
-<td>1 - (비율의 제곱의 합). 순수하면 0, 두 범주가 반씩이면 0.5</td>
+<td>1 - (비율의 제곱의 합). 순수하면 0, 두 범주가 반씩이면 0.5. 엔트로피 지수의 감소량은 정보 이득이다</td>
 </tr>
 <tr class="even">
 <td>알고리즘</td>
 <td>CART는 지니 지수와 이진 분리, C4.5와 C5.0은 엔트로피 지수, CHAID는 카이제곱 통계량과 다지 분리</td>
-</tr>
-<tr class="odd">
-<td>정지 규칙과 가지치기</td>
-<td>정지 규칙은 분리를 멈추게 하고, 가지치기는 자란 가지를 잘라 낸다. 둘 다 과대적합을 막는다</td>
-</tr>
-<tr class="even">
-<td><code>rpart</code> 출력</td>
-<td><code>node), split, n, loss, yval, (yprob)</code>의 순서. <code>*</code>는 끝 마디</td>
-</tr>
-<tr class="odd">
-<td>과대적합의 판단</td>
-<td>훈련용 성능은 깊이와 함께 오르거나 그대로이다. 검증용 성능이 가장 높은 곳에서 멈추고, 두 성능의 차이와 수준을 함께 본다</td>
-</tr>
-<tr class="even">
-<td>교차 검증</td>
-<td>훈련용 자료를 k조각으로 나누어 k번 재고 평균한다. 분류 모형에서는 층화 k-겹 분할을 쓴다. 평가용 자료는 따로 떼어 둔다</td>
-</tr>
-<tr class="odd">
-<td>비용 복잡도 가지치기</td>
-<td>오류 + α × 끝 마디의 수가 가장 작은 부분 나무를 고른다. α가 클수록 작은 나무</td>
-</tr>
-<tr class="even">
-<td>정보 이득</td>
-<td>엔트로피 지수의 감소량. C4.5와 ID3의 분리 기준</td>
 </tr>
 </tbody>
 </table>
@@ -2056,68 +1756,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>앙상블과 배깅</td>
-<td>모형 여러 개의 예측을 다수결이나 평균으로 합친다. 배깅은 붓스트랩 표본(복원 추출)마다 모형을 만든다</td>
+<td>앙상블</td>
+<td>배깅은 붓스트랩 표본마다, 부스팅은 틀린 관측값에 가중치를 주며 차례로, 랜덤 포레스트는 배깅에 변수의 임의 선택을 더해 모형을 만든다</td>
 </tr>
 <tr class="even">
-<td>부스팅과 랜덤 포레스트</td>
-<td>부스팅은 모형을 차례로 만들며 앞 모형이 잘못 분류한 관측값에 큰 가중치를 준다. 랜덤 포레스트는 배깅에 변수의 임의 선택을 더한 것이다</td>
+<td>인공신경망</td>
+<td>입력층, 은닉층, 출력층. 은닉 마디가 너무 많으면 과대적합, 너무 적으면 과소적합이다</td>
 </tr>
 <tr class="odd">
-<td>인공신경망의 구조</td>
-<td>입력층, 은닉층, 출력층. 마디는 가중합을 활성화 함수에 넣어 출력한다. 은닉 마디가 너무 많으면 과대적합, 너무 적으면 과소적합이 생긴다</td>
-</tr>
-<tr class="even">
 <td>활성화 함수</td>
 <td>계단(0, 1), 부호(-1, 1), 시그모이드(0~1), tanh(-1~1), ReLU(0 이상), 소프트맥스(합이 1)</td>
 </tr>
-<tr class="odd">
-<td>역전파와 기울기 소실</td>
-<td>오차를 출력층에서 입력층 방향으로 전달하며 가중치를 고친다. 층이 깊으면 기울기가 사라질 수 있고 ReLU로 줄인다</td>
-</tr>
 <tr class="even">
+<td>역전파와 기울기 소실</td>
+<td>오차를 거꾸로 전달하며 가중치를 고친다. 기울기 소실은 ReLU로 줄인다</td>
+</tr>
+<tr class="odd">
 <td>그 밖의 분류 기법</td>
 <td>k-최근접 이웃(가까운 k개의 다수결), 서포트 벡터 머신(마진이 최대인 경계), 나이브 베이즈(베이즈 정리, 변수의 독립 가정)</td>
 </tr>
-<tr class="odd">
-<td>오분류표</td>
-<td>TP, FN, FP, TN. 뒤 글자는 예측한 범주, 앞 글자는 예측이 맞았는지다</td>
-</tr>
 <tr class="even">
 <td>지표</td>
-<td>정분류율 = (TP + TN) ÷ 전체, 정밀도 = TP ÷ (TP + FP), 재현율(민감도) = TP ÷ (TP + FN), 특이도 = TN ÷ (TN + FP), F1 = 정밀도와 재현율의 조화 평균</td>
+<td>정밀도 = TP ÷ (TP + FP), 재현율 = TP ÷ (TP + FN), 특이도 = TN ÷ (TN + FP), F1은 조화 평균. 정분류율은 기준선과 견준다</td>
 </tr>
 <tr class="odd">
-<td>지표의 선택</td>
-<td>양성이 드물면 정분류율만으로 평가하지 않는다. 양성을 놓치면 안 될 때는 재현율, 잘못된 양성 판정을 줄일 때는 정밀도를 본다</td>
+<td>기준값과 비용</td>
+<td>낮추면 재현율이 오르고 특이도가 내린다. a × FN + b × FP가 가장 작은 기준값을 고른다</td>
 </tr>
 <tr class="even">
-<td>분류 기준값</td>
-<td>낮추면 재현율이 오르고 특이도가 내려간다. 높이면 반대다</td>
-</tr>
-<tr class="odd">
-<td>ROC 곡선과 AUC</td>
-<td>가로축 1 - 특이도, 세로축 민감도. 왼쪽 위에 가까울수록 좋다. AUC는 1에 가까울수록 좋고 0.5는 무작위다</td>
-</tr>
-<tr class="even">
-<td>이익 도표</td>
-<td>확률이 높은 순서로 등급을 나눈다. 향상도 = 등급의 반응률 ÷ 전체의 양성 비율</td>
+<td>ROC, AUC, 이익 도표</td>
+<td>가로축 1 - 특이도, 세로축 민감도. AUC 0.5는 무작위. 향상도 = 등급의 반응률 ÷ 전체 양성 비율</td>
 </tr>
 <tr class="odd">
 <td>R의 <code>table()</code></td>
-<td>첫째 인수가 행, 둘째 인수가 열이다. 방향과 양성 범주의 자리를 먼저 읽는다</td>
-</tr>
-<tr class="even">
-<td>기준선</td>
-<td>많은 쪽 범주로 모두 예측할 때의 정분류율. 이 자료에서 0.669. 모형의 정분류율은 기준선과 견준다</td>
-</tr>
-<tr class="odd">
-<td>오분류 비용</td>
-<td>비용의 합 = a × FN + b × FP. 합이 가장 작은 기준값을 고른다. a가 클수록 기준값을 낮춘다</td>
-</tr>
-<tr class="even">
-<td>변수 중요도의 한계</td>
-<td>훈련용 자료로 계산하고, 값이 많은 변수를 부풀린다. 순열 중요도가 대안이다</td>
+<td>첫째 인수가 행, 둘째 인수가 열이다</td>
 </tr>
 </tbody>
 </table>
@@ -2137,32 +1809,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>군집 분석</td>
-<td>비지도 학습. 종속 변수 없이 비슷한 개체를 묶는다. 분류 분석은 정답이 있는 지도 학습이다</td>
-</tr>
-<tr class="even">
 <td>거리 측도</td>
-<td>유클리드(제곱합의 제곱근), 맨해튼(절댓값의 합), 민코프스키(m이 1이면 맨해튼, 2이면 유클리드), 체비셰프(최댓값), 캔버라, 표준화 거리와 마할라노비스(흩어진 정도를 고려. 마할라노비스는 상관도 고려)</td>
-</tr>
-<tr class="odd">
-<td>범주형 자료의 측도</td>
-<td>자카드 유사도(교집합 ÷ 합집합), 코사인 유사도(방향)</td>
+<td>유클리드, 맨해튼, 민코프스키(m이 1이면 맨해튼, 2이면 유클리드), 체비셰프(최댓값), 캔버라. 표준화 거리와 마할라노비스(상관도 고려)는 흩어진 정도를 고려한다. 범주형은 자카드, 코사인</td>
 </tr>
 <tr class="even">
-<td>표준화</td>
-<td>단위가 큰 변수가 거리를 정하지 않도록, 군집 분석 전에 평균을 빼고 표준편차로 나눈다</td>
-</tr>
-<tr class="odd">
-<td>계층적 군집</td>
-<td>병합적 방법과 분할적 방법. 군집 수를 미리 정하지 않는다. 한번 묶인 개체는 갈라지지 않는다</td>
-</tr>
-<tr class="even">
-<td>연결법</td>
-<td>최단(최솟값, 사슬 모양), 최장(최댓값), 평균, 중심, 와드(오차 제곱합의 증가량)</td>
+<td>계층적 군집과 연결법</td>
+<td>군집 수를 미리 정하지 않고, 한번 묶인 개체는 갈라지지 않는다. 최단(사슬 모양), 최장, 평균, 중심, 와드(오차 제곱합의 증가량)</td>
 </tr>
 <tr class="odd">
 <td>덴드로그램</td>
-<td>세로축은 병합 높이. 가로선을 그어 만나는 세로선의 수가 군집 수다. 군집 수 = 개체 수 - 자르는 높이보다 낮은 병합의 수</td>
+<td>가로선과 만나는 세로선의 수가 군집 수이다. 군집 수 = 개체 수 - 자르는 높이보다 낮은 병합의 수</td>
 </tr>
 <tr class="even">
 <td>k-평균 군집</td>
@@ -2170,35 +1826,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>군집 수의 결정</td>
-<td>집단 내 제곱합이 줄어드는 폭이 작아지는 곳(팔꿈치). 실루엣 계수는 1에 가까울수록 좋다</td>
+<td>팔꿈치, 실루엣 계수(1에 가까울수록 좋다), 병합 높이를 함께 본다</td>
 </tr>
 <tr class="even">
-<td>혼합 분포 군집</td>
-<td>확률 분포의 혼합으로 본다. EM 알고리즘의 E 단계는 속할 확률을 계산하고, M 단계는 모수를 다시 추정한다</td>
+<td>혼합 분포 군집과 SOM</td>
+<td>EM 알고리즘(E: 속할 확률, M: 모수 재추정). SOM은 입력층과 경쟁층, 승자와 이웃의 연결 강도를 고치며 역전파를 쓰지 않는다</td>
 </tr>
 <tr class="odd">
-<td>자기조직화 지도</td>
-<td>입력층과 경쟁층. 가장 가까운 마디가 승자다. 승자와 이웃의 연결 강도를 고친다. 역전파를 쓰지 않는다</td>
+<td>연관 규칙</td>
+<td>지지도, 신뢰도(조건부 확률), 향상도(1보다 크면 양의 연관, 1이면 독립)</td>
 </tr>
 <tr class="even">
-<td>연관 규칙의 측도</td>
-<td>지지도 = 함께 든 거래 ÷ 전체, 신뢰도 = 함께 든 거래 ÷ X가 든 거래, 향상도 = 신뢰도 ÷ Y의 비율</td>
+<td>Apriori와 순차 패턴</td>
+<td>빈발하지 않은 집합을 포함하는 집합은 세지 않는다. 순차 패턴 분석은 고객 식별 정보와 구매 시점이 필요하다</td>
 </tr>
 <tr class="odd">
-<td>향상도의 해석</td>
-<td>1보다 크면 양의 연관, 1이면 독립, 1보다 작으면 음의 연관</td>
-</tr>
-<tr class="even">
-<td>Apriori 알고리즘</td>
-<td>최소 지지도 이상인 빈발 항목 집합만 남긴다. 빈발하지 않은 집합을 포함하는 집합은 세지 않는다. 규칙은 그 뒤에 최소 신뢰도로 거른다</td>
-</tr>
-<tr class="odd">
-<td>순차 패턴 분석</td>
-<td>구매의 순서를 본다. 고객을 구별하는 정보와 구매 시점이 필요하다</td>
-</tr>
-<tr class="even">
 <td>R 출력</td>
-<td><code>hclust()</code>의 요약에는 군집 수가 없다. <code>cutree()</code>의 번호는 이름표다. <code>kmeans()</code>의 <code>between_SS / total_SS</code>가 클수록 잘 나뉘었다. <code>inspect()</code>의 <code>coverage</code>는 조건의 지지도다</td>
+<td><code>hclust()</code>의 요약에는 군집 수가 없다. <code>kmeans()</code>의 <code>between_SS / total_SS</code>가 클수록 잘 나뉘었다. <code>inspect()</code>의 <code>coverage</code>는 조건의 지지도이다</td>
 </tr>
 </tbody>
 </table>
@@ -2218,16 +1862,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>R의 인덱스</td>
-<td>1부터 센다. <code>x[-1]</code>은 첫째를 뺀 나머지. <code>2:4</code>는 끝을 포함한다. 범위를 넘으면 <code>NA</code></td>
-</tr>
-<tr class="even">
-<td>자료형</td>
-<td>벡터(한 자료형), 팩터(범주. 수준의 번호를 저장), 행렬, 리스트, 데이터 프레임. <code>$</code>로 이름을 고른다</td>
-</tr>
-<tr class="odd">
-<td>결측값</td>
-<td><code>NA</code>. <code>is.na()</code>로 찾고 <code>na.rm = TRUE</code>로 빼고 계산한다. 주지 않으면 <code>mean()</code>이 <code>NA</code>다</td>
+<td>R의 읽기</td>
+<td>인덱스는 1부터 세고 <code>x[-1]</code>은 첫째를 뺀 나머지다. 팩터는 수준의 번호를 저장한다. 결측값 <code>NA</code>가 있으면 <code>na.rm = TRUE</code>를 주어야 계산된다</td>
 </tr>
 <tr class="even">
 <td>데이터 마트 패키지</td>
@@ -2242,48 +1878,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>평균 제곱 = 제곱합 ÷ 자유도, F = 평균 제곱 ÷ 잔차의 평균 제곱. <code>aov()</code>의 첫 줄 자유도는 집단의 수 - 1</td>
 </tr>
 <tr class="odd">
-<td><code>summary()</code></td>
-<td>수치 열은 여섯 값, 팩터 열은 개수. IQR = <code>3rd Qu.</code> - <code>1st Qu.</code></td>
+<td><code>summary()</code>와 상자그림</td>
+<td>IQR = <code>3rd Qu.</code> - <code>1st Qu.</code>. 굵은 선은 중앙값, 수염 밖의 점은 이상값</td>
 </tr>
 <tr class="even">
-<td>상자그림</td>
-<td>굵은 선은 중앙값, 상자는 사분위수, 수염 밖의 점은 이상값</td>
+<td><code>t.test()</code></td>
+<td><code>p-value</code>로 판정한다. 신뢰 구간이 0을 포함하면 기각하지 못한다. 대응 표본의 자유도는 쌍의 수 - 1</td>
 </tr>
 <tr class="odd">
-<td><code>t.test()</code></td>
-<td>첫 줄에서 종류, <code>p-value</code>로 판정. 신뢰 구간이 0을 포함하면 기각하지 못한다. 대응 표본의 자유도는 쌍의 수 - 1</td>
-</tr>
-<tr class="even">
 <td><code>summary(prcomp())</code></td>
 <td>표준편차, 기여율, 누적 기여율의 세 줄. 주성분의 수는 누적 기여율과 스크리 그림으로 정한다</td>
 </tr>
-<tr class="odd">
-<td><code>summary(glm())</code></td>
-<td>계수는 로그 오즈의 변화. 지수를 취하면 오즈비</td>
-</tr>
 <tr class="even">
-<td><code>table()</code> 오분류표</td>
-<td>행과 열의 방향부터 확인한다</td>
-</tr>
-<tr class="odd">
-<td>덴드로그램</td>
-<td>높이는 합쳐질 때의 거리. 가로선과 만나는 세로선의 수가 군집의 수</td>
-</tr>
-<tr class="even">
-<td><code>arima()</code>, <code>rpart()</code>, <code>inspect()</code></td>
-<td><code>order = c(p, d, q)</code>, 줄 끝의 <code>*</code>는 끝마디, <code>coverage</code>는 조건의 지지도</td>
+<td>분류와 군집</td>
+<td><code>glm()</code>의 계수는 로그 오즈의 변화이고 지수를 취하면 오즈비다. 오분류표는 방향부터 본다. 덴드로그램은 가로선과 만나는 세로선의 수가 군집의 수다</td>
 </tr>
 <tr class="odd">
 <td>출력을 읽는 공통 순서</td>
-<td>함수 → 변수와 관측값의 수 → 판정의 줄(모형, 항목) → 크기와 방향 → 문항의 낱말을 출력의 낱말로</td>
-</tr>
-<tr class="even">
-<td>잘린 출력</td>
-<td>열이 많으면 아래 블록에 이어진다. 누적 기여율의 마지막 값 1로 끝을 확인한다</td>
-</tr>
-<tr class="odd">
-<td>기말시험</td>
-<td>전 범위, 50문항 90분, 과목별 10·10·30. 총점 60점 이상, 과목별 40% 이상</td>
+<td>함수 → 변수와 관측값의 수 → 판정의 줄 → 크기와 방향 → 문항의 낱말을 출력의 낱말로</td>
 </tr>
 </tbody>
 </table>
