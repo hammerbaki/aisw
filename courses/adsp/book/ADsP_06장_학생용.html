@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-e5128435ffcf42630fd9bfc4806fab7a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-60ab257bf7f0877d799f3d93a9b3e36a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -928,7 +928,29 @@ Name: count, dtype: int64
 </section>
 <section id="따라-하기-1" class="level3">
 <h3 class="anchored" data-anchor-id="따라-하기-1">따라 하기</h3>
-<p>노트북의 「따라 하기 2. 확률 분포」를 실행한다(2.1과 2.4는 [선택]). <code>scipy.stats</code>의 분포에서 <code>pmf</code>는 이산 분포의 한 값의 확률, <code>cdf</code>는 누적 확률, <code>ppf</code>는 누적 확률이 그 값이 되는 자리(<code>cdf</code>의 반대)를 낸다.</p>
+<p>노트북의 「따라 하기 2. 확률 분포」를 실행한다(2.1과 2.4는 [선택]). <code>scipy.stats</code>의 분포에는 다음 함수가 있다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>함수</th>
+<th>내는 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>pmf</code></td>
+<td>이산 분포에서 한 값의 확률</td>
+</tr>
+<tr class="even">
+<td><code>cdf</code></td>
+<td>그 값 이하일 확률(누적 확률)</td>
+</tr>
+<tr class="odd">
+<td><code>ppf</code></td>
+<td>누적 확률이 그 값이 되는 자리. <code>cdf</code>의 반대다</td>
+</tr>
+</tbody>
+</table>
 <p><strong>예상.</strong> (1) 동전을 10번 던져 앞면이 정확히 5번 나올 확률은 0.5보다 클까. (2) 자유도 5인 t 분포에서 가운데 95%를 남기는 값은 1.96보다 클까.</p>
 <p>이산 분포의 셀들은 B(10, 0.5)에서 성공이 3번일 확률, 평균 2인 포아송 분포에서 0이 나올 확률, B(10, 0.5)의 확률 11개, 평균과 분산을 낸다. 다음 셀은 정규 분포와 t 분포의 값을 구한다.</p>
 <pre class="text"><code>0.1172
@@ -1256,7 +1278,33 @@ Name: count, dtype: int64
 </section>
 <section id="양측-검정과-단측-검정" class="level3">
 <h3 class="anchored" data-anchor-id="양측-검정과-단측-검정">4.4 양측 검정과 단측 검정</h3>
-<p>대립 가설이 “모수가 어떤 값과 같지 않다”이면 양측 검정(기각역은 양쪽 꼬리), “크다”나 “작다”이면 단측 검정(한쪽 꼬리)이다. 검정 통계량이 대립 가설의 방향으로 나오면 단측 검정의 유의 확률은 양측 검정의 절반이므로, 어느 검정을 쓸지는 자료를 보기 전에 정한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>검정</th>
+<th>대립 가설</th>
+<th>기각역</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>양측 검정</td>
+<td>모수가 어떤 값과 같지 않다</td>
+<td>양쪽 꼬리</td>
+</tr>
+<tr class="even">
+<td>단측 검정</td>
+<td>모수가 어떤 값보다 크다(또는 작다)</td>
+<td>대립 가설 쪽의 한쪽 꼬리</td>
+</tr>
+</tbody>
+</table>
+<p>검정 통계량이 대립 가설의 방향으로 나오면 단측 검정의 유의 확률은 양측 검정의 절반이므로, 어느 검정을 쓸지는 자료를 보기 전에 정한다.</p>
 </section>
 <section id="t-검정" class="level3">
 <h3 class="anchored" data-anchor-id="t-검정">4.5 t-검정</h3>
@@ -2141,7 +2189,48 @@ mean in group 0 mean in group 1
 data:  mpg by am
 t = -4.1061, df = 30, p-value = 0.000285
 ...</code></pre>
-<p>첫 줄에 <code>Welch</code>가 없고 자유도가 정수 30(19 + 13 - 2)이다. 등분산 검정 <code>var.test()</code>는 <code>F = 0.38656, num df = 18, denom df = 12, p-value = 0.06691</code>로, “두 모분산은 같다”를 기각하지 못한다.</p>
+<pre class="text"><code>    F test to compare two variances
+
+data:  mpg by am
+F = 0.38656, num df = 18, denom df = 12, p-value = 0.06691
+...</code></pre>
+<p>두 출력에서 다음을 읽는다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>묻는 것</th>
+<th>읽는 자리</th>
+<th>이 출력의 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>어떤 검정인가</td>
+<td>첫 줄. <code>Welch</code>가 없다</td>
+<td>등분산을 가정한 독립 표본 t-검정</td>
+</tr>
+<tr class="even">
+<td>자유도</td>
+<td><code>df</code>. 두 표본 크기의 합 - 2</td>
+<td>30(19 + 13 - 2)</td>
+</tr>
+<tr class="odd">
+<td>등분산 검정의 통계량과 자유도</td>
+<td><code>var.test()</code>의 <code>F</code>, <code>num df</code>, <code>denom df</code></td>
+<td>0.38656, 18과 12</td>
+</tr>
+<tr class="even">
+<td>등분산 검정의 판정</td>
+<td><code>var.test()</code>의 <code>p-value</code></td>
+<td>0.06691 &gt; 0.05, “두 모분산은 같다”를 기각하지 못한다</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="출력의-해석-3-일표본-t-검정과-대응-표본-t-검정" class="level3">
 <h3 class="anchored" data-anchor-id="출력의-해석-3-일표본-t-검정과-대응-표본-t-검정">6.5 출력의 해석 (3): 일표본 t-검정과 대응 표본 t-검정</h3>

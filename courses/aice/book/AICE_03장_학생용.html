@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-e5128435ffcf42630fd9bfc4806fab7a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-60ab257bf7f0877d799f3d93a9b3e36a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -1245,7 +1245,43 @@ B 4.8 28.8 2989 16.7</code></pre>
 <ul>
 <li><span class="check-badge">확인 8</span> 두 줄이 <code>A 4.4 29.2 2994 16.7</code>과 <code>B 4.8 28.8 2989 16.7</code>이다(경계, 남은 행, 대체값).</li>
 </ul>
-<p>순서 A는 결측 61개를 뺀 2,969개의 값으로, 순서 B는 채운 61개를 포함한 3,030개의 값으로 사분위수를 계산한다. 채운 값 16.7은 모두 분포의 가운데에 있으므로, 이 값들이 더해지면 가운데가 두터워져 Q1은 13.7에서 13.8로 올라가고 Q3은 19.9에서 19.8로 내려간다. 상자가 좁아지므로 경계도 안쪽으로 들어오고, 순서 A에서는 남았던 5개 행이 순서 B에서는 이상치로 제거된다. 대체값은 이 자료에서 우연히 16.7로 같았으나, 평균으로 채우는 경우에는 순서 B의 대체값이 300분 이상의 값에 끌려 18.558이 된다(2.5절).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>비교</th>
+<th>순서 A (제거 → 대체)</th>
+<th>순서 B (대체 → 제거)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>사분위수를 계산한 값의 수</td>
+<td>2969(결측 61개 제외)</td>
+<td>3030(채운 61개 포함)</td>
+</tr>
+<tr class="even">
+<td>경계</td>
+<td>4.4 ~ 29.2</td>
+<td>4.8 ~ 28.8</td>
+</tr>
+<tr class="odd">
+<td>남은 행</td>
+<td>2994</td>
+<td>2989</td>
+</tr>
+<tr class="even">
+<td>대체값</td>
+<td>16.7</td>
+<td>16.7</td>
+</tr>
+</tbody>
+</table>
+<p>채운 값 16.7은 모두 분포의 가운데에 있으므로, 이 값들이 더해지면 가운데가 두터워져 Q1은 13.7에서 13.8로 올라가고 Q3은 19.9에서 19.8로 내려간다. 상자가 좁아지므로 경계도 안쪽으로 들어오고, 순서 A에서는 남았던 5개 행이 순서 B에서는 이상치로 제거된다. 대체값은 이 자료에서 우연히 16.7로 같았으나, 평균으로 채우는 경우에는 순서 B의 대체값이 300분 이상의 값에 끌려 18.558이 된다(2.5절).</p>
 <blockquote class="blockquote">
 <p><strong>[그림 자리: 정제 단계의 처리 순서 흐름 도식]</strong> 왼쪽에서 오른쪽으로 상자 일곱 개를 화살표로 잇는 도식. read_csv (3030 rows) → drop_duplicates (3000) → drop customer_id (16 cols) → dropna annual_spend (2988) → range filter age, annual_spend (2973) → IQR filter avg_session_min (2940) → fillna median/mode, reset_index (2940, 0 NaN). IQR 상자와 fillna 상자 사이에 “compute Q1, Q3 here”, “compute median here”라는 짧은 영문 주석을 단다. 그림 안의 글자는 영문으로 쓴다. 만들 곳: 도식 작성 도구.</p>
 </blockquote>

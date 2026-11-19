@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-e5128435ffcf42630fd9bfc4806fab7a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-60ab257bf7f0877d799f3d93a9b3e36a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -599,7 +599,49 @@ type
 No     355
 Yes    177
 Name: count, dtype: int64</code></pre>
-<p>열은 차례로 임신 횟수, 혈당, 이완기 혈압, 피부 두께, 체질량 지수, 가족력 지수, 나이, 당뇨 여부(맞히려는 값)이다. 관심의 대상이 되는 범주를 양성(positive), 나머지를 음성(negative)이라 하며, 이 장은 당뇨인 <code>Yes</code>를 양성으로 둔다. 넷째 셀은 교재 10과 같은 방법(<code>test_size=0.3</code>, <code>random_state=42</code>, <code>stratify=y</code>)으로 자료를 나누고, 다음 셀은 검증용 자료의 모든 사람을 많은 쪽 범주인 <code>No</code>로 예측할 때의 정분류율을 구한다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>열</th>
+<th>뜻</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>npreg</code></td>
+<td>임신 횟수</td>
+</tr>
+<tr class="even">
+<td><code>glu</code></td>
+<td>혈당</td>
+</tr>
+<tr class="odd">
+<td><code>bp</code></td>
+<td>이완기 혈압</td>
+</tr>
+<tr class="even">
+<td><code>skin</code></td>
+<td>피부 두께</td>
+</tr>
+<tr class="odd">
+<td><code>bmi</code></td>
+<td>체질량 지수</td>
+</tr>
+<tr class="even">
+<td><code>ped</code></td>
+<td>가족력 지수</td>
+</tr>
+<tr class="odd">
+<td><code>age</code></td>
+<td>나이</td>
+</tr>
+<tr class="even">
+<td><code>type</code></td>
+<td>당뇨 여부. 맞히려는 값이다</td>
+</tr>
+</tbody>
+</table>
+<p>관심의 대상이 되는 범주를 양성(positive), 나머지를 음성(negative)이라 하며, 이 장은 당뇨인 <code>Yes</code>를 양성으로 둔다. 넷째 셀은 교재 10과 같은 방법(<code>test_size=0.3</code>, <code>random_state=42</code>, <code>stratify=y</code>)으로 자료를 나누고, 다음 셀은 검증용 자료의 모든 사람을 많은 쪽 범주인 <code>No</code>로 예측할 때의 정분류율을 구한다.</p>
 <pre class="text"><code>(372, 7) (160, 7)
 type
 No     107
@@ -1619,7 +1661,41 @@ recall (No)     0.916</code></pre>
 </tr>
 </tbody>
 </table>
-<p>패키지를 설치해야 쓰는 함수(이 교재에서는 실행하지 않음, 이름은 CRAN 설명서로 확인)는 평가 지표의 <code>caret::confusionMatrix()</code>, ROC 곡선과 AUC의 <code>pROC::roc()</code>·<code>auc()</code>와 <code>ROCR::prediction()</code>·<code>performance()</code>, 랜덤 포레스트의 <code>randomForest::randomForest()</code>, 배깅과 부스팅의 <code>adabag::bagging()</code>·<code>boosting()</code>, 인공신경망의 <code>nnet::nnet()</code>과 <code>neuralnet::neuralnet()</code>이다.</p>
+<p>다음은 패키지를 설치해야 쓰는 함수다. 이 교재에서는 실행하지 않았고, 이름은 CRAN 설명서로 확인하였다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>하는 일</th>
+<th>R의 패키지와 함수</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>평가 지표</td>
+<td><code>caret::confusionMatrix()</code></td>
+</tr>
+<tr class="even">
+<td>ROC 곡선과 AUC</td>
+<td><code>pROC::roc()</code>·<code>auc()</code>, <code>ROCR::prediction()</code>·<code>performance()</code></td>
+</tr>
+<tr class="odd">
+<td>랜덤 포레스트</td>
+<td><code>randomForest::randomForest()</code></td>
+</tr>
+<tr class="even">
+<td>배깅과 부스팅</td>
+<td><code>adabag::bagging()</code>·<code>boosting()</code></td>
+</tr>
+<tr class="odd">
+<td>인공신경망</td>
+<td><code>nnet::nnet()</code>, <code>neuralnet::neuralnet()</code></td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="같은-일을-하는-r-코드" class="level3">
 <h3 class="anchored" data-anchor-id="같은-일을-하는-r-코드">6.2 같은 일을 하는 R 코드</h3>
@@ -1812,7 +1888,42 @@ predicted No Yes
 <figcaption>R로 그린 ROC 곡선. 가로축은 1 - 특이도, 세로축은 민감도다</figcaption>
 </figure>
 </div>
-<p>가로축 <code>1 - Specificity</code>는 거짓 양성률, 세로축 <code>Sensitivity</code>는 민감도이다. 곡선은 점선(무작위 분류의 대각선)보다 위에 있고, 곡선 아래의 넓이(AUC)는 0.857이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>묻는 것</th>
+<th>읽는 자리</th>
+<th>이 그림의 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>가로축</td>
+<td><code>1 - Specificity</code>. 거짓 양성률이다</td>
+<td>0에서 1</td>
+</tr>
+<tr class="even">
+<td>세로축</td>
+<td><code>Sensitivity</code>. 민감도다</td>
+<td>0에서 1</td>
+</tr>
+<tr class="odd">
+<td>무작위 분류의 선</td>
+<td>점선으로 그린 대각선</td>
+<td>곡선이 대각선보다 위에 있다</td>
+</tr>
+<tr class="even">
+<td>AUC</td>
+<td>곡선 아래의 넓이</td>
+<td>0.857</td>
+</tr>
+</tbody>
+</table>
 <hr>
 </section>
 </section>

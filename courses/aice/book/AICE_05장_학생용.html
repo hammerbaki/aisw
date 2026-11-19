@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-e5128435ffcf42630fd9bfc4806fab7a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-60ab257bf7f0877d799f3d93a9b3e36a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -594,7 +594,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>X_train, X_valid, y_train, y_valid <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_train.shape, X_valid.shape, y_train.shape, y_valid.shape)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>(2352, 24) (588, 24) (2352,) (588,)</code></pre>
-<p>검증용 데이터의 비율이 20%이므로 2940행 가운데 588행이 검증용, 2352행이 훈련용이 되었다. 입력과 목표는 같은 행끼리 짝을 지어 나뉜다. <code>X_train</code>과 <code>y_train</code>의 인덱스는 같은 순서(<code>456, 462, 2174, …</code>)이며, 행이 섞였으므로 0, 1, 2의 순서가 아니다. 원래의 행 번호는 그대로 유지되므로 인덱스를 다시 매기지 않아도 입력과 목표의 짝은 맞는다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>묻는 것</th>
+<th>읽는 자리</th>
+<th>이 출력의 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>훈련용의 행 수</td>
+<td>첫째 괄호의 첫 값</td>
+<td>2352</td>
+</tr>
+<tr class="even">
+<td>검증용의 행 수</td>
+<td>둘째 괄호의 첫 값</td>
+<td>588(2940의 20%)</td>
+</tr>
+<tr class="odd">
+<td>입력과 목표의 짝</td>
+<td><code>X_train</code>과 <code>y_train</code>의 인덱스</td>
+<td>같은 순서(<code>456, 462, 2174, …</code>). 행이 섞여 0, 1, 2의 순서가 아니다</td>
+</tr>
+</tbody>
+</table>
+<p>원래의 행 번호는 그대로 유지되므로 인덱스를 다시 매기지 않아도 입력과 목표의 짝은 맞는다.</p>
 <blockquote class="blockquote">
 <p><strong>[그림 자리: 행을 섞어 네 덩어리로 나누는 분할의 도식]</strong> 왼쪽에 2940행의 <code>X</code>(24열)와 <code>y</code>(1열)를 나란히 그리고, 행 번호가 섞인 뒤 위쪽 80%(2352행)가 <code>X_train</code>·<code>y_train</code>, 아래쪽 20%(588행)가 <code>X_valid</code>·<code>y_valid</code>로 나뉘는 모습. 같은 행의 <code>X</code>와 <code>y</code>가 같은 덩어리로 가는 것을 색으로 표시한다. 반환 순서(<code>X_train, X_valid, y_train, y_valid</code>)를 그림 아래에 적는다. 도식 도구로 새로 그린다.</p>
 </blockquote>
@@ -1187,7 +1218,43 @@ IQR                 8 - 4 = 4</code></pre>
 array([[-0.998, -0.926,  0.073, -1.329],
        [-0.323,  1.08 ,  2.169,  0.964],
        [-1.095,  1.08 ,  0.073,  0.935]])</code></pre>
-<p><strong>결과는 넘파이 배열(<code>ndarray</code>)이다.</strong> 데이터프레임이 아니므로 열 이름과 인덱스가 없고, <code>X_train_s["age"]</code>처럼 열 이름으로 고를 수 없다. 배열은 <code>[행, 열]</code>의 위치로 고른다. 위의 <code>X_train_s[:3, :4]</code>는 앞의 3행과 앞의 4열(<code>age</code>, <code>gender</code>, <code>grade</code>, <code>tenure_months</code>)이다. 첫 회원의 <code>age</code> -0.998은 훈련용 회원의 평균 나이보다 표준편차 약 하나만큼 젊다는 뜻이다. 스케일링은 행과 열의 수를 바꾸지 않는다. <code>StandardScaler</code>는 원핫 열과 이진 열을 포함한 모든 열을 표준화하므로, 0과 1이던 <code>gender</code>도 -0.926과 1.08이 되었다. 이진 열은 표준화한 뒤에도 서로 다른 값이 두 개뿐이며 그 간격만 바뀐다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>묻는 것</th>
+<th>읽는 자리</th>
+<th>이 출력의 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>결과의 자료형</td>
+<td>첫 줄의 첫 낱말</td>
+<td><code>ndarray</code>(넘파이 배열)</td>
+</tr>
+<tr class="even">
+<td>훈련용과 검증용의 크기</td>
+<td>첫 줄의 두 괄호</td>
+<td><code>(2352, 24)</code>, <code>(588, 24)</code>. 행과 열의 수는 그대로이다</td>
+</tr>
+<tr class="odd">
+<td>첫 회원의 <code>age</code></td>
+<td>배열의 첫 값</td>
+<td>-0.998. 훈련용 평균보다 표준편차 약 하나만큼 젊다</td>
+</tr>
+<tr class="even">
+<td>이진 열 <code>gender</code></td>
+<td>배열의 둘째 열</td>
+<td>0은 -0.926, 1은 1.08</td>
+</tr>
+</tbody>
+</table>
+<p><strong>결과는 데이터프레임이 아니므로</strong> 열 이름과 인덱스가 없고, <code>X_train_s["age"]</code>처럼 열 이름으로 고를 수 없다. 배열은 <code>[행, 열]</code>의 위치로 고른다. 위의 <code>X_train_s[:3, :4]</code>는 앞의 3행과 앞의 4열(<code>age</code>, <code>gender</code>, <code>grade</code>, <code>tenure_months</code>)이다. <code>StandardScaler</code>는 원핫 열과 이진 열을 포함한 모든 열을 표준화한다. 이진 열은 표준화한 뒤에도 서로 다른 값이 두 개뿐이며 그 간격만 바뀐다.</p>
 <ul>
 <li><span class="check-badge">확인 7</span> 표준화한 결과의 첫 줄이 <code>ndarray (2352, 24) (588, 24)</code>이고, 배열의 첫 값이 <code>-0.998</code>이다.</li>
 </ul>
@@ -1314,7 +1381,38 @@ array([[-0.998, -0.926,  0.073, -1.329],
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_valid_s.std(axis<span class="op">=</span><span class="dv">0</span>)[:<span class="dv">4</span>].<span class="bu">round</span>(<span class="dv">3</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>[ 0.016  0.056 -0.024  0.005]
 [1.042 1.003 0.966 0.984]</code></pre>
-<p>검증용 데이터를 변환한 결과는 평균이 정확히 0이 아니고(0.016, 0.056, …), 표준편차도 정확히 1이 아니다(1.042, 1.003, …). 훈련용 데이터의 평균과 표준편차로 변환하였기 때문이다. <code>age</code>의 평균 0.016은 검증용 평균 나이 38.509에서 훈련용 평균 38.344를 빼고 훈련용 표준편차 10.364로 나눈 값이다. 검증용 회원은 훈련용 회원과 다른 사람들이므로 이것이 정상이다. <strong>검증용 결과의 평균이 정확히 0이면 오히려 잘못을 의심한다.</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>묻는 것</th>
+<th>읽는 자리</th>
+<th>이 출력의 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>열별 평균(앞 4열)</td>
+<td>첫 줄</td>
+<td>0.016, 0.056, -0.024, 0.005. 정확히 0이 아니다</td>
+</tr>
+<tr class="even">
+<td>열별 표준편차(앞 4열)</td>
+<td>둘째 줄</td>
+<td>1.042, 1.003, 0.966, 0.984. 정확히 1이 아니다</td>
+</tr>
+<tr class="odd">
+<td><code>age</code>의 평균 0.016</td>
+<td>첫 줄의 첫 값</td>
+<td>(검증용 평균 나이 38.509 - 훈련용 평균 38.344) / 훈련용 표준편차 10.364</td>
+</tr>
+</tbody>
+</table>
+<p>평균이 0, 표준편차가 1이 아닌 것은 훈련용 데이터의 평균과 표준편차로 변환하였기 때문이다. 검증용 회원은 훈련용 회원과 다른 사람들이므로 이것이 정상이다. <strong>검증용 결과의 평균이 정확히 0이면 오히려 잘못을 의심한다.</strong></p>
 <ul>
 <li><span class="check-badge">확인 9</span> 검증용 변환 결과의 평균 첫 줄이 <code>[ 0.016  0.056 -0.024  0.005]</code>이다.</li>
 </ul>

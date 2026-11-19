@@ -41,7 +41,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-e5128435ffcf42630fd9bfc4806fab7a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-60ab257bf7f0877d799f3d93a9b3e36a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -487,11 +487,69 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="프레젠테이션과-슬라이드" class="level3">
 <h3 class="anchored" data-anchor-id="프레젠테이션과-슬라이드">1-2. 프레젠테이션과 슬라이드</h3>
-<p>파워포인트의 파일을 <strong>프레젠테이션</strong>(<code>.pptx</code>)이라 하며, 프레젠테이션은 여러 장의 <strong>슬라이드</strong>로 구성된다. 엑셀의 통합 문서와 워크시트에 대응하나 슬라이드에는 이름이 없어 제목으로 구별한다. 슬라이드에는 셀과 같은 칸이 없고 도형, 글상자, 표, 차트, 그림이 모두 <strong>개체</strong>로서 임의의 위치에 놓이므로, 위치를 정돈하는 기능(맞춤, 배분)을 따로 사용한다.</p>
+<p>파워포인트의 파일을 <strong>프레젠테이션</strong>이라 하며, 프레젠테이션은 여러 장의 <strong>슬라이드</strong>로 구성된다. 엑셀의 용어와 대응시키면 다음과 같다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>엑셀</th>
+<th>파워포인트</th>
+<th>차이</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>통합 문서(<code>.xlsx</code>)</td>
+<td>프레젠테이션(<code>.pptx</code>)</td>
+<td>파일의 단위이다</td>
+</tr>
+<tr class="even">
+<td>워크시트</td>
+<td>슬라이드</td>
+<td>슬라이드에는 이름이 없어 제목으로 구별한다</td>
+</tr>
+<tr class="odd">
+<td>셀</td>
+<td>대응하는 요소가 없다</td>
+<td>도형, 글상자, 표, 차트, 그림이 모두 <strong>개체</strong>로서 임의의 위치에 놓인다</td>
+</tr>
+</tbody>
+</table>
+<p>슬라이드에는 칸이 없으므로 개체의 위치를 정돈하는 기능(맞춤, 배분)을 따로 사용한다.</p>
 </section>
 <section id="화면의-구성" class="level3">
 <h3 class="anchored" data-anchor-id="화면의-구성">1-3. 화면의 구성</h3>
-<p>화면 왼쪽의 <strong>슬라이드 축소판 창</strong>에는 슬라이드가 번호와 함께 작은 그림으로 나열되며, 슬라이드를 선택, 추가, 삭제, 이동하는 곳으로 엑셀의 시트 탭에 해당한다. 가운데의 <strong>슬라이드 창</strong>에서는 선택한 슬라이드를 편집한다. 아래쪽의 <strong>상태 표시줄</strong>에는 현재 슬라이드의 번호와 전체 슬라이드의 수가 표시된다.</p>
+<p>파워포인트의 화면은 엑셀과 같이 위쪽에 리본 메뉴가 있고, 그 아래의 작업 영역이 다르다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>화면의 요소</th>
+<th>위치와 역할</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>슬라이드 축소판 창</td>
+<td>화면 왼쪽. 슬라이드가 번호와 함께 작은 그림으로 나열된다. 슬라이드를 선택, 추가, 삭제, 이동하는 곳으로 엑셀의 시트 탭에 해당한다</td>
+</tr>
+<tr class="even">
+<td>슬라이드 창</td>
+<td>화면 가운데. 선택한 슬라이드를 편집한다</td>
+</tr>
+<tr class="odd">
+<td>상태 표시줄</td>
+<td>화면 아래쪽. 현재 슬라이드의 번호와 전체 슬라이드의 수가 표시된다</td>
+</tr>
+</tbody>
+</table>
 <blockquote class="blockquote">
 <p><strong>[그림 자리: 파워포인트의 화면 구성]</strong> 슬라이드 축소판 창, 슬라이드 창, 상태 표시줄의 슬라이드 번호 표시(“슬라이드 1/2”의 형태)에 이름을 붙인 화면. 찍을 곳: Microsoft 365 파워포인트, 슬라이드 2매의 프레젠테이션을 연 기본 보기 화면.</p>
 </blockquote>
@@ -670,19 +728,104 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="개체의-선택" class="level3">
 <h3 class="anchored" data-anchor-id="개체의-선택">2-2. 개체의 선택</h3>
-<p>여러 개체는 <code>Shift</code>를 누른 채 차례로 누르거나 빈 곳에서 끌어 둘러싸 선택한다. 끌면 영역에 완전히 들어간 개체만 선택되며 제목 개체 틀이 함께 선택되기 쉬우므로, 선택된 개체를 확인하고 불필요한 것은 <code>Shift</code>를 누른 채 눌러 제외한다. 가려진 개체는 선택 창(3-7)에서 선택한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>선택 대상</th>
+<th>조작</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>여러 개체</td>
+<td><code>Shift</code>를 누른 채 차례로 누른다. 선택된 개체를 <code>Shift</code>를 누른 채 다시 누르면 그 개체만 제외된다</td>
+</tr>
+<tr class="even">
+<td>한 영역의 개체</td>
+<td>빈 곳에서 끌어 둘러싼다. 영역에 완전히 들어간 개체만 선택되며, 제목 개체 틀이 함께 선택되기 쉽다</td>
+</tr>
+<tr class="odd">
+<td>가려진 개체</td>
+<td>선택 창(3-7)에서 이름을 누른다</td>
+</tr>
+</tbody>
+</table>
+<p>끌어서 선택한 뒤에는 선택된 개체가 의도와 같은지 확인한다.</p>
 <p>도형의 안쪽을 누르면 문자를 편집하는 상태(테두리가 점선)가 되어 서식이 선택한 문자에만 적용된다. 도형 전체에 서식을 줄 때에는 <strong>테두리를 눌러</strong> 도형 자체를 선택한다(테두리가 실선).</p>
 </section>
 <section id="도형-서식" class="level3">
 <h3 class="anchored" data-anchor-id="도형-서식">2-3. 도형 서식</h3>
-<p><code>[도형 서식]</code> 탭의 <code>[도형 스타일]</code> 그룹에서 <code>[도형 채우기]</code>(내부의 색)와 <code>[도형 윤곽선]</code>(테두리 선의 색과 두께)을, <code>[홈] 탭 → [글꼴] 그룹</code>에서 문자의 크기와 색을 지정한다. 새 도형은 진한 채우기에 흰 문자가 기본값이므로 채우기를 밝게 하면 글꼴 색도 바꾼다. 같은 서식의 도형은 하나를 완성한 뒤 복제한다.</p>
+<p>도형을 선택하면 리본에 <code>[도형 서식]</code> 탭이 나타난다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>서식</th>
+<th>경로</th>
+<th>지정하는 내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>채우기</td>
+<td><code>[도형 서식] 탭 → [도형 스타일] 그룹 → [도형 채우기]</code></td>
+<td>도형 내부의 색</td>
+</tr>
+<tr class="even">
+<td>윤곽선</td>
+<td><code>[도형 서식] 탭 → [도형 스타일] 그룹 → [도형 윤곽선]</code></td>
+<td>테두리 선의 색과 두께</td>
+</tr>
+<tr class="odd">
+<td>글꼴</td>
+<td><code>[홈] 탭 → [글꼴] 그룹</code></td>
+<td>도형 안 문자의 크기와 색</td>
+</tr>
+</tbody>
+</table>
+<p>새 도형은 진한 채우기에 흰 문자가 기본값이므로 채우기를 밝게 하면 글꼴 색도 바꾼다. 같은 서식의 도형은 하나를 완성한 뒤 복제한다.</p>
 <blockquote class="blockquote">
 <p><strong>버전에 따른 차이</strong>: 이전 버전에서는 <code>[도형 서식]</code> 탭이 <code>[그리기 도구]</code> 아래의 <code>[서식]</code> 탭으로 표시된다.</p>
 </blockquote>
 </section>
 <section id="크기와-위치의-수치-지정" class="level3">
 <h3 class="anchored" data-anchor-id="크기와-위치의-수치-지정">2-4. 크기와 위치의 수치 지정</h3>
-<p>높이와 너비는 <code>[도형 서식] 탭 → [크기] 그룹</code>에 cm로 입력한다(여러 도형을 선택하면 모두에 적용된다). 위치는 <code>[크기]</code> 그룹의 대화 상자 표시 아이콘으로 연 작업 창의 <code>[크기 및 속성] → [위치]</code>에서 읽으며, 맞춤과 배분(3절)의 결과를 확인하는 데 쓴다.</p>
+<p>마우스로 끈 크기는 도형마다 조금씩 다르므로, 크기가 같아야 하는 도형은 수치로 지정한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>지정하는 값</th>
+<th>경로</th>
+<th>비고</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>높이, 너비</td>
+<td><code>[도형 서식] 탭 → [크기] 그룹</code>의 높이 상자와 너비 상자</td>
+<td>단위는 cm이다. 여러 도형을 선택하면 모두에 적용된다</td>
+</tr>
+<tr class="even">
+<td>위치</td>
+<td><code>[크기]</code> 그룹의 대화 상자 표시 아이콘으로 연 작업 창의 <code>[크기 및 속성] → [위치]</code></td>
+<td>맞춤과 배분(3절)의 결과를 확인하는 데 쓴다</td>
+</tr>
+</tbody>
+</table>
+<p>위치 값은 다음의 세 가지를 알고 읽는다.</p>
 <ul>
 <li><strong>슬라이드의 크기.</strong> 새 프레젠테이션의 슬라이드는 33.87cm × 19.05cm(16:9)이다(실습 PC 확인).</li>
 <li><strong>기준점.</strong> 위치 값은 슬라이드의 왼쪽 위 모서리에서 도형의 <strong>왼쪽 위 모서리</strong>까지의 거리이다. 너비 4cm, 가로 위치 2cm인 도형의 오른쪽 변은 6cm에 있다.</li>
@@ -831,11 +974,69 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="그룹" class="level3">
 <h3 class="anchored" data-anchor-id="그룹">3-4. 그룹</h3>
-<p><strong>그룹</strong>은 여러 개체를 하나처럼 다루도록 묶는 기능이다. <code>[도형 서식] 탭 → [정렬] 그룹 → [그룹화] → [그룹]</code> 또는 <code>Ctrl + G</code>로 묶고, <code>Ctrl + Shift + G</code>로 푼다. 한 번 누르면 전체가, 한 번 더 누르면 안의 개체 하나가 선택된다. 개체 틀과 표는 넣을 수 없다. 그룹은 맞춤에서 개체 하나이므로, 흐름도는 먼저 정렬하고 묶은 뒤 슬라이드의 가운데에 맞춘다.</p>
+<p><strong>그룹</strong>은 여러 개체를 하나처럼 다루도록 묶는 기능이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>조작</th>
+<th>방법</th>
+<th>결과</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>그룹</td>
+<td>개체를 2개 이상 선택하고 <code>[도형 서식] 탭 → [정렬] 그룹 → [그룹화] → [그룹]</code> 또는 <code>Ctrl + G</code></td>
+<td>한 번 누르면 전체가 선택된다</td>
+</tr>
+<tr class="even">
+<td>그룹 안의 개체 선택</td>
+<td>그룹을 선택한 뒤 개체를 한 번 더 누른다</td>
+<td>그룹을 풀지 않고 개체 하나가 선택된다</td>
+</tr>
+<tr class="odd">
+<td>그룹 해제</td>
+<td><code>[그룹화] → [그룹 해제]</code> 또는 <code>Ctrl + Shift + G</code></td>
+<td>개체들이 다시 낱개가 된다</td>
+</tr>
+</tbody>
+</table>
+<p>개체 틀과 표는 그룹에 넣을 수 없다. 그룹은 맞춤에서 개체 하나이므로, 흐름도는 먼저 정렬하고 묶은 뒤 슬라이드의 가운데에 맞춘다.</p>
 </section>
 <section id="순서" class="level3">
 <h3 class="anchored" data-anchor-id="순서">3-5. 순서</h3>
-<p>슬라이드의 개체는 작성한 순서대로 쌓여 나중에 작성한 개체가 위에 놓이고 아래의 개체를 가린다. 순서는 <code>[정렬]</code> 그룹의 <code>[앞으로 가져오기]</code>, <code>[맨 앞으로 가져오기]</code>, <code>[뒤로 보내기]</code>, <code>[맨 뒤로 보내기]</code>로 바꾸며, 쌓인 순서는 선택 창(3-7)에서 확인한다.</p>
+<p>슬라이드의 개체는 작성한 순서대로 쌓여 나중에 작성한 개체가 위에 놓이고 아래의 개체를 가린다. 순서는 <code>[정렬]</code> 그룹의 다음 명령으로 바꾸며, 쌓인 순서는 선택 창(3-7)에서 확인한다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>명령</th>
+<th>결과</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>앞으로 가져오기</td>
+<td>한 단계 위로 올린다</td>
+</tr>
+<tr class="even">
+<td>맨 앞으로 가져오기</td>
+<td>모든 개체의 위로 올린다</td>
+</tr>
+<tr class="odd">
+<td>뒤로 보내기</td>
+<td>한 단계 아래로 내린다</td>
+</tr>
+<tr class="even">
+<td>맨 뒤로 보내기</td>
+<td>모든 개체의 아래로 내린다</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="맞춤-결과의-예상과-수치-확인" class="level3">
 <h3 class="anchored" data-anchor-id="맞춤-결과의-예상과-수치-확인">3-6. 맞춤 결과의 예상과 수치 확인</h3>
@@ -860,7 +1061,30 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="선택-창-읽기" class="level3">
 <h3 class="anchored" data-anchor-id="선택-창-읽기">3-7. 선택 창 읽기</h3>
-<p>선택 창(<code>[홈] 탭 → [편집] 그룹 → [선택] → [선택 창]</code>)은 개체를 겹친 순서대로 나열하며, 위의 항목일수록 앞에 놓인다. 항목을 끌면 순서가 바뀌고, 눈 모양 아이콘은 개체를 숨기며(인쇄에서도 빠진다), 이름을 누르면 가려진 개체도 선택된다(지원 문서 「슬라이드에서 개별 개체 선택」). 그룹은 한 항목이며 펼치면 안의 개체가 들여 쓰여 나열된다. 이름은 자동으로 붙으므로 항목의 수와 위아래만 읽는다. 실습 PC에서 그룹 위에 새로 그린 직사각형은 목록의 맨 위에 놓였고, <code>[맨 뒤로 보내기]</code> 뒤에는 맨 아래로 옮겨졌으며 제목과 그룹의 순서는 바뀌지 않았다(2026-11-15 확인).</p>
+<p>선택 창(<code>[홈] 탭 → [편집] 그룹 → [선택] → [선택 창]</code>)은 개체를 겹친 순서대로 나열한다. 항목을 끌면 순서가 바뀌고, 눈 모양 아이콘은 개체를 숨기며(인쇄에서도 빠진다), 이름을 누르면 가려진 개체도 선택된다(지원 문서 「슬라이드에서 개별 개체 선택」). 이름은 자동으로 붙으므로 다음의 세 곳을 읽는다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>읽을 곳</th>
+<th>읽는 법</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>항목의 수</td>
+<td>슬라이드에 놓인 개체의 수이다. 그룹은 한 항목이다</td>
+</tr>
+<tr class="even">
+<td>항목의 위아래</td>
+<td>위의 항목일수록 앞에 놓인 개체이다</td>
+</tr>
+<tr class="odd">
+<td>그룹의 항목</td>
+<td>펼치면 그룹 안의 개체가 들여 쓰여 나열된다</td>
+</tr>
+</tbody>
+</table>
+<p>실습 PC에서 그룹 위에 새로 그린 직사각형은 목록의 맨 위에 놓였고, <code>[맨 뒤로 보내기]</code> 뒤에는 맨 아래로 옮겨졌으며 제목과 그룹의 순서는 바뀌지 않았다(2026-11-15 확인).</p>
 <blockquote class="blockquote">
 <p><strong>[그림 자리: 선택 창의 목록]</strong> 흐름도의 그룹을 펼친 선택 창. 그룹 아래에 직사각형과 화살표가 들여 쓰여 나열되고, 회색 직사각형이 목록의 맨 아래에 있는 모습. 찍을 곳: Microsoft 365 파워포인트, <code>[홈] 탭 → [편집] 그룹 → [선택] → [선택 창]</code>.</p>
 </blockquote>
@@ -1020,7 +1244,38 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="원본과의-관계" class="level3">
 <h3 class="anchored" data-anchor-id="원본과의-관계">4-5. 원본과의 관계</h3>
-<p>슬라이드에 붙인 표와 그림은 복사한 시점의 사본이므로 <strong>엑셀의 값이 바뀌어도 자동으로 변하지 않는다.</strong> 엑셀의 수식은 즉시, 피벗 테이블은 새로 고침을 실행할 때(<code>[자동 새로 고침]</code>이 켜진 버전에서는 곧바로) 반영되나, 슬라이드의 표와 그림, 사람이 입력한 요약 문장은 반영되지 않는다. 엑셀의 값이 바뀌었으면 피벗 테이블을 새로 고친 뒤 표와 그림을 다시 붙이고(머리글과 글꼴도 다시 지정한다) 요약 문장을 고쳐 4-6의 검산을 다시 한다. 그러므로 엑셀의 작업과 검증을 모두 마친 뒤에 붙인다.</p>
+<p>슬라이드에 붙인 표와 그림은 복사한 시점의 사본이므로 <strong>엑셀의 값이 바뀌어도 자동으로 변하지 않는다.</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>대상</th>
+<th>원본의 값을 바꾸었을 때</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>엑셀의 수식(3~4장)</td>
+<td>즉시 다시 계산된다</td>
+</tr>
+<tr class="even">
+<td>엑셀의 피벗 테이블(6장)</td>
+<td>새로 고침을 실행하면 반영된다. <code>[자동 새로 고침]</code>이 켜진 버전에서는 곧바로 반영된다</td>
+</tr>
+<tr class="odd">
+<td>슬라이드에 붙인 표와 그림</td>
+<td>반영되지 않는다</td>
+</tr>
+<tr class="even">
+<td>슬라이드의 요약 문장</td>
+<td>반영되지 않는다. 사람이 입력한 문자이다</td>
+</tr>
+</tbody>
+</table>
+<p>엑셀의 값이 바뀌었으면 피벗 테이블을 새로 고친 뒤 표와 그림을 다시 붙이고(머리글과 글꼴도 다시 지정한다) 요약 문장을 고쳐 4-6의 검산을 다시 한다. 그러므로 엑셀의 작업과 검증을 모두 마친 뒤에 붙인다.</p>
 </section>
 <section id="수치의-검산" class="level3">
 <h3 class="anchored" data-anchor-id="수치의-검산">4-6. 수치의 검산</h3>
@@ -1107,7 +1362,39 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="유인물-인쇄와-pdf-저장">5. 유인물 인쇄와 PDF 저장</h2>
 <section id="인쇄-형태" class="level3">
 <h3 class="anchored" data-anchor-id="인쇄-형태">5-1. 인쇄 형태</h3>
-<p>인쇄 형태는 한 쪽에 슬라이드 하나를 출력하는 <strong>전체 페이지 슬라이드</strong>(기본값)와 여러 슬라이드를 축소하여 출력하는 <strong>유인물</strong>로 나뉜다. <code>[파일] 탭 → [인쇄]</code>의 <code>[설정]</code>에서 <code>[전체 페이지 슬라이드]</code>를 누르고 <code>[유인물]</code>에서 한 쪽의 슬라이드 수를 고른다. 본 장이 쓰는 <strong>2슬라이드</strong>는 세로 방향의 용지에 슬라이드 2매를 위아래로 놓는다. 3슬라이드는 옆에 필기용 줄이 인쇄되고, 4슬라이드 이상은 표의 수치를 읽기 어렵다. 슬라이드가 2매이면 전체 페이지 슬라이드는 2쪽, 2슬라이드 유인물은 1쪽이며, 형태를 바꾸면 미리 보기의 쪽 수가 즉시 달라진다.</p>
+<p>인쇄 형태는 한 쪽에 슬라이드 하나를 출력하는 <strong>전체 페이지 슬라이드</strong>(기본값)와 여러 슬라이드를 축소하여 출력하는 <strong>유인물</strong>로 나뉜다. <code>[파일] 탭 → [인쇄]</code>의 <code>[설정]</code>에서 <code>[전체 페이지 슬라이드]</code>를 누르고 <code>[유인물]</code>에서 한 쪽의 슬라이드 수를 고른다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>유인물의 형태</th>
+<th>한 쪽의 구성</th>
+<th>비고</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2슬라이드</td>
+<td>세로 방향의 용지에 슬라이드 2매가 위아래로 놓인다</td>
+<td>본 장에서 사용한다</td>
+</tr>
+<tr class="even">
+<td>3슬라이드</td>
+<td>슬라이드 3매의 옆에 필기용 줄이 인쇄된다</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>4슬라이드 이상</td>
+<td>슬라이드가 두 줄 이상으로 놓인다</td>
+<td>표의 수치를 읽기 어렵다</td>
+</tr>
+</tbody>
+</table>
+<p>슬라이드가 2매이면 전체 페이지 슬라이드는 2쪽, 2슬라이드 유인물은 1쪽이며, 형태를 바꾸면 미리 보기의 쪽 수가 즉시 달라진다.</p>
 <blockquote class="blockquote">
 <p><strong>[그림 자리: 인쇄 화면의 유인물 목록과 미리 보기]</strong> <code>[설정]</code>에서 <code>[전체 페이지 슬라이드]</code>를 눌러 연 목록의 <code>[유인물]</code> 영역과, <code>[2슬라이드]</code>를 선택하였을 때 세로 방향의 용지에 슬라이드 2매가 위아래로 놓인 미리 보기, 미리 보기 아래의 쪽 표시. 찍을 곳: Microsoft 365 파워포인트, <code>[파일] 탭 → [인쇄]</code>.</p>
 </blockquote>
@@ -1147,7 +1434,38 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="미리-보기와-pdf에서-읽을-것" class="level3">
 <h3 class="anchored" data-anchor-id="미리-보기와-pdf에서-읽을-것">5-3. 미리 보기와 PDF에서 읽을 것</h3>
-<p>미리 보기 아래의 쪽 표시에서 전체 쪽이 1인지(2이면 형태가 <code>[전체 페이지 슬라이드]</code>로 남아 있다), 용지가 세로 방향이고 위에서부터 1매(흐름도), 2매(1월 판매 현황)가 놓였는지, 확대하였을 때 표의 일곱 자리 숫자를 읽을 수 있는지를 본다. 저장한 뒤에는 <code>출력</code> 폴더의 PDF를 열어 쪽 표시가 1 / 1인지 확인한다. 미리 보기는 1쪽인데 PDF가 2쪽이면 내보내기로 저장한 것이다.</p>
+<p>출력하기 전에는 미리 보기에서, 저장한 뒤에는 <code>출력</code> 폴더의 PDF에서 다음을 읽는다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>읽을 곳</th>
+<th>기대하는 상태</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>미리 보기의 쪽 표시</td>
+<td>전체 1쪽이다. 2쪽이면 형태가 <code>[전체 페이지 슬라이드]</code>로 남아 있다</td>
+</tr>
+<tr class="even">
+<td>미리 보기의 용지 방향과 슬라이드의 순서</td>
+<td>세로 방향이고, 위에 1매(흐름도), 아래에 2매(1월 판매 현황)가 놓인다</td>
+</tr>
+<tr class="odd">
+<td>표의 수치</td>
+<td>확대하였을 때 일곱 자리 숫자를 하나하나 읽을 수 있다</td>
+</tr>
+<tr class="even">
+<td>PDF의 쪽 표시</td>
+<td>1 / 1이다</td>
+</tr>
+</tbody>
+</table>
+<p>미리 보기는 1쪽인데 PDF가 2쪽이면 내보내기로 저장한 것이다.</p>
 </section>
 <section id="따라-하기-4" class="level3">
 <h3 class="anchored" data-anchor-id="따라-하기-4">따라 하기</h3>

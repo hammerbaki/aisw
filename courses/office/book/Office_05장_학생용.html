@@ -41,7 +41,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-e5128435ffcf42630fd9bfc4806fab7a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-60ab257bf7f0877d799f3d93a9b3e36a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -1297,7 +1297,30 @@ G27 (최솟값)  104,000   → 원본 대조표에서 판매번호 1033
 </section>
 <section id="원본-범위의-선택" class="level3">
 <h3 class="anchored" data-anchor-id="원본-범위의-선택">3-3. 원본 범위의 선택</h3>
-<p>범위의 첫 열은 가로 축의 항목, 그다음 열은 막대의 높이가 되며, 머리글은 계열의 이름이 되어 범례에 표시된다. “토너” 시트에서는 <code>A2:A4</code>(거래처 3개)가 가로 축의 항목, <code>E1</code>(“금액”)이 계열의 이름, <code>E2:E4</code>가 막대의 높이이다. 거래처 열과 금액 열은 떨어져 있으므로, 첫 범위를 끌어 선택하고 마우스 단추에서 손을 뗀 뒤 <strong><code>Ctrl</code>을 누른 채</strong> 둘째 범위를 끈다. 두 범위의 행은 같아야 한다(<code>A1:A4</code>와 <code>E1:E4</code>).</p>
+<p>범위의 첫 열은 가로 축의 항목, 그다음 열은 막대의 높이가 되며, 머리글은 계열의 이름이 되어 범례에 표시된다. “토너” 시트에서 거래처별 금액의 차트를 작성할 때의 역할은 다음과 같다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>선택한 범위</th>
+<th>차트에서의 역할</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>A2:A4</code>(거래처 3개)</td>
+<td>가로 축의 항목</td>
+</tr>
+<tr class="even">
+<td><code>E1</code>(“금액”)</td>
+<td>계열의 이름(범례와 초기 차트 제목)</td>
+</tr>
+<tr class="odd">
+<td><code>E2:E4</code>(금액 3개)</td>
+<td>막대의 높이</td>
+</tr>
+</tbody>
+</table>
+<p>거래처 열과 금액 열은 떨어져 있으므로, 첫 범위를 끌어 선택하고 마우스 단추에서 손을 뗀 뒤 <strong><code>Ctrl</code>을 누른 채</strong> 둘째 범위를 끈다. 두 범위의 행은 같아야 한다(<code>A1:A4</code>와 <code>E1:E4</code>).</p>
 <p>실습 PC의 엑셀에서 확인한 잘못된 선택의 결과는 다음과 같다.</p>
 <table class="caption-top table">
 <colgroup>
@@ -1787,7 +1810,41 @@ G27 (최솟값)  104,000   → 원본 대조표에서 판매번호 1033
 </tr>
 </tbody>
 </table>
-<p>차트의 막대 높이는 “한빛상사” 시트의 금액(A4 복사용지 720,000, 토너 680,000, 볼펜 120,000, 파일 폴더 108,000, 점착 메모지 128,000, 합계 1,756,000)과 일치하여야 한다.</p>
+<p>차트의 막대 높이는 다음의 값과 일치하여야 한다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>품목</th>
+<th>금액</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A4 복사용지</td>
+<td>720,000</td>
+</tr>
+<tr class="even">
+<td>토너</td>
+<td>680,000</td>
+</tr>
+<tr class="odd">
+<td>볼펜</td>
+<td>120,000</td>
+</tr>
+<tr class="even">
+<td>파일 폴더</td>
+<td>108,000</td>
+</tr>
+<tr class="odd">
+<td>점착 메모지</td>
+<td>128,000</td>
+</tr>
+<tr class="even">
+<td>합계</td>
+<td>1,756,000</td>
+</tr>
+</tbody>
+</table>
 <ul>
 <li><span class="check-badge">확인 12</span> 완료 기준 표의 열 개 항목이 모두 기준 값과 일치하였다.</li>
 </ul>
@@ -1869,7 +1926,39 @@ G27 (최솟값)  104,000   → 원본 대조표에서 판매번호 1033
 <li>“판매내역” 시트에서 필터를 설정하고 품목(<code>D3</code>)을 <code>토너</code>로 선별한다. 표시된 행이 4행(행 번호 6, 8, 14, 21)인지 확인한다.</li>
 <li>시트를 추가하여 이름을 <code>토너</code>로 바꾸고, “판매내역” 시트의 <code>C3:G23</code>을 복사하여 “토너” 시트의 <code>A1</code>에 <code>[값]</code>으로 붙여 넣는다. 결과는 <code>A1:E5</code>이다.</li>
 <li>거래처(<code>A1:A5</code>)와 금액(<code>E1:E5</code>)을 선택하여 묶은 세로 막대형 차트를 삽입하고, 차트 제목 <code>토너 거래처별 판매 금액</code>, 가로 축 제목 <code>거래처</code>, 세로 축 제목 <code>금액(원)</code>, 범례를 지정한다.</li>
-<li>금액이 서울오피스 340,000, 한빛상사 680,000, 대한사무기 510,000, 미래유통 255,000(합계 1,785,000)인지 확인한다.</li>
+<li>금액이 다음의 기준 값과 일치하는지 확인한다.</li>
+</ol>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>거래처</th>
+<th>금액</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>서울오피스</td>
+<td>340,000</td>
+</tr>
+<tr class="even">
+<td>한빛상사</td>
+<td>680,000</td>
+</tr>
+<tr class="odd">
+<td>대한사무기</td>
+<td>510,000</td>
+</tr>
+<tr class="even">
+<td>미래유통</td>
+<td>255,000</td>
+</tr>
+<tr class="odd">
+<td>합계</td>
+<td>1,785,000</td>
+</tr>
+</tbody>
+</table>
+<ol start="5" type="1">
 <li>“판매내역” 시트의 필터를 해제하고 판매번호의 오름차순인지 확인한 뒤 저장한다.</li>
 </ol>
 <p>이 차트가 가능한 것은 토너를 구매한 거래처가 서로 다르기 때문이다. 한 거래처가 두 차례 구매하였다면 같은 거래처의 막대가 두 개 표시되며, 이를 합하려면 집계가 필요하다.</p>

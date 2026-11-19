@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-e5128435ffcf42630fd9bfc4806fab7a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-60ab257bf7f0877d799f3d93a9b3e36a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -1020,7 +1020,38 @@ count</code></pre>
 <h2 class="anchored" data-anchor-id="범주형-변수의-분포">3. 범주형 변수의 분포</h2>
 <section id="빈도-그래프-countplot" class="level3">
 <h3 class="anchored" data-anchor-id="빈도-그래프-countplot">3.1 빈도 그래프: <code>countplot</code></h3>
-<p><code>countplot</code>은 범주형 열의 값마다 행의 수를 세어 막대로 그린다. 1장의 <code>value_counts()</code>를 그래프로 그린 것과 같다. 주요 인자는 <code>data</code>(데이터프레임), <code>x</code>(막대를 늘어놓을 열의 이름, 문자열), <code>order</code>(막대의 순서를 지정하는 리스트, 기본은 자료에 나타난 순서), <code>hue</code>(색으로 나눌 열)이다.</p>
+<p><code>countplot</code>은 범주형 열의 값마다 행의 수를 세어 막대로 그린다. 1장의 <code>value_counts()</code>를 그래프로 그린 것과 같다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>인자</th>
+<th>뜻</th>
+<th>기본값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>data</code></td>
+<td>데이터프레임</td>
+<td>없음</td>
+</tr>
+<tr class="even">
+<td><code>x</code></td>
+<td>막대를 늘어놓을 열의 이름(문자열)</td>
+<td>없음</td>
+</tr>
+<tr class="odd">
+<td><code>order</code></td>
+<td>막대의 순서를 지정하는 리스트</td>
+<td>자료에 나타난 순서</td>
+</tr>
+<tr class="even">
+<td><code>hue</code></td>
+<td>색으로 나눌 열</td>
+<td>없음</td>
+</tr>
+</tbody>
+</table>
 <div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [예제 10]</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>order <span class="op">=</span> [<span class="st">"Bronze"</span>, <span class="st">"Silver"</span>, <span class="st">"Gold"</span>, <span class="st">"VIP"</span>]</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.countplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"grade"</span>, order<span class="op">=</span>order)</span>
@@ -1144,7 +1175,33 @@ Name: churn, dtype: float64</code></pre>
 <h2 class="anchored" data-anchor-id="수치형-변수의-분포">4. 수치형 변수의 분포</h2>
 <section id="히스토그램-histplot" class="level3">
 <h3 class="anchored" data-anchor-id="히스토그램-histplot">4.1 히스토그램: <code>histplot</code></h3>
-<p>히스토그램은 수치형 열의 값을 같은 폭의 구간으로 나누고 구간마다 행의 수를 막대로 그린다. 분포의 모양(치우침, 봉우리의 수)과 범위를 벗어난 값을 확인하는 데 쓴다. 주요 인자는 <code>bins</code>(구간의 수, 기본 <code>"auto"</code>), <code>kde</code>(분포를 매끄러운 곡선으로 함께 그린다, 기본 <code>False</code>), <code>hue</code>(색으로 나눌 열. 범주마다 히스토그램을 겹쳐 그린다)이다.</p>
+<p>히스토그램은 수치형 열의 값을 같은 폭의 구간으로 나누고 구간마다 행의 수를 막대로 그린다. 분포의 모양(치우침, 봉우리의 수)과 범위를 벗어난 값을 확인하는 데 쓴다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>인자</th>
+<th>뜻</th>
+<th>기본값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>bins</code></td>
+<td>구간의 수</td>
+<td><code>"auto"</code></td>
+</tr>
+<tr class="even">
+<td><code>kde</code></td>
+<td>분포를 매끄러운 곡선으로 함께 그린다</td>
+<td><code>False</code></td>
+</tr>
+<tr class="odd">
+<td><code>hue</code></td>
+<td>색으로 나눌 열. 범주마다 히스토그램을 겹쳐 그린다</td>
+<td>없음</td>
+</tr>
+</tbody>
+</table>
 <section id="계산의-원리-값-열-개의-손-계산" class="level4">
 <h4 class="anchored" data-anchor-id="계산의-원리-값-열-개의-손-계산">계산의 원리: 값 열 개의 손 계산</h4>
 <p>자료 1, 2, 2, 3, 3, 3, 4, 4, 5, 9를 구간 4개로 나눈다. 구간의 폭은 (최댓값 - 최솟값) ÷ 구간 수 = (9 - 1) ÷ 4 = 2이고, 구간의 경계는 1, 3, 5, 7, 9이다.</p>
@@ -1439,7 +1496,41 @@ Name: churn, dtype: float64</code></pre>
 <figcaption>결합 그래프</figcaption>
 </figure>
 </div>
-<p>반환값 <code>JointGrid</code>는 세 축을 속성으로 가진다. 가운데 산점도의 축은 <code>ax_joint</code>, 위쪽 분포의 축은 <code>ax_marg_x</code>, 오른쪽 분포의 축은 <code>ax_marg_y</code>이다. 중심 실습의 자가 채점은 <code>g.ax_joint.get_xlabel()</code>처럼 가운데 축의 축 이름을 검사한다. <code>kind</code> 인자는 가운데 그래프의 종류를 정한다. 기본값 <code>"scatter"</code>(산점도) 외에 <code>"hist"</code>(2차원 히스토그램), <code>"hex"</code>(육각형 칸의 2차원 히스토그램. 점이 많아 겹칠 때 밀도를 보기 좋다), <code>"kde"</code>(밀도의 등고선), <code>"reg"</code>(산점도와 회귀선)가 있다.</p>
+<p>반환값 <code>JointGrid</code>는 세 축을 속성으로 가진다. 가운데 산점도의 축은 <code>ax_joint</code>, 위쪽 분포의 축은 <code>ax_marg_x</code>, 오른쪽 분포의 축은 <code>ax_marg_y</code>이다. 중심 실습의 자가 채점은 <code>g.ax_joint.get_xlabel()</code>처럼 가운데 축의 축 이름을 검사한다. <code>kind</code> 인자는 가운데 그래프의 종류를 정한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><code>kind</code></th>
+<th>가운데 그래프</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>"scatter"</code>(기본값)</td>
+<td>산점도</td>
+</tr>
+<tr class="even">
+<td><code>"hist"</code></td>
+<td>2차원 히스토그램</td>
+</tr>
+<tr class="odd">
+<td><code>"hex"</code></td>
+<td>육각형 칸의 2차원 히스토그램. 점이 많아 겹칠 때 밀도를 보기 좋다</td>
+</tr>
+<tr class="even">
+<td><code>"kde"</code></td>
+<td>밀도의 등고선</td>
+</tr>
+<tr class="odd">
+<td><code>"reg"</code></td>
+<td>산점도와 회귀선</td>
+</tr>
+</tbody>
+</table>
 <blockquote class="blockquote">
 <p><strong>[그림 자리: 결합 그래프의 세 축]</strong> <code>jointplot</code> 한 장 위에 세 축의 이름(<code>ax_joint</code>, <code>ax_marg_x</code>, <code>ax_marg_y</code>)과 그림 전체(<code>g.figure</code>)의 테두리를 이름표로 표시한 도식. 5.2절의 결합 그래프 그림을 바탕으로 이름표를 덧붙인다. 찍을 곳: 5.2절의 그림 파일에 도식 도구로 이름표를 더한다.</p>
 </blockquote>

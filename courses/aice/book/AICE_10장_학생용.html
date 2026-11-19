@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-e5128435ffcf42630fd9bfc4806fab7a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-60ab257bf7f0877d799f3d93a9b3e36a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -924,7 +924,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre class="text"><code>History
 ['accuracy', 'loss', 'val_accuracy', 'val_loss']
 {'verbose': 0, 'epochs': 100, 'steps': 74}</code></pre>
-<p><code>fit</code>의 반환값은 <code>History</code> 객체이다. 손실과 지표의 값은 객체 자체가 아니라 그 <code>history</code> 속성(딕셔너리)에 있으므로 <code>hist.history["loss"]</code>처럼 두 번 쓴다. <code>params</code>에는 학습의 설정이 들어 있다. <code>steps</code>의 74는 한 에폭의 단계 수이고, <code>epochs</code>의 100은 지정한 최대 에폭이다. <code>params</code>의 <code>epochs</code>를 실제로 학습한 에폭 수(<code>len(hist.history["loss"])</code>, 14)로 읽는 실수가 많다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>묻는 것</th>
+<th>읽는 자리</th>
+<th>이 출력의 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>반환값의 종류</td>
+<td>첫 줄</td>
+<td><code>History</code></td>
+</tr>
+<tr class="even">
+<td>한 에폭의 단계 수</td>
+<td>셋째 줄(<code>params</code>)의 <code>steps</code></td>
+<td>74</td>
+</tr>
+<tr class="odd">
+<td>지정한 최대 에폭</td>
+<td>셋째 줄(<code>params</code>)의 <code>epochs</code></td>
+<td>100</td>
+</tr>
+<tr class="even">
+<td>실제로 학습한 에폭 수</td>
+<td>이 출력에는 없다</td>
+<td><code>len(hist.history["loss"])</code>로 구한다(14)</td>
+</tr>
+</tbody>
+</table>
+<p>손실과 지표의 값은 객체 자체가 아니라 그 <code>history</code> 속성(딕셔너리)에 있으므로 <code>hist.history["loss"]</code>처럼 두 번 쓴다. <code>params</code>의 <code>epochs</code>를 실제로 학습한 에폭 수로 읽는 실수가 많다.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -988,7 +1024,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 12    0.8584  0.3331        0.8435    0.3659
 13    0.8576  0.3345        0.8554    0.3659
 14    0.8627  0.3367        0.8435    0.3666</code></pre>
-<p>표는 14행이다. 1에폭의 검증 손실 0.4308은 9장의 기준값 0.493보다 이미 작다. 검증 손실은 9번째 에폭에서 0.3614로 가장 작고, 10~14번째 에폭에는 0.3626~0.3666으로 모두 그보다 크다. 같은 구간의 훈련 손실은 0.3466에서 0.3367로 대체로 계속 줄었다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>묻는 것</th>
+<th>읽는 자리</th>
+<th>이 출력의 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>실제로 학습한 에폭 수</td>
+<td>표의 행 수</td>
+<td>14</td>
+</tr>
+<tr class="even">
+<td>1에폭의 검증 손실</td>
+<td>1행의 <code>val_loss</code></td>
+<td>0.4308. 9장의 기준값 0.493보다 이미 작다</td>
+</tr>
+<tr class="odd">
+<td>검증 손실이 가장 작은 에폭</td>
+<td><code>val_loss</code> 열의 최솟값의 행</td>
+<td>9(0.3614)</td>
+</tr>
+<tr class="even">
+<td>그 뒤의 검증 손실</td>
+<td>10~14행의 <code>val_loss</code></td>
+<td>0.3626~0.3666. 모두 0.3614보다 크다</td>
+</tr>
+<tr class="odd">
+<td>같은 구간의 훈련 손실</td>
+<td>10~14행의 <code>loss</code></td>
+<td>0.3466 → 0.3367. 대체로 계속 줄었다</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="검증-손실이-최소인-에폭" class="level3">
 <h3 class="anchored" data-anchor-id="검증-손실이-최소인-에폭">3.3 검증 손실이 최소인 에폭</h3>
@@ -1069,7 +1145,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <p>7~8번째 에폭의 일시적인 증가에서 셈이 2까지 갔다가 9번째 에폭에서 0으로 돌아갔다. <code>patience</code>가 5였기 때문에 이 흔들림에서 멈추지 않았다. <code>patience</code>가 너무 작으면 손실이 잠시 흔들리는 것을 과대적합으로 오해하여 일찍 멈추고(이 기록에 <code>patience=2</code>를 적용하면 8번째 에폭에서 멈춘다), 너무 크면 과대적합한 뒤에도 오래 학습한다. “멈춘 에폭 − 최소 에폭 = <code>patience</code>”는 조기 종료로 멈춘 경우에 언제나 성립하므로 답을 검산하는 데 쓴다. 최대 에폭까지 학습이 끝나 버린 경우에는 성립하지 않는다.</p>
-<p>조기 종료가 멈추는 시점은 <code>patience</code>가 정하고, 멈춘 뒤 어느 가중치를 쓸지는 <code>restore_best_weights</code>가 정한다. 같은 구성과 시드의 모델을 <code>restore_best_weights</code> 없이 학습시키면 학습 기록은 같지만(14에폭에서 멈추고 최소는 9번째 에폭), 모델에는 마지막 14번째 에폭의 가중치가 남아 <code>evaluate</code>가 손실 0.3666, 정확도 0.8435를 낸다. <code>restore_best_weights=True</code>인 <code>model</code>은 9번째 에폭의 값인 0.3614, 0.8486을 낸다.</p>
+<p>조기 종료가 멈추는 시점은 <code>patience</code>가 정하고, 멈춘 뒤 어느 가중치를 쓸지는 <code>restore_best_weights</code>가 정한다. 같은 구성과 시드의 모델을 두 설정으로 학습시키면 학습 기록은 같지만(14에폭에서 멈추고 최소는 9번째 에폭), 남는 가중치가 다르다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><code>restore_best_weights</code></th>
+<th>남는 가중치</th>
+<th><code>evaluate</code>(손실, 정확도)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>True</code>(<code>model</code>)</td>
+<td>9번째 에폭(최소)</td>
+<td>0.3614, 0.8486</td>
+</tr>
+<tr class="even">
+<td>지정하지 않음(기본값 <code>False</code>)</td>
+<td>14번째 에폭(마지막)</td>
+<td>0.3666, 0.8435</td>
+</tr>
+</tbody>
+</table>
+<p>학습 기록에서 꺼내는 값을 정리하면 다음과 같다.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -1461,7 +1559,49 @@ overfit      0.0036         1.0035        0.4035           4      40</code></pre
 <section id="다중-분류-np.argmax" class="level3">
 <h3 class="anchored" data-anchor-id="다중-분류-np.argmax">6.2 다중 분류: np.argmax</h3>
 <p>softmax 출력층은 행마다 범주 수만큼의 확률을 낸다. 범주는 확률이 가장 큰 열의 위치이므로 <code>np.argmax(확률, axis=1)</code>로 구한다. <code>axis=1</code>은 행마다 가장 큰 값의 위치를 찾으라는 뜻이다. <code>axis</code>를 빼면 배열 전체를 한 줄로 펴서 위치 하나만 돌려주므로 반드시 적는다.</p>
-<p>이진 분류의 확률을 두 열(0일 확률, 1일 확률)로 늘어놓고 <code>np.argmax(axis=1)</code>을 적용하면 6.1절과 같은 결과가 된다. 1행은 [0.384, 0.616]에서 둘째 열이 크므로 1, 3행은 [0.949, 0.051]에서 첫째 열이 크므로 0이다. 두 방법이 다를 수 있는 곳은 확률이 정확히 0.5인 행뿐이다. 0.5는 <code>&gt; 0.5</code>로는 0, <code>&gt;= 0.5</code>로는 1이 되고, <code>np.argmax</code>는 같은 값이 둘이면 앞의 위치를 돌려주므로 0이 된다. 가이드가 “0.5 이상”이라고 하면 <code>&gt;=</code>를 쓴다.</p>
+<p>이진 분류의 확률을 두 열(0일 확률, 1일 확률)로 늘어놓고 <code>np.argmax(axis=1)</code>을 적용하면 6.1절과 같은 결과가 된다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>행</th>
+<th>1일 확률</th>
+<th>기준값과 비교</th>
+<th>두 열의 확률 [0일, 1일]</th>
+<th><code>np.argmax(axis=1)</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>0.616</td>
+<td>1</td>
+<td>[0.384, 0.616]</td>
+<td>1(둘째 열이 크다)</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>0.051</td>
+<td>0</td>
+<td>[0.949, 0.051]</td>
+<td>0(첫째 열이 크다)</td>
+</tr>
+<tr class="odd">
+<td>(경계)</td>
+<td>0.5</td>
+<td><code>&gt; 0.5</code>이면 0, <code>&gt;= 0.5</code>이면 1</td>
+<td>[0.5, 0.5]</td>
+<td>0(같은 값이면 앞의 위치)</td>
+</tr>
+</tbody>
+</table>
+<p>두 방법이 다를 수 있는 곳은 확률이 정확히 0.5인 행뿐이다. 가이드가 “0.5 이상”이라고 하면 <code>&gt;=</code>를 쓴다.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -1576,8 +1716,45 @@ overfit      0.0036         1.0035        0.4035           4      40</code></pre
 LogisticRegression    0.8571     0.7013  0.4696  0.5625
 RandomForest          0.8350     0.7143  0.2609  0.3822
 DNN                   0.8486     0.6512  0.4870  0.5572</code></pre>
-<p>이 자료에서는 로지스틱 회귀가 정확도(0.8571)와 F1(0.5625) 모두 가장 높고, 신경망(F1 0.5572)이 그 다음이다. 랜덤 포레스트는 정확도는 0.8350이지만 재현율이 0.2609로 낮아 F1이 가장 낮다. 재현율은 신경망(0.4870), 정밀도는 랜덤 포레스트(0.7143)가 가장 높다. 이탈 비율이 약 20%인 자료이므로 7장에서처럼 정확도만이 아니라 재현율과 F1을 함께 본다. 어느 모델이 가장 좋은지를 답 변수로 물으면 <code>comp["f1"].idxmax()</code>처럼 코드로 비교하여 이름을 저장한다. 로지스틱 회귀가 가장 높은 것은 실습 자료가 입력의 가중합에 가까운 규칙으로 생성되었기 때문이며, 관계가 가중합으로 표현되지 않는 자료에서는 나무 계열 모델이 크게 앞선다(7장 4.2절).</p>
-<p>비교의 결론은 어느 지표로 보느냐에 따라 달라진다. 이탈할 회원을 한 명이라도 더 찾는 것이 목적이면 재현율이 가장 높은 신경망이, 이탈하리라고 예측한 회원에게 비용이 드는 조치를 할 때는 정밀도가 높은 모델이 낫다. 신경망의 재현율은 기준값으로 조정할 수 있으나, 기준값을 바꾸어 비교할 때에는 다른 모델에도 같은 방식을 적용하여야 공정하다. 또 신경망은 조기 종료와 <code>ModelCheckpoint</code>에서 이 검증용 데이터의 손실을 보고 멈출 에폭을 골랐으므로, 신경망의 검증 지표는 새 데이터에서의 성능보다 조금 좋게 나올 수 있다. 엄밀하게 하려면 훈련용 데이터에서 <code>validation_split</code>으로 떼어 낸 데이터로 조기 종료를 하고 검증용 데이터는 마지막 평가에만 쓴다. 시험의 가이드는 대개 <code>validation_data</code>에 검증용 데이터를 지정하므로 본 교재도 그 방식을 따랐다.</p>
+<p>비교의 결론은 어느 지표로 보느냐에 따라 달라진다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>지표</th>
+<th>가장 높은 모델(값)</th>
+<th>읽는 법</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>정확도</td>
+<td>로지스틱 회귀(0.8571)</td>
+<td>이탈 비율이 약 20%인 자료에서는 이것만으로 판단하지 않는다(7장)</td>
+</tr>
+<tr class="even">
+<td>F1</td>
+<td>로지스틱 회귀(0.5625). 다음은 신경망(0.5572)</td>
+<td>재현율과 정밀도를 함께 반영한다</td>
+</tr>
+<tr class="odd">
+<td>재현율</td>
+<td>신경망(0.4870)</td>
+<td>이탈할 회원을 한 명이라도 더 찾는 것이 목적일 때 앞세운다</td>
+</tr>
+<tr class="even">
+<td>정밀도</td>
+<td>랜덤 포레스트(0.7143)</td>
+<td>이탈로 예측한 회원에게 비용이 드는 조치를 할 때 앞세운다</td>
+</tr>
+</tbody>
+</table>
+<p>랜덤 포레스트는 재현율이 0.2609로 낮아 F1이 가장 낮다. 어느 모델이 가장 좋은지를 답 변수로 물으면 <code>comp["f1"].idxmax()</code>처럼 코드로 비교하여 이름을 저장한다. 로지스틱 회귀가 정확도와 F1에서 가장 높은 것은 실습 자료가 입력의 가중합에 가까운 규칙으로 생성되었기 때문이며, 관계가 가중합으로 표현되지 않는 자료에서는 나무 계열 모델이 크게 앞선다(7장 4.2절).</p>
+<p>신경망의 재현율은 기준값으로 조정할 수 있으나, 기준값을 바꾸어 비교할 때에는 다른 모델에도 같은 방식을 적용하여야 공정하다. 또 신경망은 조기 종료와 <code>ModelCheckpoint</code>에서 이 검증용 데이터의 손실을 보고 멈출 에폭을 골랐으므로, 신경망의 검증 지표는 새 데이터에서의 성능보다 조금 좋게 나올 수 있다. 엄밀하게 하려면 훈련용 데이터에서 <code>validation_split</code>으로 떼어 낸 데이터로 조기 종료를 하고 검증용 데이터는 마지막 평가에만 쓴다. 시험의 가이드는 대개 <code>validation_data</code>에 검증용 데이터를 지정하므로 본 교재도 그 방식을 따랐다.</p>
 <hr>
 </section>
 <section id="중심-실습-dropout과-조기-종료-학습-곡선-모델의-저장과-예측" class="level2">

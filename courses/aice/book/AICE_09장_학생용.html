@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-e5128435ffcf42630fd9bfc4806fab7a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-60ab257bf7f0877d799f3d93a9b3e36a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -1164,7 +1164,28 @@ keras 3.15.1</code></pre>
 [[0.439]
  [0.565]
  [0.525]]</code></pre>
-<p>3범주 모델은 행마다 합이 1인 확률 3개를 낸다(<code>(3, 3)</code>). 이진 분류 모델은 행마다 1일 확률 하나를 내며 출력은 <code>(3, 1)</code>의 2차원 배열이고, 0일 확률은 1에서 빼서 구한다. 학습하기 전의 확률은 뜻이 없으므로 모양과 합만 읽는다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>모델</th>
+<th>출력의 모양</th>
+<th>행마다의 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>3범주(<code>model_m</code>)</td>
+<td><code>(3, 3)</code></td>
+<td>범주마다의 확률 3개. 합이 1</td>
+</tr>
+<tr class="even">
+<td>이진 분류(<code>model_b</code>)</td>
+<td><code>(3, 1)</code></td>
+<td>1일 확률 하나. 0일 확률은 1 − p</td>
+</tr>
+</tbody>
+</table>
+<p>학습하기 전의 확률은 뜻이 없으므로 모양과 합만 읽는다.</p>
 <ul>
 <li><span class="check-badge">확인 8</span> 첫 셀의 마지막 줄이 <code>[1. 1. 1.]</code>이고, 둘째 셀의 첫 줄이 <code>(3, 1)</code>이다.</li>
 </ul>
@@ -1387,7 +1408,33 @@ keras 3.15.1</code></pre>
 <li><span class="check-badge">확인 9</span> 둘째 줄과 셋째 줄이 모두 <code>0.3375</code>이다.</li>
 </ul>
 <p>다중 분류에서도 손실은 정답 범주에 준 확률의 −log이다. 두 행의 정답이 0과 2이고 출력이 (0.7, 0.2, 0.1)과 (0.1, 0.3, 0.6)이면 −log(0.7) = 0.357과 −log(0.6) = 0.511의 평균 0.434이다. 정답을 정수로 받는 <code>"sparse_categorical_crossentropy"</code>와 원핫 행렬로 받는 <code>"categorical_crossentropy"</code>는 같은 값을 낸다(6.3절).</p>
-<p>손실의 크기는 아무것도 배우지 않은 모델의 손실과 견주어 읽는다. 이진 분류에서 모든 행에 0.5를 주면 손실은 −log(0.5) = 0.6931이고, 모든 행에 이탈 비율 0.195를 주면 −[0.195 × log(0.195) + 0.805 × log(0.805)] = 0.493이다. 학습 기록의 손실이 0.6931 근처에서 줄지 않으면 학습이 되지 않고 있는 것이고, 검증 손실이 0.493보다 작아야 “비율만 아는 모델”보다 낫다.</p>
+<p>손실의 크기는 아무것도 배우지 않은 모델의 손실과 견주어 읽는다. 이진 분류의 기준값은 다음과 같다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>모든 행에 준 확률</th>
+<th>이진 교차 엔트로피</th>
+<th>읽는 법</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0.5</td>
+<td>−log(0.5) = 0.6931</td>
+<td><code>loss</code>가 이 근처에서 줄지 않으면 학습이 되지 않고 있다</td>
+</tr>
+<tr class="even">
+<td>이탈 비율 0.195</td>
+<td>−[0.195 × log(0.195) + 0.805 × log(0.805)] = 0.493</td>
+<td><code>val_loss</code>가 이보다 작아야 “비율만 아는 모델”보다 낫다</td>
+</tr>
+</tbody>
+</table>
 </section>
 </section>
 <section id="평가-지표" class="level3">
@@ -1501,11 +1548,11 @@ keras 3.15.1</code></pre>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>hist <span class="op">=</span> model.fit(Xr_train_s, yr_train, epochs<span class="op">=</span><span class="dv">10</span>, batch_size<span class="op">=</span><span class="dv">32</span>,</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>                 validation_data<span class="op">=</span>(Xr_valid_s, yr_valid), verbose<span class="op">=</span><span class="dv">2</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>Epoch 1/10
-74/74 - 6s - 79ms/step - loss: 57345.6406 - mae: 224.7541 - val_loss: 52801.1953 - val_mae: 215.9453
+74/74 - 4s - 55ms/step - loss: 57345.6406 - mae: 224.7541 - val_loss: 52801.1953 - val_mae: 215.9453
 Epoch 2/10
-74/74 - 2s - 23ms/step - loss: 49201.5625 - mae: 206.5168 - val_loss: 39170.4375 - val_mae: 183.7744
+74/74 - 0s - 6ms/step - loss: 49201.5625 - mae: 206.5168 - val_loss: 39170.4375 - val_mae: 183.7744
 Epoch 3/10
-74/74 - 1s - 11ms/step - loss: 28975.4082 - mae: 153.6303 - val_loss: 15506.0205 - val_mae: 109.7108
+74/74 - 0s - 5ms/step - loss: 28975.4082 - mae: 153.6303 - val_loss: 15506.0205 - val_mae: 109.7108
 ...</code></pre>
 <p><code>verbose=2</code>로 두면 에폭마다 두 줄이 출력된다. 첫 줄은 지금의 에폭과 전체 에폭이고, 둘째 줄은 단계 수(<code>74/74</code>), 걸린 시간, 그 에폭의 훈련 손실(<code>loss</code>)과 지표(<code>mae</code>), 검증 손실(<code>val_loss</code>)과 검증 지표(<code>val_mae</code>)이다. 검증 데이터의 값에는 <code>val_</code>이 붙는다. 걸린 시간은 PC마다, 실행할 때마다 다르다. 첫 에폭의 MAE 224.7541은 연간 구매액의 평균(227.9)과 거의 같다. 처음의 가중치는 작은 난수이므로 예측값이 0 근처에 있어 평균만큼 틀리기 때문이다.</p>
 <ul>
@@ -1536,7 +1583,39 @@ Epoch 3/10
 8     954.5   24.4     960.3     24.8      5.9
 9     916.1   24.0     935.0     24.4     18.9
 10    889.5   23.7     918.2     24.2     28.7</code></pre>
-<p>키는 <code>compile</code>에서 정한 손실과 지표의 이름이며, 검증 데이터의 값에는 <code>val_</code>이 붙는다. 인덱스에 1을 더하지 않으면 인덱스 0이 1번째 에폭이다. <code>val_loss</code>는 3~5에폭에 가장 빠르게 줄고, 6~10에폭에는 줄어드는 폭이 작아져 수렴해 간다. <code>gap</code>은 7에폭까지 음수이다. 훈련 손실은 에폭 동안의 평균이므로 가중치가 빠르게 좋아지는 초반에는 에폭 끝의 검증 손실보다 크기 때문이다.</p>
+<p>키는 <code>compile</code>에서 정한 손실과 지표의 이름이며, 검증 데이터의 값에는 <code>val_</code>이 붙는다. 인덱스에 1을 더하지 않으면 인덱스 0이 1번째 에폭이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>구간</th>
+<th>움직임</th>
+<th>뜻</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>3~5에폭</td>
+<td><code>val_loss</code>가 가장 빠르게 준다</td>
+<td>예측값이 목표의 크기에 다가간다</td>
+</tr>
+<tr class="even">
+<td>6~10에폭</td>
+<td>줄어드는 폭이 작아진다</td>
+<td>학습이 수렴해 간다</td>
+</tr>
+<tr class="odd">
+<td>1~7에폭의 <code>gap</code></td>
+<td>음수</td>
+<td>훈련 손실은 에폭 동안의 평균이므로 초반에는 에폭 끝의 검증 손실보다 크다</td>
+</tr>
+</tbody>
+</table>
+<p>판단의 기준은 다음과 같다.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
@@ -1607,7 +1686,34 @@ Epoch 3/10
 </section>
 <section id="학습한-뒤의-summary" class="level3">
 <h3 class="anchored" data-anchor-id="학습한-뒤의-summary">5.5 학습한 뒤의 summary</h3>
-<p>학습을 마친 모델의 <code>summary()</code>에는 최적화기 Adam의 보조 값의 수(<code>Optimizer params</code>, 7,428)가 더해져 <code>Total params</code>가 11,141이 된다. 모델의 파라미터 수는 <code>Trainable params</code>(3,713)이므로, 시험에서 물으면 학습하기 전의 <code>summary()</code>나 <code>count_params()</code>로 답한다.</p>
+<p>학습을 마친 모델의 <code>summary()</code>에는 최적화기 Adam의 보조 값의 수가 더해진다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>줄</th>
+<th>학습 전(1.3절)</th>
+<th>학습 후</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Total params</code></td>
+<td>3,713</td>
+<td>11,141</td>
+</tr>
+<tr class="even">
+<td><code>Trainable params</code></td>
+<td>3,713</td>
+<td>3,713</td>
+</tr>
+<tr class="odd">
+<td><code>Optimizer params</code></td>
+<td>(줄 없음)</td>
+<td>7,428</td>
+</tr>
+</tbody>
+</table>
+<p>모델의 파라미터 수는 <code>Trainable params</code>이므로, 시험에서 물으면 학습하기 전의 <code>summary()</code>나 <code>count_params()</code>로 답한다.</p>
 <section id="흔한-오류-1" class="level4">
 <h4 class="anchored" data-anchor-id="흔한-오류-1">흔한 오류</h4>
 <table class="caption-top table">
@@ -1678,7 +1784,33 @@ Epoch 3/10
 [[0. 0. 0. 1.]
  [0. 1. 0. 0.]
  [1. 0. 0. 0.]]</code></pre>
-<p>원핫 행렬의 모양은 (행 수, 범주 수)이고, 첫 행은 3(<code>VIP</code>), 둘째 행은 1(<code>Gold</code>)의 자리가 1이다. 원핫 행렬은 3절의 softmax 출력과 모양이 같으며 “정답 범주의 확률이 1인 확률”로 읽는다. <code>categorical_crossentropy</code>는 이 두 행렬을 비교한다. 원핫 행렬에서 정수 라벨로 되돌리려면 행마다 1이 있는 위치를 <code>np.argmax(…, axis=1)</code>로 찾고, <code>le.inverse_transform</code>으로 원래의 문자열로 되돌린다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>묻는 것</th>
+<th>읽는 자리</th>
+<th>이 출력의 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>원핫 행렬의 모양</td>
+<td>첫 줄</td>
+<td><code>(2940, 4)</code>: 행 수 × 범주 수</td>
+</tr>
+<tr class="even">
+<td>첫 행의 범주</td>
+<td>첫 행에서 1이 있는 위치</td>
+<td>3(<code>VIP</code>)</td>
+</tr>
+<tr class="odd">
+<td>둘째 행의 범주</td>
+<td>둘째 행에서 1이 있는 위치</td>
+<td>1(<code>Gold</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>원핫 행렬은 3절의 softmax 출력과 모양이 같으며 “정답 범주의 확률이 1인 확률”로 읽는다. <code>categorical_crossentropy</code>는 이 두 행렬을 비교한다. 원핫 행렬에서 정수 라벨로 되돌리려면 행마다 1이 있는 위치를 <code>np.argmax(…, axis=1)</code>로 찾고, <code>le.inverse_transform</code>으로 원래의 문자열로 되돌린다.</p>
 <ul>
 <li><span class="check-badge">확인 12</span> 첫 줄이 <code>(2940, 4)</code>이고, 첫 행이 <code>[0. 0. 0. 1.]</code>이다.</li>
 </ul>

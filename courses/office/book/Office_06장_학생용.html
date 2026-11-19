@@ -41,7 +41,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-e5128435ffcf42630fd9bfc4806fab7a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-60ab257bf7f0877d799f3d93a9b3e36a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -637,7 +637,30 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="피벗-테이블의-삽입" class="level3">
 <h3 class="anchored" data-anchor-id="피벗-테이블의-삽입">2-2. 피벗 테이블의 삽입</h3>
-<p>자료 범위 안의 셀 하나를 선택하고 <code>[삽입] 탭 → [표] 그룹 → [피벗 테이블]</code>을 누르면 대화 상자가 열린다. <code>[표/범위]</code>에는 원본 범위가 자동으로 지정되며(연습용 <code>판매내역!$A$3:$I$22</code>), 다르면 범위를 끌어 다시 지정한다. 배치할 위치는 <code>[새 워크시트]</code>와 <code>[기존 워크시트]</code>(지정한 셀) 가운데에서 고르며, 본 장에서는 <code>[새 워크시트]</code>를 선택한다. 요약표를 다른 시트에 두면 원본과 겹치지 않고, 잘못 작성하였을 때 시트를 삭제하여 정리할 수 있다(2-6).</p>
+<p>자료 범위 안의 셀 하나를 선택하고 <code>[삽입] 탭 → [표] 그룹 → [피벗 테이블]</code>을 누르면 원본 범위와 배치할 위치를 지정하는 대화 상자가 열린다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>항목</th>
+<th>지정하는 내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>[표/범위]</code></td>
+<td>원본 자료의 범위. 연습용에서는 <code>판매내역!$A$3:$I$22</code>로 자동 지정되며, 다르면 범위를 끌어 다시 지정한다</td>
+</tr>
+<tr class="even">
+<td>배치할 위치</td>
+<td><code>[새 워크시트]</code>는 새 시트에, <code>[기존 워크시트]</code>는 지정한 셀에 작성한다</td>
+</tr>
+</tbody>
+</table>
+<p>본 장에서는 <code>[새 워크시트]</code>를 선택한다. 요약표를 다른 시트에 두면 원본과 겹치지 않고, 잘못 작성하였을 때 시트를 삭제하여 정리할 수 있다(2-6).</p>
 <blockquote class="blockquote">
 <p><strong>버전에 따른 차이</strong>: 대화 상자의 제목은 버전에 따라 다르다(이전 버전에서는 <code>[피벗 테이블 만들기]</code>이다). 원본 범위의 입력란은 <code>[표/범위]</code> 또는 <code>[테이블/범위]</code>로 표시된다. 지정하는 항목은 같다.</p>
 </blockquote>
@@ -838,7 +861,34 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="피벗-테이블의-삭제와-재작성" class="level3">
 <h3 class="anchored" data-anchor-id="피벗-테이블의-삭제와-재작성">2-6. 피벗 테이블의 삭제와 재작성</h3>
-<p>잘못 작성한 피벗 테이블은 고치려 하지 않고 삭제한 뒤 다시 작성하는 것이 빠르며, 삭제하여도 원본은 변하지 않는다. 새 워크시트에 작성하였으면 시트 탭을 오른쪽 단추로 눌러 <code>[삭제]</code>를 선택한다. 같은 시트에 남길 내용이 있으면 <code>[피벗 테이블 분석] 탭</code>의 <code>[선택]</code> → <code>[전체 피벗 테이블]</code>로 전체를 선택한 뒤 <code>Delete</code>를 누른다(일부 셀만 지우려 하면 변경할 수 없다는 안내가 표시된다). 삭제하기 전에는 시트 탭의 이름을 확인한다. “판매내역” 시트를 삭제하면 원본이 사라지며, 삭제한 시트는 되돌릴 수 없는 것으로 간주한다. 다시 작성할 때에는 “판매내역” 시트의 자료 범위 안의 셀 하나를 선택하는 데서 시작한다.</p>
+<p>잘못 작성한 피벗 테이블은 고치려 하지 않고 삭제한 뒤 다시 작성하는 것이 빠르며, 삭제하여도 원본은 변하지 않는다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>방법</th>
+<th>조작</th>
+<th>적합한 경우</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>시트의 삭제</td>
+<td>시트 탭을 오른쪽 단추로 눌러 <code>[삭제]</code>를 선택한다</td>
+<td>새 워크시트에 작성하여 그 시트에 피벗 테이블만 있는 경우</td>
+</tr>
+<tr class="even">
+<td>피벗 테이블의 삭제</td>
+<td><code>[피벗 테이블 분석] 탭</code>의 <code>[선택]</code> → <code>[전체 피벗 테이블]</code>로 전체를 선택한 뒤 <code>Delete</code>를 누른다. 일부 셀만 지우려 하면 변경할 수 없다는 안내가 표시된다</td>
+<td>같은 시트에 남길 내용이 있는 경우</td>
+</tr>
+</tbody>
+</table>
+<p>삭제하기 전에는 시트 탭의 이름을 확인한다. “판매내역” 시트를 삭제하면 원본이 사라지며, 삭제한 시트는 되돌릴 수 없는 것으로 간주한다. 다시 작성할 때에는 “판매내역” 시트의 자료 범위 안의 셀 하나를 선택하는 데서 시작한다.</p>
 </section>
 <section id="따라-하기-1" class="level3">
 <h3 class="anchored" data-anchor-id="따라-하기-1">따라 하기</h3>
@@ -1020,7 +1070,38 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="총합계에-의한-검산" class="level3">
 <h3 class="anchored" data-anchor-id="총합계에-의한-검산">4-3. 총합계에 의한 검산</h3>
-<p>피벗 테이블은 조작이 간단한 만큼 결과를 따로 확인하여야 한다. 본 과목은 <strong>서로 다른 방법으로 산출한 값을 대조하는 것</strong>을 검증의 원칙으로 한다. 합계의 총합계는 “판매내역” 시트의 <code>SUM</code>(연습용 8,016,000)과, 개수의 총합계는 <code>COUNT</code>(19)와 같아야 한다. <code>G4:G22</code>를 선택한 상태 표시줄의 합계와 개수도 다른 경로의 값이므로 세 값이 같으면 검산이 더 확실하다. 값이 다르면 다음의 순서로 원인을 찾는다.</p>
+<p>피벗 테이블은 조작이 간단한 만큼 결과를 따로 확인하여야 한다. 본 과목은 <strong>서로 다른 방법으로 산출한 값을 대조하는 것</strong>을 검증의 원칙으로 한다. 총합계는 다음의 값과 같아야 한다. 상태 표시줄의 값도 다른 경로의 값이므로 세 값이 같으면 검산이 더 확실하다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>피벗 테이블의 값</th>
+<th>대조하는 함수(“판매내역” 시트)</th>
+<th><code>G4:G22</code>를 선택한 상태 표시줄</th>
+<th>연습용의 기준 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>합계의 총합계</td>
+<td><code>SUM</code>(<code>G24</code>)</td>
+<td>합계</td>
+<td>8,016,000</td>
+</tr>
+<tr class="even">
+<td>개수의 총합계</td>
+<td><code>COUNT</code>(<code>G28</code>)</td>
+<td>개수</td>
+<td>19</td>
+</tr>
+</tbody>
+</table>
+<p>값이 다르면 다음의 순서로 원인을 찾는다.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">

@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-e5128435ffcf42630fd9bfc4806fab7a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-60ab257bf7f0877d799f3d93a9b3e36a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -1123,7 +1123,29 @@ sdev        1.5749  0.9949  0.5971  0.4164
 variance    2.4802  0.9898  0.3566  0.1734
 proportion  0.6201  0.2474  0.0891  0.0434
 cumulative  0.6201  0.8675  0.9566  1.0000</code></pre>
-<p>열이 주성분이고 행이 3.3절의 네 값이다(R의 <code>summary()</code>와 같은 배치). <code>sdev</code>를 제곱하면 <code>variance</code>이고(1.5749² ≈ 2.480), <code>variance</code>의 합은 4.0이며(다음 셀), <code>proportion</code>은 <code>variance</code> ÷ 4다.</p>
+<p>열이 주성분이고 행이 3.3절의 네 값이다(R의 <code>summary()</code>와 같은 배치).</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>행</th>
+<th>다른 행과의 관계</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>sdev</code></td>
+<td>제곱하면 <code>variance</code>다. 1.5749² ≈ 2.480</td>
+</tr>
+<tr class="even">
+<td><code>variance</code></td>
+<td>네 값의 합은 4.0이다(다음 셀)</td>
+</tr>
+<tr class="odd">
+<td><code>proportion</code></td>
+<td><code>variance</code> ÷ 4다</td>
+</tr>
+</tbody>
+</table>
 <ul>
 <li><span class="check-badge">확인 9</span> PC1의 분산 설명 비율이 0.6201, PC2까지의 누적 기여율이 0.8675로 나왔다.</li>
 </ul>
@@ -1330,7 +1352,38 @@ PC4  0.0  0.0  0.0  1.0</code></pre>
 </section>
 <section id="복기" class="level3">
 <h3 class="anchored" data-anchor-id="복기">복기</h3>
-<p>PC1의 비율은 62.01%로 변수 둘일 때(90.09%)보다 작았다. 상관이 약한 <code>UrbanPop</code>이 PC1에 잘 실리지 않고(0.278) PC2로 갔기 때문이다. 80%는 둘째에서 넘었고, 세 기준은 2, 2, 1로 엇갈렸다. 0.3절의 질문에 답하면, 네 변수를 두 새 변수로 줄이면 정보의 13.25%를 잃고, 두 새 변수는 범죄의 전반적인 정도(PC1)와 도시화의 정도(PC2)다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>예상</th>
+<th>결과</th>
+<th>견줄 점</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(1) PC1의 비율</td>
+<td>62.01%</td>
+<td>변수 둘일 때(90.09%)보다 작다. 상관이 약한 <code>UrbanPop</code>이 PC1에 잘 실리지 않고 PC2로 갔다</td>
+</tr>
+<tr class="even">
+<td>(2) 80%를 넘기는 주성분의 수</td>
+<td>2개</td>
+<td>세 기준은 2, 2, 1로 엇갈렸다</td>
+</tr>
+<tr class="odd">
+<td>(3) PC1에 가장 작게 기여하는 변수</td>
+<td><code>UrbanPop</code>(0.278)</td>
+<td>(1)의 까닭과 같다</td>
+</tr>
+</tbody>
+</table>
+<p>0.3절의 질문에 답하면, 네 변수를 두 새 변수로 줄이면 정보의 13.25%를 잃고, 두 새 변수는 범죄의 전반적인 정도(PC1)와 도시화의 정도(PC2)다.</p>
 </section>
 <section id="완료-기준" class="level3">
 <h3 class="anchored" data-anchor-id="완료-기준">완료 기준</h3>

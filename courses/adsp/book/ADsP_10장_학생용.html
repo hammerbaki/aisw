@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-e5128435ffcf42630fd9bfc4806fab7a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-60ab257bf7f0877d799f3d93a9b3e36a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -809,7 +809,32 @@ virginica   4.5  6.9</code></pre>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>X_train, X_valid, y_train, y_valid <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.3</span>, random_state<span class="op">=</span><span class="dv">42</span>, stratify<span class="op">=</span>y)</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_train.shape, X_valid.shape)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>(105, 4) (45, 4)</code></pre>
-<p><code>test_size=0.3</code>은 30%를 검증용으로 떼고, <code>random_state=42</code>는 나누는 방법을 고정하며, <code>stratify=y</code>는 품종의 비율을 두 자료에서 같게 하는 층화 추출이다(교재 06).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>적은 것</th>
+<th>뜻</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>test_size=0.3</code></td>
+<td>30%를 검증용으로 떼어 낸다</td>
+</tr>
+<tr class="even">
+<td><code>random_state=42</code></td>
+<td>나누는 방법을 고정한다</td>
+</tr>
+<tr class="odd">
+<td><code>stratify=y</code></td>
+<td>품종의 비율을 두 자료에서 같게 한다. 층화 추출이다(교재 06)</td>
+</tr>
+</tbody>
+</table>
 <ul>
 <li><span class="check-badge">확인 3</span> <code>X_train</code>과 <code>X_valid</code>의 모양이 <code>(105, 4)</code>와 <code>(45, 4)</code>이고, <code>y_train</code>은 품종마다 35송이, <code>y_valid</code>는 품종마다 15송이로 나왔다.</li>
 </ul>

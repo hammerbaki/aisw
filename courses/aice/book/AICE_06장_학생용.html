@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-e5128435ffcf42630fd9bfc4806fab7a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-60ab257bf7f0877d799f3d93a9b3e36a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -521,7 +521,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>pred <span class="op">=</span> model.predict(X_valid_s)       <span class="co"># 3. 예측</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pred[:<span class="dv">5</span>].<span class="bu">round</span>(<span class="dv">1</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>[386.2 150.5 186.3 262.4 171.6]</code></pre>
-<p><code>fit</code>에는 입력과 목표를 함께 주고, <code>predict</code>에는 입력만 준다. 예측값의 개수는 <code>predict</code>에 준 입력의 행 수와 같으므로 <code>pred</code>는 588개의 값을 담은 배열이다. 같은 순서의 실제 값(<code>y_valid.values[:5]</code>)은 431.0, 164.8, 138.5, 210.8, 110.6이다. 첫 회원은 실제보다 44.8만 원 작게, 넷째 회원은 51.6만 원 크게 예측되었다. 차이의 방향이 회원마다 다르므로, 차이를 그대로 평균하면 양과 음이 서로 지워진다. 그래서 5절의 지표는 차이의 절댓값이나 제곱을 평균한다.</p>
+<p><code>fit</code>에는 입력과 목표를 함께 주고, <code>predict</code>에는 입력만 준다. 같은 순서의 실제 값(<code>y_valid.values[:5]</code>)은 431.0, 164.8, 138.5, 210.8, 110.6이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>묻는 것</th>
+<th>읽는 자리</th>
+<th>이 출력의 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>예측값의 개수</td>
+<td><code>len(pred)</code></td>
+<td>588. <code>predict</code>에 준 입력의 행 수와 같다</td>
+</tr>
+<tr class="even">
+<td>첫 회원</td>
+<td>첫 값</td>
+<td>386.2(실제 431.0). 44.8만 원 작게 예측</td>
+</tr>
+<tr class="odd">
+<td>넷째 회원</td>
+<td>넷째 값</td>
+<td>262.4(실제 210.8). 51.6만 원 크게 예측</td>
+</tr>
+</tbody>
+</table>
+<p>차이의 방향이 회원마다 다르므로, 차이를 그대로 평균하면 양과 음이 서로 지워진다. 그래서 5절의 지표는 차이의 절댓값이나 제곱을 평균한다.</p>
 <ul>
 <li><span class="check-badge">확인 2</span> 예측값의 앞 5개가 <code>[386.2 150.5 186.3 262.4 171.6]</code>이다.</li>
 </ul>
@@ -700,7 +732,44 @@ avg_session_min     -0.87
 region_Incheon      -0.93
 last_login_days     -4.13
 dtype: float64</code></pre>
-<p>입력을 표준화하였으므로 각 계수는 “그 열이 표준편차 하나만큼 커질 때 연간 구매액이 몇 만 원 달라지는가”를 뜻한다. 모든 열의 단위가 표준편차로 같아졌으므로 계수의 절댓값을 서로 비교할 수 있다. 이 모델에서는 <code>grade</code>(67.08), <code>tenure_months</code>(26.82), <code>visits_per_month</code>(19.29)의 순서로 영향이 크다. 계수의 부호는 방향을 뜻하므로, <code>last_login_days</code>의 -4.13은 “마지막 접속이 표준편차 하나만큼 더 오래된 회원은 연간 구매액이 약 4.13만 원 적다”로 읽는다. 지역과 결제 수단의 원핫 열은 계수가 1 안팎으로 작고, <code>region_Seoul</code>(-0.01)과 <code>age</code>(0.09)는 영향이 거의 없다. 계수는 다른 열을 모두 고정하였을 때의 효과이다.</p>
+<p>입력을 표준화하였으므로 각 계수는 “그 열이 표준편차 하나만큼 커질 때 연간 구매액이 몇 만 원 달라지는가”를 뜻한다. 모든 열의 단위가 표준편차로 같아졌으므로 계수의 절댓값을 서로 비교할 수 있고, 부호는 방향을 뜻한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>묻는 것</th>
+<th>읽는 자리</th>
+<th>이 출력의 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>영향이 큰 열</td>
+<td>처음 세 줄</td>
+<td><code>grade</code>(67.08), <code>tenure_months</code>(26.82), <code>visits_per_month</code>(19.29)</td>
+</tr>
+<tr class="even">
+<td>값이 클수록 구매액이 작아지는 열</td>
+<td>마지막 줄</td>
+<td><code>last_login_days</code>(-4.13). 마지막 접속이 표준편차 하나만큼 더 오래되면 약 4.13만 원 적다</td>
+</tr>
+<tr class="odd">
+<td>영향이 거의 없는 열</td>
+<td>0에 가까운 계수</td>
+<td><code>region_Seoul</code>(-0.01), <code>age</code>(0.09)</td>
+</tr>
+<tr class="even">
+<td>원핫 열</td>
+<td><code>region_…</code>, <code>payment_…</code></td>
+<td>1 안팎으로 작다</td>
+</tr>
+</tbody>
+</table>
+<p>계수는 다른 열을 모두 고정하였을 때의 효과이다.</p>
 <p>절편은 모든 입력이 0일 때의 예측값이다. 표준화한 입력에서 0은 각 열의 평균이므로, 절편(227.896)은 “모든 열이 평균인 회원”의 예측값이며 훈련용 목표 값의 평균과 같다. 예측값은 이 절편에 입력과 계수의 곱을 모두 더한 값이다.</p>
 <ul>
 <li><span class="check-badge">확인 4</span> 계수 표의 첫 줄이 <code>grade 67.08</code>이고 마지막 줄이 <code>last_login_days -4.13</code>이다.</li>
@@ -1069,7 +1138,7 @@ dtype: float64</code></pre>
 <span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rf_c.predict(X_valid_s)[:<span class="dv">3</span>].<span class="bu">round</span>(<span class="dv">2</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>[434.29 149.1  161.69]
 [434.29 149.1  161.69]
-[434.31 156.33 148.11]</code></pre>
+[433.98 152.68 155.15]</code></pre>
 <p>앞의 두 줄은 같고, 셋째 줄은 다르며 셀을 다시 실행할 때마다 바뀐다. 시험의 채점은 지표의 값을 기준 값과 비교하므로, 가이드가 <code>random_state</code>를 지정하면 반드시 그 값을 써야 같은 결과가 나온다. 값 자체(42, 0, 2027 등)에는 특별한 뜻이 없다.</p>
 <table class="caption-top table">
 <colgroup>
@@ -1499,7 +1568,39 @@ None 2345 1.0 0.759</code></pre>
 </tr>
 </tbody>
 </table>
-<p>깊이가 커질수록 훈련용 점수는 1에 다가가지만, 검증용 점수는 깊이 7에서 가장 높고(0.836) 그 뒤로 내려간다. 제한 없는 나무는 잎이 2345개로 훈련용 2352행과 거의 같다. 잎 하나에 회원이 거의 한 명씩 남아 훈련용의 목표 값을 그대로 외운 것이다. 두 점수가 모두 낮은 상태가 과소적합이고, 두 점수의 차가 커지면서 검증용 점수가 내려가는 상태가 과대적합이다. 훈련용 데이터는 모델이 이미 본 데이터이므로 차이가 조금 있는 것은 정상이다. 깊이를 키웠는데 검증용 점수가 내려가기 시작하는 지점이 과대적합의 시작이며, 좋은 설정은 검증용 점수가 가장 높은 곳에서 찾는다(연습 7). 과대적합을 줄이려면 깊이를 제한하거나 <code>min_samples_split</code>을 키우거나 여러 나무를 평균한다. 하이퍼파라미터를 체계적으로 고르는 방법(교차 검증과 격자 탐색)은 8장에서 다룬다.</p>
+<p>깊이가 커질수록 훈련용 점수는 1에 다가가지만, 검증용 점수는 깊이 7에서 가장 높고(0.836) 그 뒤로 내려간다. 제한 없는 나무는 잎이 2345개로 훈련용 2352행과 거의 같다. 잎 하나에 회원이 거의 한 명씩 남아 훈련용의 목표 값을 그대로 외운 것이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>상태</th>
+<th>두 점수</th>
+<th>대처</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>과소적합</td>
+<td>모두 낮다</td>
+<td>깊이를 키운다</td>
+</tr>
+<tr class="even">
+<td>적정</td>
+<td>검증용 점수가 가장 높다</td>
+<td>그 설정을 고른다(연습 7)</td>
+</tr>
+<tr class="odd">
+<td>과대적합</td>
+<td>차가 커지며 검증용 점수가 내려간다</td>
+<td>깊이를 제한하거나 <code>min_samples_split</code>을 키우거나 여러 나무를 평균한다</td>
+</tr>
+</tbody>
+</table>
+<p>훈련용 데이터는 모델이 이미 본 데이터이므로 두 점수의 차가 조금 있는 것은 정상이다. 하이퍼파라미터를 체계적으로 고르는 방법(교차 검증과 격자 탐색)은 8장에서 다룬다.</p>
 <ul>
 <li><span class="check-badge">확인 10</span> 깊이별 점수의 출력에서 깊이 7의 검증용 점수가 <code>0.836</code>이고, <code>None</code>의 훈련용 점수가 <code>1.0</code>이다.</li>
 </ul>

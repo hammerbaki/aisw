@@ -41,7 +41,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-e5128435ffcf42630fd9bfc4806fab7a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-60ab257bf7f0877d799f3d93a9b3e36a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -307,6 +307,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#셀의-이동" id="toc-셀의-이동" class="nav-link" data-scroll-target="#셀의-이동">4-1. 셀의 이동</a></li>
   <li><a href="#범위의-선택" id="toc-범위의-선택" class="nav-link" data-scroll-target="#범위의-선택">4-2. 범위의 선택</a></li>
   <li><a href="#상태-표시줄에-의한-검산" id="toc-상태-표시줄에-의한-검산" class="nav-link" data-scroll-target="#상태-표시줄에-의한-검산">4-3. 상태 표시줄에 의한 검산</a></li>
+  <li><a href="#따라-하기-3" id="toc-따라-하기-3" class="nav-link" data-scroll-target="#따라-하기-3">따라 하기</a></li>
   </ul></li>
   <li><a href="#자료의-입력과-자동-채우기" id="toc-자료의-입력과-자동-채우기" class="nav-link" data-scroll-target="#자료의-입력과-자동-채우기">5. 자료의 입력과 자동 채우기</a>
   <ul class="collapse">
@@ -316,7 +317,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#자동-완성" id="toc-자동-완성" class="nav-link" data-scroll-target="#자동-완성">5-4. 자동 완성</a></li>
   <li><a href="#화면의-표시와-실제-값" id="toc-화면의-표시와-실제-값" class="nav-link" data-scroll-target="#화면의-표시와-실제-값">5-5. 화면의 표시와 실제 값</a></li>
   <li><a href="#채우기-핸들과-자동-채우기" id="toc-채우기-핸들과-자동-채우기" class="nav-link" data-scroll-target="#채우기-핸들과-자동-채우기">5-6. 채우기 핸들과 자동 채우기</a></li>
-  <li><a href="#따라-하기-3" id="toc-따라-하기-3" class="nav-link" data-scroll-target="#따라-하기-3">따라 하기</a></li>
+  <li><a href="#따라-하기-4" id="toc-따라-하기-4" class="nav-link" data-scroll-target="#따라-하기-4">따라 하기</a></li>
   </ul></li>
   <li><a href="#핵심-실습-판매-자료의-입력과-저장" id="toc-핵심-실습-판매-자료의-입력과-저장" class="nav-link" data-scroll-target="#핵심-실습-판매-자료의-입력과-저장">6. 핵심 실습: 판매 자료의 입력과 저장</a>
   <ul class="collapse">
@@ -617,7 +618,43 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="저장과-다른-이름으로-저장" class="level3">
 <h3 class="anchored" data-anchor-id="저장과-다른-이름으로-저장">2-3. 저장과 다른 이름으로 저장</h3>
-<p>[저장] (<code>Ctrl + S</code>)은 현재의 위치와 이름에 덮어쓰고, 처음 저장하는 문서에서는 위치와 이름을 묻는다. [다른 이름으로 저장] (<code>F12</code>)은 대화 상자에서 위치, 이름, 형식을 새로 지정한다. 열기는 <code>Ctrl + O</code>, 닫기는 <code>Ctrl + W</code>이다. <code>자료</code> 폴더의 파일을 열어 [저장]하면 원본이 바뀐다. 열자마자 [다른 이름으로 저장]으로 <code>실습</code> 폴더에 새 이름을 부여하면 그 뒤의 [저장]은 새 파일에만 적용되어 원본이 보존된다. 이 과목의 모든 장은 이 순서로 시작한다. 대화 상자에서는 (1) 위쪽 주소 표시줄의 폴더, (2) [파일 이름]이 규칙과 일치하는가(확장자는 자동으로 붙는다), (3) [파일 형식]이 <code>Excel 통합 문서 (*.xlsx)</code>인가의 세 가지를 확인한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>명령</th>
+<th>단축키</th>
+<th>동작</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>저장</td>
+<td><code>Ctrl + S</code></td>
+<td>현재의 위치와 이름에 덮어쓴다. 처음 저장하는 문서에서는 위치와 이름을 묻는다</td>
+</tr>
+<tr class="even">
+<td>다른 이름으로 저장</td>
+<td><code>F12</code></td>
+<td>대화 상자에서 위치, 이름, 형식을 새로 지정한다</td>
+</tr>
+<tr class="odd">
+<td>열기</td>
+<td><code>Ctrl + O</code></td>
+<td>저장된 통합 문서를 연다</td>
+</tr>
+<tr class="even">
+<td>닫기</td>
+<td><code>Ctrl + W</code></td>
+<td>현재의 통합 문서를 닫는다</td>
+</tr>
+</tbody>
+</table>
+<p><code>자료</code> 폴더의 파일을 열어 [저장]하면 원본이 바뀐다. 열자마자 [다른 이름으로 저장]으로 <code>실습</code> 폴더에 새 이름을 부여하면 그 뒤의 [저장]은 새 파일에만 적용되어 원본이 보존된다. 이 과목의 모든 장은 이 순서로 시작한다. 대화 상자에서는 (1) 위쪽 주소 표시줄의 폴더, (2) [파일 이름]이 규칙과 일치하는가(확장자는 자동으로 붙는다), (3) [파일 형식]이 <code>Excel 통합 문서 (*.xlsx)</code>인가의 세 가지를 확인한다.</p>
 <blockquote class="blockquote">
 <p><strong>[그림 자리: [다른 이름으로 저장] 대화 상자의 확인할 세 곳]</strong> 대화 상자의 위쪽 주소 표시줄(저장할 폴더), 아래쪽의 [파일 이름]과 [파일 형식]에 번호를 붙이고, 주소 표시줄이 <code>자료</code> 폴더를 가리키는 상태와 <code>실습</code> 폴더로 바꾼 상태를 나란히 보인다. 찍을 곳: Microsoft 365 엑셀, <code>F12</code>로 연 대화 상자.</p>
 </blockquote>
@@ -949,7 +986,48 @@ ul.task-list li input[type="checkbox"] {
 <p>아래는 연습용 통합 문서의 수량(<code>E2:E20</code>)을 선택하였을 때의 값이다. 항목의 간격과 순서는 버전에 따라 다를 수 있다.</p>
 <pre class="text"><code>선택한 범위   E2:E20
 평균 28    개수 19    합계 532</code></pre>
-<p>[평균], [개수], [합계]는 기본으로 표시되고, [숫자 개수] (화면에 따라 [숫자 셀 수]. 목록에서 [개수]의 바로 아래), [최소값], [최대값]은 목록에서 골라야 표시된다. [개수]는 내용이 있는 셀(문자 포함)을, [숫자 개수]는 숫자가 든 셀만 센다. <code>2</code>, <code>3</code>, <code>문자</code>, <code>4</code>의 네 셀을 선택하면 [개수]는 4, [숫자 개수]는 3이다. 본 장의 따라 하기에서 [숫자 개수]를 켜고 그대로 둔다. 검산의 판단 기준은 다음과 같다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>항목</th>
+<th>표시되는 값</th>
+<th>기본 설정</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>[평균]</td>
+<td>숫자가 든 셀의 평균</td>
+<td>표시된다</td>
+</tr>
+<tr class="even">
+<td>[개수]</td>
+<td>내용이 있는 셀의 수. 문자가 든 셀도 센다</td>
+<td>표시된다</td>
+</tr>
+<tr class="odd">
+<td>[숫자 개수]</td>
+<td>숫자가 든 셀의 수. 화면에 따라 [숫자 셀 수]로 표시된다</td>
+<td>표시되지 않는다. 목록에서 [개수]의 바로 아래에 있다</td>
+</tr>
+<tr class="even">
+<td>[최소값], [최대값]</td>
+<td>숫자 가운데 가장 작은 값과 가장 큰 값</td>
+<td>표시되지 않는다</td>
+</tr>
+<tr class="odd">
+<td>[합계]</td>
+<td>숫자의 합</td>
+<td>표시된다</td>
+</tr>
+</tbody>
+</table>
+<p><code>2</code>, <code>3</code>, <code>문자</code>, <code>4</code>의 네 셀을 선택하면 [개수]는 4, [숫자 개수]는 3이다. 본 장의 따라 하기에서 [숫자 개수]를 켜고 그대로 둔다. 검산의 판단 기준은 다음과 같다.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -976,7 +1054,10 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<p>엑셀은 날짜를 숫자(일련번호)로 저장한다. 2026년 1월 2일은 46024, 2026년 2월 2일은 46055이다(2장 3-4에서 확인한다). 따라서 날짜도 [숫자 개수]에 세어지며, 판매일 20개에서 [숫자 개수]가 19이면 하나가 문자로 입력된 것이다. 판매일 열에서는 [숫자 개수]만 읽는다(합계와 평균은 의미가 없다). 거래처와 품목 같은 문자 열은 [숫자 개수]가 0인 것이 정상이며, [개수]로 빈 셀만 찾는다. ### 따라 하기</p>
+<p>엑셀은 날짜를 숫자(일련번호)로 저장한다. 2026년 1월 2일은 46024, 2026년 2월 2일은 46055이다(2장 3-4에서 확인한다). 따라서 날짜도 [숫자 개수]에 세어지며, 판매일 20개에서 [숫자 개수]가 19이면 하나가 문자로 입력된 것이다. 판매일 열에서는 [숫자 개수]만 읽는다(합계와 평균은 의미가 없다). 거래처와 품목 같은 문자 열은 [숫자 개수]가 0인 것이 정상이며, [개수]로 빈 셀만 찾는다.</p>
+</section>
+<section id="따라-하기-3" class="level3">
+<h3 class="anchored" data-anchor-id="따라-하기-3">따라 하기</h3>
 <p>연습용 통합 문서의 <code>판매내역</code> 시트(머리글 1행, 자료 19행)에서 자료의 끝을 찾고 상태 표시줄의 값을 읽는다.</p>
 <ol type="1">
 <li><code>Ctrl + Home</code>을 눌러 <code>A1</code>로 이동한다.</li>
@@ -996,7 +1077,34 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="자료의-입력과-자동-채우기">5. 자료의 입력과 자동 채우기</h2>
 <section id="자료의-종류" class="level3">
 <h3 class="anchored" data-anchor-id="자료의-종류">5-1. 자료의 종류</h3>
-<p>엑셀은 입력을 확정하는 순간 그 글자가 숫자나 날짜로 읽히면 숫자로, 읽히지 않으면 글자 그대로 문자로 저장한다. 종류에 따라 계산과 정렬의 결과가 달라진다. 맞춤을 지정하지 않은 셀에서 문자는 왼쪽에, 숫자와 날짜는 오른쪽에 놓이므로 종류는 입력 직후의 맞춤 위치로 판별한다. 숫자는 쉼표와 단위 없이, 날짜는 <code>2026-01-02</code>처럼 붙임표로 구분하여 연도까지 입력한다. 날짜로 읽힌 입력에는 Windows의 기본 날짜 설정에 따른 표시 형식이 자동으로 지정되므로 PC마다 모양이 다를 수 있다.</p>
+<p>엑셀은 입력을 확정하는 순간 그 글자가 숫자나 날짜로 읽히면 숫자로, 읽히지 않으면 글자 그대로 문자로 저장한다. 종류에 따라 계산과 정렬의 결과가 달라진다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>종류</th>
+<th>기본 맞춤</th>
+<th>입력하는 방법</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>문자</td>
+<td>왼쪽</td>
+<td>입력한 글자 그대로 저장된다</td>
+</tr>
+<tr class="even">
+<td>숫자</td>
+<td>오른쪽</td>
+<td>쉼표와 단위 없이 숫자만 입력한다</td>
+</tr>
+<tr class="odd">
+<td>날짜</td>
+<td>오른쪽</td>
+<td><code>2026-01-02</code>처럼 붙임표로 구분하여 연도까지 입력한다</td>
+</tr>
+</tbody>
+</table>
+<p>맞춤을 지정하지 않은 셀은 위의 기본 맞춤을 따르므로 종류는 입력 직후의 맞춤 위치로 판별한다. 날짜로 읽힌 입력에는 Windows의 기본 날짜 설정에 따른 표시 형식이 자동으로 지정되므로 PC마다 모양이 다를 수 있다.</p>
 <p>아래는 교수의 작업 PC(Microsoft 365, 엑셀 16.0)에서 빈 통합 문서에 입력을 하나씩 확정하고 저장된 값을 읽은 결과이다(2026-11-15). 이 PC는 Windows의 날짜 형식이 기본값에서 바뀌어 있어 날짜가 <code>02-02-26</code>의 모양으로 표시되었으므로, 판단에는 “저장된 종류”의 열을 쓴다.</p>
 <table class="caption-top table">
 <colgroup>
@@ -1222,8 +1330,8 @@ ul.task-list li input[type="checkbox"] {
 <li>채우기 핸들이 보이지 않으면 <code>[파일] 탭 → [옵션] → [고급]</code>의 [채우기 핸들 및 셀 끌어서 놓기 사용]을 확인한다.</li>
 </ul>
 </section>
-<section id="따라-하기-3" class="level3">
-<h3 class="anchored" data-anchor-id="따라-하기-3">따라 하기</h3>
+<section id="따라-하기-4" class="level3">
+<h3 class="anchored" data-anchor-id="따라-하기-4">따라 하기</h3>
 <p>연습용 통합 문서의 <code>입력연습</code> 시트에서 자료의 종류를 판별하고 자동 채우기와 행 단위의 입력을 수행한다.</p>
 <ol type="1">
 <li>시트 탭 <code>입력연습</code>을 클릭한다.</li>

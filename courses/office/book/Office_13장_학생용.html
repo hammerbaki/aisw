@@ -41,7 +41,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-e5128435ffcf42630fd9bfc4806fab7a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-60ab257bf7f0877d799f3d93a9b3e36a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -554,7 +554,39 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<p>데이터베이스에 적합한 표는 <strong>첫 행이 머리글이고 그 아래가 모두 자료인 표</strong>이다. 병합한 셀과 오류 값이 없고 한 열에 한 종류의 값만 있어야 한다. 지원 문서에 따르면 액세스는 원본의 처음 8개 행으로 필드의 데이터 형식을 정하므로, 처음 8개 행에 제목과 머리글이 든 통합 문서는 수량 열이 숫자로 추정되지 않는다. 기준 파일은 1행이 머리글, 2~21행이 자료이며, 8~10장의 파이썬 코드가 이 파일을 읽은 것도 같은 이유이다.</p>
+<p>데이터베이스에 적합한 표는 <strong>첫 행이 머리글이고 그 아래가 모두 자료인 표</strong>이다. 병합한 셀과 오류 값이 없고 한 열에 한 종류의 값만 있어야 한다. 지원 문서에 따르면 액세스는 원본의 처음 8개 행으로 필드의 데이터 형식을 정하므로, 처음 8개 행에 제목과 머리글이 든 통합 문서는 수량 열이 숫자로 추정되지 않는다. 기준 파일은 이 형태로 작성되어 있다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>구분</th>
+<th>수강생의 통합 문서</th>
+<th>기준 파일</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>첫 행</td>
+<td>제목</td>
+<td>머리글</td>
+</tr>
+<tr class="even">
+<td>자료의 위치</td>
+<td>4~23행</td>
+<td>2~21행(머리글의 바로 아래)</td>
+</tr>
+<tr class="odd">
+<td>요약</td>
+<td>25~29행의 요약 행</td>
+<td>없다</td>
+</tr>
+<tr class="even">
+<td>계산된 열</td>
+<td>금액, 구성비, 목표 달성</td>
+<td>없다. 수량과 단가만 저장한다</td>
+</tr>
+</tbody>
+</table>
+<p>8~10장의 파이썬 코드가 기준 파일을 읽은 것도 같은 이유이다.</p>
 <blockquote class="blockquote">
 <p><strong>[그림 자리: 사람이 읽는 표와 프로그램이 읽는 표]</strong> 왼쪽에 수강생의 통합 문서(“판매내역” 시트의 1행 제목, 3행 머리글, 4~23행 자료, 25~29행 요약 행)를, 오른쪽에 기준 파일(1행 머리글, 2~21행 자료, 그 아래 빈 행)을 나란히 놓고, 왼쪽의 제목·빈 행·요약 행을 표시한 화면. 찍을 곳: Microsoft 365 엑셀, <code>판매현황_06_학번.xlsx</code>와 <code>판매_2026_01.xlsx</code>를 나란히 연 창.</p>
 </blockquote>
@@ -861,7 +893,38 @@ G24  #VALUE!</code></pre>
 </tbody>
 </table>
 <p>이 밖에 레코드마다 번호를 자동으로 매기는 <code>일련 번호</code> 형식이 있으며, 마법사가 추가하는 “ID” 필드가 이 형식이다. 엑셀의 통화 표시 형식은 값을 표시하는 방법이고, 액세스의 통화 형식은 저장할 수 있는 값의 종류이다.</p>
-<p>형식이 지정된 필드에서는 첫째, 숫자 필드의 문자나 존재하지 않는 날짜가 입력하는 시점에 거부된다. 둘째, 숫자와 날짜가 크기 순으로 정렬된다. 2월 자료의 수량을 문자로 정렬하면 38의 다음에 4, 40, 41, 50, 6, 8의 순으로 놓인다. 셋째, 값이 모두 계산에 쓸 수 있는 수이다. 엑셀에서는 문자로 저장된 숫자가 합계에서 빠진다(1장).</p>
+<p>필드에 데이터 형식이 지정되어 있을 때의 이점은 다음과 같다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>이점</th>
+<th>형식이 지정된 필드</th>
+<th>형식이 없는 엑셀의 표</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>잘못된 값의 거부</td>
+<td>숫자 필드의 문자나 존재하지 않는 날짜가 입력하는 시점에 거부된다</td>
+<td>입력은 받아들여지고, 그 값을 쓰는 수식에서 뒤늦게 오류가 나타난다(1절의 따라 하기)</td>
+</tr>
+<tr class="even">
+<td>정렬</td>
+<td>숫자와 날짜가 크기 순으로 정렬된다</td>
+<td>문자로 저장된 숫자는 앞 글자부터 비교된다. 2월 자료의 수량을 문자로 정렬하면 38의 다음에 4, 40, 41, 50, 6, 8의 순으로 놓인다</td>
+</tr>
+<tr class="odd">
+<td>계산</td>
+<td>값이 모두 계산에 쓸 수 있는 수이다</td>
+<td>문자로 저장된 숫자가 합계에서 빠진다(1장)</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="기본-키" class="level3">
 <h3 class="anchored" data-anchor-id="기본-키">3-5. 기본 키</h3>
@@ -936,7 +999,34 @@ G24  #VALUE!</code></pre>
 <p>보기는 <code>[홈] 탭 → [보기] 그룹 → [보기]</code>에서 전환한다. 엑셀의 표는 구조와 자료가 구분되지 않으므로 디자인 보기에 대응하는 화면이 없다. 본 장은 디자인 보기를 구조의 확인에만 쓴다. 형식이나 속성을 바꾸면 저장된 값이 변환되거나 삭제될 수 있으므로 바꾸지 않는다.</p>
 <section id="필드-속성-선택" class="level4">
 <h4 class="anchored" data-anchor-id="필드-속성-선택">필드 속성 [선택]</h4>
-<p>디자인 보기의 위쪽에서 필드를 누르면 아래쪽의 필드 속성 영역에 세부 규칙이 표시된다. <strong>필드 크기</strong>는 짧은 텍스트의 최대 글자 수와 숫자의 세부 종류를, <strong>형식</strong>은 표시 방법을, <strong>필수</strong>는 반드시 입력하여야 하는지를, <strong>인덱스</strong>는 인덱스의 유무와 중복의 허용을 정한다. 실습 PC에서 가져온 테이블의 필드 속성은 다음과 같았다(화면의 표기는 최신 자료 자리의 (5)).</p>
+<p>디자인 보기의 위쪽에서 필드를 누르면 아래쪽의 필드 속성 영역에 세부 규칙이 표시된다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>속성</th>
+<th>정하는 것</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>필드 크기</td>
+<td>짧은 텍스트의 최대 글자 수, 숫자의 세부 종류</td>
+</tr>
+<tr class="even">
+<td>형식</td>
+<td>값을 표시하는 방법</td>
+</tr>
+<tr class="odd">
+<td>필수</td>
+<td>값을 반드시 입력하여야 하는지</td>
+</tr>
+<tr class="even">
+<td>인덱스</td>
+<td>인덱스의 유무와 중복의 허용</td>
+</tr>
+</tbody>
+</table>
+<p>실습 PC에서 가져온 테이블의 필드 속성은 다음과 같았다(화면의 표기는 최신 자료 자리의 (5)).</p>
 <pre class="text"><code>필드      필드 크기        형식          필수     인덱스
 판매번호  실수(Double)     일반 숫자     아니요   예(중복 불가능)  ← 기본 키
 판매일    (없음)           yyyy-mm-dd    아니요   아니요
@@ -1248,7 +1338,39 @@ G24  #VALUE!</code></pre>
 </section>
 <section id="디자인-눈금의-변경과-결과" class="level3">
 <h3 class="anchored" data-anchor-id="디자인-눈금의-변경과-결과">4-5. 디자인 눈금의 변경과 결과</h3>
-<p>디자인 눈금의 조건은 결과의 행의 수를, 정렬은 행의 순서를, 표시는 보이는 열을 정하며, 각각 나머지를 바꾸지 않는다. 다음은 2월 자료의 쿼리 “수량30이상_02”(조건 <code>&gt;=30</code>, 수량 내림차순, 다섯 필드 표시)에서 한 행씩 바꾸어 실습 PC에서 실행한 결과이다.</p>
+<p>디자인 눈금의 세 행은 결과의 서로 다른 부분을 정한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>바꾼 행</th>
+<th>바뀌는 것</th>
+<th>바뀌지 않는 것</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>조건</td>
+<td>결과의 행의 수</td>
+<td>열의 구성, 정렬의 방향</td>
+</tr>
+<tr class="even">
+<td>정렬</td>
+<td>결과의 행의 순서</td>
+<td>행의 수, 열의 구성</td>
+</tr>
+<tr class="odd">
+<td>표시</td>
+<td>결과에 보이는 열</td>
+<td>행의 수, 행의 순서. 그 열의 조건과 정렬은 그대로 적용된다</td>
+</tr>
+</tbody>
+</table>
+<p>다음은 2월 자료의 쿼리 “수량30이상_02”(조건 <code>&gt;=30</code>, 수량 내림차순, 다섯 필드 표시)에서 한 행씩 바꾸어 실습 PC에서 실행한 결과이다.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">

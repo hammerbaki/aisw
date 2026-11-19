@@ -41,7 +41,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-e5128435ffcf42630fd9bfc4806fab7a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-60ab257bf7f0877d799f3d93a9b3e36a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -635,7 +635,29 @@ D3-B3: -0.26316</code></pre>
 </tr>
 </tbody>
 </table>
-<p>한 제공사가 안내하는 지시문의 네 요소(목표, 컨텍스트, 원본, 기대 사항)로 보면 맥락은 컨텍스트와 원본에, 요청은 목표에, 제약은 기대 사항에 해당한다(참고 자료 5). 다른 제공사도 구체적인 지시와 출력 형식·제약의 명시를 권고한다(참고 자료 6).</p>
+<p>한 제공사는 지시문의 요소를 목표, 컨텍스트, 원본, 기대 사항의 넷으로 안내하며(참고 자료 5), 본 장의 세 부분과는 다음과 같이 대응한다. 다른 제공사도 구체적인 지시와 출력 형식·제약의 명시를 권고한다(참고 자료 6).</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>본 장의 구분</th>
+<th>제공사 문서의 대응 요소</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>맥락</td>
+<td>컨텍스트, 원본</td>
+</tr>
+<tr class="even">
+<td>요청</td>
+<td>목표</td>
+</tr>
+<tr class="odd">
+<td>제약</td>
+<td>기대 사항(응답의 형식)</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="구성-요소별-작성-기준" class="level3">
 <h3 class="anchored" data-anchor-id="구성-요소별-작성-기준">2-2. 구성 요소별 작성 기준</h3>
@@ -720,20 +742,88 @@ D3-B3: -0.26316</code></pre>
 </tr>
 </tbody>
 </table>
-<p><strong>제약.</strong> 사용할 함수를 적지 않으면 배우지 않은 함수가, 수식의 형태(“한 셀에 입력하는 하나의 수식. 보조 열과 매크로를 사용하지 않는다”)를 적지 않으면 열의 추가나 피벗 테이블, 필터, 매크로의 권고가 온다. 답의 형식(항목과 수식의 두 열로 된 표)과 설명의 유무를 적지 않으면 여러 대안과 긴 설명이 섞여 입력할 수식을 찾기 어렵다.</p>
+<p><strong>제약.</strong> 사용할 수 있는 수단과 답의 형식을 적는다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>제약의 종류</th>
+<th>작성 예</th>
+<th>기재하지 않았을 때 나타나는 응답</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>사용할 함수</td>
+<td>함수는 SUM, AVERAGE, MAX, MIN, COUNT만 사용한다</td>
+<td>배우지 않은 함수가 포함된다</td>
+</tr>
+<tr class="even">
+<td>수식의 형태</td>
+<td>한 셀에 입력하는 하나의 수식이어야 한다. 보조 열과 매크로를 사용하지 않는다</td>
+<td>열의 추가, 피벗 테이블, 필터, 매크로를 권한다</td>
+</tr>
+<tr class="odd">
+<td>답의 형식과 설명의 유무</td>
+<td>답은 항목과 수식의 두 열로 구성된 표로 제시한다. 설명은 쓰지 않는다</td>
+<td>여러 대안과 긴 설명이 섞여 입력할 수식을 찾기 어렵다</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="결함이-있는-지시문의-유형과-개선" class="level3">
 <h3 class="anchored" data-anchor-id="결함이-있는-지시문의-유형과-개선">2-3. 결함이 있는 지시문의 유형과 개선</h3>
-<p>다음은 “금액의 합계”라는 요구를 결함의 유형별로 고쳐 가는 과정이다.</p>
-<p><strong>유형 1. 자료의 위치(맥락)를 알리지 않았다.</strong> 응답의 범위(<code>B2:B100</code>, <code>G:G</code> 등)는 AI의 가정에서 오며, 대조표에서는 값이 다르다(0이거나 다른 열의 합계).</p>
+<p>결함이 있는 지시문은 누락된 부분에 따라 세 유형으로 나뉜다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>유형</th>
+<th>누락된 부분</th>
+<th>응답에 나타나는 결과</th>
+<th>대조표에서의 증상</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>맥락(자료의 위치)</td>
+<td>가정한 열과 범위의 수식</td>
+<td>값이 다르다. 0이거나 다른 열의 합계이다</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>맥락(수식을 입력할 위치)</td>
+<td>시트 이름이 없는 수식</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>제약</td>
+<td>범위 밖의 함수, 여러 대안과 긴 설명, 보조 열의 권고</td>
+<td>값은 일치할 수 있으나 수용 기준(4-3)을 적용하기 어렵다</td>
+</tr>
+</tbody>
+</table>
+<p>다음은 “금액의 합계”라는 요구를 유형별로 고쳐 가는 과정이다.</p>
+<p><strong>유형 1. 자료의 위치(맥락)를 알리지 않았다.</strong> 응답의 범위(<code>B2:B100</code>, <code>G:G</code> 등)는 통합 문서가 아니라 AI의 가정에서 온다. 자료의 위치를 기재하여 고친다.</p>
 <pre class="text"><code>엑셀에서 금액 합계를 구하는 수식을 알려 달라.</code></pre>
 <pre class="text"><code>"판매내역" 시트의 3행이 머리글이고 자료는 4행부터 23행까지 20행이다.
 G열이 금액이다. 25행부터 29행까지는 요약 행이므로 계산에 포함하지 않는다.
 G열(금액)의 합계를 구하는 수식을 알려 달라.</code></pre>
-<p><strong>유형 2. 결과를 둘 곳을 알리지 않았다.</strong> AI는 자료와 같은 시트에 입력한다고 가정하여 <code>=SUM(G4:G23)</code>을 제시하며, 이 수식은 “대조표” 시트에서 0을 낸다(3-3).</p>
+<p><strong>유형 2. 결과를 둘 곳을 알리지 않았다.</strong> AI는 자료와 같은 시트에 입력한다고 가정하여 <code>=SUM(G4:G23)</code>을 제시한다(3-3). 수식을 입력할 시트를 덧붙인다.</p>
 <pre class="text"><code>(앞의 세 줄에 이어서)
 수식은 "대조표"라는 이름의 다른 시트의 D2 셀에 입력한다.</code></pre>
-<p><strong>유형 3. 제약을 알리지 않았다.</strong> 범위 밖의 함수, 여러 대안과 긴 설명, 보조 열의 권고가 함께 온다. 값은 일치할 수 있으나 수용 기준(4-3)을 적용하기 어렵다.</p>
+<p><strong>유형 3. 제약을 알리지 않았다.</strong> 사용할 함수와 답의 형식을 덧붙인다.</p>
 <pre class="text"><code>(앞의 네 줄에 이어서)
 함수는 SUM만 사용한다. 답은 수식만 제시하고 설명은 쓰지 않는다.</code></pre>
 <blockquote class="blockquote">
@@ -933,7 +1023,33 @@ G열(금액)의 합계, 평균, 최댓값, 최솟값, 개수를 구하는 수식
 <h2 class="anchored" data-anchor-id="ai-응답의-검증">3. AI 응답의 검증</h2>
 <section id="검증이-필요한-이유" class="level3">
 <h3 class="anchored" data-anchor-id="검증이-필요한-이유">3-1. 검증이 필요한 이유</h3>
-<p>형식이 올바른 수식도 AI의 추측이 틀리면 틀린 값을 내며, “완료하였다”는 진술은 검증이 아니다. 그러므로 AI의 산출물을 보고할 때에는 “AI가 그렇게 답하였다”가 아니라 판정 기준(3~6장의 수작업 결과), 사람이 한 일(수식을 대조표에 입력하였다), 확인한 내용(결과가 일치하였다)을 적는다.</p>
+<p>형식이 올바른 수식도 AI의 추측이 틀리면 틀린 값을 내며, “완료하였다”는 진술은 검증이 아니다. 그러므로 AI의 산출물을 보고할 때에는 “AI가 그렇게 답하였다”가 아니라 다음 세 가지를 적는다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>보고에 포함되어야 하는 것</th>
+<th>본 장에서의 대응</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>판정 기준: 무엇을 기준으로 맞다고 판단하였는가</td>
+<td>3~6장에서 산출한 수작업 결과</td>
+</tr>
+<tr class="even">
+<td>수행한 일: 사람이 무엇을 하였는가</td>
+<td>AI가 제시한 수식을 대조표에 입력하였다</td>
+</tr>
+<tr class="odd">
+<td>확인한 내용: 무엇으로 확인하였는가</td>
+<td>수식의 결과와 수작업 결과가 일치함을 확인하였다</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="대조표에-의한-검증-절차" class="level3">
 <h3 class="anchored" data-anchor-id="대조표에-의한-검증-절차">3-2. 대조표에 의한 검증 절차</h3>
@@ -1009,7 +1125,34 @@ G열(금액)의 합계, 평균, 최댓값, 최솟값, 개수를 구하는 수식
 </section>
 <section id="응답의-가변성과-수식의-기록" class="level3">
 <h3 class="anchored" data-anchor-id="응답의-가변성과-수식의-기록">3-4. 응답의 가변성과 수식의 기록</h3>
-<p>같은 지시문을 다시 보내도 같은 수식이 온다는 보장이 없으므로(1-3), 검증을 통과한 수식은 그 자리에서 <code>C</code> 열에 기록한다. <code>D</code> 열에는 결과만 보이고, 수정 요청을 거치면 처음의 수식이 남지 않으며, 대화 기록은 지워질 수 있다. 셀에 작은따옴표(<code>'</code>)를 먼저 입력하고 수식을 붙여 넣으면 계산되지 않는 문자로 저장되며, 작은따옴표는 수식 입력줄에만 보인다.</p>
+<p>같은 지시문을 다시 보내도 같은 수식이 온다는 보장이 없으므로(1-3), 검증을 통과한 수식은 그 자리에서 <code>C</code> 열에 기록한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>기록하지 않았을 때의 문제</th>
+<th><code>C</code> 열의 기록이 해결하는 방식</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>수정 요청을 거치면 <code>D</code> 열의 수식이 교체되어 처음의 수식이 남지 않는다</td>
+<td>처음의 수식과 수정된 수식의 차이를 비고에 기록할 수 있다</td>
+</tr>
+<tr class="even">
+<td><code>D</code> 열에는 결과만 표시되어 어떤 수식의 값인지 보이지 않는다</td>
+<td>인쇄물이나 화면에서 수식을 문자로 읽을 수 있다</td>
+</tr>
+<tr class="odd">
+<td>대화 기록은 도구의 설정에 따라 지워질 수 있다</td>
+<td>통합 문서가 기록의 원본이 된다</td>
+</tr>
+</tbody>
+</table>
+<p>셀에 작은따옴표(<code>'</code>)를 먼저 입력하고 수식을 붙여 넣으면 계산되지 않는 문자로 저장되며, 작은따옴표는 수식 입력줄에만 보인다.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -1222,7 +1365,42 @@ G열(금액)의 합계, 평균, 최댓값, 최솟값, 개수를 구하는 수식
 <h2 class="anchored" data-anchor-id="수정-요청과-수용-기준">4. 수정 요청과 수용 기준</h2>
 <section id="불일치-원인의-추정" class="level3">
 <h3 class="anchored" data-anchor-id="불일치-원인의-추정">4-1. 불일치 원인의 추정</h3>
-<p>불일치의 원인은 대부분 지시문의 누락에 있다. 결과가 0이면 수식을 입력할 시트를, 기준보다 크면 끝 행과 요약 행을, 작으면 시작 행과 끝 행을, 단위가 전혀 다르면(예: 수량의 합계 493) 열 구성을, <code>#NAME?</code>이면 버전과 사용할 함수를 지시문에 기재하였는지 점검한다. 합계가 불일치하면 <strong>차이</strong>(수식의 결과에서 수작업 결과를 뺀 값)가 원인을 가리킨다. 1장에서 수량의 합계로 입력 오류의 구간을 찾은 것과 같은 방법이다.</p>
+<p>불일치의 원인은 대부분 지시문의 누락에 있다. 증상으로부터 원인을 추정하는 기준은 다음과 같다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>증상</th>
+<th>지시문에서 점검할 내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>결과가 0이다</td>
+<td>수식을 입력하는 시트가 자료가 있는 시트와 다르다는 점을 기재하였는가</td>
+</tr>
+<tr class="even">
+<td>결과가 수작업 결과보다 크다</td>
+<td>자료의 끝 행과 요약 행의 존재를 기재하였는가</td>
+</tr>
+<tr class="odd">
+<td>결과가 수작업 결과보다 작다</td>
+<td>자료의 시작 행과 끝 행을 정확히 기재하였는가</td>
+</tr>
+<tr class="even">
+<td>결과의 단위가 전혀 다르다(예: 493)</td>
+<td>열 구성을 정확히 기재하였는가. 493은 수량의 합계이다</td>
+</tr>
+<tr class="odd">
+<td><code>#NAME?</code>가 표시된다</td>
+<td>프로그램의 버전과 사용할 함수를 기재하였는가</td>
+</tr>
+</tbody>
+</table>
+<p>합계가 불일치하면 <strong>차이</strong>(수식의 결과에서 수작업 결과를 뺀 값)가 원인을 가리킨다. 1장에서 수량의 합계로 입력 오류의 구간을 찾은 것과 같은 방법이다.</p>
 <ol type="1">
 <li><strong>차이를 계산한다.</strong> 빈 셀에 <code>=D2-B2</code>로 구한다.</li>
 <li><strong>부호를 읽는다.</strong> 양수이면 들어가지 말아야 할 셀이 들어갔고, 음수이면 들어가야 할 셀이 빠졌다. 아주 작은 소수(-0.26316 등)이면 수작업 결과를 반올림하여 입력한 것이다(1-4).</li>
@@ -1301,7 +1479,38 @@ G열(금액)의 합계, 평균, 최댓값, 최솟값, 개수를 구하는 수식
 </section>
 <section id="수정-요청의-작성" class="level3">
 <h3 class="anchored" data-anchor-id="수정-요청의-작성">4-2. 수정 요청의 작성</h3>
-<p>수정 요청에는 입력한 수식, 표시된 결과, 기대한 값, 보완하는 정보의 네 가지를 기재한다. 수식이 없으면 어느 수식에 대한 요청인지 특정되지 않고, 결과가 없으면 AI가 원인을 다시 추측하며, 기대한 값이 없으면 목표가 없고, 보완하는 정보가 없으면 같은 가정이 반복된다. “틀렸다. 다시 작성하라”는 네 요소를 모두 빠뜨린 요청이다.</p>
+<p>수정 요청에는 다음 네 가지를 기재한다. “틀렸다. 다시 작성하라”는 네 요소를 모두 빠뜨린 요청이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>요소</th>
+<th>기재하지 않았을 때의 문제</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>입력한 수식</td>
+<td>어느 수식에 대한 수정 요청인지 특정되지 않는다</td>
+</tr>
+<tr class="even">
+<td>표시된 결과</td>
+<td>0, 큰 값, 오류 값은 원인이 서로 다르다. 결과가 없으면 AI가 원인을 다시 추측한다</td>
+</tr>
+<tr class="odd">
+<td>기대한 값</td>
+<td>수정의 목표가 없다</td>
+</tr>
+<tr class="even">
+<td>보완하는 정보</td>
+<td>누락된 정보가 보완되지 않으면 같은 가정이 반복된다</td>
+</tr>
+</tbody>
+</table>
+<p>작성 예는 다음과 같다.</p>
 <pre class="text"><code>제시한 수식 =SUM(G4:G23)을 "대조표" 시트의 D2 셀에 입력하였더니 0이 표시되었다.
 기대한 값은 6,479,000이다.
 자료는 "판매내역" 시트에 있고 수식은 "대조표" 시트에 입력한다.

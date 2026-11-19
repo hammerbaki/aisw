@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-e5128435ffcf42630fd9bfc4806fab7a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-60ab257bf7f0877d799f3d93a9b3e36a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -988,7 +988,37 @@ Name: 금액, dtype: int64</code></pre>
 </section>
 <section id="따라-하기-3" class="level3">
 <h3 class="anchored" data-anchor-id="따라-하기-3">따라 하기</h3>
-<p><strong>예상.</strong> 품목군별 집계의 행 수, 두 기준 집계의 길이, <code>pivot_table</code> 결과와 <code>melt</code> 결과의 크기를 적는다.</p>
+<p><strong>예상.</strong> 실행하기 전에 다음 표의 “예상” 열을 채운다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>연산</th>
+<th>예상</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>groupby("품목군")</code> 집계의 행 수</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>groupby(["품목군", "결제수단"])</code> 집계의 길이</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>pivot_table(index="품목군", columns="결제수단", ...)</code>의 크기(행, 열)</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>wide.reset_index().melt(...)</code>의 크기(행, 열)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <p><strong>실행.</strong> 「따라 하기 4」의 셀을 실행하고, <code>s</code>와 <code>wide</code>에서 같은 칸을 하나 골라 견준다.</p>
 <p><strong>결과와 해석.</strong> <code>pivot_table</code>을 15행으로 예상하였다면 긴 표와 넓은 표를 혼동한 것이고, <code>melt</code>를 5행으로 예상하였다면 펼친 열의 수를 곱하지 않은 것이다.</p>
 <ul>
@@ -1182,7 +1212,45 @@ Name: count, dtype: int64</code></pre>
 </section>
 <section id="따라-하기-4" class="level3">
 <h3 class="anchored" data-anchor-id="따라-하기-4">따라 하기</h3>
-<p><strong>예상.</strong> <code>merge(a, b)</code>의 네 방식, <code>merge(cust, cnt)</code>의 inner와 left, <code>merge(tx, cust, how="left")</code>의 행 수를 5.1절의 규칙으로 계산한다.</p>
+<p><strong>예상.</strong> 실행하기 전에 다음 표의 행 수를 5.1절의 규칙으로 계산한다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>결합</th>
+<th>예상 행 수</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>merge(a, b, how="inner")</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>merge(a, b, how="left")</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>merge(a, b, how="right")</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>merge(a, b, how="outer")</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>merge(cust, cnt, how="inner")</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>merge(cust, cnt, how="left")</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>merge(tx, cust, how="left")</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <p><strong>실행.</strong> 「따라 하기 5」의 셀을 실행한다.</p>
 <p><strong>결과와 해석.</strong> inner를 2행으로 예상하였다면 <code>K3</code>의 중복을 곱하지 않은 것이다. 결과가 다르면 키의 중복(<code>is_unique</code>)과 짝이 없는 키(<code>indicator=True</code>)를 본다.</p>
 <ul>

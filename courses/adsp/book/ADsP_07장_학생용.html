@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-e5128435ffcf42630fd9bfc4806fab7a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-60ab257bf7f0877d799f3d93a9b3e36a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -768,7 +768,38 @@ qsec  0.467 -0.225 -0.667  1.000</code></pre>
 [25, 16, 9, 4, 1, 0, 1, 4, 9, 16, 25]
 상관 계수: 0.0</code></pre>
 <p>y가 x로 완전히 정해지는데도 상관 계수는 0이다. 왼쪽 절반은 음의 관계, 오른쪽 절반은 양의 관계이기 때문이다(1.5절의 둘째 주의).</p>
-<p><strong>복기.</strong> 연비와 무게는 강한 음의 상관(-0.868)이고, 그 제곱이 2절의 결정 계수가 된다. 휜 관계에서는 스피어만이 피어슨보다 컸고, 상관 계수 0은 선형 관계가 없다는 뜻일 뿐이다.</p>
+<p><strong>복기.</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>예상</th>
+<th>결과</th>
+<th>견줄 점</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>연비와 무게의 상관 계수</td>
+<td>-0.868</td>
+<td>강한 음의 상관이다. 그 제곱이 2절의 결정 계수가 된다</td>
+</tr>
+<tr class="even">
+<td>휜 관계에서 절댓값이 큰 쪽</td>
+<td>스피어만(-0.895)</td>
+<td>피어슨(-0.776)보다 크다</td>
+</tr>
+<tr class="odd">
+<td>y = x²의 상관 계수</td>
+<td>0.0</td>
+<td>선형 관계가 없다는 뜻일 뿐이다</td>
+</tr>
+</tbody>
+</table>
 <hr>
 </section>
 </section>

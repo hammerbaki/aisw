@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-e5128435ffcf42630fd9bfc4806fab7a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-60ab257bf7f0877d799f3d93a9b3e36a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -1902,7 +1902,33 @@ sigma^2 estimated as 0.001348:  log likelihood = 244.7,  aic = -483.4</code></pr
 </tr>
 </tbody>
 </table>
-<p><code>arima()</code>의 출력에는 유의 확률의 열이 없으므로 따라 하기 4의 <code>z</code>에 해당하는 값을 손으로 계산한다. statsmodels의 이름과는 <code>ma1</code>과 <code>ma.L1</code>, <code>sma1</code>과 <code>ma.S.L12</code>, <code>ar1</code>과 <code>ar.L1</code>이 짝이다. AIC는 -2 × 244.7 + 2 × 3 = -483.4이며(모수는 계수 둘과 오차의 분산), 음수여도 된다.</p>
+<p><code>arima()</code>의 출력에는 유의 확률의 열이 없으므로 따라 하기 4의 <code>z</code>에 해당하는 값을 손으로 계산한다. AIC는 -2 × 244.7 + 2 × 3 = -483.4이며(모수는 계수 둘과 오차의 분산), 음수여도 된다. 계수의 이름은 파이썬과 다음과 같이 짝짓는다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>뜻</th>
+<th>R <code>arima()</code></th>
+<th>파이썬 statsmodels <code>ARIMA</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>MA(1)의 계수</td>
+<td><code>ma1</code></td>
+<td><code>ma.L1</code></td>
+</tr>
+<tr class="even">
+<td>계절 MA(1)의 계수</td>
+<td><code>sma1</code></td>
+<td><code>ma.S.L12</code></td>
+</tr>
+<tr class="odd">
+<td>AR(1)의 계수</td>
+<td><code>ar1</code></td>
+<td><code>ar.L1</code></td>
+</tr>
+</tbody>
+</table>
 <hr>
 </section>
 </section>

@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-e5128435ffcf42630fd9bfc4806fab7a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-60ab257bf7f0877d799f3d93a9b3e36a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -890,7 +890,34 @@ hc
 2    31
 Name: count, dtype: int64</code></pre></li>
 </ol>
-<p><strong>해석과 복기.</strong> 병합 기록은 50 - 1 = 49줄이고, 높이 10은 7.188과 13.516 사이이므로 군집이 2개이다. 군집별 평균을 전체 평균과 견주면 1번은 “도시화가 덜 된, 살인이 많은 주”, 2번은 “도시화가 많이 된, 폭력 범죄가 많은 주”, 3번은 “범죄가 적은 주”, 4번은 “도시화가 많이 된, 범죄가 평균 수준인 주”로 부를 수 있다. 이름은 분석가가 붙인다. 군집 수로 자르기와 높이로 자르기는 R의 <code>cutree()</code>의 <code>k</code>와 <code>h</code>에 해당한다.</p>
+<p><strong>해석과 복기.</strong> 병합 기록은 50 - 1 = 49줄이고, 높이 10은 7.188과 13.516 사이이므로 군집이 2개이다. 군집별 평균을 전체 평균과 견주면 네 군집을 다음과 같이 부를 수 있다. 이름은 분석가가 붙인다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>군집</th>
+<th>부를 수 있는 이름</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>도시화가 덜 된, 살인이 많은 주</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>도시화가 많이 된, 폭력 범죄가 많은 주</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>범죄가 적은 주</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>도시화가 많이 된, 범죄가 평균 수준인 주</td>
+</tr>
+</tbody>
+</table>
+<p>군집 수로 자르기와 높이로 자르기는 R의 <code>cutree()</code>의 <code>k</code>와 <code>h</code>에 해당한다.</p>
 <hr>
 </section>
 </section>
@@ -1200,7 +1227,29 @@ dtype: float64</code></pre>
 </tr>
 </tbody>
 </table>
-<p>향상도가 1보다 크면 양의 연관, 1이면 독립(규칙으로서 쓸모가 없다), 1보다 작으면 음의 연관이다. 어느 문구점의 거래 여섯 건으로 계산한다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>향상도</th>
+<th>해석</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1보다 크다</td>
+<td>양의 연관이다</td>
+</tr>
+<tr class="even">
+<td>1이다</td>
+<td>독립이다. 규칙으로서 쓸모가 없다</td>
+</tr>
+<tr class="odd">
+<td>1보다 작다</td>
+<td>음의 연관이다</td>
+</tr>
+</tbody>
+</table>
+<p>어느 문구점의 거래 여섯 건으로 계산한다.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">

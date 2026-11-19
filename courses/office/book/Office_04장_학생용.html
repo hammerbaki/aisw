@@ -41,7 +41,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-e5128435ffcf42630fd9bfc4806fab7a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-60ab257bf7f0877d799f3d93a9b3e36a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -1173,6 +1173,32 @@ G26 평균      =AVERAGE(G4:G23)   323950     (검산과 같으면 세 범위가
 <h3 class="anchored" data-anchor-id="if의-형식">4-3. IF의 형식</h3>
 <p><code>IF</code>는 조건의 결과에 따라 두 값 중 하나를 표시하는 함수이며 인수는 3개이다.</p>
 <pre class="text"><code>=IF(조건, 참일 때의 값, 거짓일 때의 값)</code></pre>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>인수</th>
+<th>내용</th>
+<th>예</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>첫째 인수</td>
+<td>조건</td>
+<td><code>G4&gt;=500000</code></td>
+</tr>
+<tr class="even">
+<td>둘째 인수</td>
+<td>조건이 참일 때 표시할 값</td>
+<td><code>"달성"</code></td>
+</tr>
+<tr class="odd">
+<td>셋째 인수</td>
+<td>조건이 거짓일 때 표시할 값</td>
+<td><code>"미달"</code></td>
+</tr>
+</tbody>
+</table>
 <p><code>=IF(G4&gt;=500000,"달성","미달")</code>은 “<code>G4</code>가 500,000 이상이면 달성을, 그렇지 않으면 미달을 표시한다”로 읽는다. 엑셀은 조건을 먼저 계산하고 그 결과에 따라 둘째 또는 셋째 인수를 표시한다(지원 문서 「IF 함수」). 4행(720,000)은 조건이 <code>TRUE</code>이므로 달성, 5행(300,000)은 <code>FALSE</code>이므로 미달이다. 요약 함수와 다른 점은 인수가 범위가 아니라 조건과 값이라는 것뿐이다.</p>
 <pre class="mermaid">flowchart LR
     S["=IF(G4&gt;=500000, #quot;달성#quot;, #quot;미달#quot;)"] --&gt; Q{"첫째 인수(조건)&lt;br/&gt;G4&gt;=500000"}
@@ -1222,7 +1248,30 @@ G26 평균      =AVERAGE(G4:G23)   323950     (검산과 같으면 세 범위가
 </section>
 <section id="if-수식의-복사" class="level3">
 <h3 class="anchored" data-anchor-id="if-수식의-복사">4-5. IF 수식의 복사</h3>
-<p><code>IF</code> 수식의 셀 주소도 상대 참조이다. <code>I4</code>의 수식을 아래로 복사하면 조건의 주소가 한 행씩 이동하고(<code>I5</code>는 <code>=IF(G5&gt;=500000,"달성","미달")</code>, <code>I23</code>은 <code>G23</code>), 직접 기재한 상수(500000, “달성”, “미달”)는 변하지 않는다. 본 과목에서는 조건이 하나인 <code>IF</code>만 다루며, 조건의 결합이나 값을 셋 이상으로 구분하는 방법은 다루지 않는다.</p>
+<p><code>IF</code> 수식의 셀 주소도 상대 참조이다. <code>I4</code>의 수식을 아래로 복사하면 조건의 주소가 한 행씩 이동하고, 직접 기재한 상수(500000, “달성”, “미달”)는 변하지 않는다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>셀</th>
+<th>복사된 수식</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>I4</code></td>
+<td><code>=IF(G4&gt;=500000,"달성","미달")</code></td>
+</tr>
+<tr class="even">
+<td><code>I5</code></td>
+<td><code>=IF(G5&gt;=500000,"달성","미달")</code></td>
+</tr>
+<tr class="odd">
+<td><code>I23</code></td>
+<td><code>=IF(G23&gt;=500000,"달성","미달")</code></td>
+</tr>
+</tbody>
+</table>
+<p>본 과목에서는 조건이 하나인 <code>IF</code>만 다루며, 조건의 결합이나 값을 셋 이상으로 구분하는 방법은 다루지 않는다.</p>
 </section>
 <section id="name-오류" class="level3">
 <h3 class="anchored" data-anchor-id="name-오류">4-6. <code>#NAME?</code> 오류</h3>
@@ -1328,7 +1377,33 @@ G26 평균      =AVERAGE(G4:G23)   323950     (검산과 같으면 세 범위가
 </tr>
 </tbody>
 </table>
-<p>기준 금액의 주소가 한 행씩 내려가 빈 셀을 가리키고, 빈 셀은 0으로 간주되므로 19행이 모두 “달성”이 된다. 구성비의 <code>#DIV/0!</code>와 달리 오류 값이 표시되지 않으므로 건수를 기준 값과 대조하지 않으면 발견되지 않는다. 실습 PC의 엑셀에서 기준 금액을 0으로 두었을 때의 달성 건수도 19건이었다. 기준 금액의 주소를 절대 참조로 지정하면(<code>=IF(G4&gt;=$K$3,"달성","미달")</code>) <code>I6</code>은 미달이 된다.</p>
+<p>기준 금액의 주소가 한 행씩 내려가 빈 셀을 가리키고, 빈 셀은 0으로 간주되므로 19행이 모두 “달성”이 된다. 구성비의 <code>#DIV/0!</code>와 달리 오류 값이 표시되지 않으므로 건수를 기준 값과 대조하지 않으면 발견되지 않는다. 실습 PC의 엑셀에서 기준 금액을 0으로 두었을 때의 달성 건수도 19건이었다. 기준 금액의 주소를 절대 참조로 지정하면 해결된다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>셀</th>
+<th>복사된 수식</th>
+<th>결과</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>I4</code></td>
+<td><code>=IF(G4&gt;=$K$3,"달성","미달")</code></td>
+<td>달성</td>
+</tr>
+<tr class="even">
+<td><code>I5</code></td>
+<td><code>=IF(G5&gt;=$K$3,"달성","미달")</code></td>
+<td>달성</td>
+</tr>
+<tr class="odd">
+<td><code>I6</code></td>
+<td><code>=IF(G6&gt;=$K$3,"달성","미달")</code></td>
+<td>미달</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="판별-기준의-적용" class="level3">
 <h3 class="anchored" data-anchor-id="판별-기준의-적용">5-3. 판별 기준의 적용</h3>
