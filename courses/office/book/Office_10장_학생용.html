@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-60ab257bf7f0877d799f3d93a9b3e36a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-e5128435ffcf42630fd9bfc4806fab7a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -760,25 +760,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="따라-하기">따라 하기</h3>
 <p>실습 노트북의 2절에 있는 셀을 차례로 실행한다.</p>
 <ol type="1">
-<li>라이브러리를 불러오는 셀과 파일 목록을 작성하는 셀을 실행한다.
-<ul>
-<li><span class="check-badge">확인 1</span> <code>12</code>가 출력되었다.</li>
-</ul></li>
-<li>첫 파일과 마지막 파일을 표시하는 셀을 실행하여 2-2절의 출력과 대조한다. 이어서 형태에 오타가 있는 셀을 실행하기 전에 결과를 예상한다.
-<ul>
-<li><span class="check-badge">확인 2</span> <code>0</code>이 출력되었다.</li>
-</ul></li>
-<li>다음 셀의 <code>____</code>에 1~9월의 파일만 일치하도록 한 글자를 기재하여 실행한다.
-<ul>
-<li><span class="check-badge">확인 3</span> 첫 셀의 결과가 9이다.</li>
-</ul></li>
-<li>다음 셀의 <code>____</code>에 10~12월의 파일만 일치하도록 한 글자를 기재하여 실행한다.
-<ul>
-<li><span class="check-badge">확인 4</span> 둘째 셀의 결과가 3이다.</li>
-</ul></li>
+<li>라이브러리를 불러오는 셀과 파일 목록을 작성하는 셀을 실행한다.</li>
+<li>첫 파일과 마지막 파일을 표시하는 셀을 실행하여 2-2절의 출력과 대조한다. 이어서 형태에 오타가 있는 셀을 실행하기 전에 결과를 예상한다.</li>
+<li>다음 두 셀의 <code>____</code>에 각각 1~9월, 10~12월의 파일만 일치하도록 한 글자를 기재하여 실행한다.</li>
 <li><code>판매_2026_*2.xlsx</code>의 셀을 실행하기 전에 일치할 파일을 적어 본다.
 <ul>
-<li><span class="check-badge">확인 5</span> 2월과 12월의 파일 2개가 표시되었다. 월이 2로 끝나는 파일이다.</li>
+<li><span class="check-badge">확인 1</span> 파일 목록의 수가 <code>12</code>, 오타가 있는 형태의 결과가 <code>0</code>이고, 1~9월의 셀이 9, 10~12월의 셀이 3을 출력하였으며, <code>판매_2026_*2.xlsx</code>에는 월이 2로 끝나는 2월과 12월의 파일 2개가 일치하였다.</li>
 </ul></li>
 </ol>
 </section>
@@ -929,30 +916,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>실습 노트북의 3절에 있는 셀을 차례로 실행한다.</p>
 <ol type="1">
 <li><code>for f in files:</code>와 <code>print(f)</code>의 셀을 실행하여 파일의 위치가 12줄로 출력되는 것을 확인한다.</li>
-<li>파일마다 행의 수를 출력하는 셀을 실행한다.
-<ul>
-<li><span class="check-badge">확인 6</span> 12줄이 출력되었고 첫 줄의 행의 수가 20, 마지막 줄이 21이다.</li>
-</ul></li>
-<li>파일을 읽어 <code>tables</code>에 추가하는 셀, 첫 표와 마지막 표의 크기를 출력하는 셀, <code>concat</code>의 셀, <code>year.tail(3)</code>의 셀을 실행한다.
-<ul>
-<li><span class="check-badge">확인 7</span> <code>(266, 6)</code>이 출력되고, 마지막 3행의 행 번호가 263~265, 판매번호가 1264~1266이다.</li>
-</ul></li>
+<li>파일마다 행의 수를 출력하는 셀을 실행한다.</li>
+<li>파일을 읽어 <code>tables</code>에 추가하는 셀, 첫 표와 마지막 표의 크기를 출력하는 셀, <code>concat</code>의 셀, <code>year.tail(3)</code>의 셀을 실행한다.</li>
 <li><code>ignore_index=True</code>를 뺀 셀을 실행하기 전에 마지막 3행의 행 번호를 예상한다.
 <ul>
-<li><span class="check-badge">확인 8</span> 마지막 3행의 행 번호가 18, 19, 20이다.</li>
+<li><span class="check-badge">확인 2</span> 파일마다 행의 수가 12줄 출력되었고(첫 줄 20, 마지막 줄 21), <code>concat</code>의 결과가 <code>(266, 6)</code>이며 마지막 3행의 행 번호가 263~265(판매번호 1264~1266)이다. <code>ignore_index=True</code>를 뺀 셀에서는 마지막 3행의 행 번호가 18, 19, 20이다.</li>
 </ul></li>
 <li><code>[오류 확인]</code> 셀을 실행하여 <code>IndentationError</code>의 마지막 줄을 읽는다.</li>
-<li>1분기의 파일 3개를 직접 기재한 셀에서 <code>____</code>에 세 번째 파일의 월을 기재하여 실행한다.
-<ul>
-<li><span class="check-badge">확인 9</span> 병합한 표의 크기가 <code>(64, 6)</code>이다. 1~3월의 행 수 20, 19, 25의 합이다.</li>
-</ul></li>
-<li>다음 셀을 실행한다.
-<ul>
-<li><span class="check-badge">확인 10</span> 1분기의 금액 합계가 23182000이다. 1~3월의 합계 6,479,000, 8,016,000, 8,687,000의 합이다.</li>
-</ul></li>
+<li>1분기의 파일 3개를 직접 기재한 셀에서 <code>____</code>에 세 번째 파일의 월을 기재하여 실행하고, 다음 셀을 실행한다.</li>
 <li>2분기의 파일 3개를 병합하는 셀의 <code>____</code> 3곳에 월(04, 05, 06)을 기재하여 실행한다.
 <ul>
-<li><span class="check-badge">확인 11</span> 표의 크기가 <code>(64, 7)</code>이고 금액 합계가 21406000이다. 4~6월의 행 수 23, 21, 20과 금액 합계 8,643,000, 6,765,000, 5,998,000의 합이다. 열이 7개인 것은 금액 열을 더하였기 때문이다.</li>
+<li><span class="check-badge">확인 3</span> 1분기의 병합한 표는 <code>(64, 6)</code>(1~3월의 행 수 20, 19, 25의 합), 금액 합계 23182000(1~3월의 합계 6,479,000, 8,016,000, 8,687,000의 합)이다. 2분기의 표는 <code>(64, 7)</code>, 금액 합계 21406000(4~6월의 8,643,000, 6,765,000, 5,998,000의 합)이며, 열이 7개인 것은 금액 열을 더하였기 때문이다.</li>
 </ul></li>
 </ol>
 </section>
@@ -1072,20 +1046,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>금액 열과 월 열을 추가하는 셀, 판매일과 월을 나란히 표시하는 셀, 월 열의 자료형을 표시하는 셀을 실행한다.
 <ul>
-<li><span class="check-badge">확인 12</span> 마지막 3행의 월이 12이고, 월 열의 자료형이 <code>int32</code>이다.</li>
+<li><span class="check-badge">확인 4</span> 마지막 3행의 월이 12이고, 월 열의 자료형이 <code>int32</code>이다.</li>
 </ul></li>
 <li>연간 합계와 1월 합계를 출력하는 셀을 실행한다. 이어서 <code>[오류 확인]</code> 셀을 실행하여 <code>AttributeError</code>의 마지막 줄을 읽는다.</li>
-<li>다음 셀의 <code>____</code>에 2를 기재하여 실행한다.
-<ul>
-<li><span class="check-badge">확인 13</span> 2월의 금액 합계가 8016000이다.</li>
-</ul></li>
-<li>월별 판매 건의 수를 산출하는 셀의 <code>____</code>에 개수를 세는 지정 값을 기재하여 실행한다.
-<ul>
-<li><span class="check-badge">확인 14</span> 월별 건수가 1월 20, 2월 19, 3월 25, …, 12월 21이고 합이 266이다. 3절에서 파일마다 출력한 행의 수와 같다.</li>
-</ul></li>
+<li>다음 셀의 <code>____</code>에 2를 기재하여 실행한다.</li>
+<li>월별 판매 건의 수를 산출하는 셀의 <code>____</code>에 개수를 세는 지정 값을 기재하여 실행한다.</li>
 <li>3월의 행을 고르는 셀의 <code>____</code>에 3을 기재하여 실행한다.
 <ul>
-<li><span class="check-badge">확인 15</span> <code>25</code>와 <code>8687000</code>이 출력되었다.</li>
+<li><span class="check-badge">확인 5</span> 2월의 금액 합계가 8016000이고, 월별 건수가 1월 20, 2월 19, 3월 25, …, 12월 21(합 266)으로 3절에서 파일마다 출력한 행의 수와 같으며, 3월의 셀은 <code>25</code>와 <code>8687000</code>을 출력하였다.</li>
 </ul></li>
 </ol>
 </section>
@@ -1256,15 +1224,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>월별 집계표를 산출하여 저장하는 셀과 차트를 작성하는 셀을 실행한다.
 <ul>
-<li><span class="check-badge">확인 16</span> 막대 12개의 차트가 표시되고 차트 제목과 두 축 제목이 한글로 읽힌다. 왼쪽 파일 탐색기의 <code>결과</code> 폴더에 <code>월별금액_2026.png</code>와 <code>연간집계_2026.xlsx</code>가 생겼다.</li>
+<li><span class="check-badge">확인 6</span> 막대 12개의 차트가 표시되고 차트 제목과 두 축 제목이 한글로 읽힌다. 왼쪽 파일 탐색기의 <code>결과</code> 폴더에 <code>월별금액_2026.png</code>와 <code>연간집계_2026.xlsx</code>가 생겼다.</li>
 </ul></li>
-<li>다음 셀의 <code>____</code>에 거래처 열의 이름을 기재하여 실행한다.
-<ul>
-<li><span class="check-badge">확인 17</span> 대한사무기 17519000, 동아문구 14111000, 미래유통 15298000, 서울오피스 18997000, 한빛상사 20686000이다. 다섯 값의 합은 연간 금액 합계 86611000과 같다.</li>
-</ul></li>
+<li>다음 셀의 <code>____</code>에 거래처 열의 이름을 기재하여 실행한다.</li>
 <li>월별 집계표의 처음 몇 행을 더하는 셀의 <code>____</code>에 3을 기재하여 실행한다.
 <ul>
-<li><span class="check-badge">확인 18</span> <code>23182000</code>이 출력되었다. 3절의 1분기 병합 결과와 같다.</li>
+<li><span class="check-badge">확인 7</span> 거래처별 연간 금액이 대한사무기 17519000, 동아문구 14111000, 미래유통 15298000, 서울오피스 18997000, 한빛상사 20686000(합 86611000)이고, 월별 집계표의 처음 3행의 합은 3절의 1분기 병합 결과와 같은 <code>23182000</code>이다.</li>
 </ul></li>
 </ol>
 </section>
@@ -1421,16 +1386,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>병합한 자료 전체를 저장하는 셀을 실행한다.</li>
 <li>한빛상사의 파일을 다시 읽는 셀을 실행한다.
 <ul>
-<li><span class="check-badge">확인 19</span> 표의 크기가 <code>(64, 8)</code>이다. 원본의 6개 열에 금액 열과 월 열이 추가되어 있다.</li>
-<li><span class="check-badge">확인 20</span> 금액의 합계가 20686000이다. 5절의 따라 하기에서 산출한 한빛상사의 연간 금액과 같다.</li>
+<li><span class="check-badge">확인 8</span> 표의 크기가 <code>(64, 8)</code>(원본의 6개 열에 금액 열과 월 열)이고, 금액의 합계가 5절에서 산출한 한빛상사의 연간 금액과 같은 20686000이다.</li>
 </ul></li>
-<li><code>거래처별</code> 폴더의 파일 목록을 표시하는 셀을 실행한다.
-<ul>
-<li><span class="check-badge">확인 21</span> 파일 5개의 위치가 거래처의 가나다순으로 표시되었다.</li>
-</ul></li>
+<li><code>거래처별</code> 폴더의 파일 목록을 표시하는 셀을 실행한다. 파일 5개의 위치가 거래처의 가나다순으로 표시된다.</li>
 <li>동아문구의 파일을 읽는 셀의 <code>____</code>에 거래처의 이름을 기재하여 실행한다.
 <ul>
-<li><span class="check-badge">확인 22</span> 동아문구의 파일이 46행 8열이고 금액의 합계가 14111000이다.</li>
+<li><span class="check-badge">확인 9</span> 동아문구의 파일이 46행 8열이고 금액의 합계가 14111000이다.</li>
 </ul></li>
 </ol>
 </section>
@@ -1580,7 +1541,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 1월 금액 합계  : 6479000
 분리한 파일 수 : 5</code></pre>
 <ul>
-<li><span class="check-badge">확인 23</span> 파일 수 12, 병합한 행의 수 266, 연간 금액 합계 86611000, 1월 금액 합계 6479000, 분리한 파일 수 5가 출력되었다.</li>
+<li><span class="check-badge">확인 10</span> 파일 수 12, 병합한 행의 수 266, 연간 금액 합계 86611000, 1월 금액 합계 6479000, 분리한 파일 수 5가 출력되었다.</li>
 </ul></li>
 </ol>
 </section>
@@ -1590,7 +1551,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>판매현황_04_학번.xlsx</code>를 엑셀로 열어 <code>G25</code>의 값을 확인한다.</li>
 <li>노트북의 7절 나의 셀에서 <code>____</code>에 확인한 값을 숫자로 기재하여 실행한다.
 <ul>
-<li><span class="check-badge">확인 24</span> 출력된 표의 “일치” 열이 5행 모두 <code>True</code>이다.</li>
+<li><span class="check-badge">확인 11</span> 출력된 표의 “일치” 열이 5행 모두 <code>True</code>이다.</li>
 </ul></li>
 </ol>
 </section>
@@ -1601,7 +1562,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>실행이 <code>[오류 확인]</code> 셀에서 멈추면 그 다음 셀을 선택하고 <code>[Run] → [Run Selected Cell and All Below]</code>를 실행한다.</li>
 <li>노트북을 맨 아래까지 내려 오류가 표시된 셀을 확인한다. 연습 문제의 셀은 주석뿐이므로 오류 없이 지나간다.
 <ul>
-<li><span class="check-badge">확인 25</span> 모든 코드 셀에 실행 번호가 차례로 부여되었고, 붉은 오류 출력은 <code>[오류 확인]</code> 셀 2개에만 있다.</li>
+<li><span class="check-badge">확인 12</span> 모든 코드 셀에 실행 번호가 차례로 부여되었고, 붉은 오류 출력은 <code>[오류 확인]</code> 셀 2개에만 있다.</li>
 </ul></li>
 <li><code>Ctrl + S</code>로 노트북을 저장한다.</li>
 </ol>
@@ -1611,13 +1572,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>파일 탐색기에서 <code>결과</code> 폴더를 열어 완료 기준의 결과 파일이 모두 있는지 확인한다.</li>
 <li><code>결과/거래처별/판매_2026_한빛상사.xlsx</code>를 내려받아 엑셀로 연다.</li>
-<li><code>C</code> 열(거래처)의 아무 셀이나 선택하고 필터를 켜서 값의 목록을 확인한다(5장).
+<li><code>C</code> 열(거래처)의 아무 셀이나 선택하고 필터를 켜서 값의 목록을 확인한다(5장).</li>
+<li>노트북, <code>연간집계_2026.xlsx</code>, <code>월별금액_2026.png</code>를 내려받아 수강생 PC의 <code>컴퓨터활용\실습</code> 폴더로 옮기고 <code>월별금액_2026.png</code>를 연다.
 <ul>
-<li><span class="check-badge">확인 26</span> 거래처의 값이 한빛상사 하나뿐이고, 자료가 2행부터 65행까지 64행이다.</li>
-</ul></li>
-<li>노트북, <code>연간집계_2026.xlsx</code>, <code>월별금액_2026.png</code>를 내려받아 수강생 PC의 <code>컴퓨터활용\실습</code> 폴더로 옮긴다.
-<ul>
-<li><span class="check-badge">확인 27</span> <code>월별금액_2026.png</code>를 열면 막대 12개의 차트가 표시된다. 가장 높은 막대는 7월이다.</li>
+<li><span class="check-badge">확인 13</span> 한빛상사 파일의 거래처 필터에 값이 한빛상사 하나뿐이고 자료가 2행부터 65행까지 64행이며, <code>월별금액_2026.png</code>에 막대 12개의 차트가 표시되고 가장 높은 막대는 7월이다.</li>
 </ul></li>
 </ol>
 </section>

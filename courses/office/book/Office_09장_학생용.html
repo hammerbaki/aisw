@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3c9e589e2b5bc774cdfc49f4c42c1916.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-60ab257bf7f0877d799f3d93a9b3e36a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-e5128435ffcf42630fd9bfc4806fab7a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -640,17 +640,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="따라-하기">따라 하기</h3>
 <p>실습 노트북의 2절을 실행하여 자료를 준비한다. 1월 자료는 <code>sales</code>에, 2월 자료는 <code>feb</code>에 저장한다.</p>
 <ol type="1">
-<li><code>import pandas as pd</code>를 포함한 셀을 실행한다.
-<ul>
-<li><span class="check-badge">확인 1</span> <code>(20, 7)</code>이 출력되었다.</li>
-</ul></li>
-<li>2월 자료를 읽는 셀에서 <code>____</code> 2곳에 금액을 계산하는 두 열의 이름을 기재하여 실행한다.
-<ul>
-<li><span class="check-badge">확인 2</span> <code>feb.shape</code>의 결과가 <code>(19, 7)</code>이다.</li>
-</ul></li>
+<li><code>import pandas as pd</code>를 포함한 셀을 실행한다. 출력은 <code>(20, 7)</code>이다.</li>
+<li>2월 자료를 읽는 셀에서 <code>____</code> 2곳에 금액을 계산하는 두 열의 이름을 기재하여 실행한다.</li>
 <li>처음 3행의 판매번호, 거래처, 품목, 금액을 표시하는 셀을 실행한다.
 <ul>
-<li><span class="check-badge">확인 3</span> 처음 3행의 금액이 792000, 510000, 288000이다. 2월 연습용 통합 문서의 <code>G4:G6</code>과 같다.</li>
+<li><span class="check-badge">확인 1</span> 1월 자료의 크기가 <code>(20, 7)</code>, <code>feb.shape</code>가 <code>(19, 7)</code>이고, 2월 처음 3행의 금액이 792000, 510000, 288000이다. 2월 연습용 통합 문서의 <code>G4:G6</code>과 같다.</li>
 </ul></li>
 </ol>
 </section>
@@ -817,20 +811,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>1월 자료를 금액 기준 내림차순으로 정렬하는 셀 2개를 실행하여 3-2절의 출력과 대조한다.</li>
 <li>정렬한 뒤의 원래 표를 표시하는 셀을 실행한다.
 <ul>
-<li><span class="check-badge">확인 4</span> 처음 3행이 판매번호 1001, 1002, 1003이고 행 번호가 0, 1, 2이다.</li>
+<li><span class="check-badge">확인 2</span> 처음 3행이 판매번호 1001, 1002, 1003이고 행 번호가 0, 1, 2이다.</li>
 </ul></li>
 <li>오름차순 정렬과 거래처 이름순 정렬의 셀을 실행하고, <code>[오류 확인]</code> 셀의 마지막 줄을 읽는다.</li>
-<li>2월 자료를 금액 기준 내림차순으로 정렬하는 셀에서 <code>____</code>에 기준 열의 이름과 내림차순의 지정 값을 기재하여 실행한다. 5장의 따라 하기에서 연습용 통합 문서를 정렬한 결과와 대조한다.
-<ul>
-<li><span class="check-badge">확인 5</span> 첫 행은 판매번호 1036(금액 912000)이다.</li>
-</ul></li>
-<li>다음 셀도 같은 값으로 채워 실행한다.
-<ul>
-<li><span class="check-badge">확인 6</span> 마지막 행은 판매번호 1033(금액 104000)이다.</li>
-</ul></li>
+<li>2월 자료를 금액 기준 내림차순으로 정렬하는 셀과 다음 셀에서 <code>____</code>에 기준 열의 이름과 내림차순의 지정 값을 기재하여 실행한다. 5장의 따라 하기에서 연습용 통합 문서를 정렬한 결과와 대조한다.</li>
 <li>2월 자료를 수량 기준 내림차순으로 정렬하는 셀의 <code>____</code>에 기준 열의 이름을 기재하여 실행한다.
 <ul>
-<li><span class="check-badge">확인 7</span> 처음 3행이 판매번호 1025(수량 50), 1031(41), 1034(40)이다. 4절의 따라 하기에서 수량 40 이상으로 선택할 행과 같은 3행이다.</li>
+<li><span class="check-badge">확인 3</span> 금액 기준 정렬의 첫 행은 판매번호 1036(912000), 마지막 행은 1033(104000)이고, 수량 기준 정렬의 처음 3행은 1025(수량 50), 1031(41), 1034(40)이다. 이 3행은 4절에서 수량 40 이상으로 선택할 행과 같다.</li>
 </ul></li>
 </ol>
 </section>
@@ -1023,35 +1010,17 @@ Index: []</code></pre>
 <h3 class="anchored" data-anchor-id="따라-하기-2">따라 하기</h3>
 <p>실습 노트북의 4절에 있는 셀을 차례로 실행한다.</p>
 <ol type="1">
-<li><p>수량 30 이상의 행을 선택하는 셀, 판정 결과를 표시하는 셀을 실행하여 4-1절, 4-2절의 출력과 대조한다. 이어서 참의 개수와 행의 수를 세는 셀을 실행한다.</p>
-<ul>
-<li><span class="check-badge">확인 8</span> <code>8</code>이 두 번 출력되었다.</li>
-</ul></li>
-<li><p>한빛상사를 선택하는 셀과 금액 합계를 출력하는 셀을 실행한다. 이어서 공백이 들어간 값으로 선택하는 셀을 실행하기 전에 결과를 예상한다.</p>
-<ul>
-<li><span class="check-badge">확인 9</span> 열 이름만 있고 행이 없는 표가 표시되었다.</li>
-</ul></li>
+<li><p>수량 30 이상의 행을 선택하는 셀, 판정 결과를 표시하는 셀을 실행하여 4-1절, 4-2절의 출력과 대조한다. 이어서 참의 개수와 행의 수를 세는 셀을 실행한다(출력 <code>8</code>, <code>8</code>).</p></li>
+<li><p>한빛상사를 선택하는 셀과 금액 합계를 출력하는 셀을 실행한다. 이어서 공백이 들어간 값으로 선택하는 셀을 실행하기 전에 결과를 예상한다. 열 이름만 있고 행이 없는 표가 표시된다(4-4절).</p></li>
 <li><p><code>[오류 확인]</code> 셀을 실행하여 <code>SyntaxError</code>의 마지막 줄을 읽는다.</p></li>
-<li><p>2월 자료에서 수량이 30 이상인 행의 수를 세는 셀의 <code>____</code>를 채워 실행한다. 5장의 따라 하기에서 필터로 선별한 결과와 대조한다.</p>
+<li><p>2월 자료에서 수량이 30 이상인 행의 수를 세는 셀, 품목이 토너인 행을 선택하는 셀, 금액이 500,000원 이상인 행의 수를 세는 셀의 <code>____</code>를 채워 실행한다. 5장의 따라 하기에서 필터로 선별한 결과와 대조한다.</p>
 <ul>
-<li><span class="check-badge">확인 10</span> 수량이 30 이상인 행은 11행이다.</li>
+<li><span class="check-badge">확인 4</span> 수량이 30 이상인 행은 11행, 품목이 토너인 행은 3행(금액 합계 1530000), 금액이 500,000원 이상인 행은 7행이다. 토너의 합계는 5장에서 “토너” 시트에 붙여 넣은 3행의 합계와, 7행은 4장의 따라 하기에서 센 달성 건수와 같다.</li>
 </ul></li>
-<li><p>품목이 토너인 행을 선택하는 셀의 <code>____</code>를 채워 실행한다.</p>
-<ul>
-<li><span class="check-badge">확인 11</span> 품목이 토너인 행은 3행이고 금액의 합계는 1530000이다. 5장에서 “토너” 시트에 붙여 넣은 3행의 합계와 같다.</li>
-</ul></li>
-<li><p>금액이 500,000원 이상인 행의 수를 세는 셀의 <code>____</code> 2곳을 채워 실행한다.</p>
-<ul>
-<li><span class="check-badge">확인 12</span> 금액이 500,000원 이상인 행은 7행이다. 4장의 따라 하기에서 센 달성 건수와 같다.</li>
-</ul></li>
-<li><p><code>big</code>의 셀에서 <code>____</code>에 합계를 구할 열의 이름을, 다음 셀에서 기준 수량 40을 기재하여 실행한다.</p>
-<ul>
-<li><span class="check-badge">확인 13</span> <code>11</code>과 <code>5423000</code>이 출력되었다. 5장의 따라 하기에서 수량 30 이상으로 선별한 뒤 <code>G4:G22</code>를 선택하였을 때 상태 표시줄에 나타난 합계와 같다.</li>
-<li><span class="check-badge">확인 14</span> 수량이 40 이상인 행은 1025, 1031, 1034의 3행이다. 3절의 따라 하기에서 수량 기준으로 정렬한 처음 3행과 같다.</li>
-</ul></li>
+<li><p><code>big</code>의 셀에서 <code>____</code>에 합계를 구할 열의 이름을, 다음 셀에서 기준 수량 40을 기재하여 실행한다.</p></li>
 <li><p>거래처가 한빛상사인 2월의 행을 고르는 셀의 <code>____</code>에 거래처의 이름을 기재하여 실행한다.</p>
 <ul>
-<li><span class="check-badge">확인 15</span> 한빛상사의 2월 판매는 <code>4</code>건, 금액 합계 <code>1230000</code>이다.</li>
+<li><span class="check-badge">확인 5</span> <code>big</code>의 셀은 <code>11</code>과 <code>5423000</code>(5장에서 수량 30 이상으로 선별한 뒤 <code>G4:G22</code>를 선택하였을 때 상태 표시줄의 합계)을 출력하였고, 수량 40 이상은 1025, 1031, 1034의 3행(3절의 수량 기준 정렬의 처음 3행), 한빛상사의 2월 판매는 <code>4</code>건, 금액 합계 <code>1230000</code>이다.</li>
 </ul></li>
 <li><p>5장의 필터 결과와 대조하는 셀의 <code>____</code> 4곳에 5장의 따라 하기에서 상태 표시줄로 읽은 값(11, 5423000, 3, 7)을 기재하여 실행한다. 출력은 다음과 같다.</p>
 <pre class="text"><code>                   수작업 결과   코드의 결과    일치
@@ -1060,7 +1029,7 @@ Index: []</code></pre>
 토너의 행 수                 3        3  True
 500,000원 이상의 행 수        7        7  True</code></pre>
 <ul>
-<li><span class="check-badge">확인 16</span> 대조표의 “일치” 열이 4행 모두 <code>True</code>이다.</li>
+<li><span class="check-badge">확인 6</span> 대조표의 “일치” 열이 4행 모두 <code>True</code>이다.</li>
 </ul></li>
 </ol>
 </section>
@@ -1221,7 +1190,7 @@ Index: []</code></pre>
 <blockquote class="blockquote">
 <p><strong>[그림 자리: 코드로 저장한 집계표를 엑셀로 연 화면]</strong> <code>거래처별합계_2026_01.xlsx</code>를 엑셀로 연 화면. <code>A1</code>에 “거래처”, <code>B1</code>에 “금액”, <code>A2:A6</code>에 거래처 5개, <code>A7</code>에 “총합계”, <code>B7</code>에 6479000이 있고 시트 탭의 이름이 <code>Sheet1</code>인 것을 표시한다. 6장의 피벗 테이블(“행 레이블”, “합계 : 금액”)과 나란히 놓으면 좋다. 찍을 곳: Microsoft 365 엑셀, 실습 사이트에서 내려받은 파일.</p>
 </blockquote>
-<p>엑셀로 연 파일에서 <code>A1</code>의 “거래처”는 저장할 때 행 이름이 어느 열에서 왔는지를 나타내던 이름이 머리글로 옮겨 온 것이고, <code>B1</code>의 “금액”은 집계한 열의 이름이다. 피벗 테이블의 머리글 “행 레이블”, “합계 : 금액”과 글자는 다르지만 같은 자리이다. 금액 셀에는 쉼표가 없고 시트 이름은 <code>Sheet1</code>이다. 열 너비와 서식은 엑셀에서 다시 지정한다.</p>
+<p>엑셀로 연 파일의 <code>A1</code> “거래처”와 <code>B1</code> “금액”은 피벗 테이블의 머리글 “행 레이블”, “합계 : 금액”과 글자는 다르지만 같은 자리이다.</p>
 <p>입력 파일을 <code>자료</code> 폴더에, 결과 파일을 <code>결과</code> 폴더에 분리하여 두는 것은 원본과 산출물을 혼동하지 않기 위한 것이다. 10장에서 <code>자료</code> 폴더의 파일을 한 번에 읽을 때 결과 파일이 섞여 들어가는 것도 방지한다.</p>
 </section>
 <section id="파일-이름에-변수-사용" class="level3">
@@ -1289,36 +1258,23 @@ Index: []</code></pre>
 <h3 class="anchored" data-anchor-id="따라-하기-3">따라 하기</h3>
 <p>실습 노트북의 5절에 있는 셀을 차례로 실행한다.</p>
 <ol type="1">
-<li>1월 자료의 거래처별 합계표를 산출하는 셀과 <code>aggfunc</code>를 <code>"count"</code>로 지정한 셀을 실행한다.
-<ul>
-<li><span class="check-badge">확인 17</span> 위 셀의 총합계가 6479000이고, 아래 셀의 총합계가 20이다.</li>
-</ul></li>
-<li>2월 자료의 거래처별 합계표를 산출하는 셀에서 <code>____</code> 3곳을 채워 실행한다.
-<ul>
-<li><span class="check-badge">확인 18</span> 거래처별 합계는 대한사무기 2118000, 동아문구 896000, 미래유통 1888000, 서울오피스 1884000, 한빛상사 1230000, 총합계 8016000이다.</li>
-</ul></li>
+<li>1월 자료의 거래처별 합계표를 산출하는 셀과 <code>aggfunc</code>를 <code>"count"</code>로 지정한 셀을 실행한다. 총합계는 각각 6479000과 20이다.</li>
+<li>2월 자료의 거래처별 합계표를 산출하는 셀에서 <code>____</code> 3곳을 채워 실행한다.</li>
 <li>다음 셀의 <code>____</code>에 품목 열의 이름을 기재하여 실행한다.
 <ul>
-<li><span class="check-badge">확인 19</span> 품목별 합계표의 행은 4개이다. 2월에는 볼펜의 판매 건이 없기 때문이다.</li>
+<li><span class="check-badge">확인 7</span> 거래처별 합계는 대한사무기 2118000, 동아문구 896000, 미래유통 1888000, 서울오피스 1884000, 한빛상사 1230000, 총합계 8016000이고, 품목별 합계표의 행은 4개이다(2월에는 볼펜의 판매 건이 없다).</li>
 </ul></li>
-<li>품목별 판매 건수를 산출하는 셀의 <code>____</code>에 총합계 행을 표시하는 지정 값(<code>True</code>)을 기재하여 실행한다.
+<li>품목별 판매 건수를 산출하는 셀의 <code>____</code>에 총합계 행을 표시하는 지정 값(<code>True</code>)을 기재하여 실행한다.</li>
+<li>2월의 거래처별 판매 건수를 산출하는 셀의 <code>____</code>에 <code>count</code>를 기재하여 실행한다.
 <ul>
-<li><span class="check-badge">확인 20</span> A4 복사용지 6, 점착 메모지 5, 토너 3, 파일 폴더 5, 총합계 19이다. 토너 3은 4절에서 선택한 토너의 행 수와 같다.</li>
+<li><span class="check-badge">확인 8</span> 품목별 건수가 A4 복사용지 6, 점착 메모지 5, 토너 3, 파일 폴더 5, 총합계 19이고, 거래처별 건수가 대한사무기 5, 동아문구 2, 미래유통 3, 서울오피스 5, 한빛상사 4, 총합계 19이다.</li>
 </ul></li>
-<li>2월의 거래처별 판매 건수를 산출하는 셀의 <code>____</code>에 <code>count</code>를 기재하여 실행한다. 이어서 대조 셀의 <code>____</code> 6곳에 6장의 따라 하기에서 작성한 연습용 통합 문서의 피벗 테이블 값을 기재하여 실행한다.
+<li>대조 셀의 <code>____</code> 6곳에 6장의 따라 하기에서 작성한 연습용 통합 문서의 피벗 테이블 값을 기재하여 실행한다.
 <ul>
-<li><span class="check-badge">확인 21</span> 건수가 대한사무기 5, 동아문구 2, 미래유통 3, 서울오피스 5, 한빛상사 4, 총합계 19이다. 총합계 19는 8장에서 <code>count()</code>로 센 2월의 개수와 같다.</li>
-<li><span class="check-badge">확인 22</span> 대조표의 “일치” 열이 6행 모두 <code>True</code>이다.</li>
+<li><span class="check-badge">확인 9</span> 대조표의 “일치” 열이 6행 모두 <code>True</code>이다.</li>
 </ul></li>
 <li><code>결과</code> 폴더를 생성하는 셀, 저장하는 셀, 저장한 파일을 다시 읽는 셀을 실행한다. 이어서 <code>[오류 확인]</code> 셀을 실행하여 <code>OSError</code>의 마지막 줄을 읽는다.</li>
-<li><code>month = "03"</code>의 셀을 실행한다.
-<ul>
-<li><span class="check-badge">확인 23</span> 출력이 <code>자료/판매_2026_03.xlsx</code>이다.</li>
-</ul></li>
-<li><code>month = 3</code>의 셀을 실행하여 출력의 월이 한 자리인 것을 확인한다. 이어서 다음 셀의 <code>____</code>에 2월을 두 자리로 기재하여 실행한다.
-<ul>
-<li><span class="check-badge">확인 24</span> <code>자료/판매_2026_02.xlsx</code>와 <code>결과/거래처별합계_2026_02.xlsx</code>가 출력되었다.</li>
-</ul></li>
+<li><code>month = "03"</code>의 셀(출력 <code>자료/판매_2026_03.xlsx</code>)과 <code>month = 3</code>의 셀(월이 한 자리)을 실행한다. 이어서 다음 셀의 <code>____</code>에 2월을 두 자리로 기재하여 실행한다. 출력은 <code>자료/판매_2026_02.xlsx</code>와 <code>결과/거래처별합계_2026_02.xlsx</code>이다.</li>
 </ol>
 </section>
 </section>
@@ -1512,7 +1468,7 @@ Index: []</code></pre>
 <pre class="text"><code>01 월: 20 행, 금액 합계 6479000</code></pre>
 <p>그 아래에 5-2절과 같은 거래처별 합계표가 표시된다.</p>
 <ul>
-<li><span class="check-badge">확인 25</span> 출력의 첫 줄이 <code>01 월: 20 행, 금액 합계 6479000</code>이고 그 아래에 거래처별 합계표가 표시되었다.</li>
+<li><span class="check-badge">확인 10</span> 출력의 첫 줄이 <code>01 월: 20 행, 금액 합계 6479000</code>이고 그 아래에 거래처별 합계표가 표시되었다.</li>
 </ul></li>
 </ol>
 </section>
@@ -1529,7 +1485,7 @@ Index: []</code></pre>
 한빛상사   1756000  1756000  True
 총합계    6479000  6479000  True</code></pre>
 <ul>
-<li><span class="check-badge">확인 26</span> 출력된 표의 “일치” 열이 6행 모두 <code>True</code>이다.</li>
+<li><span class="check-badge">확인 11</span> 출력된 표의 “일치” 열이 6행 모두 <code>True</code>이다.</li>
 </ul></li>
 </ol>
 <p>이 대조표는 수작업 결과의 이름(거래처)과 코드의 결과의 행 이름을 맞추어 한 행에 놓는다. 수작업 결과에 거래처 이름을 잘못 쓰면 그 거래처가 따로 한 행을 차지하고 “일치”가 <code>False</code>가 된다.</p>
@@ -1540,24 +1496,21 @@ Index: []</code></pre>
 <li>6절 가의 셀로 돌아가 첫 줄을 <code>month = "02"</code>로 변경한다.</li>
 <li><strong>그 셀만</strong> 다시 실행한다. 나의 셀은 다시 실행하지 않는다.
 <ul>
-<li><span class="check-badge">확인 27</span> 출력의 첫 줄이 <code>02 월: 19 행, 금액 합계 8016000</code>이다.</li>
+<li><span class="check-badge">확인 12</span> 출력의 첫 줄이 <code>02 월: 19 행, 금액 합계 8016000</code>이다.</li>
 </ul></li>
-<li>표시된 2월의 거래처별 합계를 5절의 따라 하기에서 확인한 값(확인 18)과 대조한다.</li>
+<li>표시된 2월의 거래처별 합계를 5절의 따라 하기에서 확인한 값(확인 7)과 대조한다.</li>
 </ol>
 </section>
 <section id="단계-4.-결과-파일의-확인과-저장" class="level4">
 <h4 class="anchored" data-anchor-id="단계-4.-결과-파일의-확인과-저장">단계 4. 결과 파일의 확인과 저장</h4>
 <ol type="1">
 <li><p>6절 다의 셀을 실행하여 <code>결과</code> 폴더의 파일 목록을 확인한다. 출력은 다음과 같다.</p>
-<pre class="text"><code>['거래처별합계_2026_01.xlsx', '거래처별합계_2026_02.xlsx']</code></pre>
-<ul>
-<li><span class="check-badge">확인 28</span> 목록에 <code>거래처별합계_2026_01.xlsx</code>와 <code>거래처별합계_2026_02.xlsx</code>가 있다.</li>
-</ul></li>
+<pre class="text"><code>['거래처별합계_2026_01.xlsx', '거래처별합계_2026_02.xlsx']</code></pre></li>
 <li><p><code>Ctrl + S</code>로 노트북을 저장한다.</p></li>
 <li><p>파일 탐색기에서 <code>결과</code> 폴더의 파일 2개와 노트북을 내려받아 수강생 PC의 <code>컴퓨터활용\실습</code> 폴더로 옮긴다.</p></li>
 <li><p>내려받은 <code>거래처별합계_2026_02.xlsx</code>를 엑셀로 열어 내용을 확인한다.</p>
 <ul>
-<li><span class="check-badge">확인 29</span> <code>A1:B7</code>에 거래처와 금액의 표가 있고 <code>B7</code>의 총합계가 8016000이다.</li>
+<li><span class="check-badge">확인 13</span> 6절 다의 목록에 <code>거래처별합계_2026_01.xlsx</code>와 <code>거래처별합계_2026_02.xlsx</code>가 있고, 내려받은 2월 파일의 <code>A1:B7</code>에 거래처와 금액의 표가 있으며 <code>B7</code>의 총합계가 8016000이다.</li>
 </ul></li>
 </ol>
 <p>심화 실습을 먼저 수행한 경우에는 파일 목록에 <code>품목별합계_2026_01.xlsx</code>가 더 있다. 그 밖의 파일이 있으면 이름을 잘못 지정하여 저장한 것이다.</p>
