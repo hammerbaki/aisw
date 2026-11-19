@@ -480,7 +480,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>학사 14주차 · 교재 12 · 5부 운영 품질</p>
 </blockquote>
 <blockquote class="blockquote">
-<p>2026-11-19에 150분 수업 기준으로 줄였다(학생용 본문 63,152자 → 32,999자, 참고 자료 표와 자리 표시를 빼면 28,751자). 교수 화면 시연의 명령과 줄인 출력은 교수용에 옮겼다.</p>
+<p>2026-11-19에 150분 수업 기준으로 줄였다(학생용 본문 63,152자 → 34,098자). 교수 화면 시연의 명령과 줄인 출력은 교수용에 옮겼다.</p>
 </blockquote>
 <p>11장에서 <code>jobprep</code> 운영 에이전트 시스템에 보안의 울타리를 둘렀다. 막는 장치만으로는 요약 기능이 한 주 전보다 나빠졌는지, 8장의 루프가 몇 번 만에 일을 끝내고 얼마를 썼는지 알 수 없다. 이 장의 주제는 1장의 운영 요건 가운데 <strong>신뢰성</strong>(기대한 결과를 내고, 실패하면 알아챈다)과 <strong>재현성</strong>(무엇이 실행되었는지 기록이 남는다)이다. LLM 기능은 코드를 고치지 않아도 프롬프트의 문장 하나, 모델 이름 하나로 조용히 나빠진다. 그래서 테스트와 별도로 <strong>평가</strong>(evaluation)가 필요하다. 평가는 골든 세트(입력과 기대값의 묶음)를 기능에 넣고, 채점기로 기준별 통과 여부를 정하고, 여러 번 되풀이해 통과율로 말한다.</p>
 <p>이 장에서 만드는 것은 하나이다. <strong><code>jobprep/evals/</code>의 회귀 평가 세트(요약 15문항, 질의응답 10문항)와 채점기로 요약 프롬프트의 두 판본을 한 번 비교해, 새 판본이 몰래 들여온 회귀 하나를 찾아 고치고, 회귀 판정기가 그 수정을 종료 코드로 승인하게 한 뒤, 8장·10장의 실행 기록에서 에이전트의 작업 성공률과 비용을 보고한다.</strong> 요약 판본 v2는 세 가지 실수를 고쳤지만 공고에 없는 주의점을 지어내는 새 실수를 들여왔고, 전체 점수 하나로는 이 회귀가 보이지 않는다. 실습은 API 키 없이 도는 교육용 모의 모델로 끝까지 한다. 이 장의 회귀 판정은 13장에서 CI의 한 단계가 된다.</p>
@@ -558,7 +558,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="llm-기능의-회귀">1. LLM 기능의 회귀</h2>
 <section id="코드를-고치지-않아도-나빠지는-기능" class="level3">
 <h3 class="anchored" data-anchor-id="코드를-고치지-않아도-나빠지는-기능">1-1. 코드를 고치지 않아도 나빠지는 기능</h3>
-<p><strong>회귀</strong>(regression)는 잘 되던 동작이 변경 뒤에 나빠지는 것이다. LLM 기능은 코드 밖에도 출력을 바꾸는 요인이 있다. <code>jobprep</code>의 요약에서는 프롬프트 파일(<code>PROMPT_SUMMARY</code>), 모델(<code>LLM_MODEL</code>), 같은 이름의 모델에 대한 제공자의 갱신, 검색 자료와 임베딩 방식이 그렇다. 넷 모두 코드가 바뀌지 않고, 모델을 부르지 않는 모의 모드의 테스트는 잡지 못한다. 요약이 JSON 구조를 지키는 한 API는 200을 돌려주므로, 공고에 없는 주의점이 섞여도 기록에 표시가 없다. 이것이 「조용한 회귀」이다. 또 LLM 출력은 <strong>비결정적</strong>이어서 같은 입력에도 실행마다 답이 다르다. 한 번의 성공으로는 열 번 중 아홉 번 되는 기능과 다섯 번 되는 기능을 구별할 수 없다(4절).</p>
+<p><strong>회귀</strong>(regression)는 잘 되던 동작이 변경 뒤에 나빠지는 것이다. LLM 기능은 코드 밖에도 출력을 바꾸는 요인이 있다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>바뀌는 것</th>
+<th><code>jobprep</code>에서의 자리</th>
+<th>테스트가 잡는가</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>프롬프트</td>
+<td><code>summary_v1.txt</code> → <code>summary_v2.txt</code>, <code>PROMPT_SUMMARY</code></td>
+<td>모의 모드에서는 출력이 같아 잡지 못한다</td>
+</tr>
+<tr class="even">
+<td>모델</td>
+<td><code>LLM_MODEL</code></td>
+<td>모의 모드는 모델을 부르지 않는다</td>
+</tr>
+<tr class="odd">
+<td>모델 제공자의 갱신</td>
+<td>같은 모델 이름의 동작 변화</td>
+<td>잡지 못한다</td>
+</tr>
+<tr class="even">
+<td>검색 자료</td>
+<td><code>data/자료/</code>의 문서, 임베딩 방식</td>
+<td><code>rag/평가문항.csv</code>의 재현율만 본다</td>
+</tr>
+</tbody>
+</table>
+<p>넷 모두 코드가 바뀌지 않는다. 요약이 JSON 구조를 지키는 한 API는 200을 돌려주므로, 공고에 없는 주의점이 섞여도 기록에 표시가 없다. 이것이 「조용한 회귀」이다. 또 LLM 출력은 <strong>비결정적</strong>이어서 같은 입력에도 실행마다 답이 다르다. 한 번의 성공으로는 열 번 중 아홉 번 되는 기능과 다섯 번 되는 기능을 구별할 수 없다(4절).</p>
 </section>
 <section id="테스트와-평가" class="level3">
 <h3 class="anchored" data-anchor-id="테스트와-평가">1-2. 테스트와 평가</h3>
@@ -937,7 +974,43 @@ ask 10 {('regression', '대표'): 6, ('regression', '경계'): 3, ('capability',
 </section>
 <section id="통과율-passk-passk" class="level3">
 <h3 class="anchored" data-anchor-id="통과율-passk-passk">4-2. 통과율, pass@k, pass^k</h3>
-<p><strong>통과율</strong>은 전체 시행 가운데 통과한 비율로, 반복을 늘려도 값은 그대로이고 추정만 정밀해진다. <strong>pass@k</strong>는 k번 가운데 한 번이라도 통과할 확률로 한 번의 성공이면 되는 일(코드 생성 뒤 테스트로 고르기)에 맞고, <strong>pass^k</strong>는 k번 모두 통과할 확률로 매번 성공해야 하는 일에 맞는다 [E5]. 시행 하나의 성공률이 75%이면 pass^3은 0.75³ ≈ 42%이다 [E5]. 요약 버튼을 누를 때마다 기준을 지켜야 하는 <code>jobprep</code>에는 pass^k가 맞고, 3-3의 「모든 반복 통과 5/14문항」이 문항 단위의 pass^5이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>지표</th>
+<th>뜻</th>
+<th>커지는 방향</th>
+<th>쓰는 곳</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>통과율</td>
+<td>전체 시행 가운데 통과한 비율</td>
+<td>반복을 늘려도 그대로(추정이 정밀해질 뿐)</td>
+<td>기본 지표. 회귀 판정의 합격선</td>
+</tr>
+<tr class="even">
+<td>pass@k</td>
+<td>k번 가운데 한 번이라도 통과할 확률</td>
+<td>k가 클수록 커진다</td>
+<td>한 번만 성공하면 되는 일(코드 생성 뒤 테스트로 고르기) [E5]</td>
+</tr>
+<tr class="odd">
+<td>pass^k</td>
+<td>k번 모두 통과할 확률</td>
+<td>k가 클수록 작아진다</td>
+<td>매번 성공해야 하는 일 [E5]</td>
+</tr>
+</tbody>
+</table>
+<p>시행 하나의 성공률이 75%이면 pass^3은 0.75³ ≈ 42%이다 [E5]. 요약 버튼을 누를 때마다 기준을 지켜야 하는 <code>jobprep</code>에는 pass^k가 맞고, 3-3의 「모든 반복 통과 5/14문항」이 문항 단위의 pass^5이다.</p>
 </section>
 <section id="표준오차와-신뢰구간" class="level3">
 <h3 class="anchored" data-anchor-id="표준오차와-신뢰구간">4-3. 표준오차와 신뢰구간</h3>
@@ -1010,7 +1083,53 @@ ask 10 {('regression', '대표'): 6, ('regression', '경계'): 3, ('capability',
 </section>
 <section id="보정-방법" class="level3">
 <h3 class="anchored" data-anchor-id="보정-방법">5-4. 보정 방법</h3>
-<p>위치 편향은 쌍 비교를 두 순서로 물어 같은 쪽을 가리킬 때만 승자로 보거나(Wang 외의 균형 위치 보정 [R2]) 응답 하나를 기준표로 단독 판정해 줄인다. 길이 편향은 길이 배제 지시와 출력 형식의 통일로, 자기 선호는 다른 모델로 판정해 줄인다 [A1]. 판정 전에 근거를 여러 개 쓰게 하는 방법도 있다 [R2]. 그리고 사람이 판정한 표본과 대조해 일치도를 잰다 [E5]. 이것이 다른 방법들의 효과를 확인하는 측정 장치이다. 일치도는 일치율과 <strong>코언의 카파</strong>로 잰다. 카파는 우연히 맞았을 몫을 빼고 남는 일치를 0(우연 수준)~1(완전 일치)로 낸다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>방법</th>
+<th>하는 일</th>
+<th>겨누는 편향</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>순서 바꾸기</td>
+<td>쌍 비교를 두 순서로 물어 같은 쪽을 가리킬 때만 승자로 본다(Wang 외의 균형 위치 보정 [R2])</td>
+<td>위치</td>
+</tr>
+<tr class="even">
+<td>단독 판정</td>
+<td>응답 하나를 기준표로 판정한다</td>
+<td>위치</td>
+</tr>
+<tr class="odd">
+<td>길이 배제 지시와 형식 제한</td>
+<td>길이와 문체를 판정에 넣지 않게 하고 출력 형식을 맞춘다</td>
+<td>길이</td>
+</tr>
+<tr class="even">
+<td>다른 모델로 판정</td>
+<td>출력을 만든 모델과 다른 모델을 판정자로 쓴다 [A1]</td>
+<td>자기 선호</td>
+</tr>
+<tr class="odd">
+<td>근거 먼저 쓰게 하기</td>
+<td>판정 전에 근거를 여러 개 쓰게 한다 [R2]</td>
+<td>전반</td>
+</tr>
+<tr class="even">
+<td>사람 표본 대조</td>
+<td>사람이 판정한 표본과 대조해 일치도를 잰다 [E5]</td>
+<td>전반(측정)</td>
+</tr>
+</tbody>
+</table>
+<p>사람 표본 대조는 다른 방법들의 효과를 확인하는 측정 장치이다. 일치도는 일치율과 <strong>코언의 카파</strong>로 잰다. 카파는 우연히 맞았을 몫을 빼고 남는 일치를 0(우연 수준)~1(완전 일치)로 낸다.</p>
 </section>
 <section id="순서-바꾸기와-사람-표본-대조-교수-시연" class="level3">
 <h3 class="anchored" data-anchor-id="순서-바꾸기와-사람-표본-대조-교수-시연">5-5. 순서 바꾸기와 사람 표본 대조 (교수 시연)</h3>
@@ -1182,7 +1301,79 @@ ask 10 {('regression', '대표'): 6, ('regression', '경계'): 3, ('capability',
 </section>
 <section id="무엇을-남기는가" class="level3">
 <h3 class="anchored" data-anchor-id="무엇을-남기는가">8-2. 무엇을 남기는가</h3>
-<p>LLM 기능의 기록에는 시각, 요청 번호, 경로와 상태, 지연, 기능, 프롬프트 판본, 모델, 토큰, 오류의 종류, 에이전트라면 도구 호출과 비용을 남긴다. 기준 저장소의 기록에는 <strong>요청 번호</strong>(요청·LLM 호출·오류 기록을 한 요청으로 잇는다)와 <strong>프롬프트 판본</strong>(품질이 바뀐 때를 판본 교체와 잇는다)이 없고, 지연은 요청 전체만 있다. 사용자의 질문 원문, 공고 본문 전체, API 키는 남기지 않는다.</p>
+<p>LLM 기능과 에이전트의 기록에 남길 칸은 다음과 같다. 오른쪽 열은 기준 저장소의 기록에 그 칸이 있는지이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>칸</th>
+<th>왜 필요한가</th>
+<th>기준 저장소</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>시각</td>
+<td>사건의 순서, 기간별 집계</td>
+<td>있다</td>
+</tr>
+<tr class="even">
+<td>요청 번호</td>
+<td>요청·LLM 호출·오류 기록을 한 요청으로 잇는다</td>
+<td>없다</td>
+</tr>
+<tr class="odd">
+<td>경로와 상태</td>
+<td>트래픽과 오류</td>
+<td>있다</td>
+</tr>
+<tr class="even">
+<td>지연</td>
+<td>요청 전체와 LLM 호출을 따로</td>
+<td>요청 전체만 있다</td>
+</tr>
+<tr class="odd">
+<td>기능</td>
+<td>어느 기능의 호출인가</td>
+<td>있다</td>
+</tr>
+<tr class="even">
+<td>프롬프트 판본</td>
+<td>품질이 바뀐 때를 판본 교체와 잇는다</td>
+<td>없다</td>
+</tr>
+<tr class="odd">
+<td>모델</td>
+<td>모델 교체 시점, 모델별 비용</td>
+<td>있다</td>
+</tr>
+<tr class="even">
+<td>토큰</td>
+<td>비용의 근거</td>
+<td>있다</td>
+</tr>
+<tr class="odd">
+<td>오류의 종류</td>
+<td>원인별 집계</td>
+<td>있다</td>
+</tr>
+<tr class="even">
+<td>도구 호출</td>
+<td>에이전트가 무엇을 했는가</td>
+<td>해당 없음(8장 루프 기록에 있다)</td>
+</tr>
+<tr class="odd">
+<td>비용</td>
+<td>예산</td>
+<td>루프 기록에 있다</td>
+</tr>
+</tbody>
+</table>
+<p>사용자의 질문 원문, 공고 본문 전체, API 키는 남기지 않는다.</p>
 </section>
 <section id="구조화-기록" class="level3">
 <h3 class="anchored" data-anchor-id="구조화-기록">8-3. 구조화 기록</h3>
@@ -1236,11 +1427,42 @@ ask 10 {('regression', '대표'): 6, ('regression', '경계'): 3, ('capability',
 </section>
 <section id="스크립트에서-헤드리스-json-결과" class="level3">
 <h3 class="anchored" data-anchor-id="스크립트에서-헤드리스-json-결과">9-2. 스크립트에서: 헤드리스 JSON 결과</h3>
-<p>8장의 루프가 읽은 <code>claude -p --output-format json</code>의 결과에서 관측에 쓰는 칸은 <code>subtype</code>(<code>success</code> 또는 <code>error_max_budget_usd</code> 같은 오류 종류), <code>num_turns</code>, <code>total_cost_usd</code>(서브에이전트 포함), <code>modelUsage</code>(모델별 토큰과 비용), <code>session_id</code>이다 [C14][C22]. <code>total_cost_usd</code>는 클라이언트 쪽 추정이고, <code>--resume</code>으로 이어 간 실행은 대화 전체의 합계를 보고하므로 더하면 두 번 센다 [C22]. 실행 하나의 상한 <code>--max-budget-usd</code>에 닿으면 <code>subtype</code>이 <code>error_max_budget_usd</code>가 된다(7-3의 index-refresh) [C15]. 교수 화면의 도움말(<code>claude --help | grep -A1 "max-budget-usd"</code>)은 다음과 같다.</p>
+<p>8장의 루프가 읽은 <code>claude -p --output-format json</code>의 결과에서 관측에 쓰는 칸은 다음과 같다 [C14][C22].</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>칸</th>
+<th>뜻</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>subtype</code></td>
+<td><code>success</code> 또는 오류 종류(<code>error_max_budget_usd</code> 등)</td>
+</tr>
+<tr class="even">
+<td><code>num_turns</code></td>
+<td>이 실행의 턴 수(8장 기록의 <code>turns</code>)</td>
+</tr>
+<tr class="odd">
+<td><code>total_cost_usd</code></td>
+<td>이 실행의 추정 비용. 서브에이전트를 포함한다</td>
+</tr>
+<tr class="even">
+<td><code>modelUsage</code></td>
+<td>모델별 토큰과 비용</td>
+</tr>
+<tr class="odd">
+<td><code>session_id</code></td>
+<td>이어서 실행하거나 기록과 잇는 번호</td>
+</tr>
+</tbody>
+</table>
+<p><code>total_cost_usd</code>는 클라이언트 쪽 추정이고, <code>--resume</code>으로 이어 간 실행은 대화 전체의 합계를 보고하므로 더하면 두 번 센다 [C22]. 실행 하나의 상한 <code>--max-budget-usd</code>에 닿으면 <code>subtype</code>이 <code>error_max_budget_usd</code>가 된다(7-3의 index-refresh) [C15]. 교수 화면의 도움말(<code>claude --help | grep -A1 "max-budget-usd"</code>)은 다음과 같다.</p>
 <pre class="text"><code>  --max-budget-usd &lt;amount&gt;             Maximum dollar amount to spend on API
                                         calls (only works with --print)</code></pre>
 <blockquote class="blockquote">
-<p><strong>[최신 자료 자리: 헤드리스 결과의 칸과 비용 상한 옵션]</strong> 위 칸 이름과 <code>subtype</code>의 오류 종류, <code>claude --help</code>의 <code>--max-budget-usd</code> 설명을 헤드리스 문서(code.claude.com/docs/en/headless)와 교수 PC의 <code>claude --help</code>로 다시 확인한다. 2026-11-15에 2.1.296의 도움말에서 위 출력과 같은 두 줄을 확인하였다.</p>
+<p><strong>[최신 자료 자리: 헤드리스 결과의 칸과 비용 상한 옵션]</strong> 위 표의 칸 이름과 <code>subtype</code>의 오류 종류, <code>claude --help</code>의 <code>--max-budget-usd</code> 설명을 헤드리스 문서(code.claude.com/docs/en/headless)와 교수 PC의 <code>claude --help</code>로 다시 확인한다. 2026-11-15에 2.1.296의 도움말에서 위 출력과 같은 두 줄을 확인하였다.</p>
 </blockquote>
 </section>
 <section id="선택-조직-단위로-opentelemetry" class="level3">
@@ -1256,7 +1478,34 @@ ask 10 {('regression', '대표'): 6, ('regression', '경계'): 3, ('capability',
 <blockquote class="blockquote">
 <p><strong>[최신 자료 자리: OpenTelemetry 환경 변수와 지표 이름]</strong> 9-3의 환경 변수와 지표·이벤트 이름, 내보내기 간격의 기본값(지표 60000ms, 이벤트 5000ms), 저장소 설정의 <code>OTEL_*</code> 무시 규칙을 모니터링 문서(code.claude.com/docs/en/monitoring-usage)에서 다시 확인한다. 2026-11-14·15에 확인한 값이 이 절에 적혀 있다.</p>
 </blockquote>
-<p>지표(<code>claude_code.cost.usage</code>, <code>claude_code.token.usage</code> 등)에는 모델과 서브에이전트별 속성이 붙어 10장의 역할별 비용을 나눌 수 있고, 이벤트(<code>claude_code.api_request</code>, <code>claude_code.tool_decision</code> 등)에는 한 요청을 잇는 <code>prompt.id</code>가 붙는다 [C18]. 설정은 셸, 사용자 설정, 조직의 관리 설정에 두면 먹지만 저장소의 <code>.claude/settings.json</code>에 둔 <code>OTEL_*</code> 내보내기 변수는 무시된다 [C18]. 남의 저장소를 여는 것만으로 대화가 남의 수집기로 가서는 안 되기 때문이며, 11장의 공급망 보안과 같은 생각이다.</p>
+<p>내보내는 지표와 이벤트 가운데 이 학기에 쓰는 것은 다음과 같다 [C18].</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>지표·이벤트</th>
+<th>이 학기의 쓰임</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>claude_code.cost.usage</code>, <code>claude_code.token.usage</code></td>
+<td>모델·서브에이전트별 속성으로 10장의 역할별 비용을 나눈다</td>
+</tr>
+<tr class="even">
+<td><code>claude_code.api_request</code></td>
+<td>호출별 비용과 지연</td>
+</tr>
+<tr class="odd">
+<td><code>claude_code.tool_decision</code></td>
+<td>3장의 권한 규칙과 6장의 훅이 무엇을 막았는가</td>
+</tr>
+</tbody>
+</table>
+<p>이벤트에는 한 요청을 잇는 <code>prompt.id</code>가 붙는다. 설정은 셸, 사용자 설정, 조직의 관리 설정에 두면 먹지만 저장소의 <code>.claude/settings.json</code>에 둔 <code>OTEL_*</code> 내보내기 변수는 무시된다 [C18]. 남의 저장소를 여는 것만으로 대화가 남의 수집기로 가서는 안 되기 때문이며, 11장의 공급망 보안과 같은 생각이다.</p>
 <hr>
 </section>
 </section>
@@ -1311,7 +1560,38 @@ ask 10 {('regression', '대표'): 6, ('regression', '경계'): 3, ('capability',
 </section>
 <section id="개인-정보와-기록" class="level3">
 <h3 class="anchored" data-anchor-id="개인-정보와-기록">10-3. 개인 정보와 기록</h3>
-<p>기록은 그 자체로 유출의 통로가 된다. 내용 대신 크기를 남기고(질문 원문 대신 기능, 토큰, 지연), 내용 기록은 기간을 정해 명시적으로 켜며, 비밀 정보는 넣지 않고, 보관 기간을 정한다. Claude Code도 프롬프트 원문을 기본으로 가리고 길이만 남기며, 내용 기록 변수(<code>OTEL_LOG_USER_PROMPTS</code> 등)는 기본으로 꺼져 있다 [C18]. 실제 사용자의 질문으로 문항을 만들 때는 개인을 알아볼 내용을 지운다.</p>
+<p>기록은 그 자체로 유출의 통로가 된다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>원칙</th>
+<th><code>jobprep</code>에서</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>내용 대신 크기를 남긴다</td>
+<td>질문 원문 대신 기능, 토큰 수, 지연만 남긴다</td>
+</tr>
+<tr class="even">
+<td>내용 기록은 명시적으로 켠다</td>
+<td>디버깅에 원문이 필요하면 기간을 정해 켜고 끈다</td>
+</tr>
+<tr class="odd">
+<td>비밀 정보는 기록에 넣지 않는다</td>
+<td>키는 <code>.env</code>에만 둔다</td>
+</tr>
+<tr class="even">
+<td>보관 기간을 정한다</td>
+<td><code>logs/runtime/</code>과 <code>evals/runs/</code>는 저장소에 올리지 않는다</td>
+</tr>
+</tbody>
+</table>
+<p>Claude Code도 프롬프트 원문을 기본으로 가리고 길이만 남기며, 내용 기록 변수(<code>OTEL_LOG_USER_PROMPTS</code> 등)는 기본으로 꺼져 있다 [C18]. 실제 사용자의 질문으로 문항을 만들 때는 개인을 알아볼 내용을 지운다.</p>
 </section>
 <section id="기록-점검" class="level3">
 <h3 class="anchored" data-anchor-id="기록-점검">10-4. 기록 점검</h3>
@@ -1438,7 +1718,34 @@ SUMMARY_GRADERS에 "preferred"로 등록해 줘. 같은 파일의 best_match와 
   능력 문항(*) 통과율 0.00
   LLM 호출 75회 · 토큰 입력 29,880 출력 10,698
 기록: evals/runs/summary_v1-sim-a-n5/ (records.jsonl, summary.json, llm.log)</code></pre>
-<p>등록 테스트만 실패하면 마지막 등록 줄을 빠뜨린 것이고, <code>테스트 그대로</code>가 나오지 않으면 Claude Code가 테스트를 고친 것이다. 토큰 수가 3-3과 같으므로 출력도 같다. 바뀐 것은 채점기 하나인데 회귀 통과율이 0.77에서 0.59로 떨어졌다. 기능이 나빠진 것이 아니라 원래 있던 결함이 처음 보이게 된 것이다. 평가의 점수는 「채점기가 본 범위 안의 품질」이다. 이제부터의 비교는 모두 채점기 여섯으로 한다(6-1).</p>
+<p><strong>막힐 때.</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>화면</th>
+<th>원인</th>
+<th>할 일</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>1 failed, 3 passed</code>, 실패가 <code>test_registered_in_summary_graders</code></td>
+<td><code>SUMMARY_GRADERS</code>에 등록하지 않았다</td>
+<td>마지막 등록 줄을 더한다</td>
+</tr>
+<tr class="even">
+<td><code>테스트 그대로</code>가 나오지 않는다</td>
+<td>Claude Code가 테스트를 고쳤다(테스트 동결 위반)</td>
+<td>키트의 테스트를 다시 복사하고 구현만 고치게 한다</td>
+</tr>
+</tbody>
+</table>
+<p>토큰 수가 3-3과 같으므로 출력도 같다. 바뀐 것은 채점기 하나인데 회귀 통과율이 0.77에서 0.59로 떨어졌다. 기능이 나빠진 것이 아니라 원래 있던 결함이 처음 보이게 된 것이다. 평가의 점수는 「채점기가 본 범위 안의 품질」이다. 이제부터의 비교는 모두 채점기 여섯으로 한다(6-1).</p>
 <ul>
 <li><span class="check-badge">확인 5</span> 테스트 복사 직후 <code>4 failed</code>, 구현 뒤 <code>4 passed</code>, 평가 도구 전체 <code>37 passed</code>가 나오고, <code>diff</code> 뒤에 <code>테스트 그대로</code>가 찍힌다.</li>
 <li><span class="check-badge">확인 6</span> <code>preferred 0.71</code>이 기준 목록에 새로 보이고, 회귀 통과율이 0.59로 내려가며, 토큰 수(입력 29,880, 출력 10,698)는 3-3과 같다.</li>
@@ -1775,7 +2082,7 @@ SUMMARY_GRADERS에 "preferred"로 등록해 줘. 같은 파일의 best_match와 
 <td><code>python -m pytest -q evals ops/telemetry</code>처럼 폴더를 준다</td>
 </tr>
 <tr class="odd">
-<td><code>python -c</code>의 출력을 <code>|</code>로 넘기니 한글이 깨진다</td>
+<td><code>python -c</code>의 출력을 <code>\|</code>로 넘기니 한글이 깨진다</td>
 <td>Windows 파이썬이 파이프에 cp949로 내보낸다</td>
 <td>부록 A-4-4의 <code>PYTHONUTF8=1</code>. 키트의 명령은 스스로 UTF-8이다</td>
 </tr>

@@ -482,7 +482,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>학사 4주차 · 교재 03 · 1부 운영 요건과 검증</p>
 </blockquote>
 <blockquote class="blockquote">
-<p>2026-11-19에 150분 수업 기준으로 줄였다(학생용 본문 63,733자 → 32,946자).</p>
+<p>2026-11-19에 150분 수업 기준으로 줄였다(학생용 본문 63,733자 → 34,376자).</p>
 </blockquote>
 <p>앞 장의 테스트는 결과만 정한다. 키를 코드에 적었는지, 화면에 글을 HTML로 끼워 넣었는지, 커밋 메시지의 형식은 어떠한지는 팀의 규칙이 정한다. 한 사람의 개인 설정에만 있는 규칙은 다른 팀원의 세션에 없으므로, 운영 요건의 <strong>일관성</strong>과 <strong>재현성</strong>은 규칙이 저장소에 있어야 지켜진다.</p>
 <p>이 장은 기준 저장소 <code>jobprep</code>에 팀 규칙 일체, 곧 지시(<code>CLAUDE.md</code>와 경로별 규칙 둘), 권한 설정(<code>.claude/settings.json</code>), 저장소 규약(규약 문서, PR 템플릿, <code>CODEOWNERS</code>)을 넣는다. 해결할 문제는 규칙이 없는 저장소의 결과(교수 시연 기록)에서 어긋남 하나를 골라, 같은 요청을 자기 규칙에서 다시 보내 그것이 막혔는지 세는 것이다.</p>
@@ -654,7 +654,43 @@ TEST_UNCHANGED (tests/.baseline.json 기준, 파일 11개)</code></pre>
     E --&gt; F["커밋과 PR"]
     D --&gt; F
 </pre>
-<p>Claude Code 문서는 이 구분을 비결정적 지시와 결정적 지시로 설명한다[C7]. <code>CLAUDE.md</code>는 모델이 읽고 스스로 판단하므로 대개 따르지만 보장은 없고, 훅과 거부 규칙은 모델의 결정과 관계없이 Claude Code가 매번 집행한다. 문서는 절대 일어나면 안 되는 일만 결정적 장치로 옮기고, 예외가 있을 수 있는 지침은 모델이 판단하도록 <code>CLAUDE.md</code>에 두라고 권한다. 저장소 규약은 에이전트 바깥에서 결과가 커밋과 PR로 들어오는 입구를 거른다. 지시를 어기면 결과를 보고야 알고, 설정을 어기면 호출이 거부되며, 규약을 어기면 커밋이 멈추거나 PR이 걸린다.</p>
+<p>Claude Code 문서는 이 구분을 비결정적 지시와 결정적 지시로 설명한다[C7]. <code>CLAUDE.md</code>는 모델이 읽고 스스로 판단하므로 대개 따르지만 보장은 없고, 훅과 거부 규칙은 모델의 결정과 관계없이 Claude Code가 매번 집행한다. 문서는 절대 일어나면 안 되는 일만 결정적 장치로 옮기고, 예외가 있을 수 있는 지침은 모델이 판단하도록 <code>CLAUDE.md</code>에 두라고 권한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>층</th>
+<th>집행하는 것</th>
+<th>어기면</th>
+<th>이 장의 절</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>지시</td>
+<td>모델(Claude)</td>
+<td>결과를 보고야 안다</td>
+<td>2, 5, 6</td>
+</tr>
+<tr class="even">
+<td>설정</td>
+<td>Claude Code(하네스)</td>
+<td>호출이 거부되거나 확인 창이 뜬다</td>
+<td>3, 4, 7</td>
+</tr>
+<tr class="odd">
+<td>저장소 규약</td>
+<td>사람, Git, GitHub(커밋과 PR의 입구)</td>
+<td>커밋이 멈추거나 PR이 검토에서 걸린다</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="운영-요건과의-연결" class="level3">
 <h3 class="anchored" data-anchor-id="운영-요건과의-연결">1-3. 운영 요건과의 연결</h3>
@@ -733,11 +769,79 @@ TEST_UNCHANGED (tests/.baseline.json 기준, 파일 11개)</code></pre>
 <h2 class="anchored" data-anchor-id="설정-파일의-계층과-우선순위">3. 설정 파일의 계층과 우선순위</h2>
 <section id="지시와-설정은-무엇이-다른가" class="level3">
 <h3 class="anchored" data-anchor-id="지시와-설정은-무엇이-다른가">3-1. 지시와 설정은 무엇이 다른가</h3>
-<p><code>CLAUDE.md</code>의 「<code>.env</code>를 읽지 않는다」와 <code>.claude/settings.json</code>의 <code>Read(./.env)</code> 거부 규칙은 작동이 다르다. 설정의 규칙은 Claude가 무엇을 하기로 하든 Claude Code가 집행하고, 지시는 행동을 이끌 뿐 집행 장치가 아니다[C1][C3]. 설정은 엄격한 JSON이라 주석이나 끝의 쉼표가 있으면 문법 오류이고, 여러 범위가 겹치면 이어 붙이지 않고 우선순위로 정한다.</p>
+<p><code>CLAUDE.md</code>의 「<code>.env</code>를 읽지 않는다」와 <code>.claude/settings.json</code>의 <code>Read(./.env)</code> 거부 규칙은 작동이 다르다. 설정의 규칙은 Claude가 무엇을 하기로 하든 Claude Code가 집행하고, 지시는 행동을 이끌 뿐 집행 장치가 아니다[C1][C3].</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>비교</th>
+<th>지시(<code>CLAUDE.md</code>, <code>.claude/rules/</code>)</th>
+<th>설정(<code>.claude/settings.json</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>읽는 쪽</td>
+<td>모델</td>
+<td>Claude Code 프로그램</td>
+</tr>
+<tr class="even">
+<td>형식</td>
+<td>자유로운 마크다운</td>
+<td>엄격한 JSON. 주석(<code>//</code>)이나 끝의 쉼표가 있으면 문법 오류이다</td>
+</tr>
+<tr class="odd">
+<td>여러 범위가 겹치면</td>
+<td>모두 이어 붙인다(2-2)</td>
+<td>같은 키는 우선순위가 높은 범위의 값(3-3)</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="네-범위" class="level3">
 <h3 class="anchored" data-anchor-id="네-범위">3-2. 네 범위</h3>
-<p>설정도 범위가 넷이다[C2]. 관리 설정(조직이 배포[C10]), 사용자 <code>~/.claude/settings.json</code>, 공유 프로젝트 <code>.claude/settings.json</code>(커밋하면 팀원 모두), 프로젝트 로컬 <code>.claude/settings.local.json</code>(나, 이 프로젝트)이다. 로컬 파일은 「Yes, and don’t ask again」을 처음 고를 때 생긴다.</p>
+<p>설정도 범위가 넷이다[C2].</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>범위</th>
+<th>파일</th>
+<th>누구에게 적용되는가</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>관리(managed)</td>
+<td>조직이 배포한 <code>managed-settings.json</code>[C10]</td>
+<td>조직이 배포한 모든 사람</td>
+</tr>
+<tr class="even">
+<td>사용자</td>
+<td><code>~/.claude/settings.json</code></td>
+<td>나, 이 컴퓨터의 모든 프로젝트</td>
+</tr>
+<tr class="odd">
+<td>공유 프로젝트</td>
+<td><code>.claude/settings.json</code></td>
+<td>커밋하면 팀원 모두</td>
+</tr>
+<tr class="even">
+<td>프로젝트 로컬</td>
+<td><code>.claude/settings.local.json</code></td>
+<td>나, 이 프로젝트에서만</td>
+</tr>
+</tbody>
+</table>
+<p>로컬 파일은 「Yes, and don’t ask again」을 처음 고를 때 생긴다.</p>
 </section>
 <section id="우선순위와-합치기" class="level3">
 <h3 class="anchored" data-anchor-id="우선순위와-합치기">3-3. 우선순위와 합치기</h3>
@@ -782,11 +886,56 @@ TEST_UNCHANGED (tests/.baseline.json 기준, 파일 11개)</code></pre>
 </section>
 <section id="규칙의-모양" class="level3">
 <h3 class="anchored" data-anchor-id="규칙의-모양">4-2. 규칙의 모양</h3>
-<p>규칙은 <code>도구</code> 또는 <code>도구(지정자)</code>이다. <code>Bash(npm run *)</code>는 <code>npm run</code>으로 시작하는 명령, <code>Read(./.env)</code>는 지금 폴더의 <code>.env</code> 읽기, <code>Edit(/docs/**)</code>는 프로젝트 <code>docs/</code> 아래의 편집에 맞는다[C3]. 도구 이름은 화면 이름이 아니라 정식 이름(예: <code>TaskStop</code>)으로 쓰고, 파일 쓰기는 <code>Write(경로)</code>가 아니라 <code>Edit(경로)</code>로 적는다. <code>lint_rules.py</code>는 맞추어지지 않는 모양에 「주의」를 출력한다.</p>
+<p>규칙은 <code>도구</code> 또는 <code>도구(지정자)</code>이다[C3].</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>규칙</th>
+<th>맞는 것</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Bash(npm run *)</code></td>
+<td><code>npm run</code>으로 시작하는 명령</td>
+</tr>
+<tr class="even">
+<td><code>Read(./.env)</code></td>
+<td>지금 폴더의 <code>.env</code> 읽기</td>
+</tr>
+<tr class="odd">
+<td><code>Edit(/docs/**)</code></td>
+<td>프로젝트의 <code>docs/</code> 아래 파일 편집</td>
+</tr>
+</tbody>
+</table>
+<p>도구 이름은 화면 이름이 아니라 정식 이름(예: <code>TaskStop</code>)으로 쓰고, 파일 쓰기는 <code>Write(경로)</code>가 아니라 <code>Edit(경로)</code>로 적는다. <code>lint_rules.py</code>는 맞추어지지 않는 모양에 「주의」를 출력한다.</p>
 </section>
 <section id="bash-규칙" class="level3">
 <h3 class="anchored" data-anchor-id="bash-규칙">4-3. Bash 규칙</h3>
-<p>Bash 규칙의 <code>*</code>는 공백을 포함한 아무 글자에 맞는다. <code>Bash(npm run *)</code>는 <code>npm run build</code>와 <code>npm run</code>에 맞고, <code>Bash(ls *)</code>는 빈칸도 규칙의 일부이므로 <code>lsof</code>에 맞지 않는다[C3]. 별표는 하위 명령 뒤에 둔다(<code>Bash(git * main)</code>은 <code>git push origin main</code>까지 맞는다). 복합 명령(<code>&amp;&amp;</code>, <code>;</code>, <code>|</code>)은 하위 명령마다 판정해, 하나라도 거부나 확인에 맞으면 그 규칙이 적용된다.</p>
+<p>Bash 규칙의 <code>*</code>는 공백을 포함한 아무 글자에 맞는다[C3].</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>규칙</th>
+<th>맞는 명령</th>
+<th>맞지 않는 명령</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Bash(npm run *)</code></td>
+<td><code>npm run build</code>, <code>npm run</code></td>
+<td><code>npm install</code></td>
+</tr>
+<tr class="even">
+<td><code>Bash(ls *)</code></td>
+<td><code>ls -la</code>, <code>ls</code></td>
+<td><code>lsof</code>(빈칸도 규칙의 일부이다)</td>
+</tr>
+</tbody>
+</table>
+<p>별표는 하위 명령 뒤에 둔다(<code>Bash(git * main)</code>은 <code>git push origin main</code>까지 맞는다). 복합 명령(<code>&amp;&amp;</code>, <code>;</code>, <code>|</code>)은 하위 명령마다 판정해, 하나라도 거부나 확인에 맞으면 그 규칙이 적용된다.</p>
 <p>Bash 규칙은 명령의 글자에 맞출 뿐 프로그램을 감싸는 경계가 아니다[C3].</p>
 <table class="caption-top table">
 <colgroup>
@@ -823,12 +972,91 @@ TEST_UNCHANGED (tests/.baseline.json 기준, 파일 11개)</code></pre>
 </section>
 <section id="read와-edit-규칙" class="level3">
 <h3 class="anchored" data-anchor-id="read와-edit-규칙">4-4. Read와 Edit 규칙</h3>
-<p>파일 규칙의 경로는 <code>.gitignore</code>와 같은 패턴을 쓴다[C3]. <code>//경로</code>는 절대 경로, <code>~/경로</code>는 홈 폴더, <code>/경로</code>는 설정 파일의 기준 폴더, <code>./경로</code>는 지금 폴더 기준이다. 빗금이 없는 이름은 어느 깊이에서나 맞는다(<code>Read(.env)</code>는 <code>Read(**/.env)</code>). 같은 목록에서 <code>!</code> 패턴은 앞의 규칙에서 경로를 빼내므로, <code>Read(./.env.*)</code> 다음의 <code>Read(!.env.example)</code>은 견본만 읽게 한다.</p>
+<p>파일 규칙의 경로는 <code>.gitignore</code>와 같은 패턴을 쓴다[C3].</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>패턴</th>
+<th>뜻</th>
+<th>예</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>//경로</code></td>
+<td>파일 시스템 루트에서의 절대 경로</td>
+<td><code>Read(//etc/**)</code></td>
+</tr>
+<tr class="even">
+<td><code>~/경로</code></td>
+<td>홈 폴더 기준</td>
+<td><code>Read(~/.ssh/**)</code></td>
+</tr>
+<tr class="odd">
+<td><code>/경로</code></td>
+<td>그 설정 파일의 기준 폴더(프로젝트 설정이면 작업 폴더)</td>
+<td><code>Edit(/docs/**)</code></td>
+</tr>
+<tr class="even">
+<td><code>경로</code> 또는 <code>./경로</code></td>
+<td>지금 폴더 기준</td>
+<td><code>Read(./.env)</code></td>
+</tr>
+</tbody>
+</table>
+<p>빗금이 없는 이름은 어느 깊이에서나 맞는다(<code>Read(.env)</code>는 <code>Read(**/.env)</code>). 같은 목록에서 <code>!</code> 패턴은 앞의 규칙에서 경로를 빼내므로, <code>Read(./.env.*)</code> 다음의 <code>Read(!.env.example)</code>은 견본만 읽게 한다.</p>
 <p><code>Read</code> 거부는 <code>cat</code>, <code>head</code>처럼 Claude Code가 알아보는 파일 명령과 같은 경로의 편집에도 적용된다. 그러나 이름을 적지 않는 명령(<code>grep -r 무엇 .</code>)이나 파이썬 스크립트가 스스로 여는 파일에는 적용되지 않으며[C3], 문서는 이 틈을 샌드박스(11장)로 메운다[C6].</p>
 </section>
 <section id="권한-모드" class="level3">
 <h3 class="anchored" data-anchor-id="권한-모드">4-5. 권한 모드</h3>
-<p>권한 모드는 규칙에 맞지 않는 호출을 다루는 방식이다[C4]. <code>default</code>(Manual)는 대부분 묻고, <code>acceptEdits</code>는 작업 폴더 안의 편집을 묻지 않고, <code>plan</code>은 계획만 쓰고, <code>auto</code>는 배경의 분류기가 검사하며 진행하고, <code>bypassPermissions</code>는 확인을 건너뛰므로 격리된 환경에서만 쓴다. <code>Shift+Tab</code>으로 바꾸고 화면 아래의 표시로 확인한다. <code>.claude</code> 같은 보호 경로의 쓰기는 allow로 미리 허용되지 않으며, 팀 파일의 <code>permissions.disableBypassPermissionsMode: "disable"</code>은 bypass 모드를 막는다[C3].</p>
+<p>권한 모드는 규칙에 맞지 않는 호출을 다루는 방식이다[C4].</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>설정 값</th>
+<th>화면 이름</th>
+<th>동작</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>default</code></td>
+<td>Manual</td>
+<td>대부분의 동작 전에 묻는다</td>
+</tr>
+<tr class="even">
+<td><code>acceptEdits</code></td>
+<td>Accept edits</td>
+<td>작업 폴더 안의 편집을 묻지 않는다</td>
+</tr>
+<tr class="odd">
+<td><code>plan</code></td>
+<td>Plan</td>
+<td>계획만 쓰고 소스 파일을 고치지 않는다</td>
+</tr>
+<tr class="even">
+<td><code>auto</code></td>
+<td>Auto</td>
+<td>배경의 분류기가 검사하며 진행한다</td>
+</tr>
+<tr class="odd">
+<td><code>bypassPermissions</code></td>
+<td>Bypass permissions</td>
+<td>확인을 건너뛴다. 격리된 환경에서만 쓴다</td>
+</tr>
+</tbody>
+</table>
+<p><code>Shift+Tab</code>으로 바꾸고 화면 아래의 표시로 확인한다. <code>.claude</code> 같은 보호 경로의 쓰기는 allow로 미리 허용되지 않으며, 팀 파일의 <code>permissions.disableBypassPermissionsMode: "disable"</code>은 bypass 모드를 막는다[C3].</p>
 <blockquote class="blockquote">
 <p><strong>[최신 자료 자리: 권한 모드의 이름과 시작 모드]</strong> 2026-11-15 확인 값: 2.1.283 이상의 대화형 세션은 auto로 시작하고, <code>Shift+Tab</code>을 auto에서 처음 누르면 default가 된 뒤 default → acceptEdits → plan으로 돈다. 표시는 <code>⏸ manual mode on</code>, <code>⏵⏵ accept edits on</code>. 확인할 곳: <a href="https://code.claude.com/docs/en/permission-modes" class="uri">https://code.claude.com/docs/en/permission-modes</a>.</p>
 </blockquote>
@@ -1188,7 +1416,56 @@ TEST_UNCHANGED (tests/.baseline.json 기준, 파일 11개)</code></pre>
 <h2 class="anchored" data-anchor-id="개인-설정과-팀-설정의-구분">7. 개인 설정과 팀 설정의 구분</h2>
 <section id="무엇을-어디에" class="level3">
 <h3 class="anchored" data-anchor-id="무엇을-어디에">7-1. 무엇을 어디에</h3>
-<p><code>CLAUDE.md</code>, <code>.claude/rules/</code>, <code>.claude/settings.json</code>은 팀 파일로 올리고, <code>CLAUDE.local.md</code>(예: 보고를 짧게 하라는 내 지시)와 <code>.claude/settings.local.json</code>(예: <code>uvicorn</code>의 개인 허용)은 올리지 않는다[C9]. 판단의 질문은 <strong>「이 규칙이 없으면 다른 팀원의 결과가 달라지는가」</strong>이다. 그렇다면 팀 파일에, 내 PC의 값이나 습관만 개인 파일에 둔다.</p>
+<p>파일마다 커밋할 것인지가 정해져 있다[C9].</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>파일</th>
+<th>범위</th>
+<th>저장소에</th>
+<th>예</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>CLAUDE.md</code></td>
+<td>팀</td>
+<td>올린다</td>
+<td>실행 명령, 작업 규칙, 금지</td>
+</tr>
+<tr class="even">
+<td><code>.claude/rules/*.md</code></td>
+<td>팀</td>
+<td>올린다</td>
+<td><code>api.md</code>, <code>tests.md</code></td>
+</tr>
+<tr class="odd">
+<td><code>.claude/settings.json</code></td>
+<td>팀</td>
+<td>올린다</td>
+<td><code>.env</code> 읽기 거부, <code>git push</code> 확인</td>
+</tr>
+<tr class="even">
+<td><code>CLAUDE.local.md</code></td>
+<td>나, 이 저장소</td>
+<td>올리지 않는다</td>
+<td>보고를 짧게 하라는 내 지시</td>
+</tr>
+<tr class="odd">
+<td><code>.claude/settings.local.json</code></td>
+<td>나, 이 저장소</td>
+<td>올리지 않는다</td>
+<td><code>uvicorn</code>의 개인 허용</td>
+</tr>
+</tbody>
+</table>
+<p>판단의 질문은 <strong>「이 규칙이 없으면 다른 팀원의 결과가 달라지는가」</strong>이다. 그렇다면 팀 파일에, 내 PC의 값이나 습관만 개인 파일에 둔다.</p>
 </section>
 <section id="gitignore에-넣는-까닭" class="level3">
 <h3 class="anchored" data-anchor-id="gitignore에-넣는-까닭">7-2. .gitignore에 넣는 까닭</h3>
@@ -1297,7 +1574,37 @@ TEST_UNCHANGED (tests/.baseline.json 기준, 파일 11개)</code></pre>
 </section>
 <section id="codeowners" class="level3">
 <h3 class="anchored" data-anchor-id="codeowners">8-6. CODEOWNERS</h3>
-<p><code>CODEOWNERS</code>(<code>.github/</code>, 루트, <code>docs/</code> 가운데 한 곳)는 경로마다 소유자를 정하고, 그 경로를 바꾸는 PR에 소유자의 검토 요청을 보낸다[G5]. 한 줄은 패턴과 소유자이며, <strong>마지막으로 맞는 줄이 이기므로</strong> 넓은 패턴을 위에 둔다. <code>!</code> 부정과 <code>[ ]</code> 문자 범위는 쓸 수 없다.</p>
+<p><code>CODEOWNERS</code>는 경로마다 소유자를 정하고, 그 경로를 바꾸는 PR에 소유자의 검토 요청을 보낸다[G5].</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>항목</th>
+<th>규칙[G5]</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>위치</td>
+<td><code>.github/</code>, 저장소 루트, <code>docs/</code> 가운데 한 곳</td>
+</tr>
+<tr class="even">
+<td>줄의 모양</td>
+<td>패턴 하나와 소유자(<code>@사용자</code>, <code>@조직/팀</code>)</td>
+</tr>
+<tr class="odd">
+<td>우선순위</td>
+<td><strong>마지막으로 맞는 줄이 이긴다.</strong> 넓은 패턴을 위에, 좁은 패턴을 아래에 둔다</td>
+</tr>
+<tr class="even">
+<td>지원하지 않는 문법</td>
+<td><code>!</code> 부정과 <code>[ ]</code> 문자 범위</td>
+</tr>
+</tbody>
+</table>
 <pre class="text"><code>*                         @GitHub아이디
 /CLAUDE.md                @GitHub아이디
 /.claude/                 @GitHub아이디
@@ -1376,7 +1683,59 @@ TEST_UNCHANGED (tests/.baseline.json 기준, 파일 11개)</code></pre>
 </section>
 <section id="조건의-통제" class="level3">
 <h3 class="anchored" data-anchor-id="조건의-통제">9-2. 조건의 통제</h3>
-<p>규칙 말고는 모두 같게 한다. 시작 코드는 규칙 파일만 다르고, 요청은 글자 그대로 새 세션에 보내며, 판, 모델, 권한 모드(예: Accept edits)를 <code>/status</code>로 확인해 적는다. 그래도 실행한 사람(교수와 학습자)이 다르고, 모델은 같은 조건에서도 결과가 매번 다르다. 한 번의 비교는 경향만 보여 주므로 diff를 읽어 위반의 자리와 까닭을 적는다.</p>
+<p>규칙 말고는 모두 같게 한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>조건</th>
+<th>같게 하는 방법</th>
+<th>같게 하지 못하는 것</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>시작 코드</td>
+<td>규칙 파일과 검사 도구만 다르다</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>요청</td>
+<td>글자 하나 바꾸지 않고 복사해 보낸다</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>세션</td>
+<td>조건마다 새 세션 하나</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>모델과 판</td>
+<td>같은 판과 모델. <code>/status</code>로 확인해 기록한다</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>권한 모드</td>
+<td>두 조건 모두 같은 모드(예: Accept edits)로 시작한다</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>실행한 사람</td>
+<td>같은 판으로 실행한다</td>
+<td>규칙 없음은 교수, 규칙 있음은 학습자이다</td>
+</tr>
+<tr class="odd">
+<td>모델의 무작위성</td>
+<td></td>
+<td>같은 조건에서도 결과가 매번 다르다</td>
+</tr>
+</tbody>
+</table>
+<p>한 번의 비교는 경향만 보여 주므로 diff를 읽어 위반의 자리와 까닭을 적는다.</p>
 </section>
 <section id="위반을-세는-법" class="level3">
 <h3 class="anchored" data-anchor-id="위반을-세는-법">9-3. 위반을 세는 법</h3>
@@ -1461,7 +1820,41 @@ R9     0  새 테스트에 요구 마커(REQ-ID)
 <section id="목표와-완료-기준" class="level3">
 <h3 class="anchored" data-anchor-id="목표와-완료-기준">10-1. 목표와 완료 기준</h3>
 <p>규칙 없음의 결과에서 <strong>막을 어긋남 하나</strong>를 고르고(10-2), 그것을 막는 지시와 설정을 만들어 검사하고(10-3~10-5), 같은 요청을 자기 규칙에서 다시 보내 <strong>그 어긋남이 막혔는지</strong> 확인한 뒤(10-6), PR로 올린다(10-7).</p>
-<p>만드는 것은 <code>CLAUDE.md</code>, <code>.claude/rules/api.md</code>와 <code>tests.md</code>, <code>.claude/settings.json</code>, <code>docs/운영/규칙비교.md</code>, 태그 <code>rules-v1</code>이다. 완료 기준은 넷이다. ① <code>lint_rules.py</code>가 실패 0건이다. ② 판정 사례 23건이 모두 일치한다. ③ 고른 어긋남이 검증 요청에서 0건이거나, 남았다면 원인과 고친 규칙이 <code>규칙비교.md</code>에 있다. ④ <code>check_commits.py --range main..HEAD</code>가 위반 0건이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>만드는 것</th>
+<th>확인하는 방법</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>CLAUDE.md</code></td>
+<td><code>lint_rules.py</code> C1, <code>/context all</code></td>
+</tr>
+<tr class="even">
+<td><code>.claude/rules/api.md</code>, <code>.claude/rules/tests.md</code></td>
+<td><code>lint_rules.py</code> C2, <code>Loaded</code> 줄</td>
+</tr>
+<tr class="odd">
+<td><code>.claude/settings.json</code></td>
+<td><code>json.tool</code>, <code>lint_rules.py</code> C3, 판정 사례 23건, <code>/permissions</code></td>
+</tr>
+<tr class="even">
+<td><code>docs/운영/규칙비교.md</code></td>
+<td>표의 숫자가 <code>count_violations.py</code>의 출력과 같다</td>
+</tr>
+<tr class="odd">
+<td>태그 <code>rules-v1</code></td>
+<td><code>git tag -l</code></td>
+</tr>
+</tbody>
+</table>
+<p>완료 기준은 넷이다. ① <code>lint_rules.py</code>가 실패 0건이다. ② 판정 사례 23건이 모두 일치한다. ③ 고른 어긋남이 검증 요청에서 0건이거나, 남았다면 원인과 고친 규칙이 <code>규칙비교.md</code>에 있다. ④ <code>check_commits.py --range main..HEAD</code>가 위반 0건이다.</p>
 </section>
 <section id="규칙-없음의-어긋남-고르기" class="level3">
 <h3 class="anchored" data-anchor-id="규칙-없음의-어긋남-고르기">10-2. 규칙 없음의 어긋남 고르기</h3>

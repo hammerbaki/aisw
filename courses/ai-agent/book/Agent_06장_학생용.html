@@ -350,6 +350,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#훅의-생명-주기" id="toc-훅의-생명-주기" class="nav-link" data-scroll-target="#훅의-생명-주기">2-1. 훅의 생명 주기</a></li>
   <li><a href="#훅-이벤트" id="toc-훅-이벤트" class="nav-link" data-scroll-target="#훅-이벤트">2-2. 훅 이벤트</a></li>
+  <li><a href="#설정-형식" id="toc-설정-형식" class="nav-link" data-scroll-target="#설정-형식">2-3. 설정 형식</a></li>
   <li><a href="#매처-규칙" id="toc-매처-규칙" class="nav-link" data-scroll-target="#매처-규칙">2-4. 매처 규칙</a></li>
   <li><a href="#처리기의-종류" id="toc-처리기의-종류" class="nav-link" data-scroll-target="#처리기의-종류">2-5. 처리기의 종류</a></li>
   <li><a href="#명령의-형식과-claude_project_dir" id="toc-명령의-형식과-claude_project_dir" class="nav-link" data-scroll-target="#명령의-형식과-claude_project_dir">2-6. 명령의 형식과 <code>$CLAUDE_PROJECT_DIR</code></a></li>
@@ -482,7 +483,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>학사 7주차 · 교재 06 · 2부 하네스의 부품</p>
 </blockquote>
 <blockquote class="blockquote">
-<p>2026-11-19에 150분 기준으로 줄였다(학생용 본문 63,971자 → 32,441자, 참고 자료와 자리 표시를 빼면 28,969자). 명령의 출력은 2026-11-14~19에 Windows 11의 Git Bash(GNU bash 5.3.15)와 파이썬 3.13.7에서 얻었다.</p>
+<p>2026-11-19에 150분 기준으로 줄였다(학생용 본문 63,971자 → 33,443자). 명령의 출력은 2026-11-14~19에 Windows 11의 Git Bash(GNU bash 5.3.15)와 파이썬 3.13.7에서 얻었다.</p>
 </blockquote>
 <p>앞 장까지 <code>jobprep</code> 저장소에 하네스의 부품을 더하였다. 그러나 <code>CLAUDE.md</code>의 규칙과 스킬의 절차는 모델이 따르기로 <strong>판단할 때만</strong> 지켜진다. 대화가 길어지면 모델은 “테스트를 고치지 않는다”는 규칙을 잊고 테스트를 고쳐 통과시킬 수 있다.</p>
 <p>이 장은 이 약점을 두 장치로 메운다. <strong>훅</strong>(hook)은 정해진 시점에 사람이 정한 프로그램을 반드시 실행하여 규칙을 프로그램의 판정으로 옮긴다. <strong>서브에이전트</strong>(subagent)는 자기 컨텍스트와 도구 목록을 가진 전담 에이전트로, 검토를 고칠 권한이 없는 다른 컨텍스트에 맡긴다. 이 장에서는 <strong>보호 파일을 지키고 편집 뒤에 테스트를 강제하는 훅과, 심어 둔 위반으로 성능을 확인한 검토 전담 서브에이전트</strong>를 만든다.</p>
@@ -754,8 +755,11 @@ TEST_UNCHANGED (tests/.baseline.json 기준, 파일 11개)
 </tbody>
 </table>
 <blockquote class="blockquote">
-<p><strong>[최신 자료 자리: 훅 이벤트와 처리기의 종류]</strong> 이벤트 목록, 처리기 <code>type</code>과 기본 제한 시간(2-5절). 확인할 곳 <a href="https://code.claude.com/docs/en/hooks" class="uri">https://code.claude.com/docs/en/hooks</a>. 2026-11-14 값: 이벤트 30개 이상, 처리기 다섯 가지, Claude Code 2.1.296. 수업 전에 다시 확인한다. ### 2-3. 설정 형식</p>
+<p><strong>[최신 자료 자리: 훅 이벤트와 처리기의 종류]</strong> 이벤트 목록, 처리기 <code>type</code>과 기본 제한 시간(2-5절). 확인할 곳 <a href="https://code.claude.com/docs/en/hooks" class="uri">https://code.claude.com/docs/en/hooks</a>. 2026-11-14 값: 이벤트 30개 이상, 처리기 다섯 가지, Claude Code 2.1.296. 수업 전에 다시 확인한다.</p>
 </blockquote>
+</section>
+<section id="설정-형식" class="level3">
+<h3 class="anchored" data-anchor-id="설정-형식">2-3. 설정 형식</h3>
 <p>훅은 설정 파일의 <code>hooks</code> 키에 세 층(이벤트, <strong>매처 그룹</strong>, <strong>처리기</strong>)으로 적는다[C12].</p>
 <div class="code-label where-server">
 <span>파일: .claude/settings.json (훅 부분)</span>
@@ -840,7 +844,38 @@ TEST_UNCHANGED (tests/.baseline.json 기준, 파일 11개)
 <h2 class="anchored" data-anchor-id="훅의-입력과-출력">3. 훅의 입력과 출력</h2>
 <section id="입력-표준-입력의-json" class="level3">
 <h3 class="anchored" data-anchor-id="입력-표준-입력의-json">3-1. 입력: 표준 입력의 JSON</h3>
-<p><code>command</code> 훅은 이벤트의 정보를 <strong>표준 입력</strong>으로 받으므로 스크립트는 <code>INPUT="$(cat)"</code>으로 시작한다. 모든 이벤트에 <code>session_id</code>, <code>cwd</code>, <code>hook_event_name</code> 등이 들어오고, PreToolUse에는 <code>tool_name</code>과 도구의 인자 <code>tool_input</code>이, PostToolUse에는 결과 <code>tool_response</code>가, Stop에는 <code>stop_hook_active</code>가 더해진다[C12]. 파일 도구의 <code>file_path</code>는 절대 경로이다. 키트의 견본 하나를 연다(<code>__PROJECT__</code>는 저장소 경로로 바꿀 자리이다).</p>
+<p><code>command</code> 훅은 이벤트의 정보를 <strong>표준 입력</strong>으로 받으므로 스크립트는 <code>INPUT="$(cat)"</code>으로 시작한다. 들어오는 필드는 다음과 같다[C12].</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>이벤트</th>
+<th>들어오는 필드</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>모든 이벤트</td>
+<td><code>session_id</code>, <code>cwd</code>, <code>hook_event_name</code> 등</td>
+</tr>
+<tr class="even">
+<td><code>PreToolUse</code></td>
+<td><code>tool_name</code>(도구 이름), <code>tool_input</code>(도구에 넘길 인자)</td>
+</tr>
+<tr class="odd">
+<td><code>PostToolUse</code></td>
+<td>위의 둘과 <code>tool_response</code>(도구의 결과)</td>
+</tr>
+<tr class="even">
+<td><code>Stop</code></td>
+<td><code>stop_hook_active</code></td>
+</tr>
+</tbody>
+</table>
+<p>파일 도구의 <code>file_path</code>는 절대 경로이다. 키트의 견본 하나를 연다(<code>__PROJECT__</code>는 저장소 경로로 바꿀 자리이다).</p>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
@@ -894,7 +929,7 @@ TEST_UNCHANGED (tests/.baseline.json 기준, 파일 11개)
 </section>
 <section id="출력-json" class="level3">
 <h3 class="anchored" data-anchor-id="출력-json">3-3. 출력: JSON</h3>
-<p>더 섬세한 결정은 <strong>종료 코드 0과 표준 출력의 JSON 객체 하나</strong>로 돌려준다[C12a]. PreToolUse는 <code>hookSpecificOutput</code> 안의 <code>permissionDecision</code>(<code>allow</code>, <code>deny</code>, <code>ask</code>, <code>defer</code>)으로, PostToolUse와 Stop은 맨 위 층의 <code>decision</code>과 <code>reason</code>으로 결정한다.</p>
+<p>더 섬세한 결정은 <strong>종료 코드 0과 표준 출력의 JSON 객체 하나</strong>로 돌려준다[C12a]. PreToolUse는 <code>hookSpecificOutput</code> 안의 <code>permissionDecision</code>으로, PostToolUse와 Stop은 맨 위 층의 <code>decision</code>과 <code>reason</code>으로 결정한다.</p>
 <div class="code-label where-server">
 <span>파일: PreToolUse 훅의 JSON 출력 예</span>
 </div>
@@ -905,6 +940,36 @@ TEST_UNCHANGED (tests/.baseline.json 기준, 파일 11개)
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"permissionDecisionReason"</span><span class="fu">:</span> <span class="st">"tests/.baseline.json은 동결 기록이므로 고치지 않는다."</span></span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><code>permissionDecision</code></th>
+<th>효과</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>allow</code></td>
+<td>확인 창을 건너뛴다. 거부·확인 규칙은 그대로다</td>
+</tr>
+<tr class="even">
+<td><code>deny</code></td>
+<td>도구 호출을 막는다. 이유는 Claude에게 간다</td>
+</tr>
+<tr class="odd">
+<td><code>ask</code></td>
+<td>사용자에게 확인 창을 띄운다</td>
+</tr>
+<tr class="even">
+<td><code>defer</code></td>
+<td>비대화형(<code>-p</code>) 실행에서만. 도구 호출을 보존한 채 차례를 끝낸다</td>
+</tr>
+</tbody>
+</table>
 <p>훅이 여럿이면 가장 엄격한 결정이 이긴다. JSON이 무시되는 흔한 까닭은 필드의 층이 틀린 경우(그 필드만 조용히 무시된다)와 표준 출력이 <code>{</code>로 시작하지 않는 경우(<code>~/.bashrc</code>의 <code>echo</code>)이다[C12a].</p>
 <p><strong>생각해 볼 것.</strong> 종료 코드 0으로 끝나며 위 JSON을 출력하는 PreToolUse 훅은 편집을 막는가. <code>permissionDecision</code>을 맨 위 층으로 옮기면 어떻게 되는가.</p>
 </section>
@@ -918,7 +983,38 @@ TEST_UNCHANGED (tests/.baseline.json 기준, 파일 11개)
 <h2 class="anchored" data-anchor-id="보호-파일-훅-pretooluse">4. 보호 파일 훅: PreToolUse</h2>
 <section id="무엇을-보호하는가" class="level3">
 <h3 class="anchored" data-anchor-id="무엇을-보호하는가">4-1. 무엇을 보호하는가</h3>
-<p>보호 파일은 에이전트가 고치면 판정 기준이나 안전장치가 무너지는 파일이다. <code>.env</code>(<code>.env.example</code>은 제외), <code>tests/.baseline.json</code>과 동결된 테스트, <code>.git/</code> 안의 파일, 사람이 검수한 뒤에만 바뀌어야 하는 <code>data/jobs.json</code>이다. 새 테스트 파일은 막지 않는다. 목록이 지나치게 넓으면 정상 작업이 막혀 결국 사람이 훅을 끈다.</p>
+<p>보호 파일은 에이전트가 고치면 판정 기준이나 안전장치가 무너지는 파일이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>경로</th>
+<th>까닭</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>.env</code>, <code>.env.*</code> (<code>.env.example</code> 제외)</td>
+<td>실제 API 키. 고치면 모의 모드가 꺼지거나 키가 바뀐다</td>
+</tr>
+<tr class="even">
+<td><code>tests/.baseline.json</code>, 동결된 테스트 파일</td>
+<td>동결 기록과 완료 조건. 고쳐서 통과시키면 회피이다</td>
+</tr>
+<tr class="odd">
+<td><code>.git/</code> 안의 파일</td>
+<td>저장소의 기록. 도구로 고칠 까닭이 없다</td>
+</tr>
+<tr class="even">
+<td><code>data/jobs.json</code></td>
+<td>운영 데이터. 사람이 검수한 뒤에만 바뀐다</td>
+</tr>
+</tbody>
+</table>
+<p>새 테스트 파일은 막지 않는다. 목록이 지나치게 넓으면 정상 작업이 막혀 결국 사람이 훅을 끈다.</p>
 </section>
 <section id="protect.sh-읽기" class="level3">
 <h3 class="anchored" data-anchor-id="protect.sh-읽기">4-2. protect.sh 읽기</h3>
@@ -1069,7 +1165,39 @@ TEST_UNCHANGED (tests/.baseline.json 기준, 파일 11개)
 </section>
 <section id="훅이-막지-못하는-길" class="level3">
 <h3 class="anchored" data-anchor-id="훅이-막지-못하는-길">4-5. 훅이 막지 못하는 길</h3>
-<p><code>protect.sh</code>는 <code>Edit</code>와 <code>Write</code> 도구만 본다. Bash의 파일 명령(<code>sed -i … .env</code>, <code>echo x &gt; .env</code>)은 권한 규칙의 거부가 막는다[C4]. 스크립트 안의 쓰기(<code>python -c "open('.env','w')…"</code>)는 권한 규칙도 막지 못하므로 샌드박스(11장)가 필요하다. 사람의 편집과 <code>git apply</code>는 동결 검사, 검토, CI가 맡는다. 10절에서 <code>git apply</code>로 적용한 위반에는 훅이 하나도 돌지 않는다. 훅은 <strong>Claude Code의 도구 호출</strong>을 지키는 장치이지 저장소 전체를 지키는 장치가 아니다[C12a].</p>
+<p><code>protect.sh</code>는 <code>Edit</code>와 <code>Write</code> 도구만 본다. 같은 파일을 바꾸는 다른 길은 다음과 같다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>길</th>
+<th>예</th>
+<th>막는 장치</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Bash의 파일 명령</td>
+<td><code>sed -i … .env</code>, <code>echo x &gt; .env</code></td>
+<td>권한 규칙의 거부[C4]</td>
+</tr>
+<tr class="even">
+<td>스크립트 안의 파일 쓰기</td>
+<td><code>python -c "open('.env','w')…"</code></td>
+<td>권한 규칙도 막지 못한다. 샌드박스(11장)</td>
+</tr>
+<tr class="odd">
+<td>사람의 편집과 git 명령</td>
+<td>편집기에서 직접 저장, <code>git apply</code></td>
+<td>동결 검사, 검토, CI</td>
+</tr>
+</tbody>
+</table>
+<p>10절에서 <code>git apply</code>로 적용한 위반에는 훅이 하나도 돌지 않는다. 훅은 <strong>Claude Code의 도구 호출</strong>을 지키는 장치이지 저장소 전체를 지키는 장치가 아니다[C12a].</p>
 <p><strong>생각해 볼 것.</strong> 거부 규칙 <code>Read(./.env)</code>와 <code>protect.sh</code>가 모두 있을 때 <code>.env</code>를 바꿀 수 있는 길은? ① Claude의 <code>Edit</code> ② Claude가 실행하는 <code>sed -i</code> ③ Claude가 실행하는 파이썬 스크립트 ④ 학생이 VS Code에서 저장.</p>
 <hr>
 </section>
@@ -1082,7 +1210,42 @@ TEST_UNCHANGED (tests/.baseline.json 기준, 파일 11개)
 </section>
 <section id="관련-테스트-고르기" class="level3">
 <h3 class="anchored" data-anchor-id="관련-테스트-고르기">5-2. 관련 테스트 고르기</h3>
-<p>훅 한 번은 파이썬과 FastAPI를 새로 불러오므로 Windows의 집필 PC에서 10초를 넘었다. 그래서 고친 파일과 관련된 테스트만 돌린다. 테스트 파일은 그 파일을, <code>api/jobs.py</code> 같은 구현은 이름이 맞는 테스트를, 여러 기능이 거치는 <code>api/llm.py</code>는 <code>test_llm.py</code>·<code>test_summary.py</code>·<code>test_ask.py</code>를, 그 밖의 <code>.py</code>는 전체를 돌리고, <code>.py</code>가 아닌 파일은 돌리지 않는다. 2장의 <code>tests/test_closing_within.py</code>처럼 대응에 없는 테스트는 커밋 전의 전체 실행(또는 6절의 Stop 훅)이 메운다.</p>
+<p>훅 한 번은 파이썬과 FastAPI를 새로 불러오므로 Windows의 집필 PC에서 10초를 넘었다. 그래서 고친 파일과 관련된 테스트만 돌린다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>고친 파일</th>
+<th>돌리는 테스트</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>tests/test_*.py</code></td>
+<td>그 파일</td>
+</tr>
+<tr class="even">
+<td><code>api/jobs.py</code> 같은 구현</td>
+<td>이름이 맞는 테스트(<code>test_jobs.py</code>)</td>
+</tr>
+<tr class="odd">
+<td><code>api/llm.py</code></td>
+<td><code>test_llm.py</code>, <code>test_summary.py</code>, <code>test_ask.py</code>(여러 기능이 거친다)</td>
+</tr>
+<tr class="even">
+<td>그 밖의 <code>.py</code></td>
+<td><code>tests</code> 전체</td>
+</tr>
+<tr class="odd">
+<td><code>.py</code>가 아닌 파일</td>
+<td>돌리지 않는다</td>
+</tr>
+</tbody>
+</table>
+<p>2장의 <code>tests/test_closing_within.py</code>처럼 대응에 없는 테스트는 커밋 전의 전체 실행(또는 6절의 Stop 훅)이 메운다.</p>
 </section>
 <section id="run_tests.sh-읽기" class="level3">
 <h3 class="anchored" data-anchor-id="run_tests.sh-읽기">5-3. run_tests.sh 읽기</h3>
@@ -1337,7 +1500,33 @@ JSON 문법 통과
 <h2 class="anchored" data-anchor-id="서브에이전트">8. 서브에이전트</h2>
 <section id="왜-나누는가" class="level3">
 <h3 class="anchored" data-anchor-id="왜-나누는가">8-1. 왜 나누는가</h3>
-<p><strong>서브에이전트</strong>는 자기 컨텍스트 창, 시스템 프롬프트, 도구 목록을 가진 전담 에이전트이다. 주 대화는 일을 넘기고 결과만 받는다. 문서가 드는 이점은 <strong>컨텍스트 격리</strong>(긴 탐색의 요약만 돌아옴), <strong>도구 제한</strong>, <strong>전문화</strong>, <strong>비용 조절</strong>이다[C13].</p>
+<p><strong>서브에이전트</strong>는 자기 컨텍스트 창, 시스템 프롬프트, 도구 목록을 가진 전담 에이전트이다. 주 대화는 일을 넘기고 결과만 받는다. 문서가 드는 이점은 다음 넷이다[C13].</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>까닭</th>
+<th>뜻</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>컨텍스트 격리</td>
+<td>긴 탐색이 주 대화를 채우지 않고 요약만 돌아온다</td>
+</tr>
+<tr class="even">
+<td>도구 제한</td>
+<td>쓸 수 있는 도구를 정한다</td>
+</tr>
+<tr class="odd">
+<td>전문화</td>
+<td>한 가지 일에 맞춘 시스템 프롬프트</td>
+</tr>
+<tr class="even">
+<td>비용 조절</td>
+<td>단순한 일을 싼 모델에게 맡긴다</td>
+</tr>
+</tbody>
+</table>
 <p>이 장에서 중요한 것은 앞의 둘이다. 같은 대화에서 구현한 Claude는 고친 사정을 알고 있어 검토에서도 같은 판단을 되풀이하기 쉽다. 서브에이전트는 새 컨텍스트에서 변경만 보고, 쓰기 도구가 없으면 고칠 수도 없다. 검토와 수정의 분리를 <strong>구조로 강제</strong>하는 것이다. 다만 맥락을 다시 모아야 하고 같은 사용량 한도에서 빠지므로 작은 수정은 주 대화가 낫다[C13].</p>
 </section>
 <section id="내장-서브에이전트" class="level3">
@@ -1390,7 +1579,44 @@ JSON 문법 통과
 </section>
 <section id="호출" class="level3">
 <h3 class="anchored" data-anchor-id="호출">8-4. 호출</h3>
-<p>서브에이전트는 자동 위임(요청과 <code>description</code>이 맞으면 Claude가 넘김), 자연어 지명, <strong>@ 언급</strong>(<code>@"reviewer (agent)" 검토하라</code>, 반드시 그 서브에이전트가 돈다), 세션 전체(<code>claude --agent reviewer</code>)로 부른다[C13]. 측정할 검토는 @ 언급으로 부른다. <code>/agents</code>는 2.1.198부터 안내만 내므로 정의 파일을 직접 쓴다[C13a]. 정의를 고치면 다음 위임부터 반영되지만, <strong>세션 시작 때 없던 <code>.claude/agents/</code>를 처음 만들면</strong> 다시 시작해야 한다[C13].</p>
+<p>서브에이전트를 부르는 방법은 넷이다[C13].</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>방법</th>
+<th>예</th>
+<th>특징</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>자동 위임</td>
+<td>없음</td>
+<td>요청과 <code>description</code>이 맞으면 Claude가 스스로 넘긴다</td>
+</tr>
+<tr class="even">
+<td>자연어로 지명</td>
+<td>“reviewer 서브에이전트로 검토하라”</td>
+<td>Claude가 대개 그 서브에이전트를 쓴다</td>
+</tr>
+<tr class="odd">
+<td><strong>@ 언급</strong></td>
+<td><code>@"reviewer (agent)" 검토하라</code></td>
+<td>그 서브에이전트가 반드시 돈다</td>
+</tr>
+<tr class="even">
+<td>세션 전체</td>
+<td><code>claude --agent reviewer</code></td>
+<td>주 대화가 그 서브에이전트의 도구와 모델로 돈다</td>
+</tr>
+</tbody>
+</table>
+<p>측정할 검토는 @ 언급으로 부른다. <code>/agents</code>는 2.1.198부터 안내만 내므로 정의 파일을 직접 쓴다[C13a]. 정의를 고치면 다음 위임부터 반영되지만, <strong>세션 시작 때 없던 <code>.claude/agents/</code>를 처음 만들면</strong> 다시 시작해야 한다[C13].</p>
 </section>
 <section id="독립-컨텍스트" class="level3">
 <h3 class="anchored" data-anchor-id="독립-컨텍스트">8-5. 독립 컨텍스트</h3>
@@ -1418,7 +1644,34 @@ JSON 문법 통과
 </section>
 <section id="서브에이전트와-역할-에이전트" class="level3">
 <h3 class="anchored" data-anchor-id="서브에이전트와-역할-에이전트">8-7. 서브에이전트와 역할 에이전트</h3>
-<p>정의 파일은 1장의 역할 정의를 <strong>실행할 수 있는 꼴</strong>로 옮긴 것이다. 역할의 이름은 <code>name</code>, 일을 주는 때는 <code>description</code>, 권한은 <code>tools</code>, 출력과 완료 조건은 본문의 보고 형식이 된다. 이 장은 검토 역할을 만들고 10장에서 구현과 테스트 역할을 더한다.</p>
+<p>정의 파일은 1장의 역할 정의를 <strong>실행할 수 있는 꼴</strong>로 옮긴 것이다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>역할 정의(1장)</th>
+<th>서브에이전트 정의 파일</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>역할의 이름</td>
+<td><code>name</code></td>
+</tr>
+<tr class="even">
+<td>일을 주는 때</td>
+<td><code>description</code></td>
+</tr>
+<tr class="odd">
+<td>권한</td>
+<td><code>tools</code></td>
+</tr>
+<tr class="even">
+<td>출력과 완료 조건</td>
+<td>본문의 순서와 보고 형식</td>
+</tr>
+</tbody>
+</table>
+<p>이 장은 검토 역할을 만들고 10장에서 구현과 테스트 역할을 더한다.</p>
 <p><strong>생각해 볼 것.</strong> 로그 1주일분의 집계, 오타 하나의 수정, 구현을 마친 변경의 검토를 각각 주 대화와 서브에이전트 중 어디에 맡기겠는가.</p>
 <hr>
 </section>
@@ -1828,12 +2081,90 @@ d620b53 chore(claude): 보호 파일 훅과 편집 뒤 테스트 훅 추가
 </section>
 <section id="검토자가-놓치기-쉬운-것" class="level3">
 <h3 class="anchored" data-anchor-id="검토자가-놓치기-쉬운-것">11-2. 검토자가 놓치기 쉬운 것</h3>
-<p>검토자는 받은 규칙만 보므로 <strong>규칙 밖의 위반</strong>(10-7절의 경로 우회)을 놓치기 쉽고, 예외를 삼키는 처리(RV5)처럼 <strong>뜻을 읽어야 하는 위반</strong>과 뒤쪽 파일을 대충 보게 되는 <strong>큰 변경</strong>에도 약하다. 사람 검토, 실패 경로의 테스트, 변경을 작게 나누는 것으로 보완한다.</p>
-<p><strong>검토 대상 안의 지시</strong>는 이 장의 위반 묶음에 실제로 들어 있다. 위반 3(<code>innerHTML</code>) 바로 위의 주석은 사람에게는 변명이지만 검토자에게는 “검토를 건너뛴다”는 지시처럼 읽힐 수 있다. 검토자가 그 파일을 건너뛰었다면 <strong>검토자에 대한 프롬프트 주입</strong>이 성공한 것이다. 정의의 금지 문장과 11장의 주입 대책이 이를 막는다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>종류</th>
+<th>까닭</th>
+<th>보완</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>규칙 밖의 위반</td>
+<td>받은 규칙만 본다(10-7절의 경로 우회)</td>
+<td>사람 검토. 규칙을 늘리면 정밀도도 잰다</td>
+</tr>
+<tr class="even">
+<td>뜻을 읽어야 하는 위반</td>
+<td>예외를 삼키는 처리(RV5)는 의도의 문제이다</td>
+<td>사람 검토, 실패 경로의 테스트</td>
+</tr>
+<tr class="odd">
+<td>큰 변경</td>
+<td>뒤쪽 파일을 대충 본다</td>
+<td>변경을 작게 나눈다</td>
+</tr>
+<tr class="even">
+<td>검토 대상 안의 지시</td>
+<td>“검토를 건너뛴다” 같은 글에 끌린다</td>
+<td>정의의 금지 문장, 11장의 주입 대책</td>
+</tr>
+</tbody>
+</table>
+<p>마지막 줄은 이 장의 위반 묶음에 실제로 들어 있다. 위반 3(<code>innerHTML</code>) 바로 위의 주석은 사람에게는 변명이지만 검토자에게는 “검토를 건너뛴다”는 지시처럼 읽힐 수 있다. 검토자가 그 파일을 건너뛰었다면 <strong>검토자에 대한 프롬프트 주입</strong>이 성공한 것이다.</p>
 </section>
 <section id="범용-검토-명령과의-비교" class="level3">
 <h3 class="anchored" data-anchor-id="범용-검토-명령과의-비교">11-3. 범용 검토 명령과의 비교</h3>
-<p><code>/code-review</code>(별칭 <code>/review</code>)는 <strong>정확성 버그</strong>를 찾는 내장 스킬이며 <code>--fix</code>를 주면 고친다. <code>/security-review</code>는 보안 취약점을 찾는다[C13a]. 이 장의 <code>reviewer</code>는 팀 규칙을 알고 잴 수 있으나 규칙 밖을 놓치기 쉽고, 범용 검토는 그 반대이다. 둘은 겹쳐 쓴다.</p>
+<p>내장 검토 명령 <code>/code-review</code>(별칭 <code>/review</code>), <code>/security-review</code>를 이 장의 검토자와 견준다[C13a].</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>구분</th>
+<th>이 장의 <code>reviewer</code></th>
+<th><code>/code-review</code></th>
+<th><code>/security-review</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>기준</td>
+<td>팀 규칙 RV1~RV6</td>
+<td>정확성 버그(일반 기준)</td>
+<td>보안 취약점(일반 기준)</td>
+</tr>
+<tr class="even">
+<td>고치는가</td>
+<td>고치지 못한다(도구 없음)</td>
+<td><code>--fix</code>를 주면 고친다</td>
+<td>보고만 한다</td>
+</tr>
+<tr class="odd">
+<td>측정</td>
+<td>심어 둔 위반으로 잰다</td>
+<td>따로 재야 한다</td>
+<td>같다</td>
+</tr>
+<tr class="even">
+<td>강점</td>
+<td>팀만의 규칙을 안다</td>
+<td>규칙에 없는 논리 오류를 찾을 수 있다</td>
+<td>보안 관점의 폭이 넓다</td>
+</tr>
+</tbody>
+</table>
+<p>둘은 겹쳐 쓴다.</p>
 <blockquote class="blockquote">
 <p><strong>[최신 자료 자리: 내장 검토 명령]</strong> <code>/code-review</code>, <code>/review</code>, <code>/security-review</code>의 선택지와 범위. 확인할 곳 <a href="https://code.claude.com/docs/en/commands" class="uri">https://code.claude.com/docs/en/commands</a>. 2026-11-14 값은 위 본문. 수업 전에 다시 확인한다.</p>
 </blockquote>

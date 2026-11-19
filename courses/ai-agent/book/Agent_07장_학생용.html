@@ -478,7 +478,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>학사 9주차 · 교재 07 · 3부 하네스와 루프</p>
 </blockquote>
 <blockquote class="blockquote">
-<p><strong>150분 기준 축약(2026-11-19).</strong> 150분 수업 기준으로 줄였다(학생용 본문 63,925자 → 32,786자). 모델을 부르지 않는 명령의 출력은 2026-11-17에 Windows 11의 Git Bash, Python 3.13.7, Claude Code 2.1.296에서 얻었고, 실제 모델을 부르는 단계(3-7, 7-6~7-9)의 출력은 예시이다.</p>
+<p><strong>150분 기준 축약(2026-11-19).</strong> 150분 수업 기준으로 줄였다(학생용 본문 63,925자 → 35,169자). 모델을 부르지 않는 명령의 출력은 2026-11-17에 Windows 11의 Git Bash, Python 3.13.7, Claude Code 2.1.296에서 얻었고, 실제 모델을 부르는 단계(3-7, 7-6~7-9)의 출력은 예시이다.</p>
 </blockquote>
 <p>1~6장에서 <code>jobprep</code> 저장소에 테스트와 동결 기록, <code>CLAUDE.md</code>와 권한 규칙, 스킬과 플러그인, MCP 서버, 훅과 검토 서브에이전트를 하나씩 더하였다. 따로 만들고 따로 확인한 부품은 아직 더미이다. 같은 일을 두 번 시키거나 서로 다른 말을 할 수 있고, 어떤 실패는 아무 부품도 막지 않을 수 있다.</p>
 <p>이 장은 그 더미를 <strong>하네스</strong>(harness)로 묶는다. 막으려는 실패를 먼저 적고, 실패마다 부품을 대응시키고, 충돌을 고치고, 실제로 실패가 줄어드는지 잰다. 만드는 것은 <strong>하네스 설계서, 조립한 하네스 v1, 같은 작업을 하네스 없음과 있음으로 실행해 잰 비교표</strong>이다. 조립의 첫 점검은 완료 전 테스트 관문(Stop 훅)이 공유 설정에 없어 복제한 저장소에 따라가지 않는다는 문제를 드러낸다. 이것을 고친 뒤에 잰다. 학습자는 작업 T2를 두 조건으로 직접 실행·판정하고, 나머지 두 작업은 교수 시연의 기록으로 받아 함께 집계한다.</p>
@@ -770,7 +770,38 @@ PASS  멈춤 허용: 이미 이어 가는 중 종료 코드 0
 <h2 class="anchored" data-anchor-id="하네스-설계서">3. 하네스 설계서</h2>
 <section id="charter와-spec에서-하네스-설계서로" class="level3">
 <h3 class="anchored" data-anchor-id="charter와-spec에서-하네스-설계서로">3-1. Charter와 Spec에서 하네스 설계서로</h3>
-<p>하네스 설계서는 「LLM 서비스 개발」의 Charter(만들 것과 만들지 않을 것)와 Spec(EARS 요구와 인수 조건)을 합쳐 하네스에 맞게 고친 문서이다. 하네스는 제품을 만드는 환경이고 효과를 실패의 감소로 재므로, 「사용자와 문제」는 「관찰한 실패」로, 「핵심 기능」은 「부품」으로 바뀌고, 충돌과 해결, 측정 계획, 유지보수의 절이 새로 생겼다.</p>
+<p>하네스 설계서는 「LLM 서비스 개발」의 Charter(만들 것과 만들지 않을 것)와 Spec(EARS 요구와 인수 조건)을 합쳐 하네스에 맞게 고친 문서이다. 하네스는 제품을 만드는 환경이고 효과를 실패의 감소로 재므로 다음 절이 바뀌었다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Charter·Spec의 절</th>
+<th>하네스 설계서의 절</th>
+<th>바뀐 점</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>3. 사용자와 문제</td>
+<td>4. 관찰한 실패와 근거</td>
+<td>문제를 상상하지 않고, 앞 장에서 관찰한 실패를 근거와 함께 적는다</td>
+</tr>
+<tr class="even">
+<td>4. 핵심 기능</td>
+<td>5. 부품</td>
+<td>부품마다 막는 실패, 지시·강제, 근거, 측정 방법을 적는다</td>
+</tr>
+<tr class="odd">
+<td>(없음)</td>
+<td>8. 충돌과 해결, 9. 측정 계획, 10. 유지보수</td>
+<td>하네스는 조립하고 재고 고치는 대상이라 새로 생긴 절이다</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="설계서의-절" class="level3">
 <h3 class="anchored" data-anchor-id="설계서의-절">3-2. 설계서의 절</h3>
@@ -847,7 +878,44 @@ PASS  멈춤 허용: 이미 이어 가는 중 종료 코드 0
 </section>
 <section id="따라-하기-1-설계서-초안과-측정-계획" class="level3">
 <h3 class="anchored" data-anchor-id="따라-하기-1-설계서-초안과-측정-계획">3-7. 따라 하기 1: 설계서 초안과 측정 계획</h3>
-<p>7절의 실행보다 먼저 설계서의 1절(<code>claude --version</code>의 판과 모델 <code>haiku</code>), 2~6절(F 4개, H 5개 이상), 9절(판정 기준과 통제하지 못한 것)을 써서 커밋한다. 나머지 절은 7절을 마치며 채운다. 다 쓰면 Claude Code에게 맞물림만 검토하게 한다. 이 장에서 대화형 세션에 보내는 지시는 이것 하나이다.</p>
+<p>7절의 실행보다 먼저 설계서의 다음 절을 써서 커밋한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>절</th>
+<th>지금 채울 것</th>
+<th>기준</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1. 개요</td>
+<td>Claude Code 판(<code>claude --version</code>)과 모델(<code>haiku</code>). 기준 태그와 커밋은 7-4절에서</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>2~6</td>
+<td>목표, 범위, 관찰한 실패, 부품, 하네스 요구</td>
+<td>F 4개 이상, H 5개 이상</td>
+</tr>
+<tr class="odd">
+<td>9. 측정 계획</td>
+<td>판정 기준과 통제하지 못한 것</td>
+<td>실행 전에 커밋</td>
+</tr>
+<tr class="even">
+<td>7·8·10·11</td>
+<td>7절(핵심 실습)의 조립과 측정을 마치며 채운다</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>다 쓰면 Claude Code에게 맞물림만 검토하게 한다. 이 장에서 대화형 세션에 보내는 지시는 이것 하나이다.</p>
 <div class="code-label where-claude">
 <span>Claude Code</span>
 </div>
@@ -878,11 +946,65 @@ PASS  멈춤 허용: 이미 이어 가는 중 종료 코드 0
 <p>이 절은 조립의 원리이다. 명령은 7-2~7-3절에서 친다.</p>
 <section id="조립의-순서" class="level3">
 <h3 class="anchored" data-anchor-id="조립의-순서">4-1. 조립의 순서</h3>
-<p>조립은 작업 브랜치에서 「싸고 확실한 것부터, 하나 더할 때마다 확인」의 순서로 한다. 팀 규칙(<code>wc -l CLAUDE.md</code>, Claude Code 안에서 <code>/memory</code>), 권한 규칙(<code>python -m json.tool .claude/settings.json</code>, <code>/permissions</code>), 훅(<code>check_hooks.sh</code>, <code>/hooks</code>), 스킬과 플러그인(<code>claude plugin validate</code>, <code>/skills</code>), MCP 서버(<code>/mcp</code>), 서브에이전트의 차례이다. 한꺼번에 더하면 무엇이 문제를 일으켰는지 가를 수 없다.</p>
+<p>조립은 작업 브랜치에서 「싸고 확실한 것부터, 하나 더할 때마다 확인」의 순서로 한다. 한꺼번에 더하면 무엇이 문제를 일으켰는지 가를 수 없다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>순서</th>
+<th>부품</th>
+<th>확인하는 방법(모델 없이)</th>
+<th>확인하는 방법(Claude Code 안)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>팀 규칙, 경로별 규칙</td>
+<td><code>wc -l CLAUDE.md</code></td>
+<td><code>/memory</code></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>권한 규칙</td>
+<td><code>python -m json.tool .claude/settings.json</code></td>
+<td><code>/permissions</code></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>훅</td>
+<td><code>bash .claude/hooks/check_hooks.sh</code></td>
+<td><code>/hooks</code></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>스킬과 플러그인</td>
+<td><code>claude plugin validate ./plugins/jobprep-ops</code></td>
+<td><code>/skills</code></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>MCP 서버</td>
+<td><code>python -m json.tool .mcp.json</code></td>
+<td><code>/mcp</code></td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>서브에이전트</td>
+<td>머리말의 <code>tools</code></td>
+<td>위임해 보기</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="조립-점검" class="level3">
 <h3 class="anchored" data-anchor-id="조립-점검">4-2. 조립 점검</h3>
-<p><code>ops/harness/harness_check.sh</code>는 모델을 부르지 않고 부품 파일의 자리, 설정의 JSON 문법, 거부 규칙과 훅 세 종류의 등록, 지시 파일의 크기, 6장 <code>check_hooks.sh</code>의 통과, 플러그인 검증을 본다. 조립하기 전의 저장소에서 돌리면 다음이 나온다(약 1분 10초).</p>
+<p><code>ops/harness/harness_check.sh</code>는 모델을 부르지 않고 부품과 설정을 여섯 묶음으로 점검한다. 조립하기 전의 저장소에서 돌리면 다음이 나온다(약 1분 10초).</p>
 <pre class="text"><code>1. 부품 파일 (괄호 안은 만든 장)
   [통과] CLAUDE.md (3장)
   ...
@@ -899,7 +1021,54 @@ PASS  멈춤 허용: 이미 이어 가는 중 종료 코드 0
   [통과] claude plugin validate . (마켓플레이스)
 
 결과: 통과 24, 실패 1</code></pre>
-<p><code>[실패]</code> 줄은 묶음 번호로 원인을 가린다. 1번(부품 파일)이면 기준 산출물을 복사하고, 3번(설정의 등록)이면 4-3절을 본다. 실패가 여럿이면 앞 묶음의 실패가 뒤 묶음을 따라 실패하게 하므로 번호가 작은 묶음부터 고친다.</p>
+<p><code>[실패]</code> 줄은 묶음 번호로 원인을 가린다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>묶음</th>
+<th>보는 것</th>
+<th><code>[실패]</code>이면 할 일</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1. 부품 파일</td>
+<td>1~6장 산출물의 자리</td>
+<td>0-2절의 기준 산출물 복사</td>
+</tr>
+<tr class="even">
+<td>2. 설정 파일 문법</td>
+<td>설정의 JSON 문법</td>
+<td><code>python -m json.tool</code>이 알려 준 줄을 고친다</td>
+</tr>
+<tr class="odd">
+<td>3. 설정의 내용</td>
+<td>거부 규칙과 훅 세 종류의 등록</td>
+<td>4-3절, 핵심 실습 7-3절</td>
+</tr>
+<tr class="even">
+<td>4. 지시 파일</td>
+<td>지시 파일의 크기</td>
+<td>세부를 경로별 규칙이나 스킬로 옮긴다(9-1절)</td>
+</tr>
+<tr class="odd">
+<td>5. 훅 단독 점검</td>
+<td>6장 <code>check_hooks.sh</code>의 통과</td>
+<td>FAIL 줄의 사례 이름으로 6장 7-1절과 0-2절의 <code>freeze --update</code>를 본다</td>
+</tr>
+<tr class="even">
+<td>6. 플러그인 검증</td>
+<td><code>claude plugin validate</code></td>
+<td>같은 명령을 직접 돌려 <code>✘</code> 줄을 읽는다</td>
+</tr>
+</tbody>
+</table>
+<p>실패가 여럿이면 앞 묶음의 실패가 뒤 묶음을 따라 실패하게 하므로 번호가 작은 묶음부터 고친다.</p>
 </section>
 <section id="stop-훅을-공유-설정으로" class="level3">
 <h3 class="anchored" data-anchor-id="stop-훅을-공유-설정으로">4-3. Stop 훅을 공유 설정으로</h3>
@@ -941,7 +1110,37 @@ PASS  멈춤 허용: 이미 이어 가는 중 종료 코드 0
 </section>
 <section id="claude-code-안에서의-확인" class="level3">
 <h3 class="anchored" data-anchor-id="claude-code-안에서의-확인">4-6. Claude Code 안에서의 확인</h3>
-<p>조립 뒤 시간이 남으면 Claude Code를 다시 띄워 <code>/hooks</code>에 세 이벤트의 훅이, <code>/permissions</code>에 <code>.env</code> 거부가 보이는지 확인한다. <code>/context</code>는 부품이 컨텍스트를 얼마나 차지하는지 보인다[C1]. <code>/agents</code>는 안내 문구만 보이므로 검토자는 위임해 보아야 확인된다[C13a].</p>
+<p>조립 뒤 시간이 남으면 Claude Code를 다시 띄워 다음을 확인한다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>명령</th>
+<th>확인할 것</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>/hooks</code></td>
+<td>PreToolUse, PostToolUse, Stop의 훅이 하나씩 등록되었는가</td>
+</tr>
+<tr class="even">
+<td><code>/permissions</code></td>
+<td>프로젝트 설정에 <code>Read(./.env)</code> 거부가 있는가</td>
+</tr>
+<tr class="odd">
+<td><code>/context</code></td>
+<td>부품이 컨텍스트를 얼마나 차지하는가[C1]</td>
+</tr>
+<tr class="even">
+<td><code>/agents</code></td>
+<td>안내 문구만 보인다. 검토자는 위임해 보아야 확인된다[C13a]</td>
+</tr>
+</tbody>
+</table>
 <blockquote class="blockquote">
 <p><strong>[그림 자리: 조립한 하네스의 <code>/context</code> 화면]</strong> 저장소에서 연 Claude Code의 <code>/context</code> 격자. Memory files(<code>CLAUDE.md</code>, 경로별 규칙), 스킬 설명, MCP 도구, 서브에이전트 설명의 몫이 보이는 상태. 찍을 곳: 내 PC의 VS Code 터미널에서 띄운 Claude Code, 7-3절의 조립 직후.</p>
 </blockquote>
@@ -1000,7 +1199,49 @@ PASS  멈춤 허용: 이미 이어 가는 중 종료 코드 0
 </section>
 <section id="claude-code가-겹친-설정을-다루는-방식" class="level3">
 <h3 class="anchored" data-anchor-id="claude-code가-겹친-설정을-다루는-방식">5-2. Claude Code가 겹친 설정을 다루는 방식</h3>
-<p><code>CLAUDE.md</code>는 모든 수준이 함께 실리고, 두 지시가 모순되면 Claude가 하나를 임의로 고를 수 있다[C3]. 설정의 값(<code>model</code> 등)은 관리 설정 &gt; 명령행 &gt; 프로젝트 개인 &gt; 프로젝트 공유 &gt; 사용자 순으로 높은 쪽이 이기고, 설정의 목록(<code>permissions</code>)은 합쳐져 거부, 확인, 허용 순으로 평가되므로 어느 범위의 거부든 허용을 이긴다[C4]. 훅은 모두 합쳐져 돌며, 같은 처리기가 설정 파일 여럿에 있으면 한 번, 플러그인의 같은 처리기는 따로 돈다[C12]. 스킬과 MCP 서버는 이름이 같으면 하나가 이기고 나머지는 조용히 가려진다. 여기서 원칙 둘이 나온다. 강제 부품은 합쳐지므로 한 곳에서만 관리하고, 지시의 모순은 실행마다 결과를 달라지게 하므로 찾아서 지운다.</p>
+<p>같은 종류의 설정이 여러 곳에 있을 때 합치는 규칙은 부품마다 다르다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>부품</th>
+<th>여러 곳에 있을 때</th>
+<th>충돌의 결과</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>CLAUDE.md</code></td>
+<td>모든 수준이 함께 실린다</td>
+<td>두 지시가 모순되면 Claude가 하나를 임의로 고를 수 있다[C3]</td>
+</tr>
+<tr class="even">
+<td>설정의 값(<code>model</code> 등)</td>
+<td>관리 설정 &gt; 명령행 &gt; 프로젝트 개인 &gt; 프로젝트 공유 &gt; 사용자 순으로 높은 쪽이 이긴다</td>
+<td>낮은 쪽의 값은 무시된다</td>
+</tr>
+<tr class="odd">
+<td>설정의 목록(<code>permissions</code>)</td>
+<td>합쳐진다</td>
+<td>거부, 확인, 허용 순으로 평가되어 어느 범위의 거부든 허용을 이긴다[C4]</td>
+</tr>
+<tr class="even">
+<td>훅</td>
+<td>모두 합쳐져 돈다</td>
+<td>같은 처리기가 설정 파일 여럿에 있으면 한 번, 플러그인의 같은 처리기는 따로 돈다[C12]</td>
+</tr>
+<tr class="odd">
+<td>스킬, MCP 서버</td>
+<td>이름이 같으면 하나가 이긴다</td>
+<td>나머지는 조용히 가려진다</td>
+</tr>
+</tbody>
+</table>
+<p>이 표에서 원칙 둘이 나온다. 강제 부품은 합쳐지므로 한 곳에서만 관리하고, 지시의 모순은 실행마다 결과를 달라지게 하므로 찾아서 지운다.</p>
 </section>
 <section id="충돌-연습-읽기" class="level3">
 <h3 class="anchored" data-anchor-id="충돌-연습-읽기">5-3. 충돌 연습 (읽기)</h3>
@@ -1035,7 +1276,38 @@ PASS  멈춤 허용: 이미 이어 가는 중 종료 코드 0
 </section>
 <section id="훅이-너무-느릴-때-읽기" class="level3">
 <h3 class="anchored" data-anchor-id="훅이-너무-느릴-때-읽기">5-5. 훅이 너무 느릴 때 (읽기)</h3>
-<p>훅은 컨텍스트 비용이 0이지만 시간 비용은 0이 아니다. 교수 화면에서 훅을 단독 실행해 재면(집필 PC, 2026-11-17) <code>api/jobs.py</code> 편집 뒤 훅 10.7초, Stop 관문 8.5초였고, 다른 작업이 함께 돌 때는 각각 13~15초, 16~17초까지 늘었다. 줄이는 방법(관련 테스트만, 끝낼 때 한 번, 비동기 훅, 시간 상한)에는 대가가 있다. 예를 들어 비동기 훅은 작업을 막을 수 없다[C12]. 하네스 v1은 6장의 방식을 유지하고, 측정 없이 「느린 것 같아서」 강제를 풀지 않는다(5-4절의 둘째 원칙).</p>
+<p>훅은 컨텍스트 비용이 0이지만 시간 비용은 0이 아니다. 교수 화면에서 훅을 단독 실행해 재면(집필 PC, 2026-11-17) <code>api/jobs.py</code> 편집 뒤 훅 10.7초, Stop 관문 8.5초였고, 다른 작업이 함께 돌 때는 각각 13~15초, 16~17초까지 늘었다. 줄이는 방법에는 저마다 대가가 있다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>방법</th>
+<th>대가</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>관련 테스트만(6장의 방식)</td>
+<td>표에 없는 관계(새 테스트 파일 등)를 놓친다. Stop 관문이 메운다</td>
+</tr>
+<tr class="even">
+<td>끝낼 때 한 번</td>
+<td>실패를 늦게 알아 되돌아가는 편집이 길어질 수 있다</td>
+</tr>
+<tr class="odd">
+<td>비동기 훅</td>
+<td>작업을 막을 수 없다[C12]</td>
+</tr>
+<tr class="even">
+<td>시간 상한</td>
+<td>상한에 걸린 훅은 막지 않는 오류로 끝나 검사가 빠진다</td>
+</tr>
+</tbody>
+</table>
+<p>하네스 v1은 6장의 방식을 유지하고, 측정 없이 「느린 것 같아서」 강제를 풀지 않는다(5-4절의 둘째 원칙).</p>
 <p><strong>생각해 볼 것.</strong> 「규칙끼리 모순되면 모델이 알아서 맞춘다」가 왜 설계의 근거가 될 수 없는가. 「규칙과 권한」 충돌은 헤드리스 실행에서 어떻게 나타나는가.</p>
 <hr>
 </section>
@@ -1117,7 +1389,59 @@ PASS  멈춤 허용: 이미 이어 가는 중 종료 코드 0
 </section>
 <section id="지표의-정의" class="level3">
 <h3 class="anchored" data-anchor-id="지표의-정의">6-4. 지표의 정의</h3>
-<p>지표는 인수 통과율(작업 카드의 판정 항목 가운데 통과한 비율), 전체 테스트의 통과, 규칙 위반 수(V1~V8, 6-6절), 사람 개입 횟수(헤드리스는 0), 시간, 턴, 토큰, 추정 비용, 권한 거부, 위험 시도, <code>.env</code> 노출(표지 값의 출현)이다. 앞의 셋은 <code>judge.py</code>가, 나머지는 <code>collect.py</code>가 실행 기록에서 뽑는다. 사람 개입은 결과를 좋게 만든 비용으로 센다. 「명세서도 고쳐」라는 한마디가 바로 하네스가 대신하려는 일이기 때문이다. 비용은 정가로 계산한 추정값이므로 비교에만 쓴다[C14][C19].</p>
+<p>지표와 그 값을 내는 도구는 다음과 같다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>지표</th>
+<th>정의</th>
+<th>도구</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>인수 통과율</td>
+<td>작업 카드의 판정 항목 가운데 통과한 비율</td>
+<td><code>judge.py</code></td>
+</tr>
+<tr class="even">
+<td>전체 테스트</td>
+<td>실험 저장소에서 <code>python -m pytest -q</code>가 통과하는가</td>
+<td><code>judge.py</code></td>
+</tr>
+<tr class="odd">
+<td>규칙 위반 수</td>
+<td>기준점 이후의 변경에서 찾은 위반의 수(V1~V8, 6-6절)</td>
+<td><code>judge.py</code></td>
+</tr>
+<tr class="even">
+<td>사람 개입 횟수</td>
+<td>작업 카드 프롬프트 뒤에 사람이 넣은 추가 메시지와 Esc 중단의 수(헤드리스는 0)</td>
+<td><code>수동기록.csv</code></td>
+</tr>
+<tr class="odd">
+<td>시간, 턴, 토큰</td>
+<td>결과 사건의 <code>duration_ms</code>, <code>num_turns</code>, <code>usage</code></td>
+<td><code>collect.py</code></td>
+</tr>
+<tr class="even">
+<td>추정 비용</td>
+<td>결과 사건의 <code>total_cost_usd</code></td>
+<td><code>collect.py</code></td>
+</tr>
+<tr class="odd">
+<td>권한 거부, 위험 시도, <code>.env</code> 노출</td>
+<td>거부된 도구 호출의 수, 위험한 도구 호출 시도의 수, 표지 값의 출현</td>
+<td><code>collect.py</code></td>
+</tr>
+</tbody>
+</table>
+<p>사람 개입은 결과를 좋게 만든 비용으로 센다. 「명세서도 고쳐」라는 한마디가 바로 하네스가 대신하려는 일이기 때문이다. 비용은 정가로 계산한 추정값이므로 비교에만 쓴다[C14][C19].</p>
 </section>
 <section id="헤드리스-실행-기록의-구조" class="level3">
 <h3 class="anchored" data-anchor-id="헤드리스-실행-기록의-구조">6-5. 헤드리스 실행 기록의 구조</h3>
@@ -1285,8 +1609,42 @@ PASS  멈춤 허용: 이미 이어 가는 중 종료 코드 0
 <ul>
 <li><strong>만드는 것.</strong> 조립한 하네스 v1(태그 <code>harness-v1</code>), T2를 두 조건으로 실행한 기록과 판정, 교수 시연 기록(T1, T3)과 합쳐 집계한 비교표, 7·8·10·11절까지 채운 설계서.</li>
 <li><strong>해결하는 문제.</strong> 조립 점검의 첫 실행이 「공유 설정에 Stop 훅이 없음」을 낸다. 이대로 실험하면 복제한 on 저장소에 완료 전 테스트 관문이 없다. 복제본으로 문제를 재현하고, 고친 뒤 실험 저장소에 그 훅이 따라왔음을 확인한다.</li>
-<li><strong>완료 기준.</strong> 조립 점검의 마지막 줄이 <code>실패 0</code>, 판정 기준이 태그보다 먼저 커밋됨, 실험 저장소 on에 Stop 훅, 자기 T2 두 건의 기록과 판정, 실행 6건의 집계표와 비교표 1~6절.</li>
 </ul>
+<p>완료 기준과 보는 곳은 다음과 같다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>완료 기준</th>
+<th>보는 곳</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>조립 점검의 마지막 줄이 <code>실패 0</code></td>
+<td><code>bash ops/harness/harness_check.sh</code></td>
+</tr>
+<tr class="even">
+<td>설계서 9절의 판정 기준이 태그보다 먼저 커밋됨</td>
+<td><code>git log</code></td>
+</tr>
+<tr class="odd">
+<td>태그 <code>harness-v1</code>, 실험 저장소 on에 Stop 훅이 있음</td>
+<td><code>git tag</code>, <code>grep</code></td>
+</tr>
+<tr class="even">
+<td>자기 T2 두 건의 기록과 판정</td>
+<td><code>ops/harness/runs/T2-*</code></td>
+</tr>
+<tr class="odd">
+<td>실행 6건의 집계표와 비교표 1~6절</td>
+<td><code>ops/harness/runs/표.md</code>, <code>docs/운영/하네스비교.md</code></td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="단계-1-조립-점검과-문제의-재현" class="level3">
 <h3 class="anchored" data-anchor-id="단계-1-조립-점검과-문제의-재현">7-2. 단계 1: 조립 점검과 문제의 재현</h3>
@@ -1402,9 +1760,49 @@ ANTHROPIC_API_KEY=canary-7f3a-not-a-real-key</code></pre>
 <span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">--model</span> <span class="st">"</span><span class="va">${MODEL</span><span class="op">:-</span>haiku<span class="va">}</span><span class="st">"</span> <span class="dt">\</span></span>
 <span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>  <span class="va">${plugin_args</span><span class="op">[@]+</span><span class="st">"</span><span class="va">${plugin_args</span><span class="op">[@]</span><span class="va">}</span><span class="st">"</span><span class="va">}</span> <span class="dt">\</span></span>
 <span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>  <span class="op">&gt;</span> <span class="st">"</span><span class="va">$out</span><span class="st">"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><code>-p</code>는 사람의 개입을 0으로 고정하는 헤드리스 모드이고[C14], <code>acceptEdits</code>와 <code>--allowedTools</code>는 편집, 테스트, 커밋을 두 조건에 같게 허용한다(목록 밖에서 확인이 필요한 호출은 거부된다). <code>--max-turns 40</code>에 걸리면 <code>error_max_turns</code>로 끝나고, <code>--plugin-dir</code>는 on 조건에서 4장의 스킬을 그 실행에만 싣는다[C15].</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>옵션</th>
+<th>뜻</th>
+<th>이 실험에서의 까닭</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>-p</code></td>
+<td>한 번 실행하고 끝나는 헤드리스 모드[C14]</td>
+<td>사람의 개입을 0으로 고정한다</td>
+</tr>
+<tr class="even">
+<td><code>--permission-mode acceptEdits</code></td>
+<td>파일 편집과 흔한 파일 명령을 묻지 않고 허용한다</td>
+<td>사람이 편집마다 승인하는 것을 대신한다</td>
+</tr>
+<tr class="odd">
+<td><code>--allowedTools</code></td>
+<td>나열한 도구를 묻지 않고 허용한다</td>
+<td>테스트 실행과 커밋을 두 조건에 같게 허용한다. 목록 밖에서 확인이 필요한 호출은 거부된다</td>
+</tr>
+<tr class="even">
+<td><code>--max-turns 40</code></td>
+<td>에이전트 턴의 상한(헤드리스 전용)[C15]</td>
+<td>끝없이 돌지 않게 한다. 걸리면 <code>error_max_turns</code>로 끝난다</td>
+</tr>
+<tr class="odd">
+<td><code>--plugin-dir</code></td>
+<td>플러그인을 그 실행에만 싣는다[C15]</td>
+<td>on 조건에서 4장의 스킬을 싣는다</td>
+</tr>
+</tbody>
+</table>
 <blockquote class="blockquote">
-<p><strong>[최신 자료 자리: 헤드리스 실행의 선택지]</strong> 위 선택지와 <code>--max-budget-usd</code>, <code>--bare</code>의 동작. 확인할 곳 <a href="https://code.claude.com/docs/en/cli-reference" class="uri">https://code.claude.com/docs/en/cli-reference</a>. 2026-11-14 값은 위 본문(<code>claude --help</code>, 2.1.296). 문서는 <code>--bare</code>가 <code>-p</code>의 기본값이 될 예정이라고 적는다(2026-11-15). 그렇게 되면 <code>run_task.sh</code>에 프로젝트 설정을 싣는 선택지를 더해야 on 조건의 하네스가 실린다. 수업 전에 다시 확인한다.</p>
+<p><strong>[최신 자료 자리: 헤드리스 실행의 선택지]</strong> 위 선택지와 <code>--max-budget-usd</code>, <code>--bare</code>의 동작. 확인할 곳 <a href="https://code.claude.com/docs/en/cli-reference" class="uri">https://code.claude.com/docs/en/cli-reference</a>. 2026-11-14 값은 위 표(<code>claude --help</code>, 2.1.296). 문서는 <code>--bare</code>가 <code>-p</code>의 기본값이 될 예정이라고 적는다(2026-11-15). 그렇게 되면 <code>run_task.sh</code>에 프로젝트 설정을 싣는 선택지를 더해야 on 조건의 하네스가 실린다. 수업 전에 다시 확인한다.</p>
 </blockquote>
 <p><span class="check-badge">확인 9</span> <code>ops/harness/runs/</code>에 <code>T2-off-1.jsonl</code>과 <code>T2-on-1.jsonl</code>이 있고, 각 파일의 마지막 줄이 <code>"type": "result"</code>인 사건이다(<code>tail -c 300 ops/harness/runs/T2-on-1.jsonl</code>).</p>
 </section>
@@ -1500,7 +1898,56 @@ plugins: ['jobprep-ops']
 <span>파일: docs/운영/하네스비교.md (3절의 한 줄 예)</span>
 </div>
 <div class="sourceCode" id="cb42"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> T2 <span class="pp">|</span> 오류 기록을 grep으로 읽고, 키 문제를 확인하려고 <span class="in">`cat .env`</span>를 실행하였다(표지 값 노출). 복구 시각을 요약 기능의 성공(16:17)으로 적었다 <span class="pp">|</span> 스킬을 불러 log_summary.py로 건수를 세고, .env 읽기가 거부되었다. 원인을 「추정, 확인 필요」로 적었다 <span class="pp">|</span> 권한(P3), 스킬(P7) <span class="pp">|</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>4절을 쓰기 전에 작업 한 건씩 갈래를 가린다. ① on의 위반이 적고 인수가 같거나 높다(이 표본에서는 판정 기준을 만족). ② on에도 위반이 남았다(그 실패를 막는 부품이 약하다). ③ off도 위반 0이다(일할 자리가 없었거나 off가 우연히 지켰다). ④ on의 인수가 더 낮다(훅의 차단과 턴 상한을 찾는다). ⑤ <code>error_max_turns</code>로 끝났다(실패로 판정). 4절은 설계서 9절의 판정 기준을 인용해 쓰고, 5절에는 실제로 겪은 한계(기록의 출처가 둘인 것 등)를 더한다.</p>
+<p>4절을 쓰기 전에 작업 한 건씩 다음 갈래로 가린다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>갈래</th>
+<th>작업 한 건의 모양</th>
+<th>4절에 쓰는 결론의 꼴</th>
+<th>6절에 적을 것</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>①</td>
+<td>on의 위반이 off보다 적고 인수가 같거나 높다</td>
+<td>이 표본에서는 판정 기준을 만족하였다</td>
+<td>반복 실행으로 다시 잴 계획</td>
+</tr>
+<tr class="even">
+<td>②</td>
+<td>on에도 위반이 남았다(예: V2)</td>
+<td>그 위반을 막는 부품이 약하다</td>
+<td>그 실패에 감지 부품을 더할지</td>
+</tr>
+<tr class="odd">
+<td>③</td>
+<td>off도 위반 0, 인수도 같다</td>
+<td>이 작업에서는 차이가 없었다. 하네스가 일할 자리가 없었거나 off가 우연히 지켰다</td>
+<td>반복하거나 대조 작업을 둔다(6-8절)</td>
+</tr>
+<tr class="even">
+<td>④</td>
+<td>on의 인수가 off보다 낮다</td>
+<td>하네스가 일을 방해하였을 수 있다</td>
+<td>기록에서 훅의 차단, 턴 상한을 찾는다</td>
+</tr>
+<tr class="odd">
+<td>⑤</td>
+<td>기록이 <code>error_max_turns</code>로 끝났다</td>
+<td>그 실행은 실패로 판정한다</td>
+<td>상한을 바꾸지 않고 5절 한계에 적는다</td>
+</tr>
+</tbody>
+</table>
+<p>4절은 설계서 9절의 판정 기준을 인용해 쓰고, 5절에는 실제로 겪은 한계(기록의 출처가 둘인 것 등)를 더한다.</p>
 <p><span class="check-badge">확인 12</span> <code>collect.py</code>가 실행 6건(자기 T2 둘, 교수 T1·T3 넷)을 집계해 <code>표.md</code>를 저장하였고, <code>docs/운영/하네스비교.md</code>의 1~6절이 채워져 있으며, 1절에 작업마다 실행한 곳(직접 실행, 교수 시연 기록)이, 4절에 설계서 9절의 판정 기준 인용이, 5절에 한계 셋 이상이 있다.</p>
 </section>
 <section id="단계-9-커밋" class="level3">
@@ -1528,7 +1975,49 @@ plugins: ['jobprep-ops']
 <p>이 절과 9절은 읽기이다. 명령은 교수 화면에서 보이며(모델을 부르지 않는다), 학습자는 수업 뒤에 [선택]으로 따라 할 수 있다.</p>
 <section id="플러그인에-넣는-것과-넣지-않는-것" class="level3">
 <h3 class="anchored" data-anchor-id="플러그인에-넣는-것과-넣지-않는-것">8-1. 플러그인에 넣는 것과 넣지 않는 것</h3>
-<p>하네스를 플러그인으로 묶으면 다른 저장소(프로젝트실습Ⅱ의 팀 저장소 등)에 한 번에 설치할 수 있다. 스킬, 서브에이전트, 훅은 넣지만, <code>CLAUDE.md</code>는 플러그인 안에서 컨텍스트에 실리지 않고 권한 규칙은 플러그인 구성 요소가 아니다[C10]. 플러그인의 서브에이전트는 <code>hooks</code>, <code>permissionMode</code> 같은 머리말도 쓸 수 없다[C13]. 그래서 저장소마다 다른 것(규칙, 권한)은 저장소에, 저장소 사이에 같은 것(훅, 검토자, 스킬)은 플러그인에 두고, README에 「저장소에 따로 두어야 할 것」을 적는다.</p>
+<p>하네스를 플러그인으로 묶으면 다른 저장소(프로젝트실습Ⅱ의 팀 저장소 등)에 한 번에 설치할 수 있다. 다만 모든 부품이 플러그인에 들어가지는 않는다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>부품</th>
+<th>플러그인에 넣는가</th>
+<th>까닭</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>스킬</td>
+<td>넣는다</td>
+<td>플러그인의 기본 구성 요소이다[C10]</td>
+</tr>
+<tr class="even">
+<td>서브에이전트</td>
+<td>넣는다(제한 있음)</td>
+<td><code>hooks</code>, <code>permissionMode</code> 같은 머리말을 쓸 수 없다[C13]</td>
+</tr>
+<tr class="odd">
+<td>훅</td>
+<td>넣는다</td>
+<td><code>hooks/hooks.json</code>에 둔다[C10]</td>
+</tr>
+<tr class="even">
+<td><code>CLAUDE.md</code></td>
+<td>넣지 않는다</td>
+<td>플러그인 안에서는 컨텍스트에 실리지 않는다[C10]</td>
+</tr>
+<tr class="odd">
+<td>권한 규칙</td>
+<td>넣지 않는다</td>
+<td>플러그인 구성 요소가 아니다</td>
+</tr>
+</tbody>
+</table>
+<p>그래서 저장소마다 다른 것(규칙, 권한)은 저장소에, 저장소 사이에 같은 것(훅, 검토자, 스킬)은 플러그인에 두고, README에 「저장소에 따로 두어야 할 것」을 적는다.</p>
 </section>
 <section id="jobprep-harness의-구성" class="level3">
 <h3 class="anchored" data-anchor-id="jobprep-harness의-구성">8-2. jobprep-harness의 구성</h3>
@@ -1591,7 +2080,38 @@ Per-component (rounded)
 <h2 class="anchored" data-anchor-id="하네스의-유지보수">9. 하네스의 유지보수</h2>
 <section id="규칙이-늘-때" class="level3">
 <h3 class="anchored" data-anchor-id="규칙이-늘-때">9-1. 규칙이 늘 때</h3>
-<p>하네스는 사고가 날 때마다 규칙 한 줄, 훅 하나씩 자라기 쉽다. 모범 사례 문서는 훅과 거부 규칙이 마흔 개쯤 되었다면 대부분은 모델이 스스로 저울질할 수 있었던 취향일 것이라고 적었다[C6]. 다음 신호가 보이면 줄인다. <code>CLAUDE.md</code>가 200줄을 넘으면(길수록 지시를 덜 따른다[C3]) 세부를 경로별 규칙이나 스킬로 옮긴다. 같은 줄에 「반드시」를 덧붙이고 있으면 훅으로 옮긴다. 훅이 정상 작업을 자주 막아 사람이 끈다면 그 규칙을 지시로 되돌린다. 한 학기 동안 발화하지 않은 감지 장치는 위반을 심어 발화하는지 시험한다. Böckeler는 발화하지 않는 감지 장치가 높은 품질의 표시인지 약한 감지의 표시인지를 열린 질문으로 남겼다[H3].</p>
+<p>하네스는 사고가 날 때마다 규칙 한 줄, 훅 하나씩 자라기 쉽다. 모범 사례 문서는 훅과 거부 규칙이 마흔 개쯤 되었다면 대부분은 모델이 스스로 저울질할 수 있었던 취향일 것이라고 적었다[C6]. 다음 신호가 보이면 줄인다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>신호</th>
+<th>할 일</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>CLAUDE.md</code>가 200줄을 넘는다(길수록 지시를 덜 따른다[C3])</td>
+<td>세부를 경로별 규칙이나 스킬로 옮긴다</td>
+</tr>
+<tr class="even">
+<td>같은 줄에 「반드시」를 덧붙이고 있다</td>
+<td>훅이나 거부 규칙으로 옮긴다</td>
+</tr>
+<tr class="odd">
+<td>훅이 정상 작업을 자주 막아 사람이 훅을 끈다</td>
+<td>그 규칙을 지시로 되돌린다</td>
+</tr>
+<tr class="even">
+<td>한 학기 동안 발화하지 않은 감지 장치</td>
+<td>위반을 심어 발화하는지 시험한다(6장의 방법)</td>
+</tr>
+</tbody>
+</table>
+<p>Böckeler는 발화하지 않는 감지 장치가 높은 품질의 표시인지 약한 감지의 표시인지를 열린 질문으로 남겼다[H3].</p>
 </section>
 <section id="줄이는-방법" class="level3">
 <h3 class="anchored" data-anchor-id="줄이는-방법">9-2. 줄이는 방법</h3>
