@@ -474,7 +474,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>학사 5주차 · 교재 04 · 2부 하네스의 부품</p>
 </blockquote>
 <blockquote class="blockquote">
-<p>2026-11-19에 150분 기준으로 줄였다(학생용 본문 63,054자 → 32,960자). 출력은 2026-11-17에 Windows 11의 Git Bash, Python 3.13.7, Claude Code 2.1.296에서 얻었다. Claude Code 대화의 응답은 확인하지 않았으므로 보아야 할 것만 적었다.</p>
+<p>2026-11-19에 150분 기준으로 줄였다(학생용 본문 63,054자 → 32,884자). 출력은 2026-11-17에 Windows 11의 Git Bash, Python 3.13.7, Claude Code 2.1.296에서 얻었다. Claude Code 대화의 응답은 확인하지 않았으므로 보아야 할 것만 적었다.</p>
 </blockquote>
 <p>장애가 난 날의 기록을 읽어 보고서를 쓰는 일처럼 가끔, 그러나 되풀이하는 절차를 매번 채팅창에 다시 쓰면 결과의 모양이 사람과 날에 따라 달라져 1장의 운영 요건 가운데 <strong>일관성</strong>이 무너진다. 이 장은 그 절차를 파일로 만들어 이름을 붙이고, 모델이 알아서 부르게 하고, 팀에 나누어 주는 방법을 다룬다.</p>
 <p><strong>커맨드</strong>(command)는 반복하는 프롬프트에 <code>/이름</code>을 붙인 것이고, <strong>스킬</strong>(skill)은 같은 파일에 설명, 서식, 규칙, 참조 파일, 스크립트를 더해 모델도 불러 쓰게 한 것이며, <strong>플러그인</strong>(plugin)은 부품을 묶어 설치하고 갱신하는 배포 단위이다. 커맨드는 스킬에 합쳐졌으므로 이 셋은 <strong>하나의 파일을 키워 가는 세 단계</strong>이다. 핵심 실습(9절)은 장애 보고서 도구를 이 세 단계로 키우며 「커맨드가 쓴 보고서가 팀 서식 검사를 통과하지 못한다」는 문제를 푼다.</p>
@@ -1934,24 +1934,26 @@ Installed plugins:
 </section>
 <section id="판-올리기와-태그" class="level3">
 <h3 class="anchored" data-anchor-id="판-올리기와-태그">9-8. 판 올리기와 태그</h3>
-<p><code>SKILL.md</code>의 절차 3을 「심각도는 references/심각도기준.md로 정하고, 심각도 줄에 해당 조건을 한 구절로 적는다.」로 고친다. 판을 올리고 README에 한 줄을 더한 뒤 태그를 시험한다(macOS는 <code>sed -i ''</code>).</p>
+<p><code>SKILL.md</code>의 절차 3을 다음과 같이 고친다.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>심각도는 <span class="co">[</span><span class="ot">references/심각도기준.md</span><span class="co">](references/심각도기준.md)</span>로 정하고, 심각도 줄에 해당 조건을 한 구절로 적는다.</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>판을 올리고 README에 한 줄을 더한 뒤 태그를 시험한다(macOS는 <code>sed -i ''</code>).</p>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb41"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">'s/"version": "0.1.0"/"version": "0.1.1"/'</span> plugins/jobprep-ops/.claude-plugin/plugin.json</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="bu">printf</span> <span class="st">'| 0.1.1 | 절차 3: 심각도 줄에 기준의 조건을 적게 함 |\n'</span> <span class="op">&gt;&gt;</span> plugins/jobprep-ops/README.md</span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> plugin tag plugins/jobprep-ops <span class="at">--dry-run</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">'s/"version": "0.1.0"/"version": "0.1.1"/'</span> plugins/jobprep-ops/.claude-plugin/plugin.json</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="bu">printf</span> <span class="st">'| 0.1.1 | 절차 3: 심각도 줄에 기준의 조건을 적게 함 |\n'</span> <span class="op">&gt;&gt;</span> plugins/jobprep-ops/README.md</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> plugin tag plugins/jobprep-ops <span class="at">--dry-run</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>--dry-run</code>은 <code>✘ Uncommitted changes affecting this release …</code>로 거절한다(7-4). 검사를 통과시키고 커밋한 뒤 태그를 단다.</p>
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb42"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pytest <span class="at">-q</span> <span class="kw">&amp;&amp;</span> <span class="ex">claude</span> plugin validate ./plugins/jobprep-ops <span class="at">--strict</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add plugins/jobprep-ops</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"fix(ops): jobprep-ops 0.1.1, 심각도 줄에 기준의 조건을 적음"</span></span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> plugin tag plugins/jobprep-ops</span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> tag <span class="at">-n</span></span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/ops-demo <span class="kw">&amp;&amp;</span> <span class="ex">claude</span> plugin list</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pytest <span class="at">-q</span> <span class="kw">&amp;&amp;</span> <span class="ex">claude</span> plugin validate ./plugins/jobprep-ops <span class="at">--strict</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add plugins/jobprep-ops</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"fix(ops): jobprep-ops 0.1.1, 심각도 줄에 기준의 조건을 적음"</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> plugin tag plugins/jobprep-ops</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> tag <span class="at">-n</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/ops-demo <span class="kw">&amp;&amp;</span> <span class="ex">claude</span> plugin list</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>Plugin:  jobprep-ops
 Version: 0.1.1 (from plugin.json)
 Marketplace entry: plugins[0] in C:\Users\이름\agent-lab\jobprep\.claude-plugin\marketplace.json
@@ -1990,15 +1992,15 @@ Installed plugins:
 <div class="code-label where-server">
 <span>터미널</span>
 </div>
-<div class="sourceCode" id="cb44"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">-C</span> ~/kits-repo pull</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="va">R</span><span class="op">=</span>~/kits-repo/Agent_04장/시연기록</span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="st">"</span><span class="va">$R</span><span class="st">/A_1.md"</span> docs/운영/장애보고/비교_A.md <span class="dv">2</span><span class="op">&gt;</span>/dev/null <span class="kw">||</span> <span class="fu">cp</span> <span class="st">"</span><span class="va">$R</span><span class="st">/A_집필예시.md"</span> docs/운영/장애보고/비교_A.md</span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="va">C</span><span class="op">=</span>plugins/jobprep-ops/skills/incident-report/scripts</span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="va">$C</span>/check_report.py docs/운영/장애보고/비교_A.md <span class="kw">|</span> <span class="fu">head</span> <span class="at">-1</span></span>
-<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> f <span class="kw">in</span> <span class="st">"</span><span class="va">$R</span><span class="st">"</span>/<span class="pp">[</span><span class="ss">ABC</span><span class="pp">]</span>_<span class="pp">[</span><span class="ss">0</span><span class="pp">-</span><span class="ss">9</span><span class="pp">]*</span>.md<span class="kw">;</span> <span class="cf">do</span></span>
-<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>  <span class="bu">printf</span> <span class="st">'%s  '</span> <span class="st">"</span><span class="va">$(</span><span class="fu">basename</span> <span class="st">"</span><span class="va">$f</span><span class="st">"</span><span class="va">)</span><span class="st">"</span><span class="kw">;</span> <span class="ex">python</span> <span class="va">$C</span>/check_report.py <span class="st">"</span><span class="va">$f</span><span class="st">"</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-1</span> <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d:</span> <span class="at">-f1</span></span>
-<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/agent-lab/jobprep</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">-C</span> ~/kits-repo pull</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="va">R</span><span class="op">=</span>~/kits-repo/Agent_04장/시연기록</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="st">"</span><span class="va">$R</span><span class="st">/A_1.md"</span> docs/운영/장애보고/비교_A.md <span class="dv">2</span><span class="op">&gt;</span>/dev/null <span class="kw">||</span> <span class="fu">cp</span> <span class="st">"</span><span class="va">$R</span><span class="st">/A_집필예시.md"</span> docs/운영/장애보고/비교_A.md</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="va">C</span><span class="op">=</span>plugins/jobprep-ops/skills/incident-report/scripts</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="va">$C</span>/check_report.py docs/운영/장애보고/비교_A.md <span class="kw">|</span> <span class="fu">head</span> <span class="at">-1</span></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> f <span class="kw">in</span> <span class="st">"</span><span class="va">$R</span><span class="st">"</span>/<span class="pp">[</span><span class="ss">ABC</span><span class="pp">]</span>_<span class="pp">[</span><span class="ss">0</span><span class="pp">-</span><span class="ss">9</span><span class="pp">]*</span>.md<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>  <span class="bu">printf</span> <span class="st">'%s  '</span> <span class="st">"</span><span class="va">$(</span><span class="fu">basename</span> <span class="st">"</span><span class="va">$f</span><span class="st">"</span><span class="va">)</span><span class="st">"</span><span class="kw">;</span> <span class="ex">python</span> <span class="va">$C</span>/check_report.py <span class="st">"</span><span class="va">$f</span><span class="st">"</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-1</span> <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d:</span> <span class="at">-f1</span></span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>서식 위반 8건: docs\운영\장애보고\비교_A.md
 A_1.md  서식 위반 8건
 A_2.md  서식 위반 8건
