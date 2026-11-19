@@ -472,7 +472,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="첫-코드-셀의-실행">0-2. 첫 코드 셀의 실행</h3>
 <p>「1부 따라 하기」의 첫 코드 셀을 실행한다(Shift+Enter). 이 셀은 <code>customers.csv</code>를 읽고 3장의 정제(중복 제거, 목표 결측 행 제거, 불가능한 값과 이상치 제거, 결측치 대체)와 4장의 인코딩(지역 표기 정리, <code>map</code>, <code>get_dummies</code>)을 차례로 수행한 뒤 <code>df_enc</code>의 크기를 출력한다.</p>
 <pre class="text"><code>(2940, 26)</code></pre>
-<p>2940행은 3장의 정제본, 26열은 4장의 인코딩 결과이다. 행 수가 다르면 3장의 처리가, 열 수가 다르면 4장의 처리가 다르게 실행된 것이다. 이 셀은 고치지 않는다. <code>FileNotFoundError</code>가 나면 노트북을 연 위치가 <code>book</code> 폴더인지 부록 A로 확인한다. <code>df_enc</code>는 정수형 21열과 실수형 5열이며 문자열 열과 결측치가 없다. 분할과 스케일링은 수치형 입력만 받으므로 이 상태에서 시작한다.</p>
+<p>2940행은 3장의 정제본, 26열은 4장의 인코딩 결과이다. 행 수가 다르면 3장의 처리가, 열 수가 다르면 4장의 처리가 다르게 실행된 것이다. 이 셀은 고치지 않는다. <code>FileNotFoundError</code>가 나면 노트북을 연 위치가 <code>lecture</code> 폴더인지 부록 A로 확인한다. <code>df_enc</code>는 정수형 21열과 실수형 5열이며 문자열 열과 결측치가 없다. 분할과 스케일링은 수치형 입력만 받으므로 이 상태에서 시작한다.</p>
 <ul>
 <li><span class="check-badge">확인 1</span> 첫 코드 셀의 출력이 <code>(2940, 26)</code>이다.</li>
 </ul>
